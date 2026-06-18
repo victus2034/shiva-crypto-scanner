@@ -11,6 +11,7 @@ WATCHLIST = [
     "BNB/USDT",
 ]
 
+EXCHANGE_IDS = ["kucoin", "okx", "bybit", "binance"]
 TIMEFRAME = "4h"
 OHLCV_LIMIT = 500
 
