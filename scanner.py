@@ -362,21 +362,34 @@ def send_alert(message):
         print(f"Discord alert failed: {error}")
 
 
+def send_status_message(message):
+    print(message)
+
+    try:
+        send_discord_message(message)
+    except requests.RequestException as error:
+        print(f"Discord status message failed: {error}")
+
+
 def process_candidate(state, result, zone_type, zone, distance_pct, now_ts):
     if zone is None:
-        return
+        return False
 
     state_key = build_state_key(result["symbol"], zone_type, zone)
     entry = state.setdefault(state_key, {"in_zone": False, "last_alert_at": 0.0})
+    alert_sent = False
 
     if distance_pct <= MAX_DISTANCE_PCT:
         should_alert = (not entry["in_zone"]) or (now_ts - entry["last_alert_at"] >= ALERT_COOLDOWN_SECONDS)
         if should_alert:
             send_alert(format_alert(result, zone_type, zone, distance_pct))
             entry["last_alert_at"] = now_ts
+            alert_sent = True
         entry["in_zone"] = True
     elif distance_pct > MAX_DISTANCE_PCT * REARM_FACTOR:
         entry["in_zone"] = False
+
+    return alert_sent
 
 
 def print_summary(results):
@@ -418,25 +431,51 @@ def print_summary(results):
 
 def run_scan_once(state):
     results = []
+    failures = []
+    alerts_sent = 0
     started_at = time.strftime("%Y-%m-%d %H:%M:%S")
     print("\n" + "=" * 80)
     print(f"Starting scan at {started_at}")
     print("=" * 80)
+    send_status_message(
+        f"Shiva scanner started\n"
+        f"Time: {started_at}\n"
+        f"Timeframe: {TIMEFRAME}\n"
+        f"Watchlist: {len(WATCHLIST)} symbols"
+    )
 
     for symbol in WATCHLIST:
         try:
             result = scan_symbol(symbol)
             results.append(result)
             now_ts = time.time()
-            process_candidate(state, result, "supply", result["supply"], result["supply_dist"], now_ts)
-            process_candidate(state, result, "demand", result["demand"], result["demand_dist"], now_ts)
+            if process_candidate(state, result, "supply", result["supply"], result["supply_dist"], now_ts):
+                alerts_sent += 1
+            if process_candidate(state, result, "demand", result["demand"], result["demand_dist"], now_ts):
+                alerts_sent += 1
         except Exception as error:
-            print(f"{symbol} -> {error}")
+            error_message = f"{symbol} -> {error}"
+            failures.append(error_message)
+            print(error_message)
 
     save_state(state)
 
     if PRINT_SCAN_SUMMARY and results:
         print_summary(results)
+
+    finished_at = time.strftime("%Y-%m-%d %H:%M:%S")
+    status = "OK" if not failures else "WARN"
+    message = (
+        f"Shiva scanner finished ({status})\n"
+        f"Time: {finished_at}\n"
+        f"Scanned: {len(results)}/{len(WATCHLIST)} symbols\n"
+        f"Alerts sent: {alerts_sent}\n"
+        f"Failures: {len(failures)}"
+    )
+    if failures:
+        message += "\n" + "\n".join(failures[:5])
+
+    send_status_message(message)
 
 
 def parse_args():
