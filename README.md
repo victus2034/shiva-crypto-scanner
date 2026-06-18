@@ -49,6 +49,7 @@ This project now includes a GitHub Actions workflow at `.github/workflows/scan.y
 - It runs `python scanner.py --once`
 - it is scheduled every 15 minutes at minutes `7`, `22`, `37`, and `52`
 - it can also be run manually from the Actions tab
+- it commits `alert_state.json` after scans so cooldowns still work in the cloud
 
 Recommended setup:
 
