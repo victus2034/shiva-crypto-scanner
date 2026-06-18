@@ -12,6 +12,7 @@ pip install -r requirements.txt
 
 2. Edit `config.py`:
    - set your 10 coins in `WATCHLIST`
+   - set exchange fallback order in `EXCHANGE_IDS`
    - change `MAX_DISTANCE_PCT` if you want a tighter or wider alert
    - fill `DISCORD_WEBHOOK_URL` if you want Discord alerts
    - fill `TELEGRAM_BOT_TOKEN` and `TELEGRAM_CHAT_ID` only if Telegram is available for you again later
