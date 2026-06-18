@@ -13,6 +13,7 @@ from config import (
     ATR_PERIOD,
     BOX_WIDTH,
     DISCORD_WEBHOOK_URL,
+    EXCHANGE_IDS,
     MAX_DISTANCE_PCT,
     OHLCV_LIMIT,
     PRINT_ALERTS_TO_CONSOLE,
@@ -28,7 +29,7 @@ from config import (
 
 
 STATE_FILE = Path(__file__).with_name("alert_state.json")
-exchange = ccxt.binance({"enableRateLimit": True})
+EXCHANGES = [getattr(ccxt, exchange_id)({"enableRateLimit": True}) for exchange_id in EXCHANGE_IDS]
 
 
 def load_state():
@@ -259,7 +260,21 @@ def get_range_filter_signals(df):
 
 
 def scan_symbol(symbol):
-    ohlcv = exchange.fetch_ohlcv(symbol, timeframe=TIMEFRAME, limit=OHLCV_LIMIT)
+    last_error = None
+    ohlcv = None
+    exchange_name = None
+
+    for exchange in EXCHANGES:
+        try:
+            ohlcv = exchange.fetch_ohlcv(symbol, timeframe=TIMEFRAME, limit=OHLCV_LIMIT)
+            exchange_name = exchange.id
+            break
+        except Exception as error:
+            last_error = error
+
+    if ohlcv is None:
+        raise RuntimeError(f"all exchanges failed for {symbol}: {last_error}")
+
     df = pd.DataFrame(ohlcv, columns=["time", "open", "high", "low", "close", "volume"])
 
     price = float(df["close"].iloc[-1])
@@ -270,6 +285,7 @@ def scan_symbol(symbol):
 
     return {
         "symbol": symbol,
+        "exchange": exchange_name,
         "price": price,
         "supply": nearest_supply,
         "supply_dist": supply_dist,
@@ -375,6 +391,7 @@ def print_summary(results):
         bias = "BUY" if result["demand_dist"] < result["supply_dist"] else "SELL"
 
         print(f"\n{index}. {result['symbol']} | Closest {closest:.2f}% | Bias {bias}")
+        print(f"Exchange: {result['exchange']}")
         print(f"Price: {result['price']:.6f}")
 
         if result["supply"]:
