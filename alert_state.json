@@ -15240,7 +15240,7 @@
     "last_alert_at": 0.0
   },
   "DOGE/USDT|demand|0.08186000|0.08216935": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1782076576.562519
   },
   "ZEC/USDT|supply|542.49466500|546.93900000": {
@@ -15304,6 +15304,10 @@
     "last_alert_at": 0.0
   },
   "XMR/USDT|supply|435.67395000|438.36000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "XMR/USDT|supply|435.67320000|438.36000000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
