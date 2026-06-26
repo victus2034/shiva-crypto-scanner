@@ -35992,7 +35992,7 @@
     "last_alert_at": 0.0
   },
   "SUI/USDT|demand|0.66190000|0.66653350": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1782440167.310357
   },
   "DOGE/USDT|supply|0.10639980|0.10676000": {
@@ -36214,5 +36214,9 @@
   "AVAX/USDT|demand|5.68400000|5.73014000": {
     "in_zone": false,
     "last_alert_at": 0.0
+  },
+  "BTC/USDT|demand|59136.70000000|59357.76650000": {
+    "in_zone": true,
+    "last_alert_at": 1782445573.479131
   }
 }
