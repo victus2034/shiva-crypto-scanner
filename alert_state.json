@@ -55816,8 +55816,8 @@
     "last_alert_at": 0.0
   },
   "PAXGUSD|supply|4080.15545000|4088.50000000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1782828962.8986247
   },
   "PAXGUSD|demand|3954.60000000|3963.11750000": {
     "in_zone": false,
@@ -56076,6 +56076,13 @@
     "last_alert_at": 0.0
   },
   "ETCUSD|demand|6.42700000|6.47196000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "SLVONUSD|range_filter|buy": {
+    "last_alert_at": 1782828964.131578
+  },
+  "SLVONUSD|supply|60.66575000|60.86000000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
