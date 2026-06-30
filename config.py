@@ -1,21 +1,47 @@
 WATCHLIST = [
-    "BTC/USDT",
-    "ETH/USDT",
-    "PAXG/USDT",
-    "SOL/USDT",
-    "XRP/USDT",
-    "LINK/USDT",
-    "LTC/USDT",
-    "SUI/USDT",
-    "DOGE/USDT",
-    "ZEC/USDT",
-    "HYPE/USDT",
-    "XMR/USDT",
-    "ADA/USDT",
-    "AVAX/USDT",
-    "BNB/USDT",
+    "BTCUSD",
+    "ETHUSD",
+    "PAXGUSD",
+    "SOLUSD",
+    "XRPUSD",
+    "SLVONUSD",
+    "DOGEUSD",
+    "ZECUSD",
+    "HYPEUSD",
+    "RIVERUSD",
+    "LINKUSD",
+    "LTCUSD",
+    "AVAXUSD",
+    "QQQXUSD",
+    "TSLAXUSD",
+    "SUIUSD",
+    "METAXUSD",
+    "SPYXUSD",
+    "AMZNXUSD",
+    "NVDAXUSD",
+    "AAPLXUSD",
+    "XMRUSD",
+    "CRCLXUSD",
+    "GOOGLXUSD",
+    "COINXUSD",
+    "BNBUSD",
+    "ADAUSD",
+    "DOTUSD",
+    "BCHUSD",
+    "NEARUSD",
+    "AAVEUSD",
+    "UNIUSD",
+    "APTUSD",
+    "ARBUSD",
+    "OPUSD",
+    "INJUSD",
+    "TIAUSD",
+    "SEIUSD",
+    "FILUSD",
+    "ETCUSD",
 ]
 
+DELTA_API_BASE_URL = "https://api.india.delta.exchange"
 EXCHANGE_IDS = ["kucoin", "okx", "bybit", "binance"]
 TIMEFRAME = "4h"
 OHLCV_LIMIT = 500
@@ -24,10 +50,12 @@ SWING_LENGTH = 10
 ATR_PERIOD = 50
 BOX_WIDTH = 2.5
 
-MAX_DISTANCE_PCT = 1.0
+MAX_DISTANCE_PCT = 1.5
 REARM_FACTOR = 1.25
 SCAN_SLEEP = 300
 ALERT_COOLDOWN_SECONDS = 4 * 60 * 60
+ALERT_RANGE_FILTER_SIGNALS = True
+SIGNAL_ALERT_COOLDOWN_SECONDS = 4 * 60 * 60
 
 PRINT_SCAN_SUMMARY = True
 PRINT_ALERTS_TO_CONSOLE = True
@@ -35,3 +63,4 @@ PRINT_ALERTS_TO_CONSOLE = True
 TELEGRAM_BOT_TOKEN = ""
 TELEGRAM_CHAT_ID = ""
 DISCORD_WEBHOOK_URL = ""
+DISCORD_STATUS_WEBHOOK_URL = ""

@@ -10,8 +10,11 @@ import requests
 
 from config import (
     ALERT_COOLDOWN_SECONDS,
+    ALERT_RANGE_FILTER_SIGNALS,
     ATR_PERIOD,
     BOX_WIDTH,
+    DELTA_API_BASE_URL,
+    DISCORD_STATUS_WEBHOOK_URL,
     DISCORD_WEBHOOK_URL,
     EXCHANGE_IDS,
     MAX_DISTANCE_PCT,
@@ -20,6 +23,7 @@ from config import (
     PRINT_SCAN_SUMMARY,
     REARM_FACTOR,
     SCAN_SLEEP,
+    SIGNAL_ALERT_COOLDOWN_SECONDS,
     SWING_LENGTH,
     TELEGRAM_BOT_TOKEN,
     TELEGRAM_CHAT_ID,
@@ -30,6 +34,20 @@ from config import (
 
 STATE_FILE = Path(__file__).with_name("alert_state.json")
 EXCHANGES = [getattr(ccxt, exchange_id)({"enableRateLimit": True}) for exchange_id in EXCHANGE_IDS]
+TIMEFRAME_SECONDS = {
+    "1m": 60,
+    "3m": 3 * 60,
+    "5m": 5 * 60,
+    "15m": 15 * 60,
+    "30m": 30 * 60,
+    "1h": 60 * 60,
+    "2h": 2 * 60 * 60,
+    "4h": 4 * 60 * 60,
+    "6h": 6 * 60 * 60,
+    "12h": 12 * 60 * 60,
+    "1d": 24 * 60 * 60,
+    "1w": 7 * 24 * 60 * 60,
+}
 
 
 def load_state():
@@ -116,11 +134,6 @@ def build_zones(df):
     if atr_series.isna().all():
         return [], []
 
-    latest_atr = atr_series.iloc[-1]
-    if pd.isna(latest_atr):
-        return [], []
-
-    atr_buffer = latest_atr * (BOX_WIDTH / 10.0)
     pivot_highs, pivot_lows = find_pivots(df, SWING_LENGTH)
 
     supply_zones = []
@@ -130,6 +143,11 @@ def build_zones(df):
     events.sort(key=lambda event: event[1])
 
     for kind, index in events:
+        pivot_atr = atr_series.iloc[index]
+        if pd.isna(pivot_atr):
+            continue
+
+        atr_buffer = pivot_atr * (BOX_WIDTH / 10.0)
         if kind == "high":
             top = float(df["high"].iloc[index])
             bottom = top - atr_buffer
@@ -141,7 +159,7 @@ def build_zones(df):
                 "active": True,
                 "broken": False,
             }
-            add_zone_if_not_overlapping(supply_zones, zone, latest_atr)
+            add_zone_if_not_overlapping(supply_zones, zone, pivot_atr)
         else:
             bottom = float(df["low"].iloc[index])
             top = bottom + atr_buffer
@@ -153,7 +171,7 @@ def build_zones(df):
                 "active": True,
                 "broken": False,
             }
-            add_zone_if_not_overlapping(demand_zones, zone, latest_atr)
+            add_zone_if_not_overlapping(demand_zones, zone, pivot_atr)
 
     closes = df["close"].values
 
@@ -259,18 +277,72 @@ def get_range_filter_signals(df):
     return buy_signal, sell_signal
 
 
+def is_delta_symbol(symbol):
+    return "/" not in symbol and symbol.endswith("USD")
+
+
+def fallback_symbol(symbol):
+    if is_delta_symbol(symbol):
+        return f"{symbol[:-3]}/USDT"
+    return symbol
+
+
+def fetch_delta_ohlcv(symbol):
+    if not is_delta_symbol(symbol):
+        return None
+
+    timeframe_seconds = TIMEFRAME_SECONDS.get(TIMEFRAME)
+    if timeframe_seconds is None:
+        raise RuntimeError(f"Delta does not support timeframe {TIMEFRAME}")
+
+    end_ts = int(time.time())
+    start_ts = end_ts - (OHLCV_LIMIT + SWING_LENGTH * 2 + ATR_PERIOD) * timeframe_seconds
+    response = requests.get(
+        f"{DELTA_API_BASE_URL}/v2/history/candles",
+        params={
+            "symbol": symbol,
+            "resolution": TIMEFRAME,
+            "start": start_ts,
+            "end": end_ts,
+        },
+        timeout=20,
+    )
+    response.raise_for_status()
+    payload = response.json()
+    if not payload.get("success"):
+        raise RuntimeError(payload)
+
+    candles = sorted(payload.get("result", []), key=lambda candle: candle["time"])
+    if not candles:
+        raise RuntimeError(f"Delta returned no candles for {symbol}")
+
+    return [
+        [
+            int(candle["time"]) * 1000,
+            float(candle["open"]),
+            float(candle["high"]),
+            float(candle["low"]),
+            float(candle["close"]),
+            float(candle.get("volume") or 0),
+        ]
+        for candle in candles[-OHLCV_LIMIT:]
+    ]
+
+
 def scan_symbol(symbol):
     last_error = None
-    ohlcv = None
-    exchange_name = None
+    ohlcv = fetch_delta_ohlcv(symbol)
+    exchange_name = "delta_india" if ohlcv is not None else None
 
-    for exchange in EXCHANGES:
-        try:
-            ohlcv = exchange.fetch_ohlcv(symbol, timeframe=TIMEFRAME, limit=OHLCV_LIMIT)
-            exchange_name = exchange.id
-            break
-        except Exception as error:
-            last_error = error
+    if ohlcv is None:
+        symbol_for_fallback = fallback_symbol(symbol)
+        for exchange in EXCHANGES:
+            try:
+                ohlcv = exchange.fetch_ohlcv(symbol_for_fallback, timeframe=TIMEFRAME, limit=OHLCV_LIMIT)
+                exchange_name = exchange.id
+                break
+            except Exception as error:
+                last_error = error
 
     if ohlcv is None:
         raise RuntimeError(f"all exchanges failed for {symbol}: {last_error}")
@@ -300,6 +372,10 @@ def build_state_key(symbol, zone_type, zone):
     return f"{symbol}|{zone_type}|{zone['bottom']:.8f}|{zone['top']:.8f}"
 
 
+def build_signal_state_key(symbol, signal_type):
+    return f"{symbol}|range_filter|{signal_type}"
+
+
 def format_alert(result, zone_type, zone, distance_pct):
     symbol = result["symbol"]
     price = result["price"]
@@ -313,6 +389,21 @@ def format_alert(result, zone_type, zone, distance_pct):
         f"Zone: {zone['bottom']:.6f} - {zone['top']:.6f}\n"
         f"Range Filter Buy Signal: {result['buy_signal']}\n"
         f"Range Filter Sell Signal: {result['sell_signal']}\n"
+        f"Timeframe: {TIMEFRAME}"
+    )
+
+
+def format_signal_alert(result, signal_type):
+    symbol = result["symbol"]
+    price = result["price"]
+    label = "BUY" if signal_type == "buy" else "SELL"
+
+    return (
+        f"{symbol} Range Filter {label} signal\n"
+        f"Price: {price:.6f}\n"
+        f"Nearest Demand Distance: {result['demand_dist']:.2f}%\n"
+        f"Nearest Supply Distance: {result['supply_dist']:.2f}%\n"
+        f"Exchange: {result['exchange']}\n"
         f"Timeframe: {TIMEFRAME}"
     )
 
@@ -332,8 +423,8 @@ def send_telegram_message(message):
     response.raise_for_status()
 
 
-def send_discord_message(message):
-    webhook_url = get_env_or_config("DISCORD_WEBHOOK_URL", DISCORD_WEBHOOK_URL)
+def send_discord_message(message, webhook_env_name="DISCORD_WEBHOOK_URL", webhook_config_value=DISCORD_WEBHOOK_URL):
+    webhook_url = get_env_or_config(webhook_env_name, webhook_config_value)
     if not webhook_url:
         return
 
@@ -366,7 +457,11 @@ def send_status_message(message):
     print(message)
 
     try:
-        send_discord_message(message)
+        send_discord_message(
+            message,
+            webhook_env_name="DISCORD_STATUS_WEBHOOK_URL",
+            webhook_config_value=DISCORD_STATUS_WEBHOOK_URL,
+        )
     except requests.RequestException as error:
         print(f"Discord status message failed: {error}")
 
@@ -390,6 +485,24 @@ def process_candidate(state, result, zone_type, zone, distance_pct, now_ts):
         entry["in_zone"] = False
 
     return alert_sent
+
+
+def process_signal_candidate(state, result, signal_type, now_ts):
+    if not ALERT_RANGE_FILTER_SIGNALS:
+        return False
+
+    signal_active = result["buy_signal"] if signal_type == "buy" else result["sell_signal"]
+    if not signal_active:
+        return False
+
+    state_key = build_signal_state_key(result["symbol"], signal_type)
+    entry = state.setdefault(state_key, {"last_alert_at": 0.0})
+    if now_ts - entry["last_alert_at"] < SIGNAL_ALERT_COOLDOWN_SECONDS:
+        return False
+
+    send_alert(format_signal_alert(result, signal_type))
+    entry["last_alert_at"] = now_ts
+    return True
 
 
 def print_summary(results):
@@ -449,6 +562,10 @@ def run_scan_once(state):
             result = scan_symbol(symbol)
             results.append(result)
             now_ts = time.time()
+            if process_signal_candidate(state, result, "buy", now_ts):
+                alerts_sent += 1
+            if process_signal_candidate(state, result, "sell", now_ts):
+                alerts_sent += 1
             if process_candidate(state, result, "supply", result["supply"], result["supply_dist"], now_ts):
                 alerts_sent += 1
             if process_candidate(state, result, "demand", result["demand"], result["demand_dist"], now_ts):
