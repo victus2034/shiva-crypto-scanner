@@ -55960,8 +55960,8 @@
     "last_alert_at": 0.0
   },
   "COINXUSD|supply|151.59380000|152.26000000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1782913571.8028793
   },
   "COINXUSD|demand|139.25000000|139.94720000": {
     "in_zone": false,
@@ -56080,7 +56080,7 @@
     "last_alert_at": 0.0
   },
   "SLVONUSD|range_filter|buy": {
-    "last_alert_at": 1782828964.131578
+    "last_alert_at": 1782913564.2120745
   },
   "SLVONUSD|supply|60.66575000|60.86000000": {
     "in_zone": false,
@@ -56118,14 +56118,21 @@
     "last_alert_at": 0.0
   },
   "APTUSD|supply|0.59349350|0.59700000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1782913575.259341
   },
   "HYPEUSD|supply|67.28616500|67.80000000": {
     "in_zone": false,
     "last_alert_at": 0.0
   },
   "METAXUSD|supply|645.72570000|647.00000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "PAXGUSD|range_filter|buy": {
+    "last_alert_at": 1782913562.9665222
+  },
+  "PAXGUSD|supply|4343.58815000|4351.60000000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
