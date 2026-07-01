@@ -547,12 +547,16 @@ def run_scan_once(state):
     failures = []
     alerts_sent = 0
     started_at = time.strftime("%Y-%m-%d %H:%M:%S")
+    run_number = os.getenv("GITHUB_RUN_NUMBER", "local")
+    trigger = os.getenv("GITHUB_EVENT_NAME", "local")
     print("\n" + "=" * 80)
     print(f"Starting scan at {started_at}")
     print("=" * 80)
     send_status_message(
         f"Shiva scanner started\n"
         f"Time: {started_at}\n"
+        f"Run: {run_number}\n"
+        f"Trigger: {trigger}\n"
         f"Timeframe: {TIMEFRAME}\n"
         f"Watchlist: {len(WATCHLIST)} symbols"
     )
@@ -585,6 +589,8 @@ def run_scan_once(state):
     message = (
         f"Shiva scanner finished ({status})\n"
         f"Time: {finished_at}\n"
+        f"Run: {run_number}\n"
+        f"Trigger: {trigger}\n"
         f"Scanned: {len(results)}/{len(WATCHLIST)} symbols\n"
         f"Alerts sent: {alerts_sent}\n"
         f"Failures: {len(failures)}"
