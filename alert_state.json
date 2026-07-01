@@ -55824,8 +55824,8 @@
     "last_alert_at": 1782893760.8689668
   },
   "SOLUSD|supply|75.72765850|76.09900000": {
-    "in_zone": false,
-    "last_alert_at": 1782878488.8741796
+    "in_zone": true,
+    "last_alert_at": 1782896486.261985
   },
   "SOLUSD|demand|64.03200000|64.44527650": {
     "in_zone": false,
@@ -56114,6 +56114,10 @@
     "last_alert_at": 0.0
   },
   "FILUSD|supply|0.74415350|0.74900000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "APTUSD|supply|0.59349350|0.59700000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
