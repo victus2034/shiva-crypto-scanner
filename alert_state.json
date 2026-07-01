@@ -55872,8 +55872,8 @@
     "last_alert_at": 0.0
   },
   "LINKUSD|demand|6.99700000|7.05317500": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1782868566.5028257
   },
   "LTCUSD|supply|46.18010000|46.35000000": {
     "in_zone": false,
@@ -55988,8 +55988,8 @@
     "last_alert_at": 0.0
   },
   "DOTUSD|demand|0.80300000|0.80841500": {
-    "in_zone": false,
-    "last_alert_at": 1782854169.7963243
+    "in_zone": true,
+    "last_alert_at": 1782868570.422021
   },
   "BCHUSD|supply|204.16095000|205.39000000": {
     "in_zone": false,
@@ -56094,5 +56094,8 @@
   },
   "TIAUSD|range_filter|sell": {
     "last_alert_at": 1782851484.702358
+  },
+  "ETCUSD|range_filter|sell": {
+    "last_alert_at": 1782868573.4532359
   }
 }
