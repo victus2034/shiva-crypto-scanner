@@ -56114,8 +56114,8 @@
     "last_alert_at": 0.0
   },
   "FILUSD|supply|0.74415350|0.74900000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1782915371.7779555
   },
   "APTUSD|supply|0.59349350|0.59700000": {
     "in_zone": true,
@@ -56142,5 +56142,12 @@
   "COINXUSD|supply|173.48480000|174.30000000": {
     "in_zone": false,
     "last_alert_at": 0.0
+  },
+  "SOLUSD|supply|83.09115400|83.41300000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "ADAUSD|range_filter|buy": {
+    "last_alert_at": 1782915367.7981083
   }
 }
