@@ -1,4 +1,5 @@
 import argparse
+from concurrent.futures import ThreadPoolExecutor, as_completed
 import json
 import os
 import time
@@ -23,6 +24,7 @@ from config import (
     PRINT_SCAN_SUMMARY,
     REARM_FACTOR,
     SCAN_SLEEP,
+    SCAN_WORKERS,
     SIGNAL_ALERT_COOLDOWN_SECONDS,
     SWING_LENGTH,
     TELEGRAM_BOT_TOKEN,
@@ -562,23 +564,34 @@ def run_scan_once(state):
         f"Watchlist: {len(WATCHLIST)} symbols"
     )
 
+    with ThreadPoolExecutor(max_workers=SCAN_WORKERS) as executor:
+        futures = {executor.submit(scan_symbol, symbol): symbol for symbol in WATCHLIST}
+        scanned_by_symbol = {}
+
+        for future in as_completed(futures):
+            symbol = futures[future]
+            try:
+                scanned_by_symbol[symbol] = future.result()
+            except Exception as error:
+                error_message = f"{symbol} -> {error}"
+                failures.append(error_message)
+                print(error_message)
+
     for symbol in WATCHLIST:
-        try:
-            result = scan_symbol(symbol)
-            results.append(result)
-            now_ts = time.time()
-            if process_signal_candidate(state, result, "buy", now_ts):
-                alerts_sent += 1
-            if process_signal_candidate(state, result, "sell", now_ts):
-                alerts_sent += 1
-            if process_candidate(state, result, "supply", result["supply"], result["supply_dist"], now_ts):
-                alerts_sent += 1
-            if process_candidate(state, result, "demand", result["demand"], result["demand_dist"], now_ts):
-                alerts_sent += 1
-        except Exception as error:
-            error_message = f"{symbol} -> {error}"
-            failures.append(error_message)
-            print(error_message)
+        result = scanned_by_symbol.get(symbol)
+        if result is None:
+            continue
+
+        results.append(result)
+        now_ts = time.time()
+        if process_signal_candidate(state, result, "buy", now_ts):
+            alerts_sent += 1
+        if process_signal_candidate(state, result, "sell", now_ts):
+            alerts_sent += 1
+        if process_candidate(state, result, "supply", result["supply"], result["supply_dist"], now_ts):
+            alerts_sent += 1
+        if process_candidate(state, result, "demand", result["demand"], result["demand_dist"], now_ts):
+            alerts_sent += 1
 
     save_state(state)
 
