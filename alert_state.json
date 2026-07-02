@@ -56163,8 +56163,8 @@
     "last_alert_at": 0.0
   },
   "XMRUSD|supply|314.38580000|316.16000000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1782997313.7780395
   },
   "UNIUSD|supply|3.71297300|3.73300000": {
     "in_zone": false,
@@ -56187,5 +56187,9 @@
   },
   "FILUSD|range_filter|buy": {
     "last_alert_at": 1782989234.4122756
+  },
+  "ZECUSD|supply|539.20610000|544.60000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
   }
 }
