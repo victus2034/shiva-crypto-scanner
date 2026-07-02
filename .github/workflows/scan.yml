@@ -1,8 +1,7 @@
 name: Shiva Crypto Scanner
 
 on:
-  schedule:
-    - cron: "1,20,40 * * * *"
+  workflow_dispatch:
 
 permissions:
   contents: write
@@ -27,7 +26,33 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
+      - name: Align scan time
+        run: |
+          minute=$(TZ=Asia/Kolkata date +%M)
+          minute=$((10#$minute))
+
+          if [ "$minute" -ge 0 ] && [ "$minute" -le 4 ]; then
+            target=1
+          elif [ "$minute" -ge 15 ] && [ "$minute" -le 24 ]; then
+            target=20
+          elif [ "$minute" -ge 30 ] && [ "$minute" -le 44 ]; then
+            target=40
+          else
+            echo "Outside scan windows. Skipping this trigger."
+            echo "RUN_SCAN=false" >> "$GITHUB_ENV"
+            exit 0
+          fi
+
+          if [ "$minute" -lt "$target" ]; then
+            sleep_seconds=$(( (target - minute) * 60 ))
+            echo "Waiting ${sleep_seconds}s to align scan to minute ${target}."
+            sleep "$sleep_seconds"
+          fi
+
+          echo "RUN_SCAN=true" >> "$GITHUB_ENV"
+
       - name: Run scanner once
+        if: env.RUN_SCAN == 'true'
         env:
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
           DISCORD_STATUS_WEBHOOK_URL: ${{ secrets.DISCORD_STATUS_WEBHOOK_URL }}
@@ -36,6 +61,7 @@ jobs:
         run: python scanner.py --once
 
       - name: Persist alert state
+        if: env.RUN_SCAN == 'true'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"

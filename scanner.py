@@ -457,11 +457,12 @@ def send_status_message(message):
     print(message)
 
     try:
-        send_discord_message(
-            message,
-            webhook_env_name="DISCORD_STATUS_WEBHOOK_URL",
-            webhook_config_value=DISCORD_STATUS_WEBHOOK_URL,
-        )
+        if get_env_or_config("DISCORD_STATUS_WEBHOOK_URL", DISCORD_STATUS_WEBHOOK_URL):
+            send_discord_message(
+                message,
+                webhook_env_name="DISCORD_STATUS_WEBHOOK_URL",
+                webhook_config_value=DISCORD_STATUS_WEBHOOK_URL,
+            )
     except requests.RequestException as error:
         print(f"Discord status message failed: {error}")
 
