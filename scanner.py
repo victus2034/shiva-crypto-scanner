@@ -20,6 +20,7 @@ from config import (
     EXCHANGE_IDS,
     MAX_DISTANCE_PCT,
     OHLCV_LIMIT,
+    PRIMARY_EXCHANGE_ID,
     PRINT_ALERTS_TO_CONSOLE,
     PRINT_SCAN_SUMMARY,
     REARM_FACTOR,
@@ -36,6 +37,7 @@ from config import (
 
 STATE_FILE = Path(__file__).with_name("alert_state.json")
 EXCHANGES = [getattr(ccxt, exchange_id)({"enableRateLimit": True}) for exchange_id in EXCHANGE_IDS]
+EXCHANGES_BY_ID = {exchange.id: exchange for exchange in EXCHANGES}
 TIMEFRAME_SECONDS = {
     "1m": 60,
     "3m": 3 * 60,
@@ -289,6 +291,10 @@ def fallback_symbol(symbol):
     return symbol
 
 
+def fetch_exchange_ohlcv(exchange, symbol):
+    return exchange.fetch_ohlcv(symbol, timeframe=TIMEFRAME, limit=OHLCV_LIMIT)
+
+
 def fetch_delta_ohlcv(symbol):
     if not is_delta_symbol(symbol):
         return None
@@ -333,14 +339,32 @@ def fetch_delta_ohlcv(symbol):
 
 def scan_symbol(symbol):
     last_error = None
-    ohlcv = fetch_delta_ohlcv(symbol)
-    exchange_name = "delta_india" if ohlcv is not None else None
+    ohlcv = None
+    exchange_name = None
+    symbol_for_fallback = fallback_symbol(symbol)
+
+    primary_exchange = EXCHANGES_BY_ID.get(PRIMARY_EXCHANGE_ID)
+    if primary_exchange is not None:
+        try:
+            ohlcv = fetch_exchange_ohlcv(primary_exchange, symbol_for_fallback)
+            exchange_name = primary_exchange.id
+        except Exception as error:
+            last_error = error
 
     if ohlcv is None:
-        symbol_for_fallback = fallback_symbol(symbol)
+        try:
+            ohlcv = fetch_delta_ohlcv(symbol)
+            exchange_name = "delta_india" if ohlcv is not None else exchange_name
+        except Exception as error:
+            last_error = error
+
+    if ohlcv is None:
         for exchange in EXCHANGES:
+            if exchange.id == PRIMARY_EXCHANGE_ID:
+                continue
+
             try:
-                ohlcv = exchange.fetch_ohlcv(symbol_for_fallback, timeframe=TIMEFRAME, limit=OHLCV_LIMIT)
+                ohlcv = fetch_exchange_ohlcv(exchange, symbol_for_fallback)
                 exchange_name = exchange.id
                 break
             except Exception as error:

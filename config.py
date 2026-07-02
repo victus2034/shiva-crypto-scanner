@@ -42,7 +42,8 @@ WATCHLIST = [
 ]
 
 DELTA_API_BASE_URL = "https://api.india.delta.exchange"
-EXCHANGE_IDS = ["kucoin", "okx", "bybit", "binance"]
+PRIMARY_EXCHANGE_ID = "binance"
+EXCHANGE_IDS = ["binance", "kucoin", "okx", "bybit"]
 TIMEFRAME = "4h"
 OHLCV_LIMIT = 500
 
