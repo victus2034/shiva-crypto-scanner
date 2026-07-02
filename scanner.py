@@ -483,11 +483,18 @@ def send_status_message(message):
     print(message)
 
     try:
-        if get_env_or_config("DISCORD_STATUS_WEBHOOK_URL", DISCORD_STATUS_WEBHOOK_URL):
+        status_webhook = get_env_or_config("DISCORD_STATUS_WEBHOOK_URL", DISCORD_STATUS_WEBHOOK_URL)
+        alert_webhook = get_env_or_config("DISCORD_WEBHOOK_URL", DISCORD_WEBHOOK_URL)
+
+        if status_webhook:
             send_discord_message(
                 message,
                 webhook_env_name="DISCORD_STATUS_WEBHOOK_URL",
                 webhook_config_value=DISCORD_STATUS_WEBHOOK_URL,
+            )
+        elif alert_webhook:
+            send_discord_message(
+                "STATUS WEBHOOK MISSING - sending scanner status to alert channel for now.\n\n" + message
             )
     except requests.RequestException as error:
         print(f"Discord status message failed: {error}")

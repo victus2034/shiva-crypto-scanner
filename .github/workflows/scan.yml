@@ -28,6 +28,23 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
+      - name: Check Discord webhook configuration
+        env:
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          DISCORD_STATUS_WEBHOOK_URL: ${{ secrets.DISCORD_STATUS_WEBHOOK_URL }}
+        run: |
+          if [ -z "$DISCORD_WEBHOOK_URL" ]; then
+            echo "::warning::DISCORD_WEBHOOK_URL is not configured."
+          else
+            echo "DISCORD_WEBHOOK_URL is configured."
+          fi
+
+          if [ -z "$DISCORD_STATUS_WEBHOOK_URL" ]; then
+            echo "::warning::DISCORD_STATUS_WEBHOOK_URL is not configured. Scanner status will fall back to alert webhook."
+          else
+            echo "DISCORD_STATUS_WEBHOOK_URL is configured."
+          fi
+
       - name: Run scanner once
         env:
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
