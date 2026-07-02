@@ -2,6 +2,8 @@ name: Shiva Crypto Scanner
 
 on:
   workflow_dispatch:
+  schedule:
+    - cron: "*/5 * * * *"
 
 permissions:
   contents: write
@@ -15,17 +17,6 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.12"
-
-      - name: Install dependencies
-        run: pip install -r requirements.txt
-
       - name: Align scan time
         run: |
           minute=$(TZ=Asia/Kolkata date +%M)
@@ -50,6 +41,20 @@ jobs:
           fi
 
           echo "RUN_SCAN=true" >> "$GITHUB_ENV"
+
+      - name: Checkout repository
+        if: env.RUN_SCAN == 'true'
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        if: env.RUN_SCAN == 'true'
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        if: env.RUN_SCAN == 'true'
+        run: pip install -r requirements.txt
 
       - name: Run scanner once
         if: env.RUN_SCAN == 'true'
