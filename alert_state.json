@@ -55848,8 +55848,8 @@
     "last_alert_at": 0.0
   },
   "DOGEUSD|supply|0.07612724|0.07649000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1783065715.8706727
   },
   "ZECUSD|supply|425.41480000|429.22000000": {
     "in_zone": true,
@@ -56219,5 +56219,8 @@
   "METAXUSD|supply|627.11750000|628.50000000": {
     "in_zone": false,
     "last_alert_at": 0.0
+  },
+  "DOGEUSD|range_filter|buy": {
+    "last_alert_at": 1783065715.8706727
   }
 }
