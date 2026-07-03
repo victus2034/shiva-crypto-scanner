@@ -56106,7 +56106,7 @@
     "last_alert_at": 0.0
   },
   "RIVERUSD|supply|3.84176000|3.88200000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1783041668.983802
   },
   "BNBUSD|supply|560.45420500|562.50000000": {
@@ -56213,6 +56213,10 @@
     "last_alert_at": 0.0
   },
   "UNIUSD|demand|2.71900000|2.73851700": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "METAXUSD|supply|627.11750000|628.50000000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
