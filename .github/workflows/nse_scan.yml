@@ -1,0 +1,58 @@
+name: Shiva NSE Scanner
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: shiva-nse-scanner
+  cancel-in-progress: false
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Check Discord webhook configuration
+        env:
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          DISCORD_STATUS_WEBHOOK_URL: ${{ secrets.DISCORD_STATUS_WEBHOOK_URL }}
+        run: |
+          if [ -z "$DISCORD_WEBHOOK_URL" ]; then
+            echo "::warning::DISCORD_WEBHOOK_URL is not configured."
+          else
+            echo "DISCORD_WEBHOOK_URL is configured."
+          fi
+
+          if [ -z "$DISCORD_STATUS_WEBHOOK_URL" ]; then
+            echo "::warning::DISCORD_STATUS_WEBHOOK_URL is not configured. NSE scanner status will fall back to alert webhook."
+          else
+            echo "DISCORD_STATUS_WEBHOOK_URL is configured."
+          fi
+
+      - name: Run NSE scanner once
+        env:
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          DISCORD_STATUS_WEBHOOK_URL: ${{ secrets.DISCORD_STATUS_WEBHOOK_URL }}
+        run: python nse_scanner.py --once
+
+      - name: Persist NSE alert state
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -f nse_alert_state.json
+          git diff --cached --quiet || git commit -m "Update NSE alert state"
+          git push

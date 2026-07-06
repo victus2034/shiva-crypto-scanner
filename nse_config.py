@@ -1,0 +1,125 @@
+NSE_INDEX_CSV_URL = "https://www.niftyindices.com/IndexConstituent/ind_nifty100list.csv"
+
+FALLBACK_WATCHLIST = [
+    "ABB.NS",
+    "ADANIENSOL.NS",
+    "ADANIENT.NS",
+    "ADANIGREEN.NS",
+    "ADANIPORTS.NS",
+    "AMBUJACEM.NS",
+    "APOLLOHOSP.NS",
+    "ASIANPAINT.NS",
+    "AXISBANK.NS",
+    "BAJAJ-AUTO.NS",
+    "BAJFINANCE.NS",
+    "BAJAJFINSV.NS",
+    "BANKBARODA.NS",
+    "BEL.NS",
+    "BHARTIARTL.NS",
+    "BOSCHLTD.NS",
+    "BPCL.NS",
+    "BRITANNIA.NS",
+    "CANBK.NS",
+    "CHOLAFIN.NS",
+    "CIPLA.NS",
+    "COALINDIA.NS",
+    "DABUR.NS",
+    "DIVISLAB.NS",
+    "DLF.NS",
+    "DMART.NS",
+    "DRREDDY.NS",
+    "EICHERMOT.NS",
+    "ETERNAL.NS",
+    "GAIL.NS",
+    "GODREJCP.NS",
+    "GRASIM.NS",
+    "HAL.NS",
+    "HAVELLS.NS",
+    "HCLTECH.NS",
+    "HDFCBANK.NS",
+    "HDFCLIFE.NS",
+    "HEROMOTOCO.NS",
+    "HINDALCO.NS",
+    "HINDUNILVR.NS",
+    "HYUNDAI.NS",
+    "ICICIBANK.NS",
+    "ICICIGI.NS",
+    "ICICIPRULI.NS",
+    "INDIGO.NS",
+    "INDUSINDBK.NS",
+    "INFY.NS",
+    "IOC.NS",
+    "IRFC.NS",
+    "ITC.NS",
+    "JINDALSTEL.NS",
+    "JIOFIN.NS",
+    "JSWENERGY.NS",
+    "JSWSTEEL.NS",
+    "KOTAKBANK.NS",
+    "LICI.NS",
+    "LODHA.NS",
+    "LT.NS",
+    "LTIM.NS",
+    "M&M.NS",
+    "MARUTI.NS",
+    "MAXHEALTH.NS",
+    "MOTHERSON.NS",
+    "NAUKRI.NS",
+    "NESTLEIND.NS",
+    "NTPC.NS",
+    "ONGC.NS",
+    "PFC.NS",
+    "PIDILITIND.NS",
+    "PNB.NS",
+    "POWERGRID.NS",
+    "RECLTD.NS",
+    "RELIANCE.NS",
+    "SBICARD.NS",
+    "SBILIFE.NS",
+    "SBIN.NS",
+    "SHREECEM.NS",
+    "SHRIRAMFIN.NS",
+    "SIEMENS.NS",
+    "SUNPHARMA.NS",
+    "SWIGGY.NS",
+    "TATACONSUM.NS",
+    "TATAMOTORS.NS",
+    "TATAPOWER.NS",
+    "TATASTEEL.NS",
+    "TCS.NS",
+    "TECHM.NS",
+    "TITAN.NS",
+    "TORNTPHARM.NS",
+    "TRENT.NS",
+    "TVSMOTOR.NS",
+    "ULTRACEMCO.NS",
+    "UNIONBANK.NS",
+    "UNITDSPR.NS",
+    "VBL.NS",
+    "VEDL.NS",
+    "WIPRO.NS",
+    "ZYDUSLIFE.NS",
+]
+
+TIMEFRAME = "4h"
+SOURCE_INTERVAL = "1h"
+SOURCE_PERIOD = "700d"
+
+OHLCV_LIMIT = 500
+SWING_LENGTH = 10
+ATR_PERIOD = 50
+BOX_WIDTH = 2.5
+
+MAX_DISTANCE_PCT = 1.5
+REARM_FACTOR = 1.25
+SCAN_SLEEP = 300
+SCAN_WORKERS = 8
+ALERT_COOLDOWN_SECONDS = 4 * 60 * 60
+ALERT_RANGE_FILTER_SIGNALS = True
+SIGNAL_ALERT_COOLDOWN_SECONDS = 4 * 60 * 60
+
+PRINT_SCAN_SUMMARY = True
+PRINT_ALERTS_TO_CONSOLE = True
+
+DISCORD_WEBHOOK_URL = ""
+DISCORD_STATUS_WEBHOOK_URL = ""
