@@ -56262,8 +56262,8 @@
     "last_alert_at": 1783347698.3915887
   },
   "CRCLXUSD|supply|68.77425000|69.25000000": {
-    "in_zone": false,
-    "last_alert_at": 1783298481.4677455
+    "in_zone": true,
+    "last_alert_at": 1783351289.9506752
   },
   "SPYXUSD|demand|737.74000000|738.54985000": {
     "in_zone": true,
@@ -56331,5 +56331,8 @@
   },
   "XRPUSD|range_filter|sell": {
     "last_alert_at": 1783344091.4739335
+  },
+  "TSLAXUSD|range_filter|buy": {
+    "last_alert_at": 1783351289.8007715
   }
 }
