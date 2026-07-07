@@ -455,8 +455,8 @@
     "last_alert_at": 0.0
   },
   "SIEMENS.NS|demand|3455.0000|3475.9995": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1783399298.8237655
   },
   "SOLARINDS.NS|demand|16844.0000|16935.5550": {
     "in_zone": false,
@@ -763,5 +763,20 @@
   },
   "TRENT.NS|range_filter|sell": {
     "last_alert_at": 1783396922.7723734
+  },
+  "ADANIPOWER.NS|range_filter|sell": {
+    "last_alert_at": 1783399297.552674
+  },
+  "BAJAJ-AUTO.NS|range_filter|buy": {
+    "last_alert_at": 1783399297.8505683
+  },
+  "INFY.NS|range_filter|buy": {
+    "last_alert_at": 1783399298.1720662
+  },
+  "LTM.NS|range_filter|buy": {
+    "last_alert_at": 1783399298.484027
+  },
+  "SOLARINDS.NS|range_filter|sell": {
+    "last_alert_at": 1783399299.060147
   }
 }
