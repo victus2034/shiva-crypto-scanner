@@ -267,8 +267,8 @@
     "last_alert_at": 0.0
   },
   "INDHOTEL.NS|supply|751.8310|753.9000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1783396920.3321006
   },
   "INDHOTEL.NS|demand|565.3000|568.6397": {
     "in_zone": false,
@@ -427,8 +427,8 @@
     "last_alert_at": 0.0
   },
   "SBILIFE.NS|supply|1813.7585|1819.9000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1783396920.594486
   },
   "SBILIFE.NS|demand|1700.4000|1706.5395": {
     "in_zone": false,
@@ -737,5 +737,31 @@
   "UNIONBANK.NS|demand|133.9000|134.4285": {
     "in_zone": false,
     "last_alert_at": 0.0
+  },
+  "BAJAJ-AUTO.NS|demand|9505.0000|9541.7025": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "EICHERMOT.NS|range_filter|buy": {
+    "last_alert_at": 1783396920.1183016
+  },
+  "GODREJCP.NS|supply|1259.5215|1263.4000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "HYUNDAI.NS|demand|1883.2000|1892.5630": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "JINDALSTEL.NS|demand|943.0500|946.2960": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "M&M.NS|demand|3025.0000|3037.5655": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "TRENT.NS|range_filter|sell": {
+    "last_alert_at": 1783396922.7723734
   }
 }
