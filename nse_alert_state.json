@@ -547,8 +547,8 @@
     "last_alert_at": 0.0
   },
   "UNITDSPR.NS|supply|1451.4610|1455.4000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1783408888.8190613
   },
   "UNITDSPR.NS|demand|1211.0000|1217.6100": {
     "in_zone": false,
@@ -802,5 +802,17 @@
   },
   "PNB.NS|range_filter|sell": {
     "last_alert_at": 1783406490.8791456
+  },
+  "HINDUNILVR.NS|demand|2114.5000|2121.4575": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "JINDALSTEL.NS|demand|943.0500|946.2940": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "LTM.NS|demand|3528.8999|3549.7174": {
+    "in_zone": false,
+    "last_alert_at": 0.0
   }
 }
