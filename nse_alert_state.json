@@ -4,8 +4,8 @@
     "last_alert_at": 0.0
   },
   "ABB.NS|demand|6653.0000|6690.4850": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1783503704.736029
   },
   "ADANIENSOL.NS|demand|1461.2000|1472.4220": {
     "in_zone": false,
@@ -20,8 +20,8 @@
     "last_alert_at": 0.0
   },
   "ADANIPORTS.NS|demand|1760.2000|1768.3350": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1783503704.8711798
   },
   "ADANIPOWER.NS|supply|252.7460|254.1600": {
     "in_zone": false,
@@ -36,8 +36,8 @@
     "last_alert_at": 0.0
   },
   "AMBUJACEM.NS|demand|414.0500|415.8030": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1783503705.2105327
   },
   "APOLLOHOSP.NS|demand|8382.5000|8409.8850": {
     "in_zone": false,
@@ -471,8 +471,8 @@
     "last_alert_at": 0.0
   },
   "SUNPHARMA.NS|supply|1909.6625|1916.5000": {
-    "in_zone": false,
-    "last_alert_at": 1783488103.1317732
+    "in_zone": true,
+    "last_alert_at": 1783503705.9275365
   },
   "TATACAP.NS|supply|378.3838|379.9500": {
     "in_zone": false,
@@ -903,7 +903,7 @@
     "last_alert_at": 0.0
   },
   "ITC.NS|range_filter|sell": {
-    "last_alert_at": 1783485697.8580885
+    "last_alert_at": 1783503705.57593
   },
   "MUTHOOTFIN.NS|range_filter|buy": {
     "last_alert_at": 1783489297.8169072
@@ -972,6 +972,19 @@
     "last_alert_at": 1783501323.4358635
   },
   "SIEMENS.NS|demand|2826.1001|2837.6321": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "ADANIPORTS.NS|range_filter|sell": {
+    "last_alert_at": 1783503704.8711798
+  },
+  "GAIL.NS|range_filter|sell": {
+    "last_alert_at": 1783503705.3386934
+  },
+  "JIOFIN.NS|range_filter|sell": {
+    "last_alert_at": 1783503705.7644703
+  },
+  "SIEMENS.NS|demand|2826.1001|2837.6581": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
