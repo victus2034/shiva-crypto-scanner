@@ -4,7 +4,7 @@
     "last_alert_at": 0.0
   },
   "ABB.NS|demand|6653.0000|6690.4850": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1783503704.736029
   },
   "ADANIENSOL.NS|demand|1461.2000|1472.4220": {
@@ -20,7 +20,7 @@
     "last_alert_at": 0.0
   },
   "ADANIPORTS.NS|demand|1760.2000|1768.3350": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1783503704.8711798
   },
   "ADANIPOWER.NS|supply|252.7460|254.1600": {
@@ -36,7 +36,7 @@
     "last_alert_at": 0.0
   },
   "AMBUJACEM.NS|demand|414.0500|415.8030": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1783503705.2105327
   },
   "APOLLOHOSP.NS|demand|8382.5000|8409.8850": {
@@ -947,7 +947,7 @@
     "last_alert_at": 0.0
   },
   "TATASTEEL.NS|demand|184.7000|185.4495": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1783501324.276284
   },
   "NTPC.NS|range_filter|sell": {
@@ -987,5 +987,8 @@
   "SIEMENS.NS|demand|2826.1001|2837.6581": {
     "in_zone": false,
     "last_alert_at": 0.0
+  },
+  "RECLTD.NS|range_filter|sell": {
+    "last_alert_at": 1783504918.1763697
   }
 }
