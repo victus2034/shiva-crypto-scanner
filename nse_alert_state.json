@@ -108,7 +108,7 @@
     "last_alert_at": 0.0
   },
   "BRITANNIA.NS|supply|5446.1000|5467.5000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1783488102.5472555
   },
   "BRITANNIA.NS|demand|5035.5000|5053.3275": {
@@ -949,5 +949,8 @@
   "TATASTEEL.NS|demand|184.7000|185.4495": {
     "in_zone": false,
     "last_alert_at": 0.0
+  },
+  "NTPC.NS|range_filter|sell": {
+    "last_alert_at": 1783498903.7679253
   }
 }
