@@ -287,8 +287,8 @@
     "last_alert_at": 0.0
   },
   "IRFC.NS|demand|87.0500|87.5930": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1783501322.995939
   },
   "INFY.NS|supply|1273.5995|1278.8000": {
     "in_zone": false,
@@ -471,7 +471,7 @@
     "last_alert_at": 0.0
   },
   "SUNPHARMA.NS|supply|1909.6625|1916.5000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1783488103.1317732
   },
   "TATACAP.NS|supply|378.3838|379.9500": {
@@ -567,8 +567,8 @@
     "last_alert_at": 0.0
   },
   "VEDL.NS|demand|268.7000|275.3698": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1783501324.5169241
   },
   "WIPRO.NS|supply|184.4025|185.2500": {
     "in_zone": false,
@@ -750,8 +750,8 @@
     "last_alert_at": 0.0
   },
   "HYUNDAI.NS|demand|1883.2000|1892.5630": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1783501322.4384816
   },
   "JINDALSTEL.NS|demand|943.0500|946.2960": {
     "in_zone": false,
@@ -777,7 +777,7 @@
     "last_alert_at": 1783399298.484027
   },
   "SOLARINDS.NS|range_filter|sell": {
-    "last_alert_at": 1783399299.060147
+    "last_alert_at": 1783501324.0556202
   },
   "HDFCBANK.NS|supply|1013.5407|1015.5500": {
     "in_zone": false,
@@ -795,7 +795,7 @@
     "last_alert_at": 1783471303.8006413
   },
   "MOTHERSON.NS|range_filter|sell": {
-    "last_alert_at": 1783401693.6009712
+    "last_alert_at": 1783501323.7604327
   },
   "TECHM.NS|range_filter|buy": {
     "last_alert_at": 1783402888.2203326
@@ -804,8 +804,8 @@
     "last_alert_at": 1783490526.1395912
   },
   "HINDUNILVR.NS|demand|2114.5000|2121.4575": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1783501322.185666
   },
   "JINDALSTEL.NS|demand|943.0500|946.2940": {
     "in_zone": false,
@@ -947,10 +947,32 @@
     "last_alert_at": 0.0
   },
   "TATASTEEL.NS|demand|184.7000|185.4495": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1783501324.276284
   },
   "NTPC.NS|range_filter|sell": {
     "last_alert_at": 1783498903.7679253
+  },
+  "ADANIENT.NS|range_filter|sell": {
+    "last_alert_at": 1783501321.3804364
+  },
+  "BAJAJHLDNG.NS|range_filter|sell": {
+    "last_alert_at": 1783501321.6048367
+  },
+  "DLF.NS|range_filter|sell": {
+    "last_alert_at": 1783501321.9516768
+  },
+  "IOC.NS|range_filter|sell": {
+    "last_alert_at": 1783501322.6755233
+  },
+  "INDIGO.NS|range_filter|sell": {
+    "last_alert_at": 1783501323.2331035
+  },
+  "ONGC.NS|range_filter|buy": {
+    "last_alert_at": 1783501323.4358635
+  },
+  "SIEMENS.NS|demand|2826.1001|2837.6321": {
+    "in_zone": false,
+    "last_alert_at": 0.0
   }
 }
