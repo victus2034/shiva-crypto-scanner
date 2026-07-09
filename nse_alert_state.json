@@ -288,7 +288,7 @@
   },
   "IRFC.NS|demand|87.0500|87.5930": {
     "in_zone": true,
-    "last_alert_at": 1783566123.3816497
+    "last_alert_at": 1783581127.0102222
   },
   "INFY.NS|supply|1273.5995|1278.8000": {
     "in_zone": false,
@@ -947,7 +947,7 @@
     "last_alert_at": 0.0
   },
   "TATASTEEL.NS|demand|184.7000|185.4495": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1783570908.4586904
   },
   "NTPC.NS|range_filter|sell": {
@@ -1000,5 +1000,9 @@
   },
   "MAZDOCK.NS|range_filter|sell": {
     "last_alert_at": 1783574503.0626345
+  },
+  "ZYDUSLIFE.NS|demand|1095.3000|1099.5763": {
+    "in_zone": false,
+    "last_alert_at": 0.0
   }
 }
