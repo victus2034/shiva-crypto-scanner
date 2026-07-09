@@ -16,8 +16,8 @@
     "last_alert_at": 0.0
   },
   "ADANIGREEN.NS|demand|1469.7000|1478.3819": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1783590111.4517484
   },
   "ADANIPORTS.NS|demand|1760.2000|1768.3350": {
     "in_zone": false,
@@ -804,8 +804,8 @@
     "last_alert_at": 1783490526.1395912
   },
   "HINDUNILVR.NS|demand|2114.5000|2121.4575": {
-    "in_zone": false,
-    "last_alert_at": 1783566122.524188
+    "in_zone": true,
+    "last_alert_at": 1783590111.7328243
   },
   "JINDALSTEL.NS|demand|943.0500|946.2940": {
     "in_zone": false,
@@ -1007,5 +1007,8 @@
   },
   "MARUTI.NS|range_filter|sell": {
     "last_alert_at": 1783581699.7833242
+  },
+  "ADANIGREEN.NS|range_filter|sell": {
+    "last_alert_at": 1783590111.4517484
   }
 }
