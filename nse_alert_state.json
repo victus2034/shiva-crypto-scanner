@@ -311,8 +311,8 @@
     "last_alert_at": 0.0
   },
   "KOTAKBANK.NS|demand|363.3500|365.1368": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1783581699.6232278
   },
   "LTM.NS|supply|4044.8710|4067.0000": {
     "in_zone": false,
@@ -1004,5 +1004,8 @@
   "ZYDUSLIFE.NS|demand|1095.3000|1099.5763": {
     "in_zone": false,
     "last_alert_at": 0.0
+  },
+  "MARUTI.NS|range_filter|sell": {
+    "last_alert_at": 1783581699.7833242
   }
 }
