@@ -472,7 +472,7 @@
   },
   "SUNPHARMA.NS|supply|1909.6625|1916.5000": {
     "in_zone": true,
-    "last_alert_at": 1783503705.9275365
+    "last_alert_at": 1783568803.1240609
   },
   "TATACAP.NS|supply|378.3838|379.9500": {
     "in_zone": false,
@@ -751,7 +751,7 @@
   },
   "HYUNDAI.NS|demand|1883.2000|1892.5630": {
     "in_zone": true,
-    "last_alert_at": 1783501322.4384816
+    "last_alert_at": 1783568802.891517
   },
   "JINDALSTEL.NS|demand|943.0500|946.2960": {
     "in_zone": false,
@@ -990,5 +990,12 @@
   },
   "RECLTD.NS|range_filter|sell": {
     "last_alert_at": 1783566123.9664435
+  },
+  "DRREDDY.NS|range_filter|sell": {
+    "last_alert_at": 1783568802.702893
+  },
+  "NTPC.NS|demand|315.5500|316.3147": {
+    "in_zone": false,
+    "last_alert_at": 0.0
   }
 }
