@@ -375,7 +375,7 @@
     "last_alert_at": 0.0
   },
   "NESTLEIND.NS|supply|1492.6950|1498.0000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1783572399.0282736
   },
   "NESTLEIND.NS|demand|1145.0000|1148.4675": {
@@ -997,5 +997,8 @@
   "NTPC.NS|demand|315.5500|316.3147": {
     "in_zone": false,
     "last_alert_at": 0.0
+  },
+  "MAZDOCK.NS|range_filter|sell": {
+    "last_alert_at": 1783574503.0626345
   }
 }
