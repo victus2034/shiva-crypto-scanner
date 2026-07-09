@@ -14,6 +14,7 @@ from nse_config import (
     ALERT_RANGE_FILTER_SIGNALS,
     ATR_PERIOD,
     BOX_WIDTH,
+    DISCORD_NSE_WEBHOOK_URL,
     DISCORD_STATUS_WEBHOOK_URL,
     DISCORD_WEBHOOK_URL,
     FALLBACK_WATCHLIST,
@@ -424,7 +425,14 @@ def send_alert(message):
         print("=" * 80)
 
     try:
-        send_discord_message(message)
+        if get_env_or_config("DISCORD_NSE_WEBHOOK_URL", DISCORD_NSE_WEBHOOK_URL):
+            send_discord_message(
+                message,
+                webhook_env_name="DISCORD_NSE_WEBHOOK_URL",
+                webhook_config_value=DISCORD_NSE_WEBHOOK_URL,
+            )
+        else:
+            send_discord_message(message)
     except requests.RequestException as error:
         print(f"Discord alert failed: {error}")
 

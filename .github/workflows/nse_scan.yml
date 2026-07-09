@@ -29,12 +29,15 @@ jobs:
       - name: Check Discord webhook configuration
         env:
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          DISCORD_NSE_WEBHOOK_URL: ${{ secrets.DISCORD_NSE_WEBHOOK_URL }}
           DISCORD_STATUS_WEBHOOK_URL: ${{ secrets.DISCORD_STATUS_WEBHOOK_URL }}
         run: |
-          if [ -z "$DISCORD_WEBHOOK_URL" ]; then
-            echo "::warning::DISCORD_WEBHOOK_URL is not configured."
+          if [ -z "$DISCORD_NSE_WEBHOOK_URL" ]; then
+            echo "::warning::DISCORD_NSE_WEBHOOK_URL is not configured. NSE alerts will fall back to DISCORD_WEBHOOK_URL."
+          elif [ -z "$DISCORD_WEBHOOK_URL" ]; then
+            echo "DISCORD_NSE_WEBHOOK_URL is configured."
           else
-            echo "DISCORD_WEBHOOK_URL is configured."
+            echo "DISCORD_NSE_WEBHOOK_URL is configured."
           fi
 
           if [ -z "$DISCORD_STATUS_WEBHOOK_URL" ]; then
@@ -46,6 +49,7 @@ jobs:
       - name: Run NSE scanner once
         env:
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          DISCORD_NSE_WEBHOOK_URL: ${{ secrets.DISCORD_NSE_WEBHOOK_URL }}
           DISCORD_STATUS_WEBHOOK_URL: ${{ secrets.DISCORD_STATUS_WEBHOOK_URL }}
         run: python nse_scanner.py --once
 
