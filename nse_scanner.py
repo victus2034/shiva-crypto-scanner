@@ -4,6 +4,7 @@ import json
 import os
 import time
 from pathlib import Path
+from zoneinfo import ZoneInfo
 
 import pandas as pd
 import requests
@@ -18,6 +19,9 @@ from nse_config import (
     DISCORD_STATUS_WEBHOOK_URL,
     DISCORD_WEBHOOK_URL,
     FALLBACK_WATCHLIST,
+    MARKET_CLOSE,
+    MARKET_OPEN,
+    MARKET_TIMEZONE,
     MAX_DISTANCE_PCT,
     NSE_INDEX_CSV_URL,
     OHLCV_LIMIT,
@@ -35,6 +39,21 @@ from nse_config import (
 
 STATE_FILE = Path(__file__).with_name("nse_alert_state.json")
 MARKET_DATA = {}
+
+
+def parse_hhmm(value):
+    hour, minute = value.split(":", 1)
+    return int(hour), int(minute)
+
+
+def market_window_status(now=None):
+    now = now or pd.Timestamp.now(tz=ZoneInfo(MARKET_TIMEZONE))
+    open_hour, open_minute = parse_hhmm(MARKET_OPEN)
+    close_hour, close_minute = parse_hhmm(MARKET_CLOSE)
+    market_open = now.replace(hour=open_hour, minute=open_minute, second=0, microsecond=0)
+    market_close = now.replace(hour=close_hour, minute=close_minute, second=0, microsecond=0)
+    is_weekday = now.weekday() < 5
+    return is_weekday and market_open <= now <= market_close, now, market_open, market_close
 
 
 def load_state():
@@ -537,6 +556,17 @@ def run_scan_once(state):
     started_at = time.strftime("%Y-%m-%d %H:%M:%S")
     run_number = os.getenv("GITHUB_RUN_NUMBER", "local")
     trigger = os.getenv("GITHUB_EVENT_NAME", "local")
+    is_market_open, market_now, market_open, market_close = market_window_status()
+
+    if not is_market_open:
+        send_status_message(
+            f"Shiva NSE scanner skipped - market closed\n"
+            f"Time: {market_now.strftime('%Y-%m-%d %H:%M:%S %Z')}\n"
+            f"Run: {run_number}\n"
+            f"Trigger: {trigger}\n"
+            f"Market window: {market_open.strftime('%H:%M')} - {market_close.strftime('%H:%M')} IST"
+        )
+        return
 
     send_status_message(
         f"Shiva NSE scanner started\n"
