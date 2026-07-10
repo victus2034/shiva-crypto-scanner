@@ -315,7 +315,7 @@
     "last_alert_at": 1783581699.6232278
   },
   "LTM.NS|supply|4044.8710|4067.0000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1783655500.352303
   },
   "LT.NS|supply|4426.5065|4439.0000": {
@@ -1034,5 +1034,8 @@
   "WIPRO.NS|supply|177.2589|178.0900": {
     "in_zone": true,
     "last_alert_at": 1783655500.352738
+  },
+  "DLF.NS|range_filter|buy": {
+    "last_alert_at": 1783656695.0531635
   }
 }
