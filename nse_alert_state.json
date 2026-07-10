@@ -567,8 +567,8 @@
     "last_alert_at": 0.0
   },
   "VEDL.NS|demand|268.7000|275.3698": {
-    "in_zone": false,
-    "last_alert_at": 1783602268.4609337
+    "in_zone": true,
+    "last_alert_at": 1783665129.131275
   },
   "WIPRO.NS|supply|184.4025|185.2500": {
     "in_zone": false,
@@ -1037,5 +1037,8 @@
   },
   "DLF.NS|range_filter|buy": {
     "last_alert_at": 1783656695.0531635
+  },
+  "SOLARINDS.NS|range_filter|buy": {
+    "last_alert_at": 1783665129.1308672
   }
 }
