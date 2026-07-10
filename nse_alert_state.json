@@ -16,7 +16,7 @@
     "last_alert_at": 0.0
   },
   "ADANIGREEN.NS|demand|1469.7000|1478.3819": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1783605726.2469318
   },
   "ADANIPORTS.NS|demand|1760.2000|1768.3350": {
@@ -287,7 +287,7 @@
     "last_alert_at": 0.0
   },
   "IRFC.NS|demand|87.0500|87.5930": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1783596104.846808
   },
   "INFY.NS|supply|1273.5995|1278.8000": {
@@ -315,8 +315,8 @@
     "last_alert_at": 1783581699.6232278
   },
   "LTM.NS|supply|4044.8710|4067.0000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1783655500.352303
   },
   "LT.NS|supply|4426.5065|4439.0000": {
     "in_zone": false,
@@ -567,7 +567,7 @@
     "last_alert_at": 0.0
   },
   "VEDL.NS|demand|268.7000|275.3698": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1783602268.4609337
   },
   "WIPRO.NS|supply|184.4025|185.2500": {
@@ -804,7 +804,7 @@
     "last_alert_at": 1783490526.1395912
   },
   "HINDUNILVR.NS|demand|2114.5000|2121.4575": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1783605726.620564
   },
   "JINDALSTEL.NS|demand|943.0500|946.2940": {
@@ -1010,5 +1010,29 @@
   },
   "ADANIGREEN.NS|range_filter|sell": {
     "last_alert_at": 1783605726.2469318
+  },
+  "ADANIPORTS.NS|supply|1882.8660|1890.0000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "BAJAJFINSV.NS|supply|1908.6690|1915.4000": {
+    "in_zone": true,
+    "last_alert_at": 1783655500.3518395
+  },
+  "INDIGO.NS|supply|5443.6895|5465.0000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "TATASTEEL.NS|supply|192.2163|192.9600": {
+    "in_zone": true,
+    "last_alert_at": 1783655500.3525703
+  },
+  "TRENT.NS|supply|3379.1614|3399.6001": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "WIPRO.NS|supply|177.2589|178.0900": {
+    "in_zone": true,
+    "last_alert_at": 1783655500.352738
   }
 }
