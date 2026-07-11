@@ -55929,7 +55929,7 @@
   },
   "AAPLXUSD|supply|316.94225000|317.40000000": {
     "in_zone": true,
-    "last_alert_at": 1783760511.0882764
+    "last_alert_at": 1783774913.5971806
   },
   "AAPLXUSD|demand|265.80000000|266.27300000": {
     "in_zone": false,
@@ -56398,8 +56398,8 @@
     "last_alert_at": 1783521688.5561776
   },
   "BCHUSD|supply|250.03160000|251.49000000": {
-    "in_zone": false,
-    "last_alert_at": 1783695712.0363543
+    "in_zone": true,
+    "last_alert_at": 1783774913.7853518
   },
   "GOOGLXUSD|range_filter|sell": {
     "last_alert_at": 1783597289.185721
@@ -56460,5 +56460,8 @@
   "METAXUSD|supply|682.54850000|683.70000000": {
     "in_zone": true,
     "last_alert_at": 1783773692.2309074
+  },
+  "LINKUSD|range_filter|buy": {
+    "last_alert_at": 1783774913.2338583
   }
 }
