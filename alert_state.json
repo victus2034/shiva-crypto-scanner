@@ -55808,7 +55808,7 @@
     "last_alert_at": 1782940295.2174022
   },
   "ETHUSD|supply|1840.92125000|1848.85000000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1783783290.6042283
   },
   "ETHUSD|demand|1504.10000000|1514.70675000": {
@@ -56463,5 +56463,9 @@
   },
   "LINKUSD|range_filter|buy": {
     "last_alert_at": 1783774913.2338583
+  },
+  "UNIUSD|demand|2.73100000|2.75995800": {
+    "in_zone": false,
+    "last_alert_at": 0.0
   }
 }
