@@ -48,14 +48,14 @@ python scanner.py --once
 This project now includes a GitHub Actions workflow at `.github/workflows/scan.yml`.
 
 - It runs `python scanner.py --once`
-- it is scheduled every 15 minutes at minutes `2`, `17`, `32`, and `47`
+- it is scheduled every 20 minutes at minutes `1`, `20`, and `40`
 - it can also be run manually from the Actions tab
 - it commits `alert_state.json` after scans so cooldowns still work in the cloud
 
 Recommended setup:
 
 1. Push this project to GitHub.
-2. Add a repository secret named `DISCORD_WEBHOOK_URL`.
+2. Add repository secrets named `DISCORD_WEBHOOK_URL` and `DISCORD_STATUS_WEBHOOK_URL`.
 3. Keep your scanner config in the repo.
 4. Let GitHub Actions run it on schedule.
 

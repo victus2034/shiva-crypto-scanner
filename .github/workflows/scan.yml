@@ -2,6 +2,8 @@ name: Shiva Crypto Scanner
 
 on:
   workflow_dispatch:
+  schedule:
+    - cron: "1,20,40 * * * *"
 
 permissions:
   contents: write
@@ -17,6 +19,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          persist-credentials: true
 
       - name: Set up Python
         uses: actions/setup-python@v5
