@@ -60,5 +60,22 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -f nse_alert_state.json
-          git diff --cached --quiet || git commit -m "Update NSE alert state"
-          git push
+          if git diff --cached --quiet; then
+            echo "No NSE alert state changes to save."
+            exit 0
+          fi
+
+          git commit -m "Update NSE alert state"
+          for attempt in 1 2 3; do
+            if git push; then
+              exit 0
+            fi
+
+            echo "::warning::NSE alert state push failed on attempt ${attempt}; refreshing branch before retry."
+            git pull --rebase origin main || {
+              echo "::warning::Could not rebase NSE alert state. Alerts were already sent, so not failing the scan."
+              exit 0
+            }
+          done
+
+          echo "::warning::Could not persist NSE alert state after retries. Alerts were already sent, so not failing the scan."
