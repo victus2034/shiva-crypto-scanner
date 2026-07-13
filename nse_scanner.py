@@ -24,6 +24,7 @@ from nse_config import (
     MARKET_TIMEZONE,
     MAX_DISTANCE_PCT,
     NSE_INDEX_CSV_URL,
+    NSE_MAX_SYMBOLS,
     OHLCV_LIMIT,
     PRINT_ALERTS_TO_CONSOLE,
     PRINT_SCAN_SUMMARY,
@@ -87,13 +88,13 @@ def load_watchlist():
         response.raise_for_status()
         csv = pd.read_csv(StringIO(response.text))
         if "Symbol" not in csv.columns:
-            raise RuntimeError("Nifty 100 CSV did not include Symbol column")
+            raise RuntimeError("NSE index CSV did not include Symbol column")
 
         symbols = [f"{symbol.strip()}.NS" for symbol in csv["Symbol"].dropna()]
         symbols = list(dict.fromkeys(symbols))
         if len(symbols) < 50:
-            raise RuntimeError(f"Nifty 100 CSV returned only {len(symbols)} symbols")
-        return symbols
+            raise RuntimeError(f"NSE index CSV returned only {len(symbols)} symbols")
+        return symbols[:NSE_MAX_SYMBOLS]
     except Exception as error:
         print(f"Using fallback NSE watchlist because index CSV failed: {error}")
         return FALLBACK_WATCHLIST
@@ -528,7 +529,7 @@ def process_signal_candidate(state, result, signal_type, now_ts):
 def print_summary(results):
     ranked = sorted(results, key=lambda item: min(item["supply_dist"], item["demand_dist"]))
     print("\n" + "=" * 80)
-    print(f"SHIVA NSE 100 SCAN - {TIMEFRAME}")
+    print(f"SHIVA NSE SCAN - {TIMEFRAME}")
     print("=" * 80)
 
     for index, result in enumerate(ranked, start=1):
@@ -639,7 +640,7 @@ def run_scan_once(state):
 
 
 def parse_args():
-    parser = argparse.ArgumentParser(description="Scan Nifty 100 stocks for nearby Shiva levels.")
+    parser = argparse.ArgumentParser(description="Scan NSE stocks for nearby Shiva levels.")
     parser.add_argument("--once", action="store_true", help="Run a single scan and exit.")
     return parser.parse_args()
 

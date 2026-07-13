@@ -1,4 +1,5 @@
-NSE_INDEX_CSV_URL = "https://www.niftyindices.com/IndexConstituent/ind_nifty100list.csv"
+NSE_INDEX_CSV_URL = "https://www.niftyindices.com/IndexConstituent/ind_nifty500list.csv"
+NSE_MAX_SYMBOLS = 250
 
 FALLBACK_WATCHLIST = [
     "ABB.NS",
