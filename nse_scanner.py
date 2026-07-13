@@ -455,6 +455,14 @@ def send_alert(message):
         return True
     except (RuntimeError, requests.RequestException) as error:
         print(f"Discord alert failed: {error}")
+        try:
+            send_discord_message(
+                "NSE ALERT WEBHOOK FAILED - check DISCORD_NSE_WEBHOOK_URL.\n\n" + message,
+                webhook_env_name="DISCORD_STATUS_WEBHOOK_URL",
+                webhook_config_value=DISCORD_STATUS_WEBHOOK_URL,
+            )
+        except (RuntimeError, requests.RequestException) as fallback_error:
+            print(f"Discord alert fallback failed: {fallback_error}")
         return False
 
 
