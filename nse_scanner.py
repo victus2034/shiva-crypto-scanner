@@ -431,7 +431,7 @@ def format_signal_alert(result, signal_type):
 def send_discord_message(message, webhook_env_name="DISCORD_WEBHOOK_URL", webhook_config_value=DISCORD_WEBHOOK_URL):
     webhook_url = get_env_or_config(webhook_env_name, webhook_config_value)
     if not webhook_url:
-        return
+        raise RuntimeError(f"{webhook_env_name} is not configured")
 
     response = requests.post(webhook_url, json={"content": message}, timeout=15)
     response.raise_for_status()
@@ -452,8 +452,10 @@ def send_alert(message):
             )
         else:
             send_discord_message(message)
-    except requests.RequestException as error:
+        return True
+    except (RuntimeError, requests.RequestException) as error:
         print(f"Discord alert failed: {error}")
+        return False
 
 
 def send_status_message(message):
@@ -477,18 +479,18 @@ def send_status_message(message):
 
 def process_candidate(state, result, zone_type, zone, distance_pct, now_ts):
     if zone is None:
-        return False
+        return None
 
     state_key = build_state_key(result["symbol"], zone_type, zone)
     entry = state.setdefault(state_key, {"in_zone": False, "last_alert_at": 0.0})
-    alert_sent = False
+    alert_sent = None
 
     if distance_pct <= MAX_DISTANCE_PCT:
         should_alert = (not entry["in_zone"]) or (now_ts - entry["last_alert_at"] >= ALERT_COOLDOWN_SECONDS)
         if should_alert:
-            send_alert(format_alert(result, zone_type, zone, distance_pct))
-            entry["last_alert_at"] = now_ts
-            alert_sent = True
+            alert_sent = send_alert(format_alert(result, zone_type, zone, distance_pct))
+            if alert_sent:
+                entry["last_alert_at"] = now_ts
         entry["in_zone"] = True
     elif distance_pct > MAX_DISTANCE_PCT * REARM_FACTOR:
         entry["in_zone"] = False
@@ -498,20 +500,21 @@ def process_candidate(state, result, zone_type, zone, distance_pct, now_ts):
 
 def process_signal_candidate(state, result, signal_type, now_ts):
     if not ALERT_RANGE_FILTER_SIGNALS:
-        return False
+        return None
 
     signal_active = result["buy_signal"] if signal_type == "buy" else result["sell_signal"]
     if not signal_active:
-        return False
+        return None
 
     state_key = build_signal_state_key(result["symbol"], signal_type)
     entry = state.setdefault(state_key, {"last_alert_at": 0.0})
     if now_ts - entry["last_alert_at"] < SIGNAL_ALERT_COOLDOWN_SECONDS:
-        return False
+        return None
 
-    send_alert(format_signal_alert(result, signal_type))
-    entry["last_alert_at"] = now_ts
-    return True
+    alert_sent = send_alert(format_signal_alert(result, signal_type))
+    if alert_sent:
+        entry["last_alert_at"] = now_ts
+    return alert_sent
 
 
 def print_summary(results):
@@ -553,6 +556,7 @@ def run_scan_once(state):
     results = []
     failures = []
     alerts_sent = 0
+    alert_delivery_failures = 0
     started_at = time.strftime("%Y-%m-%d %H:%M:%S")
     run_number = os.getenv("GITHUB_RUN_NUMBER", "local")
     trigger = os.getenv("GITHUB_EVENT_NAME", "local")
@@ -594,14 +598,14 @@ def run_scan_once(state):
 
         results.append(result)
         now_ts = time.time()
-        if process_signal_candidate(state, result, "buy", now_ts):
-            alerts_sent += 1
-        if process_signal_candidate(state, result, "sell", now_ts):
-            alerts_sent += 1
-        if process_candidate(state, result, "supply", result["supply"], result["supply_dist"], now_ts):
-            alerts_sent += 1
-        if process_candidate(state, result, "demand", result["demand"], result["demand_dist"], now_ts):
-            alerts_sent += 1
+        alert_results = [
+            process_signal_candidate(state, result, "buy", now_ts),
+            process_signal_candidate(state, result, "sell", now_ts),
+            process_candidate(state, result, "supply", result["supply"], result["supply_dist"], now_ts),
+            process_candidate(state, result, "demand", result["demand"], result["demand_dist"], now_ts),
+        ]
+        alerts_sent += sum(1 for alert_result in alert_results if alert_result is True)
+        alert_delivery_failures += sum(1 for alert_result in alert_results if alert_result is False)
 
     save_state(state)
 
@@ -617,6 +621,7 @@ def run_scan_once(state):
         f"Trigger: {trigger}\n"
         f"Scanned: {len(results)}/{len(watchlist)} symbols\n"
         f"Alerts sent: {alerts_sent}\n"
+        f"Alert delivery failures: {alert_delivery_failures}\n"
         f"Failures: {len(failures)}"
     )
     if failures:
