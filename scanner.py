@@ -4,8 +4,10 @@ import json
 import os
 import time
 from pathlib import Path
+from urllib.parse import unquote, urlencode
 
 import ccxt
+from cryptography.hazmat.primitives.asymmetric.ed25519 import Ed25519PrivateKey
 import pandas as pd
 import requests
 
@@ -14,6 +16,11 @@ from config import (
     ALERT_RANGE_FILTER_SIGNALS,
     ATR_PERIOD,
     BOX_WIDTH,
+    COINSWITCH_API_BASE_URL,
+    COINSWITCH_API_KEY,
+    COINSWITCH_EXCHANGE,
+    COINSWITCH_SECRET_KEY,
+    COINSWITCH_WATCHLIST,
     DELTA_API_BASE_URL,
     DISCORD_STATUS_WEBHOOK_URL,
     DISCORD_WEBHOOK_URL,
@@ -52,6 +59,18 @@ TIMEFRAME_SECONDS = {
     "1d": 24 * 60 * 60,
     "1w": 7 * 24 * 60 * 60,
 }
+COINSWITCH_INTERVALS = {
+    "1m": "1",
+    "5m": "5",
+    "15m": "15",
+    "30m": "30",
+    "1h": "60",
+    "2h": "120",
+    "4h": "240",
+    "6h": "360",
+    "12h": "720",
+    "1d": "1440",
+}
 
 
 def load_state():
@@ -73,6 +92,27 @@ def save_state(state):
 def get_env_or_config(env_name, config_value):
     value = os.getenv(env_name, "").strip()
     return value if value else config_value
+
+
+def coinswitch_credentials():
+    return (
+        get_env_or_config("COINSWITCH_API_KEY", COINSWITCH_API_KEY),
+        get_env_or_config("COINSWITCH_SECRET_KEY", COINSWITCH_SECRET_KEY),
+    )
+
+
+def is_coinswitch_configured():
+    api_key, secret_key = coinswitch_credentials()
+    return bool(api_key and secret_key)
+
+
+def active_watchlist():
+    symbols = list(WATCHLIST)
+    if is_coinswitch_configured():
+        for symbol in COINSWITCH_WATCHLIST:
+            if symbol not in symbols:
+                symbols.append(symbol)
+    return symbols
 
 
 def atr(df, period=50):
@@ -291,6 +331,17 @@ def fallback_symbol(symbol):
     return symbol
 
 
+def coinswitch_symbol(symbol):
+    if "/" in symbol:
+        return symbol.replace("/", "").upper()
+    upper_symbol = symbol.upper()
+    if upper_symbol.endswith("USDT"):
+        return upper_symbol
+    if upper_symbol.endswith("USD") and not upper_symbol.endswith(("XUSD", "BUSD")):
+        return f"{upper_symbol[:-3]}USDT"
+    return upper_symbol
+
+
 def fetch_exchange_ohlcv(exchange, symbol):
     return exchange.fetch_ohlcv(symbol, timeframe=TIMEFRAME, limit=OHLCV_LIMIT)
 
@@ -337,6 +388,70 @@ def fetch_delta_ohlcv(symbol):
     ]
 
 
+def coinswitch_path_with_query(path, params):
+    query = unquote(urlencode(params))
+    return f"{path}?{query}" if query else path
+
+
+def sign_coinswitch_request(method, path, params):
+    api_key, secret_key = coinswitch_credentials()
+    if not api_key or not secret_key:
+        raise RuntimeError("CoinSwitch credentials are not configured")
+
+    epoch = str(int(time.time() * 1000))
+    path_query = coinswitch_path_with_query(path, params)
+    message = f"{method.upper()}{path_query}{epoch}".encode("utf-8")
+    private_key = Ed25519PrivateKey.from_private_bytes(bytes.fromhex(secret_key))
+    signature = private_key.sign(message).hex()
+    return path_query, {
+        "Content-Type": "application/json",
+        "X-AUTH-APIKEY": api_key,
+        "X-AUTH-SIGNATURE": signature,
+        "X-AUTH-EPOCH": epoch,
+    }
+
+
+def fetch_coinswitch_ohlcv(symbol):
+    if not is_coinswitch_configured():
+        return None
+
+    interval = COINSWITCH_INTERVALS.get(TIMEFRAME)
+    if interval is None:
+        raise RuntimeError(f"CoinSwitch does not support timeframe {TIMEFRAME}")
+
+    path = "/trade/api/v2/futures/klines"
+    params = {
+        "exchange": get_env_or_config("COINSWITCH_EXCHANGE", COINSWITCH_EXCHANGE),
+        "symbol": coinswitch_symbol(symbol),
+        "interval": interval,
+        "limit": OHLCV_LIMIT,
+    }
+    path_query, headers = sign_coinswitch_request("GET", path, params)
+    response = requests.get(
+        f"{COINSWITCH_API_BASE_URL}{path_query}",
+        headers=headers,
+        timeout=20,
+    )
+    response.raise_for_status()
+    payload = response.json()
+    candles = payload.get("data") or []
+    if not candles:
+        raise RuntimeError(f"CoinSwitch returned no candles for {symbol}")
+
+    candles = sorted(candles, key=lambda candle: candle["start_time"])
+    return [
+        [
+            int(candle["start_time"]),
+            float(candle["o"]),
+            float(candle["h"]),
+            float(candle["l"]),
+            float(candle["c"]),
+            float(candle.get("volume") or 0),
+        ]
+        for candle in candles[-OHLCV_LIMIT:]
+    ]
+
+
 def scan_symbol(symbol):
     last_error = None
     ohlcv = None
@@ -369,6 +484,13 @@ def scan_symbol(symbol):
                 break
             except Exception as error:
                 last_error = error
+
+    if ohlcv is None:
+        try:
+            ohlcv = fetch_coinswitch_ohlcv(symbol)
+            exchange_name = "coinswitch" if ohlcv is not None else exchange_name
+        except Exception as error:
+            last_error = error
 
     if ohlcv is None:
         raise RuntimeError(f"all exchanges failed for {symbol}: {last_error}")
@@ -580,6 +702,7 @@ def run_scan_once(state):
     results = []
     failures = []
     alerts_sent = 0
+    symbols = active_watchlist()
     started_at = time.strftime("%Y-%m-%d %H:%M:%S")
     run_number = os.getenv("GITHUB_RUN_NUMBER", "local")
     trigger = os.getenv("GITHUB_EVENT_NAME", "local")
@@ -592,11 +715,12 @@ def run_scan_once(state):
         f"Run: {run_number}\n"
         f"Trigger: {trigger}\n"
         f"Timeframe: {TIMEFRAME}\n"
-        f"Watchlist: {len(WATCHLIST)} symbols"
+        f"Watchlist: {len(symbols)} symbols\n"
+        f"CoinSwitch source: {'configured' if is_coinswitch_configured() else 'not configured'}"
     )
 
     with ThreadPoolExecutor(max_workers=SCAN_WORKERS) as executor:
-        futures = {executor.submit(scan_symbol, symbol): symbol for symbol in WATCHLIST}
+        futures = {executor.submit(scan_symbol, symbol): symbol for symbol in symbols}
         scanned_by_symbol = {}
 
         for future in as_completed(futures):
@@ -608,7 +732,7 @@ def run_scan_once(state):
                 failures.append(error_message)
                 print(error_message)
 
-    for symbol in WATCHLIST:
+    for symbol in symbols:
         result = scanned_by_symbol.get(symbol)
         if result is None:
             continue
@@ -636,7 +760,7 @@ def run_scan_once(state):
         f"Time: {finished_at}\n"
         f"Run: {run_number}\n"
         f"Trigger: {trigger}\n"
-        f"Scanned: {len(results)}/{len(WATCHLIST)} symbols\n"
+        f"Scanned: {len(results)}/{len(symbols)} symbols\n"
         f"Alerts sent: {alerts_sent}\n"
         f"Failures: {len(failures)}"
     )
