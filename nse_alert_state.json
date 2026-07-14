@@ -1137,8 +1137,8 @@
     "last_alert_at": 0.0
   },
   "BAYERCROP.NS|demand|4030.0000|4046.2825": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1784003542.5430565
   },
   "BELRISE.NS|supply|250.6164|252.0000": {
     "in_zone": false,
@@ -1304,8 +1304,8 @@
     "last_alert_at": 0.0
   },
   "CARTRADE.NS|supply|2940.5010|2961.0000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1784003542.6966166
   },
   "CASTROLIND.NS|supply|189.1553|189.6500": {
     "in_zone": false,
@@ -2005,5 +2005,9 @@
   },
   "IOC.NS|range_filter|sell": {
     "last_alert_at": 1784002325.9138598
+  },
+  "COFORGE.NS|supply|1544.7090|1553.5000": {
+    "in_zone": true,
+    "last_alert_at": 1784003542.8968952
   }
 }
