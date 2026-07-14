@@ -256,7 +256,7 @@
   },
   "HINDUNILVR.NS|demand|2114.5000|2121.4575": {
     "in_zone": true,
-    "last_alert_at": 1783932713.7871025
+    "last_alert_at": 1784002325.4132595
   },
   "HINDZINC.NS|supply|576.0557|579.2500": {
     "in_zone": false,
@@ -1192,8 +1192,8 @@
     "last_alert_at": 1784001122.137291
   },
   "BIOCON.NS|supply|438.5825|440.4000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1784002324.8390765
   },
   "BIOCON.NS|demand|331.0000|332.8125": {
     "in_zone": false,
@@ -1284,8 +1284,8 @@
     "last_alert_at": 0.0
   },
   "CAPLIPOINT.NS|supply|2658.0844|2672.8999": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1784002325.1157746
   },
   "CAPLIPOINT.NS|demand|1500.3000|1507.6276": {
     "in_zone": false,
@@ -1786,7 +1786,7 @@
     "last_alert_at": 0.0
   },
   "HFCL.NS|range_filter|sell": {
-    "last_alert_at": 0.0
+    "last_alert_at": 1784002325.2506478
   },
   "HFCL.NS|demand|135.1000|136.3919": {
     "in_zone": false,
@@ -2002,5 +2002,8 @@
   "INOXWIND.NS|demand|75.0500|75.6914": {
     "in_zone": false,
     "last_alert_at": 0.0
+  },
+  "IOC.NS|range_filter|sell": {
+    "last_alert_at": 1784002325.9138598
   }
 }
