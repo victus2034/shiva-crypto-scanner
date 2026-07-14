@@ -1754,7 +1754,7 @@
     "last_alert_at": 0.0
   },
   "FLUOROCHEM.NS|demand|3814.6001|3834.8091": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1784005931.2393022
   },
   "GMDCLTD.NS|supply|703.5115|708.2000": {
@@ -2338,6 +2338,13 @@
     "last_alert_at": 0.0
   },
   "INDUSINDBK.NS|supply|1033.8607|1038.0000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "AAVAS.NS|range_filter|sell": {
+    "last_alert_at": 1784013127.2200782
+  },
+  "GLAXO.NS|supply|2772.4119|2782.3999": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
