@@ -78,12 +78,12 @@ WATCHLIST = [
     "CBRSBUSD",
     "INTCBUSD",
     "MSTRBUSD",
-]
-
-COINSWITCH_WATCHLIST = [
     "RIF/USDT",
     "THE/USDT",
     "MAGMA/USDT",
+]
+
+COINSWITCH_WATCHLIST = [
     "SKHYNIX/USDT",
     "AVGO/USDT",
     "IBM/USDT",
@@ -105,7 +105,7 @@ COINSWITCH_EXCHANGE = "EXCHANGE_2"
 COINSWITCH_API_KEY = ""
 COINSWITCH_SECRET_KEY = ""
 PRIMARY_EXCHANGE_ID = "binance"
-EXCHANGE_IDS = ["binance", "kucoin", "okx", "bybit"]
+EXCHANGE_IDS = ["binance", "kucoin", "okx", "bybit", "mexc", "bitget", "lbank", "coinex"]
 TIMEFRAME = "4h"
 OHLCV_LIMIT = 500
 
