@@ -287,8 +287,8 @@
     "last_alert_at": 0.0
   },
   "ITC.NS|demand|275.1000|276.0495": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1784005931.3700616
   },
   "INDHOTEL.NS|supply|751.8310|753.9000": {
     "in_zone": false,
@@ -1439,8 +1439,8 @@
     "last_alert_at": 0.0
   },
   "COROMANDEL.NS|supply|2069.3154|2079.8999": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1784005930.949283
   },
   "COROMANDEL.NS|demand|1722.7000|1732.9445": {
     "in_zone": false,
@@ -1754,8 +1754,8 @@
     "last_alert_at": 0.0
   },
   "FLUOROCHEM.NS|demand|3814.6001|3834.8091": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1784005931.2393022
   },
   "GMDCLTD.NS|supply|703.5115|708.2000": {
     "in_zone": false,
@@ -2304,5 +2304,14 @@
   "NAUKRI.NS|supply|1383.1645|1388.1000": {
     "in_zone": false,
     "last_alert_at": 0.0
+  },
+  "ADANIGREEN.NS|range_filter|buy": {
+    "last_alert_at": 1784005930.3435814
+  },
+  "ASHOKLEY.NS|range_filter|sell": {
+    "last_alert_at": 1784005930.817815
+  },
+  "CREDITACC.NS|range_filter|sell": {
+    "last_alert_at": 1784005931.0777493
   }
 }
