@@ -288,7 +288,7 @@
   },
   "ITC.NS|demand|275.1000|276.0495": {
     "in_zone": true,
-    "last_alert_at": 1784005931.3700616
+    "last_alert_at": 1784020347.6544216
   },
   "INDHOTEL.NS|supply|751.8310|753.9000": {
     "in_zone": false,
@@ -1440,7 +1440,7 @@
   },
   "COROMANDEL.NS|supply|2069.3154|2079.8999": {
     "in_zone": true,
-    "last_alert_at": 1784005930.949283
+    "last_alert_at": 1784020347.4331405
   },
   "COROMANDEL.NS|demand|1722.7000|1732.9445": {
     "in_zone": false,
@@ -2351,5 +2351,8 @@
   "MEDANTA.NS|supply|1358.7120|1364.5000": {
     "in_zone": false,
     "last_alert_at": 0.0
+  },
+  "AEGISVOPAK.NS|range_filter|sell": {
+    "last_alert_at": 1784020347.101894
   }
 }
