@@ -56209,8 +56209,8 @@
     "last_alert_at": 0.0
   },
   "CRCLXUSD|demand|61.15000000|61.57620000": {
-    "in_zone": false,
-    "last_alert_at": 1783524089.947082
+    "in_zone": true,
+    "last_alert_at": 1783999283.5099423
   },
   "UNIUSD|demand|2.71900000|2.73851700": {
     "in_zone": false,
@@ -56522,5 +56522,8 @@
   },
   "FILUSD|range_filter|sell": {
     "last_alert_at": 1783978899.3702362
+  },
+  "BCHUSD|range_filter|sell": {
+    "last_alert_at": 1783999283.7483006
   }
 }
