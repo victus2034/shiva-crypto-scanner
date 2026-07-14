@@ -81,23 +81,22 @@ WATCHLIST = [
     "RIF/USDT",
     "THE/USDT",
     "MAGMA/USDT",
+    "SKHYNIX/USDT:USDT",
+    "AVGO/USDT:USDT",
+    "IBM/USDT:USDT",
+    "BABA/USDT:USDT",
+    "OPENAI/USDT:USDT",
+    "NBIS/USDT:USDT",
+    "BZ/USDT:USDT",
+    "SAMSUNG/USDT:USDT",
+    "AXTI/USDT:USDT",
+    "HOOD/USDT:USDT",
+    "MRVL/USDT:USDT",
+    "FLNC/USDT:USDT",
+    "DELL/USDT:USDT",
 ]
 
-COINSWITCH_WATCHLIST = [
-    "SKHYNIX/USDT",
-    "AVGO/USDT",
-    "IBM/USDT",
-    "BABA/USDT",
-    "OPENAI/USDT",
-    "NBIS/USDT",
-    "BZ/USDT",
-    "SAMSUNG/USDT",
-    "AXTI/USDT",
-    "HOOD/USDT",
-    "MRVL/USDT",
-    "FLNC/USDT",
-    "DELL/USDT",
-]
+COINSWITCH_WATCHLIST = []
 
 DELTA_API_BASE_URL = "https://api.india.delta.exchange"
 COINSWITCH_API_BASE_URL = "https://coinswitch.co"
