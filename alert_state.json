@@ -55876,7 +55876,7 @@
     "last_alert_at": 1782868566.5028257
   },
   "LTCUSD|supply|46.18010000|46.35000000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1784130109.353391
   },
   "AVAXUSD|supply|10.44044750|10.48000000": {
@@ -56559,7 +56559,7 @@
     "last_alert_at": 0.0
   },
   "FET/USDT|supply|0.16398100|0.16500000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1784120531.8642962
   },
   "PUMPUSD|supply|0.00223838|0.00224900": {
@@ -57411,6 +57411,10 @@
     "last_alert_at": 0.0
   },
   "HOOD/USDT:USDT|supply|76.91460000|77.21000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "HYPEUSD|demand|62.51000000|62.84542000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
