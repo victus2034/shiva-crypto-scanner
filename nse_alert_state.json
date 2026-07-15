@@ -946,7 +946,7 @@
     "last_alert_at": 0.0
   },
   "AJANTPHARM.NS|supply|3477.3624|3494.8999": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1784089950.657969
   },
   "AJANTPHARM.NS|demand|2656.3000|2669.5830": {
@@ -1591,7 +1591,7 @@
     "last_alert_at": 0.0
   },
   "EXIDEIND.NS|supply|429.3492|431.0000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1784087521.6452198
   },
   "NYKAA.NS|demand|300.2000|301.5593": {
@@ -2397,5 +2397,8 @@
   },
   "IDBI.NS|range_filter|buy": {
     "last_alert_at": 1784088727.909846
+  },
+  "BELRISE.NS|range_filter|buy": {
+    "last_alert_at": 1784093552.4670448
   }
 }
