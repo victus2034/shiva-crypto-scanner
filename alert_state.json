@@ -56285,7 +56285,7 @@
     "last_alert_at": 0.0
   },
   "NEARUSD|supply|2.10838400|2.12200000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1784115702.7453113
   },
   "RIVERUSD|supply|4.25449500|4.28900000": {
@@ -57344,5 +57344,13 @@
   },
   "VIRTUAL/USDT|range_filter|buy": {
     "last_alert_at": 1784113319.7062454
+  },
+  "LABUSD|demand|0.20030000|0.41784400": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "ENA/USDT|demand|0.07710000|0.07759850": {
+    "in_zone": false,
+    "last_alert_at": 0.0
   }
 }
