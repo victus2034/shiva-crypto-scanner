@@ -56423,8 +56423,8 @@
     "last_alert_at": 1783978899.1207068
   },
   "BCHUSD|demand|229.72000000|231.20695000": {
-    "in_zone": false,
-    "last_alert_at": 1784005308.7142346
+    "in_zone": true,
+    "last_alert_at": 1784083298.900199
   },
   "SEIUSD|range_filter|buy": {
     "last_alert_at": 1783647689.668662
@@ -56524,7 +56524,7 @@
     "last_alert_at": 1783978899.3702362
   },
   "BCHUSD|range_filter|sell": {
-    "last_alert_at": 1783999283.7483006
+    "last_alert_at": 1784083298.900199
   },
   "BNBUSD|supply|583.00303500|584.56000000": {
     "in_zone": true,
@@ -56871,5 +56871,8 @@
   },
   "PUMPUSD|range_filter|buy": {
     "last_alert_at": 1784078499.1123717
+  },
+  "GOOGLXUSD|range_filter|buy": {
+    "last_alert_at": 1784083298.693843
   }
 }
