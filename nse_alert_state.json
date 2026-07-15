@@ -291,8 +291,8 @@
     "last_alert_at": 1784087522.20589
   },
   "INDHOTEL.NS|supply|751.8310|753.9000": {
-    "in_zone": false,
-    "last_alert_at": 1784092354.4045818
+    "in_zone": true,
+    "last_alert_at": 1784100758.7562692
   },
   "INDHOTEL.NS|demand|565.3000|568.6397": {
     "in_zone": false,
@@ -1825,8 +1825,8 @@
     "last_alert_at": 0.0
   },
   "HINDCOPPER.NS|demand|485.3000|487.9670": {
-    "in_zone": false,
-    "last_alert_at": 1784019126.684021
+    "in_zone": true,
+    "last_alert_at": 1784100758.5007806
   },
   "HINDPETRO.NS|range_filter|sell": {
     "last_alert_at": 1784001123.6379697
@@ -2375,7 +2375,7 @@
     "last_alert_at": 0.0
   },
   "GESHIP.NS|demand|1367.6000|1376.5145": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1784099551.9848003
   },
   "HYUNDAI.NS|range_filter|buy": {
@@ -2429,8 +2429,8 @@
     "last_alert_at": 0.0
   },
   "BHARATFORG.NS|demand|2083.3000|2094.1905": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1784100757.941005
   },
   "BIOCON.NS|demand|337.2000|338.5898": {
     "in_zone": false,
@@ -2458,5 +2458,8 @@
   },
   "BANKINDIA.NS|range_filter|buy": {
     "last_alert_at": 1784099551.4872336
+  },
+  "GRASIM.NS|range_filter|sell": {
+    "last_alert_at": 1784100758.150327
   }
 }
