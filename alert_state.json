@@ -56266,7 +56266,7 @@
     "last_alert_at": 1783678899.3671987
   },
   "SPYXUSD|demand|737.74000000|738.54985000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1784132502.406664
   },
   "XMRUSD|range_filter|buy": {
@@ -56583,8 +56583,8 @@
     "last_alert_at": 0.0
   },
   "LDO/USDT|supply|0.35563000|0.35740000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1784139703.603559
   },
   "LDO/USDT|demand|0.29490000|0.29727900": {
     "in_zone": false,
@@ -57417,5 +57417,8 @@
   "HYPEUSD|demand|62.51000000|62.84542000": {
     "in_zone": false,
     "last_alert_at": 0.0
+  },
+  "SNDKBUSD|range_filter|buy": {
+    "last_alert_at": 1784139703.854604
   }
 }
