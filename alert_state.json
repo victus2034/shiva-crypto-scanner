@@ -55868,8 +55868,8 @@
     "last_alert_at": 0.0
   },
   "LINKUSD|supply|8.55131000|8.59100000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1784120531.6047387
   },
   "LINKUSD|demand|6.99700000|7.05317500": {
     "in_zone": false,
@@ -56559,8 +56559,8 @@
     "last_alert_at": 0.0
   },
   "FET/USDT|supply|0.16398100|0.16500000": {
-    "in_zone": false,
-    "last_alert_at": 1784062487.8324761
+    "in_zone": true,
+    "last_alert_at": 1784120531.8642962
   },
   "PUMPUSD|supply|0.00223838|0.00224900": {
     "in_zone": false,
@@ -56714,8 +56714,8 @@
     "last_alert_at": 0.0
   },
   "ENA/USDT|supply|0.08506550|0.08580000": {
-    "in_zone": false,
-    "last_alert_at": 1784067710.473814
+    "in_zone": true,
+    "last_alert_at": 1784120532.327994
   },
   "ENA/USDT|demand|0.06990000|0.07149450": {
     "in_zone": false,
@@ -56793,7 +56793,7 @@
   },
   "IBM/USDT:USDT|supply|279.38175000|280.30000000": {
     "in_zone": true,
-    "last_alert_at": 1784106129.2099328
+    "last_alert_at": 1784120532.6836872
   },
   "IBM/USDT:USDT|demand|244.04000000|245.16875000": {
     "in_zone": false,
@@ -57364,5 +57364,11 @@
   "FILUSD|demand|0.73500000|0.73829000": {
     "in_zone": false,
     "last_alert_at": 0.0
+  },
+  "HYPEUSD|range_filter|buy": {
+    "last_alert_at": 1784120531.3478482
+  },
+  "FARTCOIN/USDT|range_filter|buy": {
+    "last_alert_at": 1784120532.0943239
   }
 }
