@@ -919,7 +919,7 @@
     "last_alert_at": 0.0
   },
   "AEGISLOG.NS|range_filter|buy": {
-    "last_alert_at": 1784001121.1181355
+    "last_alert_at": 1784088727.0170975
   },
   "AEGISLOG.NS|supply|1412.6495|1422.0000": {
     "in_zone": false,
@@ -1013,8 +1013,8 @@
     "last_alert_at": 0.0
   },
   "APTUS.NS|supply|295.2480|296.6500": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1784088727.4534478
   },
   "APTUS.NS|demand|193.9800|195.2898": {
     "in_zone": false,
@@ -1137,7 +1137,7 @@
     "last_alert_at": 0.0
   },
   "BAYERCROP.NS|demand|4030.0000|4046.2825": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1784017947.6872997
   },
   "BELRISE.NS|supply|250.6164|252.0000": {
@@ -1977,7 +1977,7 @@
   },
   "IGL.NS|demand|149.6400|150.3856": {
     "in_zone": true,
-    "last_alert_at": 1784016728.6768494
+    "last_alert_at": 1784088728.0895905
   },
   "INDUSTOWER.NS|supply|479.2350|481.3500": {
     "in_zone": false,
@@ -2380,5 +2380,22 @@
   },
   "HYUNDAI.NS|range_filter|buy": {
     "last_alert_at": 1784087522.0010812
+  },
+  "AARTIIND.NS|supply|519.9887|522.8000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "CONCORDBIO.NS|range_filter|buy": {
+    "last_alert_at": 1784088727.6257231
+  },
+  "COROMANDEL.NS|supply|2179.2170|2194.0000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "HINDUNILVR.NS|range_filter|sell": {
+    "last_alert_at": 1784088727.7618299
+  },
+  "IDBI.NS|range_filter|buy": {
+    "last_alert_at": 1784088727.909846
   }
 }
