@@ -56266,7 +56266,7 @@
     "last_alert_at": 1783678899.3671987
   },
   "SPYXUSD|demand|737.74000000|738.54985000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1784043698.5508444
   },
   "XMRUSD|range_filter|buy": {
@@ -57311,8 +57311,8 @@
     "last_alert_at": 1784088139.1472402
   },
   "AAPLXUSD|supply|322.98450000|323.50000000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1784122906.0307376
   },
   "EWYBUSD|range_filter|sell": {
     "last_alert_at": 1784098918.2349565
@@ -57380,5 +57380,12 @@
   },
   "ONDOUSD|range_filter|buy": {
     "last_alert_at": 1784121706.5209787
+  },
+  "AMZNXUSD|supply|256.30235000|256.90000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "INTCBUSD|range_filter|sell": {
+    "last_alert_at": 1784122906.2532167
   }
 }
