@@ -946,7 +946,7 @@
     "last_alert_at": 0.0
   },
   "AJANTPHARM.NS|supply|3477.3624|3494.8999": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1784173928.896387
   },
   "AJANTPHARM.NS|demand|2656.3000|2669.5830": {
@@ -2367,8 +2367,8 @@
     "last_alert_at": 0.0
   },
   "CRAFTSMAN.NS|demand|8987.0000|9037.3375": {
-    "in_zone": false,
-    "last_alert_at": 1784099551.795458
+    "in_zone": true,
+    "last_alert_at": 1784180946.7263224
   },
   "GLAND.NS|supply|2559.7885|2573.5000": {
     "in_zone": true,
@@ -2522,5 +2522,8 @@
   "CRISIL.NS|supply|5095.1620|5115.0000": {
     "in_zone": false,
     "last_alert_at": 0.0
+  },
+  "CHOLAHLDNG.NS|range_filter|sell": {
+    "last_alert_at": 1784180946.5102856
   }
 }
