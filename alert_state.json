@@ -56714,7 +56714,7 @@
     "last_alert_at": 0.0
   },
   "ENA/USDT|supply|0.08506550|0.08580000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1784226092.9509203
   },
   "ENA/USDT|demand|0.06990000|0.07149450": {
@@ -57504,5 +57504,8 @@
   "MSTRBUSD|supply|99.19105000|99.88000000": {
     "in_zone": false,
     "last_alert_at": 0.0
+  },
+  "AMZNXUSD|range_filter|sell": {
+    "last_alert_at": 1784231924.7842667
   }
 }
