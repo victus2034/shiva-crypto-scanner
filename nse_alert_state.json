@@ -1284,8 +1284,8 @@
     "last_alert_at": 0.0
   },
   "CAPLIPOINT.NS|supply|2658.0844|2672.8999": {
-    "in_zone": false,
-    "last_alert_at": 1784178735.1745813
+    "in_zone": true,
+    "last_alert_at": 1784188214.8238165
   },
   "CAPLIPOINT.NS|demand|1500.3000|1507.6276": {
     "in_zone": false,
@@ -2529,5 +2529,8 @@
   "BLS.NS|demand|231.9000|233.2202": {
     "in_zone": false,
     "last_alert_at": 0.0
+  },
+  "GRAPHITE.NS|range_filter|buy": {
+    "last_alert_at": 1784188215.0211933
   }
 }
