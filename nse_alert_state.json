@@ -946,8 +946,8 @@
     "last_alert_at": 0.0
   },
   "AJANTPHARM.NS|supply|3477.3624|3494.8999": {
-    "in_zone": false,
-    "last_alert_at": 1784173928.896387
+    "in_zone": true,
+    "last_alert_at": 1784191933.2840862
   },
   "AJANTPHARM.NS|demand|2656.3000|2669.5830": {
     "in_zone": false,
@@ -1471,8 +1471,8 @@
     "last_alert_at": 0.0
   },
   "DCMSHRIRAM.NS|demand|1002.8000|1007.9685": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1784191933.4354868
   },
   "DABUR.NS|supply|574.5502|576.6000": {
     "in_zone": false,
@@ -2539,5 +2539,8 @@
   "HINDCOPPER.NS|demand|446.6500|450.6497": {
     "in_zone": false,
     "last_alert_at": 0.0
+  },
+  "ITCHOTELS.NS|range_filter|sell": {
+    "last_alert_at": 1784191933.6891325
   }
 }
