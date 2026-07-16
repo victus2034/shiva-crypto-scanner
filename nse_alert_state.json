@@ -831,8 +831,8 @@
     "last_alert_at": 0.0
   },
   "AUBANK.NS|demand|1015.6000|1020.1707": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1784178734.955387
   },
   "AWL.NS|supply|219.1123|219.9800": {
     "in_zone": false,
@@ -1284,8 +1284,8 @@
     "last_alert_at": 0.0
   },
   "CAPLIPOINT.NS|supply|2658.0844|2672.8999": {
-    "in_zone": false,
-    "last_alert_at": 1784101964.2826226
+    "in_zone": true,
+    "last_alert_at": 1784178735.1745813
   },
   "CAPLIPOINT.NS|demand|1500.3000|1507.6276": {
     "in_zone": false,
@@ -1352,8 +1352,8 @@
     "last_alert_at": 0.0
   },
   "CHENNPETRO.NS|supply|1242.2700|1248.9000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1784178735.5557108
   },
   "CHENNPETRO.NS|demand|621.0000|625.4025": {
     "in_zone": false,
@@ -2371,8 +2371,8 @@
     "last_alert_at": 1784099551.795458
   },
   "GLAND.NS|supply|2559.7885|2573.5000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1784178735.7327633
   },
   "GESHIP.NS|demand|1367.6000|1376.5145": {
     "in_zone": false,
@@ -2518,5 +2518,9 @@
   },
   "INDIAMART.NS|range_filter|buy": {
     "last_alert_at": 1784176381.1413684
+  },
+  "CRISIL.NS|supply|5095.1620|5115.0000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
   }
 }
