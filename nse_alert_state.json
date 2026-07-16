@@ -208,7 +208,7 @@
   },
   "GRASIM.NS|demand|3039.0000|3050.1000": {
     "in_zone": true,
-    "last_alert_at": 1784175136.1803982
+    "last_alert_at": 1784189545.2036593
   },
   "HCLTECH.NS|supply|1252.3535|1256.8000": {
     "in_zone": false,
@@ -288,7 +288,7 @@
   },
   "ITC.NS|demand|275.1000|276.0495": {
     "in_zone": true,
-    "last_alert_at": 1784173931.1513584
+    "last_alert_at": 1784189545.393169
   },
   "INDHOTEL.NS|supply|751.8310|753.9000": {
     "in_zone": false,
@@ -803,7 +803,7 @@
     "last_alert_at": 0.0
   },
   "ACMESOLAR.NS|supply|394.8110|397.4500": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1784175134.946719
   },
   "ACMESOLAR.NS|demand|327.0000|329.2545": {
@@ -1968,8 +1968,8 @@
     "last_alert_at": 0.0
   },
   "IRCTC.NS|demand|492.7500|495.5700": {
-    "in_zone": false,
-    "last_alert_at": 1784087522.4688659
+    "in_zone": true,
+    "last_alert_at": 1784189545.632859
   },
   "IGL.NS|supply|181.3170|182.0200": {
     "in_zone": false,
@@ -2334,7 +2334,7 @@
     "last_alert_at": 1784087521.8483121
   },
   "HFCL.NS|supply|227.4180|229.1700": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1784184731.1479645
   },
   "INDUSINDBK.NS|supply|1033.8607|1038.0000": {
@@ -2371,7 +2371,7 @@
     "last_alert_at": 1784180946.7263224
   },
   "GLAND.NS|supply|2559.7885|2573.5000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1784178735.7327633
   },
   "GESHIP.NS|demand|1367.6000|1376.5145": {
@@ -2422,7 +2422,7 @@
   },
   "ANURAS.NS|demand|1250.5000|1256.1120": {
     "in_zone": true,
-    "last_alert_at": 1784175135.2067885
+    "last_alert_at": 1784189544.7774677
   },
   "APARINDS.NS|demand|13409.0000|13531.5200": {
     "in_zone": false,
@@ -2532,5 +2532,12 @@
   },
   "GRAPHITE.NS|range_filter|buy": {
     "last_alert_at": 1784188215.0211933
+  },
+  "DELHIVERY.NS|range_filter|sell": {
+    "last_alert_at": 1784189545.003486
+  },
+  "HINDCOPPER.NS|demand|446.6500|450.6497": {
+    "in_zone": false,
+    "last_alert_at": 0.0
   }
 }
