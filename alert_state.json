@@ -57411,8 +57411,8 @@
     "last_alert_at": 0.0
   },
   "HOOD/USDT:USDT|supply|76.91460000|77.21000000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1784217694.0206265
   },
   "HYPEUSD|demand|62.51000000|62.84542000": {
     "in_zone": false,
@@ -57496,5 +57496,9 @@
   },
   "BZ/USDT:USDT|range_filter|sell": {
     "last_alert_at": 1784203326.6668036
+  },
+  "TAO/USDT|demand|193.59000000|194.70345000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
   }
 }
