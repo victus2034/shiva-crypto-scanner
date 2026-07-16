@@ -207,7 +207,7 @@
     "last_alert_at": 0.0
   },
   "GRASIM.NS|demand|3039.0000|3050.1000": {
-    "in_zone": false,
+    "in_zone": true,
     "last_alert_at": 0.0
   },
   "HCLTECH.NS|supply|1252.3535|1256.8000": {
@@ -288,7 +288,7 @@
   },
   "ITC.NS|demand|275.1000|276.0495": {
     "in_zone": true,
-    "last_alert_at": 1784101965.0500708
+    "last_alert_at": 1784173931.1513584
   },
   "INDHOTEL.NS|supply|751.8310|753.9000": {
     "in_zone": true,
@@ -947,7 +947,7 @@
   },
   "AJANTPHARM.NS|supply|3477.3624|3494.8999": {
     "in_zone": true,
-    "last_alert_at": 1784095956.1288543
+    "last_alert_at": 1784173928.896387
   },
   "AJANTPHARM.NS|demand|2656.3000|2669.5830": {
     "in_zone": false,
@@ -1261,7 +1261,7 @@
   },
   "CRISIL.NS|supply|4230.9515|4249.0000": {
     "in_zone": true,
-    "last_alert_at": 1784104342.87574
+    "last_alert_at": 1784173929.3600843
   },
   "CRISIL.NS|demand|3686.0000|3705.8105": {
     "in_zone": false,
@@ -1284,7 +1284,7 @@
     "last_alert_at": 0.0
   },
   "CAPLIPOINT.NS|supply|2658.0844|2672.8999": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1784101964.2826226
   },
   "CAPLIPOINT.NS|demand|1500.3000|1507.6276": {
@@ -1484,7 +1484,7 @@
   },
   "DALBHARAT.NS|supply|1834.8310|1844.4000": {
     "in_zone": true,
-    "last_alert_at": 1784101964.853206
+    "last_alert_at": 1784173929.647723
   },
   "DALBHARAT.NS|demand|1605.0000|1613.1410": {
     "in_zone": false,
@@ -1576,7 +1576,7 @@
   },
   "ERIS.NS|supply|1470.1715|1478.0000": {
     "in_zone": true,
-    "last_alert_at": 1784104343.1042268
+    "last_alert_at": 1784173929.9147162
   },
   "ERIS.NS|demand|1393.4000|1399.7905": {
     "in_zone": false,
@@ -1691,7 +1691,7 @@
   },
   "GLAXO.NS|supply|2492.3531|2501.8000": {
     "in_zone": true,
-    "last_alert_at": 1784094752.340746
+    "last_alert_at": 1784173930.0479665
   },
   "GLAXO.NS|demand|2090.0000|2098.9670": {
     "in_zone": false,
@@ -1864,15 +1864,15 @@
     "last_alert_at": 0.0
   },
   "ICICIGI.NS|demand|1629.5000|1637.6515": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1784173930.9349844
   },
   "ICICIAMC.NS|supply|3592.7870|3609.7000": {
     "in_zone": false,
     "last_alert_at": 0.0
   },
   "ICICIPRULI.NS|supply|526.1400|528.6500": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1784104343.2669754
   },
   "ICICIPRULI.NS|demand|459.5000|461.8640": {
@@ -1976,7 +1976,7 @@
     "last_alert_at": 0.0
   },
   "IGL.NS|demand|149.6400|150.3856": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1784103148.7221334
   },
   "INDUSTOWER.NS|supply|479.2350|481.3500": {
@@ -2008,7 +2008,7 @@
   },
   "COFORGE.NS|supply|1544.7090|1553.5000": {
     "in_zone": true,
-    "last_alert_at": 1784105532.070066
+    "last_alert_at": 1784173929.5052028
   },
   "ACC.NS|supply|1705.7720|1711.5000": {
     "in_zone": false,
@@ -2315,7 +2315,7 @@
     "last_alert_at": 1784005931.0777493
   },
   "ACMESOLAR.NS|range_filter|buy": {
-    "last_alert_at": 1784094069.7150393
+    "last_alert_at": 1784173928.755915
   },
   "BALRAMCHIN.NS|supply|592.0735|594.8000": {
     "in_zone": true,
@@ -2334,8 +2334,8 @@
     "last_alert_at": 1784087521.8483121
   },
   "HFCL.NS|supply|227.4180|229.1700": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1784173930.4497023
   },
   "INDUSINDBK.NS|supply|1033.8607|1038.0000": {
     "in_zone": false,
@@ -2430,7 +2430,7 @@
   },
   "BHARATFORG.NS|demand|2083.3000|2094.1905": {
     "in_zone": true,
-    "last_alert_at": 1784100757.941005
+    "last_alert_at": 1784173929.2049203
   },
   "BIOCON.NS|demand|337.2000|338.5898": {
     "in_zone": false,
@@ -2461,5 +2461,44 @@
   },
   "GRASIM.NS|range_filter|sell": {
     "last_alert_at": 1784100758.150327
+  },
+  "ABB.NS|supply|7784.9000|7822.0000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "ADANIENT.NS|demand|3027.8999|3042.5359": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "APTUS.NS|supply|330.2732|331.8000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "BSOFT.NS|demand|270.4000|272.0050": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "CONCORDBIO.NS|demand|1250.1000|1258.4510": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "DIXON.NS|supply|15675.8150|15750.0000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "EIHOTEL.NS|supply|350.4093|352.0000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "EIHOTEL.NS|demand|320.5000|322.0907": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "HEXT.NS|demand|512.8000|516.2540": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "HSCL.NS|range_filter|buy": {
+    "last_alert_at": 0.0
   }
 }
