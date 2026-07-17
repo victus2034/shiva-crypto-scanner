@@ -55821,7 +55821,7 @@
   },
   "PAXGUSD|demand|3954.60000000|3963.11750000": {
     "in_zone": true,
-    "last_alert_at": 1784236887.1455374
+    "last_alert_at": 1784252484.7159054
   },
   "SOLUSD|supply|75.72765850|76.09900000": {
     "in_zone": true,
@@ -57510,5 +57510,9 @@
   },
   "LIT/USDT|range_filter|sell": {
     "last_alert_at": 1784242918.17088
+  },
+  "LIT/USDT|demand|1.67900000|1.69519000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
   }
 }
