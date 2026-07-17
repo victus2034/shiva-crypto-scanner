@@ -1,3 +1,14 @@
+import os
+
+
+def env_int(name, default):
+    value = os.getenv(name, "").strip()
+    try:
+        return int(value) if value else default
+    except ValueError:
+        return default
+
+
 WATCHLIST = [
     "BTCUSD",
     "ETHUSD",
@@ -105,7 +116,7 @@ COINSWITCH_API_KEY = ""
 COINSWITCH_SECRET_KEY = ""
 PRIMARY_EXCHANGE_ID = "binance"
 EXCHANGE_IDS = ["binance", "kucoin", "okx", "bybit", "mexc", "bitget", "lbank", "coinex"]
-TIMEFRAME = "4h"
+TIMEFRAME = os.getenv("SHIVA_TIMEFRAME", "4h").strip() or "4h"
 OHLCV_LIMIT = 500
 
 SWING_LENGTH = 10
@@ -116,9 +127,9 @@ MAX_DISTANCE_PCT = 1.5
 REARM_FACTOR = 1.25
 SCAN_SLEEP = 300
 SCAN_WORKERS = 8
-ALERT_COOLDOWN_SECONDS = 4 * 60 * 60
+ALERT_COOLDOWN_SECONDS = env_int("SHIVA_ALERT_COOLDOWN_SECONDS", 4 * 60 * 60)
 ALERT_RANGE_FILTER_SIGNALS = True
-SIGNAL_ALERT_COOLDOWN_SECONDS = 4 * 60 * 60
+SIGNAL_ALERT_COOLDOWN_SECONDS = env_int("SHIVA_SIGNAL_ALERT_COOLDOWN_SECONDS", 4 * 60 * 60)
 
 PRINT_SCAN_SUMMARY = True
 PRINT_ALERTS_TO_CONSOLE = True

@@ -42,7 +42,7 @@ from config import (
 )
 
 
-STATE_FILE = Path(__file__).with_name("alert_state.json")
+STATE_FILE = Path(__file__).with_name(os.getenv("SHIVA_STATE_FILE", "alert_state.json"))
 EXCHANGES = [getattr(ccxt, exchange_id)({"enableRateLimit": True}) for exchange_id in EXCHANGE_IDS]
 EXCHANGES_BY_ID = {exchange.id: exchange for exchange in EXCHANGES}
 TIMEFRAME_SECONDS = {

@@ -2,6 +2,8 @@
 
 This bot watches your fixed crypto watchlist on the `4h` timeframe, rebuilds the active supply and demand zones from your TradingView Pine logic, and alerts when price gets close to one of those levels.
 
+It also includes an isolated 30-minute workflow. It uses the same logic and watchlist, but keeps its own cooldown state and sends alerts to a separate Discord webhook.
+
 ## Setup
 
 1. Install dependencies:
@@ -58,6 +60,15 @@ Recommended setup:
 2. Add repository secrets named `DISCORD_WEBHOOK_URL` and `DISCORD_STATUS_WEBHOOK_URL`.
 3. Keep your scanner config in the repo.
 4. Let GitHub Actions run it on schedule.
+
+## 30-minute Discord alerts
+
+The 30-minute scanner runs from `.github/workflows/scan_30m.yml` just after each 30-minute candle closes. It does not change the 4-hour scanner.
+
+1. Create a Discord webhook inside `#30m-alerts`.
+2. Add its URL as the repository secret `DISCORD_30M_WEBHOOK_URL`.
+3. Keep `DISCORD_STATUS_WEBHOOK_URL` pointed at `#scanner-status`.
+4. Run `Shiva Crypto Scanner 30m` manually once from GitHub Actions to verify it.
 
 If you keep the repo private, GitHub Free includes limited Actions minutes, so reduce the schedule if needed. If the repo is public, standard GitHub-hosted Actions minutes remain free.
 
