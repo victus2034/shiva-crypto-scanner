@@ -574,14 +574,33 @@ def send_telegram_message(message):
 def send_discord_message(message, webhook_env_name="DISCORD_WEBHOOK_URL", webhook_config_value=DISCORD_WEBHOOK_URL):
     webhook_url = get_env_or_config(webhook_env_name, webhook_config_value)
     if not webhook_url:
-        return
+        return False
 
-    response = requests.post(
-        webhook_url,
-        json={"content": message},
-        timeout=15,
-    )
-    response.raise_for_status()
+    # Discord webhooks allow only a small burst of messages. Respect a 429
+    # response so every eligible alert is delivered instead of silently lost.
+    for attempt in range(4):
+        response = requests.post(
+            webhook_url,
+            json={"content": message},
+            timeout=15,
+        )
+        if response.status_code != 429:
+            response.raise_for_status()
+            return True
+
+        try:
+            retry_after = float(response.json().get("retry_after", 1))
+        except (ValueError, AttributeError):
+            retry_after = float(response.headers.get("Retry-After", 1))
+
+        if attempt == 3:
+            response.raise_for_status()
+
+        wait_seconds = max(0.25, min(retry_after, 15.0))
+        print(f"Discord rate limited; retrying alert in {wait_seconds:.2f}s")
+        time.sleep(wait_seconds)
+
+    return False
 
 
 def send_alert(message):
@@ -596,9 +615,10 @@ def send_alert(message):
         print(f"Telegram alert failed: {error}")
 
     try:
-        send_discord_message(message)
+        return send_discord_message(message)
     except requests.RequestException as error:
         print(f"Discord alert failed: {error}")
+        return False
 
 
 def send_status_message(message):
@@ -633,9 +653,9 @@ def process_candidate(state, result, zone_type, zone, distance_pct, now_ts):
     if distance_pct <= MAX_DISTANCE_PCT:
         should_alert = (not entry["in_zone"]) or (now_ts - entry["last_alert_at"] >= ALERT_COOLDOWN_SECONDS)
         if should_alert:
-            send_alert(format_alert(result, zone_type, zone, distance_pct))
-            entry["last_alert_at"] = now_ts
-            alert_sent = True
+            if send_alert(format_alert(result, zone_type, zone, distance_pct)):
+                entry["last_alert_at"] = now_ts
+                alert_sent = True
         entry["in_zone"] = True
     elif distance_pct > MAX_DISTANCE_PCT * REARM_FACTOR:
         entry["in_zone"] = False
@@ -656,9 +676,11 @@ def process_signal_candidate(state, result, signal_type, now_ts):
     if now_ts - entry["last_alert_at"] < SIGNAL_ALERT_COOLDOWN_SECONDS:
         return False
 
-    send_alert(format_signal_alert(result, signal_type))
-    entry["last_alert_at"] = now_ts
-    return True
+    if send_alert(format_signal_alert(result, signal_type)):
+        entry["last_alert_at"] = now_ts
+        return True
+
+    return False
 
 
 def print_summary(results):
