@@ -760,6 +760,7 @@ def run_scan_once(state):
         f"Time: {finished_at}\n"
         f"Run: {run_number}\n"
         f"Trigger: {trigger}\n"
+        f"Timeframe: {TIMEFRAME}\n"
         f"Scanned: {len(results)}/{len(symbols)} symbols\n"
         f"Alerts sent: {alerts_sent}\n"
         f"Failures: {len(failures)}"
