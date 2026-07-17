@@ -350,6 +350,26 @@ def fetch_exchange_ohlcv(exchange, symbol):
     return exchange.fetch_ohlcv(symbol, timeframe=TIMEFRAME, limit=OHLCV_LIMIT)
 
 
+def require_fresh_ohlcv(ohlcv, source_name):
+    if not ohlcv:
+        raise RuntimeError(f"{source_name} returned no candles")
+
+    timeframe_seconds = TIMEFRAME_SECONDS.get(TIMEFRAME)
+    if timeframe_seconds is None:
+        return ohlcv
+
+    last_candle_seconds = ohlcv[-1][0] / 1000
+    max_age_seconds = timeframe_seconds * 2 + 5 * 60
+    age_seconds = time.time() - last_candle_seconds
+    if age_seconds > max_age_seconds:
+        raise RuntimeError(
+            f"{source_name} returned a stale {TIMEFRAME} candle "
+            f"({age_seconds / 60:.1f} minutes old)"
+        )
+
+    return ohlcv
+
+
 def fetch_delta_ohlcv(symbol):
     if not is_delta_symbol(symbol):
         return None
@@ -464,7 +484,7 @@ def scan_symbol(symbol):
 
     if PREFER_COINSWITCH:
         try:
-            ohlcv = fetch_coinswitch_ohlcv(symbol)
+            ohlcv = require_fresh_ohlcv(fetch_coinswitch_ohlcv(symbol), "CoinSwitch")
             exchange_name = "coinswitch" if ohlcv is not None else exchange_name
         except Exception as error:
             last_error = error
@@ -475,14 +495,16 @@ def scan_symbol(symbol):
     primary_exchange = EXCHANGES_BY_ID.get(PRIMARY_EXCHANGE_ID)
     if ohlcv is None and primary_exchange is not None:
         try:
-            ohlcv = fetch_exchange_ohlcv(primary_exchange, symbol_for_fallback)
+            ohlcv = require_fresh_ohlcv(
+                fetch_exchange_ohlcv(primary_exchange, symbol_for_fallback), primary_exchange.id
+            )
             exchange_name = primary_exchange.id
         except Exception as error:
             last_error = error
 
     if ohlcv is None:
         try:
-            ohlcv = fetch_delta_ohlcv(symbol)
+            ohlcv = require_fresh_ohlcv(fetch_delta_ohlcv(symbol), "delta_india")
             exchange_name = "delta_india" if ohlcv is not None else exchange_name
         except Exception as error:
             last_error = error
@@ -493,7 +515,7 @@ def scan_symbol(symbol):
                 continue
 
             try:
-                ohlcv = fetch_exchange_ohlcv(exchange, symbol_for_fallback)
+                ohlcv = require_fresh_ohlcv(fetch_exchange_ohlcv(exchange, symbol_for_fallback), exchange.id)
                 exchange_name = exchange.id
                 break
             except Exception as error:
@@ -501,7 +523,7 @@ def scan_symbol(symbol):
 
     if ohlcv is None:
         try:
-            ohlcv = fetch_coinswitch_ohlcv(symbol)
+            ohlcv = require_fresh_ohlcv(fetch_coinswitch_ohlcv(symbol), "CoinSwitch")
             exchange_name = "coinswitch" if ohlcv is not None else exchange_name
         except Exception as error:
             last_error = error
@@ -520,6 +542,7 @@ def scan_symbol(symbol):
     return {
         "symbol": symbol,
         "exchange": exchange_name,
+        "candle_time": int(df["time"].iloc[-1]),
         "price": price,
         "supply": nearest_supply,
         "supply_dist": supply_dist,
@@ -550,6 +573,7 @@ def format_alert(result, zone_type, zone, distance_pct):
         f"Level: {reference:.6f}\n"
         f"Zone: {zone['bottom']:.6f} - {zone['top']:.6f}\n"
         f"Exchange: {result['exchange']}\n"
+        f"Candle time UTC: {time.strftime('%Y-%m-%d %H:%M', time.gmtime(result['candle_time'] / 1000))}\n"
         f"Range Filter Buy Signal: {result['buy_signal']}\n"
         f"Range Filter Sell Signal: {result['sell_signal']}\n"
         f"Timeframe: {TIMEFRAME}"
@@ -567,6 +591,7 @@ def format_signal_alert(result, signal_type):
         f"Nearest Demand Distance: {result['demand_dist']:.2f}%\n"
         f"Nearest Supply Distance: {result['supply_dist']:.2f}%\n"
         f"Exchange: {result['exchange']}\n"
+        f"Candle time UTC: {time.strftime('%Y-%m-%d %H:%M', time.gmtime(result['candle_time'] / 1000))}\n"
         f"Timeframe: {TIMEFRAME}"
     )
 
