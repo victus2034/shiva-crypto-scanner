@@ -30,7 +30,9 @@ from config import (
     PRIMARY_EXCHANGE_ID,
     PRINT_ALERTS_TO_CONSOLE,
     PRINT_SCAN_SUMMARY,
+    PREFER_COINSWITCH,
     REARM_FACTOR,
+    REQUIRE_COINSWITCH,
     SCAN_SLEEP,
     SCAN_WORKERS,
     SIGNAL_ALERT_COOLDOWN_SECONDS,
@@ -333,7 +335,9 @@ def fallback_symbol(symbol):
 
 def coinswitch_symbol(symbol):
     if "/" in symbol:
-        return symbol.replace("/", "").upper()
+        # CCXT perpetual symbols include a settlement suffix such as
+        # AVGO/USDT:USDT, while CoinSwitch expects the contract as AVGOUSDT.
+        return symbol.replace("/", "").split(":", 1)[0].upper()
     upper_symbol = symbol.upper()
     if upper_symbol.endswith("USDT"):
         return upper_symbol
@@ -458,8 +462,18 @@ def scan_symbol(symbol):
     exchange_name = None
     symbol_for_fallback = fallback_symbol(symbol)
 
+    if PREFER_COINSWITCH:
+        try:
+            ohlcv = fetch_coinswitch_ohlcv(symbol)
+            exchange_name = "coinswitch" if ohlcv is not None else exchange_name
+        except Exception as error:
+            last_error = error
+
+        if ohlcv is None and REQUIRE_COINSWITCH:
+            raise RuntimeError(f"CoinSwitch data unavailable for {symbol}: {last_error}")
+
     primary_exchange = EXCHANGES_BY_ID.get(PRIMARY_EXCHANGE_ID)
-    if primary_exchange is not None:
+    if ohlcv is None and primary_exchange is not None:
         try:
             ohlcv = fetch_exchange_ohlcv(primary_exchange, symbol_for_fallback)
             exchange_name = primary_exchange.id
@@ -535,6 +549,7 @@ def format_alert(result, zone_type, zone, distance_pct):
         f"Price: {price:.6f}\n"
         f"Level: {reference:.6f}\n"
         f"Zone: {zone['bottom']:.6f} - {zone['top']:.6f}\n"
+        f"Exchange: {result['exchange']}\n"
         f"Range Filter Buy Signal: {result['buy_signal']}\n"
         f"Range Filter Sell Signal: {result['sell_signal']}\n"
         f"Timeframe: {TIMEFRAME}"
@@ -738,7 +753,7 @@ def run_scan_once(state):
         f"Trigger: {trigger}\n"
         f"Timeframe: {TIMEFRAME}\n"
         f"Watchlist: {len(symbols)} symbols\n"
-        f"CoinSwitch source: {'configured' if is_coinswitch_configured() else 'not configured'}"
+        f"CoinSwitch source: {'required' if REQUIRE_COINSWITCH else ('preferred' if PREFER_COINSWITCH else 'fallback only')}"
     )
 
     with ThreadPoolExecutor(max_workers=SCAN_WORKERS) as executor:

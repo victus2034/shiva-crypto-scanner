@@ -9,6 +9,13 @@ def env_int(name, default):
         return default
 
 
+def env_flag(name, default=False):
+    value = os.getenv(name, "").strip().lower()
+    if not value:
+        return default
+    return value in {"1", "true", "yes", "on"}
+
+
 WATCHLIST = [
     "BTCUSD",
     "ETHUSD",
@@ -114,6 +121,8 @@ COINSWITCH_API_BASE_URL = "https://coinswitch.co"
 COINSWITCH_EXCHANGE = "EXCHANGE_2"
 COINSWITCH_API_KEY = ""
 COINSWITCH_SECRET_KEY = ""
+PREFER_COINSWITCH = env_flag("SHIVA_PREFER_COINSWITCH")
+REQUIRE_COINSWITCH = env_flag("SHIVA_REQUIRE_COINSWITCH")
 PRIMARY_EXCHANGE_ID = "binance"
 EXCHANGE_IDS = ["binance", "kucoin", "okx", "bybit", "mexc", "bitget", "lbank", "coinex"]
 TIMEFRAME = os.getenv("SHIVA_TIMEFRAME", "4h").strip() or "4h"

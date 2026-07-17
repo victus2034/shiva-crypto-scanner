@@ -51,7 +51,9 @@ jobs:
       - name: Run 30-minute scanner once
         env:
           SHIVA_TIMEFRAME: "30m"
-          SHIVA_STATE_FILE: "alert_state_30m.json"
+          SHIVA_STATE_FILE: "alert_state_30m_coinswitch.json"
+          SHIVA_PREFER_COINSWITCH: "true"
+          SHIVA_REQUIRE_COINSWITCH: "true"
           SHIVA_ALERT_COOLDOWN_SECONDS: "1800"
           SHIVA_SIGNAL_ALERT_COOLDOWN_SECONDS: "1800"
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_30M_WEBHOOK_URL }}
@@ -61,10 +63,10 @@ jobs:
           COINSWITCH_EXCHANGE: ${{ secrets.COINSWITCH_EXCHANGE }}
         run: python scanner.py --once
 
-      - name: Persist 30-minute alert state
+      - name: Persist CoinSwitch 30-minute alert state
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -f alert_state_30m.json
-          git diff --cached --quiet || git commit -m "Update 30m alert state"
+          git add -f alert_state_30m_coinswitch.json
+          git diff --cached --quiet || git commit -m "Update CoinSwitch 30m alert state"
           git push
