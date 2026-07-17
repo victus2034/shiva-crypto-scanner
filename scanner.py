@@ -40,6 +40,7 @@ from config import (
     TELEGRAM_BOT_TOKEN,
     TELEGRAM_CHAT_ID,
     TIMEFRAME,
+    USE_LIVE_TICKER,
     WATCHLIST,
 )
 
@@ -476,6 +477,26 @@ def fetch_coinswitch_ohlcv(symbol):
     ]
 
 
+def live_ticker_price(exchange_name, symbol, candle_close):
+    """Use the current last-traded price for alerts without changing candle-based zones."""
+    if not USE_LIVE_TICKER:
+        return candle_close, "candle_close"
+
+    exchange = EXCHANGES_BY_ID.get(exchange_name)
+    if exchange is None:
+        return candle_close, "candle_close"
+
+    try:
+        ticker = exchange.fetch_ticker(fallback_symbol(symbol))
+        price = ticker.get("last") or ticker.get("close")
+        if price is not None and float(price) > 0:
+            return float(price), "live_ticker"
+    except Exception as error:
+        print(f"{symbol} live ticker unavailable from {exchange_name}: {error}")
+
+    return candle_close, "candle_close"
+
+
 def scan_symbol(symbol):
     last_error = None
     ohlcv = None
@@ -533,7 +554,8 @@ def scan_symbol(symbol):
 
     df = pd.DataFrame(ohlcv, columns=["time", "open", "high", "low", "close", "volume"])
 
-    price = float(df["close"].iloc[-1])
+    candle_close = float(df["close"].iloc[-1])
+    price, price_source = live_ticker_price(exchange_name, symbol, candle_close)
     supply_zones, demand_zones = build_zones(df)
     nearest_supply, supply_dist = nearest_active_zone(price, supply_zones, "supply")
     nearest_demand, demand_dist = nearest_active_zone(price, demand_zones, "demand")
@@ -544,6 +566,8 @@ def scan_symbol(symbol):
         "exchange": exchange_name,
         "candle_time": int(df["time"].iloc[-1]),
         "price": price,
+        "candle_close": candle_close,
+        "price_source": price_source,
         "supply": nearest_supply,
         "supply_dist": supply_dist,
         "demand": nearest_demand,
@@ -573,6 +597,7 @@ def format_alert(result, zone_type, zone, distance_pct):
         f"Level: {reference:.6f}\n"
         f"Zone: {zone['bottom']:.6f} - {zone['top']:.6f}\n"
         f"Exchange: {result['exchange']}\n"
+        f"Price source: {result['price_source'].replace('_', ' ')}\n"
         f"Candle time UTC: {time.strftime('%Y-%m-%d %H:%M', time.gmtime(result['candle_time'] / 1000))}\n"
         f"Range Filter Buy Signal: {result['buy_signal']}\n"
         f"Range Filter Sell Signal: {result['sell_signal']}\n"
@@ -591,6 +616,7 @@ def format_signal_alert(result, signal_type):
         f"Nearest Demand Distance: {result['demand_dist']:.2f}%\n"
         f"Nearest Supply Distance: {result['supply_dist']:.2f}%\n"
         f"Exchange: {result['exchange']}\n"
+        f"Price source: {result['price_source'].replace('_', ' ')}\n"
         f"Candle time UTC: {time.strftime('%Y-%m-%d %H:%M', time.gmtime(result['candle_time'] / 1000))}\n"
         f"Timeframe: {TIMEFRAME}"
     )

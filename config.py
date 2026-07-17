@@ -123,6 +123,7 @@ COINSWITCH_API_KEY = ""
 COINSWITCH_SECRET_KEY = ""
 PREFER_COINSWITCH = env_flag("SHIVA_PREFER_COINSWITCH")
 REQUIRE_COINSWITCH = env_flag("SHIVA_REQUIRE_COINSWITCH")
+USE_LIVE_TICKER = env_flag("SHIVA_USE_LIVE_TICKER")
 PRIMARY_EXCHANGE_ID = "binance"
 EXCHANGE_IDS = ["binance", "kucoin", "okx", "bybit", "mexc", "bitget", "lbank", "coinex"]
 TIMEFRAME = os.getenv("SHIVA_TIMEFRAME", "4h").strip() or "4h"
