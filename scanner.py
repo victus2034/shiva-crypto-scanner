@@ -746,6 +746,17 @@ def run_scan_once(state):
     print("\n" + "=" * 80)
     print(f"Starting scan at {started_at}")
     print("=" * 80)
+    coinswitch_status = (
+        "required and configured"
+        if REQUIRE_COINSWITCH and is_coinswitch_configured()
+        else "REQUIRED BUT NOT CONFIGURED"
+        if REQUIRE_COINSWITCH
+        else "preferred and configured"
+        if PREFER_COINSWITCH and is_coinswitch_configured()
+        else "preferred but not configured"
+        if PREFER_COINSWITCH
+        else "fallback only"
+    )
     send_status_message(
         f"Shiva scanner started\n"
         f"Time: {started_at}\n"
@@ -753,7 +764,7 @@ def run_scan_once(state):
         f"Trigger: {trigger}\n"
         f"Timeframe: {TIMEFRAME}\n"
         f"Watchlist: {len(symbols)} symbols\n"
-        f"CoinSwitch source: {'required' if REQUIRE_COINSWITCH else ('preferred' if PREFER_COINSWITCH else 'fallback only')}"
+        f"CoinSwitch source: {coinswitch_status}"
     )
 
     with ThreadPoolExecutor(max_workers=SCAN_WORKERS) as executor:
@@ -791,7 +802,8 @@ def run_scan_once(state):
         print_summary(results)
 
     finished_at = time.strftime("%Y-%m-%d %H:%M:%S")
-    status = "OK" if not failures else "WARN"
+    no_required_source_data = REQUIRE_COINSWITCH and not results
+    status = "ERROR" if no_required_source_data else "OK" if not failures else "WARN"
     message = (
         f"Shiva scanner finished ({status})\n"
         f"Time: {finished_at}\n"
@@ -806,6 +818,9 @@ def run_scan_once(state):
         message += "\n" + "\n".join(failures[:5])
 
     send_status_message(message)
+
+    if no_required_source_data:
+        raise RuntimeError("CoinSwitch-only scan produced no usable market data")
 
 
 def parse_args():
