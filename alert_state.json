@@ -55876,7 +55876,7 @@
     "last_alert_at": 1782868566.5028257
   },
   "LTCUSD|supply|46.18010000|46.35000000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1784258486.8838327
   },
   "AVAXUSD|supply|10.44044750|10.48000000": {
@@ -55892,8 +55892,8 @@
     "last_alert_at": 0.0
   },
   "QQQXUSD|demand|686.80000000|687.84590000": {
-    "in_zone": false,
-    "last_alert_at": 1783502484.4706657
+    "in_zone": true,
+    "last_alert_at": 1784262080.300338
   },
   "SUIUSD|supply|0.71361600|0.71790000": {
     "in_zone": true,
@@ -57531,6 +57531,14 @@
     "last_alert_at": 0.0
   },
   "BZ/USDT:USDT|supply|97.36930000|97.89000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "TSLAXUSD|supply|406.03890000|407.00000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "DODO/USDT|supply|0.02910985|0.02949000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
