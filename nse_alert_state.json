@@ -2359,8 +2359,8 @@
     "last_alert_at": 1784260311.864583
   },
   "AIAENG.NS|demand|4624.0000|4649.9695": {
-    "in_zone": false,
-    "last_alert_at": 1784262764.7133152
+    "in_zone": true,
+    "last_alert_at": 1784267426.828379
   },
   "BAYERCROP.NS|supply|4291.9825|4306.0000": {
     "in_zone": true,
@@ -2592,5 +2592,9 @@
   },
   "INDIACEM.NS|range_filter|buy": {
     "last_alert_at": 1784262766.3383129
+  },
+  "ANGELONE.NS|demand|210.1300|211.2020": {
+    "in_zone": false,
+    "last_alert_at": 0.0
   }
 }
