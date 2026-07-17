@@ -207,7 +207,7 @@
     "last_alert_at": 0.0
   },
   "GRASIM.NS|demand|3039.0000|3050.1000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1784262766.1197915
   },
   "HCLTECH.NS|supply|1252.3535|1256.8000": {
@@ -626,7 +626,7 @@
   },
   "BAJFINANCE.NS|supply|1057.2985|1061.0000": {
     "in_zone": true,
-    "last_alert_at": 1784263911.7192295
+    "last_alert_at": 1784278344.8324003
   },
   "BAJAJFINSV.NS|supply|2189.1725|2195.0000": {
     "in_zone": false,
@@ -678,7 +678,7 @@
   },
   "ICICIBANK.NS|supply|1448.9950|1452.0000": {
     "in_zone": true,
-    "last_alert_at": 1784263911.9725127
+    "last_alert_at": 1784278345.943094
   },
   "IOC.NS|supply|188.1666|188.9000": {
     "in_zone": false,
@@ -1483,8 +1483,8 @@
     "last_alert_at": 1784267529.4214716
   },
   "DALBHARAT.NS|supply|1834.8310|1844.4000": {
-    "in_zone": false,
-    "last_alert_at": 1784261534.0216026
+    "in_zone": true,
+    "last_alert_at": 1784278345.3465164
   },
   "DALBHARAT.NS|demand|1605.0000|1613.1410": {
     "in_zone": false,
@@ -2339,7 +2339,7 @@
   },
   "INDUSINDBK.NS|supply|1033.8607|1038.0000": {
     "in_zone": true,
-    "last_alert_at": 1784263912.2345822
+    "last_alert_at": 1784278346.221265
   },
   "AAVAS.NS|range_filter|sell": {
     "last_alert_at": 1784013127.2200782
@@ -2368,7 +2368,7 @@
   },
   "CRAFTSMAN.NS|demand|8987.0000|9037.3375": {
     "in_zone": true,
-    "last_alert_at": 1784262765.4868047
+    "last_alert_at": 1784278345.1138988
   },
   "GLAND.NS|supply|2559.7885|2573.5000": {
     "in_zone": false,
@@ -2528,7 +2528,7 @@
   },
   "BLS.NS|demand|231.9000|233.2202": {
     "in_zone": true,
-    "last_alert_at": 1784262764.967408
+    "last_alert_at": 1784278344.5374036
   },
   "GRAPHITE.NS|range_filter|buy": {
     "last_alert_at": 1784188215.0211933
@@ -2606,5 +2606,8 @@
   },
   "3MINDIA.NS|range_filter|sell": {
     "last_alert_at": 1784275907.4390357
+  },
+  "HAVELLS.NS|range_filter|sell": {
+    "last_alert_at": 1784278345.7105255
   }
 }
