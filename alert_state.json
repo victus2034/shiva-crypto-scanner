@@ -56420,7 +56420,7 @@
   },
   "OPUSD|demand|0.09700000|0.09751700": {
     "in_zone": true,
-    "last_alert_at": 1784253719.6118639
+    "last_alert_at": 1784268123.0721893
   },
   "BCHUSD|demand|229.72000000|231.20695000": {
     "in_zone": true,
@@ -56643,8 +56643,8 @@
     "last_alert_at": 0.0
   },
   "1000SHIBUSD|demand|0.00404900|0.00406711": {
-    "in_zone": false,
-    "last_alert_at": 1784245285.9315796
+    "in_zone": true,
+    "last_alert_at": 1784268123.3543646
   },
   "FARTCOIN/USDT|supply|0.16802400|0.16960000": {
     "in_zone": false,
@@ -57544,5 +57544,11 @@
   },
   "T/USDT|range_filter|buy": {
     "last_alert_at": 1784264524.5253298
+  },
+  "CRV/USDT|range_filter|sell": {
+    "last_alert_at": 1784268123.226056
+  },
+  "WLD/USDT|range_filter|sell": {
+    "last_alert_at": 1784268123.5114193
   }
 }
