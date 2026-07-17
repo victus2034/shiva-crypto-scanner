@@ -140,7 +140,7 @@
     "last_alert_at": 0.0
   },
   "CIPLA.NS|range_filter|sell": {
-    "last_alert_at": 1783918195.8978229
+    "last_alert_at": 1784260312.0100012
   },
   "CIPLA.NS|supply|1485.1995|1489.9000": {
     "in_zone": false,
@@ -288,7 +288,7 @@
   },
   "ITC.NS|demand|275.1000|276.0495": {
     "in_zone": true,
-    "last_alert_at": 1784189545.393169
+    "last_alert_at": 1784260313.3021266
   },
   "INDHOTEL.NS|supply|751.8310|753.9000": {
     "in_zone": false,
@@ -311,8 +311,8 @@
     "last_alert_at": 0.0
   },
   "IRFC.NS|demand|87.0500|87.5930": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1784260313.749454
   },
   "INFY.NS|supply|1273.5995|1278.8000": {
     "in_zone": false,
@@ -912,7 +912,7 @@
   },
   "ABSLAMC.NS|demand|1123.5000|1130.9915": {
     "in_zone": true,
-    "last_alert_at": 1784182331.5436747
+    "last_alert_at": 1784260310.3255188
   },
   "CPPLUS.NS|demand|3265.2000|3289.6745": {
     "in_zone": false,
@@ -946,7 +946,7 @@
     "last_alert_at": 0.0
   },
   "AJANTPHARM.NS|supply|3477.3624|3494.8999": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1784191933.2840862
   },
   "AJANTPHARM.NS|demand|2656.3000|2669.5830": {
@@ -978,8 +978,8 @@
     "last_alert_at": 0.0
   },
   "ANGELONE.NS|demand|327.1500|329.1420": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1784260310.5416348
   },
   "ANTHEM.NS|demand|712.2000|715.8288": {
     "in_zone": false,
@@ -1276,7 +1276,7 @@
     "last_alert_at": 0.0
   },
   "CANHLIFE.NS|supply|154.6079|155.4000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1784185952.7433488
   },
   "CANHLIFE.NS|demand|117.8900|118.4752": {
@@ -1285,7 +1285,7 @@
   },
   "CAPLIPOINT.NS|supply|2658.0844|2672.8999": {
     "in_zone": true,
-    "last_alert_at": 1784188214.8238165
+    "last_alert_at": 1784260311.2160003
   },
   "CAPLIPOINT.NS|demand|1500.3000|1507.6276": {
     "in_zone": false,
@@ -1352,7 +1352,7 @@
     "last_alert_at": 0.0
   },
   "CHENNPETRO.NS|supply|1242.2700|1248.9000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1784193146.7108455
   },
   "CHENNPETRO.NS|demand|621.0000|625.4025": {
@@ -1472,7 +1472,7 @@
   },
   "DCMSHRIRAM.NS|demand|1002.8000|1007.9685": {
     "in_zone": true,
-    "last_alert_at": 1784191933.4354868
+    "last_alert_at": 1784260312.3620944
   },
   "DABUR.NS|supply|574.5502|576.6000": {
     "in_zone": false,
@@ -1591,7 +1591,7 @@
     "last_alert_at": 0.0
   },
   "EXIDEIND.NS|supply|429.3492|431.0000": {
-    "in_zone": false,
+    "in_zone": true,
     "last_alert_at": 1784087521.6452198
   },
   "NYKAA.NS|demand|300.2000|301.5593": {
@@ -2008,7 +2008,7 @@
   },
   "COFORGE.NS|supply|1544.7090|1553.5000": {
     "in_zone": true,
-    "last_alert_at": 1784188331.2824256
+    "last_alert_at": 1784260312.2079332
   },
   "ACC.NS|supply|1705.7720|1711.5000": {
     "in_zone": false,
@@ -2356,7 +2356,7 @@
     "last_alert_at": 1784020347.101894
   },
   "CEATLTD.NS|range_filter|sell": {
-    "last_alert_at": 1784021373.0249875
+    "last_alert_at": 1784260311.864583
   },
   "AIAENG.NS|demand|4624.0000|4649.9695": {
     "in_zone": false,
@@ -2422,7 +2422,7 @@
   },
   "ANURAS.NS|demand|1250.5000|1256.1120": {
     "in_zone": true,
-    "last_alert_at": 1784189544.7774677
+    "last_alert_at": 1784260310.9875307
   },
   "APARINDS.NS|demand|13409.0000|13531.5200": {
     "in_zone": false,
@@ -2450,7 +2450,7 @@
   },
   "EMAMILTD.NS|demand|405.0500|406.9520": {
     "in_zone": true,
-    "last_alert_at": 1784183562.8357124
+    "last_alert_at": 1784260312.8587275
   },
   "HONAUT.NS|demand|37315.0000|37483.8750": {
     "in_zone": false,
@@ -2505,7 +2505,7 @@
     "last_alert_at": 1784175134.3644788
   },
   "CARTRADE.NS|range_filter|sell": {
-    "last_alert_at": 1784175135.398784
+    "last_alert_at": 1784260311.3675442
   },
   "DEEPAKFERT.NS|range_filter|buy": {
     "last_alert_at": 1784175135.6496046
@@ -2549,5 +2549,36 @@
   },
   "IEX.NS|range_filter|buy": {
     "last_alert_at": 1784193147.135628
+  },
+  "ANANDRATHI.NS|supply|2166.1355|2176.0000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "ANGELONE.NS|range_filter|sell": {
+    "last_alert_at": 1784260310.5416348
+  },
+  "CGCL.NS|supply|263.2323|264.5300": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "CUMMINSIND.NS|supply|5688.6775|5712.5000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "DELHIVERY.NS|supply|521.0743|523.4000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "HINDCOPPER.NS|supply|509.3500|511.8000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "IOC.NS|supply|143.5746|144.0900": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "NAUKRI.NS|supply|1222.3462|1228.2000": {
+    "in_zone": true,
+    "last_alert_at": 1784260314.0437272
   }
 }
