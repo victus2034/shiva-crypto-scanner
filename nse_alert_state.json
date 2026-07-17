@@ -208,7 +208,7 @@
   },
   "GRASIM.NS|demand|3039.0000|3050.1000": {
     "in_zone": true,
-    "last_alert_at": 1784189545.2036593
+    "last_alert_at": 1784262766.1197915
   },
   "HCLTECH.NS|supply|1252.3535|1256.8000": {
     "in_zone": false,
@@ -1284,7 +1284,7 @@
     "last_alert_at": 0.0
   },
   "CAPLIPOINT.NS|supply|2658.0844|2672.8999": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1784260311.2160003
   },
   "CAPLIPOINT.NS|demand|1500.3000|1507.6276": {
@@ -1471,7 +1471,7 @@
     "last_alert_at": 0.0
   },
   "DCMSHRIRAM.NS|demand|1002.8000|1007.9685": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1784260312.3620944
   },
   "DABUR.NS|supply|574.5502|576.6000": {
@@ -1483,7 +1483,7 @@
     "last_alert_at": 0.0
   },
   "DALBHARAT.NS|supply|1834.8310|1844.4000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1784261534.0216026
   },
   "DALBHARAT.NS|demand|1605.0000|1613.1410": {
@@ -2007,7 +2007,7 @@
     "last_alert_at": 1784002325.9138598
   },
   "COFORGE.NS|supply|1544.7090|1553.5000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1784260312.2079332
   },
   "ACC.NS|supply|1705.7720|1711.5000": {
@@ -2359,8 +2359,8 @@
     "last_alert_at": 1784260311.864583
   },
   "AIAENG.NS|demand|4624.0000|4649.9695": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1784262764.7133152
   },
   "BAYERCROP.NS|supply|4291.9825|4306.0000": {
     "in_zone": false,
@@ -2368,7 +2368,7 @@
   },
   "CRAFTSMAN.NS|demand|8987.0000|9037.3375": {
     "in_zone": true,
-    "last_alert_at": 1784180946.7263224
+    "last_alert_at": 1784262765.4868047
   },
   "GLAND.NS|supply|2559.7885|2573.5000": {
     "in_zone": false,
@@ -2429,7 +2429,7 @@
     "last_alert_at": 0.0
   },
   "BHARATFORG.NS|demand|2083.3000|2094.1905": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1784188331.1095345
   },
   "BIOCON.NS|demand|337.2000|338.5898": {
@@ -2527,8 +2527,8 @@
     "last_alert_at": 1784180946.5102856
   },
   "BLS.NS|demand|231.9000|233.2202": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1784262764.967408
   },
   "GRAPHITE.NS|range_filter|buy": {
     "last_alert_at": 1784188215.0211933
@@ -2574,11 +2574,23 @@
     "last_alert_at": 0.0
   },
   "IOC.NS|supply|143.5746|144.0900": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1784262766.523513
   },
   "NAUKRI.NS|supply|1222.3462|1228.2000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1784260314.0437272
+  },
+  "BALKRISIND.NS|range_filter|sell": {
+    "last_alert_at": 1784262765.1624224
+  },
+  "LALPATHLAB.NS|range_filter|sell": {
+    "last_alert_at": 1784262765.6626534
+  },
+  "EMAMILTD.NS|range_filter|sell": {
+    "last_alert_at": 1784262765.8888695
+  },
+  "INDIACEM.NS|range_filter|buy": {
+    "last_alert_at": 1784262766.3383129
   }
 }
