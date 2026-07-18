@@ -2,9 +2,6 @@ name: Shiva Crypto Scanner 30m
 
 on:
   workflow_dispatch:
-  schedule:
-    # Run just after each completed 30-minute candle.
-    - cron: "2,32 * * * *"
 
 permissions:
   contents: write
