@@ -506,7 +506,7 @@
   },
   "SPCXXUSD|supply|127.87235000|128.25000000": {
     "in_zone": true,
-    "last_alert_at": 1784383393.4005284
+    "last_alert_at": 1784386991.992252
   },
   "SPCXXUSD|demand|122.50000000|122.87765000": {
     "in_zone": false,
@@ -828,7 +828,7 @@
   },
   "AAPLXUSD|demand|329.63000000|329.99335000": {
     "in_zone": true,
-    "last_alert_at": 1784383390.0361729
+    "last_alert_at": 1784386991.0592353
   },
   "UNIUSD|range_filter|buy": {
     "last_alert_at": 1784330907.27783
@@ -993,7 +993,7 @@
     "last_alert_at": 0.0
   },
   "SYN/USDT|supply|0.24124500|0.24220000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1784385198.0952768
   },
   "WLD/USDT|demand|0.37110000|0.37191300": {
@@ -1194,11 +1194,11 @@
   },
   "DOTUSD|demand|0.82200000|0.82314500": {
     "in_zone": true,
-    "last_alert_at": 1784383390.7073352
+    "last_alert_at": 1784386991.3505108
   },
   "FET/USDT|demand|0.15590000|0.15611800": {
     "in_zone": true,
-    "last_alert_at": 1784383392.0555742
+    "last_alert_at": 1784386991.6893818
   },
   "LIT/USDT|range_filter|sell": {
     "last_alert_at": 1784377994.386997
@@ -1242,8 +1242,8 @@
     "last_alert_at": 0.0
   },
   "BCHUSD|demand|217.10000000|217.37605000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1784386991.518528
   },
   "INJUSD|range_filter|buy": {
     "last_alert_at": 1784385196.0767925
@@ -1267,5 +1267,28 @@
   "MUSD|demand|1.19920000|1.20194250": {
     "in_zone": false,
     "last_alert_at": 0.0
+  },
+  "NEARUSD|demand|1.85800000|1.86129250": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "1000BONKUSD|supply|0.00304089|0.00304800": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "XLM/USDT|range_filter|buy": {
+    "last_alert_at": 1784386991.8221157
+  },
+  "AVGO/USDT:USDT|demand|368.90000000|369.32535000": {
+    "in_zone": true,
+    "last_alert_at": 1784386992.2095203
+  },
+  "AXTI/USDT:USDT|supply|45.63200000|45.79000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "DELL/USDT:USDT|supply|395.72245000|396.50000000": {
+    "in_zone": true,
+    "last_alert_at": 1784386992.415899
   }
 }
