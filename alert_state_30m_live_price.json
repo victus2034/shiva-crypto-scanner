@@ -405,7 +405,7 @@
     "last_alert_at": 0.0
   },
   "VELVET/USDT|demand|0.49812000|0.50025815": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1784401397.9443831
   },
   "1000SHIBUSD|supply|0.00442099|0.00442300": {
@@ -670,7 +670,7 @@
   },
   "QQQXUSD|demand|689.64000000|690.05365000": {
     "in_zone": true,
-    "last_alert_at": 1784347725.7877061
+    "last_alert_at": 1784404990.8937345
   },
   "XMRUSD|supply|338.31750000|338.61000000": {
     "in_zone": true,
@@ -1133,7 +1133,7 @@
   },
   "SKHYNIX/USDT:USDT|supply|1160.53910000|1164.73000000": {
     "in_zone": true,
-    "last_alert_at": 1784399599.9218655
+    "last_alert_at": 1784404991.3820994
   },
   "ARBUSD|range_filter|sell": {
     "last_alert_at": 1784367202.2825036
@@ -1405,5 +1405,13 @@
   "MRVL/USDT:USDT|demand|183.78000000|184.09750000": {
     "in_zone": true,
     "last_alert_at": 1784403202.2308934
+  },
+  "QQQXUSD|supply|697.68720000|698.08000000": {
+    "in_zone": true,
+    "last_alert_at": 1784404990.8937345
+  },
+  "DODO/USDT|demand|0.01522000|0.01523725": {
+    "in_zone": false,
+    "last_alert_at": 0.0
   }
 }
