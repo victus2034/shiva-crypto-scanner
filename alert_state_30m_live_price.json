@@ -213,8 +213,8 @@
     "last_alert_at": 0.0
   },
   "UNIUSD|demand|3.43800000|3.44567250": {
-    "in_zone": false,
-    "last_alert_at": 1784489595.206554
+    "in_zone": true,
+    "last_alert_at": 1784503993.9592884
   },
   "APTUSD|supply|0.64686550|0.64760000": {
     "in_zone": false,
@@ -807,8 +807,8 @@
     "last_alert_at": 0.0
   },
   "AVGO/USDT:USDT|supply|376.86620000|377.50000000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1784503997.2558339
   },
   "MRVL/USDT:USDT|supply|193.66625000|194.29000000": {
     "in_zone": false,
@@ -824,7 +824,7 @@
   },
   "TSLAXUSD|supply|385.64570000|385.95000000": {
     "in_zone": true,
-    "last_alert_at": 1784466191.940655
+    "last_alert_at": 1784503992.4664884
   },
   "AAPLXUSD|demand|329.63000000|329.99335000": {
     "in_zone": true,
@@ -1641,7 +1641,7 @@
   },
   "SEIUSD|supply|0.04708900|0.04710000": {
     "in_zone": true,
-    "last_alert_at": 1784486018.0485048
+    "last_alert_at": 1784503994.1439967
   },
   "AXTI/USDT:USDT|demand|44.57000000|44.63160000": {
     "in_zone": true,
@@ -1676,7 +1676,7 @@
   },
   "VIRTUAL/USDT|supply|0.62113700|0.62200000": {
     "in_zone": true,
-    "last_alert_at": 1784500393.4552784
+    "last_alert_at": 1784503995.438967
   },
   "EVAAUSD|supply|0.82620450|0.83020000": {
     "in_zone": false,
@@ -1854,7 +1854,7 @@
   },
   "SUIUSD|demand|0.74130000|0.74173750": {
     "in_zone": true,
-    "last_alert_at": 1784498597.4840372
+    "last_alert_at": 1784503992.885383
   },
   "ALLO/USDT|range_filter|sell": {
     "last_alert_at": 1784459004.566207
@@ -1871,7 +1871,7 @@
     "last_alert_at": 1784462598.2812428
   },
   "AIOTUSD|demand|0.04210000|0.04246790": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1784502210.6946878
   },
   "SXT/USDT|range_filter|sell": {
@@ -1894,7 +1894,7 @@
     "last_alert_at": 0.0
   },
   "ENA/USDT|supply|0.08109750|0.08120000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1784500394.9862518
   },
   "RIF/USDT|demand|0.12974000|0.13007275": {
@@ -1957,8 +1957,8 @@
     "last_alert_at": 1784502197.0661626
   },
   "T/USDT|demand|0.00387000|0.00387485": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1784503995.6344683
   },
   "1000BONKUSD|range_filter|sell": {
     "last_alert_at": 1784471590.6288831
@@ -2059,7 +2059,7 @@
   },
   "SEIUSD|demand|0.04600000|0.04602755": {
     "in_zone": true,
-    "last_alert_at": 1784486018.0485048
+    "last_alert_at": 1784503994.1439967
   },
   "ETCUSD|range_filter|buy": {
     "last_alert_at": 1784489596.5035264
@@ -2223,8 +2223,8 @@
     "last_alert_at": 0.0
   },
   "BTCUSD|supply|65518.87250000|65580.50000000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1784503991.9500532
   },
   "ETHUSD|demand|1850.80000000|1852.40675000": {
     "in_zone": true,
@@ -2274,5 +2274,41 @@
   "MRVL/USDT:USDT|demand|185.21000000|185.36900000": {
     "in_zone": false,
     "last_alert_at": 0.0
+  },
+  "PAXGUSD|supply|4008.31495000|4008.70000000": {
+    "in_zone": true,
+    "last_alert_at": 1784503992.1109967
+  },
+  "LINKUSD|demand|8.28000000|8.28569500": {
+    "in_zone": true,
+    "last_alert_at": 1784503992.2777917
+  },
+  "TSLAXUSD|range_filter|buy": {
+    "last_alert_at": 1784503992.4664884
+  },
+  "CRCLXUSD|range_filter|buy": {
+    "last_alert_at": 1784503993.240219
+  },
+  "COINXUSD|range_filter|buy": {
+    "last_alert_at": 1784503993.4891524
+  },
+  "COINXUSD|demand|157.80000000|157.83775000": {
+    "in_zone": true,
+    "last_alert_at": 1784503993.4891524
+  },
+  "CRV/USDT|supply|0.21291550|0.21310000": {
+    "in_zone": true,
+    "last_alert_at": 1784503995.8235097
+  },
+  "GRAMUSD|supply|1.47309000|1.47500000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "GRAMUSD|demand|1.42300000|1.42525000": {
+    "in_zone": true,
+    "last_alert_at": 1784503996.438142
+  },
+  "SOXLBUSD|range_filter|buy": {
+    "last_alert_at": 1784503996.6195908
   }
 }
