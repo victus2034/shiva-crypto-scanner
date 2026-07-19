@@ -214,7 +214,7 @@
   },
   "UNIUSD|demand|3.43800000|3.44567250": {
     "in_zone": true,
-    "last_alert_at": 1784480595.62487
+    "last_alert_at": 1784484195.7628598
   },
   "APTUSD|supply|0.64686550|0.64760000": {
     "in_zone": false,
@@ -334,7 +334,7 @@
   },
   "CRV/USDT|demand|0.20820000|0.20860050": {
     "in_zone": true,
-    "last_alert_at": 1784480598.4174817
+    "last_alert_at": 1784484196.640411
   },
   "XLM/USDT|supply|0.19426900|0.19460000": {
     "in_zone": false,
@@ -1340,8 +1340,8 @@
     "last_alert_at": 1784482416.397242
   },
   "ETHUSD|demand|1836.50000000|1838.20500000": {
-    "in_zone": false,
-    "last_alert_at": 1784480586.7102091
+    "in_zone": true,
+    "last_alert_at": 1784484195.4559402
   },
   "COINXUSD|supply|157.91935000|158.05000000": {
     "in_zone": true,
@@ -1641,7 +1641,7 @@
   },
   "SEIUSD|supply|0.04708900|0.04710000": {
     "in_zone": true,
-    "last_alert_at": 1784477011.1301434
+    "last_alert_at": 1784484196.0317988
   },
   "AXTI/USDT:USDT|demand|44.57000000|44.63160000": {
     "in_zone": true,
@@ -1864,8 +1864,8 @@
     "last_alert_at": 0.0
   },
   "INTCBUSD|demand|92.64000000|92.70180000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1784484196.879191
   },
   "BCHUSD|range_filter|sell": {
     "last_alert_at": 1784462598.2812428
@@ -1882,11 +1882,11 @@
     "last_alert_at": 1784482436.388263
   },
   "XMRUSD|supply|340.03355000|340.20000000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1784482402.9732783
   },
   "AAVEUSD|supply|91.01217000|91.10000000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1784482405.456706
   },
   "1000SHIBUSD|supply|0.00434102|0.00434400": {
@@ -1926,7 +1926,7 @@
     "last_alert_at": 1784482440.3567955
   },
   "MRVL/USDT:USDT|supply|189.37555000|189.52000000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1784477047.7272663
   },
   "LTCUSD|demand|46.71000000|46.77430000": {
@@ -2056,5 +2056,20 @@
   "METAXUSD|supply|643.25685000|643.45000000": {
     "in_zone": true,
     "last_alert_at": 1784482399.5411777
+  },
+  "SEIUSD|demand|0.04600000|0.04602755": {
+    "in_zone": true,
+    "last_alert_at": 1784484196.0317988
+  },
+  "ETCUSD|range_filter|buy": {
+    "last_alert_at": 1784484196.4322035
+  },
+  "LABUSD|supply|0.17516000|0.17700000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "IBM/USDT:USDT|supply|216.49230000|216.64000000": {
+    "in_zone": true,
+    "last_alert_at": 1784484197.0974247
   }
 }
