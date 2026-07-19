@@ -57688,8 +57688,8 @@
     "last_alert_at": 0.0
   },
   "HOOD/USDT:USDT|demand|97.92000000|98.44970000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1784478085.082513
   },
   "MRVL/USDT:USDT|supply|258.15645000|259.85000000": {
     "in_zone": false,
@@ -57880,5 +57880,12 @@
   "BILLUSD|demand|0.02170000|0.02267875": {
     "in_zone": false,
     "last_alert_at": 0.0
+  },
+  "AVAXUSD|supply|6.63502800|6.66200000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "THE/USDT|range_filter|sell": {
+    "last_alert_at": 1784478084.6998892
   }
 }
