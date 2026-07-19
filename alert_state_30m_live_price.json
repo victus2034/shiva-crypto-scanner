@@ -143,7 +143,7 @@
   },
   "AAPLXUSD|supply|338.46475000|338.75000000": {
     "in_zone": true,
-    "last_alert_at": 1784473395.5228555
+    "last_alert_at": 1784478800.4026697
   },
   "AAPLXUSD|demand|326.30000000|326.52675000": {
     "in_zone": false,
@@ -709,7 +709,7 @@
     "last_alert_at": 1784379798.7570171
   },
   "INJUSD|supply|5.20394500|5.21100000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1784477010.1902468
   },
   "INJUSD|demand|4.54000000|4.54771000": {
@@ -1474,7 +1474,7 @@
   },
   "LTCUSD|supply|47.84960000|47.90000000": {
     "in_zone": true,
-    "last_alert_at": 1784473392.3761113
+    "last_alert_at": 1784478800.086028
   },
   "SUIUSD|supply|0.76573100|0.76690000": {
     "in_zone": false,
@@ -1582,7 +1582,7 @@
   },
   "XPLUSD|demand|0.08050000|0.08059600": {
     "in_zone": true,
-    "last_alert_at": 1784473402.6826062
+    "last_alert_at": 1784478800.9354846
   },
   "NEARUSD|supply|1.93940500|1.94100000": {
     "in_zone": true,
@@ -1871,8 +1871,8 @@
     "last_alert_at": 1784462598.2812428
   },
   "AIOTUSD|demand|0.04210000|0.04246790": {
-    "in_zone": false,
-    "last_alert_at": 1784473402.87492
+    "in_zone": true,
+    "last_alert_at": 1784478801.2461452
   },
   "SXT/USDT|range_filter|sell": {
     "last_alert_at": 1784462603.0412855
@@ -1918,11 +1918,11 @@
     "last_alert_at": 1784477019.8941078
   },
   "SKHYNIX/USDT:USDT|supply|1202.11355000|1203.29000000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1784469807.1676311
   },
   "SAMSUNG/USDT:USDT|supply|169.95240000|170.11000000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1784473427.3105624
   },
   "MRVL/USDT:USDT|supply|189.37555000|189.52000000": {
@@ -1972,8 +1972,8 @@
     "last_alert_at": 1784473397.2136152
   },
   "TIAUSD|supply|0.36378850|0.36410000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1784478800.634446
   },
   "XPLUSD|supply|0.08279250|0.08290000": {
     "in_zone": false,
