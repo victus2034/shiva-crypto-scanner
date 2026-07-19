@@ -201,7 +201,7 @@
     "last_alert_at": 0.0
   },
   "AAVEUSD|supply|91.80492500|91.94000000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1784448195.7895105
   },
   "AAVEUSD|demand|85.97000000|86.15052500": {
@@ -1250,7 +1250,7 @@
   },
   "INJUSD|demand|5.02100000|5.02914500": {
     "in_zone": true,
-    "last_alert_at": 1784451798.9910421
+    "last_alert_at": 1784457196.2483902
   },
   "TIAUSD|demand|0.35820000|0.35858900": {
     "in_zone": true,
@@ -1418,11 +1418,11 @@
     "last_alert_at": 1784406791.69114
   },
   "LDO/USDT|supply|0.36535500|0.36620000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1784455408.1347842
   },
   "GRAMUSD|supply|1.47701500|1.47900000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1784451803.405363
   },
   "ONDOUSD|demand|0.33740000|0.33835000": {
@@ -1565,8 +1565,8 @@
     "last_alert_at": 1784428393.5603023
   },
   "LDO/USDT|demand|0.35400000|0.35473050": {
-    "in_zone": false,
-    "last_alert_at": 1784451801.169841
+    "in_zone": true,
+    "last_alert_at": 1784457196.4459443
   },
   "SAMSUNG/USDT:USDT|demand|165.27000000|165.48205000": {
     "in_zone": false,
@@ -1684,7 +1684,7 @@
   },
   "EWYBUSD|demand|161.59000000|161.74275000": {
     "in_zone": true,
-    "last_alert_at": 1784448205.742389
+    "last_alert_at": 1784457196.635402
   },
   "LIT/USDT|supply|2.27774000|2.28200000": {
     "in_zone": false,
@@ -1761,7 +1761,7 @@
     "last_alert_at": 0.0
   },
   "OPENAI/USDT:USDT|demand|119.42000000|119.55515000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1784455411.7135718
   },
   "NBIS/USDT:USDT|demand|170.89000000|171.09290000": {
@@ -1839,5 +1839,17 @@
   "DODO/USDT|demand|0.01535000|0.01536715": {
     "in_zone": false,
     "last_alert_at": 0.0
+  },
+  "APTUSD|supply|0.61019850|0.61080000": {
+    "in_zone": true,
+    "last_alert_at": 1784457195.640182
+  },
+  "APTUSD|demand|0.60230000|0.60314600": {
+    "in_zone": true,
+    "last_alert_at": 1784457195.640182
+  },
+  "OPUSD|supply|0.09595650|0.09600000": {
+    "in_zone": true,
+    "last_alert_at": 1784457196.0181072
   }
 }
