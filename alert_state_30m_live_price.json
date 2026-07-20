@@ -961,8 +961,8 @@
     "last_alert_at": 0.0
   },
   "BCHUSD|supply|221.31510000|221.64000000": {
-    "in_zone": false,
-    "last_alert_at": 1784446392.8742802
+    "in_zone": true,
+    "last_alert_at": 1784579588.4406085
   },
   "APTUSD|demand|0.57700000|0.57767450": {
     "in_zone": false,
@@ -1473,8 +1473,8 @@
     "last_alert_at": 1784413995.400057
   },
   "LTCUSD|supply|47.84960000|47.90000000": {
-    "in_zone": false,
-    "last_alert_at": 1784568796.9314198
+    "in_zone": true,
+    "last_alert_at": 1784579588.2638812
   },
   "SUIUSD|supply|0.76573100|0.76690000": {
     "in_zone": false,
@@ -1502,7 +1502,7 @@
   },
   "SOLUSD|supply|78.77816650|78.85000000": {
     "in_zone": true,
-    "last_alert_at": 1784570591.9562225
+    "last_alert_at": 1784579588.0422184
   },
   "XRPUSD|supply|1.09496250|1.09630000": {
     "in_zone": true,
@@ -1725,8 +1725,8 @@
     "last_alert_at": 1784543595.9547179
   },
   "WLD/USDT|supply|0.37875450|0.37940000": {
-    "in_zone": false,
-    "last_alert_at": 1784568800.8975806
+    "in_zone": true,
+    "last_alert_at": 1784579588.9437995
   },
   "TAO/USDT|supply|208.65325000|208.97000000": {
     "in_zone": false,
@@ -2631,8 +2631,8 @@
     "last_alert_at": 1784566999.5871654
   },
   "EWYBUSD|demand|160.90000000|161.01600000": {
-    "in_zone": false,
-    "last_alert_at": 1784559806.1542466
+    "in_zone": true,
+    "last_alert_at": 1784579589.1777222
   },
   "CBRSBUSD|supply|184.93885000|185.23000000": {
     "in_zone": false,
@@ -2663,7 +2663,7 @@
   },
   "SEIUSD|demand|0.04540000|0.04542180": {
     "in_zone": true,
-    "last_alert_at": 1784568800.7263155
+    "last_alert_at": 1784579588.5971353
   },
   "BTCUSD|range_filter|buy": {
     "last_alert_at": 1784547191.7502334
@@ -2881,8 +2881,8 @@
     "last_alert_at": 1784574200.3133519
   },
   "DEXE/USDT|supply|36.42665350|36.60890000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1784579588.8064082
   },
   "SOXLBUSD|supply|148.21250000|148.70000000": {
     "in_zone": false,
@@ -2925,6 +2925,14 @@
     "last_alert_at": 0.0
   },
   "OPENAI/USDT:USDT|demand|107.89000000|108.16990000": {
+    "in_zone": true,
+    "last_alert_at": 1784579589.327669
+  },
+  "NEARUSD|demand|1.89380000|1.89844550": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "SXT/USDT|demand|0.00706000|0.00706985": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
