@@ -57745,8 +57745,8 @@
     "last_alert_at": 1784367685.381768
   },
   "ZECUSD|demand|524.00000000|527.84925000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1784529677.8548017
   },
   "SPCXXUSD|demand|116.20000000|116.78605000": {
     "in_zone": false,
@@ -57911,5 +57911,9 @@
   "1000BONKUSD|demand|0.00271900|0.00274120": {
     "in_zone": true,
     "last_alert_at": 1784526091.1769392
+  },
+  "WLD/USDT|demand|0.22660000|0.22855500": {
+    "in_zone": false,
+    "last_alert_at": 0.0
   }
 }
