@@ -855,8 +855,8 @@
     "last_alert_at": 0.0
   },
   "ABBOTINDIA.NS|supply|28398.6000|28490.0000": {
-    "in_zone": false,
-    "last_alert_at": 1784519504.9680662
+    "in_zone": true,
+    "last_alert_at": 1784526729.4029245
   },
   "ACE.NS|supply|1041.7130|1046.7500": {
     "in_zone": false,
@@ -2660,5 +2660,8 @@
   },
   "EMMVEE.NS|range_filter|sell": {
     "last_alert_at": 1784524308.5449762
+  },
+  "CPPLUS.NS|range_filter|sell": {
+    "last_alert_at": 1784526729.6804597
   }
 }
