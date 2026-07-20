@@ -738,7 +738,7 @@
   },
   "SXT/USDT|demand|0.00704000|0.00705035": {
     "in_zone": true,
-    "last_alert_at": 1784516605.900424
+    "last_alert_at": 1784520191.510334
   },
   "1000PEPEUSD|supply|0.00293526|0.00293920": {
     "in_zone": false,
@@ -924,7 +924,7 @@
     "last_alert_at": 0.0
   },
   "FARTCOIN/USDT|supply|0.13548800|0.13580000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1784516605.1690612
   },
   "SYN/USDT|range_filter|buy": {
@@ -1474,7 +1474,7 @@
   },
   "LTCUSD|supply|47.84960000|47.90000000": {
     "in_zone": true,
-    "last_alert_at": 1784516594.5127094
+    "last_alert_at": 1784520190.6266036
   },
   "SUIUSD|supply|0.76573100|0.76690000": {
     "in_zone": false,
@@ -1679,8 +1679,8 @@
     "last_alert_at": 1784518404.6734753
   },
   "EVAAUSD|supply|0.82620450|0.83020000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1784520191.7131743
   },
   "EWYBUSD|demand|161.59000000|161.74275000": {
     "in_zone": true,
@@ -1887,7 +1887,7 @@
   },
   "AAVEUSD|supply|91.01217000|91.10000000": {
     "in_zone": true,
-    "last_alert_at": 1784516600.2785115
+    "last_alert_at": 1784520191.1239688
   },
   "1000SHIBUSD|supply|0.00434102|0.00434400": {
     "in_zone": false,
@@ -2051,7 +2051,7 @@
     "last_alert_at": 0.0
   },
   "TAO/USDT|range_filter|sell": {
-    "last_alert_at": 1784480606.8835628
+    "last_alert_at": 1784520191.9789383
   },
   "METAXUSD|supply|643.25685000|643.45000000": {
     "in_zone": true,
@@ -2180,7 +2180,7 @@
     "last_alert_at": 0.0
   },
   "MUBUSD|demand|846.80000000|847.15430000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1784518407.682933
   },
   "EWYBUSD|demand|162.05000000|162.09175000": {
@@ -2219,8 +2219,8 @@
     "last_alert_at": 0.0
   },
   "DEXE/USDT|supply|35.42651500|35.53180000": {
-    "in_zone": false,
-    "last_alert_at": 1784507600.5300558
+    "in_zone": true,
+    "last_alert_at": 1784520191.3024912
   },
   "BTCUSD|supply|65518.87250000|65580.50000000": {
     "in_zone": true,
@@ -2410,6 +2410,14 @@
     "last_alert_at": 1784518400.733026
   },
   "XLM/USDT|supply|0.19334550|0.19360000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "NVDAXUSD|supply|204.45680000|204.50000000": {
+    "in_zone": true,
+    "last_alert_at": 1784520190.885385
+  },
+  "NEARUSD|demand|1.85900000|1.86177900": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
