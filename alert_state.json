@@ -56744,7 +56744,7 @@
     "last_alert_at": 1784058102.1634505
   },
   "TSLAXUSD|demand|367.75000000|368.78505000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1784562083.1453779
   },
   "TRIA/USDT|demand|0.00744500|0.00786656": {
@@ -57656,8 +57656,8 @@
     "last_alert_at": 0.0
   },
   "BABA/USDT:USDT|supply|122.15745000|122.48000000": {
-    "in_zone": false,
-    "last_alert_at": 1784517683.9438663
+    "in_zone": true,
+    "last_alert_at": 1784563331.7329435
   },
   "BABA/USDT:USDT|demand|93.36000000|93.68120000": {
     "in_zone": false,
@@ -57944,5 +57944,9 @@
   },
   "MRVL/USDT:USDT|range_filter|buy": {
     "last_alert_at": 1784562083.4018009
+  },
+  "LDO/USDT|supply|0.38685200|0.38970000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
   }
 }
