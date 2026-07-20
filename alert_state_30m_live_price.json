@@ -68,8 +68,8 @@
     "last_alert_at": 1784486007.8895419
   },
   "LINKUSD|supply|8.48174500|8.49200000": {
-    "in_zone": false,
-    "last_alert_at": 1784523795.1070492
+    "in_zone": true,
+    "last_alert_at": 1784541797.7012277
   },
   "LINKUSD|demand|7.66900000|7.67834500": {
     "in_zone": false,
@@ -820,7 +820,7 @@
   },
   "QQQXUSD|supply|700.64135000|701.10000000": {
     "in_zone": true,
-    "last_alert_at": 1784523795.7246196
+    "last_alert_at": 1784541798.0804982
   },
   "TSLAXUSD|supply|385.64570000|385.95000000": {
     "in_zone": true,
@@ -873,7 +873,7 @@
   },
   "INTCBUSD|supply|97.65005000|97.88000000": {
     "in_zone": true,
-    "last_alert_at": 1784538210.3720105
+    "last_alert_at": 1784541799.0545378
   },
   "MSTRBUSD|supply|101.59910000|101.80000000": {
     "in_zone": false,
@@ -1455,7 +1455,7 @@
   },
   "COINXUSD|demand|157.14000000|157.21070000": {
     "in_zone": true,
-    "last_alert_at": 1784538199.6957994
+    "last_alert_at": 1784541798.3079438
   },
   "XPLUSD|supply|0.08642300|0.08660000": {
     "in_zone": false,
@@ -2266,7 +2266,7 @@
     "last_alert_at": 0.0
   },
   "EWYBUSD|range_filter|buy": {
-    "last_alert_at": 1784502220.6888194
+    "last_alert_at": 1784541798.7970622
   },
   "DRAMBUSD|range_filter|buy": {
     "last_alert_at": 1784507602.0880666
@@ -2392,7 +2392,7 @@
     "last_alert_at": 1784513030.0133193
   },
   "AAVEUSD|demand|88.78000000|88.86734000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1784538201.3623211
   },
   "ETCUSD|supply|7.02144500|7.02500000": {
@@ -2624,6 +2624,21 @@
     "last_alert_at": 1784540012.9944732
   },
   "BZ/USDT:USDT|demand|82.32000000|82.43965000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "SEIUSD|range_filter|buy": {
+    "last_alert_at": 1784541798.5413287
+  },
+  "EWYBUSD|demand|160.90000000|161.01600000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "CBRSBUSD|supply|184.93885000|185.23000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "RIF/USDT|supply|0.13159665|0.13191000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
