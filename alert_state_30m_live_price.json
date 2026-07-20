@@ -127,7 +127,7 @@
   },
   "SPYXUSD|demand|738.42000000|738.63260000": {
     "in_zone": true,
-    "last_alert_at": 1784577794.7768831
+    "last_alert_at": 1784584995.801377
   },
   "AMZNXUSD|supply|258.32110000|258.50000000": {
     "in_zone": false,
@@ -784,8 +784,8 @@
     "last_alert_at": 0.0
   },
   "LDO/USDT|supply|0.38863300|0.38970000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1784584996.477539
   },
   "CRV/USDT|demand|0.20600000|0.20642350": {
     "in_zone": false,
@@ -1817,8 +1817,8 @@
     "last_alert_at": 1784498615.3757346
   },
   "DOGEUSD|demand|0.07096000|0.07105773": {
-    "in_zone": false,
-    "last_alert_at": 1784540000.3094995
+    "in_zone": true,
+    "last_alert_at": 1784584995.128509
   },
   "SUIUSD|demand|0.70840000|0.70932000": {
     "in_zone": false,
@@ -2015,8 +2015,8 @@
     "last_alert_at": 1784498625.4365857
   },
   "METAXUSD|demand|635.65000000|635.85125000": {
-    "in_zone": false,
-    "last_alert_at": 1784556199.0378566
+    "in_zone": true,
+    "last_alert_at": 1784584995.2934263
   },
   "GOOGLXUSD|demand|346.45000000|346.53005000": {
     "in_zone": true,
@@ -2860,7 +2860,7 @@
   },
   "SPYXUSD|supply|745.90060000|746.00000000": {
     "in_zone": true,
-    "last_alert_at": 1784577794.7768831
+    "last_alert_at": 1784584995.801377
   },
   "AAPLXUSD|range_filter|buy": {
     "last_alert_at": 1784574197.2016733
@@ -2873,16 +2873,16 @@
     "last_alert_at": 1784583200.7938447
   },
   "OPUSD|demand|0.09180000|0.09192700": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1784583202.0516975
   },
   "SEIUSD|supply|0.04648010|0.04654000": {
     "in_zone": true,
-    "last_alert_at": 1784574200.3133519
+    "last_alert_at": 1784584996.1104963
   },
   "DEXE/USDT|supply|36.42665350|36.60890000": {
     "in_zone": true,
-    "last_alert_at": 1784581400.5698164
+    "last_alert_at": 1784584996.9994235
   },
   "SOXLBUSD|supply|148.21250000|148.70000000": {
     "in_zone": false,
@@ -2949,7 +2949,7 @@
     "last_alert_at": 1784583203.0359023
   },
   "FARTCOIN/USDT|supply|0.14127950|0.14160000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1784581400.8034139
   },
   "SNDKBUSD|supply|1453.24640000|1457.26000000": {
@@ -2969,6 +2969,21 @@
     "last_alert_at": 1784583199.211841
   },
   "INTCBUSD|supply|100.81255000|100.98000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "METAXUSD|range_filter|sell": {
+    "last_alert_at": 1784584995.2934263
+  },
+  "METAXUSD|supply|653.28340000|653.70000000": {
+    "in_zone": true,
+    "last_alert_at": 1784584995.2934263
+  },
+  "FILUSD|supply|0.74112000|0.74230000": {
+    "in_zone": true,
+    "last_alert_at": 1784584996.3388145
+  },
+  "T/USDT|supply|0.00377505|0.00378000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
