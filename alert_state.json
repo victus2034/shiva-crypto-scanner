@@ -56866,7 +56866,7 @@
     "last_alert_at": 1784301706.9845123
   },
   "THE/USDT|demand|0.05150000|0.05205625": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1784533280.3905382
   },
   "PUMPUSD|range_filter|buy": {
@@ -57913,6 +57913,18 @@
     "last_alert_at": 1784526091.1769392
   },
   "WLD/USDT|demand|0.22660000|0.22855500": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "LTCUSD|supply|47.74715000|47.90000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "IBM/USDT:USDT|supply|311.33920000|312.22000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "BZ/USDT:USDT|supply|89.14175000|89.45000000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
