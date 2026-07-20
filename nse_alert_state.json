@@ -947,7 +947,7 @@
   },
   "AJANTPHARM.NS|supply|3477.3624|3494.8999": {
     "in_zone": true,
-    "last_alert_at": 1784519505.1536806
+    "last_alert_at": 1784533912.2987163
   },
   "AJANTPHARM.NS|demand|2656.3000|2669.5830": {
     "in_zone": false,
@@ -2360,7 +2360,7 @@
   },
   "AIAENG.NS|demand|4624.0000|4649.9695": {
     "in_zone": true,
-    "last_alert_at": 1784519504.4865134
+    "last_alert_at": 1784533912.0917268
   },
   "BAYERCROP.NS|supply|4291.9825|4306.0000": {
     "in_zone": true,
@@ -2422,7 +2422,7 @@
   },
   "ANURAS.NS|demand|1250.5000|1256.1120": {
     "in_zone": true,
-    "last_alert_at": 1784519505.4054523
+    "last_alert_at": 1784533912.605091
   },
   "APARINDS.NS|demand|13409.0000|13531.5200": {
     "in_zone": false,
@@ -2457,7 +2457,7 @@
     "last_alert_at": 0.0
   },
   "BANKINDIA.NS|range_filter|buy": {
-    "last_alert_at": 1784099551.4872336
+    "last_alert_at": 1784533912.8526244
   },
   "GRASIM.NS|range_filter|sell": {
     "last_alert_at": 1784100758.150327
@@ -2672,6 +2672,10 @@
     "last_alert_at": 0.0
   },
   "ABSLAMC.NS|demand|708.1500|711.3855": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "BAJFINANCE.NS|supply|1098.5875|1102.0000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
