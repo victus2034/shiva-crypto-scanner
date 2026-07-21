@@ -48,6 +48,7 @@ jobs:
       - name: Run 30-minute scanner once
         env:
           SHIVA_TIMEFRAME: "30m"
+          SHIVA_MAX_DISTANCE_PCT: "0.5"
           SHIVA_STATE_FILE: "alert_state_30m_live_price.json"
           SHIVA_USE_LIVE_TICKER: "true"
           SHIVA_ALERT_COOLDOWN_SECONDS: "1800"

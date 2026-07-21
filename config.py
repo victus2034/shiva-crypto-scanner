@@ -9,6 +9,14 @@ def env_int(name, default):
         return default
 
 
+def env_float(name, default):
+    value = os.getenv(name, "").strip()
+    try:
+        return float(value) if value else default
+    except ValueError:
+        return default
+
+
 def env_flag(name, default=False):
     value = os.getenv(name, "").strip().lower()
     if not value:
@@ -133,7 +141,7 @@ SWING_LENGTH = 10
 ATR_PERIOD = 50
 BOX_WIDTH = 2.5
 
-MAX_DISTANCE_PCT = 1.5
+MAX_DISTANCE_PCT = env_float("SHIVA_MAX_DISTANCE_PCT", 1.5)
 REARM_FACTOR = 1.25
 SCAN_SLEEP = 300
 SCAN_WORKERS = 8
