@@ -56477,7 +56477,7 @@
     "last_alert_at": 0.0
   },
   "SOLUSD|supply|79.31021550|79.66000000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1784637673.259922
   },
   "METAXUSD|supply|675.38090000|677.30000000": {
@@ -58019,5 +58019,8 @@
   },
   "HOOD/USDT:USDT|range_filter|buy": {
     "last_alert_at": 1784641274.7429786
+  },
+  "SKHYNIX/USDT:USDT|range_filter|buy": {
+    "last_alert_at": 1784644872.507816
   }
 }
