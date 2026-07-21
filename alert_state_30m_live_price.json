@@ -533,8 +533,8 @@
     "last_alert_at": 1784534600.295906
   },
   "INTCBUSD|supply|104.86825000|105.09000000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1784653391.8181045
   },
   "INTCBUSD|demand|90.00000000|90.22095000": {
     "in_zone": false,
@@ -2711,7 +2711,7 @@
     "last_alert_at": 0.0
   },
   "FLNC/USDT:USDT|range_filter|buy": {
-    "last_alert_at": 1784547198.515765
+    "last_alert_at": 1784653392.4307687
   },
   "SLVONUSD|demand|51.22000000|51.25540000": {
     "in_zone": true,
@@ -3272,7 +3272,7 @@
     "last_alert_at": 0.0
   },
   "SUIUSD|demand|0.76340000|0.76418400": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1784649818.6219046
   },
   "BNBUSD|supply|580.76190000|581.17000000": {
@@ -3375,7 +3375,7 @@
   },
   "1000SHIBUSD|supply|0.00429933|0.00430200": {
     "in_zone": true,
-    "last_alert_at": 1784649819.5823014
+    "last_alert_at": 1784653391.084668
   },
   "LINKUSD|supply|8.74539000|8.75700000": {
     "in_zone": false,
@@ -3430,7 +3430,7 @@
   },
   "MRVL/USDT:USDT|supply|209.72425000|210.24000000": {
     "in_zone": true,
-    "last_alert_at": 1784649819.7929192
+    "last_alert_at": 1784653392.1125658
   },
   "HYPEUSD|range_filter|sell": {
     "last_alert_at": 1784644390.0081725
@@ -3478,5 +3478,13 @@
   "1000PEPEUSD|supply|0.00297221|0.00297630": {
     "in_zone": false,
     "last_alert_at": 0.0
+  },
+  "CRCLXUSD|demand|67.35000000|67.51320000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "1000SHIBUSD|demand|0.00426500|0.00426728": {
+    "in_zone": true,
+    "last_alert_at": 1784653391.084668
   }
 }
