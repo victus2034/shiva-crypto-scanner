@@ -57524,7 +57524,7 @@
   },
   "BTCUSD|supply|65406.93250000|65580.50000000": {
     "in_zone": true,
-    "last_alert_at": 1784589695.5725937
+    "last_alert_at": 1784605275.9040003
   },
   "ETHUSD|supply|1939.30950000|1946.15000000": {
     "in_zone": true,
@@ -57656,8 +57656,8 @@
     "last_alert_at": 0.0
   },
   "BABA/USDT:USDT|supply|122.15745000|122.48000000": {
-    "in_zone": false,
-    "last_alert_at": 1784583679.934721
+    "in_zone": true,
+    "last_alert_at": 1784605276.1954255
   },
   "BABA/USDT:USDT|demand|93.36000000|93.68120000": {
     "in_zone": false,
@@ -57968,5 +57968,8 @@
   },
   "UNIUSD|range_filter|buy": {
     "last_alert_at": 1784594478.7599823
+  },
+  "SAMSUNG/USDT:USDT|range_filter|buy": {
+    "last_alert_at": 1784605276.5254695
   }
 }
