@@ -56477,8 +56477,8 @@
     "last_alert_at": 0.0
   },
   "SOLUSD|supply|79.31021550|79.66000000": {
-    "in_zone": false,
-    "last_alert_at": 1784121705.5115173
+    "in_zone": true,
+    "last_alert_at": 1784613726.60497
   },
   "METAXUSD|supply|675.38090000|677.30000000": {
     "in_zone": true,
@@ -57369,7 +57369,7 @@
     "last_alert_at": 1784120531.3478482
   },
   "FARTCOIN/USDT|range_filter|buy": {
-    "last_alert_at": 1784120532.0943239
+    "last_alert_at": 1784613726.881158
   },
   "XRPUSD|range_filter|buy": {
     "last_alert_at": 1784121705.6872327
@@ -57953,7 +57953,7 @@
     "last_alert_at": 1784570524.81368
   },
   "MSTRBUSD|range_filter|buy": {
-    "last_alert_at": 1784570525.339113
+    "last_alert_at": 1784613727.0682557
   },
   "LINKUSD|supply|9.26819500|9.31100000": {
     "in_zone": false,
@@ -57975,5 +57975,9 @@
   "XLM/USDT|supply|0.19115600|0.19200000": {
     "in_zone": true,
     "last_alert_at": 1784611278.9676862
+  },
+  "ENA/USDT|supply|0.11752200|0.11850000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
   }
 }
