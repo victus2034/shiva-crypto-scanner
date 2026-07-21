@@ -56477,8 +56477,8 @@
     "last_alert_at": 0.0
   },
   "SOLUSD|supply|79.31021550|79.66000000": {
-    "in_zone": false,
-    "last_alert_at": 1784613726.60497
+    "in_zone": true,
+    "last_alert_at": 1784637673.259922
   },
   "METAXUSD|supply|675.38090000|677.30000000": {
     "in_zone": true,
@@ -58002,5 +58002,8 @@
   "DELL/USDT:USDT|demand|367.62000000|370.07930000": {
     "in_zone": false,
     "last_alert_at": 0.0
+  },
+  "BZ/USDT:USDT|range_filter|buy": {
+    "last_alert_at": 1784637673.42707
   }
 }
