@@ -4,8 +4,8 @@
     "last_alert_at": 0.0
   },
   "ETHUSD|supply|1943.32600000|1946.15000000": {
-    "in_zone": false,
-    "last_alert_at": 1784617400.6211953
+    "in_zone": true,
+    "last_alert_at": 1784624593.6826499
   },
   "ETHUSD|demand|1731.10000000|1733.36875000": {
     "in_zone": false,
@@ -281,7 +281,7 @@
     "last_alert_at": 0.0
   },
   "VIRTUAL/USDT|supply|0.66267000|0.66440000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1784620996.776267
   },
   "VIRTUAL/USDT|demand|0.58230000|0.58329950": {
@@ -541,8 +541,8 @@
     "last_alert_at": 0.0
   },
   "MSTRBUSD|supply|101.61710000|101.80000000": {
-    "in_zone": false,
-    "last_alert_at": 1784570593.6885235
+    "in_zone": true,
+    "last_alert_at": 1784624594.8424296
   },
   "MSTRBUSD|demand|90.15000000|90.25005000": {
     "in_zone": false,
@@ -1037,8 +1037,8 @@
     "last_alert_at": 1784577799.567688
   },
   "NVDAXUSD|supply|206.60745000|206.85000000": {
-    "in_zone": false,
-    "last_alert_at": 1784617403.8106039
+    "in_zone": true,
+    "last_alert_at": 1784624594.400675
   },
   "CRCLXUSD|demand|60.28000000|60.38430000": {
     "in_zone": true,
@@ -2829,8 +2829,8 @@
     "last_alert_at": 0.0
   },
   "HOOD/USDT:USDT|supply|102.67485000|102.76000000": {
-    "in_zone": false,
-    "last_alert_at": 1784570593.8899481
+    "in_zone": true,
+    "last_alert_at": 1784624595.0605419
   },
   "OPUSD|demand|0.09180000|0.09188500": {
     "in_zone": false,
@@ -2856,11 +2856,11 @@
   },
   "QQQXUSD|supply|704.56280000|704.81000000": {
     "in_zone": true,
-    "last_alert_at": 1784620995.8473856
+    "last_alert_at": 1784624593.8628716
   },
   "SPYXUSD|supply|745.90060000|746.00000000": {
     "in_zone": true,
-    "last_alert_at": 1784620995.972606
+    "last_alert_at": 1784624594.063442
   },
   "AAPLXUSD|range_filter|buy": {
     "last_alert_at": 1784574197.2016733
@@ -2966,7 +2966,7 @@
   },
   "AAPLXUSD|demand|324.30000000|324.50915000": {
     "in_zone": true,
-    "last_alert_at": 1784617404.4982276
+    "last_alert_at": 1784624594.6072693
   },
   "INTCBUSD|supply|100.81255000|100.98000000": {
     "in_zone": false,
@@ -3294,6 +3294,10 @@
     "last_alert_at": 1784620996.9449685
   },
   "OPENAI/USDT:USDT|demand|103.66000000|103.98175000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "COINXUSD|supply|168.07430000|168.30000000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
