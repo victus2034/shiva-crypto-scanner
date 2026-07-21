@@ -56744,7 +56744,7 @@
     "last_alert_at": 1784058102.1634505
   },
   "TSLAXUSD|demand|367.75000000|368.78505000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1784598078.3293676
   },
   "TRIA/USDT|demand|0.00744500|0.00786656": {
@@ -57979,5 +57979,8 @@
   "ENA/USDT|supply|0.11752200|0.11850000": {
     "in_zone": false,
     "last_alert_at": 0.0
+  },
+  "SOLUSD|range_filter|buy": {
+    "last_alert_at": 1784616080.2088253
   }
 }
