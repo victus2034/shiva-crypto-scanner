@@ -289,8 +289,8 @@
     "last_alert_at": 0.0
   },
   "ONDOUSD|supply|0.39302900|0.39450000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1784626390.8994837
   },
   "ONDOUSD|demand|0.35950000|0.36107100": {
     "in_zone": false,
@@ -541,7 +541,7 @@
     "last_alert_at": 0.0
   },
   "MSTRBUSD|supply|101.61710000|101.80000000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1784624594.8424296
   },
   "MSTRBUSD|demand|90.15000000|90.25005000": {
@@ -1001,8 +1001,8 @@
     "last_alert_at": 0.0
   },
   "LIT/USDT|supply|2.32101500|2.32900000": {
-    "in_zone": false,
-    "last_alert_at": 1784617409.1972344
+    "in_zone": true,
+    "last_alert_at": 1784626391.2609463
   },
   "ALLO/USDT|supply|0.40370600|0.40510000": {
     "in_zone": false,
@@ -2196,7 +2196,7 @@
     "last_alert_at": 1784500391.816191
   },
   "XMRUSD|range_filter|buy": {
-    "last_alert_at": 1784620996.1658227
+    "last_alert_at": 1784626390.2293541
   },
   "UNIUSD|supply|3.57153200|3.57600000": {
     "in_zone": true,
@@ -2829,7 +2829,7 @@
     "last_alert_at": 0.0
   },
   "HOOD/USDT:USDT|supply|102.67485000|102.76000000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1784624595.0605419
   },
   "OPUSD|demand|0.09180000|0.09188500": {
@@ -2933,8 +2933,8 @@
     "last_alert_at": 0.0
   },
   "SXT/USDT|demand|0.00706000|0.00706985": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1784626391.0754554
   },
   "SPYXUSD|supply|751.77570000|752.01000000": {
     "in_zone": true,
@@ -3276,8 +3276,8 @@
     "last_alert_at": 0.0
   },
   "BNBUSD|supply|580.76190000|581.17000000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1784626390.6955504
   },
   "NEARUSD|range_filter|sell": {
     "last_alert_at": 1784620996.5299017
@@ -3298,6 +3298,14 @@
     "last_alert_at": 0.0
   },
   "COINXUSD|supply|168.07430000|168.30000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "XMRUSD|supply|348.75370000|349.00000000": {
+    "in_zone": true,
+    "last_alert_at": 1784626390.2293541
+  },
+  "MSTRBUSD|demand|94.28000000|94.33390000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
