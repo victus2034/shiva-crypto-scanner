@@ -311,8 +311,8 @@
     "last_alert_at": 0.0
   },
   "IRFC.NS|demand|87.0500|87.5930": {
-    "in_zone": false,
-    "last_alert_at": 1784528737.947024
+    "in_zone": true,
+    "last_alert_at": 1784610729.6601791
   },
   "INFY.NS|supply|1273.5995|1278.8000": {
     "in_zone": false,
@@ -863,8 +863,8 @@
     "last_alert_at": 1784605915.6751673
   },
   "ACUTAAS.NS|supply|3712.6215|3736.0000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1784610729.0026548
   },
   "ACUTAAS.NS|demand|2960.2000|2981.3419": {
     "in_zone": false,
@@ -1968,8 +1968,8 @@
     "last_alert_at": 0.0
   },
   "IRCTC.NS|demand|492.7500|495.5700": {
-    "in_zone": false,
-    "last_alert_at": 1784261534.2149694
+    "in_zone": true,
+    "last_alert_at": 1784610729.4660063
   },
   "IGL.NS|supply|181.3170|182.0200": {
     "in_zone": false,
@@ -2735,5 +2735,8 @@
   },
   "HYUNDAI.NS|range_filter|sell": {
     "last_alert_at": 1784609531.8761733
+  },
+  "CGCL.NS|range_filter|sell": {
+    "last_alert_at": 1784610729.2830977
   }
 }
