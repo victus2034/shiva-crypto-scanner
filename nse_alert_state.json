@@ -879,8 +879,8 @@
     "last_alert_at": 0.0
   },
   "ABCAPITAL.NS|supply|408.8205|410.6000": {
-    "in_zone": false,
-    "last_alert_at": 1784087521.0686898
+    "in_zone": true,
+    "last_alert_at": 1784607120.718041
   },
   "ABCAPITAL.NS|demand|272.7000|274.1108": {
     "in_zone": false,
@@ -974,8 +974,8 @@
     "last_alert_at": 0.0
   },
   "ANANTRAJ.NS|supply|605.0595|608.4000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1784607121.194064
   },
   "ANGELONE.NS|demand|327.1500|329.1420": {
     "in_zone": true,
@@ -1033,7 +1033,7 @@
     "last_alert_at": 0.0
   },
   "ASTERDM.NS|supply|832.3523|836.4500": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1784605916.8710241
   },
   "ASTERDM.NS|demand|754.6500|759.0173": {
@@ -2349,8 +2349,8 @@
     "last_alert_at": 0.0
   },
   "MEDANTA.NS|supply|1358.7120|1364.5000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1784607122.2430747
   },
   "AEGISVOPAK.NS|range_filter|sell": {
     "last_alert_at": 1784020347.101894
@@ -2578,8 +2578,8 @@
     "last_alert_at": 1784605919.6602345
   },
   "NAUKRI.NS|supply|1222.3462|1228.2000": {
-    "in_zone": false,
-    "last_alert_at": 1784260314.0437272
+    "in_zone": true,
+    "last_alert_at": 1784607122.7725914
   },
   "BALKRISIND.NS|range_filter|sell": {
     "last_alert_at": 1784262765.1624224
@@ -2631,11 +2631,11 @@
   },
   "GILLETTE.NS|supply|7929.3600|7955.0000": {
     "in_zone": true,
-    "last_alert_at": 1784520728.8547907
+    "last_alert_at": 1784607121.7853317
   },
   "GLAND.NS|demand|2419.0000|2433.2830": {
     "in_zone": true,
-    "last_alert_at": 1784535110.3592083
+    "last_alert_at": 1784607122.0253632
   },
   "HDFCBANK.NS|range_filter|sell": {
     "last_alert_at": 1784519507.6642861
@@ -2717,10 +2717,20 @@
     "last_alert_at": 0.0
   },
   "IOB.NS|range_filter|buy": {
-    "last_alert_at": 0.0
+    "last_alert_at": 1784607122.529287
   },
   "IRCTC.NS|supply|733.9015|735.6500": {
     "in_zone": false,
     "last_alert_at": 0.0
+  },
+  "AWL.NS|range_filter|buy": {
+    "last_alert_at": 1784607120.4241543
+  },
+  "ACE.NS|supply|1162.6075|1169.0000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "BHEL.NS|range_filter|sell": {
+    "last_alert_at": 1784607121.5496562
   }
 }
