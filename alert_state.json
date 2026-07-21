@@ -57668,7 +57668,7 @@
     "last_alert_at": 0.0
   },
   "NBIS/USDT:USDT|supply|221.35040000|223.27000000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1784666481.1707742
   },
   "BZ/USDT:USDT|supply|97.34470000|97.67000000": {
@@ -57745,8 +57745,8 @@
     "last_alert_at": 1784367685.381768
   },
   "ZECUSD|demand|524.00000000|527.84925000": {
-    "in_zone": false,
-    "last_alert_at": 1784662880.3949828
+    "in_zone": true,
+    "last_alert_at": 1784667690.4355595
   },
   "SPCXXUSD|demand|116.20000000|116.78605000": {
     "in_zone": false,
@@ -58040,6 +58040,10 @@
     "last_alert_at": 0.0
   },
   "MSTRBUSD|demand|94.28000000|94.65925000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "EWYBUSD|demand|160.90000000|161.75655000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
