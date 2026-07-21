@@ -56137,7 +56137,7 @@
     "last_alert_at": 0.0
   },
   "COINXUSD|range_filter|buy": {
-    "last_alert_at": 1784623278.835948
+    "last_alert_at": 1784638921.3132856
   },
   "COINXUSD|supply|173.48480000|174.30000000": {
     "in_zone": true,
@@ -56172,7 +56172,7 @@
   },
   "BTCUSD|supply|67039.45500000|67262.00000000": {
     "in_zone": true,
-    "last_alert_at": 1784623278.3508112
+    "last_alert_at": 1784638920.4514663
   },
   "TIAUSD|supply|0.42623650|0.42870000": {
     "in_zone": false,
@@ -57996,8 +57996,8 @@
     "last_alert_at": 1784630473.528405
   },
   "DEXE/USDT|demand|13.34400000|13.43912950": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1784638921.452645
   },
   "DELL/USDT:USDT|demand|367.62000000|370.07930000": {
     "in_zone": false,
@@ -58005,5 +58005,9 @@
   },
   "BZ/USDT:USDT|range_filter|buy": {
     "last_alert_at": 1784637673.42707
+  },
+  "RIF/USDT|demand|0.04520000|0.04588675": {
+    "in_zone": false,
+    "last_alert_at": 0.0
   }
 }
