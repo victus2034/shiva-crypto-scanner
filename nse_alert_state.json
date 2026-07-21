@@ -1272,8 +1272,8 @@
     "last_alert_at": 0.0
   },
   "CANFINHOME.NS|demand|823.6500|827.2215": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1784614305.6099062
   },
   "CANHLIFE.NS|supply|154.6079|155.4000": {
     "in_zone": true,
@@ -1439,8 +1439,8 @@
     "last_alert_at": 0.0
   },
   "COROMANDEL.NS|supply|2069.3154|2079.8999": {
-    "in_zone": false,
-    "last_alert_at": 1784179943.6713755
+    "in_zone": true,
+    "last_alert_at": 1784614305.7746418
   },
   "COROMANDEL.NS|demand|1722.7000|1732.9445": {
     "in_zone": false,
@@ -2750,5 +2750,11 @@
   },
   "GLAND.NS|range_filter|sell": {
     "last_alert_at": 1784613936.4766526
+  },
+  "AEGISLOG.NS|range_filter|sell": {
+    "last_alert_at": 1784614305.3456352
+  },
+  "GODREJCP.NS|range_filter|sell": {
+    "last_alert_at": 1784614305.9164615
   }
 }
