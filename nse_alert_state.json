@@ -856,11 +856,11 @@
   },
   "ABBOTINDIA.NS|supply|28398.6000|28490.0000": {
     "in_zone": true,
-    "last_alert_at": 1784526729.4029245
+    "last_alert_at": 1784605915.3711934
   },
   "ACE.NS|supply|1041.7130|1046.7500": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1784605915.6751673
   },
   "ACUTAAS.NS|supply|3712.6215|3736.0000": {
     "in_zone": false,
@@ -947,7 +947,7 @@
   },
   "AJANTPHARM.NS|supply|3477.3624|3494.8999": {
     "in_zone": true,
-    "last_alert_at": 1784533912.2987163
+    "last_alert_at": 1784605916.241422
   },
   "AJANTPHARM.NS|demand|2656.3000|2669.5830": {
     "in_zone": false,
@@ -1033,8 +1033,8 @@
     "last_alert_at": 0.0
   },
   "ASTERDM.NS|supply|832.3523|836.4500": {
-    "in_zone": false,
-    "last_alert_at": 1784106751.0140316
+    "in_zone": true,
+    "last_alert_at": 1784605916.8710241
   },
   "ASTERDM.NS|demand|754.6500|759.0173": {
     "in_zone": false,
@@ -1162,7 +1162,7 @@
   },
   "BHARATFORG.NS|supply|2225.6344|2235.8999": {
     "in_zone": true,
-    "last_alert_at": 1784531531.862493
+    "last_alert_at": 1784605917.2974236
   },
   "BHARATFORG.NS|demand|1818.4000|1828.7115": {
     "in_zone": false,
@@ -1285,7 +1285,7 @@
   },
   "CAPLIPOINT.NS|supply|2658.0844|2672.8999": {
     "in_zone": true,
-    "last_alert_at": 1784536345.3321815
+    "last_alert_at": 1784605918.2041132
   },
   "CAPLIPOINT.NS|demand|1500.3000|1507.6276": {
     "in_zone": false,
@@ -1352,8 +1352,8 @@
     "last_alert_at": 0.0
   },
   "CHENNPETRO.NS|supply|1242.2700|1248.9000": {
-    "in_zone": false,
-    "last_alert_at": 1784193146.7108455
+    "in_zone": true,
+    "last_alert_at": 1784605918.8070917
   },
   "CHENNPETRO.NS|demand|621.0000|625.4025": {
     "in_zone": false,
@@ -1583,7 +1583,7 @@
     "last_alert_at": 0.0
   },
   "ESCORTS.NS|supply|3025.5295|3040.0000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1784520728.249232
   },
   "ESCORTS.NS|demand|2710.1001|2729.2461": {
@@ -2360,11 +2360,11 @@
   },
   "AIAENG.NS|demand|4624.0000|4649.9695": {
     "in_zone": true,
-    "last_alert_at": 1784533912.0917268
+    "last_alert_at": 1784605915.1134512
   },
   "BAYERCROP.NS|supply|4291.9825|4306.0000": {
     "in_zone": true,
-    "last_alert_at": 1784536345.153739
+    "last_alert_at": 1784605917.0589607
   },
   "CRAFTSMAN.NS|demand|8987.0000|9037.3375": {
     "in_zone": false,
@@ -2422,7 +2422,7 @@
   },
   "ANURAS.NS|demand|1250.5000|1256.1120": {
     "in_zone": true,
-    "last_alert_at": 1784533912.605091
+    "last_alert_at": 1784605916.4457095
   },
   "APARINDS.NS|demand|13409.0000|13531.5200": {
     "in_zone": false,
@@ -2517,7 +2517,7 @@
     "last_alert_at": 1784176380.9090524
   },
   "INDIAMART.NS|range_filter|buy": {
-    "last_alert_at": 1784193146.9470031
+    "last_alert_at": 1784605919.4433594
   },
   "CRISIL.NS|supply|5095.1620|5115.0000": {
     "in_zone": false,
@@ -2575,7 +2575,7 @@
   },
   "IOC.NS|supply|143.5746|144.0900": {
     "in_zone": true,
-    "last_alert_at": 1784536345.544915
+    "last_alert_at": 1784605919.6602345
   },
   "NAUKRI.NS|supply|1222.3462|1228.2000": {
     "in_zone": false,
@@ -2676,6 +2676,50 @@
     "last_alert_at": 0.0
   },
   "BAJFINANCE.NS|supply|1098.5875|1102.0000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "ACE.NS|range_filter|buy": {
+    "last_alert_at": 1784605915.6751673
+  },
+  "ADANIGREEN.NS|supply|1622.5455|1631.5000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "BSE.NS|supply|3848.1690|3867.5000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "MAPMYINDIA.NS|range_filter|sell": {
+    "last_alert_at": 1784605917.532546
+  },
+  "MAPMYINDIA.NS|supply|1222.3277|1230.1000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "CANBK.NS|range_filter|buy": {
+    "last_alert_at": 1784605917.9661272
+  },
+  "CEMPRO.NS|supply|1635.7785|1646.8000": {
+    "in_zone": true,
+    "last_alert_at": 1784605918.463695
+  },
+  "CHOLAFIN.NS|demand|1743.6000|1751.6100": {
+    "in_zone": true,
+    "last_alert_at": 0.0
+  },
+  "ELGIEQUIP.NS|demand|565.4000|568.3083": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "GODREJCP.NS|demand|1044.4000|1048.4610": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "IOB.NS|range_filter|buy": {
+    "last_alert_at": 0.0
+  },
+  "IRCTC.NS|supply|733.9015|735.6500": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
