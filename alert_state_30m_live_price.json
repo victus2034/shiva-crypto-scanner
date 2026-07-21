@@ -2153,7 +2153,7 @@
   },
   "AMZNXUSD|demand|247.05000000|247.07600000": {
     "in_zone": true,
-    "last_alert_at": 1784642598.7996979
+    "last_alert_at": 1784646197.8979926
   },
   "NVDAXUSD|demand|200.45000000|200.66885000": {
     "in_zone": false,
@@ -2380,7 +2380,7 @@
     "last_alert_at": 1784511195.0205915
   },
   "1000PEPEUSD|range_filter|sell": {
-    "last_alert_at": 1784557989.2155743
+    "last_alert_at": 1784646198.682549
   },
   "MUBUSD|range_filter|sell": {
     "last_alert_at": 1784574200.9607668
@@ -2860,7 +2860,7 @@
   },
   "SPYXUSD|supply|745.90060000|746.00000000": {
     "in_zone": true,
-    "last_alert_at": 1784642598.6038043
+    "last_alert_at": 1784646197.7050133
   },
   "AAPLXUSD|range_filter|buy": {
     "last_alert_at": 1784574197.2016733
@@ -2973,7 +2973,7 @@
     "last_alert_at": 0.0
   },
   "METAXUSD|range_filter|sell": {
-    "last_alert_at": 1784584995.2934263
+    "last_alert_at": 1784646197.4624026
   },
   "METAXUSD|supply|653.28340000|653.70000000": {
     "in_zone": true,
@@ -3156,8 +3156,8 @@
     "last_alert_at": 0.0
   },
   "IBM/USDT:USDT|demand|210.07000000|210.17045000": {
-    "in_zone": false,
-    "last_alert_at": 1784617410.6642609
+    "in_zone": true,
+    "last_alert_at": 1784646198.8925343
   },
   "SXT/USDT|supply|0.00754100|0.00755000": {
     "in_zone": false,
@@ -3273,7 +3273,7 @@
   },
   "SUIUSD|demand|0.76340000|0.76418400": {
     "in_zone": true,
-    "last_alert_at": 1784644390.3017688
+    "last_alert_at": 1784646197.2382345
   },
   "BNBUSD|supply|580.76190000|581.17000000": {
     "in_zone": false,
@@ -3303,7 +3303,7 @@
   },
   "XMRUSD|supply|348.75370000|349.00000000": {
     "in_zone": true,
-    "last_alert_at": 1784644390.7712128
+    "last_alert_at": 1784646198.059
   },
   "MSTRBUSD|demand|94.28000000|94.33390000": {
     "in_zone": false,
@@ -3375,7 +3375,7 @@
   },
   "1000SHIBUSD|supply|0.00429933|0.00430200": {
     "in_zone": true,
-    "last_alert_at": 1784644391.7647178
+    "last_alert_at": 1784646198.509514
   },
   "LINKUSD|supply|8.74539000|8.75700000": {
     "in_zone": false,
@@ -3440,5 +3440,12 @@
   },
   "VELVET/USDT|range_filter|buy": {
     "last_alert_at": 1784644391.467172
+  },
+  "UNIUSD|range_filter|sell": {
+    "last_alert_at": 1784646198.3414183
+  },
+  "EWYBUSD|supply|181.17215000|181.45000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
   }
 }
