@@ -118,8 +118,8 @@
     "last_alert_at": 0.0
   },
   "METAXUSD|demand|626.90000000|627.74005000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1784732606.900035
   },
   "SPYXUSD|supply|754.97375000|755.04000000": {
     "in_zone": true,
@@ -2346,7 +2346,7 @@
     "last_alert_at": 1784574198.4236126
   },
   "ARBUSD|range_filter|buy": {
-    "last_alert_at": 1784730804.0382588
+    "last_alert_at": 1784732607.444378
   },
   "TIAUSD|range_filter|buy": {
     "last_alert_at": 1784563411.2860093
@@ -3521,8 +3521,8 @@
     "last_alert_at": 0.0
   },
   "AVGO/USDT:USDT|supply|391.04430000|391.44000000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1784732608.2159076
   },
   "TIAUSD|supply|0.36912150|0.36940000": {
     "in_zone": false,
@@ -3537,7 +3537,7 @@
     "last_alert_at": 0.0
   },
   "LIT/USDT|range_filter|buy": {
-    "last_alert_at": 1784730804.95401
+    "last_alert_at": 1784732607.9035177
   },
   "ENA/USDT|range_filter|sell": {
     "last_alert_at": 1784658795.1869564
@@ -3560,7 +3560,7 @@
   },
   "SPYXUSD|demand|742.06000000|742.20955000": {
     "in_zone": true,
-    "last_alert_at": 1784730803.442274
+    "last_alert_at": 1784732607.1450813
   },
   "CRCLXUSD|supply|72.46180000|72.65000000": {
     "in_zone": false,
@@ -3693,7 +3693,7 @@
   },
   "QQQXUSD|supply|708.73960000|709.05000000": {
     "in_zone": true,
-    "last_alert_at": 1784730803.2302635
+    "last_alert_at": 1784732606.6195347
   },
   "ADAUSD|demand|0.17210000|0.17249460": {
     "in_zone": true,
@@ -3858,8 +3858,8 @@
     "last_alert_at": 0.0
   },
   "MRVL/USDT:USDT|supply|214.41750000|214.90000000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1784732608.461601
   },
   "LTCUSD|demand|45.32000000|45.37365000": {
     "in_zone": false,
@@ -4022,7 +4022,7 @@
   },
   "ZECUSD|demand|511.41000000|512.46770000": {
     "in_zone": true,
-    "last_alert_at": 1784730802.9821079
+    "last_alert_at": 1784732606.1215577
   },
   "T/USDT|supply|0.00371735|0.00372000": {
     "in_zone": false,
@@ -4041,7 +4041,7 @@
     "last_alert_at": 0.0
   },
   "NEARUSD|demand|1.87000000|1.87288500": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1784730803.7549005
   },
   "INJUSD|demand|5.18000000|5.18410500": {
@@ -4089,5 +4089,8 @@
   "BTCUSD|demand|62512.50000000|62576.02250000": {
     "in_zone": false,
     "last_alert_at": 0.0
+  },
+  "SXT/USDT|range_filter|buy": {
+    "last_alert_at": 1784732607.6830823
   }
 }
