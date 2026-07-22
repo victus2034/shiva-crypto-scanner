@@ -407,8 +407,8 @@
     "last_alert_at": 0.0
   },
   "NESTLEIND.NS|supply|1492.6950|1498.0000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1784701961.5317314
   },
   "NESTLEIND.NS|demand|1145.0000|1148.4675": {
     "in_zone": false,
@@ -863,7 +863,7 @@
     "last_alert_at": 1784605915.6751673
   },
   "ACUTAAS.NS|supply|3712.6215|3736.0000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1784699528.9398146
   },
   "ACUTAAS.NS|demand|2960.2000|2981.3419": {
@@ -2861,6 +2861,843 @@
     "last_alert_at": 1784697134.5892134
   },
   "EMMVEE.NS|demand|210.1000|211.9804": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "ATGL.NS|demand|463.2500|465.4770": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "INTELLECT.NS|supply|828.5835|833.7500": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "INTELLECT.NS|demand|716.9000|722.2610": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "INDIGO.NS|demand|5064.5000|5085.7900": {
+    "in_zone": true,
+    "last_alert_at": 1784701961.1922584
+  },
+  "IGIL.NS|supply|389.9440|391.9500": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "IGIL.NS|demand|287.3500|288.8595": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "IPCALAB.NS|demand|1251.9000|1258.3425": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "JKCEMENT.NS|supply|5984.5700|6011.0000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "JBMA.NS|supply|759.7852|763.8000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "JBMA.NS|demand|477.0000|480.0658": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "JKTYRE.NS|supply|419.7818|421.8500": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "JMFINANCIL.NS|supply|136.0925|136.8700": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "JSWCEMENT.NS|supply|142.7391|143.2500": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "JSWCEMENT.NS|demand|106.6900|107.2512": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "JSWDULUX.NS|demand|2877.0000|2894.3950": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "JSWENERGY.NS|supply|614.2577|617.3000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "JSWSTEEL.NS|demand|1022.4000|1025.8380": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "JAINREC.NS|supply|590.0245|593.3000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "JAINREC.NS|demand|302.3000|307.3695": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "JPPOWER.NS|supply|24.2054|24.4000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "JPPOWER.NS|demand|16.6500|16.7299": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "J&KBANK.NS|supply|199.3410|200.3900": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "J&KBANK.NS|demand|150.6800|151.5170": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "JINDALSAW.NS|demand|252.9500|254.7559": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "JSL.NS|supply|879.7297|883.3000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "JINDALSTEL.NS|demand|943.5500|947.3937": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "JUBLFOOD.NS|supply|455.4247|457.4000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "JUBLFOOD.NS|demand|409.7500|412.7793": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "JUBLINGREA.NS|supply|772.5055|776.0000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "JUBLINGREA.NS|demand|537.3000|541.2490": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "JUBLPHARMA.NS|supply|1089.3305|1094.8000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "JUBLPHARMA.NS|demand|786.0500|791.7815": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "JWL.NS|supply|262.0152|263.3000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "KPRMILL.NS|supply|1320.5093|1328.3000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "KPRMILL.NS|demand|807.5500|811.6285": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "KEI.NS|supply|5679.3250|5707.0000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "KEI.NS|demand|4724.7002|4755.7222": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "KPITTECH.NS|supply|574.8055|578.9000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "KPITTECH.NS|demand|543.8000|548.5152": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "KAJARIACER.NS|supply|1302.8165|1309.7000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "KAJARIACER.NS|demand|871.0000|875.3498": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "KPIL.NS|supply|1469.8195|1477.5000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "KALYANKJIL.NS|demand|327.1000|329.5223": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "KARURVYSYA.NS|demand|201.9700|202.8448": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "KAYNES.NS|demand|2995.0000|3024.6115": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "KEC.NS|supply|548.2255|550.8000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "KEC.NS|demand|466.0000|469.4070": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "KFINTECH.NS|supply|998.8765|1004.5000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "KFINTECH.NS|demand|838.3000|842.6880": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "KIRLOSENG.NS|supply|2704.2160|2719.3000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "KIRLOSENG.NS|demand|1791.7000|1804.2414": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "KIMS.NS|supply|853.6263|857.9500": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "KIMS.NS|demand|644.9500|648.5290": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "LTF.NS|demand|235.0600|235.9371": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "LTTS.NS|supply|3906.7049|3923.8999": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "LGEINDIA.NS|supply|1656.5705|1663.0000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "LGEINDIA.NS|demand|1467.8000|1474.9755": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "LICHSGFIN.NS|supply|560.9395|563.0000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "LICHSGFIN.NS|demand|459.0000|461.4658": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "LTFOODS.NS|supply|393.5897|395.8000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "LTFOODS.NS|demand|334.1000|335.9938": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "LTM.NS|supply|4220.1163|4239.7998": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "LATENTVIEW.NS|supply|338.0750|340.2500": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "LATENTVIEW.NS|demand|249.0000|251.3953": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "LAURUSLABS.NS|demand|1448.4000|1455.2510": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "THELEELA.NS|supply|507.7635|510.2500": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "THELEELA.NS|demand|470.1000|472.8300": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "LEMONTREE.NS|supply|121.3770|121.9100": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "LEMONTREE.NS|demand|99.7600|100.3960": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "LENSKART.NS|supply|560.4185|563.0000": {
+    "in_zone": true,
+    "last_alert_at": 1784701961.3127215
+  },
+  "LENSKART.NS|demand|402.5500|405.0900": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "LICI.NS|supply|467.0501|468.3500": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "LICI.NS|demand|360.7750|362.5461": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "LINDEINDIA.NS|supply|7219.5475|7251.0000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "LINDEINDIA.NS|demand|6525.0000|6560.9700": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "LLOYDSME.NS|demand|1716.1000|1725.9035": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "LUPIN.NS|demand|2160.0000|2168.8610": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "MMTC.NS|supply|77.8409|78.3500": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "MMTC.NS|demand|51.3000|51.5760": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "MRF.NS|supply|140017.4250|140620.0000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "MGL.NS|supply|1257.8435|1262.0000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "MGL.NS|demand|903.8000|910.1020": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "M&MFIN.NS|supply|409.8133|412.2000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "M&MFIN.NS|demand|288.7000|290.2023": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "M&M.NS|demand|2896.7000|2912.0105": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "MANAPPURAM.NS|demand|309.3500|310.9715": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "MRPL.NS|supply|210.8613|212.3000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "MRPL.NS|demand|126.1400|126.6366": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "MANKIND.NS|demand|2341.0000|2352.4610": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "MARICO.NS|demand|795.5000|798.5683": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "MARUTI.NS|supply|14544.0950|14598.0000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "MFSL.NS|supply|1884.8125|1892.0000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "MEESHO.NS|supply|200.0961|201.8600": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "MEESHO.NS|demand|125.6600|126.7432": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "MINDACORP.NS|supply|709.9520|713.6500": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "MSUMI.NS|supply|53.2215|53.4800": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "MSUMI.NS|demand|35.7100|35.9201": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "MOTILALOFS.NS|supply|1017.5712|1023.0000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "MOTILALOFS.NS|demand|903.7500|908.5087": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "MPHASIS.NS|supply|2466.1870|2479.0000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "MPHASIS.NS|demand|2030.7000|2043.8839": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "MCX.NS|supply|3464.2414|3479.8999": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "MCX.NS|demand|2577.8000|2595.0950": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "NATCOPHARM.NS|supply|992.3102|997.1000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "NATCOPHARM.NS|demand|789.1500|792.4230": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "NBCC.NS|supply|124.9901|125.5300": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "NBCC.NS|demand|89.8300|90.3003": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "NCC.NS|supply|221.0840|221.8700": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "NCC.NS|demand|130.4700|131.3638": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "NHPC.NS|supply|88.9101|89.2000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "NHPC.NS|demand|71.6200|71.9581": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "NLCINDIA.NS|supply|385.2947|387.8000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "NLCINDIA.NS|demand|239.1500|240.6953": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "NMDC.NS|supply|97.0568|97.4900": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "NMDC.NS|demand|72.2600|72.5270": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "NSLNISP.NS|supply|53.3703|53.6800": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "NSLNISP.NS|demand|33.0500|33.2783": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "NTPCGREEN.NS|supply|119.2747|119.9500": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "NTPCGREEN.NS|demand|85.2000|85.5866": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "NH.NS|supply|2081.6410|2090.2000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "NH.NS|demand|1836.0000|1845.2745": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "NATIONALUM.NS|demand|259.3000|260.4662": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "NAVA.NS|demand|502.0500|505.0630": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "NAVINFLUOR.NS|demand|7298.0000|7332.8875": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "NESTLEIND.NS|range_filter|buy": {
+    "last_alert_at": 1784701961.5317314
+  },
+  "NETWEB.NS|demand|4063.6001|4102.1391": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "NEULANDLAB.NS|supply|19635.1100|19735.0000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "NEULANDLAB.NS|demand|16500.0000|16615.0850": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "NEWGEN.NS|supply|603.3837|606.8000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "NEWGEN.NS|demand|431.3500|434.5940": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "NAM-INDIA.NS|demand|1129.8000|1135.9996": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "NIVABUPA.NS|supply|90.7164|91.1600": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "NIVABUPA.NS|demand|84.2300|84.6150": {
+    "in_zone": true,
+    "last_alert_at": 1784701961.833031
+  },
+  "NUVOCO.NS|supply|450.9480|452.9500": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "NUVOCO.NS|demand|276.2500|278.0315": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "OBEROIRLTY.NS|supply|1976.4220|1984.9000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "OBEROIRLTY.NS|demand|1820.7000|1829.3160": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "OIL.NS|supply|521.1775|523.9500": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "OIL.NS|demand|384.6000|386.3315": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "OLAELEC.NS|supply|48.6239|49.0000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "OLAELEC.NS|demand|22.2500|22.4414": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "OLECTRA.NS|supply|1566.1655|1573.5000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "OLECTRA.NS|demand|866.6000|871.8947": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "ONESOURCE.NS|supply|1910.9690|1921.0000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "ONESOURCE.NS|demand|1069.0000|1082.5915": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "OFSS.NS|demand|10780.0000|10836.3050": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "PCBL.NS|supply|372.8233|374.2000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "PCBL.NS|demand|226.5000|228.6260": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "PGEL.NS|supply|640.9700|644.4000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "PGEL.NS|demand|436.7500|441.9553": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "PIIND.NS|supply|2904.5094|2920.3999": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "PTCIL.NS|demand|15700.0000|15782.3300": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "PVRINOX.NS|supply|1092.9520|1098.0500": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "PAGEIND.NS|supply|45566.5500|45760.0000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "PARADEEP.NS|supply|148.4926|149.2000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "PARADEEP.NS|demand|132.3000|132.9996": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "PATANJALI.NS|supply|415.5990|417.3500": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "PATANJALI.NS|demand|328.3500|330.0083": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "PERSISTENT.NS|demand|4246.0000|4275.7775": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "PETRONET.NS|supply|325.1377|326.4000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "PETRONET.NS|demand|235.5000|237.3653": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "PFIZER.NS|supply|5532.1675|5550.5000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "PFIZER.NS|demand|4360.3999|4376.0144": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "PHOENIXLTD.NS|supply|2158.8320|2169.2000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "PHOENIXLTD.NS|demand|1840.2000|1849.4215": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "PWL.NS|supply|158.2559|159.3600": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "PWL.NS|demand|77.7900|78.7585": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "PIDILITIND.NS|supply|1621.2615|1626.6000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "PINELABS.NS|supply|209.5108|211.2200": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "PINELABS.NS|demand|135.0000|136.5076": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "PIRAMALFIN.NS|demand|1868.0000|1880.8925": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "PPLPHARMA.NS|supply|208.6239|209.4000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "PPLPHARMA.NS|demand|132.3000|133.1301": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "POLYMED.NS|supply|1831.0375|1838.5000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "POLYCAB.NS|demand|7901.0000|7944.1125": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "POONAWALLA.NS|supply|567.0945|570.0500": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "POONAWALLA.NS|demand|361.2000|363.9115": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "PREMIERENE.NS|supply|1114.0355|1119.0000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "PRESTIGE.NS|supply|1790.4295|1798.5000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "PRESTIGE.NS|demand|1090.0000|1099.1020": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "PFOCUS.NS|supply|355.6590|358.6500": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "PFOCUS.NS|demand|205.7500|207.7116": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "RRKABEL.NS|supply|2532.5110|2548.0000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "RRKABEL.NS|demand|2065.3999|2080.6594": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "RBLBANK.NS|range_filter|sell": {
+    "last_alert_at": 1784701962.0246282
+  },
+  "RBLBANK.NS|supply|379.3270|381.0500": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "RBLBANK.NS|demand|354.9500|356.6703": {
+    "in_zone": true,
+    "last_alert_at": 1784701962.0246282
+  },
+  "RHIM.NS|supply|422.9578|425.7000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "RHIM.NS|demand|323.0500|325.6830": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "RITES.NS|supply|243.2447|244.5100": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "RITES.NS|demand|203.5800|204.4929": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "RADICO.NS|supply|4146.3578|4161.7998": {
+    "in_zone": true,
+    "last_alert_at": 1784701962.3882303
+  },
+  "RADICO.NS|demand|4015.1001|4030.2461": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "RVNL.NS|supply|249.6812|251.0200": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "RVNL.NS|demand|221.7900|223.1541": {
+    "in_zone": true,
+    "last_alert_at": 0.0
+  },
+  "RAILTEL.NS|supply|323.5955|325.1500": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "RAILTEL.NS|demand|245.0000|246.9223": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "RAINBOW.NS|supply|1527.2190|1533.4000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "RAINBOW.NS|demand|1390.0000|1396.9920": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "REDINGTON.NS|range_filter|sell": {
+    "last_alert_at": 1784701962.8446393
+  },
+  "REDINGTON.NS|supply|312.8038|314.3500": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "REDINGTON.NS|demand|210.3200|211.7439": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "RPOWER.NS|supply|28.5640|28.7500": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "RPOWER.NS|demand|24.0100|24.1899": {
+    "in_zone": true,
+    "last_alert_at": 0.0
+  },
+  "SBFC.NS|supply|108.0276|108.4000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "SBFC.NS|demand|89.0500|89.5494": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "SBICARD.NS|supply|696.1617|700.0000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "SBICARD.NS|demand|566.9000|569.1743": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "SJVN.NS|supply|91.0076|91.2500": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "SJVN.NS|demand|63.1000|63.5018": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
