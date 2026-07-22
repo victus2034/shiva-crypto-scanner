@@ -65,5 +65,23 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -f alert_state_30m_live_price.json
-          git diff --cached --quiet || git commit -m "Update live-price 30m alert state"
-          git push
+          if git diff --cached --quiet; then
+            echo "No live-price 30-minute alert state changes to save."
+            exit 0
+          fi
+
+          git commit -m "Update live-price 30m alert state"
+          for attempt in 1 2 3; do
+            if git push; then
+              exit 0
+            fi
+
+            echo "::warning::30-minute state push failed on attempt ${attempt}; refreshing branch."
+            if ! git pull --rebase origin main; then
+              git rebase --abort || true
+              echo "::warning::Could not rebase 30-minute state. Alerts were already sent."
+              exit 0
+            fi
+          done
+
+          echo "::warning::Could not persist 30-minute state after retries. Alerts were already sent."
