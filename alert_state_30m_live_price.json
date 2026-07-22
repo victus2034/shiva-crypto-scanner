@@ -3499,8 +3499,8 @@
     "last_alert_at": 1784655199.163339
   },
   "FLNC/USDT:USDT|demand|14.62000000|14.64995000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1784757796.1870856
   },
   "SOLUSD|range_filter|sell": {
     "last_alert_at": 1784745205.9682012
@@ -3835,7 +3835,7 @@
     "last_alert_at": 1784700198.5599978
   },
   "DODO/USDT|range_filter|buy": {
-    "last_alert_at": 1784696596.7882466
+    "last_alert_at": 1784757795.9004874
   },
   "SXT/USDT|demand|0.00687000|0.00688215": {
     "in_zone": false,
@@ -3858,7 +3858,7 @@
     "last_alert_at": 0.0
   },
   "MRVL/USDT:USDT|supply|214.41750000|214.90000000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1784756291.5688264
   },
   "LTCUSD|demand|45.32000000|45.37365000": {
@@ -4009,8 +4009,8 @@
     "last_alert_at": 0.0
   },
   "PAXGUSD|demand|4094.40000000|4096.63785000": {
-    "in_zone": false,
-    "last_alert_at": 1784725400.286515
+    "in_zone": true,
+    "last_alert_at": 1784757795.6940749
   },
   "XRPUSD|demand|1.12880000|1.13005050": {
     "in_zone": false,
@@ -4029,8 +4029,8 @@
     "last_alert_at": 0.0
   },
   "BZ/USDT:USDT|supply|91.22165000|91.33000000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1784757796.0471113
   },
   "SUIUSD|demand|0.72220000|0.72305750": {
     "in_zone": false,
@@ -4314,5 +4314,13 @@
   "MUSD|demand|1.13740000|1.13964300": {
     "in_zone": true,
     "last_alert_at": 1784756291.3787138
+  },
+  "VELVET/USDT|supply|0.60634005|0.61238000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "INTCBUSD|supply|106.58595000|106.76000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
   }
 }
