@@ -1246,7 +1246,7 @@
     "last_alert_at": 1784458999.1729155
   },
   "INJUSD|range_filter|buy": {
-    "last_alert_at": 1784494993.8113327
+    "last_alert_at": 1784691194.8686357
   },
   "INJUSD|demand|5.02100000|5.02914500": {
     "in_zone": false,
@@ -2336,7 +2336,7 @@
     "last_alert_at": 1784640794.2405381
   },
   "EWYBUSD|range_filter|sell": {
-    "last_alert_at": 1784559806.1542466
+    "last_alert_at": 1784691195.0504184
   },
   "SPYXUSD|range_filter|buy": {
     "last_alert_at": 1784507593.9817333
@@ -3272,8 +3272,8 @@
     "last_alert_at": 0.0
   },
   "SUIUSD|demand|0.76340000|0.76418400": {
-    "in_zone": false,
-    "last_alert_at": 1784675000.1912317
+    "in_zone": true,
+    "last_alert_at": 1784691194.0938518
   },
   "BNBUSD|supply|580.76190000|581.17000000": {
     "in_zone": false,
@@ -3461,8 +3461,8 @@
     "last_alert_at": 1784660600.7965324
   },
   "BNBUSD|demand|569.69000000|570.12475500": {
-    "in_zone": false,
-    "last_alert_at": 1784676791.387474
+    "in_zone": true,
+    "last_alert_at": 1784691194.667565
   },
   "NEARUSD|demand|1.86700000|1.86963000": {
     "in_zone": false,
@@ -3560,7 +3560,7 @@
   },
   "SPYXUSD|demand|742.06000000|742.20955000": {
     "in_zone": true,
-    "last_alert_at": 1784687603.9701438
+    "last_alert_at": 1784691194.3042982
   },
   "CRCLXUSD|supply|72.46180000|72.65000000": {
     "in_zone": false,
@@ -3669,7 +3669,7 @@
   },
   "BTCUSD|demand|66065.00000000|66118.61500000": {
     "in_zone": true,
-    "last_alert_at": 1784687603.1335945
+    "last_alert_at": 1784691193.753634
   },
   "SLVONUSD|supply|54.02165000|54.09000000": {
     "in_zone": true,
@@ -3693,7 +3693,7 @@
   },
   "QQQXUSD|supply|708.73960000|709.05000000": {
     "in_zone": true,
-    "last_alert_at": 1784687603.5780027
+    "last_alert_at": 1784691193.9116414
   },
   "ADAUSD|demand|0.17210000|0.17249460": {
     "in_zone": false,
@@ -3812,5 +3812,8 @@
   "SXT/USDT|supply|0.00703268|0.00705100": {
     "in_zone": false,
     "last_alert_at": 0.0
+  },
+  "SKHYNIX/USDT:USDT|range_filter|sell": {
+    "last_alert_at": 1784691195.3521156
   }
 }
