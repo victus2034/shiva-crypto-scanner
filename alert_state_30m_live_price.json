@@ -353,8 +353,8 @@
     "last_alert_at": 0.0
   },
   "GRAMUSD|supply|1.54467000|1.54800000": {
-    "in_zone": false,
-    "last_alert_at": 1784658794.4964235
+    "in_zone": true,
+    "last_alert_at": 1784678587.7003233
   },
   "GRAMUSD|demand|1.37700000|1.37909500": {
     "in_zone": false,
@@ -2041,7 +2041,7 @@
     "last_alert_at": 0.0
   },
   "1000SHIBUSD|range_filter|sell": {
-    "last_alert_at": 1784531004.749516
+    "last_alert_at": 1784678587.8543432
   },
   "FARTCOIN/USDT|range_filter|sell": {
     "last_alert_at": 1784480602.9288647
@@ -2729,7 +2729,7 @@
     "last_alert_at": 1784575993.709569
   },
   "MSTRBUSD|range_filter|buy": {
-    "last_alert_at": 1784599404.534557
+    "last_alert_at": 1784678588.3922231
   },
   "IBM/USDT:USDT|range_filter|sell": {
     "last_alert_at": 1784549007.0499208
@@ -3245,8 +3245,8 @@
     "last_alert_at": 0.0
   },
   "1000SHIBUSD|demand|0.00423700|0.00423958": {
-    "in_zone": false,
-    "last_alert_at": 1784617407.3707983
+    "in_zone": true,
+    "last_alert_at": 1784678587.8543432
   },
   "FARTCOIN/USDT|supply|0.15679600|0.15720000": {
     "in_zone": false,
@@ -3272,7 +3272,7 @@
     "last_alert_at": 0.0
   },
   "SUIUSD|demand|0.76340000|0.76418400": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1784675000.1912317
   },
   "BNBUSD|supply|580.76190000|581.17000000": {
@@ -3334,7 +3334,7 @@
     "last_alert_at": 0.0
   },
   "MUSD|supply|1.21052250|1.21270000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1784676791.9069295
   },
   "AMZNXUSD|supply|251.07660000|251.20000000": {
@@ -3461,7 +3461,7 @@
     "last_alert_at": 1784660600.7965324
   },
   "BNBUSD|demand|569.69000000|570.12475500": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1784676791.387474
   },
   "NEARUSD|demand|1.86700000|1.86963000": {
@@ -3571,8 +3571,8 @@
     "last_alert_at": 0.0
   },
   "EVAAUSD|demand|0.87050000|0.87634150": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1784678588.1641371
   },
   "MRVL/USDT:USDT|demand|203.17000000|203.70980000": {
     "in_zone": false,
@@ -3668,7 +3668,7 @@
     "last_alert_at": 1784671391.0459707
   },
   "BTCUSD|demand|66065.00000000|66118.61500000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1784674999.5408566
   },
   "SLVONUSD|supply|54.02165000|54.09000000": {
@@ -3696,7 +3696,7 @@
     "last_alert_at": 1784674999.9928627
   },
   "ADAUSD|demand|0.17210000|0.17249460": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1784675000.7005954
   },
   "AAVEUSD|supply|100.93583500|101.11000000": {
@@ -3708,8 +3708,8 @@
     "last_alert_at": 1784676792.2466815
   },
   "FLNC/USDT:USDT|supply|15.44640000|15.48000000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1784678588.562935
   },
   "FILUSD|range_filter|sell": {
     "last_alert_at": 1784676791.6396844
@@ -3723,6 +3723,34 @@
     "last_alert_at": 0.0
   },
   "MSTRBUSD|demand|100.08000000|100.26825000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "QQQXUSD|supply|711.16695000|711.43000000": {
+    "in_zone": true,
+    "last_alert_at": 1784678587.5372016
+  },
+  "QQQXUSD|demand|705.02000000|705.34435000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "INJUSD|demand|5.26800000|5.27233000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "LABUSD|supply|0.15564200|0.15720000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "DODO/USDT|demand|0.01601000|0.01607865": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "SNDKBUSD|supply|1829.97710000|1833.48000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "MSTRBUSD|demand|100.20000000|100.33645000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
