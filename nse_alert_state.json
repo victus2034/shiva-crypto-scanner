@@ -211,7 +211,7 @@
     "last_alert_at": 1784262766.1197915
   },
   "HCLTECH.NS|supply|1252.3535|1256.8000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1784700251.2144883
   },
   "HCLTECH.NS|demand|1030.0000|1035.1395": {
@@ -3384,8 +3384,8 @@
     "last_alert_at": 0.0
   },
   "NAM-INDIA.NS|demand|1129.8000|1135.9996": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1784704353.2957163
   },
   "NIVABUPA.NS|supply|90.7164|91.1600": {
     "in_zone": false,
@@ -3731,5 +3731,11 @@
   "RBLBANK.NS|demand|318.6000|320.3885": {
     "in_zone": false,
     "last_alert_at": 0.0
+  },
+  "NAM-INDIA.NS|range_filter|sell": {
+    "last_alert_at": 1784704353.2957163
+  },
+  "OFSS.NS|range_filter|sell": {
+    "last_alert_at": 1784704353.818096
   }
 }
