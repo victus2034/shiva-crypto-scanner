@@ -595,7 +595,7 @@ def format_alert(result, zone_type, zone, distance_pct):
         f"{symbol} is {distance_pct:.2f}% away from a {side}\n"
         f"Price: {price:.6f}\n"
         f"Level: {reference:.6f}\n"
-        f"Zone: {zone['bottom']:.6f} - {zone['top']:.6f}\n\n"
+        f"Zone: {zone['bottom']:.6f} - {zone['top']:.6f}\n"
         f"Range Filter Buy Signal: {result['buy_signal']}\n"
         f"Range Filter Sell Signal: {result['sell_signal']}"
     )
