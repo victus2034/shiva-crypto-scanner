@@ -19,6 +19,7 @@ from nse_config import (
     DISCORD_STATUS_WEBHOOK_URL,
     DISCORD_WEBHOOK_URL,
     FALLBACK_WATCHLIST,
+    HISTORY_OF_ZONES_TO_KEEP,
     MARKET_CLOSE,
     MARKET_OPEN,
     MARKET_TIMEZONE,
@@ -114,7 +115,16 @@ def atr(df, period=50):
         axis=1,
     ).max(axis=1)
 
-    return tr.rolling(period).mean()
+    result = pd.Series(float("nan"), index=df.index, dtype="float64")
+    if len(tr) < period:
+        return result
+
+    # Pine's ta.atr() uses Wilder's RMA, seeded with the first period's SMA.
+    result.iloc[period - 1] = tr.iloc[:period].mean()
+    for index in range(period, len(tr)):
+        result.iloc[index] = (result.iloc[index - 1] * (period - 1) + tr.iloc[index]) / period
+
+    return result
 
 
 def find_pivots(df, swing_length=10):
@@ -163,40 +173,52 @@ def build_zones(df):
         return [], []
 
     pivot_highs, pivot_lows = find_pivots(df, SWING_LENGTH)
+    pivot_high_set = set(pivot_highs)
+    pivot_low_set = set(pivot_lows)
     supply_zones = []
     demand_zones = []
-    events = [("high", index) for index in pivot_highs] + [("low", index) for index in pivot_lows]
-    events.sort(key=lambda event: event[1])
 
-    for kind, index in events:
-        pivot_atr = atr_series.iloc[index]
-        if pd.isna(pivot_atr):
-            continue
+    # Pine confirms a pivot SWING_LENGTH bars later, creates its box using the
+    # confirmation bar's ATR, then checks all active boxes for breaks. Keeping
+    # this chronological order lets a broken box stop blocking future boxes.
+    for confirmation_index in range(SWING_LENGTH, len(df)):
+        pivot_index = confirmation_index - SWING_LENGTH
+        confirmation_atr = atr_series.iloc[confirmation_index]
 
-        atr_buffer = pivot_atr * (BOX_WIDTH / 10.0)
-        if kind == "high":
-            top = float(df["high"].iloc[index])
-            bottom = top - atr_buffer
-            zone = {"type": "supply", "created_idx": index, "top": top, "bottom": bottom, "active": True}
-            add_zone_if_not_overlapping(supply_zones, zone, pivot_atr)
-        else:
-            bottom = float(df["low"].iloc[index])
-            top = bottom + atr_buffer
-            zone = {"type": "demand", "created_idx": index, "top": top, "bottom": bottom, "active": True}
-            add_zone_if_not_overlapping(demand_zones, zone, pivot_atr)
+        if not pd.isna(confirmation_atr):
+            atr_buffer = confirmation_atr * (BOX_WIDTH / 10.0)
+            if pivot_index in pivot_high_set:
+                top = float(df["high"].iloc[pivot_index])
+                zone = {
+                    "type": "supply",
+                    "created_idx": confirmation_index,
+                    "pivot_idx": pivot_index,
+                    "top": top,
+                    "bottom": top - atr_buffer,
+                    "active": True,
+                }
+                if add_zone_if_not_overlapping(supply_zones, zone, confirmation_atr):
+                    supply_zones = supply_zones[-HISTORY_OF_ZONES_TO_KEEP:]
+            elif pivot_index in pivot_low_set:
+                bottom = float(df["low"].iloc[pivot_index])
+                zone = {
+                    "type": "demand",
+                    "created_idx": confirmation_index,
+                    "pivot_idx": pivot_index,
+                    "top": bottom + atr_buffer,
+                    "bottom": bottom,
+                    "active": True,
+                }
+                if add_zone_if_not_overlapping(demand_zones, zone, confirmation_atr):
+                    demand_zones = demand_zones[-HISTORY_OF_ZONES_TO_KEEP:]
 
-    closes = df["close"].values
-    for zone in supply_zones:
-        for index in range(zone["created_idx"] + 1, len(df)):
-            if closes[index] >= zone["top"]:
+        close = float(df["close"].iloc[confirmation_index])
+        for zone in supply_zones:
+            if zone["active"] and close >= zone["top"]:
                 zone["active"] = False
-                break
-
-    for zone in demand_zones:
-        for index in range(zone["created_idx"] + 1, len(df)):
-            if closes[index] <= zone["bottom"]:
+        for zone in demand_zones:
+            if zone["active"] and close <= zone["bottom"]:
                 zone["active"] = False
-                break
 
     return supply_zones, demand_zones
 
@@ -290,6 +312,64 @@ def normalize_yfinance_columns(data):
     return {ticker: data.xs(ticker, axis=1, level=0, drop_level=True) for ticker in tickers}
 
 
+def yfinance_time_range(now=None):
+    if SOURCE_INTERVAL != "1h":
+        return {"period": SOURCE_PERIOD}
+
+    # Yahoo can ignore an intraday period for newer listings and request from
+    # the IPO date, which its API rejects when that date is over 730 days old.
+    end = now or (pd.Timestamp.now(tz="UTC") + pd.Timedelta(days=1))
+    start = end - pd.Timedelta(days=700)
+    return {"start": start.to_pydatetime(), "end": end.to_pydatetime()}
+
+
+def resample_for_timeframe(data):
+    if TIMEFRAME == "30m" and SOURCE_INTERVAL == "15m":
+        return data.resample("30min", origin="start_day", offset="15min").agg(
+            {
+                "open": "first",
+                "high": "max",
+                "low": "min",
+                "close": "last",
+                "volume": "sum",
+            }
+        ).dropna()
+
+    if TIMEFRAME == "4h":
+        return data.resample("4h", origin="start_day", offset="15min").agg(
+            {
+                "open": "first",
+                "high": "max",
+                "low": "min",
+                "close": "last",
+                "volume": "sum",
+            }
+        ).dropna()
+
+    return data
+
+
+def confirmed_candles(data, now=None):
+    if data.empty or "Datetime" not in data.columns:
+        return data
+
+    durations = {"30m": pd.Timedelta(minutes=30), "4h": pd.Timedelta(hours=4)}
+    duration = durations.get(TIMEFRAME)
+    if duration is None:
+        return data
+
+    candle_start = pd.Timestamp(data["Datetime"].iloc[-1])
+    timezone = candle_start.tz
+    now = now or pd.Timestamp.now(tz=timezone)
+    close_hour, close_minute = parse_hhmm(MARKET_CLOSE)
+    session_close = candle_start.replace(hour=close_hour, minute=close_minute, second=0, microsecond=0)
+    candle_close = min(candle_start + duration, session_close)
+
+    if now < candle_close:
+        return data.iloc[:-1].copy()
+    return data
+
+
 def prepare_ohlcv(data):
     if data.empty:
         raise RuntimeError("empty candle data")
@@ -305,17 +385,7 @@ def prepare_ohlcv(data):
     )
     data = data[["open", "high", "low", "close", "volume"]].dropna()
 
-    if TIMEFRAME == "4h":
-        data = data.resample("4h", origin="start_day", offset="15min").agg(
-            {
-                "open": "first",
-                "high": "max",
-                "low": "min",
-                "close": "last",
-                "volume": "sum",
-            }
-        )
-        data = data.dropna()
+    data = resample_for_timeframe(data)
 
     if len(data) < ATR_PERIOD + SWING_LENGTH * 2:
         raise RuntimeError(f"not enough candles after resample: {len(data)}")
@@ -332,12 +402,12 @@ def fetch_market_data(watchlist):
         chunk = watchlist[start:start + chunk_size]
         raw = yf.download(
             tickers=" ".join(chunk),
-            period=SOURCE_PERIOD,
             interval=SOURCE_INTERVAL,
             auto_adjust=False,
             progress=False,
             threads=True,
             group_by="column",
+            **yfinance_time_range(),
         )
         grouped = normalize_yfinance_columns(raw)
 
@@ -362,11 +432,11 @@ def fetch_stock_ohlcv(symbol):
 
     data = yf.download(
         symbol,
-        period=SOURCE_PERIOD,
         interval=SOURCE_INTERVAL,
         auto_adjust=False,
         progress=False,
         threads=False,
+        **yfinance_time_range(),
     )
     if isinstance(data.columns, pd.MultiIndex):
         data.columns = data.columns.get_level_values(0)
@@ -377,10 +447,21 @@ def fetch_stock_ohlcv(symbol):
 def scan_symbol(symbol):
     df = fetch_stock_ohlcv(symbol)
     price = float(df["close"].iloc[-1])
-    supply_zones, demand_zones = build_zones(df)
+    indicator_df = confirmed_candles(df)
+    if len(indicator_df) < ATR_PERIOD + SWING_LENGTH * 2:
+        raise RuntimeError(f"not enough confirmed candles: {len(indicator_df)}")
+
+    supply_zones, demand_zones = build_zones(indicator_df)
+    for zone in supply_zones:
+        if zone["active"] and price >= zone["top"]:
+            zone["active"] = False
+    for zone in demand_zones:
+        if zone["active"] and price <= zone["bottom"]:
+            zone["active"] = False
+
     nearest_supply, supply_dist = nearest_active_zone(price, supply_zones, "supply")
     nearest_demand, demand_dist = nearest_active_zone(price, demand_zones, "demand")
-    buy_signal, sell_signal = get_range_filter_signals(df)
+    buy_signal, sell_signal = get_range_filter_signals(indicator_df)
 
     return {
         "symbol": symbol,
