@@ -287,8 +287,8 @@
     "last_alert_at": 0.0
   },
   "ITC.NS|demand|275.1000|276.0495": {
-    "in_zone": false,
-    "last_alert_at": 1784260313.3021266
+    "in_zone": true,
+    "last_alert_at": 1784693507.8675766
   },
   "INDHOTEL.NS|supply|751.8310|753.9000": {
     "in_zone": false,
@@ -1479,8 +1479,8 @@
     "last_alert_at": 0.0
   },
   "DABUR.NS|demand|417.5000|419.0333": {
-    "in_zone": false,
-    "last_alert_at": 1784611970.0067942
+    "in_zone": true,
+    "last_alert_at": 1784693506.0645247
   },
   "DALBHARAT.NS|supply|1834.8310|1844.4000": {
     "in_zone": true,
@@ -1555,8 +1555,8 @@
     "last_alert_at": 0.0
   },
   "EMMVEE.NS|demand|320.2000|322.6143": {
-    "in_zone": false,
-    "last_alert_at": 1784623942.429448
+    "in_zone": true,
+    "last_alert_at": 1784693506.4877565
   },
   "ENDURANCE.NS|supply|2914.3745|2929.2000": {
     "in_zone": false,
@@ -1798,7 +1798,7 @@
   },
   "HEROMOTOCO.NS|supply|5110.2125|5134.5000": {
     "in_zone": true,
-    "last_alert_at": 0.0
+    "last_alert_at": 1784693507.727459
   },
   "HEROMOTOCO.NS|demand|4672.5000|4692.2810": {
     "in_zone": false,
@@ -1969,7 +1969,7 @@
   },
   "IRCTC.NS|demand|492.7500|495.5700": {
     "in_zone": true,
-    "last_alert_at": 1784610729.4660063
+    "last_alert_at": 1784693508.0637043
   },
   "IGL.NS|supply|181.3170|182.0200": {
     "in_zone": false,
@@ -2058,8 +2058,8 @@
     "last_alert_at": 0.0
   },
   "APOLLOTYRE.NS|demand|418.4000|420.3062": {
-    "in_zone": false,
-    "last_alert_at": 1784261533.817863
+    "in_zone": true,
+    "last_alert_at": 1784693505.4340467
   },
   "APTUS.NS|demand|193.9800|195.2977": {
     "in_zone": false,
@@ -2437,8 +2437,8 @@
     "last_alert_at": 0.0
   },
   "CAPLIPOINT.NS|demand|2502.5000|2518.7735": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1784693505.5815651
   },
   "CONCOR.NS|demand|448.7000|450.4455": {
     "in_zone": false,
@@ -2627,7 +2627,7 @@
   },
   "NYKAA.NS|supply|330.4953|331.8500": {
     "in_zone": true,
-    "last_alert_at": 1784613098.846212
+    "last_alert_at": 1784693506.6449108
   },
   "GILLETTE.NS|supply|7929.3600|7955.0000": {
     "in_zone": true,
@@ -2749,7 +2749,7 @@
     "last_alert_at": 1784613935.8465302
   },
   "GLAND.NS|range_filter|sell": {
-    "last_alert_at": 1784613936.4766526
+    "last_alert_at": 1784693506.836743
   },
   "AEGISLOG.NS|range_filter|sell": {
     "last_alert_at": 1784614305.3456352
@@ -2829,6 +2829,26 @@
   },
   "IRCON.NS|supply|133.7819|134.3600": {
     "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "ACMESOLAR.NS|range_filter|sell": {
+    "last_alert_at": 1784693505.1318011
+  },
+  "BANDHANBNK.NS|demand|168.8100|169.9266": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "CANFINHOME.NS|demand|780.0500|783.0342": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "CAPLIPOINT.NS|range_filter|sell": {
+    "last_alert_at": 1784693505.5815651
+  },
+  "DATAPATTNS.NS|range_filter|buy": {
+    "last_alert_at": 1784693506.2352686
+  },
+  "GLENMARK.NS|range_filter|sell": {
     "last_alert_at": 0.0
   }
 }
