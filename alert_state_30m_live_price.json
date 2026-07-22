@@ -1938,7 +1938,7 @@
     "last_alert_at": 1784502199.616629
   },
   "XMRUSD|range_filter|sell": {
-    "last_alert_at": 1784685793.1785173
+    "last_alert_at": 1784687604.2165265
   },
   "NEARUSD|demand|1.91530000|1.91760300": {
     "in_zone": true,
@@ -3378,8 +3378,8 @@
     "last_alert_at": 1784653391.084668
   },
   "LINKUSD|supply|8.74539000|8.75700000": {
-    "in_zone": false,
-    "last_alert_at": 1784642598.3076894
+    "in_zone": true,
+    "last_alert_at": 1784687603.3601418
   },
   "ARBUSD|supply|0.09192050|0.09200000": {
     "in_zone": false,
@@ -3560,7 +3560,7 @@
   },
   "SPYXUSD|demand|742.06000000|742.20955000": {
     "in_zone": true,
-    "last_alert_at": 1784685792.9895725
+    "last_alert_at": 1784687603.9701438
   },
   "CRCLXUSD|supply|72.46180000|72.65000000": {
     "in_zone": false,
@@ -3669,7 +3669,7 @@
   },
   "BTCUSD|demand|66065.00000000|66118.61500000": {
     "in_zone": true,
-    "last_alert_at": 1784685792.536062
+    "last_alert_at": 1784687603.1335945
   },
   "SLVONUSD|supply|54.02165000|54.09000000": {
     "in_zone": true,
@@ -3693,7 +3693,7 @@
   },
   "QQQXUSD|supply|708.73960000|709.05000000": {
     "in_zone": true,
-    "last_alert_at": 1784685792.7937546
+    "last_alert_at": 1784687603.5780027
   },
   "ADAUSD|demand|0.17210000|0.17249460": {
     "in_zone": false,
@@ -3771,8 +3771,8 @@
     "last_alert_at": 0.0
   },
   "VIRTUAL/USDT|demand|0.65150000|0.65276050": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1784687604.6063316
   },
   "IBM/USDT:USDT|supply|217.01655000|217.43000000": {
     "in_zone": false,
@@ -3782,10 +3782,26 @@
     "last_alert_at": 1784682197.967205
   },
   "BCHUSD|demand|223.33000000|223.54465000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1784685793.4026945
   },
   "DELL/USDT:USDT|supply|429.25215000|430.00000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "APTUSD|supply|0.63138300|0.63230000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "TRIA/USDT|demand|0.00782400|0.00784894": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "GRAMUSD|supply|1.64730000|1.64900000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "EVAAUSD|demand|0.75750000|0.76085450": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
