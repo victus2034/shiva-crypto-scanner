@@ -20,8 +20,8 @@
     "last_alert_at": 0.0
   },
   "ADANIGREEN.NS|demand|1469.7000|1478.3819": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1784711526.630408
   },
   "ADANIPORTS.NS|supply|1882.8660|1890.0000": {
     "in_zone": false,
@@ -2058,7 +2058,7 @@
     "last_alert_at": 0.0
   },
   "APOLLOTYRE.NS|demand|418.4000|420.3062": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1784709214.8454602
   },
   "APTUS.NS|demand|193.9800|195.2977": {
@@ -2334,7 +2334,7 @@
     "last_alert_at": 1784087521.8483121
   },
   "HFCL.NS|supply|227.4180|229.1700": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1784709215.167205
   },
   "INDUSINDBK.NS|supply|1033.8607|1038.0000": {
@@ -2350,7 +2350,7 @@
   },
   "MEDANTA.NS|supply|1358.7120|1364.5000": {
     "in_zone": true,
-    "last_alert_at": 1784695942.6887484
+    "last_alert_at": 1784711526.7700155
   },
   "AEGISVOPAK.NS|range_filter|sell": {
     "last_alert_at": 1784020347.101894
@@ -3752,5 +3752,8 @@
   },
   "JSWENERGY.NS|range_filter|buy": {
     "last_alert_at": 1784710332.0712843
+  },
+  "PGEL.NS|range_filter|sell": {
+    "last_alert_at": 1784711526.9592469
   }
 }
