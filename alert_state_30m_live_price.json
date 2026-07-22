@@ -4,7 +4,7 @@
     "last_alert_at": 0.0
   },
   "ETHUSD|supply|1943.32600000|1946.15000000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1784682195.7245717
   },
   "ETHUSD|demand|1731.10000000|1733.36875000": {
@@ -353,7 +353,7 @@
     "last_alert_at": 0.0
   },
   "GRAMUSD|supply|1.54467000|1.54800000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1784682197.089968
   },
   "GRAMUSD|demand|1.37700000|1.37909500": {
@@ -935,7 +935,7 @@
     "last_alert_at": 1784606609.0283723
   },
   "INTCBUSD|range_filter|sell": {
-    "last_alert_at": 1784577798.318899
+    "last_alert_at": 1784683992.0762138
   },
   "RIF/USDT|range_filter|sell": {
     "last_alert_at": 1784336408.715332
@@ -1201,7 +1201,7 @@
     "last_alert_at": 1784509406.7402103
   },
   "LIT/USDT|range_filter|sell": {
-    "last_alert_at": 1784655199.0045052
+    "last_alert_at": 1784683991.829368
   },
   "INTCBUSD|demand|93.48000000|93.70130000": {
     "in_zone": true,
@@ -3390,7 +3390,7 @@
     "last_alert_at": 0.0
   },
   "NVDAXUSD|supply|207.69400000|207.80000000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1784669593.2180076
   },
   "AAPLXUSD|demand|314.90000000|315.07455000": {
@@ -3525,7 +3525,7 @@
     "last_alert_at": 0.0
   },
   "TIAUSD|supply|0.36912150|0.36940000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1784682196.450689
   },
   "T/USDT|supply|0.00404340|0.00405200": {
@@ -3551,7 +3551,7 @@
     "last_alert_at": 0.0
   },
   "BTCUSD|supply|66870.81250000|66932.00000000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1784680393.7619965
   },
   "QQQXUSD|demand|702.00000000|702.36200000": {
@@ -3560,7 +3560,7 @@
   },
   "SPYXUSD|demand|742.06000000|742.20955000": {
     "in_zone": true,
-    "last_alert_at": 1784675000.4029305
+    "last_alert_at": 1784683991.4740942
   },
   "CRCLXUSD|supply|72.46180000|72.65000000": {
     "in_zone": false,
@@ -3668,8 +3668,8 @@
     "last_alert_at": 1784671391.0459707
   },
   "BTCUSD|demand|66065.00000000|66118.61500000": {
-    "in_zone": false,
-    "last_alert_at": 1784674999.5408566
+    "in_zone": true,
+    "last_alert_at": 1784683991.2512016
   },
   "SLVONUSD|supply|54.02165000|54.09000000": {
     "in_zone": true,
