@@ -2758,8 +2758,8 @@
     "last_alert_at": 1784694748.0071678
   },
   "ABBOTINDIA.NS|supply|29134.6500|29230.0000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1784703131.3210135
   },
   "AEGISLOG.NS|demand|1174.5000|1186.5432": {
     "in_zone": false,
@@ -3408,8 +3408,8 @@
     "last_alert_at": 0.0
   },
   "OBEROIRLTY.NS|demand|1820.7000|1829.3160": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1784703131.9578557
   },
   "OIL.NS|supply|521.1775|523.9500": {
     "in_zone": false,
@@ -3640,7 +3640,7 @@
   },
   "RVNL.NS|demand|221.7900|223.1541": {
     "in_zone": true,
-    "last_alert_at": 0.0
+    "last_alert_at": 1784703132.1648684
   },
   "RAILTEL.NS|supply|323.5955|325.1500": {
     "in_zone": false,
@@ -3675,7 +3675,7 @@
   },
   "RPOWER.NS|demand|24.0100|24.1899": {
     "in_zone": true,
-    "last_alert_at": 0.0
+    "last_alert_at": 1784703132.4087725
   },
   "SBFC.NS|supply|108.0276|108.4000": {
     "in_zone": false,
@@ -3698,6 +3698,37 @@
     "last_alert_at": 0.0
   },
   "SJVN.NS|demand|63.1000|63.5018": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "APARINDS.NS|supply|14148.0300|14265.0000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "BERGEPAINT.NS|supply|566.1500|568.3500": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "FORCEMOT.NS|range_filter|sell": {
+    "last_alert_at": 1784703131.4805288
+  },
+  "JAINREC.NS|supply|346.5635|349.5000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "JUBLPHARMA.NS|supply|1036.3515|1041.0000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "KARURVYSYA.NS|supply|341.5175|343.4500": {
+    "in_zone": true,
+    "last_alert_at": 1784703131.7553165
+  },
+  "POLICYBZR.NS|supply|1611.2950|1619.6000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "RBLBANK.NS|demand|318.6000|320.3885": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
