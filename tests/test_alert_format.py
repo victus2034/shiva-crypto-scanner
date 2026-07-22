@@ -21,9 +21,7 @@ class AlertFormatTests(unittest.TestCase):
             "MSTRBUSD is 0.40% away from a BUY zone\n"
             "Price: 100.600000\n"
             "Level: 100.200000\n"
-            "Zone: 100.200000 - 100.336450\n"
-            "Range Filter Buy Signal: False\n"
-            "Range Filter Sell Signal: False",
+            "Zone: 100.200000 - 100.336450",
         )
 
     def test_nse_zone_alert_has_no_market_or_timeframe_lines(self):
@@ -40,6 +38,7 @@ class AlertFormatTests(unittest.TestCase):
         self.assertNotIn("Market:", message)
         self.assertNotIn("Timeframe:", message)
         self.assertNotIn("\n\n", message)
+        self.assertNotIn("Range Filter", message)
 
     def test_range_filter_alerts_are_compact(self):
         crypto_result = {
