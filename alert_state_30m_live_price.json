@@ -162,7 +162,7 @@
     "last_alert_at": 0.0
   },
   "GOOGLXUSD|demand|342.00000000|342.50050000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1784435598.974758
   },
   "COINXUSD|range_filter|sell": {
@@ -1961,7 +1961,7 @@
     "last_alert_at": 1784509407.8024442
   },
   "1000BONKUSD|range_filter|sell": {
-    "last_alert_at": 1784471590.6288831
+    "last_alert_at": 1784748790.6617143
   },
   "INTCBUSD|supply|94.46805000|94.49000000": {
     "in_zone": true,
@@ -2779,7 +2779,7 @@
     "last_alert_at": 1784556204.4199927
   },
   "SPCXXUSD|demand|116.20000000|116.46295000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1784747001.809267
   },
   "SEIUSD|range_filter|sell": {
@@ -3693,7 +3693,7 @@
   },
   "QQQXUSD|supply|708.73960000|709.05000000": {
     "in_zone": true,
-    "last_alert_at": 1784745206.6405659
+    "last_alert_at": 1784748789.713289
   },
   "ADAUSD|demand|0.17210000|0.17249460": {
     "in_zone": true,
@@ -4045,8 +4045,8 @@
     "last_alert_at": 1784747001.267742
   },
   "INJUSD|demand|5.18000000|5.18410500": {
-    "in_zone": false,
-    "last_alert_at": 1784730804.657855
+    "in_zone": true,
+    "last_alert_at": 1784748790.3604674
   },
   "XLM/USDT|demand|0.18160000|0.18186100": {
     "in_zone": false,
@@ -4149,7 +4149,7 @@
   },
   "TSLAXUSD|demand|375.40000000|375.70975000": {
     "in_zone": true,
-    "last_alert_at": 1784745206.8650942
+    "last_alert_at": 1784748789.9071567
   },
   "SYN/USDT|supply|0.19371500|0.19470000": {
     "in_zone": false,
@@ -4195,6 +4195,29 @@
     "last_alert_at": 0.0
   },
   "DELL/USDT:USDT|supply|449.65930000|450.70000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "RIVERUSD|supply|3.53881000|3.54800000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "AMZNXUSD|range_filter|buy": {
+    "last_alert_at": 1784748790.0889716
+  },
+  "GOOGLXUSD|supply|357.29285000|357.55000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "INJUSD|supply|5.25453000|5.25900000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "FARTCOIN/USDT|supply|0.14040950|0.14070000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "SXT/USDT|supply|0.00739672|0.00741200": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
