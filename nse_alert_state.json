@@ -1471,8 +1471,8 @@
     "last_alert_at": 0.0
   },
   "DCMSHRIRAM.NS|demand|1002.8000|1007.9685": {
-    "in_zone": false,
-    "last_alert_at": 1784519506.8165658
+    "in_zone": true,
+    "last_alert_at": 1784707968.4908626
   },
   "DABUR.NS|supply|574.5502|576.6000": {
     "in_zone": false,
@@ -1556,7 +1556,7 @@
   },
   "EMMVEE.NS|demand|320.2000|322.6143": {
     "in_zone": true,
-    "last_alert_at": 1784693506.4877565
+    "last_alert_at": 1784707968.7290514
   },
   "ENDURANCE.NS|supply|2914.3745|2929.2000": {
     "in_zone": false,
@@ -1969,15 +1969,15 @@
   },
   "IRCTC.NS|demand|492.7500|495.5700": {
     "in_zone": true,
-    "last_alert_at": 1784693508.0637043
+    "last_alert_at": 1784707968.9307227
   },
   "IGL.NS|supply|181.3170|182.0200": {
     "in_zone": false,
     "last_alert_at": 0.0
   },
   "IGL.NS|demand|149.6400|150.3856": {
-    "in_zone": false,
-    "last_alert_at": 1784103148.7221334
+    "in_zone": true,
+    "last_alert_at": 1784707969.1319544
   },
   "INDUSTOWER.NS|supply|479.2350|481.3500": {
     "in_zone": false,
@@ -2360,7 +2360,7 @@
   },
   "AIAENG.NS|demand|4624.0000|4649.9695": {
     "in_zone": true,
-    "last_alert_at": 1784692301.6299067
+    "last_alert_at": 1784707968.0509129
   },
   "BAYERCROP.NS|supply|4291.9825|4306.0000": {
     "in_zone": true,
@@ -3740,5 +3740,11 @@
   },
   "CANHLIFE.NS|range_filter|sell": {
     "last_alert_at": 1784706756.55192
+  },
+  "CHALET.NS|range_filter|sell": {
+    "last_alert_at": 1784707968.2850006
+  },
+  "LUPIN.NS|range_filter|sell": {
+    "last_alert_at": 1784707969.5373304
   }
 }
