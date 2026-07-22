@@ -211,8 +211,8 @@
     "last_alert_at": 1784262766.1197915
   },
   "HCLTECH.NS|supply|1252.3535|1256.8000": {
-    "in_zone": false,
-    "last_alert_at": 1784700251.2144883
+    "in_zone": true,
+    "last_alert_at": 1784706756.9246635
   },
   "HCLTECH.NS|demand|1030.0000|1035.1395": {
     "in_zone": false,
@@ -312,7 +312,7 @@
   },
   "IRFC.NS|demand|87.0500|87.5930": {
     "in_zone": true,
-    "last_alert_at": 1784692306.7887228
+    "last_alert_at": 1784706757.397342
   },
   "INFY.NS|supply|1273.5995|1278.8000": {
     "in_zone": false,
@@ -879,7 +879,7 @@
     "last_alert_at": 1784692301.868021
   },
   "ABCAPITAL.NS|supply|408.8205|410.6000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1784692302.0695791
   },
   "ABCAPITAL.NS|demand|272.7000|274.1108": {
@@ -2405,7 +2405,7 @@
     "last_alert_at": 1784094069.5159557
   },
   "ACMESOLAR.NS|demand|361.7000|364.1730": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1784695942.1759152
   },
   "AARTIIND.NS|demand|462.2500|464.8297": {
@@ -2422,7 +2422,7 @@
   },
   "ANURAS.NS|demand|1250.5000|1256.1120": {
     "in_zone": true,
-    "last_alert_at": 1784692302.449758
+    "last_alert_at": 1784706756.2024412
   },
   "APARINDS.NS|demand|13409.0000|13531.5200": {
     "in_zone": false,
@@ -2575,7 +2575,7 @@
   },
   "IOC.NS|supply|143.5746|144.0900": {
     "in_zone": true,
-    "last_alert_at": 1784692306.1331847
+    "last_alert_at": 1784706757.160697
   },
   "NAUKRI.NS|supply|1222.3462|1228.2000": {
     "in_zone": false,
@@ -3737,5 +3737,8 @@
   },
   "OFSS.NS|range_filter|sell": {
     "last_alert_at": 1784704353.818096
+  },
+  "CANHLIFE.NS|range_filter|sell": {
+    "last_alert_at": 1784706756.55192
   }
 }
