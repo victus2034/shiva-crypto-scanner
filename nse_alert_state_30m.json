@@ -347,8 +347,8 @@
     "last_alert_at": 0.0
   },
   "AXISBANK.NS|demand|1230.5000|1232.3910": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1784703111.2398367
   },
   "BEML.NS|supply|1815.3505|1817.6000": {
     "in_zone": false,
@@ -507,7 +507,7 @@
     "last_alert_at": 0.0
   },
   "BPCL.NS|supply|320.9835|321.5000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1784702487.2857463
   },
   "BPCL.NS|demand|310.5000|310.9043": {
@@ -867,7 +867,7 @@
     "last_alert_at": 0.0
   },
   "CROMPTON.NS|demand|251.8000|252.2190": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1784702488.0454988
   },
   "CUMMINSIND.NS|supply|5898.7500|5906.5000": {
@@ -1288,7 +1288,7 @@
   },
   "HDFCLIFE.NS|demand|551.0500|551.7665": {
     "in_zone": true,
-    "last_alert_at": 0.0
+    "last_alert_at": 1784703111.7140384
   },
   "HFCL.NS|supply|227.9109|228.4500": {
     "in_zone": false,
@@ -1567,8 +1567,8 @@
     "last_alert_at": 0.0
   },
   "INDUSINDBK.NS|supply|1067.2555|1068.7500": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1784703111.947687
   },
   "INDUSINDBK.NS|demand|1017.1500|1018.5650": {
     "in_zone": false,
@@ -1654,8 +1654,8 @@
     "last_alert_at": 0.0
   },
   "JSWCEMENT.NS|demand|138.8100|139.0442": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1784703112.158144
   },
   "JSWDULUX.NS|supply|3107.4395|3112.5000": {
     "in_zone": false,
@@ -2185,7 +2185,7 @@
     "last_alert_at": 0.0
   },
   "NESTLEIND.NS|range_filter|sell": {
-    "last_alert_at": 0.0
+    "last_alert_at": 1784703112.8234882
   },
   "NESTLEIND.NS|demand|1372.7000|1374.6700": {
     "in_zone": false,
@@ -2288,8 +2288,8 @@
     "last_alert_at": 0.0
   },
   "OFSS.NS|demand|11337.0000|11360.2300": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1784703113.1523712
   },
   "POLICYBZR.NS|supply|1708.5590|1711.2000": {
     "in_zone": false,
@@ -2516,7 +2516,7 @@
     "last_alert_at": 0.0
   },
   "RHIM.NS|demand|401.5000|402.7523": {
-    "in_zone": false,
+    "in_zone": true,
     "last_alert_at": 0.0
   },
   "RITES.NS|supply|220.9546|221.2300": {
@@ -2537,7 +2537,7 @@
   },
   "RVNL.NS|demand|221.7900|222.1761": {
     "in_zone": true,
-    "last_alert_at": 0.0
+    "last_alert_at": 1784703113.714247
   },
   "RAILTEL.NS|supply|297.8880|298.2500": {
     "in_zone": false,
@@ -2576,8 +2576,8 @@
     "last_alert_at": 0.0
   },
   "RPOWER.NS|demand|24.0100|24.0524": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1784703114.0579948
   },
   "SBFC.NS|supply|97.3181|97.4500": {
     "in_zone": false,
@@ -2592,6 +2592,25 @@
     "last_alert_at": 0.0
   },
   "SJVN.NS|supply|69.6661|69.7300": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "ADANIGREEN.NS|range_filter|sell": {
+    "last_alert_at": 1784703110.6708043
+  },
+  "ASIANPAINT.NS|range_filter|sell": {
+    "last_alert_at": 1784703110.9647021
+  },
+  "BEL.NS|range_filter|sell": {
+    "last_alert_at": 1784703111.4796348
+  },
+  "JSL.NS|range_filter|sell": {
+    "last_alert_at": 1784703112.380294
+  },
+  "KPIL.NS|range_filter|sell": {
+    "last_alert_at": 1784703112.6183345
+  },
+  "MPHASIS.NS|demand|2121.8999|2125.4284": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
