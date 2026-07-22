@@ -1084,7 +1084,7 @@
     "last_alert_at": 0.0
   },
   "APTUSD|supply|0.62860700|0.62900000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1784741597.3201747
   },
   "SOXLBUSD|supply|134.90515000|135.70000000": {
@@ -1704,7 +1704,7 @@
   },
   "GOOGLXUSD|demand|345.60000000|345.66675000": {
     "in_zone": true,
-    "last_alert_at": 1784477007.4266038
+    "last_alert_at": 1784747000.869798
   },
   "AIOTUSD|range_filter|sell": {
     "last_alert_at": 1784440999.881867
@@ -2051,7 +2051,7 @@
     "last_alert_at": 0.0
   },
   "TAO/USDT|range_filter|sell": {
-    "last_alert_at": 1784658795.5125165
+    "last_alert_at": 1784747001.5248938
   },
   "METAXUSD|supply|643.25685000|643.45000000": {
     "in_zone": true,
@@ -2076,7 +2076,7 @@
     "last_alert_at": 1784644390.3017688
   },
   "BNBUSD|range_filter|sell": {
-    "last_alert_at": 1784655198.496275
+    "last_alert_at": 1784747001.095903
   },
   "DODO/USDT|demand|0.01535000|0.01536680": {
     "in_zone": false,
@@ -2779,8 +2779,8 @@
     "last_alert_at": 1784556204.4199927
   },
   "SPCXXUSD|demand|116.20000000|116.46295000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1784747001.809267
   },
   "SEIUSD|range_filter|sell": {
     "last_alert_at": 1784692998.3094463
@@ -4042,7 +4042,7 @@
   },
   "NEARUSD|demand|1.87000000|1.87288500": {
     "in_zone": true,
-    "last_alert_at": 1784743393.236016
+    "last_alert_at": 1784747001.267742
   },
   "INJUSD|demand|5.18000000|5.18410500": {
     "in_zone": false,
@@ -4171,6 +4171,30 @@
     "last_alert_at": 1784745209.5454605
   },
   "AXTI/USDT:USDT|supply|56.59010000|56.81000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "SLVONUSD|supply|55.26580000|55.33000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "ZECUSD|supply|518.17480000|519.15000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "APTUSD|demand|0.60100000|0.60131500": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "TAO/USDT|supply|208.65335000|208.97000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "CBRSBUSD|supply|242.91945000|243.83000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "DELL/USDT:USDT|supply|449.65930000|450.70000000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
