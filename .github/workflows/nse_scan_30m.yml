@@ -1,0 +1,74 @@
+name: Shiva NSE Scanner 30m
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: shiva-nse-scanner-30m
+  cancel-in-progress: false
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Check NSE 30-minute Discord webhook configuration
+        env:
+          DISCORD_NSE_30M_WEBHOOK_URL: ${{ secrets.DISCORD_NSE_30M_WEBHOOK_URL }}
+          DISCORD_STATUS_WEBHOOK_URL: ${{ secrets.DISCORD_STATUS_WEBHOOK_URL }}
+        run: |
+          if [ -z "$DISCORD_NSE_30M_WEBHOOK_URL" ]; then
+            echo "::error::DISCORD_NSE_30M_WEBHOOK_URL is not configured."
+            exit 1
+          fi
+
+          if [ -z "$DISCORD_STATUS_WEBHOOK_URL" ]; then
+            echo "::warning::DISCORD_STATUS_WEBHOOK_URL is not configured."
+          fi
+
+      - name: Run NSE 30-minute scanner once
+        env:
+          DISCORD_NSE_WEBHOOK_URL: ${{ secrets.DISCORD_NSE_30M_WEBHOOK_URL }}
+          DISCORD_STATUS_WEBHOOK_URL: ${{ secrets.DISCORD_STATUS_WEBHOOK_URL }}
+        run: python nse_scanner_30m.py --once
+
+      - name: Persist NSE 30-minute alert state
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -f nse_alert_state_30m.json
+          if git diff --cached --quiet; then
+            echo "No NSE 30-minute alert state changes to save."
+            exit 0
+          fi
+
+          git commit -m "Update NSE 30-minute alert state"
+          for attempt in 1 2 3; do
+            if git push; then
+              exit 0
+            fi
+
+            echo "::warning::NSE 30-minute state push failed on attempt ${attempt}; refreshing branch."
+            git pull --rebase origin main || {
+              echo "::warning::Could not rebase NSE 30-minute state. Alerts were already sent."
+              exit 0
+            }
+          done
+
+          echo "::warning::Could not persist NSE 30-minute state after retries. Alerts were already sent."
