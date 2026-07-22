@@ -1161,7 +1161,7 @@
     "last_alert_at": 0.0
   },
   "BHARATFORG.NS|supply|2225.6344|2235.8999": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1784613936.1499777
   },
   "BHARATFORG.NS|demand|1818.4000|1828.7115": {
@@ -2737,7 +2737,7 @@
     "last_alert_at": 1784609531.8761733
   },
   "CGCL.NS|range_filter|sell": {
-    "last_alert_at": 1784610729.2830977
+    "last_alert_at": 1784694747.513551
   },
   "AEGISVOPAK.NS|range_filter|buy": {
     "last_alert_at": 1784613098.515316
@@ -2755,7 +2755,7 @@
     "last_alert_at": 1784614305.3456352
   },
   "GODREJCP.NS|range_filter|sell": {
-    "last_alert_at": 1784614305.9164615
+    "last_alert_at": 1784694748.0071678
   },
   "ABBOTINDIA.NS|supply|29134.6500|29230.0000": {
     "in_zone": false,
@@ -2818,7 +2818,7 @@
     "last_alert_at": 1784692304.8976908
   },
   "HFCL.NS|range_filter|buy": {
-    "last_alert_at": 0.0
+    "last_alert_at": 1784694748.3266165
   },
   "HEROMOTOCO.NS|range_filter|buy": {
     "last_alert_at": 1784692305.4403892
@@ -2849,6 +2849,12 @@
     "last_alert_at": 1784693506.2352686
   },
   "GLENMARK.NS|range_filter|sell": {
-    "last_alert_at": 0.0
+    "last_alert_at": 1784694747.8739336
+  },
+  "CHOLAFIN.NS|range_filter|sell": {
+    "last_alert_at": 1784694747.7342324
+  },
+  "GRANULES.NS|range_filter|sell": {
+    "last_alert_at": 1784694748.15015
   }
 }
