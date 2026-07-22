@@ -2019,8 +2019,8 @@
     "last_alert_at": 1784592209.6979566
   },
   "GOOGLXUSD|demand|346.45000000|346.53005000": {
-    "in_zone": false,
-    "last_alert_at": 1784727195.1808298
+    "in_zone": true,
+    "last_alert_at": 1784734396.1627102
   },
   "COINXUSD|supply|159.26750000|159.36000000": {
     "in_zone": true,
@@ -3559,7 +3559,7 @@
     "last_alert_at": 1784703794.847077
   },
   "SPYXUSD|demand|742.06000000|742.20955000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1784732607.1450813
   },
   "CRCLXUSD|supply|72.46180000|72.65000000": {
@@ -3858,7 +3858,7 @@
     "last_alert_at": 0.0
   },
   "MRVL/USDT:USDT|supply|214.41750000|214.90000000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1784732608.461601
   },
   "LTCUSD|demand|45.32000000|45.37365000": {
@@ -3933,16 +3933,16 @@
     "last_alert_at": 1784725400.286515
   },
   "SOLUSD|supply|78.92962750|79.04000000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1784734395.9275293
   },
   "DOGEUSD|supply|0.07447584|0.07457000": {
     "in_zone": false,
     "last_alert_at": 0.0
   },
   "AAVEUSD|supply|98.03476500|98.19800000": {
-    "in_zone": false,
-    "last_alert_at": 1784729001.615562
+    "in_zone": true,
+    "last_alert_at": 1784734396.489686
   },
   "FILUSD|demand|0.76500000|0.76580100": {
     "in_zone": true,
@@ -4021,7 +4021,7 @@
     "last_alert_at": 0.0
   },
   "ZECUSD|demand|511.41000000|512.46770000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1784732606.1215577
   },
   "T/USDT|supply|0.00371735|0.00372000": {
@@ -4045,7 +4045,7 @@
     "last_alert_at": 1784730803.7549005
   },
   "INJUSD|demand|5.18000000|5.18410500": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1784730804.657855
   },
   "XLM/USDT|demand|0.18160000|0.18186100": {
@@ -4092,5 +4092,9 @@
   },
   "SXT/USDT|range_filter|buy": {
     "last_alert_at": 1784732607.6830823
+  },
+  "MUSD|supply|1.19201300|1.19410000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
   }
 }
