@@ -3152,8 +3152,8 @@
     "last_alert_at": 1784698396.2925322
   },
   "SEIUSD|demand|0.04570000|0.04572950": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1784716400.3830636
   },
   "IBM/USDT:USDT|demand|210.07000000|210.17045000": {
     "in_zone": false,
@@ -3560,7 +3560,7 @@
   },
   "SPYXUSD|demand|742.06000000|742.20955000": {
     "in_zone": true,
-    "last_alert_at": 1784714595.6256745
+    "last_alert_at": 1784716400.1229324
   },
   "CRCLXUSD|supply|72.46180000|72.65000000": {
     "in_zone": false,
@@ -3752,7 +3752,7 @@
   },
   "MSTRBUSD|demand|100.20000000|100.33645000": {
     "in_zone": true,
-    "last_alert_at": 1784714595.8108068
+    "last_alert_at": 1784716401.455432
   },
   "XRPUSD|supply|1.16323450|1.16460000": {
     "in_zone": false,
@@ -3867,7 +3867,7 @@
   },
   "TSLAXUSD|supply|380.06615000|380.35000000": {
     "in_zone": true,
-    "last_alert_at": 1784710997.5975177
+    "last_alert_at": 1784716399.9376063
   },
   "NVDAXUSD|range_filter|sell": {
     "last_alert_at": 1784698395.4866052
@@ -3941,6 +3941,14 @@
     "last_alert_at": 0.0
   },
   "AAVEUSD|supply|98.03476500|98.19800000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "FILUSD|demand|0.76500000|0.76580100": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "BILLUSD|supply|0.02733880|0.02745000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
