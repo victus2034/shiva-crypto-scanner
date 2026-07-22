@@ -3607,8 +3607,8 @@
     "last_alert_at": 0.0
   },
   "SYN/USDT|demand|0.18840000|0.18926100": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1784712792.9253683
   },
   "XRPUSD|range_filter|sell": {
     "last_alert_at": 1784667795.5067408
@@ -3929,6 +3929,14 @@
     "last_alert_at": 1784709196.0655005
   },
   "PAXGUSD|supply|4124.70435000|4127.00000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "SOLUSD|supply|78.92962750|79.04000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "DOGEUSD|supply|0.07447584|0.07457000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
