@@ -595,13 +595,9 @@ def format_alert(result, zone_type, zone, distance_pct):
         f"{symbol} is {distance_pct:.2f}% away from a {side}\n"
         f"Price: {price:.6f}\n"
         f"Level: {reference:.6f}\n"
-        f"Zone: {zone['bottom']:.6f} - {zone['top']:.6f}\n"
-        f"Exchange: {result['exchange']}\n"
-        f"Price source: {result['price_source'].replace('_', ' ')}\n"
-        f"Candle time UTC: {time.strftime('%Y-%m-%d %H:%M', time.gmtime(result['candle_time'] / 1000))}\n"
+        f"Zone: {zone['bottom']:.6f} - {zone['top']:.6f}\n\n"
         f"Range Filter Buy Signal: {result['buy_signal']}\n"
-        f"Range Filter Sell Signal: {result['sell_signal']}\n"
-        f"Timeframe: {TIMEFRAME}"
+        f"Range Filter Sell Signal: {result['sell_signal']}"
     )
 
 
@@ -614,11 +610,7 @@ def format_signal_alert(result, signal_type):
         f"{symbol} Range Filter {label} signal\n"
         f"Price: {price:.6f}\n"
         f"Nearest Demand Distance: {result['demand_dist']:.2f}%\n"
-        f"Nearest Supply Distance: {result['supply_dist']:.2f}%\n"
-        f"Exchange: {result['exchange']}\n"
-        f"Price source: {result['price_source'].replace('_', ' ')}\n"
-        f"Candle time UTC: {time.strftime('%Y-%m-%d %H:%M', time.gmtime(result['candle_time'] / 1000))}\n"
-        f"Timeframe: {TIMEFRAME}"
+        f"Nearest Supply Distance: {result['supply_dist']:.2f}%"
     )
 
 

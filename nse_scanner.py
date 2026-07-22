@@ -490,11 +490,9 @@ def format_alert(result, zone_type, zone, distance_pct):
         f"{result['symbol']} is {distance_pct:.2f}% away from a {side}\n"
         f"Price: {result['price']:.2f}\n"
         f"Level: {reference:.2f}\n"
-        f"Zone: {zone['bottom']:.2f} - {zone['top']:.2f}\n"
+        f"Zone: {zone['bottom']:.2f} - {zone['top']:.2f}\n\n"
         f"Range Filter Buy Signal: {result['buy_signal']}\n"
-        f"Range Filter Sell Signal: {result['sell_signal']}\n"
-        f"Market: NSE\n"
-        f"Timeframe: {TIMEFRAME}"
+        f"Range Filter Sell Signal: {result['sell_signal']}"
     )
 
 
@@ -504,9 +502,7 @@ def format_signal_alert(result, signal_type):
         f"{result['symbol']} Range Filter {label} signal\n"
         f"Price: {result['price']:.2f}\n"
         f"Nearest Demand Distance: {result['demand_dist']:.2f}%\n"
-        f"Nearest Supply Distance: {result['supply_dist']:.2f}%\n"
-        f"Market: NSE\n"
-        f"Timeframe: {TIMEFRAME}"
+        f"Nearest Supply Distance: {result['supply_dist']:.2f}%"
     )
 
 
