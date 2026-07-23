@@ -6807,8 +6807,9 @@
     "last_alert_at": 0.0
   },
   "RELIANCE.NS|demand|1253.6000|1258.1895": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1784799182.6916406,
+    "last_attempt_at": 1784799182.6916406
   },
   "RPOWER.NS|supply|28.5432|28.7500": {
     "in_zone": false,
@@ -8113,6 +8114,16 @@
     "last_attempt_at": 0.0
   },
   "APARINDS.NS|demand|11864.0000|11940.7613": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "AXISBANK.NS|demand|1125.4000|1128.7279": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "CGPOWER.NS|demand|795.9500|800.3409": {
     "in_zone": false,
     "last_alert_at": 0.0,
     "last_attempt_at": 0.0
