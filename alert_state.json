@@ -55988,8 +55988,8 @@
     "last_alert_at": 0.0
   },
   "DOTUSD|demand|0.80300000|0.80841500": {
-    "in_zone": false,
-    "last_alert_at": 1784812877.1298864
+    "in_zone": true,
+    "last_alert_at": 1784818925.142144
   },
   "BCHUSD|supply|204.16095000|205.39000000": {
     "in_zone": true,
@@ -57783,8 +57783,8 @@
     "last_alert_at": 1784400091.3136969
   },
   "BABA/USDT:USDT|demand|113.07000000|113.54745000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1784818925.5790923
   },
   "NBIS/USDT:USDT|demand|161.58000000|163.25910000": {
     "in_zone": false,
@@ -58181,5 +58181,11 @@
   "DOGEUSD|supply|0.07903390|0.07936000": {
     "in_zone": false,
     "last_alert_at": 0.0
+  },
+  "MSTRBUSD|range_filter|sell": {
+    "last_alert_at": 1784818925.3737426
+  },
+  "HOOD/USDT:USDT|range_filter|sell": {
+    "last_alert_at": 1784818925.8173459
   }
 }
