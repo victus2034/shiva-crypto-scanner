@@ -3745,7 +3745,7 @@
     "last_alert_at": 1784778772.3346865
   },
   "LUPIN.NS|range_filter|sell": {
-    "last_alert_at": 1784707969.5373304
+    "last_alert_at": 1784782335.3762455
   },
   "MINDACORP.NS|range_filter|sell": {
     "last_alert_at": 1784778778.6880863
@@ -4353,8 +4353,8 @@
     "last_alert_at": 0.0
   },
   "BPCL.NS|supply|318.2598|320.0000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1784782333.8292713
   },
   "BPCL.NS|demand|299.7500|301.1146": {
     "in_zone": false,
@@ -4437,8 +4437,8 @@
     "last_alert_at": 1784779936.887182
   },
   "BOSCHLTD.NS|supply|42388.4921|42555.0000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1784782333.9768562
   },
   "BOSCHLTD.NS|demand|39580.0000|39751.6592": {
     "in_zone": false,
@@ -4722,7 +4722,7 @@
   },
   "CONCORDBIO.NS|demand|1258.9000|1267.1041": {
     "in_zone": true,
-    "last_alert_at": 0.0
+    "last_alert_at": 1784782334.1755366
   },
   "CONCOR.NS|supply|511.2747|513.5000": {
     "in_zone": false,
@@ -4733,8 +4733,8 @@
     "last_alert_at": 0.0
   },
   "COROMANDEL.NS|supply|2068.9869|2079.8999": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1784782334.3292677
   },
   "COROMANDEL.NS|demand|1900.4000|1911.1556": {
     "in_zone": false,
@@ -5102,7 +5102,7 @@
   },
   "GILLETTE.NS|supply|7969.0326|7998.5000": {
     "in_zone": true,
-    "last_alert_at": 0.0
+    "last_alert_at": 1784782334.6339242
   },
   "GILLETTE.NS|demand|7500.5000|7528.7792": {
     "in_zone": false,
@@ -5514,7 +5514,7 @@
   },
   "ITI.NS|demand|277.5500|279.2300": {
     "in_zone": true,
-    "last_alert_at": 0.0
+    "last_alert_at": 1784782334.9103818
   },
   "INDGN.NS|supply|520.4891|523.0000": {
     "in_zone": false,
@@ -5561,8 +5561,8 @@
     "last_alert_at": 0.0
   },
   "IOC.NS|supply|143.5224|144.0900": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1784782335.0729492
   },
   "IOC.NS|demand|136.6000|137.1692": {
     "in_zone": false,
@@ -5904,7 +5904,7 @@
     "last_alert_at": 0.0
   },
   "KEC.NS|demand|466.0000|469.4434": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1784779940.9899416
   },
   "KFINTECH.NS|supply|925.2944|930.0000": {
@@ -6388,7 +6388,7 @@
   },
   "OBEROIRLTY.NS|demand|1820.7000|1829.4293": {
     "in_zone": true,
-    "last_alert_at": 0.0
+    "last_alert_at": 1784782336.0695112
   },
   "ONGC.NS|supply|303.7656|304.9500": {
     "in_zone": false,
@@ -6844,6 +6844,22 @@
   },
   "NTPCGREEN.NS|supply|106.3446|106.9000": {
     "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "HEROMOTOCO.NS|supply|5455.4179|5483.5000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "M&M.NS|supply|3383.3822|3399.0000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "NBCC.NS|demand|94.3400|94.8924": {
+    "in_zone": true,
+    "last_alert_at": 1784782335.5875099
+  },
+  "NIVABUPA.NS|demand|84.2300|84.6038": {
+    "in_zone": true,
     "last_alert_at": 0.0
   }
 }
