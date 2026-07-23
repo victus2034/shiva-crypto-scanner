@@ -3901,8 +3901,9 @@
     "last_alert_at": 0.0
   },
   "ADANIPORTS.NS|demand|1760.2000|1767.8771": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1784796739.7535586,
+    "last_attempt_at": 1784796739.7535586
   },
   "ADANIPOWER.NS|supply|234.1871|235.4600": {
     "in_zone": false,
@@ -4183,7 +4184,7 @@
     "last_alert_at": 0.0
   },
   "DMART.NS|supply|4084.9545|4101.5000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1784794365.7992415,
     "last_attempt_at": 1784794365.7992415
   },
@@ -5509,8 +5510,9 @@
     "last_alert_at": 0.0
   },
   "IRB.NS|demand|19.2950|19.3763": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1784796739.9919024,
+    "last_attempt_at": 1784796739.9919024
   },
   "IRCON.NS|supply|133.7599|134.3600": {
     "in_zone": false,
