@@ -1201,7 +1201,7 @@
     "last_alert_at": 1784509406.7402103
   },
   "LIT/USDT|range_filter|sell": {
-    "last_alert_at": 1784685793.609941
+    "last_alert_at": 1784777590.319032
   },
   "INTCBUSD|demand|93.48000000|93.70130000": {
     "in_zone": true,
@@ -2380,7 +2380,7 @@
     "last_alert_at": 1784511195.0205915
   },
   "1000PEPEUSD|range_filter|sell": {
-    "last_alert_at": 1784646198.682549
+    "last_alert_at": 1784777589.8888152
   },
   "MUBUSD|range_filter|sell": {
     "last_alert_at": 1784692999.4938583
@@ -3614,7 +3614,7 @@
     "last_alert_at": 1784745206.2499661
   },
   "AVAXUSD|range_filter|sell": {
-    "last_alert_at": 1784667795.6993005
+    "last_alert_at": 1784777589.3222907
   },
   "BILLUSD|supply|0.02599400|0.02609000": {
     "in_zone": false,
@@ -4069,8 +4069,8 @@
     "last_alert_at": 1784729002.0717735
   },
   "1000PEPEUSD|demand|0.00283160|0.00283411": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1784777589.8888152
   },
   "RIF/USDT|demand|0.04551000|0.04668070": {
     "in_zone": false,
@@ -4324,7 +4324,7 @@
     "last_alert_at": 0.0
   },
   "SPYXUSD|range_filter|sell": {
-    "last_alert_at": 1784759588.3181074
+    "last_alert_at": 1784777589.4903145
   },
   "COINXUSD|supply|177.82035000|178.14000000": {
     "in_zone": false,
@@ -4468,5 +4468,8 @@
   "GOOGLXUSD|demand|325.50000000|325.92410000": {
     "in_zone": false,
     "last_alert_at": 0.0
+  },
+  "AIOTUSD|range_filter|buy": {
+    "last_alert_at": 1784777589.6227674
   }
 }
