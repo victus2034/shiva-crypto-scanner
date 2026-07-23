@@ -2801,7 +2801,7 @@
     "last_alert_at": 0.0
   },
   "CBRSBUSD|range_filter|buy": {
-    "last_alert_at": 1784727196.651795
+    "last_alert_at": 1784764993.0357213
   },
   "GOOGLXUSD|range_filter|sell": {
     "last_alert_at": 1784635402.3966463
@@ -3499,7 +3499,7 @@
     "last_alert_at": 1784655199.163339
   },
   "FLNC/USDT:USDT|demand|14.62000000|14.64995000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1784763199.6406002
   },
   "SOLUSD|range_filter|sell": {
@@ -4025,8 +4025,8 @@
     "last_alert_at": 1784732606.1215577
   },
   "T/USDT|supply|0.00371735|0.00372000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1784764992.8162463
   },
   "BZ/USDT:USDT|supply|91.22165000|91.33000000": {
     "in_zone": true,
@@ -4203,7 +4203,7 @@
     "last_alert_at": 0.0
   },
   "AMZNXUSD|range_filter|buy": {
-    "last_alert_at": 1784750594.76083
+    "last_alert_at": 1784764992.5861692
   },
   "GOOGLXUSD|supply|357.29285000|357.55000000": {
     "in_zone": false,
@@ -4276,8 +4276,8 @@
     "last_alert_at": 0.0
   },
   "BTCUSD|supply|66318.87250000|66371.00000000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1784764992.3090065
   },
   "HYPEUSD|demand|57.45000000|57.55870500": {
     "in_zone": false,
@@ -4366,6 +4366,14 @@
     "last_alert_at": 0.0
   },
   "VELVET/USDT|supply|0.52008100|0.52128000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "ZECUSD|demand|502.06000000|503.12775000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "COINXUSD|demand|166.05000000|166.30985000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
