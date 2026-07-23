@@ -2356,7 +2356,7 @@
     "last_alert_at": 1784523804.9394708
   },
   "GRAMUSD|range_filter|buy": {
-    "last_alert_at": 1784507600.0857208
+    "last_alert_at": 1784800992.0875337
   },
   "1000PEPEUSD|demand|0.00280590|0.00280928": {
     "in_zone": false,
@@ -4013,8 +4013,8 @@
     "last_alert_at": 1784790197.8120441
   },
   "XRPUSD|demand|1.12880000|1.13005050": {
-    "in_zone": false,
-    "last_alert_at": 1784793797.63391
+    "in_zone": true,
+    "last_alert_at": 1784800991.8470602
   },
   "SLVONUSD|demand|53.63000000|53.68825000": {
     "in_zone": false,
@@ -4505,7 +4505,7 @@
     "last_alert_at": 1784795591.0569818
   },
   "SPCXXUSD|supply|117.16610000|117.40000000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1784797394.8382325
   },
   "NVDAXUSD|demand|202.05000000|202.07600000": {
@@ -4589,5 +4589,9 @@
   "1000BONKUSD|demand|0.00289500|0.00290060": {
     "in_zone": false,
     "last_alert_at": 0.0
+  },
+  "BABA/USDT:USDT|supply|117.21280000|117.34000000": {
+    "in_zone": true,
+    "last_alert_at": 1784800992.2220657
   }
 }
