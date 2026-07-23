@@ -2,8 +2,6 @@ name: Shiva NSE Scanner
 
 on:
   workflow_dispatch:
-  schedule:
-    - cron: "10,31,50 3-9 * * 1-5"
 
 permissions:
   contents: write

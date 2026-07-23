@@ -509,8 +509,21 @@ def send_discord_message(message, webhook_env_name="DISCORD_WEBHOOK_URL", webhoo
     if not webhook_url:
         raise RuntimeError(f"{webhook_env_name} is not configured")
 
-    response = requests.post(webhook_url, json={"content": message}, timeout=15)
-    response.raise_for_status()
+    for attempt in range(6):
+        response = requests.post(webhook_url, json={"content": message}, timeout=15)
+        if response.status_code != 429:
+            response.raise_for_status()
+            return
+
+        try:
+            retry_after = float(response.json().get("retry_after", 1.0))
+        except (TypeError, ValueError, requests.JSONDecodeError):
+            retry_after = 1.0
+
+        if attempt == 5:
+            response.raise_for_status()
+
+        time.sleep(max(0.25, min(retry_after, 30.0)))
 
 
 def send_alert(message):
@@ -531,14 +544,6 @@ def send_alert(message):
         return True
     except (RuntimeError, requests.RequestException) as error:
         print(f"Discord alert failed: {error}")
-        try:
-            send_discord_message(
-                "NSE ALERT WEBHOOK FAILED - check DISCORD_NSE_WEBHOOK_URL.\n\n" + message,
-                webhook_env_name="DISCORD_STATUS_WEBHOOK_URL",
-                webhook_config_value=DISCORD_STATUS_WEBHOOK_URL,
-            )
-        except (RuntimeError, requests.RequestException) as fallback_error:
-            print(f"Discord alert fallback failed: {fallback_error}")
         return False
 
 
@@ -566,12 +571,17 @@ def process_candidate(state, result, zone_type, zone, distance_pct, now_ts):
         return None
 
     state_key = build_state_key(result["symbol"], zone_type, zone)
-    entry = state.setdefault(state_key, {"in_zone": False, "last_alert_at": 0.0})
+    entry = state.setdefault(
+        state_key,
+        {"in_zone": False, "last_alert_at": 0.0, "last_attempt_at": 0.0},
+    )
     alert_sent = None
 
     if distance_pct <= MAX_DISTANCE_PCT:
-        should_alert = (not entry["in_zone"]) or (now_ts - entry["last_alert_at"] >= ALERT_COOLDOWN_SECONDS)
+        last_attempt_at = max(entry.get("last_alert_at", 0.0), entry.get("last_attempt_at", 0.0))
+        should_alert = (not entry["in_zone"]) or (now_ts - last_attempt_at >= ALERT_COOLDOWN_SECONDS)
         if should_alert:
+            entry["last_attempt_at"] = now_ts
             alert_sent = send_alert(format_alert(result, zone_type, zone, distance_pct))
             if alert_sent:
                 entry["last_alert_at"] = now_ts
@@ -591,10 +601,12 @@ def process_signal_candidate(state, result, signal_type, now_ts):
         return None
 
     state_key = build_signal_state_key(result["symbol"], signal_type)
-    entry = state.setdefault(state_key, {"last_alert_at": 0.0})
-    if now_ts - entry["last_alert_at"] < SIGNAL_ALERT_COOLDOWN_SECONDS:
+    entry = state.setdefault(state_key, {"last_alert_at": 0.0, "last_attempt_at": 0.0})
+    last_attempt_at = max(entry.get("last_alert_at", 0.0), entry.get("last_attempt_at", 0.0))
+    if now_ts - last_attempt_at < SIGNAL_ALERT_COOLDOWN_SECONDS:
         return None
 
+    entry["last_attempt_at"] = now_ts
     alert_sent = send_alert(format_signal_alert(result, signal_type))
     if alert_sent:
         entry["last_alert_at"] = now_ts
