@@ -1809,8 +1809,8 @@
     "last_alert_at": 0.0
   },
   "MAGMA/USDT|supply|0.31712540|0.31806000": {
-    "in_zone": false,
-    "last_alert_at": 1784804596.977541
+    "in_zone": true,
+    "last_alert_at": 1784811793.2449327
   },
   "AVGO/USDT:USDT|supply|370.55865000|370.65000000": {
     "in_zone": true,
@@ -2073,7 +2073,7 @@
     "last_alert_at": 1784610205.9630785
   },
   "SUIUSD|range_filter|sell": {
-    "last_alert_at": 1784763197.6085074
+    "last_alert_at": 1784811791.995199
   },
   "BNBUSD|range_filter|sell": {
     "last_alert_at": 1784747001.095903
@@ -2235,8 +2235,8 @@
     "last_alert_at": 1784527395.6086211
   },
   "QQQXUSD|demand|692.57000000|692.61935000": {
-    "in_zone": false,
-    "last_alert_at": 1784613794.2013786
+    "in_zone": true,
+    "last_alert_at": 1784811791.6158009
   },
   "COINXUSD|supply|168.21165000|168.48000000": {
     "in_zone": false,
@@ -2359,8 +2359,8 @@
     "last_alert_at": 1784800992.0875337
   },
   "1000PEPEUSD|demand|0.00280590|0.00280928": {
-    "in_zone": false,
-    "last_alert_at": 1784540011.208843
+    "in_zone": true,
+    "last_alert_at": 1784811792.6985269
   },
   "SKHYNIX/USDT:USDT|supply|1277.86205000|1283.32000000": {
     "in_zone": false,
@@ -3180,8 +3180,8 @@
     "last_alert_at": 0.0
   },
   "FET/USDT|demand|0.15300000|0.15326450": {
-    "in_zone": false,
-    "last_alert_at": 1784793799.250808
+    "in_zone": true,
+    "last_alert_at": 1784811792.2280507
   },
   "AVGO/USDT:USDT|supply|395.42440000|395.89000000": {
     "in_zone": false,
@@ -3540,7 +3540,7 @@
     "last_alert_at": 1784732607.9035177
   },
   "ENA/USDT|range_filter|sell": {
-    "last_alert_at": 1784658795.1869564
+    "last_alert_at": 1784811792.96969
   },
   "NBIS/USDT:USDT|demand|192.66000000|193.40080000": {
     "in_zone": false,
@@ -4462,8 +4462,8 @@
     "last_alert_at": 0.0
   },
   "DOGEUSD|demand|0.07100000|0.07109249": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1784811791.2464066
   },
   "GOOGLXUSD|demand|325.50000000|325.92410000": {
     "in_zone": true,
@@ -4526,7 +4526,7 @@
   },
   "VELVET/USDT|demand|0.50749000|0.50858030": {
     "in_zone": true,
-    "last_alert_at": 1784808199.2465038
+    "last_alert_at": 1784811792.4611225
   },
   "SOLUSD|demand|73.36600000|73.46730200": {
     "in_zone": false,
@@ -4631,6 +4631,10 @@
     "last_alert_at": 0.0
   },
   "GRAMUSD|supply|1.51788000|1.52000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "1000BONKUSD|supply|0.00299054|0.00299600": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
