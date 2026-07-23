@@ -4343,7 +4343,7 @@
     "last_alert_at": 0.0
   },
   "BHARATFORG.NS|supply|2225.2776|2235.8999": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1784783536.0616634
   },
   "BHARATFORG.NS|demand|2083.3000|2093.5297": {
@@ -4452,7 +4452,7 @@
     "last_alert_at": 0.0
   },
   "FIRSTCRY.NS|demand|202.9700|204.3387": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1784778771.505985
   },
   "BRIGADE.NS|supply|574.2970|577.6500": {
@@ -5891,7 +5891,7 @@
     "last_alert_at": 0.0
   },
   "KARURVYSYA.NS|supply|341.7289|343.4500": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1784778777.1365333
   },
   "KARURVYSYA.NS|demand|288.3500|289.9152": {
@@ -6717,7 +6717,7 @@
     "last_alert_at": 0.0
   },
   "RADICO.NS|supply|4145.2120|4161.7998": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1784778782.1170864
   },
   "RADICO.NS|demand|4015.1001|4031.1989": {
@@ -6846,8 +6846,9 @@
     "last_alert_at": 1784781177.6816294
   },
   "MEDANTA.NS|supply|1408.8371|1414.6000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1784788371.3424485,
+    "last_attempt_at": 1784788371.3424485
   },
   "IRCTC.NS|demand|492.7500|495.3554": {
     "in_zone": true,
