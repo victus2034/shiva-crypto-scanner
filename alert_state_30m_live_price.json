@@ -1084,7 +1084,7 @@
     "last_alert_at": 0.0
   },
   "APTUSD|supply|0.62860700|0.62900000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1784768594.7603214
   },
   "SOXLBUSD|supply|134.90515000|135.70000000": {
@@ -2339,14 +2339,14 @@
     "last_alert_at": 1784692999.731429
   },
   "SPYXUSD|range_filter|buy": {
-    "last_alert_at": 1784768594.505066
+    "last_alert_at": 1784770394.9754148
   },
   "BCHUSD|supply|217.84225000|218.03000000": {
     "in_zone": true,
     "last_alert_at": 1784574198.4236126
   },
   "ARBUSD|range_filter|buy": {
-    "last_alert_at": 1784732607.444378
+    "last_alert_at": 1784770395.3459823
   },
   "TIAUSD|range_filter|buy": {
     "last_alert_at": 1784563411.2860093
@@ -3693,7 +3693,7 @@
   },
   "QQQXUSD|supply|708.73960000|709.05000000": {
     "in_zone": true,
-    "last_alert_at": 1784768594.276533
+    "last_alert_at": 1784770394.692723
   },
   "ADAUSD|demand|0.17210000|0.17249460": {
     "in_zone": true,
@@ -3994,7 +3994,7 @@
   },
   "ETCUSD|demand|6.92000000|6.92392000": {
     "in_zone": true,
-    "last_alert_at": 1784768594.9984884
+    "last_alert_at": 1784770395.5595994
   },
   "TRIA/USDT|demand|0.00739400|0.00742128": {
     "in_zone": false,
@@ -4124,8 +4124,8 @@
     "last_alert_at": 0.0
   },
   "BTCUSD|demand|65528.50000000|65578.80000000": {
-    "in_zone": false,
-    "last_alert_at": 1784745205.1702507
+    "in_zone": true,
+    "last_alert_at": 1784770394.4473698
   },
   "SLVONUSD|demand|53.50000000|53.55925000": {
     "in_zone": false,
@@ -4276,7 +4276,7 @@
     "last_alert_at": 0.0
   },
   "BTCUSD|supply|66318.87250000|66371.00000000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1784768593.9857123
   },
   "HYPEUSD|demand|57.45000000|57.55870500": {
@@ -4418,6 +4418,14 @@
     "last_alert_at": 0.0
   },
   "SAMSUNG/USDT:USDT|demand|177.53000000|177.96580000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "RIF/USDT|supply|0.07220730|0.07329000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "BABA/USDT:USDT|demand|113.07000000|113.23475000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
