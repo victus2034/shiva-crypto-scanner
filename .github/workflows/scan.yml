@@ -2,8 +2,6 @@ name: Shiva Crypto Scanner
 
 on:
   workflow_dispatch:
-  schedule:
-    - cron: "1,20,40 * * * *"
 
 permissions:
   contents: write
