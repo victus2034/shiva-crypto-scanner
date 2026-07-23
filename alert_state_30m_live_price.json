@@ -1084,8 +1084,8 @@
     "last_alert_at": 0.0
   },
   "APTUSD|supply|0.62860700|0.62900000": {
-    "in_zone": false,
-    "last_alert_at": 1784768594.7603214
+    "in_zone": true,
+    "last_alert_at": 1784781211.7906814
   },
   "SOXLBUSD|supply|134.90515000|135.70000000": {
     "in_zone": true,
@@ -1136,7 +1136,7 @@
     "last_alert_at": 1784430204.468047
   },
   "ARBUSD|range_filter|sell": {
-    "last_alert_at": 1784763198.3584607
+    "last_alert_at": 1784781211.986735
   },
   "OPUSD|range_filter|sell": {
     "last_alert_at": 1784763198.5702748
@@ -3499,7 +3499,7 @@
     "last_alert_at": 1784655199.163339
   },
   "FLNC/USDT:USDT|demand|14.62000000|14.64995000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1784775798.2408884
   },
   "SOLUSD|range_filter|sell": {
@@ -3560,7 +3560,7 @@
   },
   "SPYXUSD|demand|742.06000000|742.20955000": {
     "in_zone": true,
-    "last_alert_at": 1784779394.0214114
+    "last_alert_at": 1784781211.5900457
   },
   "CRCLXUSD|supply|72.46180000|72.65000000": {
     "in_zone": false,
@@ -4013,7 +4013,7 @@
     "last_alert_at": 1784779393.5098977
   },
   "XRPUSD|demand|1.12880000|1.13005050": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1784779393.6663098
   },
   "SLVONUSD|demand|53.63000000|53.68825000": {
@@ -4069,7 +4069,7 @@
     "last_alert_at": 1784729002.0717735
   },
   "1000PEPEUSD|demand|0.00283160|0.00283411": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1784779394.15543
   },
   "RIF/USDT|demand|0.04551000|0.04668070": {
@@ -4125,7 +4125,7 @@
   },
   "BTCUSD|demand|65528.50000000|65578.80000000": {
     "in_zone": true,
-    "last_alert_at": 1784779393.1882918
+    "last_alert_at": 1784781211.406793
   },
   "SLVONUSD|demand|53.50000000|53.55925000": {
     "in_zone": false,
@@ -4485,6 +4485,14 @@
     "last_alert_at": 0.0
   },
   "XPLUSD|supply|0.08929950|0.08950000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "DODO/USDT|supply|0.02537615|0.02555000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "FARTCOIN/USDT|demand|0.13400000|0.13420900": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
