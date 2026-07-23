@@ -3791,8 +3791,9 @@
     "last_alert_at": 0.0
   },
   "ACMESOLAR.NS|demand|361.7000|364.0202": {
-    "in_zone": false,
-    "last_alert_at": 1784781177.056094
+    "in_zone": true,
+    "last_alert_at": 1784795600.884297,
+    "last_attempt_at": 1784795600.884297
   },
   "AIAENG.NS|supply|4889.0807|4912.5000": {
     "in_zone": false,
@@ -3957,7 +3958,8 @@
   },
   "ABSLAMC.NS|demand|980.5000|987.2527": {
     "in_zone": true,
-    "last_alert_at": 1784781177.2361977
+    "last_alert_at": 1784795601.1563845,
+    "last_attempt_at": 1784795601.1563845
   },
   "CPPLUS.NS|demand|3265.2000|3288.3362": {
     "in_zone": false,
@@ -4776,7 +4778,7 @@
     "last_alert_at": 0.0
   },
   "CROMPTON.NS|demand|248.3500|249.8395": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1784785980.9859364,
     "last_attempt_at": 1784785980.9859364
   },
@@ -5068,7 +5070,8 @@
   },
   "FORTIS.NS|demand|935.6000|939.6008": {
     "in_zone": true,
-    "last_alert_at": 1784781178.0457032
+    "last_alert_at": 1784795601.6105456,
+    "last_attempt_at": 1784795601.6105456
   },
   "GAIL.NS|supply|177.7736|178.4700": {
     "in_zone": false,
@@ -6523,7 +6526,7 @@
     "last_alert_at": 0.0
   },
   "PVRINOX.NS|supply|1027.9862|1032.3000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1784793136.9700444,
     "last_attempt_at": 1784793136.9700444
   },
@@ -6851,7 +6854,8 @@
   },
   "IRFC.NS|demand|87.0500|87.5974": {
     "in_zone": true,
-    "last_alert_at": 1784779940.3204658
+    "last_alert_at": 1784795601.9309878,
+    "last_attempt_at": 1784795601.9309878
   },
   "OBEROIRLTY.NS|demand|1571.0000|1579.0542": {
     "in_zone": false,
@@ -6871,7 +6875,8 @@
   },
   "DRREDDY.NS|demand|1148.4000|1152.4845": {
     "in_zone": true,
-    "last_alert_at": 1784781177.6816294
+    "last_alert_at": 1784795601.4126735,
+    "last_attempt_at": 1784795601.4126735
   },
   "MEDANTA.NS|supply|1408.8371|1414.6000": {
     "in_zone": true,
@@ -8096,6 +8101,11 @@
     "last_attempt_at": 0.0
   },
   "LICI.NS|demand|388.0250|389.4459": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "APARINDS.NS|demand|11864.0000|11940.7613": {
     "in_zone": false,
     "last_alert_at": 0.0,
     "last_attempt_at": 0.0
