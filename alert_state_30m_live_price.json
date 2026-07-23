@@ -2682,7 +2682,7 @@
     "last_alert_at": 0.0
   },
   "METAXUSD|range_filter|buy": {
-    "last_alert_at": 1784617402.4857845
+    "last_alert_at": 1784835192.15467
   },
   "GOOGLXUSD|demand|347.60000000|347.71405000": {
     "in_zone": false,
@@ -3901,8 +3901,8 @@
     "last_alert_at": 0.0
   },
   "LDO/USDT|demand|0.38500000|0.38576950": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1784835192.299033
   },
   "BABA/USDT:USDT|supply|119.09250000|119.25000000": {
     "in_zone": false,
@@ -4427,7 +4427,7 @@
   },
   "BABA/USDT:USDT|demand|113.07000000|113.23475000": {
     "in_zone": true,
-    "last_alert_at": 1784831609.0352921
+    "last_alert_at": 1784835192.4713798
   },
   "AVGO/USDT:USDT|supply|404.28845000|404.70000000": {
     "in_zone": false,
@@ -4743,6 +4743,14 @@
     "last_alert_at": 0.0
   },
   "FLNC/USDT:USDT|supply|14.97575000|15.01000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "NEARUSD|demand|1.85170000|1.85478250": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "SPCXXUSD|demand|111.30000000|111.53830000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
