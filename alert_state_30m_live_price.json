@@ -95,7 +95,7 @@
     "last_alert_at": 0.0
   },
   "QQQXUSD|demand|686.21000000|686.67130000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1784493191.6076236
   },
   "TSLAXUSD|range_filter|sell": {
@@ -3953,8 +3953,8 @@
     "last_alert_at": 0.0
   },
   "LTCUSD|demand|46.32000000|46.36865000": {
-    "in_zone": false,
-    "last_alert_at": 1784721792.755207
+    "in_zone": true,
+    "last_alert_at": 1784818994.800797
   },
   "XMRUSD|supply|363.00110000|363.68000000": {
     "in_zone": false,
@@ -4222,7 +4222,7 @@
     "last_alert_at": 0.0
   },
   "NEARUSD|supply|1.90026850|1.90300000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1784817197.6723454
   },
   "ARBUSD|supply|0.09547850|0.09570000": {
@@ -4477,8 +4477,8 @@
     "last_alert_at": 0.0
   },
   "UNIUSD|demand|3.75400000|3.76161850": {
-    "in_zone": false,
-    "last_alert_at": 1784813592.8725374
+    "in_zone": true,
+    "last_alert_at": 1784818995.2266684
   },
   "LDO/USDT|demand|0.39580000|0.39646400": {
     "in_zone": false,
@@ -4501,7 +4501,7 @@
     "last_alert_at": 0.0
   },
   "ALLO/USDT|supply|0.50785550|0.50930000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1784817197.8678298
   },
   "SPCXXUSD|supply|117.16610000|117.40000000": {
@@ -4526,7 +4526,7 @@
   },
   "VELVET/USDT|demand|0.50749000|0.50858030": {
     "in_zone": true,
-    "last_alert_at": 1784815399.2298417
+    "last_alert_at": 1784818995.530961
   },
   "SOLUSD|demand|73.36600000|73.46730200": {
     "in_zone": false,
@@ -4653,5 +4653,16 @@
   "BNBUSD|supply|575.14393000|575.46000000": {
     "in_zone": false,
     "last_alert_at": 0.0
+  },
+  "XMRUSD|supply|357.50515000|357.75000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "MSTRBUSD|demand|89.95000000|90.09485000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "FLNC/USDT:USDT|range_filter|sell": {
+    "last_alert_at": 1784818995.82806
   }
 }
