@@ -1085,7 +1085,7 @@
   },
   "APTUSD|supply|0.62860700|0.62900000": {
     "in_zone": true,
-    "last_alert_at": 1784781211.7906814
+    "last_alert_at": 1784784795.0863266
   },
   "SOXLBUSD|supply|134.90515000|135.70000000": {
     "in_zone": true,
@@ -3560,7 +3560,7 @@
   },
   "SPYXUSD|demand|742.06000000|742.20955000": {
     "in_zone": true,
-    "last_alert_at": 1784781211.5900457
+    "last_alert_at": 1784784794.8711865
   },
   "CRCLXUSD|supply|72.46180000|72.65000000": {
     "in_zone": false,
@@ -4125,7 +4125,7 @@
   },
   "BTCUSD|demand|65528.50000000|65578.80000000": {
     "in_zone": true,
-    "last_alert_at": 1784781211.406793
+    "last_alert_at": 1784784794.6905823
   },
   "SLVONUSD|demand|53.50000000|53.55925000": {
     "in_zone": false,
@@ -4446,7 +4446,7 @@
     "last_alert_at": 0.0
   },
   "METAXUSD|demand|618.20000000|618.63675000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1784782993.257778
   },
   "AMZNXUSD|demand|240.20000000|240.37960000": {
@@ -4495,5 +4495,17 @@
   "FARTCOIN/USDT|demand|0.13400000|0.13420900": {
     "in_zone": false,
     "last_alert_at": 0.0
+  },
+  "CRV/USDT|supply|0.22367200|0.22400000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "ALLO/USDT|supply|0.50785550|0.50930000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "SPCXXUSD|supply|117.16610000|117.40000000": {
+    "in_zone": true,
+    "last_alert_at": 1784784795.3325412
   }
 }
