@@ -3499,8 +3499,8 @@
     "last_alert_at": 1784655199.163339
   },
   "FLNC/USDT:USDT|demand|14.62000000|14.64995000": {
-    "in_zone": false,
-    "last_alert_at": 1784763199.6406002
+    "in_zone": true,
+    "last_alert_at": 1784775798.2408884
   },
   "SOLUSD|range_filter|sell": {
     "last_alert_at": 1784745205.9682012
@@ -3560,7 +3560,7 @@
   },
   "SPYXUSD|demand|742.06000000|742.20955000": {
     "in_zone": true,
-    "last_alert_at": 1784763197.864896
+    "last_alert_at": 1784775797.6866877
   },
   "CRCLXUSD|supply|72.46180000|72.65000000": {
     "in_zone": false,
@@ -3994,7 +3994,7 @@
   },
   "ETCUSD|demand|6.92000000|6.92392000": {
     "in_zone": true,
-    "last_alert_at": 1784773985.4936585
+    "last_alert_at": 1784775797.9243677
   },
   "TRIA/USDT|demand|0.00739400|0.00742128": {
     "in_zone": false,
@@ -4053,8 +4053,8 @@
     "last_alert_at": 0.0
   },
   "DEXE/USDT|demand|4.14190000|4.60886900": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1784775798.094259
   },
   "THE/USDT|demand|0.05150000|0.05159645": {
     "in_zone": false,
@@ -4125,7 +4125,7 @@
   },
   "BTCUSD|demand|65528.50000000|65578.80000000": {
     "in_zone": true,
-    "last_alert_at": 1784773985.2432864
+    "last_alert_at": 1784775797.5029833
   },
   "SLVONUSD|demand|53.50000000|53.55925000": {
     "in_zone": false,
@@ -4458,6 +4458,14 @@
     "last_alert_at": 0.0
   },
   "FARTCOIN/USDT|supply|0.13878450|0.13900000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "DOGEUSD|demand|0.07100000|0.07109249": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "GOOGLXUSD|demand|325.50000000|325.92410000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
