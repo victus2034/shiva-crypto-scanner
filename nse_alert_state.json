@@ -3861,7 +3861,7 @@
     "last_alert_at": 0.0
   },
   "ACE.NS|demand|962.2000|967.5972": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1784779935.611874
   },
   "ACUTAAS.NS|supply|3714.1434|3736.0000": {
@@ -4761,8 +4761,9 @@
     "last_alert_at": 0.0
   },
   "CROMPTON.NS|demand|248.3500|249.8395": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1784785980.9859364,
+    "last_attempt_at": 1784785980.9859364
   },
   "CUMMINSIND.NS|supply|5687.8946|5712.5000": {
     "in_zone": false,
@@ -4921,7 +4922,7 @@
     "last_alert_at": 0.0
   },
   "ELGIEQUIP.NS|demand|565.4000|568.5263": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1784781177.902195
   },
   "EMAMILTD.NS|supply|435.7446|437.9000": {
@@ -4973,8 +4974,9 @@
     "last_alert_at": 0.0
   },
   "ESCORTS.NS|demand|2896.0000|2908.2823": {
-    "in_zone": false,
-    "last_alert_at": 1784778774.279967
+    "in_zone": true,
+    "last_alert_at": 1784785981.240253,
+    "last_attempt_at": 1784785981.240253
   },
   "ETERNAL.NS|supply|306.8000|308.5000": {
     "in_zone": false,
@@ -6439,8 +6441,9 @@
     "last_alert_at": 0.0
   },
   "OFSS.NS|demand|10780.0000|10835.6901": {
-    "in_zone": false,
-    "last_alert_at": 1784783536.502248
+    "in_zone": true,
+    "last_alert_at": 1784785981.434789,
+    "last_attempt_at": 1784785981.434789
   },
   "POLICYBZR.NS|supply|1611.1460|1619.6000": {
     "in_zone": false,
@@ -6483,8 +6486,9 @@
     "last_alert_at": 0.0
   },
   "PTCIL.NS|supply|18047.0942|18145.0000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1784785981.7017462,
+    "last_attempt_at": 1784785981.7017462
   },
   "PTCIL.NS|demand|16851.0000|16953.9832": {
     "in_zone": false,
@@ -6495,7 +6499,7 @@
     "last_alert_at": 0.0
   },
   "PVRINOX.NS|demand|970.2000|974.5971": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1784779942.5086331
   },
   "PAGEIND.NS|supply|43672.0592|43850.0000": {
@@ -6887,6 +6891,11 @@
     "last_attempt_at": 0.0
   },
   "RKFORGE.NS|supply|627.2861|631.0000": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "CIEINDIA.NS|demand|382.9000|384.4497": {
     "in_zone": false,
     "last_alert_at": 0.0,
     "last_attempt_at": 0.0
