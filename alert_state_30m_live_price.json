@@ -1633,7 +1633,7 @@
     "last_alert_at": 0.0
   },
   "APTUSD|range_filter|buy": {
-    "last_alert_at": 1784795590.8869796
+    "last_alert_at": 1784797394.620541
   },
   "TIAUSD|demand|0.35300000|0.35336550": {
     "in_zone": false,
@@ -4447,7 +4447,7 @@
   },
   "METAXUSD|demand|618.20000000|618.63675000": {
     "in_zone": true,
-    "last_alert_at": 1784793798.2188327
+    "last_alert_at": 1784797393.640775
   },
   "AMZNXUSD|demand|240.20000000|240.37960000": {
     "in_zone": true,
@@ -4506,7 +4506,7 @@
   },
   "SPCXXUSD|supply|117.16610000|117.40000000": {
     "in_zone": true,
-    "last_alert_at": 1784795591.3416178
+    "last_alert_at": 1784797394.8382325
   },
   "NVDAXUSD|demand|202.05000000|202.07600000": {
     "in_zone": false,
@@ -4552,8 +4552,8 @@
     "last_alert_at": 1784791992.3754742
   },
   "AAPLXUSD|supply|326.21290000|326.40000000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1784797393.9010236
   },
   "ADAUSD|demand|0.15620000|0.15647970": {
     "in_zone": false,
@@ -4567,11 +4567,11 @@
     "last_alert_at": 1784791993.959248
   },
   "XMRUSD|supply|354.97405000|355.25000000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1784797394.168894
   },
   "DRAMBUSD|demand|57.90000000|58.00560000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1784793799.8989942
   },
   "AVGO/USDT:USDT|demand|393.33000000|393.80635000": {
@@ -4583,6 +4583,10 @@
     "last_alert_at": 0.0
   },
   "MSTRBUSD|demand|89.95000000|90.13905000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "1000BONKUSD|demand|0.00289500|0.00290060": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
