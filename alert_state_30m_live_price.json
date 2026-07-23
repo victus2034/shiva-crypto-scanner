@@ -95,7 +95,7 @@
     "last_alert_at": 0.0
   },
   "QQQXUSD|demand|686.21000000|686.67130000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1784820796.205848
   },
   "TSLAXUSD|range_filter|sell": {
@@ -3097,7 +3097,7 @@
     "last_alert_at": 1784727195.6958544
   },
   "T/USDT|range_filter|buy": {
-    "last_alert_at": 1784594002.8898494
+    "last_alert_at": 1784822586.3684459
   },
   "XLM/USDT|supply|0.19287600|0.19310000": {
     "in_zone": true,
@@ -3152,8 +3152,8 @@
     "last_alert_at": 1784698396.2925322
   },
   "SEIUSD|demand|0.04570000|0.04572950": {
-    "in_zone": false,
-    "last_alert_at": 1784815398.6958385
+    "in_zone": true,
+    "last_alert_at": 1784822586.094635
   },
   "IBM/USDT:USDT|demand|210.07000000|210.17045000": {
     "in_zone": false,
@@ -4418,7 +4418,7 @@
     "last_alert_at": 0.0
   },
   "SAMSUNG/USDT:USDT|demand|177.53000000|177.96580000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1784820797.017263
   },
   "RIF/USDT|supply|0.07220730|0.07329000": {
@@ -4477,7 +4477,7 @@
     "last_alert_at": 0.0
   },
   "UNIUSD|demand|3.75400000|3.76161850": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1784818995.2266684
   },
   "LDO/USDT|demand|0.39580000|0.39646400": {
@@ -4647,8 +4647,8 @@
     "last_alert_at": 0.0
   },
   "IBM/USDT:USDT|supply|207.84995000|208.26000000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1784822586.6646123
   },
   "BNBUSD|supply|575.14393000|575.46000000": {
     "in_zone": false,
@@ -4674,6 +4674,25 @@
     "last_alert_at": 0.0
   },
   "DEXE/USDT|supply|4.02967300|4.09060000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "METAXUSD|supply|622.59005000|623.10000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "SPYXUSD|supply|747.49770000|747.61000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "NVDAXUSD|range_filter|buy": {
+    "last_alert_at": 1784822585.8063302
+  },
+  "GOOGLXUSD|supply|352.63740000|352.95000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "SNDKBUSD|supply|1808.48520000|1815.46000000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
