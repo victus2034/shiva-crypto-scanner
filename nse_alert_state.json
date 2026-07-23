@@ -4184,9 +4184,9 @@
     "last_alert_at": 0.0
   },
   "DMART.NS|supply|4084.9545|4101.5000": {
-    "in_zone": false,
-    "last_alert_at": 1784794365.7992415,
-    "last_attempt_at": 1784794365.7992415
+    "in_zone": true,
+    "last_alert_at": 1784800367.0810277,
+    "last_attempt_at": 1784800367.0810277
   },
   "DMART.NS|demand|3888.6001|3904.3513": {
     "in_zone": false,
@@ -5262,7 +5262,7 @@
     "last_alert_at": 0.0
   },
   "HEG.NS|supply|633.1145|637.3500": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1784797944.0397298,
     "last_attempt_at": 1784797944.0397298
   },
@@ -5359,7 +5359,7 @@
     "last_alert_at": 0.0
   },
   "HINDALCO.NS|demand|937.5000|942.1169": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1784790728.2031314,
     "last_attempt_at": 1784790728.2031314
   },
@@ -5667,8 +5667,9 @@
     "last_alert_at": 0.0
   },
   "INOXWIND.NS|demand|75.0500|75.7288": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1784800367.2793076,
+    "last_attempt_at": 1784800367.2793076
   },
   "INTELLECT.NS|supply|828.5028|833.7500": {
     "in_zone": false,
@@ -5942,8 +5943,9 @@
     "last_alert_at": 0.0
   },
   "KEC.NS|demand|466.0000|469.4434": {
-    "in_zone": false,
-    "last_alert_at": 1784779940.9899416
+    "in_zone": true,
+    "last_alert_at": 1784800367.493442,
+    "last_attempt_at": 1784800367.493442
   },
   "KFINTECH.NS|supply|925.2944|930.0000": {
     "in_zone": false,
@@ -6642,8 +6644,9 @@
     "last_alert_at": 0.0
   },
   "POLYMED.NS|demand|1606.5000|1616.6725": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1784800367.7137113,
+    "last_attempt_at": 1784800367.7137113
   },
   "POLYCAB.NS|supply|9590.9007|9632.5000": {
     "in_zone": false,
@@ -7188,7 +7191,7 @@
     "last_attempt_at": 0.0
   },
   "BEL.NS|demand|397.0500|398.7822": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1784790727.8151743,
     "last_attempt_at": 1784790727.8151743
   },
@@ -8124,6 +8127,16 @@
     "last_attempt_at": 0.0
   },
   "CGPOWER.NS|demand|795.9500|800.3409": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "EMMVEE.NS|demand|247.1000|249.3432": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "JSWCEMENT.NS|demand|119.3200|119.8711": {
     "in_zone": false,
     "last_alert_at": 0.0,
     "last_attempt_at": 0.0
