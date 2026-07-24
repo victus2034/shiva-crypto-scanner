@@ -7,6 +7,7 @@ historyToKeep = input.int(20, "Zones to keep per side", minval = 1, maxval = 50)
 atrPeriod = input.int(50, "ATR period", minval = 1)
 overlapAtr = input.float(2.0, "Overlap filter (ATR)", minval = 0.0, step = 0.25)
 minWickAtr = input.float(0.15, "Minimum wick size (ATR)", minval = 0.0, step = 0.05)
+minDepartureAtr = input.float(0.75, "Minimum departure move (ATR)", minval = 0.0, step = 0.25)
 showBroken = input.bool(true, "Keep broken zones visible")
 
 demandColor = color.new(color.aqua, 72)
@@ -65,13 +66,16 @@ f_addSupply(float top, float bottom, int leftIndex) =>
 
 pivotLow = ta.pivotlow(low, swingLength, swingLength)
 pivotHigh = ta.pivothigh(high, swingLength, swingLength)
+postPivotHighestClose = ta.highest(close, swingLength)
+postPivotLowestClose = ta.lowest(close, swingLength)
 
 if not na(pivotLow) and not na(atrValue[swingLength])
     // Demand wick: pivot low up to the lower edge of the candle body.
     demandBottom = low[swingLength]
     demandTop = math.min(open[swingLength], close[swingLength])
     demandWickSize = demandTop - demandBottom
-    if demandWickSize >= atrValue[swingLength] * minWickAtr
+    demandDeparture = postPivotHighestClose - demandTop
+    if demandWickSize >= atrValue[swingLength] * minWickAtr and demandDeparture >= atrValue[swingLength] * minDepartureAtr
         f_addDemand(demandTop, demandBottom, bar_index - swingLength)
 
 if not na(pivotHigh) and not na(atrValue[swingLength])
@@ -79,7 +83,8 @@ if not na(pivotHigh) and not na(atrValue[swingLength])
     supplyBottom = math.max(open[swingLength], close[swingLength])
     supplyTop = high[swingLength]
     supplyWickSize = supplyTop - supplyBottom
-    if supplyWickSize >= atrValue[swingLength] * minWickAtr
+    supplyDeparture = supplyBottom - postPivotLowestClose
+    if supplyWickSize >= atrValue[swingLength] * minWickAtr and supplyDeparture >= atrValue[swingLength] * minDepartureAtr
         f_addSupply(supplyTop, supplyBottom, bar_index - swingLength)
 
 if array.size(demandBoxes) > 0
