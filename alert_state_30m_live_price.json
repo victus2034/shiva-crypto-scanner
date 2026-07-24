@@ -449,8 +449,8 @@
     "last_alert_at": 0.0
   },
   "LIT/USDT|demand|2.14200000|2.15023000": {
-    "in_zone": false,
-    "last_alert_at": 1784588614.11712
+    "in_zone": true,
+    "last_alert_at": 1784853190.1196885
   },
   "ALLO/USDT|supply|0.52897300|0.53110000": {
     "in_zone": false,
@@ -1246,7 +1246,7 @@
     "last_alert_at": 1784458999.1729155
   },
   "INJUSD|range_filter|buy": {
-    "last_alert_at": 1784691194.8686357
+    "last_alert_at": 1784853189.6138952
   },
   "INJUSD|demand|5.02100000|5.02914500": {
     "in_zone": false,
@@ -2386,7 +2386,7 @@
     "last_alert_at": 1784809992.422821
   },
   "DRAMBUSD|range_filter|sell": {
-    "last_alert_at": 1784592218.2217722
+    "last_alert_at": 1784853190.2670891
   },
   "BZ/USDT:USDT|range_filter|sell": {
     "last_alert_at": 1784513030.0133193
@@ -4787,12 +4787,12 @@
     "last_alert_at": 1784851394.7633636
   },
   "AIOTUSD|supply|0.05239690|0.05259000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1784851395.0926592
   },
   "1000SHIBUSD|demand|0.00411500|0.00411643": {
-    "in_zone": false,
-    "last_alert_at": 1784842403.8926842
+    "in_zone": true,
+    "last_alert_at": 1784853189.9643085
   },
   "MSTRBUSD|demand|92.45000000|92.55340000": {
     "in_zone": false,
@@ -4892,7 +4892,7 @@
   },
   "SPYXUSD|demand|734.00000000|734.19585000": {
     "in_zone": true,
-    "last_alert_at": 1784849596.2593625
+    "last_alert_at": 1784853189.435937
   },
   "AIOTUSD|supply|0.05380645|0.05397800": {
     "in_zone": false,
@@ -4923,8 +4923,8 @@
     "last_alert_at": 0.0
   },
   "TIAUSD|demand|0.34640000|0.34689250": {
-    "in_zone": false,
-    "last_alert_at": 1784849596.8976536
+    "in_zone": true,
+    "last_alert_at": 1784853189.7645006
   },
   "ETCUSD|supply|6.99183500|6.99700000": {
     "in_zone": false,
@@ -4947,6 +4947,22 @@
     "last_alert_at": 0.0
   },
   "MUBUSD|demand|963.40000000|965.59900000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "ZECUSD|demand|497.00000000|497.91330000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "TSLAXUSD|demand|316.75000000|317.44655000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "EVAAUSD|supply|0.93195050|0.93630000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "BZ/USDT:USDT|demand|93.36000000|93.49020000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
