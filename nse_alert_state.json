@@ -4647,7 +4647,7 @@
     "last_alert_at": 0.0
   },
   "CHAMBLFERT.NS|demand|422.7500|424.8849": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1784866327.4665017,
     "last_attempt_at": 1784866327.4665017
   },
@@ -4913,8 +4913,9 @@
     "last_alert_at": 0.0
   },
   "LALPATHLAB.NS|supply|1775.1233|1784.0000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1784886766.7687373,
+    "last_attempt_at": 1784886766.7687373
   },
   "LALPATHLAB.NS|demand|1612.4000|1621.5949": {
     "in_zone": false,
@@ -5265,9 +5266,9 @@
     "last_alert_at": 0.0
   },
   "GESHIP.NS|supply|1449.8715|1459.0000": {
-    "in_zone": false,
-    "last_alert_at": 1784794367.4644098,
-    "last_attempt_at": 1784794367.4644098
+    "in_zone": true,
+    "last_alert_at": 1784886767.0298414,
+    "last_attempt_at": 1784886767.0298414
   },
   "GESHIP.NS|demand|1275.0000|1280.9554": {
     "in_zone": false,
@@ -5750,7 +5751,7 @@
     "last_alert_at": 0.0
   },
   "JBMA.NS|demand|642.9000|647.3374": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1784865211.4140449,
     "last_attempt_at": 1784865211.4140449
   },
@@ -5978,9 +5979,9 @@
     "last_alert_at": 0.0
   },
   "KEC.NS|demand|466.0000|469.4434": {
-    "in_zone": false,
-    "last_alert_at": 1784880732.0459461,
-    "last_attempt_at": 1784880732.0459461
+    "in_zone": true,
+    "last_alert_at": 1784886767.2187881,
+    "last_attempt_at": 1784886767.2187881
   },
   "KFINTECH.NS|supply|925.2944|930.0000": {
     "in_zone": false,
@@ -6449,8 +6450,8 @@
   },
   "NUVAMA.NS|supply|1982.7978|1993.1000": {
     "in_zone": true,
-    "last_alert_at": 1784872355.8226702,
-    "last_attempt_at": 1784872355.8226702
+    "last_alert_at": 1784886767.3969717,
+    "last_attempt_at": 1784886767.3969717
   },
   "NUVAMA.NS|demand|1498.4000|1507.6614": {
     "in_zone": false,
@@ -6798,8 +6799,9 @@
     "last_alert_at": 0.0
   },
   "RADICO.NS|supply|4145.2120|4161.7998": {
-    "in_zone": false,
-    "last_alert_at": 1784778782.1170864
+    "in_zone": true,
+    "last_alert_at": 1784886767.588656,
+    "last_attempt_at": 1784886767.588656
   },
   "RADICO.NS|demand|4015.1001|4031.1989": {
     "in_zone": false,
