@@ -2266,7 +2266,7 @@
     "last_alert_at": 0.0
   },
   "EWYBUSD|range_filter|buy": {
-    "last_alert_at": 1784815399.7199738
+    "last_alert_at": 1784896390.179703
   },
   "DRAMBUSD|range_filter|buy": {
     "last_alert_at": 1784824396.762119
@@ -2482,7 +2482,7 @@
     "last_alert_at": 1784595808.5048945
   },
   "RIF/USDT|range_filter|buy": {
-    "last_alert_at": 1784631793.2593718
+    "last_alert_at": 1784896390.469079
   },
   "NBIS/USDT:USDT|supply|183.71440000|183.98000000": {
     "in_zone": true,
@@ -2783,7 +2783,7 @@
     "last_alert_at": 1784747001.809267
   },
   "SEIUSD|range_filter|sell": {
-    "last_alert_at": 1784813593.2006943
+    "last_alert_at": 1784896390.065866
   },
   "OPENAI/USDT:USDT|demand|111.57000000|111.78495000": {
     "in_zone": true,
@@ -3806,7 +3806,7 @@
     "last_alert_at": 0.0
   },
   "ONDOUSD|demand|0.39070000|0.39180100": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1784892798.8789687
   },
   "SXT/USDT|supply|0.00703268|0.00705100": {
@@ -4990,7 +4990,7 @@
     "last_alert_at": 0.0
   },
   "TIAUSD|demand|0.34600000|0.34626750": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1784889194.6220245
   },
   "ETCUSD|supply|7.09391500|7.09900000": {
@@ -5146,7 +5146,7 @@
   },
   "SPYXUSD|demand|735.53000000|735.71660000": {
     "in_zone": true,
-    "last_alert_at": 1784892798.1397972
+    "last_alert_at": 1784896389.8925014
   },
   "AAVEUSD|supply|99.91776000|100.10000000": {
     "in_zone": false,
@@ -5197,6 +5197,22 @@
     "last_alert_at": 0.0
   },
   "ENA/USDT|supply|0.09122100|0.09140000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "BCHUSD|supply|212.99835000|213.23000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "TIAUSD|supply|0.35004500|0.35030000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "PUMPUSD|supply|0.00185139|0.00185500": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "MUSD|supply|1.30469650|1.31100000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
