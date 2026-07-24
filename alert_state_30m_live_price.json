@@ -1349,7 +1349,7 @@
   },
   "TAO/USDT|demand|191.51000000|191.76830000": {
     "in_zone": true,
-    "last_alert_at": 1784854996.6783588
+    "last_alert_at": 1784860405.9380267
   },
   "AAPLXUSD|demand|332.50000000|332.72870000": {
     "in_zone": true,
@@ -2243,7 +2243,7 @@
     "last_alert_at": 0.0
   },
   "OPUSD|range_filter|buy": {
-    "last_alert_at": 1784730804.3487546
+    "last_alert_at": 1784860405.4298782
   },
   "OPUSD|demand|0.09290000|0.09296300": {
     "in_zone": false,
@@ -3439,7 +3439,7 @@
     "last_alert_at": 1784700198.3170316
   },
   "VELVET/USDT|range_filter|buy": {
-    "last_alert_at": 1784644391.467172
+    "last_alert_at": 1784860405.5785577
   },
   "UNIUSD|range_filter|sell": {
     "last_alert_at": 1784646198.3414183
@@ -4109,8 +4109,8 @@
     "last_alert_at": 0.0
   },
   "SAMSUNG/USDT:USDT|demand|173.73000000|174.14290000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1784860406.46249
   },
   "FLNC/USDT:USDT|supply|16.33190000|16.37000000": {
     "in_zone": false,
@@ -4729,7 +4729,7 @@
   },
   "AAPLXUSD|demand|319.85000000|320.05425000": {
     "in_zone": true,
-    "last_alert_at": 1784858598.2894747
+    "last_alert_at": 1784860405.2896957
   },
   "XPLUSD|demand|0.08210000|0.08219600": {
     "in_zone": true,
@@ -4792,7 +4792,7 @@
   },
   "1000SHIBUSD|demand|0.00411500|0.00411643": {
     "in_zone": true,
-    "last_alert_at": 1784858599.8264263
+    "last_alert_at": 1784860405.7667313
   },
   "MSTRBUSD|demand|92.45000000|92.55340000": {
     "in_zone": false,
@@ -4892,7 +4892,7 @@
   },
   "SPYXUSD|demand|734.00000000|734.19585000": {
     "in_zone": true,
-    "last_alert_at": 1784858597.9499767
+    "last_alert_at": 1784860397.9891298
   },
   "AIOTUSD|supply|0.05380645|0.05397800": {
     "in_zone": false,
@@ -4923,7 +4923,7 @@
     "last_alert_at": 0.0
   },
   "TIAUSD|demand|0.34640000|0.34689250": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1784854995.6100707
   },
   "ETCUSD|supply|6.99183500|6.99700000": {
@@ -4931,8 +4931,8 @@
     "last_alert_at": 0.0
   },
   "EWYBUSD|demand|169.52000000|169.86190000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1784860406.271612
   },
   "XMRUSD|demand|349.00000000|349.31545000": {
     "in_zone": false,
@@ -5010,6 +5010,10 @@
     "last_alert_at": 0.0
   },
   "INTCBUSD|supply|112.91795000|113.15000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "TIAUSD|supply|0.35361650|0.35410000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
