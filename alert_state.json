@@ -56518,7 +56518,7 @@
     "last_alert_at": 0.0
   },
   "BTCUSD|range_filter|sell": {
-    "last_alert_at": 1784266889.2480788
+    "last_alert_at": 1784900477.482033
   },
   "FILUSD|range_filter|sell": {
     "last_alert_at": 1784899274.45856
@@ -57392,7 +57392,7 @@
     "last_alert_at": 1784125310.177654
   },
   "CBRSBUSD|range_filter|sell": {
-    "last_alert_at": 1784809278.7816126
+    "last_alert_at": 1784900478.3523598
   },
   "QQQXUSD|demand|707.00000000|708.00460000": {
     "in_zone": true,
@@ -57520,7 +57520,7 @@
     "last_alert_at": 0.0
   },
   "ETHUSD|range_filter|sell": {
-    "last_alert_at": 1784270490.4037867
+    "last_alert_at": 1784900477.6680508
   },
   "BTCUSD|supply|65406.93250000|65580.50000000": {
     "in_zone": true,
@@ -57819,8 +57819,8 @@
     "last_alert_at": 0.0
   },
   "SOLUSD|demand|73.36600000|73.64392300": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1784900477.8775005
   },
   "BCHUSD|demand|214.39000000|215.44045000": {
     "in_zone": true,
@@ -58260,6 +58260,13 @@
     "last_alert_at": 0.0
   },
   "NBIS/USDT:USDT|supply|231.42705000|233.32000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "1000PEPEUSD|range_filter|sell": {
+    "last_alert_at": 1784900478.1395495
+  },
+  "HOOD/USDT:USDT|demand|90.39000000|90.96625000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
