@@ -2403,7 +2403,7 @@
     "last_alert_at": 1784516603.9739122
   },
   "XPLUSD|range_filter|buy": {
-    "last_alert_at": 1784637197.7457745
+    "last_alert_at": 1784865791.4360301
   },
   "GOOGLXUSD|supply|349.55070000|349.65000000": {
     "in_zone": true,
@@ -2804,7 +2804,7 @@
     "last_alert_at": 1784764993.0357213
   },
   "GOOGLXUSD|range_filter|sell": {
-    "last_alert_at": 1784635402.3966463
+    "last_alert_at": 1784865791.3022826
   },
   "DOTUSD|supply|0.88707000|0.88900000": {
     "in_zone": false,
@@ -4663,7 +4663,7 @@
     "last_alert_at": 0.0
   },
   "FLNC/USDT:USDT|range_filter|sell": {
-    "last_alert_at": 1784818995.82806
+    "last_alert_at": 1784865791.650328
   },
   "TSLAXUSD|supply|395.84685000|396.15000000": {
     "in_zone": false,
@@ -4791,7 +4791,7 @@
     "last_alert_at": 1784862199.476674
   },
   "1000SHIBUSD|demand|0.00411500|0.00411643": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1784860405.7667313
   },
   "MSTRBUSD|demand|92.45000000|92.55340000": {
@@ -5018,6 +5018,10 @@
     "last_alert_at": 0.0
   },
   "TRIA/USDT|supply|0.00992728|0.01000500": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "DODO/USDT|demand|0.01887000|0.01900240": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
