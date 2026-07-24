@@ -3806,7 +3806,7 @@
     "last_alert_at": 0.0
   },
   "ONDOUSD|demand|0.39070000|0.39180100": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1784889194.8931146
   },
   "SXT/USDT|supply|0.00703268|0.00705100": {
@@ -4094,8 +4094,8 @@
     "last_alert_at": 1784887397.7903657
   },
   "MUSD|supply|1.19201300|1.19410000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1784890992.5474448
   },
   "DOTUSD|range_filter|buy": {
     "last_alert_at": 1784737999.5469456
@@ -5042,8 +5042,8 @@
     "last_alert_at": 0.0
   },
   "OPENAI/USDT:USDT|demand|116.53000000|116.74415000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1784890992.8245194
   },
   "METAXUSD|supply|608.08180000|608.55000000": {
     "in_zone": true,
@@ -5078,8 +5078,8 @@
     "last_alert_at": 1784878401.6194248
   },
   "XMRUSD|demand|353.20000000|353.55245000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1784890992.2493074
   },
   "T/USDT|supply|0.00387399|0.00388200": {
     "in_zone": false,
@@ -5169,6 +5169,10 @@
     "last_alert_at": 0.0
   },
   "PUMPUSD|demand|0.00180900|0.00181262": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "BABA/USDT:USDT|demand|110.55000000|110.67670000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
