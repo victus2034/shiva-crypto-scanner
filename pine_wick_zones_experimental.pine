@@ -2,13 +2,13 @@
 indicator("Shiva Wick Zones - Experimental", overlay = true, max_boxes_count = 100)
 
 // This experimental version evaluates confirmed candles directly, using the wick as the zone.
-confirmationBars = input.int(3, "Confirmation bars", minval = 1, maxval = 20)
+confirmationBars = input.int(5, "Confirmation bars", minval = 1, maxval = 20)
 historyToKeep = input.int(20, "Zones to keep per side", minval = 1, maxval = 50)
 atrPeriod = input.int(50, "ATR period", minval = 1)
 overlapAtr = input.float(1.0, "Overlap filter (ATR)", minval = 0.0, step = 0.25)
-minWickAtr = input.float(0.10, "Minimum wick size (ATR)", minval = 0.0, step = 0.05)
-minWickToBody = input.float(1.0, "Minimum wick/body ratio", minval = 0.0, step = 0.25)
-minDepartureAtr = input.float(0.50, "Minimum departure move (ATR)", minval = 0.0, step = 0.25)
+minWickAtr = input.float(0.15, "Minimum wick size (ATR)", minval = 0.0, step = 0.05)
+minWickToBody = input.float(1.5, "Minimum wick/body ratio", minval = 0.0, step = 0.25)
+minDepartureAtr = input.float(0.75, "Minimum departure move (ATR)", minval = 0.0, step = 0.25)
 
 demandColor = color.new(color.aqua, 72)
 supplyColor = color.new(color.orange, 72)
