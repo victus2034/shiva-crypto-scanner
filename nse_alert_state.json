@@ -3875,7 +3875,7 @@
     "last_alert_at": 0.0
   },
   "ACUTAAS.NS|demand|3348.0000|3369.5449": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1784867594.880819,
     "last_attempt_at": 1784867594.880819
   },
@@ -4042,7 +4042,7 @@
     "last_alert_at": 0.0
   },
   "AMBUJACEM.NS|demand|414.0500|415.9353": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1784865184.8772535,
     "last_attempt_at": 1784865184.8772535
   },
@@ -4626,7 +4626,7 @@
     "last_alert_at": 0.0
   },
   "CDSL.NS|demand|1296.0000|1301.4194": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1784866327.2622743,
     "last_attempt_at": 1784866327.2622743
   },
@@ -4791,13 +4791,14 @@
     "last_alert_at": 0.0
   },
   "CROMPTON.NS|demand|248.3500|249.8395": {
-    "in_zone": false,
-    "last_alert_at": 1784785980.9859364,
-    "last_attempt_at": 1784785980.9859364
+    "in_zone": true,
+    "last_alert_at": 1784874780.8212173,
+    "last_attempt_at": 1784874780.8212173
   },
   "CUMMINSIND.NS|supply|5687.8946|5712.5000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1784874781.0207613,
+    "last_attempt_at": 1784874781.0207613
   },
   "CUMMINSIND.NS|demand|5403.0000|5426.5959": {
     "in_zone": false,
