@@ -4089,8 +4089,9 @@
     "last_alert_at": 0.0
   },
   "APARINDS.NS|supply|14166.9022|14265.0000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1784883125.96188,
+    "last_attempt_at": 1784883125.96188
   },
   "APARINDS.NS|demand|13409.0000|13512.5901": {
     "in_zone": true,
@@ -4813,8 +4814,8 @@
   },
   "CYIENT.NS|demand|821.0000|825.4730": {
     "in_zone": true,
-    "last_alert_at": 1784867595.985718,
-    "last_attempt_at": 1784867595.985718
+    "last_alert_at": 1784883126.115133,
+    "last_attempt_at": 1784883126.115133
   },
   "DCMSHRIRAM.NS|supply|1078.2621|1084.5000": {
     "in_zone": false,
@@ -5101,8 +5102,8 @@
   },
   "GAIL.NS|demand|168.1400|168.7991": {
     "in_zone": true,
-    "last_alert_at": 1784867596.679162,
-    "last_attempt_at": 1784867596.679162
+    "last_alert_at": 1784883126.4003797,
+    "last_attempt_at": 1784883126.4003797
   },
   "GVT&D.NS|supply|4701.4551|4738.7998": {
     "in_zone": false,
@@ -5425,7 +5426,7 @@
     "last_alert_at": 1784781178.7606418
   },
   "HINDZINC.NS|demand|516.8500|519.7438": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1784881993.612965,
     "last_attempt_at": 1784881993.612965
   },
@@ -6811,8 +6812,8 @@
   },
   "RVNL.NS|demand|221.7900|223.2293": {
     "in_zone": true,
-    "last_alert_at": 1784865241.4747996,
-    "last_attempt_at": 1784865241.4747996
+    "last_alert_at": 1784883126.575404,
+    "last_attempt_at": 1784883126.575404
   },
   "RAILTEL.NS|supply|328.3894|330.2000": {
     "in_zone": false,
@@ -7737,7 +7738,7 @@
     "last_attempt_at": 1784789562.3159332
   },
   "JPPOWER.NS|demand|16.6500|16.7638": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1784880730.9714954,
     "last_attempt_at": 1784880730.9714954
   },
@@ -10239,6 +10240,11 @@
     "last_attempt_at": 0.0
   },
   "KPITTECH.NS|supply|769.3437|773.9000": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "RKFORGE.NS|supply|627.2862|631.0000": {
     "in_zone": false,
     "last_alert_at": 0.0,
     "last_attempt_at": 0.0
