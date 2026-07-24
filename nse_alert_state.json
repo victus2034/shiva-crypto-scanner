@@ -4488,7 +4488,7 @@
     "last_alert_at": 0.0
   },
   "BRITANNIA.NS|demand|5255.0000|5271.1452": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1784868765.249312,
     "last_attempt_at": 1784868765.249312
   },
@@ -5701,8 +5701,9 @@
     "last_alert_at": 0.0
   },
   "INTELLECT.NS|demand|716.9000|721.8871": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1784871180.5996103,
+    "last_attempt_at": 1784871180.5996103
   },
   "INDIGO.NS|supply|5443.2439|5465.0000": {
     "in_zone": false,
@@ -6441,7 +6442,7 @@
     "last_alert_at": 0.0
   },
   "NUVAMA.NS|supply|1982.7978|1993.1000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1784865231.4246678,
     "last_attempt_at": 1784865231.4246678
   },
@@ -6680,7 +6681,7 @@
     "last_alert_at": 0.0
   },
   "POLYMED.NS|demand|1606.5000|1616.6725": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1784866330.490955,
     "last_attempt_at": 1784866330.490955
   },
@@ -7935,9 +7936,9 @@
     "last_attempt_at": 0.0
   },
   "NETWEB.NS|demand|4063.6001|4101.4750": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1784871180.803424,
+    "last_attempt_at": 1784871180.803424
   },
   "NEULANDLAB.NS|supply|19631.2182|19735.0000": {
     "in_zone": false,
@@ -9257,6 +9258,16 @@
     "last_attempt_at": 0.0
   },
   "PIDILITIND.NS|demand|1428.7000|1434.4748": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "GVT&D.NS|demand|3392.0000|3418.3706": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "PVRINOX.NS|supply|1092.9279|1098.0500": {
     "in_zone": false,
     "last_alert_at": 0.0,
     "last_attempt_at": 0.0
