@@ -58205,7 +58205,7 @@
     "last_alert_at": 1784822521.7937057
   },
   "XMRUSD|supply|361.73130000|362.80000000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1784850070.868414
   },
   "DRAMBUSD|supply|59.67745000|60.07000000": {
@@ -58221,6 +58221,14 @@
     "last_alert_at": 0.0
   },
   "LABUSD|supply|0.19105250|0.20000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "MAGMA/USDT|demand|0.20599000|0.20847580": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "FLNC/USDT:USDT|supply|16.27890000|16.37000000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
