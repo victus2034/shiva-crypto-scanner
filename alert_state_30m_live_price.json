@@ -769,7 +769,7 @@
     "last_alert_at": 1784466193.9607615
   },
   "TIAUSD|range_filter|sell": {
-    "last_alert_at": 1784856793.4953976
+    "last_alert_at": 1784858598.522762
   },
   "TIAUSD|supply|0.42323000|0.42440000": {
     "in_zone": false,
@@ -2330,7 +2330,7 @@
     "last_alert_at": 1784505803.9577768
   },
   "T/USDT|range_filter|sell": {
-    "last_alert_at": 1784847786.6919527
+    "last_alert_at": 1784858599.0580862
   },
   "SPCXXUSD|range_filter|sell": {
     "last_alert_at": 1784640794.2405381
@@ -3580,7 +3580,7 @@
   },
   "GRAMUSD|demand|1.43400000|1.43532500": {
     "in_zone": true,
-    "last_alert_at": 1784856793.995603
+    "last_alert_at": 1784858599.6233342
   },
   "INTCBUSD|demand|101.72000000|101.85705000": {
     "in_zone": false,
@@ -4728,8 +4728,8 @@
     "last_alert_at": 0.0
   },
   "AAPLXUSD|demand|319.85000000|320.05425000": {
-    "in_zone": false,
-    "last_alert_at": 1784851394.2832305
+    "in_zone": true,
+    "last_alert_at": 1784858598.2894747
   },
   "XPLUSD|demand|0.08210000|0.08219600": {
     "in_zone": true,
@@ -4792,7 +4792,7 @@
   },
   "1000SHIBUSD|demand|0.00411500|0.00411643": {
     "in_zone": true,
-    "last_alert_at": 1784854996.368004
+    "last_alert_at": 1784858599.8264263
   },
   "MSTRBUSD|demand|92.45000000|92.55340000": {
     "in_zone": false,
@@ -4892,7 +4892,7 @@
   },
   "SPYXUSD|demand|734.00000000|734.19585000": {
     "in_zone": true,
-    "last_alert_at": 1784854995.2128317
+    "last_alert_at": 1784858597.9499767
   },
   "AIOTUSD|supply|0.05380645|0.05397800": {
     "in_zone": false,
@@ -4991,7 +4991,7 @@
   },
   "TIAUSD|demand|0.34600000|0.34626750": {
     "in_zone": true,
-    "last_alert_at": 1784856793.4953976
+    "last_alert_at": 1784858598.522762
   },
   "ETCUSD|supply|7.09391500|7.09900000": {
     "in_zone": false,
@@ -5002,6 +5002,14 @@
     "last_alert_at": 0.0
   },
   "LIT/USDT|supply|2.69090000|2.70000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "ARBUSD|supply|0.09360950|0.09380000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "INTCBUSD|supply|112.91795000|113.15000000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
