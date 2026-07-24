@@ -173,7 +173,7 @@
     "last_alert_at": 0.0
   },
   "BNBUSD|demand|555.31000000|555.76303000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1784903594.3747835
   },
   "ADAUSD|supply|0.17455650|0.17480000": {
@@ -2339,7 +2339,7 @@
     "last_alert_at": 1784820796.8120372
   },
   "SPYXUSD|range_filter|buy": {
-    "last_alert_at": 1784824396.5893538
+    "last_alert_at": 1784905399.956387
   },
   "BCHUSD|supply|217.84225000|218.03000000": {
     "in_zone": true,
@@ -2595,7 +2595,7 @@
     "last_alert_at": 1784549003.0510347
   },
   "FET/USDT|demand|0.15030000|0.15049300": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1784903594.8972802
   },
   "PUMPUSD|demand|0.00193600|0.00194245": {
@@ -2834,7 +2834,7 @@
   },
   "OPUSD|demand|0.09180000|0.09188500": {
     "in_zone": true,
-    "last_alert_at": 1784903594.5118303
+    "last_alert_at": 1784905400.4481819
   },
   "AMZNXUSD|range_filter|sell": {
     "last_alert_at": 1784795590.5456352
@@ -4787,12 +4787,12 @@
     "last_alert_at": 1784854995.9602172
   },
   "AIOTUSD|supply|0.05239690|0.05259000": {
-    "in_zone": false,
-    "last_alert_at": 1784862199.476674
+    "in_zone": true,
+    "last_alert_at": 1784905400.7220526
   },
   "1000SHIBUSD|demand|0.00411500|0.00411643": {
     "in_zone": true,
-    "last_alert_at": 1784903595.4154394
+    "last_alert_at": 1784905400.9361095
   },
   "MSTRBUSD|demand|92.45000000|92.55340000": {
     "in_zone": false,
@@ -4952,7 +4952,7 @@
   },
   "ZECUSD|demand|497.00000000|497.91330000": {
     "in_zone": true,
-    "last_alert_at": 1784903593.906251
+    "last_alert_at": 1784905399.4246879
   },
   "TSLAXUSD|demand|316.75000000|317.44655000": {
     "in_zone": false,
@@ -5146,7 +5146,7 @@
   },
   "SPYXUSD|demand|735.53000000|735.71660000": {
     "in_zone": true,
-    "last_alert_at": 1784903594.081386
+    "last_alert_at": 1784905399.956387
   },
   "AAVEUSD|supply|99.91776000|100.10000000": {
     "in_zone": false,
@@ -5253,8 +5253,8 @@
     "last_alert_at": 0.0
   },
   "HYPEUSD|supply|58.94952500|59.05000000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1784905399.6828778
   },
   "OPUSD|supply|0.09492600|0.09500000": {
     "in_zone": false,
@@ -5265,7 +5265,11 @@
     "last_alert_at": 0.0
   },
   "BZ/USDT:USDT|demand|91.18000000|91.31165000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1784903595.6519184
+  },
+  "CBRSBUSD|supply|221.26685000|222.02000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
   }
 }
