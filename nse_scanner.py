@@ -23,6 +23,7 @@ from nse_config import (
     MARKET_CLOSE,
     MARKET_OPEN,
     MARKET_TIMEZONE,
+    MAX_CONSECUTIVE_ZONE_TOUCHES,
     MAX_DISTANCE_PCT,
     NSE_INDEX_CSV_URL,
     NSE_MAX_SYMBOLS,
@@ -167,6 +168,14 @@ def add_zone_if_not_overlapping(zones, new_zone, atr_value):
     return True
 
 
+def record_zone_touch(zone, candle_high, candle_low):
+    touches_zone = candle_high >= zone["bottom"] and candle_low <= zone["top"]
+    zone["touch_streak"] = zone.get("touch_streak", 0) + 1 if touches_zone else 0
+    zone["max_touch_streak"] = max(zone.get("max_touch_streak", 0), zone["touch_streak"])
+    if zone["max_touch_streak"] >= MAX_CONSECUTIVE_ZONE_TOUCHES:
+        zone["over_touched"] = True
+
+
 def build_zones(df):
     atr_series = atr(df, ATR_PERIOD)
     if atr_series.isna().all():
@@ -196,6 +205,9 @@ def build_zones(df):
                     "top": top,
                     "bottom": top - atr_buffer,
                     "active": True,
+                    "touch_streak": 0,
+                    "max_touch_streak": 0,
+                    "over_touched": False,
                 }
                 if add_zone_if_not_overlapping(supply_zones, zone, confirmation_atr):
                     supply_zones = supply_zones[-HISTORY_OF_ZONES_TO_KEEP:]
@@ -208,15 +220,24 @@ def build_zones(df):
                     "top": bottom + atr_buffer,
                     "bottom": bottom,
                     "active": True,
+                    "touch_streak": 0,
+                    "max_touch_streak": 0,
+                    "over_touched": False,
                 }
                 if add_zone_if_not_overlapping(demand_zones, zone, confirmation_atr):
                     demand_zones = demand_zones[-HISTORY_OF_ZONES_TO_KEEP:]
 
         close = float(df["close"].iloc[confirmation_index])
+        high = float(df["high"].iloc[confirmation_index])
+        low = float(df["low"].iloc[confirmation_index])
         for zone in supply_zones:
+            if zone["active"] and confirmation_index > zone["created_idx"]:
+                record_zone_touch(zone, high, low)
             if zone["active"] and close >= zone["top"]:
                 zone["active"] = False
         for zone in demand_zones:
+            if zone["active"] and confirmation_index > zone["created_idx"]:
+                record_zone_touch(zone, high, low)
             if zone["active"] and close <= zone["bottom"]:
                 zone["active"] = False
 
@@ -228,7 +249,7 @@ def nearest_active_zone(price, zones, zone_type):
     nearest_dist = 999.0
 
     for zone in zones:
-        if not zone["active"]:
+        if not zone["active"] or zone.get("over_touched", False):
             continue
 
         reference = zone["top"] if zone_type == "supply" else zone["bottom"]

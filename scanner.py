@@ -25,6 +25,7 @@ from config import (
     DISCORD_STATUS_WEBHOOK_URL,
     DISCORD_WEBHOOK_URL,
     EXCHANGE_IDS,
+    MAX_CONSECUTIVE_ZONE_TOUCHES,
     MAX_DISTANCE_PCT,
     OHLCV_LIMIT,
     PRIMARY_EXCHANGE_ID,
@@ -176,6 +177,14 @@ def add_zone_if_not_overlapping(zones, new_zone, atr_value):
     return True
 
 
+def record_zone_touch(zone, candle_high, candle_low):
+    touches_zone = candle_high >= zone["bottom"] and candle_low <= zone["top"]
+    zone["touch_streak"] = zone.get("touch_streak", 0) + 1 if touches_zone else 0
+    zone["max_touch_streak"] = max(zone.get("max_touch_streak", 0), zone["touch_streak"])
+    if zone["max_touch_streak"] >= MAX_CONSECUTIVE_ZONE_TOUCHES:
+        zone["over_touched"] = True
+
+
 def build_zones(df):
     atr_series = atr(df, ATR_PERIOD)
     if atr_series.isna().all():
@@ -205,6 +214,9 @@ def build_zones(df):
                 "bottom": bottom,
                 "active": True,
                 "broken": False,
+                "touch_streak": 0,
+                "max_touch_streak": 0,
+                "over_touched": False,
             }
             add_zone_if_not_overlapping(supply_zones, zone, pivot_atr)
         else:
@@ -217,13 +229,19 @@ def build_zones(df):
                 "bottom": bottom,
                 "active": True,
                 "broken": False,
+                "touch_streak": 0,
+                "max_touch_streak": 0,
+                "over_touched": False,
             }
             add_zone_if_not_overlapping(demand_zones, zone, pivot_atr)
 
     closes = df["close"].values
+    highs = df["high"].values
+    lows = df["low"].values
 
     for zone in supply_zones:
         for index in range(zone["created_idx"] + 1, len(df)):
+            record_zone_touch(zone, highs[index], lows[index])
             if closes[index] >= zone["top"]:
                 zone["active"] = False
                 zone["broken"] = True
@@ -233,6 +251,7 @@ def build_zones(df):
 
     for zone in demand_zones:
         for index in range(zone["created_idx"] + 1, len(df)):
+            record_zone_touch(zone, highs[index], lows[index])
             if closes[index] <= zone["bottom"]:
                 zone["active"] = False
                 zone["broken"] = True
@@ -248,7 +267,7 @@ def nearest_active_zone(price, zones, zone_type):
     nearest_dist = 999.0
 
     for zone in zones:
-        if not zone["active"]:
+        if not zone["active"] or zone.get("over_touched", False):
             continue
 
         reference = zone["top"] if zone_type == "supply" else zone["bottom"]
