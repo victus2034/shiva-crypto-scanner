@@ -2280,8 +2280,8 @@
     "last_alert_at": 1784512996.21328
   },
   "LINKUSD|demand|8.28000000|8.28569500": {
-    "in_zone": false,
-    "last_alert_at": 1784559796.843114
+    "in_zone": true,
+    "last_alert_at": 1784928793.323032
   },
   "TSLAXUSD|range_filter|buy": {
     "last_alert_at": 1784840590.9345915
@@ -2833,8 +2833,8 @@
     "last_alert_at": 1784638995.1520538
   },
   "OPUSD|demand|0.09180000|0.09188500": {
-    "in_zone": false,
-    "last_alert_at": 1784905400.4481819
+    "in_zone": true,
+    "last_alert_at": 1784928793.8336194
   },
   "AMZNXUSD|range_filter|sell": {
     "last_alert_at": 1784795590.5456352
@@ -3139,7 +3139,7 @@
     "last_alert_at": 0.0
   },
   "XPLUSD|range_filter|sell": {
-    "last_alert_at": 1784752395.669256
+    "last_alert_at": 1784928793.9956152
   },
   "ALLO/USDT|demand|0.46080000|0.46253000": {
     "in_zone": false,
@@ -3433,7 +3433,7 @@
     "last_alert_at": 1784666003.658046
   },
   "HYPEUSD|range_filter|sell": {
-    "last_alert_at": 1784644390.0081725
+    "last_alert_at": 1784928793.1227825
   },
   "GRAMUSD|range_filter|sell": {
     "last_alert_at": 1784700198.3170316
@@ -4529,8 +4529,8 @@
     "last_alert_at": 1784818995.530961
   },
   "SOLUSD|demand|73.36600000|73.46730200": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1784928792.8496084
   },
   "MUSD|supply|1.14351650|1.14560000": {
     "in_zone": false,
@@ -4892,7 +4892,7 @@
   },
   "SPYXUSD|demand|734.00000000|734.19585000": {
     "in_zone": true,
-    "last_alert_at": 1784925194.4624217
+    "last_alert_at": 1784928793.5119565
   },
   "AIOTUSD|supply|0.05380645|0.05397800": {
     "in_zone": false,
@@ -5209,7 +5209,7 @@
     "last_alert_at": 0.0
   },
   "PUMPUSD|supply|0.00185139|0.00185500": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1784925195.2826104
   },
   "MUSD|supply|1.30469650|1.31100000": {
@@ -5371,7 +5371,7 @@
     "last_alert_at": 1784925194.7680304
   },
   "BABA/USDT:USDT|demand|111.87000000|111.99160000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1784926993.472798
   },
   "HOOD/USDT:USDT|demand|93.15000000|93.33000000": {
@@ -5435,6 +5435,14 @@
     "last_alert_at": 0.0
   },
   "BABA/USDT:USDT|supply|113.28245000|113.40000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "NVDAXUSD|demand|204.68000000|204.86140000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "MSTRBUSD|supply|99.71325000|99.86000000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
