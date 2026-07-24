@@ -449,7 +449,7 @@
     "last_alert_at": 0.0
   },
   "LIT/USDT|demand|2.14200000|2.15023000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1784853190.1196885
   },
   "ALLO/USDT|supply|0.52897300|0.53110000": {
@@ -769,7 +769,7 @@
     "last_alert_at": 1784466193.9607615
   },
   "TIAUSD|range_filter|sell": {
-    "last_alert_at": 1784700197.8154645
+    "last_alert_at": 1784856793.4953976
   },
   "TIAUSD|supply|0.42323000|0.42440000": {
     "in_zone": false,
@@ -2771,7 +2771,7 @@
     "last_alert_at": 1784574203.320617
   },
   "SEIUSD|demand|0.04533000|0.04538635": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1784854995.8024385
   },
   "SXT/USDT|demand|0.00704000|0.00704995": {
@@ -2833,7 +2833,7 @@
     "last_alert_at": 1784638995.1520538
   },
   "OPUSD|demand|0.09180000|0.09188500": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1784854995.3985767
   },
   "AMZNXUSD|range_filter|sell": {
@@ -3579,8 +3579,8 @@
     "last_alert_at": 1784698396.7581565
   },
   "GRAMUSD|demand|1.43400000|1.43532500": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1784856793.995603
   },
   "INTCBUSD|demand|101.72000000|101.85705000": {
     "in_zone": false,
@@ -4978,6 +4978,30 @@
     "last_alert_at": 0.0
   },
   "MAGMA/USDT|supply|0.33909555|0.34016000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "AVAXUSD|supply|6.74243250|6.75200000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "NEARUSD|supply|2.06270400|2.06500000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "TIAUSD|demand|0.34600000|0.34626750": {
+    "in_zone": true,
+    "last_alert_at": 1784856793.4953976
+  },
+  "ETCUSD|supply|7.09391500|7.09900000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "XLM/USDT|supply|0.18357700|0.18380000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "LIT/USDT|supply|2.69090000|2.70000000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
