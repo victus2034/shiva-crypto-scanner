@@ -1,8 +1,8 @@
 //@version=6
 indicator("Shiva Wick Zones - Experimental", overlay = true, max_boxes_count = 100)
 
-// This experimental version uses the pivot candle's wick as the zone itself.
-swingLength = input.int(5, "Swing length", minval = 1, maxval = 50)
+// This experimental version evaluates confirmed candles directly, using the wick as the zone.
+confirmationBars = input.int(3, "Confirmation bars", minval = 1, maxval = 20)
 historyToKeep = input.int(20, "Zones to keep per side", minval = 1, maxval = 50)
 atrPeriod = input.int(50, "ATR period", minval = 1)
 overlapAtr = input.float(1.0, "Overlap filter (ATR)", minval = 0.0, step = 0.25)
@@ -64,32 +64,31 @@ f_addSupply(float top, float bottom, int leftIndex) =>
         array.push(supplyActive, true)
         f_trimZones(supplyBoxes, supplyTops, supplyBottoms, supplyActive)
 
-pivotLow = ta.pivotlow(low, swingLength, swingLength)
-pivotHigh = ta.pivothigh(high, swingLength, swingLength)
-postPivotHighestClose = ta.highest(close, swingLength)
-postPivotLowestClose = ta.lowest(close, swingLength)
+// Evaluate the candle only after a few bars have closed, so the departure check does not repaint.
+candidateOffset = confirmationBars
+postCandidateHighestClose = ta.highest(close, confirmationBars)
+postCandidateLowestClose = ta.lowest(close, confirmationBars)
 
-if not na(pivotLow) and not na(atrValue[swingLength])
-    // Demand wick: pivot low up to the lower edge of the candle body.
-    demandBottom = low[swingLength]
-    demandTop = math.min(open[swingLength], close[swingLength])
+if not na(atrValue[candidateOffset])
+    // Demand wick: candidate low up to the lower edge of its body.
+    demandBottom = low[candidateOffset]
+    demandTop = math.min(open[candidateOffset], close[candidateOffset])
     demandWickSize = demandTop - demandBottom
-    demandBodySize = math.abs(close[swingLength] - open[swingLength])
-    demandDeparture = postPivotHighestClose - demandTop
+    demandBodySize = math.abs(close[candidateOffset] - open[candidateOffset])
+    demandDeparture = postCandidateHighestClose - demandTop
     demandStrongWick = demandWickSize >= math.max(demandBodySize * minWickToBody, syminfo.mintick)
-    if demandWickSize >= atrValue[swingLength] * minWickAtr and demandStrongWick and demandDeparture >= atrValue[swingLength] * minDepartureAtr
-        f_addDemand(demandTop, demandBottom, bar_index - swingLength)
+    if demandWickSize >= atrValue[candidateOffset] * minWickAtr and demandStrongWick and demandDeparture >= atrValue[candidateOffset] * minDepartureAtr
+        f_addDemand(demandTop, demandBottom, bar_index - candidateOffset)
 
-if not na(pivotHigh) and not na(atrValue[swingLength])
-    // Supply wick: upper edge of the candle body up to the pivot high.
-    supplyBottom = math.max(open[swingLength], close[swingLength])
-    supplyTop = high[swingLength]
+    // Supply wick: candidate body upper edge up to its high.
+    supplyBottom = math.max(open[candidateOffset], close[candidateOffset])
+    supplyTop = high[candidateOffset]
     supplyWickSize = supplyTop - supplyBottom
-    supplyBodySize = math.abs(close[swingLength] - open[swingLength])
-    supplyDeparture = supplyBottom - postPivotLowestClose
+    supplyBodySize = math.abs(close[candidateOffset] - open[candidateOffset])
+    supplyDeparture = supplyBottom - postCandidateLowestClose
     supplyStrongWick = supplyWickSize >= math.max(supplyBodySize * minWickToBody, syminfo.mintick)
-    if supplyWickSize >= atrValue[swingLength] * minWickAtr and supplyStrongWick and supplyDeparture >= atrValue[swingLength] * minDepartureAtr
-        f_addSupply(supplyTop, supplyBottom, bar_index - swingLength)
+    if supplyWickSize >= atrValue[candidateOffset] * minWickAtr and supplyStrongWick and supplyDeparture >= atrValue[candidateOffset] * minDepartureAtr
+        f_addSupply(supplyTop, supplyBottom, bar_index - candidateOffset)
 
 if array.size(demandBoxes) > 0
     for i = array.size(demandBoxes) - 1 to 0
