@@ -3,11 +3,11 @@ indicator("Shiva Wick Zones - Experimental", overlay = true, max_boxes_count = 1
 
 // This experimental version uses the pivot candle's wick as the zone itself.
 swingLength = input.int(10, "Swing length", minval = 1, maxval = 50)
-historyToKeep = input.int(20, "Active zones to keep per side", minval = 1, maxval = 50)
+historyToKeep = input.int(20, "Zones to keep per side", minval = 1, maxval = 50)
 atrPeriod = input.int(50, "ATR period", minval = 1)
 overlapAtr = input.float(2.0, "Overlap filter (ATR)", minval = 0.0, step = 0.25)
-nearPercent = input.float(0.5, "Near-zone alert distance (%)", minval = 0.05, step = 0.05)
-showBroken = input.bool(false, "Keep broken zones visible")
+minWickAtr = input.float(0.15, "Minimum wick size (ATR)", minval = 0.0, step = 0.05)
+showBroken = input.bool(true, "Keep broken zones visible")
 
 demandColor = color.new(color.aqua, 72)
 supplyColor = color.new(color.orange, 72)
@@ -70,13 +70,17 @@ if not na(pivotLow) and not na(atrValue[swingLength])
     // Demand wick: pivot low up to the lower edge of the candle body.
     demandBottom = low[swingLength]
     demandTop = math.min(open[swingLength], close[swingLength])
-    f_addDemand(demandTop, demandBottom, bar_index - swingLength)
+    demandWickSize = demandTop - demandBottom
+    if demandWickSize >= atrValue[swingLength] * minWickAtr
+        f_addDemand(demandTop, demandBottom, bar_index - swingLength)
 
 if not na(pivotHigh) and not na(atrValue[swingLength])
     // Supply wick: upper edge of the candle body up to the pivot high.
     supplyBottom = math.max(open[swingLength], close[swingLength])
     supplyTop = high[swingLength]
-    f_addSupply(supplyTop, supplyBottom, bar_index - swingLength)
+    supplyWickSize = supplyTop - supplyBottom
+    if supplyWickSize >= atrValue[swingLength] * minWickAtr
+        f_addSupply(supplyTop, supplyBottom, bar_index - swingLength)
 
 if array.size(demandBoxes) > 0
     for i = array.size(demandBoxes) - 1 to 0
@@ -87,6 +91,8 @@ if array.size(demandBoxes) > 0
             box.set_right(brokenBox, bar_index)
             if showBroken
                 box.set_bgcolor(brokenBox, brokenColor)
+                box.set_border_color(brokenBox, color.gray)
+                box.set_text(brokenBox, "BROKEN DEMAND WICK")
             else
                 box.delete(brokenBox)
                 array.remove(demandBoxes, i)
@@ -103,33 +109,11 @@ if array.size(supplyBoxes) > 0
             box.set_right(brokenBox, bar_index)
             if showBroken
                 box.set_bgcolor(brokenBox, brokenColor)
+                box.set_border_color(brokenBox, color.gray)
+                box.set_text(brokenBox, "BROKEN SUPPLY WICK")
             else
                 box.delete(brokenBox)
                 array.remove(supplyBoxes, i)
                 array.remove(supplyTops, i)
                 array.remove(supplyBottoms, i)
                 array.remove(supplyActive, i)
-
-float nearestDemandDistance = na
-float nearestSupplyDistance = na
-
-if array.size(demandBoxes) > 0
-    for i = 0 to array.size(demandBoxes) - 1
-        if array.get(demandActive, i)
-            distance = math.abs(close - array.get(demandBottoms, i)) / close * 100.0
-            nearestDemandDistance := na(nearestDemandDistance) ? distance : math.min(nearestDemandDistance, distance)
-
-if array.size(supplyBoxes) > 0
-    for i = 0 to array.size(supplyBoxes) - 1
-        if array.get(supplyActive, i)
-            distance = math.abs(array.get(supplyTops, i) - close) / close * 100.0
-            nearestSupplyDistance := na(nearestSupplyDistance) ? distance : math.min(nearestSupplyDistance, distance)
-
-nearDemand = not na(nearestDemandDistance) and nearestDemandDistance <= nearPercent
-nearSupply = not na(nearestSupplyDistance) and nearestSupplyDistance <= nearPercent
-
-plotshape(nearDemand, title = "Near demand wick zone", style = shape.triangleup, location = location.belowbar, color = color.aqua, size = size.tiny, text = "D")
-plotshape(nearSupply, title = "Near supply wick zone", style = shape.triangledown, location = location.abovebar, color = color.orange, size = size.tiny, text = "S")
-
-alertcondition(nearDemand, "Near demand wick zone", "Price is near a demand wick zone")
-alertcondition(nearSupply, "Near supply wick zone", "Price is near a supply wick zone")
