@@ -1875,7 +1875,7 @@
     "last_alert_at": 1784502210.6946878
   },
   "SXT/USDT|range_filter|sell": {
-    "last_alert_at": 1784867601.0026636
+    "last_alert_at": 1784901793.8524876
   },
   "BZ/USDT:USDT|supply|88.70990000|88.79000000": {
     "in_zone": true,
@@ -4324,7 +4324,7 @@
     "last_alert_at": 0.0
   },
   "SPYXUSD|range_filter|sell": {
-    "last_alert_at": 1784777589.4903145
+    "last_alert_at": 1784901793.6525722
   },
   "COINXUSD|supply|177.82035000|178.14000000": {
     "in_zone": false,
@@ -4755,8 +4755,8 @@
     "last_alert_at": 0.0
   },
   "DOGEUSD|demand|0.06841000|0.06850198": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1784901793.4542093
   },
   "CRCLXUSD|demand|61.70000000|61.82655000": {
     "in_zone": false,
@@ -5249,6 +5249,10 @@
     "last_alert_at": 0.0
   },
   "CBRSBUSD|demand|198.73000000|199.26060000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "HYPEUSD|supply|58.94952500|59.05000000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
