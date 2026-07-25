@@ -71,28 +71,28 @@ postPivotHighestClose = ta.highest(close, swingLength)
 postPivotLowestClose = ta.lowest(close, swingLength)
 
 if not na(pivotLow) and not na(atrValue[swingLength])
-    // Demand wick, expanded by padding around the original wick/body edges.
-    padding = atrValue[swingLength] * zonePaddingAtr
-    demandBottom = low[swingLength] - padding
-    demandTop = math.min(open[swingLength], close[swingLength]) + padding
+    // Qualify the original demand wick first; padding changes only the box size.
+    demandBottom = low[swingLength]
+    demandTop = math.min(open[swingLength], close[swingLength])
     demandWickSize = demandTop - demandBottom
     demandBodySize = math.abs(close[swingLength] - open[swingLength])
     demandDeparture = postPivotHighestClose - demandTop
     demandStrongWick = demandWickSize >= math.max(demandBodySize * minWickToBody, syminfo.mintick)
     if demandWickSize >= atrValue[swingLength] * minWickAtr and demandStrongWick and demandDeparture >= atrValue[swingLength] * minDepartureAtr
-        f_addDemand(demandTop, demandBottom, bar_index - swingLength)
+        padding = atrValue[swingLength] * zonePaddingAtr
+        f_addDemand(demandTop + padding, demandBottom - padding, bar_index - swingLength)
 
 if not na(pivotHigh) and not na(atrValue[swingLength])
-    // Supply wick, expanded by padding around the original wick/body edges.
-    padding = atrValue[swingLength] * zonePaddingAtr
-    supplyBottom = math.max(open[swingLength], close[swingLength]) - padding
-    supplyTop = high[swingLength] + padding
+    // Qualify the original supply wick first; padding changes only the box size.
+    supplyBottom = math.max(open[swingLength], close[swingLength])
+    supplyTop = high[swingLength]
     supplyWickSize = supplyTop - supplyBottom
     supplyBodySize = math.abs(close[swingLength] - open[swingLength])
     supplyDeparture = supplyBottom - postPivotLowestClose
     supplyStrongWick = supplyWickSize >= math.max(supplyBodySize * minWickToBody, syminfo.mintick)
     if supplyWickSize >= atrValue[swingLength] * minWickAtr and supplyStrongWick and supplyDeparture >= atrValue[swingLength] * minDepartureAtr
-        f_addSupply(supplyTop, supplyBottom, bar_index - swingLength)
+        padding = atrValue[swingLength] * zonePaddingAtr
+        f_addSupply(supplyTop + padding, supplyBottom - padding, bar_index - swingLength)
 
 if array.size(demandBoxes) > 0
     for i = array.size(demandBoxes) - 1 to 0
