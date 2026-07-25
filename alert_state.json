@@ -58044,7 +58044,7 @@
     "last_alert_at": 1784817676.406711
   },
   "EWYBUSD|demand|160.90000000|161.75655000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1784930522.3418415
   },
   "VELVET/USDT|demand|0.08818000|0.08880375": {
@@ -58074,7 +58074,7 @@
     "last_alert_at": 1784704870.3015492
   },
   "IBM/USDT:USDT|supply|215.74305000|216.90000000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1784920878.9031754
   },
   "FLNC/USDT:USDT|range_filter|buy": {
@@ -58341,6 +58341,10 @@
     "last_alert_at": 1784929274.2338045
   },
   "BABA/USDT:USDT|supply|137.57870000|138.17000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "EWYBUSD|supply|176.51995000|177.30000000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
