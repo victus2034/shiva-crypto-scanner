@@ -5372,7 +5372,7 @@
   },
   "BABA/USDT:USDT|demand|111.87000000|111.99160000": {
     "in_zone": true,
-    "last_alert_at": 1785006201.9049718
+    "last_alert_at": 1785009790.481087
   },
   "HOOD/USDT:USDT|demand|93.15000000|93.33000000": {
     "in_zone": false,
@@ -5550,8 +5550,8 @@
     "last_alert_at": 0.0
   },
   "TSLAXUSD|supply|314.26925000|314.75000000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1785009790.2978137
   },
   "FARTCOIN/USDT|supply|0.12617950|0.12640000": {
     "in_zone": false,
@@ -5608,7 +5608,7 @@
     "last_alert_at": 1784981003.143473
   },
   "TSLAXUSD|demand|311.05000000|311.45850000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1785000791.6492558
   },
   "TIAUSD|demand|0.33840000|0.33862150": {
@@ -5827,7 +5827,7 @@
   },
   "PAXGUSD|demand|4046.30000000|4047.47495000": {
     "in_zone": true,
-    "last_alert_at": 1785006201.2093656
+    "last_alert_at": 1785009790.0593548
   },
   "ETCUSD|demand|6.57800000|6.58197500": {
     "in_zone": false,
@@ -5909,6 +5909,10 @@
     "last_alert_at": 0.0
   },
   "DELL/USDT:USDT|demand|380.01000000|380.80115000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "T/USDT|demand|0.00358400|0.00359261": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
