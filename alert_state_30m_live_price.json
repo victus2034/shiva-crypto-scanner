@@ -2783,7 +2783,7 @@
     "last_alert_at": 1784747001.809267
   },
   "SEIUSD|range_filter|sell": {
-    "last_alert_at": 1784896390.065866
+    "last_alert_at": 1784939594.4251876
   },
   "OPENAI/USDT:USDT|demand|111.57000000|111.78495000": {
     "in_zone": true,
@@ -4098,7 +4098,7 @@
     "last_alert_at": 1784890992.5474448
   },
   "DOTUSD|range_filter|buy": {
-    "last_alert_at": 1784737999.5469456
+    "last_alert_at": 1784939594.244544
   },
   "T/USDT|demand|0.00365000|0.00365245": {
     "in_zone": false,
@@ -5339,7 +5339,7 @@
     "last_alert_at": 1784923397.9599457
   },
   "ONDOUSD|demand|0.38080000|0.38160400": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1784937797.8241088
   },
   "XPLUSD|demand|0.08360000|0.08369050": {
@@ -5526,7 +5526,7 @@
     "last_alert_at": 1784937796.8224163
   },
   "SUIUSD|demand|0.70780000|0.70849950": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1784937797.043182
   },
   "NEARUSD|supply|2.08262850|2.08670000": {
@@ -5538,6 +5538,14 @@
     "last_alert_at": 0.0
   },
   "DODO/USDT|demand|0.01837000|0.01845690": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "OPUSD|supply|0.09312000|0.09320000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "MUBUSD|demand|905.50000000|907.56305000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
