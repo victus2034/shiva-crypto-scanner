@@ -56639,8 +56639,8 @@
     "last_alert_at": 0.0
   },
   "1000SHIBUSD|supply|0.00456640|0.00458200": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1784992873.0044625
   },
   "1000SHIBUSD|demand|0.00404900|0.00406711": {
     "in_zone": false,
@@ -57820,7 +57820,7 @@
   },
   "SOLUSD|demand|73.36600000|73.64392300": {
     "in_zone": true,
-    "last_alert_at": 1784977324.5435765
+    "last_alert_at": 1784992872.5479796
   },
   "BCHUSD|demand|214.39000000|215.44045000": {
     "in_zone": true,
@@ -58652,5 +58652,8 @@
   },
   "1000SHIBUSD|range_filter|buy": {
     "last_alert_at": 1784988121.8944979
+  },
+  "AVAXUSD|range_filter|buy": {
+    "last_alert_at": 1784992872.7810779
   }
 }
