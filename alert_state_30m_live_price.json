@@ -1875,7 +1875,7 @@
     "last_alert_at": 1784502210.6946878
   },
   "SXT/USDT|range_filter|sell": {
-    "last_alert_at": 1784901793.8524876
+    "last_alert_at": 1784971994.282773
   },
   "BZ/USDT:USDT|supply|88.70990000|88.79000000": {
     "in_zone": true,
@@ -4117,7 +4117,7 @@
     "last_alert_at": 0.0
   },
   "1000SHIBUSD|range_filter|buy": {
-    "last_alert_at": 1784916195.7417073
+    "last_alert_at": 1784971994.059571
   },
   "OPENAI/USDT:USDT|demand|113.51000000|113.72895000": {
     "in_zone": false,
@@ -4529,7 +4529,7 @@
     "last_alert_at": 1784818995.530961
   },
   "SOLUSD|demand|73.36600000|73.46730200": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1784966589.5731468
   },
   "MUSD|supply|1.14351650|1.14560000": {
@@ -4892,7 +4892,7 @@
   },
   "SPYXUSD|demand|734.00000000|734.19585000": {
     "in_zone": true,
-    "last_alert_at": 1784953997.942354
+    "last_alert_at": 1784971993.830798
   },
   "AIOTUSD|supply|0.05380645|0.05397800": {
     "in_zone": false,
@@ -5372,7 +5372,7 @@
   },
   "BABA/USDT:USDT|demand|111.87000000|111.99160000": {
     "in_zone": true,
-    "last_alert_at": 1784968395.4371986
+    "last_alert_at": 1784971994.5312893
   },
   "HOOD/USDT:USDT|demand|93.15000000|93.33000000": {
     "in_zone": false,
@@ -5523,7 +5523,7 @@
   },
   "QQQXUSD|demand|682.55000000|682.95540000": {
     "in_zone": true,
-    "last_alert_at": 1784968394.9678721
+    "last_alert_at": 1784971993.5507786
   },
   "SUIUSD|demand|0.70780000|0.70849950": {
     "in_zone": true,
@@ -5609,14 +5609,14 @@
   },
   "TSLAXUSD|demand|311.05000000|311.45850000": {
     "in_zone": true,
-    "last_alert_at": 1784968395.1771562
+    "last_alert_at": 1784971993.6753018
   },
   "TIAUSD|demand|0.33840000|0.33862150": {
     "in_zone": true,
     "last_alert_at": 1784961189.1416743
   },
   "IBM/USDT:USDT|demand|211.15000000|211.38710000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1784964795.9080977
   },
   "ADAUSD|supply|0.16456925|0.16480000": {
@@ -5672,6 +5672,14 @@
     "last_alert_at": 0.0
   },
   "NVDAXUSD|supply|211.74595000|211.96000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "LDO/USDT|demand|0.37220000|0.37285500": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "1000PEPEUSD|supply|0.00281310|0.00281560": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
