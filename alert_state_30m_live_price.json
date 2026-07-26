@@ -1722,7 +1722,7 @@
     "last_alert_at": 1784498595.0385437
   },
   "NEARUSD|range_filter|buy": {
-    "last_alert_at": 1784543595.9547179
+    "last_alert_at": 1785106987.6020021
   },
   "WLD/USDT|supply|0.37875450|0.37940000": {
     "in_zone": true,
@@ -2403,7 +2403,7 @@
     "last_alert_at": 1784516603.9739122
   },
   "XPLUSD|range_filter|buy": {
-    "last_alert_at": 1784867600.729477
+    "last_alert_at": 1785106988.0184236
   },
   "GOOGLXUSD|supply|349.55070000|349.65000000": {
     "in_zone": true,
@@ -2587,7 +2587,7 @@
     "last_alert_at": 1784599395.722019
   },
   "AAPLXUSD|supply|335.50710000|335.65000000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1785105196.2093592
   },
   "APTUSD|supply|0.59936000|0.59990000": {
@@ -2628,7 +2628,7 @@
     "last_alert_at": 0.0
   },
   "SEIUSD|range_filter|buy": {
-    "last_alert_at": 1785052993.5041723
+    "last_alert_at": 1785106987.8131042
   },
   "EWYBUSD|demand|160.90000000|161.01600000": {
     "in_zone": false,
@@ -5846,8 +5846,8 @@
     "last_alert_at": 1784997197.0647764
   },
   "EWYBUSD|supply|170.78485000|171.00000000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1785106988.1702464
   },
   "DRAMBUSD|supply|56.88660000|57.03000000": {
     "in_zone": false,
@@ -6322,7 +6322,7 @@
   },
   "SPYXUSD|demand|745.19000000|745.33360000": {
     "in_zone": true,
-    "last_alert_at": 1785097997.117785
+    "last_alert_at": 1785106987.4431186
   },
   "XMRUSD|demand|360.93000000|361.22745000": {
     "in_zone": true,
@@ -6464,8 +6464,8 @@
     "last_alert_at": 1785099800.0614538
   },
   "TSLAXUSD|supply|316.44670000|316.55000000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1785106987.2991114
   },
   "INTCBUSD|supply|95.09515000|95.13000000": {
     "in_zone": false,
@@ -6540,5 +6540,13 @@
   },
   "SNDKBUSD|range_filter|buy": {
     "last_alert_at": 1785105198.4786873
+  },
+  "CRV/USDT|supply|0.22499700|0.22540000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "MSTRBUSD|demand|93.00000000|93.01750000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
   }
 }
