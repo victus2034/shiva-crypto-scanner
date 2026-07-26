@@ -2269,7 +2269,7 @@
     "last_alert_at": 1785015199.1331627
   },
   "DRAMBUSD|range_filter|buy": {
-    "last_alert_at": 1784824396.762119
+    "last_alert_at": 1785024196.643194
   },
   "MRVL/USDT:USDT|demand|185.21000000|185.36900000": {
     "in_zone": false,
@@ -5522,7 +5522,7 @@
     "last_alert_at": 0.0
   },
   "QQQXUSD|demand|682.55000000|682.95540000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1785000791.3505843
   },
   "SUIUSD|demand|0.70780000|0.70849950": {
@@ -5978,7 +5978,7 @@
   },
   "AAVEUSD|supply|92.61266000|92.70000000": {
     "in_zone": true,
-    "last_alert_at": 1785020594.0383792
+    "last_alert_at": 1785024196.4645364
   },
   "WLD/USDT|supply|0.35125100|0.35210000": {
     "in_zone": false,
@@ -6017,6 +6017,14 @@
     "last_alert_at": 0.0
   },
   "MUSD|demand|1.16130000|1.16289150": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "SOLUSD|supply|74.68573450|74.73400000": {
+    "in_zone": true,
+    "last_alert_at": 1785024196.161199
+  },
+  "INTCBUSD|supply|113.34505000|113.67000000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
