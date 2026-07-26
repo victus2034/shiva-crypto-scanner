@@ -4242,7 +4242,7 @@
   },
   "BZ/USDT:USDT|demand|89.40000000|89.50705000": {
     "in_zone": true,
-    "last_alert_at": 1785035002.3836741
+    "last_alert_at": 1785038592.3301508
   },
   "NVDAXUSD|supply|214.42115000|214.60000000": {
     "in_zone": false,
@@ -4631,8 +4631,8 @@
     "last_alert_at": 1784815398.8492212
   },
   "GRAMUSD|supply|1.51788000|1.52000000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1785038591.6648648
   },
   "1000BONKUSD|supply|0.00299054|0.00299600": {
     "in_zone": false,
@@ -5292,7 +5292,7 @@
     "last_alert_at": 0.0
   },
   "SKHYNIX/USDT:USDT|supply|1232.45830000|1236.23000000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1785036800.8589015
   },
   "AXTI/USDT:USDT|supply|53.05125000|53.24000000": {
@@ -5827,7 +5827,7 @@
   },
   "PAXGUSD|demand|4046.30000000|4047.47495000": {
     "in_zone": true,
-    "last_alert_at": 1785035000.8169787
+    "last_alert_at": 1785038590.9400146
   },
   "ETCUSD|demand|6.57800000|6.58197500": {
     "in_zone": false,
@@ -5894,11 +5894,11 @@
   },
   "XPLUSD|supply|0.08387800|0.08400000": {
     "in_zone": true,
-    "last_alert_at": 1785035001.7275026
+    "last_alert_at": 1785038591.8970065
   },
   "BCHUSD|supply|211.34865000|211.53000000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1785038591.3977034
   },
   "LIT/USDT|supply|2.09086500|2.09500000": {
     "in_zone": true,
@@ -5986,7 +5986,7 @@
   },
   "ZECUSD|supply|488.61255000|489.28000000": {
     "in_zone": true,
-    "last_alert_at": 1785035001.0129578
+    "last_alert_at": 1785038591.1674616
   },
   "LINKUSD|supply|8.42840000|8.43300000": {
     "in_zone": false,
@@ -6095,5 +6095,13 @@
   "SOXLBUSD|demand|137.70000000|138.10985000": {
     "in_zone": false,
     "last_alert_at": 0.0
+  },
+  "GRAMUSD|demand|1.46300000|1.46323500": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "OPENAI/USDT:USDT|demand|115.28000000|115.39185000": {
+    "in_zone": true,
+    "last_alert_at": 1785038592.1255355
   }
 }
