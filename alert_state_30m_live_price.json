@@ -1084,7 +1084,7 @@
     "last_alert_at": 0.0
   },
   "APTUSD|supply|0.62860700|0.62900000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1785056597.1419394
   },
   "SOXLBUSD|supply|134.90515000|135.70000000": {
@@ -6109,8 +6109,8 @@
     "last_alert_at": 0.0
   },
   "BZ/USDT:USDT|demand|88.13000000|88.23990000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1785058394.000665
   },
   "XRPUSD|demand|1.09710000|1.09771150": {
     "in_zone": true,
@@ -6187,5 +6187,29 @@
   "HOOD/USDT:USDT|supply|95.91570000|95.95000000": {
     "in_zone": true,
     "last_alert_at": 1785056598.333971
+  },
+  "BTCUSD|supply|64554.21750000|64575.00000000": {
+    "in_zone": true,
+    "last_alert_at": 1785058393.6178281
+  },
+  "CRCLXUSD|supply|64.27025000|64.30000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "UNIUSD|supply|3.69073800|3.69500000": {
+    "in_zone": true,
+    "last_alert_at": 1785058393.8061032
+  },
+  "SKHYNIX/USDT:USDT|demand|1156.40000000|1159.63150000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "SAMSUNG/USDT:USDT|supply|174.89030000|175.40000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "SAMSUNG/USDT:USDT|demand|163.79000000|164.25065000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
   }
 }
