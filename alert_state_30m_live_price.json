@@ -1938,7 +1938,7 @@
     "last_alert_at": 1784502199.616629
   },
   "XMRUSD|range_filter|sell": {
-    "last_alert_at": 1785042190.3112557
+    "last_alert_at": 1785043997.5993884
   },
   "NEARUSD|demand|1.91530000|1.91760300": {
     "in_zone": true,
@@ -5827,7 +5827,7 @@
   },
   "PAXGUSD|demand|4046.30000000|4047.47495000": {
     "in_zone": true,
-    "last_alert_at": 1785040399.8969288
+    "last_alert_at": 1785043997.0881608
   },
   "ETCUSD|demand|6.57800000|6.58197500": {
     "in_zone": false,
@@ -5893,12 +5893,12 @@
     "last_alert_at": 1785002590.1935327
   },
   "XPLUSD|supply|0.08387800|0.08400000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1785040401.0957258
   },
   "BCHUSD|supply|211.34865000|211.53000000": {
     "in_zone": true,
-    "last_alert_at": 1785040400.6359937
+    "last_alert_at": 1785043997.808886
   },
   "LIT/USDT|supply|2.09086500|2.09500000": {
     "in_zone": true,
@@ -5961,7 +5961,7 @@
     "last_alert_at": 0.0
   },
   "XRPUSD|supply|1.10755200|1.10820000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1785040400.418615
   },
   "ENA/USDT|supply|0.08681000|0.08690000": {
@@ -6050,7 +6050,7 @@
   },
   "AVGO/USDT:USDT|demand|385.11000000|385.24875000": {
     "in_zone": true,
-    "last_alert_at": 1785040401.2910633
+    "last_alert_at": 1785043998.0919018
   },
   "SEIUSD|supply|0.04476680|0.04480000": {
     "in_zone": true,
@@ -6114,6 +6114,30 @@
   },
   "XRPUSD|demand|1.09710000|1.09771150": {
     "in_zone": true,
-    "last_alert_at": 1785042189.9915981
+    "last_alert_at": 1785043997.36246
+  },
+  "ONDOUSD|demand|0.37670000|0.37719500": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "DODO/USDT|supply|0.01872120|0.01880000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "SOXLBUSD|demand|139.30000000|139.41070000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "SKHYNIX/USDT:USDT|demand|1214.55000000|1215.73580000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "SAMSUNG/USDT:USDT|demand|171.50000000|171.67995000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "MRVL/USDT:USDT|demand|191.61000000|192.17210000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
   }
 }
