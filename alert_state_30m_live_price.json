@@ -5827,7 +5827,7 @@
   },
   "PAXGUSD|demand|4046.30000000|4047.47495000": {
     "in_zone": true,
-    "last_alert_at": 1785043997.0881608
+    "last_alert_at": 1785047597.07115
   },
   "ETCUSD|demand|6.57800000|6.58197500": {
     "in_zone": false,
@@ -5897,7 +5897,7 @@
     "last_alert_at": 1785040401.0957258
   },
   "BCHUSD|supply|211.34865000|211.53000000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1785043997.808886
   },
   "LIT/USDT|supply|2.09086500|2.09500000": {
@@ -6050,7 +6050,7 @@
   },
   "AVGO/USDT:USDT|demand|385.11000000|385.24875000": {
     "in_zone": true,
-    "last_alert_at": 1785043998.0919018
+    "last_alert_at": 1785047597.2099154
   },
   "SEIUSD|supply|0.04476680|0.04480000": {
     "in_zone": true,
@@ -6141,6 +6141,18 @@
     "last_alert_at": 0.0
   },
   "RIF/USDT|supply|0.10041225|0.10125000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "INJUSD|supply|5.09628000|5.10200000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "ENA/USDT|demand|0.08190000|0.08207550": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "CBRSBUSD|supply|200.88365000|201.02000000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
