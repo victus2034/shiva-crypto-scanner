@@ -4117,7 +4117,7 @@
     "last_alert_at": 0.0
   },
   "1000SHIBUSD|range_filter|buy": {
-    "last_alert_at": 1785025992.260111
+    "last_alert_at": 1785069192.1679277
   },
   "OPENAI/USDT:USDT|demand|113.51000000|113.72895000": {
     "in_zone": false,
@@ -6289,14 +6289,22 @@
     "last_alert_at": 0.0
   },
   "XLM/USDT|supply|0.17866450|0.17880000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1785069192.0006673
   },
   "1000PEPEUSD|supply|0.00304588|0.00305180": {
     "in_zone": false,
     "last_alert_at": 0.0
   },
   "ALLO/USDT|supply|0.36055550|0.36430000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "SEIUSD|supply|0.04505275|0.04510000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "1000BONKUSD|supply|0.00323125|0.00323700": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
