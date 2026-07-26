@@ -2580,7 +2580,7 @@
     "last_alert_at": 1784563411.957702
   },
   "SLVONUSD|range_filter|buy": {
-    "last_alert_at": 1784727194.3044748
+    "last_alert_at": 1785061990.763053
   },
   "SLVONUSD|supply|52.07185000|52.10000000": {
     "in_zone": true,
@@ -6173,7 +6173,7 @@
     "last_alert_at": 0.0
   },
   "TSLAXUSD|demand|313.20000000|313.28975000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1785060194.6018486
   },
   "NVDAXUSD|demand|208.00000000|208.03185000": {
@@ -6217,6 +6217,18 @@
     "last_alert_at": 0.0
   },
   "BZ/USDT:USDT|demand|86.12000000|86.24270000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "METAXUSD|supply|601.52725000|601.65000000": {
+    "in_zone": true,
+    "last_alert_at": 1785061991.0231707
+  },
+  "MSTRBUSD|supply|93.53050000|93.55000000": {
+    "in_zone": true,
+    "last_alert_at": 1785061991.270559
+  },
+  "OPENAI/USDT:USDT|supply|116.04485000|116.15000000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
