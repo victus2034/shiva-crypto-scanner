@@ -5897,7 +5897,7 @@
     "last_alert_at": 1785040401.0957258
   },
   "BCHUSD|supply|211.34865000|211.53000000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1785049401.3740113
   },
   "LIT/USDT|supply|2.09086500|2.09500000": {
@@ -6133,8 +6133,8 @@
     "last_alert_at": 0.0
   },
   "SAMSUNG/USDT:USDT|demand|171.50000000|171.67995000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1785051193.4050276
   },
   "MRVL/USDT:USDT|demand|191.61000000|192.17210000": {
     "in_zone": false,
@@ -6153,6 +6153,10 @@
     "last_alert_at": 0.0
   },
   "CBRSBUSD|supply|200.88365000|201.02000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "VELVET/USDT|supply|0.49996275|0.50261000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
