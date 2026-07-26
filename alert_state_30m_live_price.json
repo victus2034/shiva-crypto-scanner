@@ -5961,8 +5961,8 @@
     "last_alert_at": 0.0
   },
   "XRPUSD|supply|1.10755200|1.10820000": {
-    "in_zone": false,
-    "last_alert_at": 1785094396.2747586
+    "in_zone": true,
+    "last_alert_at": 1785101592.5370252
   },
   "ENA/USDT|supply|0.08681000|0.08690000": {
     "in_zone": false,
@@ -6416,7 +6416,7 @@
     "last_alert_at": 0.0
   },
   "AVAXUSD|demand|6.64400000|6.65704650": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1785097996.216058
   },
   "T/USDT|demand|0.00350000|0.00350185": {
@@ -6478,5 +6478,29 @@
   "INJUSD|supply|4.98563000|4.99100000": {
     "in_zone": false,
     "last_alert_at": 0.0
+  },
+  "ETHUSD|supply|1926.36025000|1927.60000000": {
+    "in_zone": true,
+    "last_alert_at": 1785101592.3225589
+  },
+  "ZECUSD|supply|500.36550000|500.97000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "COINXUSD|demand|159.48000000|159.58330000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "UNIUSD|supply|3.95525850|3.96100000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "FILUSD|supply|0.78279750|0.78390000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "MSTRBUSD|supply|94.01160000|94.06000000": {
+    "in_zone": true,
+    "last_alert_at": 1785101592.8258936
   }
 }
