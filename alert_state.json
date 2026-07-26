@@ -57803,8 +57803,8 @@
     "last_alert_at": 0.0
   },
   "INJUSD|demand|4.81500000|4.84015500": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1785048071.2553525
   },
   "APTUSD|demand|0.59400000|0.59624000": {
     "in_zone": true,
@@ -58734,5 +58734,8 @@
   "1000SHIBUSD|supply|0.00586946|0.00588800": {
     "in_zone": false,
     "last_alert_at": 0.0
+  },
+  "INJUSD|range_filter|sell": {
+    "last_alert_at": 1785048071.2553525
   }
 }
