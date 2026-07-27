@@ -58056,7 +58056,7 @@
     "last_alert_at": 1784848871.213562
   },
   "BZ/USDT:USDT|demand|84.43000000|84.74860000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1785142920.8271956
   },
   "FILUSD|demand|0.70000000|0.70283950": {
@@ -58838,5 +58838,9 @@
   },
   "IBM/USDT:USDT|range_filter|buy": {
     "last_alert_at": 1785140474.6971054
+  },
+  "LDO/USDT|supply|0.40975100|0.41230000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
   }
 }
