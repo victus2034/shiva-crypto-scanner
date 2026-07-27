@@ -3809,8 +3809,8 @@
   },
   "APLAPOLLO.NS|supply|1869.9340|1878.4000": {
     "in_zone": true,
-    "last_alert_at": 1785126770.8448043,
-    "last_attempt_at": 1785126770.8448043
+    "last_alert_at": 1785141180.0740101,
+    "last_attempt_at": 1785141180.0740101
   },
   "APLAPOLLO.NS|demand|1710.6000|1716.1270": {
     "in_zone": false,
@@ -6215,9 +6215,9 @@
     "last_alert_at": 0.0
   },
   "MARICO.NS|supply|867.8911|870.8000": {
-    "in_zone": false,
-    "last_alert_at": 1785124338.770009,
-    "last_attempt_at": 1785124338.770009
+    "in_zone": true,
+    "last_alert_at": 1785141180.246159,
+    "last_attempt_at": 1785141180.246159
   },
   "MARICO.NS|demand|795.5000|798.4109": {
     "in_zone": false,
@@ -7001,9 +7001,9 @@
     "last_attempt_at": 0.0
   },
   "RKFORGE.NS|supply|627.2861|631.0000": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1785141180.519879,
+    "last_attempt_at": 1785141180.519879
   },
   "CIEINDIA.NS|demand|382.9000|384.4497": {
     "in_zone": false,
@@ -15303,7 +15303,7 @@
     "last_attempt_at": 0.0
   },
   "MEDANTA.NS|supply|1408.8002|1414.6000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1785135155.5607755,
     "last_attempt_at": 1785135155.5607755
   },
@@ -16776,6 +16776,16 @@
     "last_attempt_at": 0.0
   },
   "REDINGTON.NS|supply|297.8526|299.5000": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "BLUEDART.NS|supply|5836.8570|5858.0000": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "COLPAL.NS|supply|2321.4453|2329.0000": {
     "in_zone": false,
     "last_alert_at": 0.0,
     "last_attempt_at": 0.0
