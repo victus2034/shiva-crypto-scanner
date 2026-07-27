@@ -769,7 +769,7 @@
     "last_alert_at": 1784466193.9607615
   },
   "TIAUSD|range_filter|sell": {
-    "last_alert_at": 1784937797.540886
+    "last_alert_at": 1785124995.543097
   },
   "TIAUSD|supply|0.42323000|0.42440000": {
     "in_zone": false,
@@ -1656,7 +1656,7 @@
     "last_alert_at": 0.0
   },
   "FILUSD|range_filter|buy": {
-    "last_alert_at": 1785123193.17176
+    "last_alert_at": 1785124995.7057316
   },
   "SXT/USDT|supply|0.00792790|0.00795000": {
     "in_zone": false,
@@ -6261,8 +6261,8 @@
     "last_alert_at": 0.0
   },
   "VELVET/USDT|demand|0.44001000|0.44253990": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1785124995.8826525
   },
   "1000SHIBUSD|supply|0.00579341|0.00582000": {
     "in_zone": false,
@@ -6569,7 +6569,7 @@
     "last_alert_at": 1785108795.2188916
   },
   "GOOGLXUSD|demand|320.80000000|320.91130000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1785117799.1900983
   },
   "BILLUSD|demand|0.02460000|0.02467520": {
@@ -6614,11 +6614,11 @@
   },
   "SPYXUSD|demand|739.58000000|739.61640000": {
     "in_zone": true,
-    "last_alert_at": 1785123192.915002
+    "last_alert_at": 1785124995.339724
   },
   "QQQXUSD|demand|689.33000000|689.38935000": {
     "in_zone": true,
-    "last_alert_at": 1785123192.6796618
+    "last_alert_at": 1785124994.8683941
   },
   "TSLAXUSD|supply|386.56550000|386.79000000": {
     "in_zone": false,
@@ -6629,6 +6629,26 @@
     "last_alert_at": 0.0
   },
   "BZ/USDT:USDT|demand|85.86000000|85.96560000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "ETHUSD|supply|1965.09950000|1966.60000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "LTCUSD|supply|48.21590000|48.26000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "AVAXUSD|supply|6.74531500|6.75400000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "ARBUSD|supply|0.08385150|0.08390000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "SKHYNIX/USDT:USDT|supply|1255.81660000|1257.14000000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
