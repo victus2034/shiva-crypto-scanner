@@ -59,6 +59,8 @@ class AlertFormatTests(unittest.TestCase):
         crypto_result = {
             "symbol": "BTCUSD",
             "price": 100.0,
+            "demand": {"bottom": 99.0, "top": 99.5},
+            "supply": None,
             "demand_dist": 1.0,
             "supply_dist": 2.0,
         }
@@ -73,6 +75,21 @@ class AlertFormatTests(unittest.TestCase):
             self.assertNotIn("Candle time", message)
             self.assertNotIn("Market:", message)
             self.assertNotIn("Timeframe:", message)
+
+    def test_range_filter_alert_does_not_print_missing_zone_as_999(self):
+        result = {
+            "symbol": "EWYBUSD",
+            "price": 161.1,
+            "demand": None,
+            "supply": {"bottom": 162.0, "top": 162.5},
+            "demand_dist": 999.0,
+            "supply_dist": 0.56,
+        }
+
+        message = scanner.format_signal_alert(result, "buy")
+
+        self.assertIn("Nearest Demand Distance: N/A", message)
+        self.assertNotIn("999.00%", message)
 
 
 if __name__ == "__main__":

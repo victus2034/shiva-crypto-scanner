@@ -715,11 +715,16 @@ def format_signal_alert(result, signal_type):
     price = result["price"]
     label = "BUY" if signal_type == "buy" else "SELL"
 
+    def display_distance(zone_key, distance_key):
+        if result.get(zone_key) is None or result.get(distance_key, 999.0) >= 999.0:
+            return "N/A"
+        return f"{result[distance_key]:.2f}%"
+
     return (
         f"{symbol} Range Filter {label} signal\n"
         f"Price: {price:.6f}\n"
-        f"Nearest Demand Distance: {result['demand_dist']:.2f}%\n"
-        f"Nearest Supply Distance: {result['supply_dist']:.2f}%"
+        f"Nearest Demand Distance: {display_distance('demand', 'demand_dist')}\n"
+        f"Nearest Supply Distance: {display_distance('supply', 'supply_dist')}"
     )
 
 
@@ -832,6 +837,11 @@ def process_candidate(state, result, zone_type, zone, distance_pct, now_ts):
 
 def process_signal_candidate(state, result, signal_type, now_ts):
     if not ALERT_RANGE_FILTER_SIGNALS:
+        return False
+
+    # A range-filter flip without any active zone is not actionable. The
+    # previous sentinel distances (999.00%) made these look like real alerts.
+    if result.get("demand") is None and result.get("supply") is None:
         return False
 
     signal_active = result["buy_signal"] if signal_type == "buy" else result["sell_signal"]

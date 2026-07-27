@@ -6,6 +6,40 @@ import scanner
 
 
 class DistanceWindowTests(unittest.TestCase):
+    def test_crypto_range_signal_requires_an_active_zone(self):
+        state = {}
+        result = {
+            "symbol": "EWYBUSD",
+            "price": 161.1,
+            "demand": None,
+            "supply": None,
+            "buy_signal": True,
+            "sell_signal": False,
+        }
+
+        with patch.object(scanner, "send_alert", return_value=True) as send:
+            sent = scanner.process_signal_candidate(state, result, "buy", 1000)
+
+        self.assertFalse(sent)
+        send.assert_not_called()
+
+    def test_nse_range_signal_requires_an_active_zone(self):
+        state = {}
+        result = {
+            "symbol": "EWYBUSD",
+            "price": 161.1,
+            "demand": None,
+            "supply": None,
+            "buy_signal": True,
+            "sell_signal": False,
+        }
+
+        with patch.object(nse_scanner, "send_alert", return_value=True) as send:
+            sent = nse_scanner.process_signal_candidate(state, result, "buy", 1000)
+
+        self.assertIsNone(sent)
+        send.assert_not_called()
+
     def test_crypto_ignores_too_close_zone_and_accepts_window(self):
         state = {}
         result = {"symbol": "BTCUSD", "price": 100.0}

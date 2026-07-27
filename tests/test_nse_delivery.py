@@ -59,6 +59,8 @@ class NseDeliveryTests(unittest.TestCase):
         result = {
             "symbol": "RELIANCE.NS",
             "price": 100.4,
+            "demand": {"bottom": 99.0, "top": 99.5},
+            "supply": None,
             "buy_signal": True,
             "sell_signal": False,
             "demand_dist": 1.0,
