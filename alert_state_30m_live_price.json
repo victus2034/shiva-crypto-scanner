@@ -2076,7 +2076,7 @@
     "last_alert_at": 1785155616.94792
   },
   "BNBUSD|range_filter|sell": {
-    "last_alert_at": 1785155617.9567623
+    "last_alert_at": 1785192702.2526908
   },
   "DODO/USDT|demand|0.01535000|0.01536680": {
     "in_zone": false,
@@ -2146,7 +2146,7 @@
     "last_alert_at": 1784502218.6826403
   },
   "MSTRBUSD|range_filter|sell": {
-    "last_alert_at": 1785168207.0887563
+    "last_alert_at": 1785192703.1050894
   },
   "BABA/USDT:USDT|range_filter|buy": {
     "last_alert_at": 1784604802.685282
@@ -3436,7 +3436,7 @@
     "last_alert_at": 1784928793.1227825
   },
   "GRAMUSD|range_filter|sell": {
-    "last_alert_at": 1785159192.7950656
+    "last_alert_at": 1785192702.9400384
   },
   "VELVET/USDT|range_filter|buy": {
     "last_alert_at": 1785067397.5000072
@@ -7100,8 +7100,8 @@
     "last_alert_at": 0.0
   },
   "QQQXUSD|demand|675.34340000|679.34660000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1785192701.9026022
   },
   "TSLAXUSD|supply|382.31585000|384.28415000": {
     "in_zone": false,
@@ -7148,8 +7148,8 @@
     "last_alert_at": 0.0
   },
   "BNBUSD|demand|563.53107000|564.63893000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1785192702.2526908
   },
   "ADAUSD|supply|0.16759695|0.16910305": {
     "in_zone": false,
@@ -7464,8 +7464,8 @@
     "last_alert_at": 0.0
   },
   "APTUSD|demand|0.59152350|0.59577650": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1785192702.646353
   },
   "SEIUSD|supply|0.04650095|0.04689905": {
     "in_zone": false,
@@ -7580,8 +7580,8 @@
     "last_alert_at": 0.0
   },
   "CRV/USDT|demand|0.20101150|0.20238850": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1785192702.7872615
   },
   "WLD/USDT|demand|0.32801200|0.33318800": {
     "in_zone": false,
@@ -7622,5 +7622,13 @@
   "OPENAI/USDT:USDT|demand|109.72070000|110.93930000": {
     "in_zone": true,
     "last_alert_at": 1785189835.2130778
+  },
+  "SPYXUSD|demand|733.92870000|734.71130000": {
+    "in_zone": true,
+    "last_alert_at": 1785192702.0746436
+  },
+  "GRAMUSD|supply|1.57694500|1.59405500": {
+    "in_zone": false,
+    "last_alert_at": 0.0
   }
 }
