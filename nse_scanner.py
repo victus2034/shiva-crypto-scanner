@@ -25,6 +25,7 @@ from nse_config import (
     MARKET_TIMEZONE,
     MAX_CONSECUTIVE_ZONE_TOUCHES,
     MAX_DISTANCE_PCT,
+    MIN_DISTANCE_PCT,
     NSE_INDEX_CSV_URL,
     NSE_MAX_SYMBOLS,
     OHLCV_LIMIT,
@@ -598,7 +599,7 @@ def process_candidate(state, result, zone_type, zone, distance_pct, now_ts):
     )
     alert_sent = None
 
-    if distance_pct <= MAX_DISTANCE_PCT:
+    if MIN_DISTANCE_PCT <= distance_pct <= MAX_DISTANCE_PCT:
         last_attempt_at = max(entry.get("last_alert_at", 0.0), entry.get("last_attempt_at", 0.0))
         should_alert = (not entry["in_zone"]) or (now_ts - last_attempt_at >= ALERT_COOLDOWN_SECONDS)
         if should_alert:

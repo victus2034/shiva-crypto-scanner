@@ -33,8 +33,9 @@ python scanner.py --once
 
 ## How alerts work
 
-- `MAX_DISTANCE_PCT = 1.25` means the 4-hour scanner alerts when price is within 1.25% of the tracked level
-- The separate 30-minute cloud workflow uses a tighter `0.5%` distance limit
+- 4-hour zone alerts use a `0.25%-1.25%` distance window
+- The separate 30-minute cloud workflows use a `0.25%-0.75%` distance window
+- Distances below `0.25%` are intentionally ignored because they are too close to manage
 - supply alerts use the zone `top`
 - demand alerts use the zone `bottom`
 - `ALERT_COOLDOWN_SECONDS` stops repeated alerts while price stays near the same level

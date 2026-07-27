@@ -27,6 +27,7 @@ from config import (
     EXCHANGE_IDS,
     MAX_CONSECUTIVE_ZONE_TOUCHES,
     MAX_DISTANCE_PCT,
+    MIN_DISTANCE_PCT,
     OHLCV_LIMIT,
     PRIMARY_EXCHANGE_ID,
     PRINT_ALERTS_TO_CONSOLE,
@@ -762,7 +763,7 @@ def process_candidate(state, result, zone_type, zone, distance_pct, now_ts):
     entry = state.setdefault(state_key, {"in_zone": False, "last_alert_at": 0.0})
     alert_sent = False
 
-    if distance_pct <= MAX_DISTANCE_PCT:
+    if MIN_DISTANCE_PCT <= distance_pct <= MAX_DISTANCE_PCT:
         should_alert = (not entry["in_zone"]) or (now_ts - entry["last_alert_at"] >= ALERT_COOLDOWN_SECONDS)
         if should_alert:
             if send_alert(format_alert(result, zone_type, zone, distance_pct)):

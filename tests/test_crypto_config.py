@@ -8,6 +8,7 @@ class CryptoConfigTests(unittest.TestCase):
         with patch.dict(os.environ, {"SHIVA_TIMEFRAME": "4h"}, clear=True):
             import config
 
+            self.assertEqual(config.MIN_DISTANCE_PCT, 0.25)
             self.assertEqual(config.MAX_DISTANCE_PCT, 1.25)
 
 
