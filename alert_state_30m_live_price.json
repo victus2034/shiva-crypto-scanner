@@ -4077,7 +4077,7 @@
     "last_alert_at": 0.0
   },
   "MRVL/USDT:USDT|range_filter|buy": {
-    "last_alert_at": 1784836994.9430737
+    "last_alert_at": 1785178997.700289
   },
   "SUIUSD|range_filter|buy": {
     "last_alert_at": 1785105195.6290362
@@ -4686,7 +4686,7 @@
     "last_alert_at": 1785150200.2144496
   },
   "NVDAXUSD|range_filter|buy": {
-    "last_alert_at": 1784894596.3154886
+    "last_alert_at": 1785178997.010778
   },
   "GOOGLXUSD|supply|352.63740000|352.95000000": {
     "in_zone": false,
@@ -5596,11 +5596,11 @@
     "last_alert_at": 1785103394.3643427
   },
   "OPUSD|demand|0.09080000|0.09088250": {
-    "in_zone": false,
-    "last_alert_at": 1785168206.6180365
+    "in_zone": true,
+    "last_alert_at": 1785178997.2431762
   },
   "METAXUSD|demand|592.65000000|593.09415000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1785177206.1002874
   },
   "XMRUSD|demand|363.68000000|364.01070000": {
@@ -5755,8 +5755,8 @@
     "last_alert_at": 0.0
   },
   "FILUSD|demand|0.71300000|0.71354150": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1785178997.3994296
   },
   "T/USDT|demand|0.00359000|0.00359315": {
     "in_zone": false,
@@ -6912,7 +6912,7 @@
     "last_alert_at": 0.0
   },
   "AAPLXUSD|demand|333.60000000|333.70500000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1785177206.6996388
   },
   "OPENAI/USDT:USDT|supply|117.22280000|117.32000000": {
@@ -6968,6 +6968,22 @@
     "last_alert_at": 0.0
   },
   "IBM/USDT:USDT|supply|219.48245000|219.67000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "SUIUSD|supply|0.71978000|0.72040000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "CRCLXUSD|supply|66.03650000|66.10000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "GOOGLXUSD|supply|330.60885000|330.80000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "EVAAUSD|demand|0.82690000|0.83045300": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
