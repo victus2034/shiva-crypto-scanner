@@ -162,6 +162,8 @@ ENABLE_CRYPTO_ZONE_RATINGS = env_flag(
     "SHIVA_ENABLE_CRYPTO_ZONE_RATINGS",
     default=True,
 )
+# Only validated crypto zone ratings above 5/10 are eligible for live alerts.
+MIN_CRYPTO_ZONE_SCORE = env_int("SHIVA_MIN_CRYPTO_ZONE_SCORE", 6)
 
 PRINT_SCAN_SUMMARY = True
 PRINT_ALERTS_TO_CONSOLE = True

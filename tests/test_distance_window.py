@@ -23,6 +23,42 @@ class DistanceWindowTests(unittest.TestCase):
         self.assertFalse(sent)
         send.assert_not_called()
 
+    def test_crypto_30m_zone_rating_below_six_is_blocked(self):
+        state = {}
+        result = {
+            "symbol": "BTCUSD",
+            "price": 100.0,
+            "demand_rating": {"score": 5},
+        }
+        zone = {"bottom": 99.0, "top": 99.5}
+
+        with (
+            patch.object(scanner, "TIMEFRAME", "30m"),
+            patch.object(scanner, "send_alert", return_value=True) as send,
+        ):
+            sent = scanner.process_candidate(state, result, "demand", zone, 0.5, 1000)
+
+        self.assertFalse(sent)
+        send.assert_not_called()
+
+    def test_crypto_30m_zone_rating_six_or_higher_is_allowed(self):
+        state = {}
+        result = {
+            "symbol": "BTCUSD",
+            "price": 100.0,
+            "demand_rating": {"score": 6},
+        }
+        zone = {"bottom": 99.0, "top": 99.5}
+
+        with (
+            patch.object(scanner, "TIMEFRAME", "30m"),
+            patch.object(scanner, "send_alert", return_value=True) as send,
+        ):
+            sent = scanner.process_candidate(state, result, "demand", zone, 0.5, 1000)
+
+        self.assertTrue(sent)
+        send.assert_called_once()
+
     def test_nse_range_signal_requires_an_active_zone(self):
         state = {}
         result = {

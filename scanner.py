@@ -28,6 +28,7 @@ from config import (
     EXCHANGE_IDS,
     MAX_CONSECUTIVE_ZONE_TOUCHES,
     MAX_DISTANCE_PCT,
+    MIN_CRYPTO_ZONE_SCORE,
     MIN_DISTANCE_PCT,
     HISTORY_OF_ZONES_TO_KEEP,
     MIN_DEPARTURE_ATR,
@@ -817,6 +818,14 @@ def send_status_message(message):
 def process_candidate(state, result, zone_type, zone, distance_pct, now_ts):
     if zone is None:
         return False
+
+    # Ratings are available only for validated crypto 30m zones. Keep
+    # ungraded timeframes/symbols unchanged, but reject weak scored zones.
+    rating = result.get(f"{zone_type}_rating")
+    if TIMEFRAME == "30m" and rating is not None:
+        score = rating.get("score")
+        if score is None or score < MIN_CRYPTO_ZONE_SCORE:
+            return False
 
     state_key = build_state_key(result["symbol"], zone_type, zone)
     entry = state.setdefault(state_key, {"in_zone": False, "last_alert_at": 0.0})
