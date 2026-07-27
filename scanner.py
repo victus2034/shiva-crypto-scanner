@@ -44,6 +44,7 @@ from config import (
     USE_LIVE_TICKER,
     WATCHLIST,
 )
+from crypto_zone_rating import rate_crypto_zone
 
 
 STATE_FILE = Path(__file__).with_name(os.getenv("SHIVA_STATE_FILE", "alert_state.json"))
@@ -180,6 +181,8 @@ def add_zone_if_not_overlapping(zones, new_zone, atr_value):
 def record_zone_touch(zone, candle_high, candle_low):
     touches_zone = candle_high >= zone["bottom"] and candle_low <= zone["top"]
     zone["touch_streak"] = zone.get("touch_streak", 0) + 1 if touches_zone else 0
+    if touches_zone:
+        zone["touch_count"] = zone.get("touch_count", 0) + 1
     zone["max_touch_streak"] = max(zone.get("max_touch_streak", 0), zone["touch_streak"])
     if zone["max_touch_streak"] >= MAX_CONSECUTIVE_ZONE_TOUCHES:
         zone["over_touched"] = True
@@ -215,8 +218,10 @@ def build_zones(df):
                 "active": True,
                 "broken": False,
                 "touch_streak": 0,
+                "touch_count": 0,
                 "max_touch_streak": 0,
                 "over_touched": False,
+                "atr": float(pivot_atr),
             }
             add_zone_if_not_overlapping(supply_zones, zone, pivot_atr)
         else:
@@ -230,8 +235,10 @@ def build_zones(df):
                 "active": True,
                 "broken": False,
                 "touch_streak": 0,
+                "touch_count": 0,
                 "max_touch_streak": 0,
                 "over_touched": False,
+                "atr": float(pivot_atr),
             }
             add_zone_if_not_overlapping(demand_zones, zone, pivot_atr)
 
@@ -579,6 +586,28 @@ def scan_symbol(symbol):
     nearest_supply, supply_dist = nearest_active_zone(price, supply_zones, "supply")
     nearest_demand, demand_dist = nearest_active_zone(price, demand_zones, "demand")
     buy_signal, sell_signal = get_range_filter_signals(df)
+    supply_rating = None
+    demand_rating = None
+    if supply_dist <= MAX_DISTANCE_PCT:
+        supply_rating = rate_crypto_zone(
+            df,
+            symbol,
+            TIMEFRAME,
+            "supply",
+            nearest_supply,
+            supply_dist,
+            SWING_LENGTH,
+        )
+    if demand_dist <= MAX_DISTANCE_PCT:
+        demand_rating = rate_crypto_zone(
+            df,
+            symbol,
+            TIMEFRAME,
+            "demand",
+            nearest_demand,
+            demand_dist,
+            SWING_LENGTH,
+        )
 
     return {
         "symbol": symbol,
@@ -589,8 +618,10 @@ def scan_symbol(symbol):
         "price_source": price_source,
         "supply": nearest_supply,
         "supply_dist": supply_dist,
+        "supply_rating": supply_rating,
         "demand": nearest_demand,
         "demand_dist": demand_dist,
+        "demand_rating": demand_rating,
         "buy_signal": buy_signal,
         "sell_signal": sell_signal,
     }
@@ -610,12 +641,18 @@ def format_alert(result, zone_type, zone, distance_pct):
     reference = zone["top"] if zone_type == "supply" else zone["bottom"]
     side = "SELL zone" if zone_type == "supply" else "BUY zone"
 
-    return (
+    message = (
         f"{symbol} is {distance_pct:.2f}% away from a {side}\n"
         f"Price: {price:.6f}\n"
         f"Level: {reference:.6f}\n"
         f"Zone: {zone['bottom']:.6f} - {zone['top']:.6f}"
     )
+    rating = result.get(f"{zone_type}_rating")
+    if rating:
+        message += (
+            f"\nRating: {rating['rating']} ({rating['label']})"
+        )
+    return message
 
 
 def format_signal_alert(result, signal_type):

@@ -72,8 +72,23 @@ The 30-minute scanner runs from `.github/workflows/scan_30m.yml` just after each
 
 If you keep the repo private, GitHub Free includes limited Actions minutes, so reduce the schedule if needed. If the repo is public, standard GitHub-hosted Actions minutes remain free.
 
+## 30-minute crypto zone ratings
+
+Eligible 30-minute crypto zone alerts include one compact research rating:
+
+- `A (best tested)`: top 30% of model scores
+- `B (mixed)`: middle 30% of model scores
+- `C (weak)`: bottom 40% of model scores
+
+The model was validated on 46 Binance crypto pairs using 365 days of data and
+an untouched final 60-day test. An `A` rating means better historical relative
+odds, not a guaranteed profitable trade. Ratings are intentionally disabled for
+4-hour alerts, NSE stocks, xStocks, and crypto symbols outside the validated
+universe in `crypto_zone_rating.py`.
+
 ## Files
 
 - `scanner.py`: main watchlist scanner and alert loop
 - `config.py`: watchlist and alert settings
+- `crypto_zone_rating.py`: isolated 30-minute crypto rating feature builder
 - `alert_state.json`: created automatically to remember which levels already alerted
