@@ -57555,7 +57555,7 @@
     "last_alert_at": 1784271727.813991
   },
   "AVGO/USDT:USDT|range_filter|sell": {
-    "last_alert_at": 1784917275.8136353
+    "last_alert_at": 1785163288.5411139
   },
   "BTCUSD|supply|65428.20655000|65600.00000000": {
     "in_zone": false,
@@ -57773,7 +57773,7 @@
   },
   "AAPLXUSD|supply|338.17670000|338.75000000": {
     "in_zone": true,
-    "last_alert_at": 1785148869.4426913
+    "last_alert_at": 1785163287.9389608
   },
   "AAPLXUSD|demand|280.05000000|280.80855000": {
     "in_zone": false,
@@ -57803,8 +57803,8 @@
     "last_alert_at": 0.0
   },
   "INJUSD|demand|4.81500000|4.84015500": {
-    "in_zone": false,
-    "last_alert_at": 1785151275.7117496
+    "in_zone": true,
+    "last_alert_at": 1785163288.1434686
   },
   "APTUSD|demand|0.59400000|0.59624000": {
     "in_zone": true,
@@ -58124,7 +58124,7 @@
     "last_alert_at": 1785121321.8694098
   },
   "BNBUSD|supply|578.46831500|579.61000000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1785151275.493688
   },
   "1000PEPEUSD|supply|0.00296313|0.00297630": {
@@ -58739,7 +58739,7 @@
     "last_alert_at": 1785048071.2553525
   },
   "XPLUSD|supply|0.08662150|0.08710000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1785152472.3906553
   },
   "SNDKBUSD|demand|1414.30000000|1428.34030000": {
@@ -58848,5 +58848,8 @@
   },
   "DELL/USDT:USDT|range_filter|sell": {
     "last_alert_at": 1785162078.4572544
+  },
+  "MUBUSD|range_filter|sell": {
+    "last_alert_at": 1785163288.2778215
   }
 }
