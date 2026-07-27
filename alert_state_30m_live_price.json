@@ -6629,8 +6629,8 @@
     "last_alert_at": 0.0
   },
   "BZ/USDT:USDT|demand|85.86000000|85.96560000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1785141192.426448
   },
   "ETHUSD|supply|1965.09950000|1966.60000000": {
     "in_zone": true,
@@ -6765,14 +6765,22 @@
     "last_alert_at": 0.0
   },
   "ARBUSD|demand|0.08160000|0.08166100": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1785141192.0960283
   },
   "GRAMUSD|supply|1.58794500|1.59100000": {
     "in_zone": false,
     "last_alert_at": 0.0
   },
   "OPENAI/USDT:USDT|supply|119.68160000|119.88000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "SEIUSD|demand|0.04490000|0.04492700": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "DRAMBUSD|demand|52.16000000|52.21495000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
