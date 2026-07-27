@@ -56,7 +56,14 @@ from crypto_zone_rating import rate_crypto_zone
 
 
 STATE_FILE = Path(__file__).with_name(os.getenv("SHIVA_STATE_FILE", "alert_state.json"))
-EXCHANGES = [getattr(ccxt, exchange_id)({"enableRateLimit": True}) for exchange_id in EXCHANGE_IDS]
+EXCHANGE_OPTIONS = {
+    "enableRateLimit": True,
+    "options": {"defaultType": "future"},
+}
+EXCHANGES = [
+    getattr(ccxt, exchange_id)(EXCHANGE_OPTIONS.copy())
+    for exchange_id in EXCHANGE_IDS
+]
 EXCHANGES_BY_ID = {exchange.id: exchange for exchange in EXCHANGES}
 TIMEFRAME_SECONDS = {
     "1m": 60,
