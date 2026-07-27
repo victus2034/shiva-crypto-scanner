@@ -7578,9 +7578,9 @@
     "last_attempt_at": 0.0
   },
   "HDFCLIFE.NS|demand|543.0500|545.4579": {
-    "in_zone": false,
-    "last_alert_at": 1784866328.5209968,
-    "last_attempt_at": 1784866328.5209968
+    "in_zone": true,
+    "last_alert_at": 1785137601.1012342,
+    "last_attempt_at": 1785137601.1012342
   },
   "HEROMOTOCO.NS|supply|5455.4186|5483.5000": {
     "in_zone": false,
@@ -7682,7 +7682,7 @@
     "last_attempt_at": 0.0
   },
   "IEX.NS|supply|129.1999|129.7800": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1785136331.8406792,
     "last_attempt_at": 1785136331.8406792
   },
@@ -15806,6 +15806,11 @@
     "last_attempt_at": 0.0
   },
   "KFINTECH.NS|supply|999.3004|1004.5000": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "CONCOR.NS|supply|567.9001|569.8000": {
     "in_zone": false,
     "last_alert_at": 0.0,
     "last_attempt_at": 0.0
