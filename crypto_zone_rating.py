@@ -62,10 +62,19 @@ def load_rating_bundle():
 
 
 def is_rating_eligible(symbol, timeframe):
-    return (
-        timeframe == "30m"
-        and symbol.upper() in RATED_CRYPTO_SYMBOLS
-    )
+    if timeframe != "30m":
+        return False
+    try:
+        bundle = load_rating_bundle()
+    except Exception:
+        return False
+    support = bundle.get("validation_support", {})
+    if support.get("verdict") != "SUPPORTED":
+        return False
+    validated_symbols = {
+        str(value).upper() for value in bundle.get("validated_symbols", [])
+    }
+    return symbol.upper() in validated_symbols
 
 
 def rate_crypto_zone(

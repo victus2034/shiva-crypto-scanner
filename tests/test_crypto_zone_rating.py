@@ -41,6 +41,14 @@ class CryptoZoneRatingTests(unittest.TestCase):
             crypto_zone_rating.is_rating_eligible("HYPEUSD", "30m")
         )
 
+    def test_rating_requires_validated_model_coverage(self):
+        self.assertTrue(
+            crypto_zone_rating.is_rating_eligible("BTCUSD", "30m")
+        )
+        self.assertFalse(
+            crypto_zone_rating.is_rating_eligible("CBRSBUSD", "30m")
+        )
+
     def test_feature_builder_matches_model_schema(self):
         frame = candle_frame()
         zone = {

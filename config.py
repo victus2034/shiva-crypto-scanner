@@ -158,7 +158,10 @@ ALERT_RANGE_FILTER_SIGNALS = True
 SIGNAL_ALERT_COOLDOWN_SECONDS = env_int("SHIVA_SIGNAL_ALERT_COOLDOWN_SECONDS", 4 * 60 * 60)
 # The previous model was trained on the old ATR-strip zones. Keep ratings off
 # until a model trained on the polished wick zones passes out-of-sample checks.
-ENABLE_CRYPTO_ZONE_RATINGS = env_flag("SHIVA_ENABLE_CRYPTO_ZONE_RATINGS")
+ENABLE_CRYPTO_ZONE_RATINGS = env_flag(
+    "SHIVA_ENABLE_CRYPTO_ZONE_RATINGS",
+    default=True,
+)
 
 PRINT_SCAN_SUMMARY = True
 PRINT_ALERTS_TO_CONSOLE = True
