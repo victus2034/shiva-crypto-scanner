@@ -3436,7 +3436,7 @@
     "last_alert_at": 1784928793.1227825
   },
   "GRAMUSD|range_filter|sell": {
-    "last_alert_at": 1785192702.9400384
+    "last_alert_at": 1785195117.3566046
   },
   "VELVET/USDT|range_filter|buy": {
     "last_alert_at": 1785067397.5000072
@@ -7625,9 +7625,21 @@
   },
   "SPYXUSD|demand|733.92870000|734.71130000": {
     "in_zone": true,
-    "last_alert_at": 1785192702.0746436
+    "last_alert_at": 1785195116.3777833
   },
   "GRAMUSD|supply|1.57694500|1.59405500": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "PUMPUSD|demand|0.00204435|0.00208865": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "LDO/USDT|demand|0.37459250|0.38060750": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "SNDKBUSD|demand|1221.51585000|1271.17415000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
