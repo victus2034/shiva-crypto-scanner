@@ -15,50 +15,44 @@ RATING_LABELS = {
 RATED_CRYPTO_SYMBOLS = {
     "BTCUSD",
     "ETHUSD",
-    "PAXGUSD",
     "SOLUSD",
+    "DEXE/USDT",
     "XRPUSD",
     "DOGEUSD",
     "ZECUSD",
-    "LINKUSD",
-    "LTCUSD",
-    "AVAXUSD",
-    "SUIUSD",
-    "BNBUSD",
-    "ADAUSD",
-    "DOTUSD",
-    "BCHUSD",
+    "PUMPUSD",
     "NEARUSD",
     "AAVEUSD",
-    "UNIUSD",
-    "APTUSD",
-    "ARBUSD",
-    "OPUSD",
-    "INJUSD",
-    "TIAUSD",
-    "SEIUSD",
-    "FILUSD",
-    "ETCUSD",
-    "VIRTUAL/USDT",
-    "ONDOUSD",
-    "FET/USDT",
-    "PUMPUSD",
-    "T/USDT",
-    "LDO/USDT",
-    "CRV/USDT",
-    "XLM/USDT",
-    "GRAMUSD",
-    "XPLUSD",
-    "DODO/USDT",
-    "DEXE/USDT",
-    "SXT/USDT",
-    "SYN/USDT",
-    "WLD/USDT",
-    "ALLO/USDT",
+    "LINKUSD",
     "ENA/USDT",
-    "TAO/USDT",
+    "ONDOUSD",
+    "PAXGUSD",
+    "SUIUSD",
+    "ADAUSD",
+    "XLM/USDT",
+    "WLD/USDT",
+    "LTCUSD",
     "RIF/USDT",
-    "THE/USDT",
+    "UNIUSD",
+    "TAO/USDT",
+    "FET/USDT",
+    "ALLO/USDT",
+    "BCHUSD",
+    "INJUSD",
+    "FILUSD",
+    "XPLUSD",
+    "GRAMUSD",
+    "DOTUSD",
+    "VIRTUAL/USDT",
+    "SYN/USDT",
+    "LDO/USDT",
+    "APTUSD",
+    "DODO/USDT",
+    "OPUSD",
+    "CRV/USDT",
+    "ETCUSD",
+    "SXT/USDT",
+    "SEIUSD",
 }
 
 
@@ -103,10 +97,19 @@ def rate_crypto_zone(
         probability = float(
             bundle["model"].predict_proba(feature_frame)[0, 1]
         )
-        rating = score_to_rating(probability, bundle["thresholds"])
+        reference = bundle.get("score_reference", [])
+        if reference:
+            percentile = np.searchsorted(
+                np.asarray(reference, dtype=float),
+                probability,
+                side="right",
+            ) / len(reference) * 100.0
+            score = int(np.clip(np.ceil(percentile / 10.0), 1, 10))
+        else:
+            rating = score_to_rating(probability, bundle["thresholds"])
+            score = {"A": 9, "B": 6, "C": 3}[rating]
         return {
-            "rating": rating,
-            "label": RATING_LABELS[rating],
+            "score": score,
             "model_probability": probability,
         }
     except Exception as error:
@@ -128,8 +131,8 @@ def build_rating_features(
     close = frame["close"].astype(float)
     volume = frame["volume"].astype(float)
     index = len(frame) - 1
-    pivot_index = int(zone["created_idx"])
-    confirmation_index = min(pivot_index + swing_length, index)
+    pivot_index = int(zone.get("pivot_idx", zone["created_idx"]))
+    confirmation_index = min(int(zone.get("created_idx", pivot_index + swing_length)), index)
     direction = 1.0 if zone_type == "demand" else -1.0
     atr_value = float(zone["atr"])
     if atr_value <= 0 or np.isnan(atr_value):

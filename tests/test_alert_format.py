@@ -45,17 +45,14 @@ class AlertFormatTests(unittest.TestCase):
             "symbol": "BTCUSD",
             "price": 100.6,
             "demand_rating": {
-                "rating": "A",
-                "label": "best tested",
+                "score": 9,
             },
         }
         zone = {"bottom": 100.2, "top": 100.33645}
 
         message = scanner.format_alert(result, "demand", zone, 0.4)
 
-        self.assertTrue(
-            message.endswith("Rating: A (best tested)")
-        )
+        self.assertTrue(message.endswith("Score: 9/10"))
         self.assertNotIn("\n\n", message)
 
     def test_range_filter_alerts_are_compact(self):

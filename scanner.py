@@ -393,8 +393,35 @@ def coinswitch_symbol(symbol):
     return upper_symbol
 
 
+def exchange_symbol_candidates(symbol):
+    candidates = [symbol]
+    if symbol.endswith("/USDT") and ":USDT" not in symbol:
+        candidates.insert(0, f"{symbol}:USDT")
+    return candidates
+
+
 def fetch_exchange_ohlcv(exchange, symbol):
-    return exchange.fetch_ohlcv(symbol, timeframe=TIMEFRAME, limit=OHLCV_LIMIT)
+    candidates = exchange_symbol_candidates(symbol)
+    last_error = None
+    for candidate in candidates:
+        try:
+            return exchange.fetch_ohlcv(
+                candidate, timeframe=TIMEFRAME, limit=OHLCV_LIMIT
+            )
+        except Exception as error:
+            last_error = error
+    raise last_error
+
+
+def fetch_exchange_ticker(exchange, symbol):
+    candidates = exchange_symbol_candidates(symbol)
+    last_error = None
+    for candidate in candidates:
+        try:
+            return exchange.fetch_ticker(candidate)
+        except Exception as error:
+            last_error = error
+    raise last_error
 
 
 def require_fresh_ohlcv(ohlcv, source_name):
@@ -533,7 +560,7 @@ def live_ticker_price(exchange_name, symbol, candle_close):
         return candle_close, "candle_close"
 
     try:
-        ticker = exchange.fetch_ticker(fallback_symbol(symbol))
+        ticker = fetch_exchange_ticker(exchange, fallback_symbol(symbol))
         price = ticker.get("last") or ticker.get("close")
         if price is not None and float(price) > 0:
             return float(price), "live_ticker"
@@ -669,9 +696,10 @@ def format_alert(result, zone_type, zone, distance_pct):
     )
     rating = result.get(f"{zone_type}_rating")
     if rating:
-        message += (
-            f"\nRating: {rating['rating']} ({rating['label']})"
-        )
+        if rating.get("score") is not None:
+            message += f"\nScore: {rating['score']}/10"
+        elif rating.get("rating"):
+            message += f"\nRating: {rating['rating']} ({rating.get('label', '')})"
     return message
 
 
