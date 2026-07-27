@@ -24,11 +24,17 @@ from config import (
     DELTA_API_BASE_URL,
     DISCORD_STATUS_WEBHOOK_URL,
     DISCORD_WEBHOOK_URL,
+    ENABLE_CRYPTO_ZONE_RATINGS,
     EXCHANGE_IDS,
     MAX_CONSECUTIVE_ZONE_TOUCHES,
     MAX_DISTANCE_PCT,
     MIN_DISTANCE_PCT,
+    HISTORY_OF_ZONES_TO_KEEP,
+    MIN_DEPARTURE_ATR,
+    MIN_WICK_ATR,
+    MIN_WICK_TO_BODY,
     OHLCV_LIMIT,
+    OVERLAP_ATR,
     PRIMARY_EXCHANGE_ID,
     PRINT_ALERTS_TO_CONSOLE,
     PRINT_SCAN_SUMMARY,
@@ -44,6 +50,7 @@ from config import (
     TIMEFRAME,
     USE_LIVE_TICKER,
     WATCHLIST,
+    ZONE_PADDING_ATR,
 )
 from crypto_zone_rating import rate_crypto_zone
 
@@ -164,7 +171,7 @@ def zone_center(zone):
 
 
 def add_zone_if_not_overlapping(zones, new_zone, atr_value):
-    atr_threshold = atr_value * 2.0
+    atr_threshold = atr_value * OVERLAP_ATR
     new_center = zone_center(new_zone)
 
     for zone in zones:
@@ -189,83 +196,95 @@ def record_zone_touch(zone, candle_high, candle_low):
         zone["over_touched"] = True
 
 
+def qualify_wick_zone(df, pivot_index, confirmation_index, atr_series, zone_type):
+    pivot_atr = atr_series.iloc[pivot_index]
+    if pd.isna(pivot_atr):
+        return None
+
+    candle_open = float(df["open"].iloc[pivot_index])
+    candle_close = float(df["close"].iloc[pivot_index])
+    candle_high = float(df["high"].iloc[pivot_index])
+    candle_low = float(df["low"].iloc[pivot_index])
+    body_size = abs(candle_close - candle_open)
+
+    departure_closes = df["close"].iloc[pivot_index + 1:confirmation_index + 1]
+    if departure_closes.empty:
+        return None
+
+    if zone_type == "demand":
+        wick_top = min(candle_open, candle_close)
+        wick_bottom = candle_low
+        departure = float(departure_closes.max() - wick_top)
+    else:
+        wick_bottom = max(candle_open, candle_close)
+        wick_top = candle_high
+        departure = float(wick_bottom - departure_closes.min())
+
+    wick_size = wick_top - wick_bottom
+    strong_wick = wick_size >= max(body_size * MIN_WICK_TO_BODY, 0.0)
+    if (
+        wick_size < float(pivot_atr) * MIN_WICK_ATR
+        or not strong_wick
+        or departure < float(pivot_atr) * MIN_DEPARTURE_ATR
+    ):
+        return None
+
+    padding = float(pivot_atr) * ZONE_PADDING_ATR
+    return {
+        "type": zone_type,
+        "created_idx": confirmation_index,
+        "pivot_idx": pivot_index,
+        "top": wick_top + padding,
+        "bottom": wick_bottom - padding,
+        "active": True,
+        "broken": False,
+        "touch_streak": 0,
+        "touch_count": 0,
+        "max_touch_streak": 0,
+        "over_touched": False,
+        "atr": float(pivot_atr),
+    }
+
+
 def build_zones(df):
     atr_series = atr(df, ATR_PERIOD)
     if atr_series.isna().all():
         return [], []
 
     pivot_highs, pivot_lows = find_pivots(df, SWING_LENGTH)
-
+    pivot_high_set = set(pivot_highs)
+    pivot_low_set = set(pivot_lows)
     supply_zones = []
     demand_zones = []
 
-    events = [("high", index) for index in pivot_highs] + [("low", index) for index in pivot_lows]
-    events.sort(key=lambda event: event[1])
+    # Create zones only after pivot confirmation, using the original pivot
+    # candle's wick and the confirmed post-pivot departure.
+    for confirmation_index in range(SWING_LENGTH, len(df)):
+        pivot_index = confirmation_index - SWING_LENGTH
+        if pivot_index in pivot_high_set:
+            zone = qualify_wick_zone(df, pivot_index, confirmation_index, atr_series, "supply")
+            if zone is not None and add_zone_if_not_overlapping(supply_zones, zone, zone["atr"]):
+                supply_zones[:] = supply_zones[-HISTORY_OF_ZONES_TO_KEEP:]
+        elif pivot_index in pivot_low_set:
+            zone = qualify_wick_zone(df, pivot_index, confirmation_index, atr_series, "demand")
+            if zone is not None and add_zone_if_not_overlapping(demand_zones, zone, zone["atr"]):
+                demand_zones[:] = demand_zones[-HISTORY_OF_ZONES_TO_KEEP:]
 
-    for kind, index in events:
-        pivot_atr = atr_series.iloc[index]
-        if pd.isna(pivot_atr):
-            continue
-
-        atr_buffer = pivot_atr * (BOX_WIDTH / 10.0)
-        if kind == "high":
-            top = float(df["high"].iloc[index])
-            bottom = top - atr_buffer
-            zone = {
-                "type": "supply",
-                "created_idx": index,
-                "top": top,
-                "bottom": bottom,
-                "active": True,
-                "broken": False,
-                "touch_streak": 0,
-                "touch_count": 0,
-                "max_touch_streak": 0,
-                "over_touched": False,
-                "atr": float(pivot_atr),
-            }
-            add_zone_if_not_overlapping(supply_zones, zone, pivot_atr)
-        else:
-            bottom = float(df["low"].iloc[index])
-            top = bottom + atr_buffer
-            zone = {
-                "type": "demand",
-                "created_idx": index,
-                "top": top,
-                "bottom": bottom,
-                "active": True,
-                "broken": False,
-                "touch_streak": 0,
-                "touch_count": 0,
-                "max_touch_streak": 0,
-                "over_touched": False,
-                "atr": float(pivot_atr),
-            }
-            add_zone_if_not_overlapping(demand_zones, zone, pivot_atr)
-
-    closes = df["close"].values
-    highs = df["high"].values
-    lows = df["low"].values
-
-    for zone in supply_zones:
-        for index in range(zone["created_idx"] + 1, len(df)):
-            record_zone_touch(zone, highs[index], lows[index])
-            if closes[index] >= zone["top"]:
+        close = float(df["close"].iloc[confirmation_index])
+        high = float(df["high"].iloc[confirmation_index])
+        low = float(df["low"].iloc[confirmation_index])
+        for zone in supply_zones:
+            if zone["active"] and confirmation_index > zone["created_idx"]:
+                record_zone_touch(zone, high, low)
+            if zone["active"] and confirmation_index > zone["created_idx"] and close >= zone["top"]:
                 zone["active"] = False
                 zone["broken"] = True
-                zone["broken_idx"] = index
-                zone["bos_level"] = zone_center(zone)
-                break
-
-    for zone in demand_zones:
-        for index in range(zone["created_idx"] + 1, len(df)):
-            record_zone_touch(zone, highs[index], lows[index])
-            if closes[index] <= zone["bottom"]:
+        for zone in demand_zones:
+            if zone["active"] and confirmation_index > zone["created_idx"]:
+                record_zone_touch(zone, high, low)
+            if zone["active"] and confirmation_index > zone["created_idx"] and close <= zone["bottom"]:
                 zone["active"] = False
                 zone["broken"] = True
-                zone["broken_idx"] = index
-                zone["bos_level"] = zone_center(zone)
-                break
 
     return supply_zones, demand_zones
 
@@ -589,7 +608,7 @@ def scan_symbol(symbol):
     buy_signal, sell_signal = get_range_filter_signals(df)
     supply_rating = None
     demand_rating = None
-    if supply_dist <= MAX_DISTANCE_PCT:
+    if ENABLE_CRYPTO_ZONE_RATINGS and supply_dist <= MAX_DISTANCE_PCT:
         supply_rating = rate_crypto_zone(
             df,
             symbol,
@@ -599,7 +618,7 @@ def scan_symbol(symbol):
             supply_dist,
             SWING_LENGTH,
         )
-    if demand_dist <= MAX_DISTANCE_PCT:
+    if ENABLE_CRYPTO_ZONE_RATINGS and demand_dist <= MAX_DISTANCE_PCT:
         demand_rating = rate_crypto_zone(
             df,
             symbol,
