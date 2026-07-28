@@ -40093,9 +40093,9 @@
     "last_attempt_at": 0.0
   },
   "GLENMARK.NS|demand|2179.2987|2190.3014": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1785217318.029912,
+    "last_attempt_at": 1785217318.029912
   },
   "MEDANTA.NS|demand|1204.2289|1213.4712": {
     "in_zone": false,
@@ -40387,7 +40387,7 @@
     "last_attempt_at": 0.0
   },
   "ITC.NS|supply|286.9206|287.9795": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1785214942.9131203,
     "last_attempt_at": 1785214942.9131203
   },
@@ -43008,8 +43008,8 @@
   },
   "IRFC.NS|supply|88.3579|88.6121": {
     "in_zone": true,
-    "last_alert_at": 1785214943.4466362,
-    "last_attempt_at": 1785214943.4466362
+    "last_alert_at": 1785217318.383617,
+    "last_attempt_at": 1785217318.383617
   },
   "INDUSINDBK.NS|demand|906.8911|911.9589": {
     "in_zone": false,
@@ -43886,9 +43886,9 @@
     "last_attempt_at": 0.0
   },
   "JSWDULUX.NS|demand|2904.4307|2919.6694": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1785217318.639481,
+    "last_attempt_at": 1785217318.639481
   },
   "JSWSTEEL.NS|range_filter|buy": {
     "last_alert_at": 1785216118.3233962,
@@ -44174,6 +44174,26 @@
     "last_attempt_at": 0.0
   },
   "SBFC.NS|supply|95.7429|97.5971": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "ABREL.NS|demand|1342.3032|1354.5968": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "ATHERENERG.NS|demand|1132.3652|1142.6348": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "ATUL.NS|demand|6010.4493|6057.0507": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "EICHERMOT.NS|demand|7187.4450|7239.5550": {
     "in_zone": false,
     "last_alert_at": 0.0,
     "last_attempt_at": 0.0
