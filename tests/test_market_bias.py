@@ -40,11 +40,23 @@ class MarketBiasTests(unittest.TestCase):
         self.assertIn("INDIA HEALTHCARE: 2.10% UP", report)
         self.assertIn("INDIA IT: 3.00% DOWN", report)
 
-    def test_india_report_includes_requested_sector_counts(self):
+    def test_india_report_uses_sector_names_without_stock_counts(self):
         report = build_intraday_report("india", {}, {})
-        self.assertIn("FINANCIALS: 89 stocks", report)
-        self.assertIn("INDUSTRIALS: 68 stocks", report)
-        self.assertIn("TECHNOLOGY & TELECOM: 25 stocks", report)
+        self.assertNotIn("89 stocks", report)
+        self.assertNotIn("68 stocks", report)
+        self.assertNotIn("25 stocks", report)
+
+    def test_us_report_includes_xstock_sector_groups(self):
+        weak = {"bias": "Bearish", "score": -2, "last": 100.0, "bar_pct": -0.3, "session_pct": -2.1}
+        sectors = {
+            "US BROAD / INDEX": weak,
+            "US ENERGY": weak,
+            "US OTHER / INDUSTRIALS": weak,
+        }
+        report = build_intraday_report("us", {}, sectors)
+        self.assertIn("US BROAD / INDEX: 2.10% DOWN", report)
+        self.assertIn("US ENERGY: 2.10% DOWN", report)
+        self.assertIn("US OTHER / INDUSTRIALS: 2.10% DOWN", report)
 
 
 if __name__ == "__main__":
