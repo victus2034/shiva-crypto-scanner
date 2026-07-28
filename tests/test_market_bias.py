@@ -10,6 +10,7 @@ from market_bias import (
     build_report,
     classify_bias,
     classify_intraday,
+    session_is_active,
 )
 
 
@@ -97,6 +98,18 @@ class MarketBiasTests(unittest.TestCase):
                 session="us",
                 now=datetime(2026, 7, 29, 12, 30, tzinfo=ZoneInfo("America/New_York")),
             )
+
+    def test_session_gate_handles_us_daylight_saving_time(self):
+        self.assertTrue(
+            session_is_active(
+                "us", datetime(2026, 7, 29, 9, 30, tzinfo=ZoneInfo("America/New_York"))
+            )
+        )
+        self.assertFalse(
+            session_is_active(
+                "us", datetime(2026, 7, 29, 9, 0, tzinfo=ZoneInfo("America/New_York"))
+            )
+        )
 
 
 if __name__ == "__main__":

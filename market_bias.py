@@ -126,6 +126,17 @@ def _session_close(data: pd.DataFrame, session: str, now: datetime | None = None
     return session_close
 
 
+def session_is_active(session: str, now: datetime | None = None) -> bool:
+    """Keep external cron triggers quiet outside the relevant market window."""
+    timezone_name, open_time, close_time = SESSION_WINDOWS[session]
+    market_tz = ZoneInfo(timezone_name)
+    current = now or datetime.now(market_tz)
+    current = current.astimezone(market_tz) if current.tzinfo else current.replace(tzinfo=market_tz)
+    if session == "london":
+        close_time = time(9, 0)  # Opening snapshot only.
+    return open_time <= current.time() < close_time and current.weekday() < 5
+
+
 def classify_intraday(
     data: pd.DataFrame,
     session: str | None = None,
@@ -322,14 +333,13 @@ if __name__ == "__main__":
     if args.force_test:
         report = build_force_test_report(args.force_test)
     else:
-        report = (
-            build_report(collect())
-            if args.session == "daily"
-            else build_intraday_report(
-                args.session,
-                collect_intraday(args.session),
-                collect_intraday_sectors(args.session),
-            )
+        if args.session != "daily" and not session_is_active(args.session):
+            print(f"{args.session} session is closed; no report sent.")
+            raise SystemExit(0)
+        report = build_report(collect()) if args.session == "daily" else build_intraday_report(
+            args.session,
+            collect_intraday(args.session),
+            collect_intraday_sectors(args.session),
         )
     print(report)
     # The fallback is limited to an explicit force test; live reports still
