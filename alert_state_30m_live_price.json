@@ -8656,11 +8656,11 @@
     "last_alert_at": 0.0
   },
   "SLVONUSD|supply|52.17000000|52.25000000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1785276135.1775658
   },
   "SOLUSD|supply|74.34800000|74.58800000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1785274903.0343049
   },
   "ONDOUSD|supply|0.40970000|0.41390000": {
@@ -8684,6 +8684,14 @@
     "last_alert_at": 0.0
   },
   "DRAMBUSD|demand|46.20000000|46.66000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "ETCUSD|supply|6.77300000|6.79200000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "SYN/USDT|demand|0.13800000|0.13950000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
