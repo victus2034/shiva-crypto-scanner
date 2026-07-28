@@ -13,6 +13,7 @@ scanner.MIN_DISTANCE_PCT = 0.25
 scanner.MAX_DISTANCE_PCT = 0.75
 scanner.ALERT_COOLDOWN_SECONDS = 30 * 60
 scanner.SIGNAL_ALERT_COOLDOWN_SECONDS = 30 * 60
+scanner.SHOW_ZONE_RATINGS = True
 
 
 if __name__ == "__main__":

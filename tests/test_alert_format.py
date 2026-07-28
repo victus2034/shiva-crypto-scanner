@@ -40,6 +40,27 @@ class AlertFormatTests(unittest.TestCase):
         self.assertNotIn("\n\n", message)
         self.assertNotIn("Range Filter", message)
 
+    def test_nse_30m_zone_rating_starts_at_four(self):
+        result = {"symbol": "TEST.NS", "price": 100.0}
+        zone = {"bottom": 99.0, "top": 99.5, "max_touch_streak": 1}
+        nse_scanner.TIMEFRAME = "30m"
+        nse_scanner.SHOW_ZONE_RATINGS = True
+        nse_scanner.MAX_DISTANCE_PCT = 0.75
+
+        message = nse_scanner.format_alert(result, "demand", zone, 0.70)
+
+        self.assertIn("Zone Rating: 4/10", message)
+
+    def test_nse_4h_zone_alert_has_no_rating(self):
+        result = {"symbol": "TEST.NS", "price": 100.0}
+        zone = {"bottom": 99.0, "top": 99.5, "max_touch_streak": 0}
+        nse_scanner.TIMEFRAME = "4h"
+        nse_scanner.SHOW_ZONE_RATINGS = True
+
+        message = nse_scanner.format_alert(result, "demand", zone, 0.70)
+
+        self.assertNotIn("Zone Rating:", message)
+
     def test_crypto_zone_rating_adds_one_compact_line(self):
         result = {
             "symbol": "BTCUSD",

@@ -42,6 +42,8 @@ from nse_config import (
     SOURCE_PERIOD,
     SWING_LENGTH,
     TIMEFRAME,
+    SHOW_ZONE_RATINGS,
+    ZONE_RATING_BASE,
     ZONE_PADDING_ATR,
 )
 
@@ -532,12 +534,26 @@ def build_signal_state_key(symbol, signal_type):
 def format_alert(result, zone_type, zone, distance_pct):
     reference = zone["top"] if zone_type == "supply" else zone["bottom"]
     side = "SELL zone" if zone_type == "supply" else "BUY zone"
-    return (
+    message = (
         f"{result['symbol']} is {distance_pct:.2f}% away from a {side}\n"
         f"Price: {result['price']:.2f}\n"
         f"Level: {reference:.2f}\n"
         f"Zone: {zone['bottom']:.2f} - {zone['top']:.2f}"
     )
+    if SHOW_ZONE_RATINGS and TIMEFRAME == "30m":
+        message += f"\nZone Rating: {zone_rating(zone, distance_pct)}/10"
+    return message
+
+
+def zone_rating(zone, distance_pct):
+    """Return a transparent display score, not a validated predictor."""
+    score = ZONE_RATING_BASE
+    midpoint = (MIN_DISTANCE_PCT + MAX_DISTANCE_PCT) / 2
+    if distance_pct <= midpoint:
+        score += 1
+    if zone.get("max_touch_streak", 0) == 0:
+        score += 1
+    return min(10, score)
 
 
 def format_signal_alert(result, signal_type):
