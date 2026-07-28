@@ -2,7 +2,7 @@ import unittest
 
 import pandas as pd
 
-from market_bias import build_intraday_report, build_report, classify_bias
+from market_bias import build_force_test_report, build_intraday_report, build_report, classify_bias
 
 
 class MarketBiasTests(unittest.TestCase):
@@ -57,6 +57,13 @@ class MarketBiasTests(unittest.TestCase):
         self.assertIn("US BROAD / INDEX: 2.10% DOWN", report)
         self.assertIn("US ENERGY: 2.10% DOWN", report)
         self.assertIn("US OTHER / INDUSTRIALS: 2.10% DOWN", report)
+
+    def test_force_test_is_labeled_and_contains_both_formats(self):
+        india = build_force_test_report("india")
+        us = build_force_test_report("us")
+        self.assertTrue(india.startswith("FORCE TEST - NOT LIVE MARKET DATA"))
+        self.assertIn("NSE FINANCIALS: 2.35% DOWN", india)
+        self.assertIn("US AI / SEMIS / HARDWARE: 3.05% DOWN", us)
 
 
 if __name__ == "__main__":

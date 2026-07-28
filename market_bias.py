@@ -221,18 +221,62 @@ def send_report(message: str) -> None:
     response.raise_for_status()
 
 
+def build_force_test_report(session: str, now: datetime | None = None) -> str:
+    """Build a clearly labeled Discord delivery test without using market data."""
+    if session == "india":
+        results = {
+            "NIFTY 50": {
+                "bias": "Bearish",
+                "score": -2,
+                "last": 24850.0,
+                "bar_pct": -0.42,
+                "session_pct": -1.18,
+            }
+        }
+        sectors = {
+            "NSE FINANCIALS": {"session_pct": -2.35},
+            "NSE HEALTHCARE": {"session_pct": 2.10},
+            "NSE TECHNOLOGY & TELECOM": {"session_pct": -2.62},
+        }
+    elif session == "us":
+        results = {
+            "S&P 500": {
+                "bias": "Bearish",
+                "score": -2,
+                "last": 6280.0,
+                "bar_pct": -0.55,
+                "session_pct": -1.40,
+            }
+        }
+        sectors = {
+            "US BROAD / INDEX": {"session_pct": -2.18},
+            "US AI / SEMIS / HARDWARE": {"session_pct": -3.05},
+            "US FINANCIALS / CRYPTO-RELATED": {"session_pct": -2.24},
+            "US ENERGY": {"session_pct": 2.40},
+        }
+    else:
+        raise ValueError(f"force test is not supported for {session}")
+
+    report = build_intraday_report(session, results, sectors, now=now)
+    return "FORCE TEST - NOT LIVE MARKET DATA\n\n" + report
+
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--session", choices=["daily", "india", "us", "london"], default="daily")
+    parser.add_argument("--force-test", choices=["india", "us"], help="send a labeled Discord delivery test")
     args = parser.parse_args()
-    report = (
-        build_report(collect())
-        if args.session == "daily"
-        else build_intraday_report(
-            args.session,
-            collect_intraday(args.session),
-            collect_intraday_sectors(args.session),
+    if args.force_test:
+        report = build_force_test_report(args.force_test)
+    else:
+        report = (
+            build_report(collect())
+            if args.session == "daily"
+            else build_intraday_report(
+                args.session,
+                collect_intraday(args.session),
+                collect_intraday_sectors(args.session),
+            )
         )
-    )
     print(report)
     send_report(report)
