@@ -60149,7 +60149,7 @@
     "last_alert_at": 0.0
   },
   "DELL/USDT:USDT|demand|367.62000000|374.40000000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1785249099.5441012
   },
   "NVDL/USDT:USDT|supply|33.11000000|33.86000000": {
@@ -60171,5 +60171,9 @@
   "CVX/USDT:USDT|demand|1.03500000|1.05900000": {
     "in_zone": false,
     "last_alert_at": 0.0
+  },
+  "HOOD/USDT:USDT|demand|90.39000000|92.17000000": {
+    "in_zone": true,
+    "last_alert_at": 1785250275.6452482
   }
 }
