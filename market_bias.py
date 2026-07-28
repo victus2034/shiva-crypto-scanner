@@ -213,9 +213,15 @@ def build_intraday_report(
     return "\n".join(lines)
 
 
-def send_report(message: str) -> None:
+def send_report(message: str, *, allow_status_fallback: bool = False) -> None:
     webhook = os.getenv(WEBHOOK_ENV, "").strip()
+    if not webhook and allow_status_fallback:
+        webhook = os.getenv("DISCORD_STATUS_WEBHOOK_URL", "").strip()
     if not webhook:
+        if allow_status_fallback:
+            raise RuntimeError(
+                f"{WEBHOOK_ENV} and DISCORD_STATUS_WEBHOOK_URL are not configured"
+            )
         raise RuntimeError(f"{WEBHOOK_ENV} is not configured")
     response = requests.post(webhook, json={"content": message}, timeout=15)
     response.raise_for_status()
@@ -279,4 +285,6 @@ if __name__ == "__main__":
             )
         )
     print(report)
-    send_report(report)
+    # The fallback is limited to an explicit force test; live reports still
+    # require the dedicated market-bias webhook.
+    send_report(report, allow_status_fallback=bool(args.force_test))
