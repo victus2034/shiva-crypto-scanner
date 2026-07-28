@@ -664,8 +664,17 @@ def process_signal_candidate(state, result, signal_type, now_ts):
     if not ALERT_RANGE_FILTER_SIGNALS:
         return None
 
-    # Do not emit a signal-only alert when there is no active zone to act on.
-    if result.get("demand") is None and result.get("supply") is None:
+    # A range-filter signal is useful only as confirmation of a nearby,
+    # directionally relevant zone. Do not send standalone signals for distant
+    # zones or for missing distances (which previously produced N/A alerts).
+    if signal_type == "buy":
+        zone = result.get("demand")
+        distance_pct = result.get("demand_dist", 999.0)
+    else:
+        zone = result.get("supply")
+        distance_pct = result.get("supply_dist", 999.0)
+
+    if zone is None or not (MIN_DISTANCE_PCT <= distance_pct <= MAX_DISTANCE_PCT):
         return None
 
     signal_active = result["buy_signal"] if signal_type == "buy" else result["sell_signal"]

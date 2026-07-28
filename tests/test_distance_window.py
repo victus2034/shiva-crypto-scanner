@@ -76,6 +76,44 @@ class DistanceWindowTests(unittest.TestCase):
         self.assertIsNone(sent)
         send.assert_not_called()
 
+    def test_nse_range_signal_requires_a_nearby_directional_zone(self):
+        state = {}
+        result = {
+            "symbol": "INFY.NS",
+            "price": 1111.9,
+            "demand": {"bottom": 900.0, "top": 901.0},
+            "demand_dist": 15.77,
+            "supply": None,
+            "supply_dist": 999.0,
+            "buy_signal": True,
+            "sell_signal": False,
+        }
+
+        with patch.object(nse_scanner, "send_alert", return_value=True) as send:
+            sent = nse_scanner.process_signal_candidate(state, result, "buy", 20000)
+
+        self.assertIsNone(sent)
+        send.assert_not_called()
+
+    def test_nse_range_signal_can_confirm_a_nearby_directional_zone(self):
+        state = {}
+        result = {
+            "symbol": "RELIANCE.NS",
+            "price": 100.0,
+            "demand": {"bottom": 99.0, "top": 99.5},
+            "demand_dist": 0.5,
+            "supply": None,
+            "supply_dist": 999.0,
+            "buy_signal": True,
+            "sell_signal": False,
+        }
+
+        with patch.object(nse_scanner, "send_alert", return_value=True) as send:
+            sent = nse_scanner.process_signal_candidate(state, result, "buy", 20000)
+
+        self.assertTrue(sent)
+        send.assert_called_once()
+
     def test_crypto_ignores_too_close_zone_and_accepts_window(self):
         state = {}
         result = {"symbol": "BTCUSD", "price": 100.0}

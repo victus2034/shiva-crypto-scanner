@@ -63,7 +63,7 @@ class NseDeliveryTests(unittest.TestCase):
             "supply": None,
             "buy_signal": True,
             "sell_signal": False,
-            "demand_dist": 1.0,
+            "demand_dist": 0.5,
             "supply_dist": 2.0,
         }
 
