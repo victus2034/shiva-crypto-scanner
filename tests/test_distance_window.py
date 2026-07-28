@@ -23,6 +23,44 @@ class DistanceWindowTests(unittest.TestCase):
         self.assertFalse(sent)
         send.assert_not_called()
 
+    def test_crypto_range_signal_requires_a_nearby_directional_zone(self):
+        state = {}
+        result = {
+            "symbol": "OPENAIUSDT",
+            "price": 111.51,
+            "demand": {"bottom": 109.0, "top": 109.2},
+            "demand_dist": 2.01,
+            "supply": None,
+            "supply_dist": 999.0,
+            "buy_signal": True,
+            "sell_signal": False,
+        }
+
+        with patch.object(scanner, "send_alert", return_value=True) as send:
+            sent = scanner.process_signal_candidate(state, result, "buy", 20000)
+
+        self.assertFalse(sent)
+        send.assert_not_called()
+
+    def test_crypto_range_signal_can_confirm_a_nearby_directional_zone(self):
+        state = {}
+        result = {
+            "symbol": "BTCUSDT",
+            "price": 100.0,
+            "demand": {"bottom": 99.0, "top": 99.5},
+            "demand_dist": 0.5,
+            "supply": None,
+            "supply_dist": 999.0,
+            "buy_signal": True,
+            "sell_signal": False,
+        }
+
+        with patch.object(scanner, "send_alert", return_value=True) as send:
+            sent = scanner.process_signal_candidate(state, result, "buy", 20000)
+
+        self.assertTrue(sent)
+        send.assert_called_once()
+
     def test_crypto_30m_zone_rating_below_six_is_blocked(self):
         state = {}
         result = {

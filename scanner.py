@@ -848,9 +848,17 @@ def process_signal_candidate(state, result, signal_type, now_ts):
     if not ALERT_RANGE_FILTER_SIGNALS:
         return False
 
-    # A range-filter flip without any active zone is not actionable. The
-    # previous sentinel distances (999.00%) made these look like real alerts.
-    if result.get("demand") is None and result.get("supply") is None:
+    # A range-filter flip is actionable only as confirmation of a nearby,
+    # directionally relevant zone. Ignore distant zones and missing distances
+    # instead of sending misleading N/A or stale-distance alerts.
+    if signal_type == "buy":
+        zone = result.get("demand")
+        distance_pct = result.get("demand_dist", 999.0)
+    else:
+        zone = result.get("supply")
+        distance_pct = result.get("supply_dist", 999.0)
+
+    if zone is None or not (MIN_DISTANCE_PCT <= distance_pct <= MAX_DISTANCE_PCT):
         return False
 
     signal_active = result["buy_signal"] if signal_type == "buy" else result["sell_signal"]
