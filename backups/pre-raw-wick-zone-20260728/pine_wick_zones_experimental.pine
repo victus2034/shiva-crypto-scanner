@@ -9,7 +9,7 @@ overlapAtr = input.float(1.0, "Overlap filter (ATR)", minval = 0.0, step = 0.25)
 minWickAtr = input.float(0.15, "Minimum wick size (ATR)", minval = 0.0, step = 0.05)
 minWickToBody = input.float(1.5, "Minimum wick/body ratio", minval = 0.0, step = 0.25)
 minDepartureAtr = input.float(0.75, "Minimum departure move (ATR)", minval = 0.0, step = 0.25)
-zonePaddingAtr = input.float(0.0, "Zone size padding (ATR)", minval = 0.0, step = 0.05)
+zonePaddingAtr = input.float(0.25, "Zone size padding (ATR)", minval = 0.0, step = 0.05)
 
 demandColor = color.new(color.aqua, 72)
 supplyColor = color.new(color.orange, 72)

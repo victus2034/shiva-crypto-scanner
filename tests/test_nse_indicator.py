@@ -23,6 +23,25 @@ class NseIndicatorParityTests(unittest.TestCase):
         self.assertAlmostEqual(result.iloc[2], 8.0 / 3.0)
         self.assertAlmostEqual(result.iloc[3], 31.0 / 9.0)
 
+    def test_demand_zone_uses_raw_wick_without_atr_shift(self):
+        data = pd.DataFrame(
+            {
+                "open": [10.0, 10.0, 10.0, 11.0, 11.0],
+                "close": [9.8, 9.8, 9.8, 12.0, 12.0],
+                "high": [10.1, 10.1, 10.1, 12.1, 12.1],
+                "low": [9.0, 9.0, 9.0, 10.5, 10.5],
+            }
+        )
+        atr_values = pd.Series([2.0] * len(data))
+
+        with patch.object(nse_scanner, "ZONE_PADDING_ATR", 0.0):
+            zone = nse_scanner.qualify_wick_zone(
+                data, 2, 3, atr_values, "demand"
+            )
+
+        self.assertEqual(zone["bottom"], 9.0)
+        self.assertEqual(zone["top"], 9.8)
+
     def test_broken_zone_does_not_block_later_replacement(self):
         data = pd.DataFrame(
             {
@@ -43,7 +62,7 @@ class NseIndicatorParityTests(unittest.TestCase):
 
         active_supply = [zone for zone in supply if zone["active"]]
         self.assertEqual(len(active_supply), 1)
-        self.assertEqual(active_supply[0]["top"], 101.5)
+        self.assertEqual(active_supply[0]["top"], 101.0)
         self.assertEqual(active_supply[0]["pivot_idx"], 6)
 
     def test_30m_resample_is_anchored_to_nse_open(self):

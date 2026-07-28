@@ -118,9 +118,7 @@ OVERLAP_ATR = 1.0
 MIN_WICK_ATR = 0.15
 MIN_WICK_TO_BODY = 1.5
 MIN_DEPARTURE_ATR = 0.75
-# Keep alert zones on the confirmed candle wick. ATR padding shifts the
-# reported Level away from the actual wick, especially on low-priced symbols.
-ZONE_PADDING_ATR = 0.0
+ZONE_PADDING_ATR = 0.25
 
 MIN_DISTANCE_PCT = 0.25
 MAX_DISTANCE_PCT = 1.25
