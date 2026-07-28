@@ -111,6 +111,23 @@ class MarketBiasTests(unittest.TestCase):
             )
         )
 
+    def test_london_gate_allows_only_open_and_close_snapshots(self):
+        self.assertTrue(
+            session_is_active(
+                "london", datetime(2026, 7, 29, 8, 30, tzinfo=ZoneInfo("Europe/London"))
+            )
+        )
+        self.assertTrue(
+            session_is_active(
+                "london", datetime(2026, 7, 29, 16, 30, tzinfo=ZoneInfo("Europe/London"))
+            )
+        )
+        self.assertFalse(
+            session_is_active(
+                "london", datetime(2026, 7, 29, 12, 30, tzinfo=ZoneInfo("Europe/London"))
+            )
+        )
+
 
 if __name__ == "__main__":
     unittest.main()

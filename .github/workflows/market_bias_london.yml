@@ -1,4 +1,4 @@
-name: Shiva London Open Bias
+name: Shiva London Open and Close Bias
 
 on:
   workflow_dispatch:
@@ -16,7 +16,7 @@ jobs:
         with:
           python-version: "3.12"
       - run: pip install -r requirements.txt
-      - name: Send London opening bias
+      - name: Send London open or close bias
         env:
           BIAS_SESSION: london
           DISCORD_BIAS_WEBHOOK_URL: ${{ secrets.DISCORD_BIAS_WEBHOOK_URL }}

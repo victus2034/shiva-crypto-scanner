@@ -27,7 +27,7 @@ INTRADAY_MARKETS = {
         "symbols": [("SPY", "S&P 500"), ("QQQ", "NASDAQ 100"), ("SMH", "AI / SEMIS"), ("XLK", "US TECH")],
     },
     "london": {
-        "label": "LONDON OPEN",
+        "label": "LONDON SESSION",
         "symbols": [("^FTSE", "FTSE 100")],
     },
 }
@@ -121,19 +121,26 @@ def _session_close(data: pd.DataFrame, session: str, now: datetime | None = None
     start = datetime.combine(current.date(), open_time, tzinfo=market_tz)
     end = datetime.combine(current.date(), close_time, tzinfo=market_tz)
     session_close = close[(close.index >= start) & (close.index <= end)].dropna()
-    if len(session_close) < 3:
+    minimum_bars = 2 if session == "london" else 3
+    if len(session_close) < minimum_bars:
         raise RuntimeError(f"no current {session} session data available")
     return session_close
 
 
 def session_is_active(session: str, now: datetime | None = None) -> bool:
-    """Keep external cron triggers quiet outside the relevant market window."""
+    """Keep external cron triggers quiet outside each session's report windows."""
     timezone_name, open_time, close_time = SESSION_WINDOWS[session]
     market_tz = ZoneInfo(timezone_name)
     current = now or datetime.now(market_tz)
     current = current.astimezone(market_tz) if current.tzinfo else current.replace(tzinfo=market_tz)
     if session == "london":
-        close_time = time(9, 0)  # Opening snapshot only.
+        # London is intentionally reported only after the first 30m bar and
+        # immediately after the regular close, never every 30 minutes.
+        return (
+            current.weekday() < 5
+            and current.minute in {29, 30, 31}
+            and current.hour in {8, 16}
+        )
     return open_time <= current.time() < close_time and current.weekday() < 5
 
 
