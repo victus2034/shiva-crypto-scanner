@@ -392,8 +392,7 @@ def resample_for_timeframe(data):
         ).dropna()
 
     if TIMEFRAME == "4h":
-        # Anchor four-hour candles to the NSE open (09:15), not 08:15.
-        return data.resample("4h", origin="start_day", offset="1h15min").agg(
+        return data.resample("4h", origin="start_day", offset="15min").agg(
             {
                 "open": "first",
                 "high": "max",

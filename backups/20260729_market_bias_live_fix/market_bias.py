@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import os
 import argparse
-from datetime import datetime, time
+from datetime import datetime
 from zoneinfo import ZoneInfo
 
 import pandas as pd
@@ -57,11 +57,6 @@ INTRADAY_SECTORS = {
 SECTOR_ALERT_THRESHOLD = 2.0
 TIMEZONE = ZoneInfo("Asia/Kolkata")
 WEBHOOK_ENV = "DISCORD_BIAS_WEBHOOK_URL"
-SESSION_WINDOWS = {
-    "india": ("Asia/Kolkata", time(9, 15), time(15, 30)),
-    "us": ("America/New_York", time(9, 30), time(16, 0)),
-    "london": ("Europe/London", time(8, 0), time(16, 30)),
-}
 
 
 def fetch_daily(symbol: str) -> pd.DataFrame:
@@ -101,42 +96,11 @@ def fetch_intraday(symbol: str) -> pd.DataFrame:
     return close.to_frame("close")
 
 
-def _session_close(data: pd.DataFrame, session: str, now: datetime | None = None) -> pd.Series:
-    """Return only bars from the current regular market session."""
-    if session not in SESSION_WINDOWS:
-        raise ValueError(f"unknown session: {session}")
-    if not isinstance(data.index, pd.DatetimeIndex):
-        raise RuntimeError("intraday data must use a DatetimeIndex")
-
-    timezone_name, open_time, close_time = SESSION_WINDOWS[session]
-    market_tz = ZoneInfo(timezone_name)
-    current = now or datetime.now(market_tz)
-    current = current.astimezone(market_tz) if current.tzinfo else current.replace(tzinfo=market_tz)
-    index = data.index
-    if index.tz is None:
-        index = index.tz_localize("UTC")
-    index = index.tz_convert(market_tz)
-    close = data["close"].copy()
-    close.index = index
-    start = datetime.combine(current.date(), open_time, tzinfo=market_tz)
-    end = datetime.combine(current.date(), close_time, tzinfo=market_tz)
-    session_close = close[(close.index >= start) & (close.index <= end)].dropna()
-    if len(session_close) < 3:
-        raise RuntimeError(f"no current {session} session data available")
-    return session_close
-
-
-def classify_intraday(
-    data: pd.DataFrame,
-    session: str | None = None,
-    now: datetime | None = None,
-) -> dict:
-    close = _session_close(data, session, now) if session else data["close"].dropna()
-    if len(close) < 3:
-        raise RuntimeError("not enough intraday candles")
+def classify_intraday(data: pd.DataFrame) -> dict:
+    close = data["close"]
     last = float(close.iloc[-1])
     previous = float(close.iloc[-2])
-    session_start = float(close.iloc[0])
+    session_start = float(close.iloc[-min(len(close), 14)])
     bar_pct = (last / previous - 1) * 100
     session_pct = (last / session_start - 1) * 100
     score = sum((bar_pct > 0.15, session_pct > 0.35))
@@ -201,21 +165,21 @@ def collect() -> dict:
     return results
 
 
-def collect_intraday(session: str, now: datetime | None = None) -> dict:
+def collect_intraday(session: str) -> dict:
     if session not in INTRADAY_MARKETS:
         raise ValueError(f"unknown session: {session}")
     results = {}
     for symbol, name in INTRADAY_MARKETS[session]["symbols"]:
-        results[name] = classify_intraday(fetch_intraday(symbol), session=session, now=now)
+        results[name] = classify_intraday(fetch_intraday(symbol))
     return results
 
 
-def collect_intraday_sectors(session: str, now: datetime | None = None) -> dict:
+def collect_intraday_sectors(session: str) -> dict:
     if session not in INTRADAY_SECTORS:
         raise ValueError(f"unknown session: {session}")
     results = {}
     for symbol, name in INTRADAY_SECTORS[session]:
-        results[name] = classify_intraday(fetch_intraday(symbol), session=session, now=now)
+        results[name] = classify_intraday(fetch_intraday(symbol))
     return results
 
 
@@ -259,19 +223,8 @@ def send_report(message: str, *, allow_status_fallback: bool = False) -> None:
                 f"{WEBHOOK_ENV} and DISCORD_STATUS_WEBHOOK_URL are not configured"
             )
         raise RuntimeError(f"{WEBHOOK_ENV} is not configured")
-    for attempt in range(3):
-        response = requests.post(webhook, json={"content": message}, timeout=15)
-        if response.status_code == 429 and attempt < 2:
-            retry_after = response.headers.get("Retry-After")
-            try:
-                delay = min(float(retry_after), 30.0)
-            except (TypeError, ValueError):
-                delay = 2.0 * (attempt + 1)
-            import time as _time
-            _time.sleep(max(delay, 0.1))
-            continue
-        response.raise_for_status()
-        return
+    response = requests.post(webhook, json={"content": message}, timeout=15)
+    response.raise_for_status()
 
 
 def build_force_test_report(session: str, now: datetime | None = None) -> str:

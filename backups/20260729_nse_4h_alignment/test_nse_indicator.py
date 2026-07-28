@@ -89,30 +89,6 @@ class NseIndicatorParityTests(unittest.TestCase):
         self.assertEqual(result.iloc[0]["close"], 11.5)
         self.assertEqual(result.iloc[0]["volume"], 3)
 
-    def test_4h_resample_is_anchored_to_nse_open(self):
-        index = pd.date_range("2026-07-22 09:15", periods=8, freq="1h", tz="Asia/Kolkata")
-        data = pd.DataFrame(
-            {
-                "open": range(10, 18),
-                "high": range(11, 19),
-                "low": range(9, 17),
-                "close": [value + 0.5 for value in range(10, 18)],
-                "volume": [1] * 8,
-            },
-            index=index,
-        )
-
-        with (
-            patch.object(nse_scanner, "TIMEFRAME", "4h"),
-            patch.object(nse_scanner, "SOURCE_INTERVAL", "1h"),
-        ):
-            result = nse_scanner.resample_for_timeframe(data)
-
-        self.assertEqual(list(result.index), list(index[[0, 4]]))
-        self.assertEqual(result.iloc[0]["open"], 10)
-        self.assertEqual(result.iloc[0]["close"], 13.5)
-        self.assertEqual(result.iloc[0]["volume"], 4)
-
     def test_incomplete_candle_is_excluded_from_indicator(self):
         data = pd.DataFrame(
             {

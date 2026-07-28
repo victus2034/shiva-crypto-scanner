@@ -1,8 +1,16 @@
 import unittest
+from datetime import datetime
+from zoneinfo import ZoneInfo
 
 import pandas as pd
 
-from market_bias import build_force_test_report, build_intraday_report, build_report, classify_bias
+from market_bias import (
+    build_force_test_report,
+    build_intraday_report,
+    build_report,
+    classify_bias,
+    classify_intraday,
+)
 
 
 class MarketBiasTests(unittest.TestCase):
@@ -64,6 +72,31 @@ class MarketBiasTests(unittest.TestCase):
         self.assertTrue(india.startswith("FORCE TEST - NOT LIVE MARKET DATA"))
         self.assertIn("NSE FINANCIALS: 2.35% DOWN", india)
         self.assertIn("US AI / SEMIS / HARDWARE: 3.05% DOWN", us)
+
+    def test_intraday_session_move_starts_at_market_open(self):
+        index = pd.date_range(
+            "2026-07-29 09:00", periods=7, freq="30min", tz="America/New_York"
+        )
+        close = pd.Series([90, 100, 100, 101, 102, 103, 104], index=index)
+        result = classify_intraday(
+            pd.DataFrame({"close": close}),
+            session="us",
+            now=datetime(2026, 7, 29, 12, 30, tzinfo=ZoneInfo("America/New_York")),
+        )
+        self.assertAlmostEqual(result["session_pct"], 4.0)
+        self.assertAlmostEqual(result["bar_pct"], 104 / 103 * 100 - 100)
+
+    def test_intraday_session_requires_current_regular_session(self):
+        index = pd.date_range(
+            "2026-07-28 09:30", periods=4, freq="30min", tz="America/New_York"
+        )
+        close = pd.Series([100, 101, 102, 103], index=index)
+        with self.assertRaisesRegex(RuntimeError, "no current us session data"):
+            classify_intraday(
+                pd.DataFrame({"close": close}),
+                session="us",
+                now=datetime(2026, 7, 29, 12, 30, tzinfo=ZoneInfo("America/New_York")),
+            )
 
 
 if __name__ == "__main__":
