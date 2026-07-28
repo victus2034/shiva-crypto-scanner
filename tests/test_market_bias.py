@@ -1,0 +1,27 @@
+import unittest
+
+import pandas as pd
+
+from market_bias import build_report, classify_bias
+
+
+class MarketBiasTests(unittest.TestCase):
+    def test_bullish_regime(self):
+        close = pd.Series(range(100, 220), dtype=float)
+        result = classify_bias(pd.DataFrame({"close": close}))
+        self.assertEqual(result["bias"], "Bullish")
+
+    def test_bearish_regime(self):
+        close = pd.Series(range(220, 100, -1), dtype=float)
+        result = classify_bias(pd.DataFrame({"close": close}))
+        self.assertEqual(result["bias"], "Bearish")
+
+    def test_report_is_compact_and_labeled(self):
+        item = {"name": "NIFTY 50", "metrics": {"bias": "Bullish", "score": 3, "last": 100.0, "one_day_pct": 1.0, "five_day_pct": 2.0}}
+        report = build_report({"INDIA": item, "US": item, "LONDON": item})
+        self.assertIn("INDIA (NIFTY 50): Bullish", report)
+        self.assertIn("Overall: Bullish", report)
+
+
+if __name__ == "__main__":
+    unittest.main()
