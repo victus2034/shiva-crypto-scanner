@@ -36,7 +36,6 @@ from nse_config import (
     PRINT_ALERTS_TO_CONSOLE,
     PRINT_SCAN_SUMMARY,
     REARM_FACTOR,
-    SHOW_4H_ZONE_SCORES,
     SCAN_SLEEP,
     SIGNAL_ALERT_COOLDOWN_SECONDS,
     SOURCE_INTERVAL,
@@ -47,7 +46,6 @@ from nse_config import (
     ZONE_RATING_BASE,
     ZONE_PADDING_ATR,
 )
-from zone_scoring import score_wick_zone
 
 
 STATE_FILE = Path(__file__).with_name("nse_alert_state.json")
@@ -181,8 +179,6 @@ def add_zone_if_not_overlapping(zones, new_zone, atr_value):
 def record_zone_touch(zone, candle_high, candle_low):
     touches_zone = candle_high >= zone["bottom"] and candle_low <= zone["top"]
     zone["touch_streak"] = zone.get("touch_streak", 0) + 1 if touches_zone else 0
-    if touches_zone:
-        zone["touch_count"] = zone.get("touch_count", 0) + 1
     zone["max_touch_streak"] = max(zone.get("max_touch_streak", 0), zone["touch_streak"])
     if zone["max_touch_streak"] >= MAX_CONSECUTIVE_ZONE_TOUCHES:
         zone["over_touched"] = True
@@ -229,13 +225,9 @@ def qualify_wick_zone(df, pivot_index, confirmation_index, atr_series, zone_type
         "bottom": wick_bottom - padding,
         "active": True,
         "touch_streak": 0,
-        "touch_count": 0,
         "max_touch_streak": 0,
         "over_touched": False,
         "atr": float(pivot_atr),
-        "wick_to_body": wick_size / body_size if body_size > 0 else wick_size / float(pivot_atr),
-        "wick_atr": wick_size / float(pivot_atr),
-        "departure_atr": departure / float(pivot_atr),
     }
 
 
@@ -518,25 +510,14 @@ def scan_symbol(symbol):
     nearest_supply, supply_dist = nearest_active_zone(price, supply_zones, "supply")
     nearest_demand, demand_dist = nearest_active_zone(price, demand_zones, "demand")
     buy_signal, sell_signal = get_range_filter_signals(indicator_df)
-    supply_score = None
-    demand_score = None
-    if SHOW_4H_ZONE_SCORES and TIMEFRAME == "4h":
-        supply_score = score_wick_zone(
-            nearest_supply, supply_dist, MIN_DISTANCE_PCT, MAX_DISTANCE_PCT
-        )
-        demand_score = score_wick_zone(
-            nearest_demand, demand_dist, MIN_DISTANCE_PCT, MAX_DISTANCE_PCT
-        )
 
     return {
         "symbol": symbol,
         "price": price,
         "supply": nearest_supply,
         "supply_dist": supply_dist,
-        "supply_score": supply_score,
         "demand": nearest_demand,
         "demand_dist": demand_dist,
-        "demand_score": demand_score,
         "buy_signal": buy_signal,
         "sell_signal": sell_signal,
     }
@@ -559,10 +540,7 @@ def format_alert(result, zone_type, zone, distance_pct):
         f"Level: {reference:.2f}\n"
         f"Zone: {zone['bottom']:.2f} - {zone['top']:.2f}"
     )
-    score = result.get(f"{zone_type}_score")
-    if score is not None:
-        message += f"\nScore: {score}/10"
-    elif SHOW_ZONE_RATINGS and TIMEFRAME == "30m":
+    if SHOW_ZONE_RATINGS and TIMEFRAME == "30m":
         message += f"\nZone Rating: {zone_rating(zone, distance_pct)}/10"
     return message
 

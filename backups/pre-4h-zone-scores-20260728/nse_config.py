@@ -138,8 +138,6 @@ PRINT_ALERTS_TO_CONSOLE = True
 # Display-only ratings for the isolated NSE 30m backtest phase.
 SHOW_ZONE_RATINGS = False
 ZONE_RATING_BASE = 4
-# Show the transparent rule-based quality score on every 4h NSE zone.
-SHOW_4H_ZONE_SCORES = True
 
 DISCORD_WEBHOOK_URL = ""
 DISCORD_NSE_WEBHOOK_URL = ""

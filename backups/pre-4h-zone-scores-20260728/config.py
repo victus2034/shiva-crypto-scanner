@@ -173,8 +173,6 @@ ENABLE_CRYPTO_ZONE_RATINGS = env_flag(
 )
 # Only validated crypto zone ratings above 5/10 are eligible for live alerts.
 MIN_CRYPTO_ZONE_SCORE = env_int("SHIVA_MIN_CRYPTO_ZONE_SCORE", 6)
-# Show the transparent rule-based quality score on every 4h crypto/xstock zone.
-SHOW_4H_ZONE_SCORES = env_flag("SHIVA_SHOW_4H_ZONE_SCORES", default=True)
 
 PRINT_SCAN_SUMMARY = True
 PRINT_ALERTS_TO_CONSOLE = True

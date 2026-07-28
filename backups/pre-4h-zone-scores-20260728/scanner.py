@@ -41,7 +41,6 @@ from config import (
     PRINT_SCAN_SUMMARY,
     PREFER_COINSWITCH,
     REARM_FACTOR,
-    SHOW_4H_ZONE_SCORES,
     REQUIRE_COINSWITCH,
     SCAN_SLEEP,
     SCAN_WORKERS,
@@ -55,7 +54,6 @@ from config import (
     ZONE_PADDING_ATR,
 )
 from crypto_zone_rating import rate_crypto_zone
-from zone_scoring import score_wick_zone
 
 
 STATE_FILE = Path(__file__).with_name(os.getenv("SHIVA_STATE_FILE", "alert_state.json"))
@@ -253,9 +251,6 @@ def qualify_wick_zone(df, pivot_index, confirmation_index, atr_series, zone_type
         "max_touch_streak": 0,
         "over_touched": False,
         "atr": float(pivot_atr),
-        "wick_to_body": wick_size / body_size if body_size > 0 else wick_size / float(pivot_atr),
-        "wick_atr": wick_size / float(pivot_atr),
-        "departure_atr": departure / float(pivot_atr),
     }
 
 
@@ -648,15 +643,6 @@ def scan_symbol(symbol):
     buy_signal, sell_signal = get_range_filter_signals(df)
     supply_rating = None
     demand_rating = None
-    supply_score = None
-    demand_score = None
-    if SHOW_4H_ZONE_SCORES and TIMEFRAME == "4h":
-        supply_score = score_wick_zone(
-            nearest_supply, supply_dist, MIN_DISTANCE_PCT, MAX_DISTANCE_PCT
-        )
-        demand_score = score_wick_zone(
-            nearest_demand, demand_dist, MIN_DISTANCE_PCT, MAX_DISTANCE_PCT
-        )
     if ENABLE_CRYPTO_ZONE_RATINGS and supply_dist <= MAX_DISTANCE_PCT:
         supply_rating = rate_crypto_zone(
             df,
@@ -688,11 +674,9 @@ def scan_symbol(symbol):
         "supply": nearest_supply,
         "supply_dist": supply_dist,
         "supply_rating": supply_rating,
-        "supply_score": supply_score,
         "demand": nearest_demand,
         "demand_dist": demand_dist,
         "demand_rating": demand_rating,
-        "demand_score": demand_score,
         "buy_signal": buy_signal,
         "sell_signal": sell_signal,
     }
@@ -718,11 +702,8 @@ def format_alert(result, zone_type, zone, distance_pct):
         f"Level: {reference:.6f}\n"
         f"Zone: {zone['bottom']:.6f} - {zone['top']:.6f}"
     )
-    score = result.get(f"{zone_type}_score")
     rating = result.get(f"{zone_type}_rating")
-    if score is not None:
-        message += f"\nScore: {score}/10"
-    elif rating:
+    if rating:
         if rating.get("score") is not None:
             message += f"\nScore: {rating['score']}/10"
         elif rating.get("rating"):
