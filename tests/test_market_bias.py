@@ -22,11 +22,23 @@ class MarketBiasTests(unittest.TestCase):
         self.assertIn("INDIA (NIFTY 50): Bullish", report)
         self.assertIn("Overall: Bullish", report)
 
-    def test_us_report_warns_when_ai_and_tech_are_weak(self):
+    def test_us_report_shows_sector_alerts_only_at_two_percent(self):
         weak = {"bias": "Bearish", "score": -2, "last": 100.0, "bar_pct": -0.3, "session_pct": -1.0}
-        results = {"S&P 500": weak, "NASDAQ 100": weak, "AI / SEMIS": weak, "US TECH": weak}
-        report = build_intraday_report("us", results)
-        self.assertIn("US AI/tech risk-off", report)
+        results = {"S&P 500": weak, "NASDAQ 100": weak}
+        sectors = {"AI / SEMIS": {**weak, "session_pct": -2.4}, "US TECH": weak}
+        report = build_intraday_report("us", results, sectors)
+        self.assertIn("AI / SEMIS: 2.40% DOWN", report)
+        self.assertNotIn("US TECH: 1.00% DOWN", report)
+
+    def test_india_sector_alerts_show_up_and_down(self):
+        item = {"bias": "Neutral", "score": 0, "last": 100.0, "bar_pct": 0.0, "session_pct": 2.1}
+        sectors = {
+            "INDIA HEALTHCARE": item,
+            "INDIA IT": {**item, "session_pct": -3.0},
+        }
+        report = build_intraday_report("india", {}, sectors)
+        self.assertIn("INDIA HEALTHCARE: 2.10% UP", report)
+        self.assertIn("INDIA IT: 3.00% DOWN", report)
 
 
 if __name__ == "__main__":

@@ -31,6 +31,18 @@ INTRADAY_MARKETS = {
         "symbols": [("^FTSE", "FTSE 100")],
     },
 }
+INTRADAY_SECTORS = {
+    "india": [
+        ("^CNXPHARMA", "INDIA HEALTHCARE"),
+        ("^CNXIT", "INDIA IT"),
+    ],
+    "us": [
+        ("XLK", "US TECH"),
+        ("SMH", "US AI / SEMIS"),
+    ],
+    "london": [],
+}
+SECTOR_ALERT_THRESHOLD = 2.0
 TIMEZONE = ZoneInfo("Asia/Kolkata")
 WEBHOOK_ENV = "DISCORD_BIAS_WEBHOOK_URL"
 
@@ -150,7 +162,21 @@ def collect_intraday(session: str) -> dict:
     return results
 
 
-def build_intraday_report(session: str, results: dict, now: datetime | None = None) -> str:
+def collect_intraday_sectors(session: str) -> dict:
+    if session not in INTRADAY_SECTORS:
+        raise ValueError(f"unknown session: {session}")
+    results = {}
+    for symbol, name in INTRADAY_SECTORS[session]:
+        results[name] = classify_intraday(fetch_intraday(symbol))
+    return results
+
+
+def build_intraday_report(
+    session: str,
+    results: dict,
+    sector_results: dict | None = None,
+    now: datetime | None = None,
+) -> str:
     now = now or datetime.now(TIMEZONE)
     label = INTRADAY_MARKETS[session]["label"]
     lines = [f"MARKET BIAS | {label} | {now:%d %b %Y, %H:%M IST}"]
@@ -158,16 +184,19 @@ def build_intraday_report(session: str, results: dict, now: datetime | None = No
         lines.append(f"{name}: {item['bias']} ({item['score']:+d}/2)")
         lines.append(f"Price: {item['last']:.2f} | 30m: {item['bar_pct']:+.2f}% | Session: {item['session_pct']:+.2f}%")
 
-    if session == "us":
-        tech = results.get("US TECH")
-        ai = results.get("AI / SEMIS")
-        broad = results.get("S&P 500")
-        if tech and ai and broad and tech["session_pct"] < -0.5 and ai["session_pct"] < -0.5:
-            lines.append("WARNING: US AI/tech risk-off; avoid treating xStock BUY setups as normal.")
-        elif tech and ai and tech["session_pct"] > 0.5 and ai["session_pct"] > 0.5:
-            lines.append("CONFIRMATION: US AI/tech risk-on.")
-        else:
-            lines.append("WARNING: US sector confirmation is mixed.")
+    sector_results = sector_results or {
+        name: results[name]
+        for _, name in INTRADAY_SECTORS[session]
+        if name in results
+    }
+    sector_alerts = []
+    for name, item in sector_results.items():
+        move = item["session_pct"]
+        if abs(move) >= SECTOR_ALERT_THRESHOLD:
+            direction = "UP" if move > 0 else "DOWN"
+            sector_alerts.append(f"{name}: {abs(move):.2f}% {direction}")
+    lines.append(f"Sector alerts (threshold {SECTOR_ALERT_THRESHOLD:.2f}%):")
+    lines.extend(sector_alerts or ["None"])
     lines.append("Rule: 30m momentum plus current-session move; context only, not an entry signal.")
     return "\n".join(lines)
 
@@ -187,7 +216,11 @@ if __name__ == "__main__":
     report = (
         build_report(collect())
         if args.session == "daily"
-        else build_intraday_report(args.session, collect_intraday(args.session))
+        else build_intraday_report(
+            args.session,
+            collect_intraday(args.session),
+            collect_intraday_sectors(args.session),
+        )
     )
     print(report)
     send_report(report)
