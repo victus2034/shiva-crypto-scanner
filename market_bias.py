@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import os
+import argparse
 from datetime import datetime
 from zoneinfo import ZoneInfo
 
@@ -15,6 +16,20 @@ MARKETS = {
     "INDIA": ("^NSEI", "NIFTY 50"),
     "US": ("^GSPC", "S&P 500"),
     "LONDON": ("^FTSE", "FTSE 100"),
+}
+INTRADAY_MARKETS = {
+    "india": {
+        "label": "INDIA",
+        "symbols": [("^NSEI", "NIFTY 50"), ("^NSEBANK", "NIFTY BANK"), ("^CNXIT", "NIFTY IT")],
+    },
+    "us": {
+        "label": "US SESSION",
+        "symbols": [("SPY", "S&P 500"), ("QQQ", "NASDAQ 100"), ("SMH", "AI / SEMIS"), ("XLK", "US TECH")],
+    },
+    "london": {
+        "label": "LONDON OPEN",
+        "symbols": [("^FTSE", "FTSE 100")],
+    },
 }
 TIMEZONE = ZoneInfo("Asia/Kolkata")
 WEBHOOK_ENV = "DISCORD_BIAS_WEBHOOK_URL"
@@ -35,6 +50,45 @@ def fetch_daily(symbol: str) -> pd.DataFrame:
     if isinstance(close, pd.DataFrame):
         close = close.iloc[:, 0]
     return close.dropna().to_frame("close")
+
+
+def fetch_intraday(symbol: str) -> pd.DataFrame:
+    data = yf.download(
+        symbol,
+        period="5d",
+        interval="30m",
+        auto_adjust=False,
+        progress=False,
+        threads=False,
+    )
+    if data.empty:
+        raise RuntimeError(f"no 30m data returned for {symbol}")
+    close = data["Close"]
+    if isinstance(close, pd.DataFrame):
+        close = close.iloc[:, 0]
+    close = close.dropna()
+    if len(close) < 3:
+        raise RuntimeError(f"not enough 30m candles for {symbol}")
+    return close.to_frame("close")
+
+
+def classify_intraday(data: pd.DataFrame) -> dict:
+    close = data["close"]
+    last = float(close.iloc[-1])
+    previous = float(close.iloc[-2])
+    session_start = float(close.iloc[-min(len(close), 14)])
+    bar_pct = (last / previous - 1) * 100
+    session_pct = (last / session_start - 1) * 100
+    score = sum((bar_pct > 0.15, session_pct > 0.35))
+    score -= sum((bar_pct < -0.15, session_pct < -0.35))
+    bias = "Bullish" if score == 2 else "Bearish" if score == -2 else "Neutral"
+    return {
+        "last": last,
+        "bar_pct": bar_pct,
+        "session_pct": session_pct,
+        "score": score,
+        "bias": bias,
+    }
 
 
 def classify_bias(data: pd.DataFrame) -> dict:
@@ -87,6 +141,37 @@ def collect() -> dict:
     return results
 
 
+def collect_intraday(session: str) -> dict:
+    if session not in INTRADAY_MARKETS:
+        raise ValueError(f"unknown session: {session}")
+    results = {}
+    for symbol, name in INTRADAY_MARKETS[session]["symbols"]:
+        results[name] = classify_intraday(fetch_intraday(symbol))
+    return results
+
+
+def build_intraday_report(session: str, results: dict, now: datetime | None = None) -> str:
+    now = now or datetime.now(TIMEZONE)
+    label = INTRADAY_MARKETS[session]["label"]
+    lines = [f"MARKET BIAS | {label} | {now:%d %b %Y, %H:%M IST}"]
+    for name, item in results.items():
+        lines.append(f"{name}: {item['bias']} ({item['score']:+d}/2)")
+        lines.append(f"Price: {item['last']:.2f} | 30m: {item['bar_pct']:+.2f}% | Session: {item['session_pct']:+.2f}%")
+
+    if session == "us":
+        tech = results.get("US TECH")
+        ai = results.get("AI / SEMIS")
+        broad = results.get("S&P 500")
+        if tech and ai and broad and tech["session_pct"] < -0.5 and ai["session_pct"] < -0.5:
+            lines.append("WARNING: US AI/tech risk-off; avoid treating xStock BUY setups as normal.")
+        elif tech and ai and tech["session_pct"] > 0.5 and ai["session_pct"] > 0.5:
+            lines.append("CONFIRMATION: US AI/tech risk-on.")
+        else:
+            lines.append("WARNING: US sector confirmation is mixed.")
+    lines.append("Rule: 30m momentum plus current-session move; context only, not an entry signal.")
+    return "\n".join(lines)
+
+
 def send_report(message: str) -> None:
     webhook = os.getenv(WEBHOOK_ENV, "").strip()
     if not webhook:
@@ -96,6 +181,13 @@ def send_report(message: str) -> None:
 
 
 if __name__ == "__main__":
-    report = build_report(collect())
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--session", choices=["daily", "india", "us", "london"], default="daily")
+    args = parser.parse_args()
+    report = (
+        build_report(collect())
+        if args.session == "daily"
+        else build_intraday_report(args.session, collect_intraday(args.session))
+    )
     print(report)
     send_report(report)

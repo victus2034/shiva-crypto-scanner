@@ -2,7 +2,7 @@ import unittest
 
 import pandas as pd
 
-from market_bias import build_report, classify_bias
+from market_bias import build_intraday_report, build_report, classify_bias
 
 
 class MarketBiasTests(unittest.TestCase):
@@ -21,6 +21,12 @@ class MarketBiasTests(unittest.TestCase):
         report = build_report({"INDIA": item, "US": item, "LONDON": item})
         self.assertIn("INDIA (NIFTY 50): Bullish", report)
         self.assertIn("Overall: Bullish", report)
+
+    def test_us_report_warns_when_ai_and_tech_are_weak(self):
+        weak = {"bias": "Bearish", "score": -2, "last": 100.0, "bar_pct": -0.3, "session_pct": -1.0}
+        results = {"S&P 500": weak, "NASDAQ 100": weak, "AI / SEMIS": weak, "US TECH": weak}
+        report = build_intraday_report("us", results)
+        self.assertIn("US AI/tech risk-off", report)
 
 
 if __name__ == "__main__":
