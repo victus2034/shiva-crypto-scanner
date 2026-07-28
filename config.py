@@ -120,6 +120,13 @@ WATCHLIST = [
     "MRVL/USDT:USDT",
     "FLNC/USDT:USDT",
     "DELL/USDT:USDT",
+    # Additional CoinSwitch US-stock futures approved for the liquidity pilot.
+    "NVDL/USDT:USDT",
+    "SLX/USDT:USDT",
+    "SOXX/USDT:USDT",
+    "MSFT/USDT:USDT",
+    "TQQQ/USDT:USDT",
+    "CVX/USDT:USDT",
 ]
 
 COINSWITCH_WATCHLIST = []

@@ -40,6 +40,12 @@ class MarketBiasTests(unittest.TestCase):
         self.assertIn("INDIA HEALTHCARE: 2.10% UP", report)
         self.assertIn("INDIA IT: 3.00% DOWN", report)
 
+    def test_india_report_includes_requested_sector_counts(self):
+        report = build_intraday_report("india", {}, {})
+        self.assertIn("FINANCIALS: 89 stocks", report)
+        self.assertIn("INDUSTRIALS: 68 stocks", report)
+        self.assertIn("TECHNOLOGY & TELECOM: 25 stocks", report)
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -33,14 +33,30 @@ INTRADAY_MARKETS = {
 }
 INTRADAY_SECTORS = {
     "india": [
-        ("^CNXPHARMA", "INDIA HEALTHCARE"),
-        ("^CNXIT", "INDIA IT"),
+        ("^CNXFIN", "NSE FINANCIALS"),
+        ("^CNXINFRA", "NSE INDUSTRIALS"),
+        ("^CNXPHARMA", "NSE HEALTHCARE"),
+        ("^CNXCONSUM", "NSE CONSUMER"),
+        ("^CNXMETAL", "NSE MATERIALS"),
+        ("^CNXAUTO", "NSE AUTOMOBILE"),
+        ("^CNXENERGY", "NSE ENERGY & UTILITIES"),
+        ("^CNXIT", "NSE TECHNOLOGY & TELECOM"),
     ],
     "us": [
         ("XLK", "US TECH"),
         ("SMH", "US AI / SEMIS"),
     ],
     "london": [],
+}
+NSE_SECTOR_STOCK_COUNTS = {
+    "NSE FINANCIALS": 89,
+    "NSE INDUSTRIALS": 68,
+    "NSE HEALTHCARE": 41,
+    "NSE CONSUMER": 60,
+    "NSE MATERIALS": 33,
+    "NSE AUTOMOBILE": 29,
+    "NSE ENERGY & UTILITIES": 32,
+    "NSE TECHNOLOGY & TELECOM": 25,
 }
 SECTOR_ALERT_THRESHOLD = 2.0
 TIMEZONE = ZoneInfo("Asia/Kolkata")
@@ -189,12 +205,20 @@ def build_intraday_report(
         for _, name in INTRADAY_SECTORS[session]
         if name in results
     }
+    if session == "india":
+        sector_summary = " | ".join(
+            f"{name.replace('NSE ', '')}: {count} stocks"
+            for name, count in NSE_SECTOR_STOCK_COUNTS.items()
+        )
+        lines.append(f"NSE sector universe: {sector_summary}")
     sector_alerts = []
     for name, item in sector_results.items():
         move = item["session_pct"]
         if abs(move) >= SECTOR_ALERT_THRESHOLD:
             direction = "UP" if move > 0 else "DOWN"
-            sector_alerts.append(f"{name}: {abs(move):.2f}% {direction}")
+            count = NSE_SECTOR_STOCK_COUNTS.get(name)
+            label = f"{name} ({count} stocks)" if count else name
+            sector_alerts.append(f"{label}: {abs(move):.2f}% {direction}")
     lines.append(f"Sector alerts (threshold {SECTOR_ALERT_THRESHOLD:.2f}%):")
     lines.extend(sector_alerts or ["None"])
     lines.append("Rule: 30m momentum plus current-session move; context only, not an entry signal.")
