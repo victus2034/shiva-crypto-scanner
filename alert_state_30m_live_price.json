@@ -8528,8 +8528,8 @@
     "last_alert_at": 0.0
   },
   "HYPEUSD|demand|54.02000000|54.21000000": {
-    "in_zone": false,
-    "last_alert_at": 1785290522.7797103
+    "in_zone": true,
+    "last_alert_at": 1785295295.5827703
   },
   "APTUSD|demand|0.57350000|0.57930000": {
     "in_zone": false,
@@ -8720,6 +8720,10 @@
     "last_alert_at": 0.0
   },
   "ETHUSD|supply|1923.05000000|1929.00000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "OPUSD|supply|0.08962000|0.09009000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
