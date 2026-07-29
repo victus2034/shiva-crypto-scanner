@@ -105,7 +105,7 @@ class DistanceWindowTests(unittest.TestCase):
             "demand_rating": {
                 "kind": "xstock_hybrid",
                 "score": 9,
-                "minimum_score": 5,
+                "minimum_score": 7,
                 "alert_allowed": False,
             },
         }
@@ -132,7 +132,7 @@ class DistanceWindowTests(unittest.TestCase):
             "demand_rating": {
                 "kind": "xstock_hybrid",
                 "score": 8,
-                "minimum_score": 5,
+                "minimum_score": 6,
                 "alert_allowed": True,
             },
         }
@@ -163,7 +163,7 @@ class DistanceWindowTests(unittest.TestCase):
             "demand_rating": {
                 "kind": "xstock_hybrid",
                 "score": 9,
-                "minimum_score": 5,
+                "minimum_score": 7,
                 "alert_allowed": False,
             },
             "buy_signal": True,

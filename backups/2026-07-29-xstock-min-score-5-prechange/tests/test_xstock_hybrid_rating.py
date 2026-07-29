@@ -65,7 +65,7 @@ class XStockHybridRatingTests(unittest.TestCase):
 
         self.assertEqual(rating["score"], 8)
         self.assertTrue(rating["alert_allowed"])
-        self.assertEqual(rating["minimum_score"], 5)
+        self.assertEqual(rating["minimum_score"], 6)
 
     def test_opposite_direction_lowers_supply_score(self):
         rating = rate_xstock_zone(
@@ -79,7 +79,7 @@ class XStockHybridRatingTests(unittest.TestCase):
         self.assertEqual(rating["score"], 4)
         self.assertFalse(rating["alert_allowed"])
 
-    def test_extended_session_uses_five_minimum(self):
+    def test_extended_session_requires_seven(self):
         rating = rate_xstock_zone(
             "NVDAXUSD",
             "demand",
@@ -89,43 +89,8 @@ class XStockHybridRatingTests(unittest.TestCase):
         )
 
         self.assertEqual(rating["score"], 7)
-        self.assertEqual(rating["minimum_score"], 5)
+        self.assertEqual(rating["minimum_score"], 7)
         self.assertTrue(rating["alert_allowed"])
-
-    def test_score_five_passes_both_sessions_and_four_is_blocked(self):
-        neutral_context = self.context()
-        neutral_context.update(
-            {
-                "underlying_30m_pct": 0.0,
-                "underlying_4h_pct": 0.0,
-                "sector_30m_pct": 0.0,
-                "sector_4h_pct": 0.0,
-            }
-        )
-
-        for session in ("regular", "extended"):
-            with self.subTest(session=session):
-                neutral_context["session"] = session
-                passing = rate_xstock_zone(
-                    "NVDAXUSD",
-                    "demand",
-                    5,
-                    100.0,
-                    neutral_context,
-                )
-                blocked = rate_xstock_zone(
-                    "NVDAXUSD",
-                    "demand",
-                    4,
-                    100.0,
-                    neutral_context,
-                )
-
-                self.assertEqual(passing["minimum_score"], 5)
-                self.assertEqual(passing["score"], 5)
-                self.assertTrue(passing["alert_allowed"])
-                self.assertEqual(blocked["score"], 4)
-                self.assertFalse(blocked["alert_allowed"])
 
     def test_closed_or_stale_context_suppresses_alert(self):
         closed = rate_xstock_zone(

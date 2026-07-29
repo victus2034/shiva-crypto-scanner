@@ -152,8 +152,8 @@ def rate_xstock_zone(
     base_score,
     xstock_price,
     context,
-    regular_min_score=5,
-    extended_min_score=5,
+    regular_min_score=6,
+    extended_min_score=7,
 ):
     """Combine zone quality with the underlying and sector direction."""
     if symbol not in XSTOCK_UNDERLYINGS:
