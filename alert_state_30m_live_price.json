@@ -8528,8 +8528,8 @@
     "last_alert_at": 0.0
   },
   "HYPEUSD|demand|54.02000000|54.21000000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1785290522.7797103
   },
   "APTUSD|demand|0.57350000|0.57930000": {
     "in_zone": false,
@@ -8564,8 +8564,8 @@
     "last_alert_at": 0.0
   },
   "QQQXUSD|demand|667.92000000|670.00000000": {
-    "in_zone": false,
-    "last_alert_at": 1785282101.4958956
+    "in_zone": true,
+    "last_alert_at": 1785290523.2540812
   },
   "ETCUSD|demand|6.64300000|6.67600000": {
     "in_zone": false,
@@ -8712,6 +8712,10 @@
     "last_alert_at": 0.0
   },
   "ARBUSD|demand|0.07785000|0.07807000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "DOTUSD|supply|0.76500000|0.77000000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
