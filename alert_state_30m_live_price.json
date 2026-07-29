@@ -8216,8 +8216,8 @@
     "last_alert_at": 0.0
   },
   "BABA/USDT:USDT|demand|113.60000000|114.18000000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1785337345.2202206
   },
   "OPENAI/USDT:USDT|supply|117.11000000|117.32000000": {
     "in_zone": false,
@@ -9268,7 +9268,7 @@
     "last_alert_at": 0.0
   },
   "GOOGLXUSD|demand|331.20000000|331.75000000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1785336107.0985737
   },
   "MSTRBUSD|demand|95.34000000|95.73000000": {
@@ -9376,6 +9376,14 @@
     "last_alert_at": 0.0
   },
   "ALGO/USDT|supply|0.07978000|0.07996000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "RE/USDT|demand|0.40312000|0.40493000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "WLFI/USDT|supply|0.05641000|0.05651000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
