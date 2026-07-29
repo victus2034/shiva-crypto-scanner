@@ -23357,9 +23357,9 @@
     "last_attempt_at": 0.0
   },
   "BLS.NS|supply|240.7000|246.0000": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1785299563.4322631,
+    "last_attempt_at": 1785299563.4322631
   },
   "BLS.NS|demand|219.8000|221.3500": {
     "in_zone": false,
@@ -25287,9 +25287,9 @@
     "last_attempt_at": 0.0
   },
   "PNB.NS|supply|112.0700|113.3500": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1785299563.908513,
+    "last_attempt_at": 1785299563.908513
   },
   "RRKABEL.NS|demand|1400.0000|1415.0000": {
     "in_zone": false,
@@ -25362,6 +25362,26 @@
     "last_attempt_at": 0.0
   },
   "JWL.NS|supply|280.6000|286.0000": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "ADANIPOWER.NS|demand|128.4500|133.9000": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "BEL.NS|demand|380.4500|384.1000": {
+    "in_zone": true,
+    "last_alert_at": 1785299563.7772207,
+    "last_attempt_at": 1785299563.7772207
+  },
+  "ERIS.NS|supply|1801.7000|1818.4000": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "POLYMED.NS|supply|2042.0000|2091.8000": {
     "in_zone": false,
     "last_alert_at": 0.0,
     "last_attempt_at": 0.0
