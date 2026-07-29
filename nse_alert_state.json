@@ -23582,7 +23582,7 @@
     "last_attempt_at": 0.0
   },
   "BOSCHLTD.NS|demand|40410.0000|40755.0000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1785304336.970397,
     "last_attempt_at": 1785304336.970397
   },
@@ -24562,9 +24562,9 @@
     "last_attempt_at": 0.0
   },
   "INDIGO.NS|supply|5287.5000|5325.0000": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1785306758.1976497,
+    "last_attempt_at": 1785306758.1976497
   },
   "INDIGO.NS|demand|4350.0000|4376.1001": {
     "in_zone": false,
