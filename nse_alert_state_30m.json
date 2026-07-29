@@ -51761,9 +51761,9 @@
     "last_attempt_at": 0.0
   },
   "INDIGO.NS|supply|5319.0000|5325.0000": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1785312141.7222874,
+    "last_attempt_at": 1785312141.7222874
   },
   "INDIGO.NS|demand|4814.3999|4824.2002": {
     "in_zone": false,
@@ -52022,8 +52022,8 @@
   },
   "LICHSGFIN.NS|supply|552.6500|554.3000": {
     "in_zone": true,
-    "last_alert_at": 1785309758.791167,
-    "last_attempt_at": 1785309758.791167
+    "last_alert_at": 1785312142.0598254,
+    "last_attempt_at": 1785312142.0598254
   },
   "LTFOODS.NS|supply|378.7000|379.8500": {
     "in_zone": true,
@@ -52491,7 +52491,7 @@
     "last_attempt_at": 0.0
   },
   "PHOENIXLTD.NS|demand|1894.2000|1901.3000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1785310946.041235,
     "last_attempt_at": 1785310946.041235
   },
@@ -52647,8 +52647,8 @@
   },
   "SJVN.NS|supply|68.6600|68.8300": {
     "in_zone": true,
-    "last_alert_at": 1785309765.5655398,
-    "last_attempt_at": 1785309765.5655398
+    "last_alert_at": 1785312142.4972832,
+    "last_attempt_at": 1785312142.4972832
   },
   "ANANTRAJ.NS|demand|603.5000|608.5000": {
     "in_zone": false,
@@ -52977,8 +52977,8 @@
   },
   "ICICIAMC.NS|demand|3101.8999|3117.3999": {
     "in_zone": true,
-    "last_alert_at": 1785309757.690744,
-    "last_attempt_at": 1785309757.690744
+    "last_alert_at": 1785312141.512912,
+    "last_attempt_at": 1785312141.512912
   },
   "IREDA.NS|supply|122.8800|123.4500": {
     "in_zone": false,
@@ -52996,6 +52996,31 @@
     "last_attempt_at": 0.0
   },
   "PFIZER.NS|demand|4652.2998|4712.2002": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "BSE.NS|demand|3452.0000|3455.7000": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "BIKAJI.NS|demand|629.7000|633.1500": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "BLUESTARCO.NS|supply|1716.9000|1725.9000": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "GLAND.NS|demand|2409.3000|2416.2000": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "ITCHOTELS.NS|demand|160.6400|160.9000": {
     "in_zone": false,
     "last_alert_at": 0.0,
     "last_attempt_at": 0.0
