@@ -8268,7 +8268,7 @@
     "last_alert_at": 0.0
   },
   "MSFT/USDT:USDT|demand|388.58000000|389.69000000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1785332514.1453238
   },
   "CVX/USDT:USDT|demand|1.23800000|1.24700000": {
@@ -9268,8 +9268,8 @@
     "last_alert_at": 0.0
   },
   "GOOGLXUSD|demand|331.20000000|331.75000000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1785333739.4913235
   },
   "MSTRBUSD|demand|95.34000000|95.73000000": {
     "in_zone": false,
@@ -9340,6 +9340,10 @@
     "last_alert_at": 0.0
   },
   "US/USDT|supply|0.04556000|0.04649700": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "CAP/USDT|demand|0.02252000|0.02297000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
