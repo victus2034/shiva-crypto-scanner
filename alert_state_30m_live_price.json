@@ -8612,8 +8612,8 @@
     "last_alert_at": 0.0
   },
   "AAPLXUSD|demand|335.55000000|337.80000000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1785355332.6764429
   },
   "LTCUSD|demand|46.00000000|46.17000000": {
     "in_zone": false,
@@ -9472,6 +9472,14 @@
     "last_alert_at": 0.0
   },
   "RE/USDT|supply|0.56739000|0.57305000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "ADAUSD|demand|0.16210000|0.16291000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "HOME/USDT|demand|0.00500700|0.00507500": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
