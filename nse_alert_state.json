@@ -23382,7 +23382,7 @@
     "last_attempt_at": 0.0
   },
   "BAJFINANCE.NS|supply|1066.5000|1074.3000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1785297145.9641497,
     "last_attempt_at": 1785297145.9641497
   },
@@ -23482,9 +23482,9 @@
     "last_attempt_at": 0.0
   },
   "BEL.NS|demand|380.4500|384.5000": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1785298363.2744966,
+    "last_attempt_at": 1785298363.2744966
   },
   "BHARATFORG.NS|supply|2209.0000|2222.0000": {
     "in_zone": false,
@@ -23527,9 +23527,9 @@
     "last_attempt_at": 0.0
   },
   "BIKAJI.NS|supply|646.0000|648.3500": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1785298363.5053823,
+    "last_attempt_at": 1785298363.5053823
   },
   "GROWW.NS|demand|188.9700|192.9100": {
     "in_zone": false,
@@ -25207,9 +25207,9 @@
     "last_attempt_at": 0.0
   },
   "PERSISTENT.NS|supply|5527.1001|5600.2002": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1785298363.7326612,
+    "last_attempt_at": 1785298363.7326612
   },
   "PERSISTENT.NS|demand|4246.0000|4306.5000": {
     "in_zone": false,
@@ -25357,6 +25357,11 @@
     "last_attempt_at": 0.0
   },
   "SJVN.NS|supply|77.4000|79.3200": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "JWL.NS|supply|280.6000|286.0000": {
     "in_zone": false,
     "last_alert_at": 0.0,
     "last_attempt_at": 0.0
