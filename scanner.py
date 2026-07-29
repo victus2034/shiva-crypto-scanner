@@ -394,11 +394,17 @@ def fallback_symbol(symbol):
 
 
 def coinswitch_symbol(symbol):
+    stable_symbol_aliases = {
+        "PUMPUSD": "PUMPFUNUSDT",
+        "1000SHIBUSD": "SHIB1000USDT",
+    }
+    upper_symbol = symbol.upper()
+    if upper_symbol in stable_symbol_aliases:
+        return stable_symbol_aliases[upper_symbol]
     if "/" in symbol:
         # CCXT perpetual symbols include a settlement suffix such as
         # AVGO/USDT:USDT, while CoinSwitch expects the contract as AVGOUSDT.
         return symbol.replace("/", "").split(":", 1)[0].upper()
-    upper_symbol = symbol.upper()
     if upper_symbol.endswith("USDT"):
         return upper_symbol
     if upper_symbol.endswith("USD") and not upper_symbol.endswith(("XUSD", "BUSD")):

@@ -23,6 +23,10 @@ class FakeExchange:
 
 
 class SymbolResolutionTests(unittest.TestCase):
+    def test_coinswitch_uses_exchange_contract_aliases(self):
+        self.assertEqual(scanner.coinswitch_symbol("PUMPUSD"), "PUMPFUNUSDT")
+        self.assertEqual(scanner.coinswitch_symbol("1000SHIBUSD"), "SHIB1000USDT")
+
     def test_perpetual_alias_is_tried_before_spot_alias(self):
         self.assertEqual(
             scanner.exchange_symbol_candidates("HYPE/USDT"),
