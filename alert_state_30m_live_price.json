@@ -8068,8 +8068,8 @@
     "last_alert_at": 0.0
   },
   "CRV/USDT|demand|0.20830000|0.20890000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1785296522.4334753
   },
   "XLM/USDT|supply|0.18083000|0.18232000": {
     "in_zone": false,
@@ -8564,8 +8564,8 @@
     "last_alert_at": 0.0
   },
   "QQQXUSD|demand|667.92000000|670.00000000": {
-    "in_zone": false,
-    "last_alert_at": 1785290523.2540812
+    "in_zone": true,
+    "last_alert_at": 1785296522.2133007
   },
   "ETCUSD|demand|6.64300000|6.67600000": {
     "in_zone": false,
@@ -8724,6 +8724,10 @@
     "last_alert_at": 0.0
   },
   "OPUSD|supply|0.08962000|0.09009000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "VELVET/USDT|demand|0.26000000|0.30650000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
