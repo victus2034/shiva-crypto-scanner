@@ -52,9 +52,6 @@ jobs:
           COINSWITCH_API_KEY: ${{ secrets.COINSWITCH_API_KEY }}
           COINSWITCH_SECRET_KEY: ${{ secrets.COINSWITCH_SECRET_KEY }}
           COINSWITCH_EXCHANGE: ${{ secrets.COINSWITCH_EXCHANGE }}
-          SHIVA_ENABLE_XSTOCK_HYBRID_RATINGS: "true"
-          SHIVA_XSTOCK_REGULAR_MIN_SCORE: "6"
-          SHIVA_XSTOCK_EXTENDED_MIN_SCORE: "7"
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
         run: python scanner.py --once

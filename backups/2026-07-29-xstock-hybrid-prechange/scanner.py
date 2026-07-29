@@ -25,7 +25,6 @@ from config import (
     DISCORD_STATUS_WEBHOOK_URL,
     DISCORD_WEBHOOK_URL,
     ENABLE_CRYPTO_ZONE_RATINGS,
-    ENABLE_XSTOCK_HYBRID_RATINGS,
     EXCHANGE_IDS,
     MAX_CONSECUTIVE_ZONE_TOUCHES,
     MAX_DISTANCE_PCT,
@@ -53,17 +52,9 @@ from config import (
     TIMEFRAME,
     USE_LIVE_TICKER,
     WATCHLIST,
-    XSTOCK_EXTENDED_MIN_SCORE,
-    XSTOCK_REGULAR_MIN_SCORE,
     ZONE_PADDING_ATR,
 )
 from crypto_zone_rating import rate_crypto_zone
-from xstock_hybrid_rating import (
-    BLOCKED_XSTOCK_SYMBOLS,
-    is_hybrid_xstock,
-    prepare_xstock_contexts,
-    rate_xstock_zone,
-)
 from zone_scoring import score_wick_zone
 
 
@@ -77,7 +68,6 @@ EXCHANGES = [
     for exchange_id in EXCHANGE_IDS
 ]
 EXCHANGES_BY_ID = {exchange.id: exchange for exchange in EXCHANGES}
-XSTOCK_CONTEXTS = {}
 TIMEFRAME_SECONDS = {
     "1m": 60,
     "3m": 3 * 60,
@@ -140,14 +130,10 @@ def is_coinswitch_configured():
 
 
 def active_watchlist():
-    symbols = [
-        symbol
-        for symbol in WATCHLIST
-        if symbol not in BLOCKED_XSTOCK_SYMBOLS
-    ]
+    symbols = list(WATCHLIST)
     if is_coinswitch_configured():
         for symbol in COINSWITCH_WATCHLIST:
-            if symbol not in symbols and symbol not in BLOCKED_XSTOCK_SYMBOLS:
+            if symbol not in symbols:
                 symbols.append(symbol)
     return symbols
 
@@ -670,11 +656,7 @@ def scan_symbol(symbol):
     demand_rating = None
     supply_score = None
     demand_score = None
-    should_score_zone = (
-        (SHOW_4H_ZONE_SCORES and TIMEFRAME == "4h")
-        or (ENABLE_XSTOCK_HYBRID_RATINGS and is_hybrid_xstock(symbol))
-    )
-    if should_score_zone:
+    if SHOW_4H_ZONE_SCORES and TIMEFRAME == "4h":
         supply_score = score_wick_zone(
             nearest_supply, supply_dist, MIN_DISTANCE_PCT, MAX_DISTANCE_PCT
         )
@@ -701,28 +683,6 @@ def scan_symbol(symbol):
             demand_dist,
             SWING_LENGTH,
         )
-    if ENABLE_XSTOCK_HYBRID_RATINGS and is_hybrid_xstock(symbol):
-        context = XSTOCK_CONTEXTS.get(symbol)
-        if nearest_supply is not None:
-            supply_rating = rate_xstock_zone(
-                symbol,
-                "supply",
-                supply_score,
-                price,
-                context,
-                XSTOCK_REGULAR_MIN_SCORE,
-                XSTOCK_EXTENDED_MIN_SCORE,
-            )
-        if nearest_demand is not None:
-            demand_rating = rate_xstock_zone(
-                symbol,
-                "demand",
-                demand_score,
-                price,
-                context,
-                XSTOCK_REGULAR_MIN_SCORE,
-                XSTOCK_EXTENDED_MIN_SCORE,
-            )
 
     return {
         "symbol": symbol,
@@ -766,9 +726,7 @@ def format_alert(result, zone_type, zone, distance_pct):
     )
     score = result.get(f"{zone_type}_score")
     rating = result.get(f"{zone_type}_rating")
-    if rating and rating.get("kind") == "xstock_hybrid":
-        message += f"\nScore: {rating['score']}/10"
-    elif score is not None:
+    if score is not None:
         message += f"\nScore: {score}/10"
     elif rating:
         if rating.get("score") is not None:
@@ -788,17 +746,12 @@ def format_signal_alert(result, signal_type):
             return "N/A"
         return f"{result[distance_key]:.2f}%"
 
-    message = (
+    return (
         f"{symbol} Range Filter {label} signal\n"
         f"Price: {price:.6f}\n"
         f"Nearest Demand Distance: {display_distance('demand', 'demand_dist')}\n"
         f"Nearest Supply Distance: {display_distance('supply', 'supply_dist')}"
     )
-    zone_type = "demand" if signal_type == "buy" else "supply"
-    rating = result.get(f"{zone_type}_rating")
-    if rating and rating.get("kind") == "xstock_hybrid":
-        message += f"\nScore: {rating['score']}/10"
-    return message
 
 
 def send_telegram_message(message):
@@ -891,12 +844,10 @@ def process_candidate(state, result, zone_type, zone, distance_pct, now_ts):
     if zone is None:
         return False
 
+    # Ratings are available only for validated crypto 30m zones. Keep
+    # ungraded timeframes/symbols unchanged, but reject weak scored zones.
     rating = result.get(f"{zone_type}_rating")
-    if rating and rating.get("kind") == "xstock_hybrid":
-        if not rating.get("alert_allowed"):
-            return False
-    elif TIMEFRAME == "30m" and rating is not None:
-        # Preserve the validated crypto 30m rating gate unchanged.
+    if TIMEFRAME == "30m" and rating is not None:
         score = rating.get("score")
         if score is None or score < MIN_CRYPTO_ZONE_SCORE:
             return False
@@ -933,15 +884,6 @@ def process_signal_candidate(state, result, signal_type, now_ts):
         distance_pct = result.get("supply_dist", 999.0)
 
     if zone is None or not (MIN_DISTANCE_PCT <= distance_pct <= MAX_DISTANCE_PCT):
-        return False
-
-    zone_type = "demand" if signal_type == "buy" else "supply"
-    rating = result.get(f"{zone_type}_rating")
-    if (
-        rating
-        and rating.get("kind") == "xstock_hybrid"
-        and not rating.get("alert_allowed")
-    ):
         return False
 
     signal_active = result["buy_signal"] if signal_type == "buy" else result["sell_signal"]
@@ -998,8 +940,6 @@ def print_summary(results):
 
 
 def run_scan_once(state):
-    global XSTOCK_CONTEXTS
-
     results = []
     failures = []
     alerts_sent = 0
@@ -1030,18 +970,6 @@ def run_scan_once(state):
         f"Watchlist: {len(symbols)} symbols\n"
         f"CoinSwitch source: {coinswitch_status}"
     )
-
-    XSTOCK_CONTEXTS = {}
-    if ENABLE_XSTOCK_HYBRID_RATINGS:
-        try:
-            XSTOCK_CONTEXTS = prepare_xstock_contexts(symbols)
-            print(
-                "xStock hybrid context: "
-                f"{len(XSTOCK_CONTEXTS)} verified underlyings loaded"
-            )
-        except Exception as error:
-            # Mapped xStocks fail closed when their US context cannot load.
-            print(f"xStock hybrid context unavailable: {error}")
 
     with ThreadPoolExecutor(max_workers=SCAN_WORKERS) as executor:
         futures = {executor.submit(scan_symbol, symbol): symbol for symbol in symbols}

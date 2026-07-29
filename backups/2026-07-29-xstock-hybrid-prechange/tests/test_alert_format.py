@@ -76,43 +76,6 @@ class AlertFormatTests(unittest.TestCase):
         self.assertTrue(message.endswith("Score: 9/10"))
         self.assertNotIn("\n\n", message)
 
-    def test_xstock_hybrid_score_overrides_base_display_score(self):
-        result = {
-            "symbol": "NVDAXUSD",
-            "price": 190.0,
-            "demand_score": 5,
-            "demand_rating": {
-                "kind": "xstock_hybrid",
-                "score": 8,
-            },
-        }
-        zone = {"bottom": 188.0, "top": 188.5}
-
-        message = scanner.format_alert(result, "demand", zone, 0.5)
-
-        self.assertTrue(message.endswith("Score: 8/10"))
-        self.assertNotIn("Score: 5/10", message)
-        self.assertEqual(message.count("Score:"), 1)
-
-    def test_xstock_range_filter_alert_has_one_compact_score(self):
-        result = {
-            "symbol": "NVDAXUSD",
-            "price": 190.0,
-            "demand": {"bottom": 188.0, "top": 188.5},
-            "supply": None,
-            "demand_dist": 0.5,
-            "supply_dist": 999.0,
-            "demand_rating": {
-                "kind": "xstock_hybrid",
-                "score": 8,
-            },
-        }
-
-        message = scanner.format_signal_alert(result, "buy")
-
-        self.assertTrue(message.endswith("Score: 8/10"))
-        self.assertEqual(message.count("Score:"), 1)
-
     def test_range_filter_alerts_are_compact(self):
         crypto_result = {
             "symbol": "BTCUSD",

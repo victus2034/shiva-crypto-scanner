@@ -71,14 +71,6 @@ class CryptoConfigTests(unittest.TestCase):
             self.assertNotIn("SLX/USDT", config.CRYPTO_WATCHLIST)
             self.assertIn("SLX/USDT:USDT", config.XSTOCK_WATCHLIST)
 
-    def test_active_watchlist_blocks_misidentified_xstock_contracts(self):
-        import scanner
-
-        symbols = scanner.active_watchlist()
-
-        self.assertNotIn("BZ/USDT:USDT", symbols)
-        self.assertNotIn("SLX/USDT:USDT", symbols)
-
 
 if __name__ == "__main__":
     unittest.main()
