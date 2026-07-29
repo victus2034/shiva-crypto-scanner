@@ -8144,8 +8144,8 @@
     "last_alert_at": 0.0
   },
   "1000PEPEUSD|demand|0.00266000|0.00267130": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1785357701.1051912
   },
   "LIT/USDT|demand|2.10360000|2.11900000": {
     "in_zone": false,
@@ -8612,7 +8612,7 @@
     "last_alert_at": 0.0
   },
   "AAPLXUSD|demand|335.55000000|337.80000000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1785355332.6764429
   },
   "LTCUSD|demand|46.00000000|46.17000000": {
@@ -9480,6 +9480,14 @@
     "last_alert_at": 0.0
   },
   "HOME/USDT|demand|0.00500700|0.00507500": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "DEXE/USDT|demand|2.68580000|2.71510000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "ESPORTS/USDT|supply|0.02704000|0.02876000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
