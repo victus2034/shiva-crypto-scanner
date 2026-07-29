@@ -8761,7 +8761,7 @@
   },
   "OPENAI/USDT:USDT|supply|110.76000000|110.94000000": {
     "in_zone": true,
-    "last_alert_at": 1785327706.6203656
+    "last_alert_at": 1785330143.8690975
   },
   "NBIS/USDT:USDT|supply|171.44000000|175.04000000": {
     "in_zone": false,
@@ -9324,8 +9324,8 @@
     "last_alert_at": 0.0
   },
   "HYPEUSD|supply|55.47000000|55.54000000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1785330143.6248481
   },
   "ORDI/USDT|supply|3.37700000|3.41100000": {
     "in_zone": false,
@@ -9336,6 +9336,10 @@
     "last_alert_at": 0.0
   },
   "HBAR/USDT|demand|0.06698000|0.06740000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "US/USDT|supply|0.04556000|0.04649700": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
