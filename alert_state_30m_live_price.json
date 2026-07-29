@@ -8761,7 +8761,7 @@
   },
   "OPENAI/USDT:USDT|supply|110.76000000|110.94000000": {
     "in_zone": true,
-    "last_alert_at": 1785320514.2803645
+    "last_alert_at": 1785322933.1236558
   },
   "NBIS/USDT:USDT|supply|171.44000000|175.04000000": {
     "in_zone": false,
@@ -8888,7 +8888,7 @@
     "last_alert_at": 0.0
   },
   "LINKUSD|supply|8.47400000|8.50500000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1785318111.6296175
   },
   "METAXUSD|supply|598.85000000|599.15000000": {
@@ -9116,7 +9116,7 @@
     "last_alert_at": 0.0
   },
   "HBAR/USDT|supply|0.06903000|0.06920000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1785320513.9377759
   },
   "HBAR/USDT|demand|0.06789000|0.06817000": {
@@ -9252,8 +9252,8 @@
     "last_alert_at": 0.0
   },
   "1000PEPEUSD|demand|0.00271620|0.00273590": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1785322932.942799
   },
   "1000SHIBUSD|demand|0.00454200|0.00455600": {
     "in_zone": false,
@@ -9308,6 +9308,10 @@
     "last_alert_at": 0.0
   },
   "TIAUSD|demand|0.31450000|0.31660000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "PEOPLE/USDT|demand|0.00514200|0.00515700": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
