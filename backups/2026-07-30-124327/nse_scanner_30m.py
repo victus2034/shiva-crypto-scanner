@@ -9,7 +9,6 @@ scanner.TIMEFRAME = "30m"
 scanner.SOURCE_INTERVAL = "15m"
 scanner.SOURCE_PERIOD = "60d"
 scanner.STATE_FILE = Path(__file__).with_name("nse_alert_state_30m.json")
-scanner.ALERT_RECORD_FILE = Path(__file__).with_name("nse_alert_records_30m.jsonl")
 scanner.MIN_DISTANCE_PCT = 0.25
 scanner.MAX_DISTANCE_PCT = 0.75
 scanner.ALERT_COOLDOWN_SECONDS = 30 * 60

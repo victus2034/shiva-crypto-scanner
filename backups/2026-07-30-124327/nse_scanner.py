@@ -51,7 +51,6 @@ from zone_scoring import score_wick_zone
 
 
 STATE_FILE = Path(__file__).with_name("nse_alert_state.json")
-ALERT_RECORD_FILE = Path(__file__).with_name("nse_alert_records.jsonl")
 MARKET_DATA = {}
 
 
@@ -84,35 +83,6 @@ def load_state():
 def save_state(state):
     with STATE_FILE.open("w", encoding="utf-8") as file:
         json.dump(state, file, indent=2)
-
-
-def record_delivered_zone_alert(result, zone_type, zone, distance_pct, message, now_ts):
-    """Persist only alerts confirmed as delivered to Discord.
-
-    This log is the source of truth for the later outcome evaluator. It is
-    append-only so a scanner state rewrite cannot erase delivery history.
-    """
-    record = {
-        "delivered_at_utc": pd.Timestamp.fromtimestamp(now_ts, tz="UTC").isoformat(),
-        "symbol": result["symbol"],
-        "timeframe": TIMEFRAME,
-        "side": "short" if zone_type == "supply" else "long",
-        "zone_type": zone_type,
-        "distance_pct": float(distance_pct),
-        "alert_price": float(result["price"]),
-        "level": float(zone["top"] if zone_type == "supply" else zone["bottom"]),
-        "zone_bottom": float(zone["bottom"]),
-        "zone_top": float(zone["top"]),
-        "score": result.get(f"{zone_type}_score"),
-        "message": message,
-    }
-    try:
-        with ALERT_RECORD_FILE.open("a", encoding="utf-8") as file:
-            file.write(json.dumps(record, separators=(",", ":")) + "\n")
-    except OSError as error:
-        # Delivery already succeeded; surface the audit-log problem without
-        # turning a valid Discord alert into a scanner failure.
-        print(f"Alert record write failed: {error}")
 
 
 def get_env_or_config(env_name, config_value):
@@ -703,13 +673,9 @@ def process_candidate(state, result, zone_type, zone, distance_pct, now_ts):
         should_alert = (not entry["in_zone"]) or (now_ts - last_attempt_at >= ALERT_COOLDOWN_SECONDS)
         if should_alert:
             entry["last_attempt_at"] = now_ts
-            message = format_alert(result, zone_type, zone, distance_pct)
-            alert_sent = send_alert(message)
+            alert_sent = send_alert(format_alert(result, zone_type, zone, distance_pct))
             if alert_sent:
                 entry["last_alert_at"] = now_ts
-                record_delivered_zone_alert(
-                    result, zone_type, zone, distance_pct, message, now_ts
-                )
         entry["in_zone"] = True
     elif distance_pct > MAX_DISTANCE_PCT * REARM_FACTOR:
         entry["in_zone"] = False
