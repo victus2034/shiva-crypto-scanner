@@ -9416,8 +9416,8 @@
     "last_alert_at": 0.0
   },
   "COAI/USDT|demand|0.32270000|0.32610000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1785424907.7519479
   },
   "AAPLXUSD|demand|338.42000000|339.20000000": {
     "in_zone": true,
@@ -10068,6 +10068,14 @@
     "last_alert_at": 0.0
   },
   "ARBUSD|supply|0.07920000|0.07941000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "NEARUSD|supply|1.66400000|1.67300000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "XPLUSD|demand|0.07385000|0.07450000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
