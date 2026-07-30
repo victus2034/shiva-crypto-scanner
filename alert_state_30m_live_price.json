@@ -9857,7 +9857,7 @@
   },
   "GOOGLXUSD|supply|338.20000000|338.70000000": {
     "in_zone": true,
-    "last_alert_at": 1785409338.2621894
+    "last_alert_at": 1785412942.5192256
   },
   "COINXUSD|demand|157.63000000|157.90000000": {
     "in_zone": false,
@@ -9880,8 +9880,8 @@
     "last_alert_at": 0.0
   },
   "ALGO/USDT|supply|0.07797000|0.07826000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1785412942.309734
   },
   "BTCUSD|demand|63226.50000000|63483.20000000": {
     "in_zone": false,
@@ -10004,6 +10004,10 @@
     "last_alert_at": 0.0
   },
   "UB/USDT|demand|0.11301000|0.11552000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "ETHFI/USDT|supply|0.40700000|0.41030000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
