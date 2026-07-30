@@ -9384,7 +9384,7 @@
     "last_alert_at": 0.0
   },
   "WLFI/USDT|supply|0.05641000|0.05651000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1785388911.7322006
   },
   "ERA/USDT|supply|0.07654000|0.07758000": {
@@ -9680,10 +9680,22 @@
     "last_alert_at": 0.0
   },
   "TAIKO/USDT|supply|0.07185000|0.07244000": {
+    "in_zone": true,
+    "last_alert_at": 1785390110.6214314
+  },
+  "0G/USDT|supply|0.14860000|0.14990000": {
     "in_zone": false,
     "last_alert_at": 0.0
   },
-  "0G/USDT|supply|0.14860000|0.14990000": {
+  "ZRO/USDT|demand|0.74840000|0.75690000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "SKHYNIX/USDT:USDT|demand|906.03000000|939.90000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "SAMSUNG/USDT:USDT|demand|141.57000000|146.83000000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
