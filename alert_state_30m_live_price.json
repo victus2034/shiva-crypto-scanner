@@ -9980,7 +9980,7 @@
     "last_alert_at": 0.0
   },
   "DOGEUSD|demand|0.06967000|0.06984000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1785410517.010197
   },
   "ATOM/USDT|demand|1.26800000|1.27100000": {
@@ -10048,6 +10048,10 @@
     "last_alert_at": 0.0
   },
   "NVDL/USDT:USDT|demand|26.46000000|26.74000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "FLNC/USDT:USDT|supply|13.54000000|13.71000000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
