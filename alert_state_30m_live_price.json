@@ -9376,7 +9376,7 @@
     "last_alert_at": 0.0
   },
   "ALGO/USDT|supply|0.07978000|0.07996000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1785447708.4778562
   },
   "RE/USDT|demand|0.40312000|0.40493000": {
@@ -10120,7 +10120,7 @@
     "last_alert_at": 1785441732.593924
   },
   "GALA/USDT|supply|0.00178500|0.00179400": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1785449234.4763548
   },
   "BABA/USDT:USDT|demand|113.20000000|113.99000000": {
@@ -10184,10 +10184,14 @@
     "last_alert_at": 0.0
   },
   "GALA/USDT|demand|0.00176400|0.00177100": {
+    "in_zone": true,
+    "last_alert_at": 1785450113.2629895
+  },
+  "HOME/USDT|demand|0.00489500|0.00499300": {
     "in_zone": false,
     "last_alert_at": 0.0
   },
-  "HOME/USDT|demand|0.00489500|0.00499300": {
+  "XPLUSD|demand|0.07460000|0.07530000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
