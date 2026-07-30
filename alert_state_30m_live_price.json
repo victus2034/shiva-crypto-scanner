@@ -9512,7 +9512,7 @@
     "last_alert_at": 0.0
   },
   "WLFI/USDT|demand|0.05435000|0.05470000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1785426109.4652133
   },
   "DEXE/USDT|supply|2.85700000|2.92810000": {
@@ -10076,6 +10076,14 @@
     "last_alert_at": 1785426108.904503
   },
   "XPLUSD|demand|0.07385000|0.07450000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "DEXE/USDT|demand|2.39360000|2.44420000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "METAXUSD|supply|536.73000000|544.25000000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
