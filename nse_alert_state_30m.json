@@ -51721,9 +51721,9 @@
     "last_attempt_at": 0.0
   },
   "INDUSTOWER.NS|supply|395.5000|397.1000": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1785397325.485355,
+    "last_attempt_at": 1785397325.485355
   },
   "INDUSTOWER.NS|demand|375.3000|377.3500": {
     "in_zone": false,
@@ -53107,8 +53107,8 @@
   },
   "ATGL.NS|demand|644.0500|645.4000": {
     "in_zone": true,
-    "last_alert_at": 1785394934.3737783,
-    "last_attempt_at": 1785394934.3737783
+    "last_alert_at": 1785397325.0084631,
+    "last_attempt_at": 1785397325.0084631
   },
   "ATUL.NS|demand|6626.0000|6655.5000": {
     "in_zone": false,
@@ -53172,8 +53172,8 @@
   },
   "ENGINERSIN.NS|demand|221.9600|222.5900": {
     "in_zone": true,
-    "last_alert_at": 1785394934.6477492,
-    "last_attempt_at": 1785394934.6477492
+    "last_alert_at": 1785397325.301026,
+    "last_attempt_at": 1785397325.301026
   },
   "ERIS.NS|demand|1383.0000|1390.8000": {
     "in_zone": false,
@@ -53271,9 +53271,9 @@
     "last_attempt_at": 0.0
   },
   "AEGISLOG.NS|demand|1256.1000|1268.9000": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1785397325.143741,
+    "last_attempt_at": 1785397325.143741
   },
   "BAJAJHFL.NS|demand|85.4900|86.0600": {
     "in_zone": true,
@@ -53624,5 +53624,10 @@
     "in_zone": true,
     "last_alert_at": 1785396134.288721,
     "last_attempt_at": 1785396134.288721
+  },
+  "JPPOWER.NS|supply|17.9900|18.2100": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
   }
 }
