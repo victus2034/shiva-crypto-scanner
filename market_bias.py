@@ -33,28 +33,29 @@ INTRADAY_MARKETS = {
 }
 INTRADAY_SECTORS = {
     "india": [
-        ("^CNXFIN", "NSE FINANCIALS"),
-        ("^CNXINFRA", "NSE INDUSTRIALS"),
-        ("^CNXPHARMA", "NSE HEALTHCARE"),
-        ("^CNXCONSUM", "NSE CONSUMER"),
-        ("^CNXMETAL", "NSE MATERIALS"),
-        ("^CNXAUTO", "NSE AUTOMOBILE"),
-        ("^CNXENERGY", "NSE ENERGY & UTILITIES"),
-        ("^CNXIT", "NSE TECHNOLOGY & TELECOM"),
+        ("^NSEBANK", "BANK"),
+        ("^CNXIT", "IT"),
+        ("^CNXPHARMA", "MEDICAL"),
+        ("^CNXFIN", "FINANCIALS"),
+        ("^CNXINFRA", "INDUSTRIALS"),
+        ("^CNXCONSUM", "CONSUMER"),
+        ("^CNXMETAL", "MATERIALS"),
+        ("^CNXAUTO", "AUTOMOBILE"),
+        ("^CNXENERGY", "ENERGY & UTILITIES"),
     ],
     "us": [
-        ("SPY", "US BROAD / INDEX"),
-        ("SMH", "US AI / SEMIS / HARDWARE"),
-        ("XLK", "US INTERNET / SOFTWARE / LARGE-CAP TECH"),
-        ("XLY", "US CONSUMER / AUTOMOBILE"),
-        ("XLF", "US FINANCIALS / CRYPTO-RELATED"),
-        ("XLE", "US ENERGY"),
-        ("XLB", "US MATERIALS"),
-        ("XLI", "US OTHER / INDUSTRIALS"),
+        ("QQQ", "NASDAQ"),
+        ("SMH", "AI / SEMIS"),
+        ("XLK", "TECH"),
+        ("XLY", "CONSUMER / AUTO"),
+        ("XLF", "FINANCIALS"),
+        ("XLE", "ENERGY"),
+        ("XLB", "MATERIALS"),
+        ("XLI", "INDUSTRIALS"),
     ],
     "london": [],
 }
-SECTOR_ALERT_THRESHOLD = 2.0
+SECTOR_ALERT_THRESHOLD = 1.5
 TIMEZONE = ZoneInfo("Asia/Kolkata")
 WEBHOOK_ENV = "DISCORD_BIAS_WEBHOOK_URL"
 SESSION_WINDOWS = {
@@ -251,10 +252,15 @@ def build_intraday_report(
 ) -> str:
     now = now or datetime.now(TIMEZONE)
     label = INTRADAY_MARKETS[session]["label"]
-    lines = [f"MARKET BIAS | {label} | {now:%d %b %Y, %H:%M IST}"]
-    for name, item in results.items():
-        lines.append(f"{name}: {item['bias']} ({item['score']:+d}/2)")
-        lines.append(f"Price: {item['last']:.2f} | 30m: {item['bar_pct']:+.2f}% | Session: {item['session_pct']:+.2f}%")
+    primary_name, primary_item = next(iter(results.items())) if results else (label, None)
+    header_label = label.replace(" SESSION", "")
+    lines = [f"{header_label} | {now:%d %b %Y, %H:%M IST}"]
+    if primary_item:
+        lines.append(f"{primary_name}: {primary_item['bias']}")
+        lines.append(
+            f"30m: {primary_item['bar_pct']:+.2f}% | "
+            f"Session: {primary_item['session_pct']:+.2f}%"
+        )
 
     sector_results = sector_results or {
         name: results[name]
@@ -265,11 +271,12 @@ def build_intraday_report(
     for name, item in sector_results.items():
         move = item["session_pct"]
         if abs(move) >= SECTOR_ALERT_THRESHOLD:
-            direction = "UP" if move > 0 else "DOWN"
-            sector_alerts.append(f"{name}: {abs(move):.2f}% {direction}")
+            sector_alerts.append(
+                f"{name} | 30m: {item['bar_pct']:+.2f}% | "
+                f"Session: {item['session_pct']:+.2f}%"
+            )
     lines.append(f"Sector alerts (threshold {SECTOR_ALERT_THRESHOLD:.2f}%):")
     lines.extend(sector_alerts or ["None"])
-    lines.append("Rule: 30m momentum plus current-session move; context only, not an entry signal.")
     return "\n".join(lines)
 
 
@@ -311,9 +318,9 @@ def build_force_test_report(session: str, now: datetime | None = None) -> str:
             }
         }
         sectors = {
-            "NSE FINANCIALS": {"session_pct": -2.35},
-            "NSE HEALTHCARE": {"session_pct": 2.10},
-            "NSE TECHNOLOGY & TELECOM": {"session_pct": -2.62},
+            "BANK": {"bar_pct": -2.00, "session_pct": -2.35},
+            "MEDICAL": {"bar_pct": 1.52, "session_pct": 2.10},
+            "IT": {"bar_pct": -1.80, "session_pct": -2.62},
         }
     elif session == "us":
         results = {
@@ -326,10 +333,10 @@ def build_force_test_report(session: str, now: datetime | None = None) -> str:
             }
         }
         sectors = {
-            "US BROAD / INDEX": {"session_pct": -2.18},
-            "US AI / SEMIS / HARDWARE": {"session_pct": -3.05},
-            "US FINANCIALS / CRYPTO-RELATED": {"session_pct": -2.24},
-            "US ENERGY": {"session_pct": 2.40},
+            "NASDAQ": {"bar_pct": -1.10, "session_pct": -2.18},
+            "AI / SEMIS": {"bar_pct": -1.95, "session_pct": -3.05},
+            "FINANCIALS": {"bar_pct": -1.05, "session_pct": -2.24},
+            "ENERGY": {"bar_pct": 1.20, "session_pct": 2.40},
         }
     else:
         raise ValueError(f"force test is not supported for {session}")

@@ -32,23 +32,23 @@ class MarketBiasTests(unittest.TestCase):
         self.assertIn("INDIA (NIFTY 50): Bullish", report)
         self.assertIn("Overall: Bullish", report)
 
-    def test_us_report_shows_sector_alerts_only_at_two_percent(self):
+    def test_us_report_shows_sector_alerts_only_at_one_point_five_percent(self):
         weak = {"bias": "Bearish", "score": -2, "last": 100.0, "bar_pct": -0.3, "session_pct": -1.0}
         results = {"S&P 500": weak, "NASDAQ 100": weak}
-        sectors = {"AI / SEMIS": {**weak, "session_pct": -2.4}, "US TECH": weak}
+        sectors = {"AI / SEMIS": {**weak, "session_pct": -1.6}, "TECH": weak}
         report = build_intraday_report("us", results, sectors)
-        self.assertIn("AI / SEMIS: 2.40% DOWN", report)
-        self.assertNotIn("US TECH: 1.00% DOWN", report)
+        self.assertIn("AI / SEMIS | 30m: -0.30% | Session: -1.60%", report)
+        self.assertNotIn("TECH | 30m: -0.30% | Session: -1.00%", report)
 
     def test_india_sector_alerts_show_up_and_down(self):
         item = {"bias": "Neutral", "score": 0, "last": 100.0, "bar_pct": 0.0, "session_pct": 2.1}
         sectors = {
-            "INDIA HEALTHCARE": item,
-            "INDIA IT": {**item, "session_pct": -3.0},
+            "MEDICAL": item,
+            "IT": {**item, "session_pct": -3.0},
         }
         report = build_intraday_report("india", {}, sectors)
-        self.assertIn("INDIA HEALTHCARE: 2.10% UP", report)
-        self.assertIn("INDIA IT: 3.00% DOWN", report)
+        self.assertIn("MEDICAL | 30m: +0.00% | Session: +2.10%", report)
+        self.assertIn("IT | 30m: +0.00% | Session: -3.00%", report)
 
     def test_india_report_uses_sector_names_without_stock_counts(self):
         report = build_intraday_report("india", {}, {})
@@ -59,21 +59,21 @@ class MarketBiasTests(unittest.TestCase):
     def test_us_report_includes_xstock_sector_groups(self):
         weak = {"bias": "Bearish", "score": -2, "last": 100.0, "bar_pct": -0.3, "session_pct": -2.1}
         sectors = {
-            "US BROAD / INDEX": weak,
-            "US ENERGY": weak,
-            "US OTHER / INDUSTRIALS": weak,
+            "NASDAQ": weak,
+            "ENERGY": weak,
+            "INDUSTRIALS": weak,
         }
         report = build_intraday_report("us", {}, sectors)
-        self.assertIn("US BROAD / INDEX: 2.10% DOWN", report)
-        self.assertIn("US ENERGY: 2.10% DOWN", report)
-        self.assertIn("US OTHER / INDUSTRIALS: 2.10% DOWN", report)
+        self.assertIn("NASDAQ | 30m: -0.30% | Session: -2.10%", report)
+        self.assertIn("ENERGY | 30m: -0.30% | Session: -2.10%", report)
+        self.assertIn("INDUSTRIALS | 30m: -0.30% | Session: -2.10%", report)
 
     def test_force_test_is_labeled_and_contains_both_formats(self):
         india = build_force_test_report("india")
         us = build_force_test_report("us")
         self.assertTrue(india.startswith("FORCE TEST - NOT LIVE MARKET DATA"))
-        self.assertIn("NSE FINANCIALS: 2.35% DOWN", india)
-        self.assertIn("US AI / SEMIS / HARDWARE: 3.05% DOWN", us)
+        self.assertIn("BANK | 30m: -2.00% | Session: -2.35%", india)
+        self.assertIn("AI / SEMIS | 30m: -1.95% | Session: -3.05%", us)
 
     def test_intraday_session_move_starts_at_market_open(self):
         index = pd.date_range(
