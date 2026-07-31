@@ -25217,9 +25217,9 @@
     "last_attempt_at": 0.0
   },
   "PETRONET.NS|supply|280.3500|282.8000": {
-    "in_zone": false,
-    "last_alert_at": 1785384756.080348,
-    "last_attempt_at": 1785384756.080348
+    "in_zone": true,
+    "last_alert_at": 1785474753.0293105,
+    "last_attempt_at": 1785474753.0293105
   },
   "PFIZER.NS|demand|4502.6001|4594.8999": {
     "in_zone": false,
@@ -25527,6 +25527,11 @@
     "last_attempt_at": 0.0
   },
   "JUBLPHARMA.NS|demand|916.5000|926.4500": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "BELRISE.NS|supply|247.0400|252.0000": {
     "in_zone": false,
     "last_alert_at": 0.0,
     "last_attempt_at": 0.0
