@@ -23457,9 +23457,9 @@
     "last_attempt_at": 0.0
   },
   "BELRISE.NS|supply|236.7500|239.7000": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1785471155.1121912,
+    "last_attempt_at": 1785471155.1121912
   },
   "BELRISE.NS|demand|219.9300|223.2400": {
     "in_zone": false,
@@ -25517,6 +25517,11 @@
     "last_attempt_at": 0.0
   },
   "MAPMYINDIA.NS|supply|1304.9000|1337.0000": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "PHOENIXLTD.NS|demand|1466.3000|1504.0000": {
     "in_zone": false,
     "last_alert_at": 0.0,
     "last_attempt_at": 0.0
