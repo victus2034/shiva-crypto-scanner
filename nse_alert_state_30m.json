@@ -53116,7 +53116,7 @@
     "last_attempt_at": 0.0
   },
   "BLS.NS|demand|235.2500|235.7500": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1785483728.3585176,
     "last_attempt_at": 1785483728.3585176
   },
@@ -53571,9 +53571,9 @@
     "last_attempt_at": 0.0
   },
   "NAVINFLUOR.NS|supply|7617.5000|7634.5000": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1785486138.066713,
+    "last_attempt_at": 1785486138.066713
   },
   "RHIM.NS|supply|396.6000|398.0000": {
     "in_zone": false,
@@ -53762,8 +53762,8 @@
   },
   "AXISBANK.NS|supply|1235.8000|1237.1000": {
     "in_zone": true,
-    "last_alert_at": 1785483728.0758977,
-    "last_attempt_at": 1785483728.0758977
+    "last_alert_at": 1785486137.6548145,
+    "last_attempt_at": 1785486137.6548145
   },
   "BLUEDART.NS|supply|5070.8999|5099.0000": {
     "in_zone": false,
@@ -53977,8 +53977,8 @@
   },
   "ICICIGI.NS|demand|1620.1000|1624.4000": {
     "in_zone": true,
-    "last_alert_at": 1785478940.3707275,
-    "last_attempt_at": 1785478940.3707275
+    "last_alert_at": 1785486137.8210952,
+    "last_attempt_at": 1785486137.8210952
   },
   "IOC.NS|supply|140.4600|140.8500": {
     "in_zone": true,
@@ -54310,6 +54310,31 @@
     "last_attempt_at": 0.0
   },
   "OBEROIRLTY.NS|demand|1804.1000|1811.0000": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "APOLLOTYRE.NS|demand|422.4000|422.9000": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "ASAHIINDIA.NS|demand|866.5000|868.1500": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "CARTRADE.NS|supply|2804.8999|2823.3000": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "DCMSHRIRAM.NS|supply|1054.6000|1062.0000": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "GABRIEL.NS|demand|1384.5000|1392.6000": {
     "in_zone": false,
     "last_alert_at": 0.0,
     "last_attempt_at": 0.0
