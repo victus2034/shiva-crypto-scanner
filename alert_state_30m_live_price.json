@@ -9116,8 +9116,8 @@
     "last_alert_at": 0.0
   },
   "HBAR/USDT|supply|0.06903000|0.06920000": {
-    "in_zone": false,
-    "last_alert_at": 1785487309.8280373
+    "in_zone": true,
+    "last_alert_at": 1785540113.5922472
   },
   "HBAR/USDT|demand|0.06789000|0.06817000": {
     "in_zone": true,
@@ -10505,7 +10505,7 @@
   },
   "ASTER/USDT|demand|0.59560000|0.59740000": {
     "in_zone": true,
-    "last_alert_at": 1785537706.552304
+    "last_alert_at": 1785540113.3063037
   },
   "WIF/USDT|demand|0.13950000|0.14170000": {
     "in_zone": false,
@@ -10692,6 +10692,10 @@
     "last_alert_at": 0.0
   },
   "ETHFI/USDT|supply|0.41420000|0.41660000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "AVAXUSD|supply|6.47800000|6.52200000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
