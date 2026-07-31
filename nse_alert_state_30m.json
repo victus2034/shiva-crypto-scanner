@@ -50821,9 +50821,9 @@
     "last_attempt_at": 0.0
   },
   "BRITANNIA.NS|demand|5343.5000|5350.5000": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1785474156.8595967,
+    "last_attempt_at": 1785474156.8595967
   },
   "MAPMYINDIA.NS|supply|1183.0000|1193.4500": {
     "in_zone": false,
@@ -51826,9 +51826,9 @@
     "last_attempt_at": 0.0
   },
   "JSWENERGY.NS|supply|553.3000|556.9000": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1785474157.7777314,
+    "last_attempt_at": 1785474157.7777314
   },
   "JSWINFRA.NS|supply|348.9500|351.3500": {
     "in_zone": false,
@@ -52346,9 +52346,9 @@
     "last_attempt_at": 1785298933.2099996
   },
   "NUVOCO.NS|demand|344.8500|345.9000": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1785474158.577808,
+    "last_attempt_at": 1785474158.577808
   },
   "ONGC.NS|demand|231.1500|234.2800": {
     "in_zone": false,
@@ -52737,8 +52737,8 @@
   },
   "SBICARD.NS|supply|664.0000|666.7500": {
     "in_zone": true,
-    "last_alert_at": 1785471732.2484553,
-    "last_attempt_at": 1785471732.2484553
+    "last_alert_at": 1785474158.8006878,
+    "last_attempt_at": 1785474158.8006878
   },
   "LINDEINDIA.NS|supply|6791.0000|6812.0000": {
     "in_zone": false,
@@ -53012,8 +53012,8 @@
   },
   "BLUESTARCO.NS|supply|1716.9000|1725.9000": {
     "in_zone": true,
-    "last_alert_at": 1785471730.648556,
-    "last_attempt_at": 1785471730.648556
+    "last_alert_at": 1785474156.6007586,
+    "last_attempt_at": 1785474156.6007586
   },
   "GLAND.NS|demand|2409.3000|2416.2000": {
     "in_zone": false,
@@ -53626,9 +53626,9 @@
     "last_attempt_at": 1785400942.9897766
   },
   "JPPOWER.NS|supply|17.9900|18.2100": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1785474158.078896,
+    "last_attempt_at": 1785474158.078896
   },
   "ADANIGREEN.NS|supply|1377.2000|1390.2000": {
     "in_zone": false,
@@ -53676,9 +53676,9 @@
     "last_attempt_at": 0.0
   },
   "MAZDOCK.NS|supply|2384.7000|2402.5000": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1785474158.3365345,
+    "last_attempt_at": 1785474158.3365345
   },
   "AAVAS.NS|supply|1389.0000|1393.0000": {
     "in_zone": false,
@@ -54051,8 +54051,8 @@
   },
   "CONCOR.NS|supply|527.4000|529.9500": {
     "in_zone": true,
-    "last_alert_at": 1785471730.928108,
-    "last_attempt_at": 1785471730.928108
+    "last_alert_at": 1785474157.105428,
+    "last_attempt_at": 1785474157.105428
   },
   "DEVYANI.NS|demand|114.2500|115.6400": {
     "in_zone": false,
@@ -54070,11 +54070,51 @@
     "last_attempt_at": 0.0
   },
   "INDUSINDBK.NS|demand|999.0000|1003.5500": {
+    "in_zone": true,
+    "last_alert_at": 1785474157.4094517,
+    "last_attempt_at": 1785474157.4094517
+  },
+  "JSWCEMENT.NS|supply|132.8000|133.2200": {
     "in_zone": false,
     "last_alert_at": 0.0,
     "last_attempt_at": 0.0
   },
-  "JSWCEMENT.NS|supply|132.8000|133.2200": {
+  "CHOICEIN.NS|supply|841.5000|845.4000": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "COCHINSHIP.NS|supply|1430.2000|1444.0000": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "LALPATHLAB.NS|supply|1902.9000|1919.8000": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "GRAPHITE.NS|supply|673.3500|675.3000": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "IFCI.NS|supply|78.5600|79.5900": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "PIRAMALFIN.NS|demand|2014.3000|2022.2000": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "POLYMED.NS|supply|1736.0000|1774.9000": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "SBFC.NS|demand|88.9600|89.5200": {
     "in_zone": false,
     "last_alert_at": 0.0,
     "last_attempt_at": 0.0
