@@ -9512,8 +9512,8 @@
     "last_alert_at": 0.0
   },
   "WLFI/USDT|demand|0.05435000|0.05470000": {
-    "in_zone": false,
-    "last_alert_at": 1785426109.4652133
+    "in_zone": true,
+    "last_alert_at": 1785483705.1347382
   },
   "DEXE/USDT|supply|2.85700000|2.92810000": {
     "in_zone": false,
@@ -10314,5 +10314,13 @@
   "SPCXXUSD|supply|114.49000000|114.80000000": {
     "in_zone": true,
     "last_alert_at": 1785481346.7338567
+  },
+  "ENA/USDT|demand|0.08026000|0.08075000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "ETHFI/USDT|demand|0.39440000|0.39590000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
   }
 }
