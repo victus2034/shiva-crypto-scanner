@@ -10504,8 +10504,8 @@
     "last_alert_at": 0.0
   },
   "ASTER/USDT|demand|0.59560000|0.59740000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1785526915.5110698
   },
   "WIF/USDT|demand|0.13950000|0.14170000": {
     "in_zone": false,
@@ -10590,5 +10590,13 @@
   "EWYBUSD|demand|157.45000000|158.40000000": {
     "in_zone": true,
     "last_alert_at": 1785525713.8027906
+  },
+  "OPUSD|demand|0.08410000|0.08520000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "APTUSD|demand|0.55100000|0.55900000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
   }
 }
