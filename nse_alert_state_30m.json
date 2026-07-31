@@ -51491,9 +51491,9 @@
     "last_attempt_at": 0.0
   },
   "HINDCOPPER.NS|supply|496.2500|498.6000": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1785475332.5969434,
+    "last_attempt_at": 1785475332.5969434
   },
   "HINDPETRO.NS|supply|407.6500|409.8000": {
     "in_zone": false,
@@ -51826,7 +51826,7 @@
     "last_attempt_at": 0.0
   },
   "JSWENERGY.NS|supply|553.3000|556.9000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1785474157.7777314,
     "last_attempt_at": 1785474157.7777314
   },
@@ -52932,8 +52932,8 @@
   },
   "IRFC.NS|supply|89.7500|89.8500": {
     "in_zone": true,
-    "last_alert_at": 1785472935.1899157,
-    "last_attempt_at": 1785472935.1899157
+    "last_alert_at": 1785475333.445905,
+    "last_attempt_at": 1785475333.445905
   },
   "LTFOODS.NS|supply|385.3000|388.0000": {
     "in_zone": false,
@@ -53142,8 +53142,8 @@
   },
   "CIEINDIA.NS|demand|406.7500|408.0000": {
     "in_zone": true,
-    "last_alert_at": 1785472932.120776,
-    "last_attempt_at": 1785472932.120776
+    "last_alert_at": 1785475332.2789397,
+    "last_attempt_at": 1785475332.2789397
   },
   "CANBK.NS|demand|124.0200|124.2400": {
     "in_zone": false,
@@ -53407,8 +53407,8 @@
   },
   "SBFC.NS|supply|90.8000|91.2500": {
     "in_zone": true,
-    "last_alert_at": 1785472935.8945694,
-    "last_attempt_at": 1785472935.8945694
+    "last_alert_at": 1785475334.4486167,
+    "last_attempt_at": 1785475334.4486167
   },
   "ABFRL.NS|supply|59.4200|59.8000": {
     "in_zone": false,
@@ -53666,9 +53666,9 @@
     "last_attempt_at": 1785398542.1261268
   },
   "KOTAKBANK.NS|supply|391.0500|392.2500": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1785475333.6909218,
+    "last_attempt_at": 1785475333.6909218
   },
   "LICHSGFIN.NS|supply|556.0000|556.9000": {
     "in_zone": false,
@@ -53911,9 +53911,9 @@
     "last_attempt_at": 0.0
   },
   "ATHERENERG.NS|supply|1256.6000|1264.8000": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1785475332.0392177,
+    "last_attempt_at": 1785475332.0392177
   },
   "DMART.NS|supply|3926.6001|3967.2000": {
     "in_zone": false,
@@ -53977,13 +53977,13 @@
   },
   "ICICIGI.NS|demand|1620.1000|1624.4000": {
     "in_zone": true,
-    "last_alert_at": 1785472934.6738162,
-    "last_attempt_at": 1785472934.6738162
+    "last_alert_at": 1785475332.913028,
+    "last_attempt_at": 1785475332.913028
   },
   "IOC.NS|supply|140.4600|140.8500": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1785475333.1944125,
+    "last_attempt_at": 1785475333.1944125
   },
   "LTM.NS|supply|4503.1001|4518.7002": {
     "in_zone": false,
@@ -53991,7 +53991,7 @@
     "last_attempt_at": 0.0
   },
   "MRF.NS|supply|135090.0000|135535.0000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1785472935.6991684,
     "last_attempt_at": 1785472935.6991684
   },
@@ -54015,9 +54015,9 @@
     "last_attempt_at": 1785470542.923709
   },
   "OIL.NS|supply|457.8000|459.2000": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1785475334.1641579,
+    "last_attempt_at": 1785475334.1641579
   },
   "PIIND.NS|demand|2718.0000|2731.6001": {
     "in_zone": false,
@@ -54115,6 +54115,26 @@
     "last_attempt_at": 0.0
   },
   "SBFC.NS|demand|88.9600|89.5200": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "ABCAPITAL.NS|demand|392.1500|393.7000": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "CARBORUNIV.NS|supply|1184.4000|1196.7000": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "HDBFS.NS|demand|673.0000|673.9500": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "MAZDOCK.NS|supply|2573.8999|2580.0000": {
     "in_zone": false,
     "last_alert_at": 0.0,
     "last_attempt_at": 0.0
