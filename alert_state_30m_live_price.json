@@ -10404,8 +10404,8 @@
     "last_alert_at": 0.0
   },
   "ADAUSD|supply|0.17120000|0.17209000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1785517345.0948286
   },
   "COINXUSD|supply|157.05000000|157.60000000": {
     "in_zone": false,
@@ -10436,6 +10436,14 @@
     "last_alert_at": 0.0
   },
   "FLNC/USDT:USDT|supply|15.04000000|15.48000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "HOME/USDT|demand|0.00525200|0.00526900": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "BABA/USDT:USDT|demand|118.84000000|119.31000000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
