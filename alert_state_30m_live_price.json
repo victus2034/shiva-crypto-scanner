@@ -9984,8 +9984,8 @@
     "last_alert_at": 1785410517.010197
   },
   "ATOM/USDT|demand|1.26800000|1.27100000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1785462110.6605916
   },
   "VIRTUAL/USDT|demand|0.55620000|0.55740000": {
     "in_zone": false,
@@ -10256,10 +10256,14 @@
     "last_alert_at": 0.0
   },
   "SLVONUSD|supply|53.75000000|53.87000000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1785459737.371204
   },
   "DOTUSD|supply|0.77700000|0.78000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "POL/USDT|demand|0.07066000|0.07107000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
