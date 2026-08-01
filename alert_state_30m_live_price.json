@@ -10892,7 +10892,7 @@
     "last_alert_at": 0.0
   },
   "HBAR/USDT|supply|0.07022000|0.07043000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1785596526.545223
   },
   "FILUSD|supply|0.72400000|0.72900000": {
@@ -10916,6 +10916,14 @@
     "last_alert_at": 0.0
   },
   "JTO/USDT|demand|0.49900000|0.50170000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "SOLUSD|demand|72.65300000|72.83600000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "BTW/USDT|supply|0.12487000|0.12827000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
