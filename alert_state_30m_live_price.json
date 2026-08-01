@@ -8052,8 +8052,8 @@
     "last_alert_at": 0.0
   },
   "ONDOUSD|demand|0.38230000|0.38380000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1785576113.582708
   },
   "FET/USDT|supply|0.16020000|0.16070000": {
     "in_zone": false,
@@ -10820,6 +10820,14 @@
     "last_alert_at": 0.0
   },
   "1000SHIBUSD|supply|0.00497500|0.00504000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "ZECUSD|supply|465.09000000|469.24000000": {
+    "in_zone": true,
+    "last_alert_at": 1785576113.356583
+  },
+  "BCHUSD|supply|211.90000000|212.37000000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
