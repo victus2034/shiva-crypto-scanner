@@ -10945,7 +10945,7 @@
   },
   "OPENAI/USDT:USDT|supply|111.81000000|112.17000000": {
     "in_zone": true,
-    "last_alert_at": 1785622903.7251728
+    "last_alert_at": 1785625333.1551094
   },
   "TAIKO/USDT|demand|0.07297000|0.07333000": {
     "in_zone": true,
@@ -11008,7 +11008,7 @@
     "last_alert_at": 0.0
   },
   "INJUSD|supply|4.93800000|4.95200000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1785619312.8435984
   },
   "BTW/USDT|supply|0.11645000|0.12135000": {
@@ -11036,6 +11036,14 @@
     "last_alert_at": 0.0
   },
   "ONDOUSD|supply|0.38960000|0.39100000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "DEXE/USDT|demand|2.34440000|2.37910000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "KAITO/USDT|supply|1.23570000|1.25380000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
