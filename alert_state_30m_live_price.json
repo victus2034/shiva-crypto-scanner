@@ -10672,8 +10672,8 @@
     "last_alert_at": 0.0
   },
   "ASTER/USDT|supply|0.60150000|0.60480000": {
-    "in_zone": false,
-    "last_alert_at": 1785547312.6630461
+    "in_zone": true,
+    "last_alert_at": 1785560540.0081186
   },
   "TRUMP/USDT|supply|1.44400000|1.45100000": {
     "in_zone": false,
@@ -10752,6 +10752,10 @@
     "last_alert_at": 0.0
   },
   "0G/USDT|demand|0.14140000|0.14200000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "COAI/USDT|demand|0.31670000|0.31930000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
