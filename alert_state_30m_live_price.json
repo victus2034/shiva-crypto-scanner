@@ -10320,8 +10320,8 @@
     "last_alert_at": 0.0
   },
   "ETHFI/USDT|demand|0.39440000|0.39590000": {
-    "in_zone": false,
-    "last_alert_at": 1785511315.997467
+    "in_zone": true,
+    "last_alert_at": 1785607338.5509284
   },
   "ADAUSD|supply|0.17050000|0.17140000": {
     "in_zone": true,
@@ -10905,7 +10905,7 @@
   },
   "OPENAI/USDT:USDT|demand|111.02000000|111.32000000": {
     "in_zone": true,
-    "last_alert_at": 1785604906.3071678
+    "last_alert_at": 1785607338.7092383
   },
   "ZECUSD|demand|462.40000000|463.83000000": {
     "in_zone": false,
@@ -10946,5 +10946,13 @@
   "OPENAI/USDT:USDT|supply|111.81000000|112.17000000": {
     "in_zone": true,
     "last_alert_at": 1785606107.3110106
+  },
+  "TAIKO/USDT|demand|0.07297000|0.07333000": {
+    "in_zone": true,
+    "last_alert_at": 1785607338.3624356
+  },
+  "ALGO/USDT|supply|0.08027000|0.08066000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
   }
 }
