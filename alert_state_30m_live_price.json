@@ -10860,8 +10860,8 @@
     "last_alert_at": 0.0
   },
   "LA/USDT|supply|0.05113000|0.05142000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1785603734.250145
   },
   "ZRO/USDT|supply|0.75900000|0.76320000": {
     "in_zone": false,
@@ -10938,5 +10938,13 @@
   "BTW/USDT|demand|0.10241000|0.10868000": {
     "in_zone": false,
     "last_alert_at": 0.0
+  },
+  "UNIUSD|demand|4.03100000|4.06800000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "OPENAI/USDT:USDT|supply|111.81000000|112.17000000": {
+    "in_zone": true,
+    "last_alert_at": 1785603734.5973732
   }
 }
