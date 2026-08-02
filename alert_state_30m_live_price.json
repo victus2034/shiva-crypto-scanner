@@ -10752,8 +10752,8 @@
     "last_alert_at": 0.0
   },
   "0G/USDT|demand|0.14140000|0.14200000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1785672144.2212687
   },
   "COAI/USDT|demand|0.31670000|0.31930000": {
     "in_zone": false,
@@ -10965,7 +10965,7 @@
   },
   "SPCXXUSD|supply|109.50000000|109.65000000": {
     "in_zone": true,
-    "last_alert_at": 1785669708.5874832
+    "last_alert_at": 1785672144.637671
   },
   "DOGEUSD|supply|0.07021000|0.07033000": {
     "in_zone": false,
@@ -11324,6 +11324,10 @@
     "last_alert_at": 0.0
   },
   "XLM/USDT|supply|0.17712000|0.17750000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "SOLUSD|supply|73.53600000|73.67200000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
