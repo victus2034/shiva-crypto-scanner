@@ -2367,7 +2367,7 @@
     "last_alert_at": 1784606610.1803336
   },
   "PAXGUSD|range_filter|buy": {
-    "last_alert_at": 1784545397.0239074
+    "last_alert_at": 1785637311.751856
   },
   "THE/USDT|demand|0.05240000|0.05247365": {
     "in_zone": true,
@@ -11004,12 +11004,12 @@
     "last_alert_at": 0.0
   },
   "DASH/USDT|supply|31.46000000|31.56000000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1785637311.485534
   },
   "INJUSD|supply|4.93800000|4.95200000": {
-    "in_zone": false,
-    "last_alert_at": 1785619312.8435984
+    "in_zone": true,
+    "last_alert_at": 1785637311.024035
   },
   "BTW/USDT|supply|0.11645000|0.12135000": {
     "in_zone": false,
@@ -11128,7 +11128,7 @@
     "last_alert_at": 0.0
   },
   "HBAR/USDT|demand|0.06865000|0.06903000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1785636132.13947
   },
   "LABUSD|demand|0.12600000|0.13220000": {
@@ -11200,7 +11200,7 @@
     "last_alert_at": 0.0
   },
   "AERO/USDT|demand|0.39940000|0.40020000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1785636131.9577248
   },
   "ICP/USDT|demand|1.98600000|2.01700000": {
@@ -11212,6 +11212,10 @@
     "last_alert_at": 0.0
   },
   "SAMSUNG/USDT:USDT|demand|160.51000000|161.61000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "OPUSD|demand|0.08220000|0.08280000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
