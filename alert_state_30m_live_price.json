@@ -10624,8 +10624,8 @@
     "last_alert_at": 0.0
   },
   "ZRO/USDT|demand|0.71350000|0.71690000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1785660102.6355696
   },
   "CBRSBUSD|demand|197.19000000|199.23000000": {
     "in_zone": true,
@@ -10965,7 +10965,7 @@
   },
   "SPCXXUSD|supply|109.50000000|109.65000000": {
     "in_zone": true,
-    "last_alert_at": 1785657732.8680954
+    "last_alert_at": 1785660102.8808224
   },
   "DOGEUSD|supply|0.07021000|0.07033000": {
     "in_zone": false,
@@ -11280,6 +11280,10 @@
     "last_alert_at": 0.0
   },
   "0G/USDT|supply|0.14710000|0.14850000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "DEXE/USDT|demand|2.28710000|2.30410000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
