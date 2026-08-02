@@ -10256,8 +10256,8 @@
     "last_alert_at": 0.0
   },
   "SLVONUSD|supply|53.75000000|53.87000000": {
-    "in_zone": false,
-    "last_alert_at": 1785459737.371204
+    "in_zone": true,
+    "last_alert_at": 1785700934.2437983
   },
   "DOTUSD|supply|0.77700000|0.78000000": {
     "in_zone": false,
@@ -11412,6 +11412,10 @@
     "last_alert_at": 1785699712.4367223
   },
   "BANK/USDT|demand|0.04534000|0.04642000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "BOME/USDT|supply|0.00062880|0.00063870": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
