@@ -10676,7 +10676,7 @@
     "last_alert_at": 1785630112.1715894
   },
   "TRUMP/USDT|supply|1.44400000|1.45100000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1785630112.4257696
   },
   "APTUSD|supply|0.56690000|0.56900000": {
@@ -10956,8 +10956,8 @@
     "last_alert_at": 0.0
   },
   "HYPEUSD|supply|52.34000000|52.72000000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1785631302.3882787
   },
   "DEXE/USDT|supply|2.46520000|2.51200000": {
     "in_zone": false,
@@ -11168,7 +11168,7 @@
     "last_alert_at": 0.0
   },
   "O/USDT|demand|0.50350000|0.50470000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1785630112.666617
   },
   "DRAMBUSD|demand|49.17000000|49.52000000": {
@@ -11176,6 +11176,10 @@
     "last_alert_at": 0.0
   },
   "NEARUSD|demand|1.65300000|1.65800000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "ORDI/USDT|demand|3.52800000|3.54000000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
