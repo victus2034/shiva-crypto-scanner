@@ -10680,8 +10680,8 @@
     "last_alert_at": 1785633703.0944748
   },
   "APTUSD|supply|0.56690000|0.56900000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1785646938.2439604
   },
   "ICP/USDT|supply|2.07400000|2.08800000": {
     "in_zone": true,
@@ -10892,8 +10892,8 @@
     "last_alert_at": 0.0
   },
   "HBAR/USDT|supply|0.07022000|0.07043000": {
-    "in_zone": false,
-    "last_alert_at": 1785596526.545223
+    "in_zone": true,
+    "last_alert_at": 1785646938.4392726
   },
   "FILUSD|supply|0.72400000|0.72900000": {
     "in_zone": false,
@@ -11236,6 +11236,14 @@
     "last_alert_at": 0.0
   },
   "COTI/USDT|demand|0.00731000|0.00733000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "BEAT/USDT|supply|4.63130000|4.67790000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "EUL/USDT|demand|1.49130000|1.51500000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
