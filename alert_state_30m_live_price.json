@@ -10673,11 +10673,11 @@
   },
   "ASTER/USDT|supply|0.60150000|0.60480000": {
     "in_zone": true,
-    "last_alert_at": 1785626506.2951808
+    "last_alert_at": 1785630112.1715894
   },
   "TRUMP/USDT|supply|1.44400000|1.45100000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1785630112.4257696
   },
   "APTUSD|supply|0.56690000|0.56900000": {
     "in_zone": false,
@@ -10964,8 +10964,8 @@
     "last_alert_at": 0.0
   },
   "SPCXXUSD|supply|109.50000000|109.65000000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1785630112.9246242
   },
   "DOGEUSD|supply|0.07021000|0.07033000": {
     "in_zone": false,
@@ -11128,7 +11128,7 @@
     "last_alert_at": 0.0
   },
   "HBAR/USDT|demand|0.06865000|0.06903000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1785627711.0071473
   },
   "LABUSD|demand|0.12600000|0.13220000": {
@@ -11168,10 +11168,14 @@
     "last_alert_at": 0.0
   },
   "O/USDT|demand|0.50350000|0.50470000": {
+    "in_zone": true,
+    "last_alert_at": 1785630112.666617
+  },
+  "DRAMBUSD|demand|49.17000000|49.52000000": {
     "in_zone": false,
     "last_alert_at": 0.0
   },
-  "DRAMBUSD|demand|49.17000000|49.52000000": {
+  "NEARUSD|demand|1.65300000|1.65800000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
