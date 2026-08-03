@@ -92,6 +92,10 @@ def record_delivered_zone_alert(result, zone_type, zone, distance_pct, message, 
     This log is the source of truth for the later outcome evaluator. It is
     append-only so a scanner state rewrite cannot erase delivery history.
     """
+    score = result.get(f"{zone_type}_score")
+    if score is None and SHOW_ZONE_RATINGS and TIMEFRAME == "30m":
+        score = zone_rating(zone, distance_pct)
+
     record = {
         "delivered_at_utc": pd.Timestamp.fromtimestamp(now_ts, tz="UTC").isoformat(),
         "symbol": result["symbol"],
@@ -103,7 +107,7 @@ def record_delivered_zone_alert(result, zone_type, zone, distance_pct, message, 
         "level": float(zone["top"] if zone_type == "supply" else zone["bottom"]),
         "zone_bottom": float(zone["bottom"]),
         "zone_top": float(zone["top"]),
-        "score": result.get(f"{zone_type}_score"),
+        "score": score,
         "message": message,
     }
     try:

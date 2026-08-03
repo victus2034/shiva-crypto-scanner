@@ -1,0 +1,51 @@
+name: Shiva Daily Backtest Summary
+
+on:
+  workflow_dispatch:
+    inputs:
+      date:
+        description: "Optional IST date to summarize, YYYY-MM-DD"
+        required: false
+
+permissions:
+  contents: read
+
+concurrency:
+  group: shiva-daily-backtest-summary
+  cancel-in-progress: false
+
+jobs:
+  daily-backtest-summary:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Check daily backtest Discord webhook
+        env:
+          DISCORD_DAILY_BACKTEST_WEBHOOK_URL: ${{ secrets.DISCORD_DAILY_BACKTEST_WEBHOOK_URL }}
+        run: |
+          if [ -z "$DISCORD_DAILY_BACKTEST_WEBHOOK_URL" ]; then
+            echo "::error::DISCORD_DAILY_BACKTEST_WEBHOOK_URL is not configured."
+            exit 1
+          fi
+
+      - name: Post daily backtest summary
+        env:
+          DISCORD_DAILY_BACKTEST_WEBHOOK_URL: ${{ secrets.DISCORD_DAILY_BACKTEST_WEBHOOK_URL }}
+          INPUT_DATE: ${{ github.event.inputs.date }}
+        run: |
+          if [ -n "$INPUT_DATE" ]; then
+            python daily_backtest_summary.py --date "$INPUT_DATE"
+          else
+            python daily_backtest_summary.py
+          fi
