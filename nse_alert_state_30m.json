@@ -52956,9 +52956,9 @@
     "last_attempt_at": 1785384139.8928542
   },
   "LUPIN.NS|demand|2383.3000|2388.3000": {
-    "in_zone": false,
-    "last_alert_at": 1785732132.6808364,
-    "last_attempt_at": 1785732132.6808364
+    "in_zone": true,
+    "last_alert_at": 1785734524.415951,
+    "last_attempt_at": 1785734524.415951
   },
   "OIL.NS|supply|446.5000|457.7500": {
     "in_zone": false,
@@ -53516,7 +53516,7 @@
     "last_attempt_at": 0.0
   },
   "CIPLA.NS|supply|1485.1000|1490.5000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1785733332.4302142,
     "last_attempt_at": 1785733332.4302142
   },
@@ -54665,9 +54665,9 @@
     "last_attempt_at": 0.0
   },
   "PWL.NS|supply|127.3600|127.6700": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1785734524.8187134,
+    "last_attempt_at": 1785734524.8187134
   },
   "SJVN.NS|supply|70.4500|70.6000": {
     "in_zone": false,
@@ -54730,6 +54730,41 @@
     "last_attempt_at": 0.0
   },
   "NCC.NS|supply|157.7500|158.3000": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "HDFCLIFE.NS|demand|544.3500|545.6000": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "IREDA.NS|supply|129.7000|130.6000": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "INDIGO.NS|supply|5453.7998|5464.0000": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "NTPC.NS|demand|343.6000|344.0000": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "PIIND.NS|supply|2846.0000|2854.6001": {
+    "in_zone": true,
+    "last_alert_at": 1785734524.620136,
+    "last_attempt_at": 1785734524.620136
+  },
+  "RVNL.NS|supply|248.9900|250.7600": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "RAILTEL.NS|demand|283.8500|284.5000": {
     "in_zone": false,
     "last_alert_at": 0.0,
     "last_attempt_at": 0.0
