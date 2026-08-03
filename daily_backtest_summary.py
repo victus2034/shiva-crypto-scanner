@@ -134,6 +134,7 @@ def normalize_frame(raw: pd.DataFrame) -> pd.DataFrame:
         frame.index = frame.index.tz_localize(IST)
     else:
         frame.index = frame.index.tz_convert(IST)
+    frame.index = pd.DatetimeIndex(frame.index).floor("s")
     return frame[["open", "high", "low", "close", "volume"]].sort_index()
 
 
@@ -145,7 +146,7 @@ def run_backtest(alerts: pd.DataFrame, frames: dict[str, pd.DataFrame]) -> tuple
             rows.append(unfilled(alert, "data_missing"))
             continue
 
-        event_time = pd.Timestamp(alert["event_time_ist"])
+        event_time = pd.Timestamp(alert["event_time_ist"]).floor("s")
         event_index = int(frame.index.searchsorted(event_time, side="right") - 1)
         if event_index < 0:
             rows.append(unfilled(alert, "alert_before_data"))
