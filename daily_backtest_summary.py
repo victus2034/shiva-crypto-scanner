@@ -77,6 +77,7 @@ def load_records(path: Path) -> pd.DataFrame:
                     "level": float(raw["level"]),
                     "zone_bottom": zone_bottom,
                     "zone_top": zone_top,
+                    "body_entry": parse_optional_float(raw.get("body_entry")),
                     "rating": parse_rating(raw.get("score")),
                     "zone_id": (
                         f"{raw['symbol']}|{side}|{zone_bottom:.8f}|{zone_top:.8f}"
@@ -97,6 +98,15 @@ def load_records(path: Path) -> pd.DataFrame:
 
 
 def parse_rating(value) -> float:
+    if value is None or value == "":
+        return float("nan")
+    try:
+        return float(value)
+    except (TypeError, ValueError):
+        return float("nan")
+
+
+def parse_optional_float(value) -> float:
     if value is None or value == "":
         return float("nan")
     try:
@@ -164,15 +174,16 @@ def run_backtest(alerts: pd.DataFrame, frames: dict[str, pd.DataFrame]) -> tuple
 def simulate_alert(frame: pd.DataFrame, alert: dict, event_index: int) -> dict:
     side = alert["side"]
     direction = 1.0 if side == "long" else -1.0
-    entry_price = (
-        float(alert["zone_top"]) if side == "long" else float(alert["zone_bottom"])
-    )
+    entry_price = body_entry_price(frame, alert, event_index)
     entry_index = find_entry(frame, event_index, entry_price)
     if entry_index is None:
         return unfilled(alert, "zone_not_touched")
 
-    risk = entry_price * FIXED_STOP_PCT / 100.0
-    stop = entry_price - direction * risk
+    stop = original_stop_price(alert)
+    risk = direction * (entry_price - stop)
+    if risk <= 0:
+        risk = entry_price * FIXED_STOP_PCT / 100.0
+        stop = entry_price - direction * risk
     target_1 = entry_price + direction * risk * TARGET_1_R
     target_2 = entry_price + direction * risk * TARGET_2_R
     fee_cover_offset = min(entry_price * ROUND_TRIP_COST_PCT / 100.0, risk * 0.999)
@@ -247,6 +258,7 @@ def simulate_alert(frame: pd.DataFrame, alert: dict, event_index: int) -> dict:
             "filled": True,
             "entry_time": frame.index[entry_index],
             "entry_price": entry_price,
+            "entry_basis": "body",
             "stop_price": stop,
             "target_1_price": target_1,
             "target_2_price": target_2,
@@ -265,6 +277,55 @@ def simulate_alert(frame: pd.DataFrame, alert: dict, event_index: int) -> dict:
         }
     )
     return result
+
+
+def body_entry_price(frame: pd.DataFrame, alert: dict, event_index: int) -> float:
+    recorded_body_entry = pd.to_numeric(alert.get("body_entry"), errors="coerce")
+    if pd.notna(recorded_body_entry):
+        return float(recorded_body_entry)
+
+    matched_body_entry = reconstruct_body_entry(frame, alert, event_index)
+    if matched_body_entry is not None:
+        return matched_body_entry
+
+    # Fallback for old records when the source zone cannot be reconstructed.
+    # This remains the near edge of the recorded zone, not the wick extreme.
+    return float(alert["zone_top"] if alert["side"] == "long" else alert["zone_bottom"])
+
+
+def reconstruct_body_entry(frame: pd.DataFrame, alert: dict, event_index: int) -> float | None:
+    history = frame.iloc[: event_index + 1].copy()
+    if len(history) < nse_scanner.ATR_PERIOD + nse_scanner.SWING_LENGTH * 2:
+        return None
+
+    supply_zones, demand_zones = nse_scanner.build_zones(history)
+    zone_type = "demand" if alert["side"] == "long" else "supply"
+    zones = demand_zones if zone_type == "demand" else supply_zones
+    candidates = [
+        zone for zone in zones
+        if zone["type"] == zone_type and zones_match_alert(zone, alert)
+    ]
+    if not candidates:
+        return None
+    best = min(
+        candidates,
+        key=lambda zone: abs(float(zone["top"]) - float(alert["zone_top"]))
+        + abs(float(zone["bottom"]) - float(alert["zone_bottom"])),
+    )
+    return float(best["body_entry"])
+
+
+def zones_match_alert(zone: dict, alert: dict) -> bool:
+    top = float(zone["top"])
+    bottom = float(zone["bottom"])
+    alert_top = float(alert["zone_top"])
+    alert_bottom = float(alert["zone_bottom"])
+    tolerance = max(abs(alert_top - alert_bottom) * 0.05, abs(alert_top) * 0.00005, 0.01)
+    return abs(top - alert_top) <= tolerance and abs(bottom - alert_bottom) <= tolerance
+
+
+def original_stop_price(alert: dict) -> float:
+    return float(alert["level"])
 
 
 def find_entry(frame: pd.DataFrame, event_index: int, entry_price: float) -> int | None:
