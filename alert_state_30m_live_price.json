@@ -11340,8 +11340,8 @@
     "last_alert_at": 1785680517.1087909
   },
   "XMRUSD|demand|359.22000000|360.05000000": {
-    "in_zone": false,
-    "last_alert_at": 1785766904.3873663
+    "in_zone": true,
+    "last_alert_at": 1785772945.3568268
   },
   "TRX/USDT|supply|0.32819000|0.32840000": {
     "in_zone": true,
@@ -11844,6 +11844,10 @@
     "last_alert_at": 0.0
   },
   "HOME/USDT|demand|0.00611000|0.00619700": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "ALLO/USDT|supply|0.30325000|0.30999000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
