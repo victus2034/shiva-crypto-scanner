@@ -11624,7 +11624,7 @@
     "last_alert_at": 0.0
   },
   "POL/USDT|demand|0.07250000|0.07280000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1785769342.0279293
   },
   "KGEN/USDT|demand|0.19160000|0.19430000": {
@@ -11840,6 +11840,10 @@
     "last_alert_at": 0.0
   },
   "MMT/USDT|supply|0.15450000|0.15740000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "HOME/USDT|demand|0.00611000|0.00619700": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
