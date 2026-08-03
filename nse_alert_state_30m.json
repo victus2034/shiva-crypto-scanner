@@ -50502,8 +50502,8 @@
   },
   "AMBUJACEM.NS|supply|443.7500|444.7000": {
     "in_zone": true,
-    "last_alert_at": 1785735735.7322664,
-    "last_attempt_at": 1785735735.7322664
+    "last_alert_at": 1785738116.0065231,
+    "last_attempt_at": 1785738116.0065231
   },
   "ANANDRATHI.NS|supply|2083.2000|2089.8000": {
     "in_zone": true,
@@ -52591,9 +52591,9 @@
     "last_attempt_at": 0.0
   },
   "RHIM.NS|supply|415.5000|418.1500": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1785738116.6673896,
+    "last_attempt_at": 1785738116.6673896
   },
   "RITES.NS|supply|216.8900|217.9500": {
     "in_zone": true,
@@ -53266,9 +53266,9 @@
     "last_attempt_at": 0.0
   },
   "ABBOTINDIA.NS|supply|27950.0000|28090.0000": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1785738115.8489254,
+    "last_attempt_at": 1785738115.8489254
   },
   "AEGISLOG.NS|demand|1256.1000|1268.9000": {
     "in_zone": true,
@@ -54236,8 +54236,8 @@
   },
   "GROWW.NS|demand|190.5400|191.3000": {
     "in_zone": true,
-    "last_alert_at": 1785735735.960481,
-    "last_attempt_at": 1785735735.960481
+    "last_alert_at": 1785738116.232344,
+    "last_attempt_at": 1785738116.232344
   },
   "DLF.NS|demand|652.0500|653.9500": {
     "in_zone": false,
@@ -54360,9 +54360,9 @@
     "last_attempt_at": 0.0
   },
   "EXIDEIND.NS|supply|456.0000|461.0000": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1785738116.4047577,
+    "last_attempt_at": 1785738116.4047577
   },
   "MEDANTA.NS|supply|1416.8000|1423.0000": {
     "in_zone": true,
@@ -54685,7 +54685,7 @@
     "last_attempt_at": 0.0
   },
   "KEI.NS|supply|5051.0000|5078.5000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1785736953.5022683,
     "last_attempt_at": 1785736953.5022683
   },
@@ -54780,6 +54780,11 @@
     "last_attempt_at": 0.0
   },
   "PVRINOX.NS|demand|938.5000|940.1000": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "KEC.NS|demand|466.5000|467.4000": {
     "in_zone": false,
     "last_alert_at": 0.0,
     "last_attempt_at": 0.0
