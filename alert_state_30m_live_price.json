@@ -11624,8 +11624,8 @@
     "last_alert_at": 0.0
   },
   "POL/USDT|demand|0.07250000|0.07280000": {
-    "in_zone": false,
-    "last_alert_at": 1785769342.0279293
+    "in_zone": true,
+    "last_alert_at": 1785777714.106601
   },
   "KGEN/USDT|demand|0.19160000|0.19430000": {
     "in_zone": false,
@@ -11870,5 +11870,13 @@
   "OPENAI/USDT:USDT|demand|113.32000000|113.53000000": {
     "in_zone": true,
     "last_alert_at": 1785776541.2244582
+  },
+  "1000BONKUSD|demand|0.00279600|0.00280700": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "AAPLXUSD|supply|312.30000000|313.60000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
   }
 }
