@@ -11980,14 +11980,22 @@
     "last_alert_at": 0.0
   },
   "AAPLXUSD|demand|303.30000000|304.15000000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1785792115.2779837
   },
   "BANK/USDT|demand|0.04033000|0.04150000": {
     "in_zone": false,
     "last_alert_at": 0.0
   },
   "0G/USDT|supply|0.14050000|0.14130000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "INTCBUSD|supply|93.59000000|94.17000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "INTCBUSD|demand|85.85000000|88.24000000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
