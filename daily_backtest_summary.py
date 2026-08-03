@@ -14,8 +14,19 @@ import nse_scanner
 
 
 IST = ZoneInfo("Asia/Kolkata")
-RECORD_FILE = Path(__file__).with_name("nse_alert_records_30m.jsonl")
 WEBHOOK_ENV = "DISCORD_DAILY_BACKTEST_WEBHOOK_URL"
+TIMEFRAME_SETTINGS = {
+    "30m": {
+        "records": Path(__file__).with_name("nse_alert_records_30m.jsonl"),
+        "source_interval": "15m",
+        "source_period": "60d",
+    },
+    "4h": {
+        "records": Path(__file__).with_name("nse_alert_records.jsonl"),
+        "source_interval": "1h",
+        "source_period": "700d",
+    },
+}
 
 ENTRY_WAIT_BARS = 3
 MAX_HOLD_BARS = 24
@@ -28,21 +39,29 @@ ROUND_TRIP_COST_PCT = 0.25
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
-        description="Post a clean daily NSE 30m delivered-alert backtest summary."
+        description="Post a clean daily NSE delivered-alert backtest summary."
+    )
+    parser.add_argument(
+        "--timeframe",
+        choices=sorted(TIMEFRAME_SETTINGS),
+        default="30m",
+        help="Alert timeframe to summarize.",
     )
     parser.add_argument("--date", help="IST date to summarize, YYYY-MM-DD.")
-    parser.add_argument("--records", type=Path, default=RECORD_FILE)
+    parser.add_argument("--records", type=Path, help="Override alert-record JSONL path.")
     parser.add_argument("--dry-run", action="store_true")
     return parser.parse_args()
 
 
-def configure_nse_30m_data() -> None:
-    nse_scanner.TIMEFRAME = "30m"
-    nse_scanner.SOURCE_INTERVAL = "15m"
-    nse_scanner.SOURCE_PERIOD = "60d"
+def configure_nse_data(timeframe: str) -> Path:
+    settings = TIMEFRAME_SETTINGS[timeframe]
+    nse_scanner.TIMEFRAME = timeframe
+    nse_scanner.SOURCE_INTERVAL = settings["source_interval"]
+    nse_scanner.SOURCE_PERIOD = settings["source_period"]
+    return settings["records"]
 
 
-def load_records(path: Path) -> pd.DataFrame:
+def load_records(path: Path, timeframe_filter: str) -> pd.DataFrame:
     if not path.exists():
         return pd.DataFrame()
 
@@ -52,8 +71,8 @@ def load_records(path: Path) -> pd.DataFrame:
             continue
         try:
             raw = json.loads(line)
-            timeframe = raw.get("timeframe", "30m")
-            if timeframe != "30m":
+            timeframe = raw.get("timeframe", timeframe_filter)
+            if timeframe != timeframe_filter:
                 continue
             event_time = pd.Timestamp(raw["delivered_at_utc"])
             if event_time.tzinfo is None:
@@ -405,8 +424,9 @@ def build_summary(
     results: pd.DataFrame,
     data_failures: dict[str, str],
     cooldown_blocked: int,
+    timeframe: str,
 ) -> str:
-    header = f"NSE 30m BACKTEST | {pd.Timestamp(target_date).strftime('%d %b %Y')}"
+    header = f"NSE {timeframe} BACKTEST | {pd.Timestamp(target_date).strftime('%d %b %Y')}"
     if records.empty:
         return (
             f"{header}\n\n"
@@ -509,8 +529,8 @@ def send_discord_message(message: str) -> None:
 
 def main() -> None:
     args = parse_args()
-    configure_nse_30m_data()
-    records = load_records(args.records)
+    default_records = configure_nse_data(args.timeframe)
+    records = load_records(args.records or default_records, args.timeframe)
     target_date = select_target_date(records, args.date)
     day_records = (
         records[records["event_time_ist"].dt.date == target_date].copy()
@@ -532,6 +552,7 @@ def main() -> None:
         results,
         data_failures,
         cooldown_blocked,
+        args.timeframe,
     )
     print(message)
     if not args.dry_run:

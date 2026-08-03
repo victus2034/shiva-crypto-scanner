@@ -3,6 +3,14 @@ name: Shiva Daily Backtest Summary
 on:
   workflow_dispatch:
     inputs:
+      timeframe:
+        description: "NSE timeframe to summarize"
+        required: false
+        default: "30m"
+        type: choice
+        options:
+          - "30m"
+          - "4h"
       date:
         description: "Optional IST date to summarize, YYYY-MM-DD"
         required: false
@@ -43,9 +51,11 @@ jobs:
         env:
           DISCORD_DAILY_BACKTEST_WEBHOOK_URL: ${{ secrets.DISCORD_DAILY_BACKTEST_WEBHOOK_URL }}
           INPUT_DATE: ${{ github.event.inputs.date }}
+          INPUT_TIMEFRAME: ${{ github.event.inputs.timeframe }}
         run: |
+          TIMEFRAME="${INPUT_TIMEFRAME:-30m}"
           if [ -n "$INPUT_DATE" ]; then
-            python daily_backtest_summary.py --date "$INPUT_DATE"
+            python daily_backtest_summary.py --timeframe "$TIMEFRAME" --date "$INPUT_DATE"
           else
-            python daily_backtest_summary.py
+            python daily_backtest_summary.py --timeframe "$TIMEFRAME"
           fi
