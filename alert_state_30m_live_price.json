@@ -11192,8 +11192,8 @@
     "last_alert_at": 0.0
   },
   "SPCXXUSD|demand|107.85000000|108.45000000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1785715337.4002423
   },
   "VVV/USDT|demand|11.50300000|11.61300000": {
     "in_zone": false,
@@ -11492,8 +11492,8 @@
     "last_alert_at": 0.0
   },
   "UNIUSD|demand|4.15700000|4.16700000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1785715336.9346802
   },
   "BANK/USDT|supply|0.04919000|0.05032000": {
     "in_zone": false,
@@ -11502,5 +11502,13 @@
   "LABUSD|supply|0.14090000|0.14270000": {
     "in_zone": false,
     "last_alert_at": 0.0
+  },
+  "TRUMP/USDT|supply|1.44600000|1.45400000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "HBAR/USDT|demand|0.06956000|0.06976000": {
+    "in_zone": true,
+    "last_alert_at": 1785715337.1668632
   }
 }
