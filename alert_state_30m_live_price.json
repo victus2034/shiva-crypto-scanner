@@ -11572,8 +11572,8 @@
     "last_alert_at": 0.0
   },
   "VIRTUAL/USDT|supply|0.56820000|0.57010000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1785781313.1648908
   },
   "JTO/USDT|supply|0.49970000|0.50220000": {
     "in_zone": false,
@@ -11869,7 +11869,7 @@
   },
   "OPENAI/USDT:USDT|demand|113.32000000|113.53000000": {
     "in_zone": true,
-    "last_alert_at": 1785778907.9323704
+    "last_alert_at": 1785781313.3369656
   },
   "1000BONKUSD|demand|0.00279600|0.00280700": {
     "in_zone": false,
@@ -11896,6 +11896,14 @@
     "last_alert_at": 0.0
   },
   "IBM/USDT:USDT|supply|228.94000000|230.82000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "XMRUSD|supply|363.99000000|364.54000000": {
+    "in_zone": true,
+    "last_alert_at": 1785781312.8189306
+  },
+  "XMRUSD|demand|360.12000000|360.81000000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
