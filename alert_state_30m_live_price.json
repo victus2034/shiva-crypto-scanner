@@ -11644,8 +11644,8 @@
     "last_alert_at": 0.0
   },
   "LA/USDT|demand|0.04611000|0.04635000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1785754943.2336762
   },
   "0G/USDT|demand|0.13640000|0.13720000": {
     "in_zone": true,
@@ -11664,8 +11664,8 @@
     "last_alert_at": 0.0
   },
   "TSLAXUSD|demand|312.45000000|312.65000000": {
-    "in_zone": false,
-    "last_alert_at": 1785744184.865883
+    "in_zone": true,
+    "last_alert_at": 1785754943.628944
   },
   "SOXLBUSD|demand|111.25000000|112.35000000": {
     "in_zone": false,
@@ -11693,7 +11693,7 @@
   },
   "AVGO/USDT:USDT|demand|387.10000000|387.43000000": {
     "in_zone": true,
-    "last_alert_at": 1785752510.6958084
+    "last_alert_at": 1785754943.8670037
   },
   "NBIS/USDT:USDT|supply|207.04000000|214.62000000": {
     "in_zone": false,
@@ -11794,5 +11794,13 @@
   "SLVONUSD|demand|52.51000000|52.80000000": {
     "in_zone": true,
     "last_alert_at": 1785753705.5733342
+  },
+  "AKE/USDT|demand|0.00417820|0.00430490": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "KAITO/USDT|demand|0.93340000|0.94070000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
   }
 }
