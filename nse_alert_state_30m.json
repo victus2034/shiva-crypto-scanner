@@ -51661,7 +51661,7 @@
     "last_attempt_at": 0.0
   },
   "INDIAMART.NS|supply|1824.6000|1830.8000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1785735737.0771375,
     "last_attempt_at": 1785735737.0771375
   },
@@ -52957,8 +52957,8 @@
   },
   "LUPIN.NS|demand|2383.3000|2388.3000": {
     "in_zone": true,
-    "last_alert_at": 1785734524.415951,
-    "last_attempt_at": 1785734524.415951
+    "last_alert_at": 1785736953.9353232,
+    "last_attempt_at": 1785736953.9353232
   },
   "OIL.NS|supply|446.5000|457.7500": {
     "in_zone": false,
@@ -54585,9 +54585,9 @@
     "last_attempt_at": 1785729742.3930268
   },
   "ABB.NS|supply|7459.5000|7484.0000": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1785736953.1891482,
+    "last_attempt_at": 1785736953.1891482
   },
   "APLAPOLLO.NS|demand|1805.0000|1812.5000": {
     "in_zone": false,
@@ -54685,9 +54685,9 @@
     "last_attempt_at": 0.0
   },
   "KEI.NS|supply|5051.0000|5078.5000": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1785736953.5022683,
+    "last_attempt_at": 1785736953.5022683
   },
   "PFOCUS.NS|demand|276.0100|280.7400": {
     "in_zone": false,
@@ -54755,7 +54755,7 @@
     "last_attempt_at": 0.0
   },
   "PIIND.NS|supply|2846.0000|2854.6001": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1785734524.620136,
     "last_attempt_at": 1785734524.620136
   },
@@ -54765,6 +54765,21 @@
     "last_attempt_at": 0.0
   },
   "RAILTEL.NS|demand|283.8500|284.5000": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "ELGIEQUIP.NS|supply|605.1000|606.5000": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "HOMEFIRST.NS|demand|1171.4000|1189.7000": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "PVRINOX.NS|demand|938.5000|940.1000": {
     "in_zone": false,
     "last_alert_at": 0.0,
     "last_attempt_at": 0.0
