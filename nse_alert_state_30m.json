@@ -52591,7 +52591,7 @@
     "last_attempt_at": 0.0
   },
   "RHIM.NS|supply|415.5000|418.1500": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1785738116.6673896,
     "last_attempt_at": 1785738116.6673896
   },
@@ -54170,7 +54170,7 @@
     "last_attempt_at": 0.0
   },
   "COALINDIA.NS|supply|416.8000|418.2000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1785735736.4539273,
     "last_attempt_at": 1785735736.4539273
   },
@@ -54360,7 +54360,7 @@
     "last_attempt_at": 0.0
   },
   "EXIDEIND.NS|supply|456.0000|461.0000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1785738116.4047577,
     "last_attempt_at": 1785738116.4047577
   },
@@ -54460,9 +54460,9 @@
     "last_attempt_at": 0.0
   },
   "COALINDIA.NS|demand|410.4500|412.7500": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1785739313.9587672,
+    "last_attempt_at": 1785739313.9587672
   },
   "COROMANDEL.NS|demand|2026.1000|2051.2000": {
     "in_zone": false,
