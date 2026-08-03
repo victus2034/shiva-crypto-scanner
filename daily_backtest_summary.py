@@ -349,8 +349,7 @@ def build_summary(
     if records.empty:
         return (
             f"{header}\n\n"
-            "No delivered NSE 30m zone alerts found for this date.\n"
-            "If alerts were sent, check that nse_alert_records_30m.jsonl is being committed."
+            "No alerts recorded."
         )
 
     side_counts = records["side"].value_counts()
@@ -372,44 +371,36 @@ def build_summary(
 
     lines = [
         header,
-        "",
-        f"Alerts: {len(records)} | Stocks: {records['symbol'].nunique()}",
-        f"BUY/SELL: {buy_count} / {sell_count}",
+        f"Alerts {len(records)} | Stocks {records['symbol'].nunique()} | Tradable {tradable}",
+        f"BUY {buy_count} | SELL {sell_count}",
         rating_line,
-        f"Tradable score >=5: {tradable}",
         "",
-        f"Completed trades: {completed}",
-        f"Result: {format_r(net_r) if completed else 'No mature result yet'}",
-        f"Win/BE/SL: {wins} / {breakeven} / {stops}",
-        "",
-        "Pending / no trade:",
-        (
-            f"Immature: {immature} | Zone not touched: {not_touched} | "
-            f"Cooldown blocked: {cooldown_blocked}"
-        ),
+        f"Closed {completed} | Result {format_r(net_r) if completed else 'waiting'}",
+        f"Win {wins} | BE {breakeven} | SL {stops}",
+        f"Pending: immature {immature} | no-touch {not_touched} | cooldown {cooldown_blocked}",
     ]
     if data_missing:
-        lines.append(f"Data missing: {data_missing}")
+        lines.append(f"Data missing {data_missing}")
     if data_failures:
-        lines.append(f"Data failures: {len(data_failures)}")
+        lines.append(f"Data failures {len(data_failures)}")
 
     best = best_symbol_line(filled, ascending=False)
     worst = best_symbol_line(filled, ascending=True)
     if best:
-        lines.extend(["", f"Best: {best}"])
+        lines.extend(["", f"Best {best}"])
     if worst:
-        lines.append(f"Worst: {worst}")
+        lines.append(f"Worst {worst}")
 
-    lines.extend(["", "Verdict:", verdict(completed, net_r, wins, stops)])
+    lines.extend(["", f"Verdict: {verdict(completed, net_r, wins, stops)}"])
     return "\n".join(lines)
 
 
 def format_rating_line(records: pd.DataFrame) -> str:
     ratings = pd.to_numeric(records["rating"], errors="coerce").dropna()
     if ratings.empty:
-        return "Scores: not recorded yet"
+        return "Scores: none"
     counts = ratings.astype(int).value_counts().sort_index(ascending=False)
-    return "Scores: " + " | ".join(f"{score}/10 = {count}" for score, count in counts.items())
+    return "Scores: " + " | ".join(f"{score}/10 {count}" for score, count in counts.items())
 
 
 def format_r(value: float) -> str:
@@ -429,12 +420,12 @@ def best_symbol_line(filled: pd.DataFrame, ascending: bool) -> str:
 
 def verdict(completed: int, net_r: float, wins: int, stops: int) -> str:
     if completed < 5:
-        return "Small sample. Keep tracking, do not judge from this day."
+        return "wait for mature data"
     if net_r > 0 and wins >= stops:
-        return "Positive day. Still confirm with more sessions."
+        return "positive"
     if net_r <= 0:
-        return "Weak day. Reduce confidence in similar setups."
-    return "Mixed day. Review sector/session context before trusting it."
+        return "weak"
+    return "mixed"
 
 
 def send_discord_message(message: str) -> None:
