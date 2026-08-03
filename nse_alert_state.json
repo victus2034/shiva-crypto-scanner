@@ -24262,9 +24262,9 @@
     "last_attempt_at": 0.0
   },
   "HEROMOTOCO.NS|supply|5460.0000|5483.5000": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1785729140.0412705,
+    "last_attempt_at": 1785729140.0412705
   },
   "HEROMOTOCO.NS|demand|4672.5000|4785.7998": {
     "in_zone": false,
@@ -25218,8 +25218,8 @@
   },
   "PETRONET.NS|supply|280.3500|282.8000": {
     "in_zone": true,
-    "last_alert_at": 1785489180.3178167,
-    "last_attempt_at": 1785489180.3178167
+    "last_alert_at": 1785729140.295589,
+    "last_attempt_at": 1785729140.295589
   },
   "PFIZER.NS|demand|4502.6001|4594.8999": {
     "in_zone": false,
@@ -25542,7 +25542,7 @@
     "last_attempt_at": 0.0
   },
   "AAVAS.NS|demand|1352.2000|1371.2000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1785484356.0402792,
     "last_attempt_at": 1785484356.0402792
   },
@@ -25807,7 +25807,7 @@
     "last_attempt_at": 0.0
   },
   "NATCOPHARM.NS|demand|912.2000|920.0000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1785487960.0315847,
     "last_attempt_at": 1785487960.0315847
   },
@@ -25872,11 +25872,21 @@
     "last_attempt_at": 0.0
   },
   "RPOWER.NS|demand|23.1500|23.6400": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1785484356.295511,
     "last_attempt_at": 1785484356.295511
   },
   "SJVN.NS|demand|66.8200|67.3500": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "ASHOKLEY.NS|supply|212.3900|214.0000": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "IKS.NS|demand|1738.0000|1759.8000": {
     "in_zone": false,
     "last_alert_at": 0.0,
     "last_attempt_at": 0.0
