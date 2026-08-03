@@ -11904,7 +11904,7 @@
     "last_alert_at": 1785783737.1358504
   },
   "XMRUSD|demand|360.12000000|360.81000000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1785782505.390459
   },
   "DEXE/USDT|demand|2.11930000|2.16490000": {
@@ -11940,6 +11940,10 @@
     "last_alert_at": 0.0
   },
   "FILUSD|supply|0.72400000|0.73700000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "INTCBUSD|demand|85.99000000|87.47000000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
