@@ -4,6 +4,7 @@ import argparse
 import json
 import os
 import time
+from datetime import datetime, time as datetime_time
 from pathlib import Path
 from zoneinfo import ZoneInfo
 
@@ -30,6 +31,7 @@ TIMEFRAME_SETTINGS = {
 
 ENTRY_WAIT_BARS = 3
 MAX_HOLD_BARS = 24
+NSE_BACKTEST_CLOSE_CUTOFF = datetime_time(15, 10)
 FIXED_STOP_PCT = 0.5
 TARGET_1_R = 1.0
 TARGET_2_R = 2.0
@@ -180,21 +182,56 @@ def run_backtest(alerts: pd.DataFrame, frames: dict[str, pd.DataFrame]) -> tuple
         if event_index < 0:
             rows.append(unfilled(alert, "alert_before_data"))
             continue
-        if event_index + MAX_HOLD_BARS >= len(frame):
+
+        tracking_end_index, close_window_mature = same_day_tracking_end(frame, event_time)
+        if not close_window_mature:
             rows.append(unfilled(alert, "immature"))
             continue
+        if tracking_end_index is None or tracking_end_index <= event_index:
+            rows.append(unfilled(alert, "zone_not_touched"))
+            continue
 
-        rows.append(simulate_alert(frame, alert, event_index))
+        rows.append(simulate_alert(frame, alert, event_index, tracking_end_index))
 
     results = pd.DataFrame(rows)
     return apply_same_day_zone_cooldown(results)
 
 
-def simulate_alert(frame: pd.DataFrame, alert: dict, event_index: int) -> dict:
+def same_day_tracking_end(
+    frame: pd.DataFrame,
+    event_time: pd.Timestamp,
+) -> tuple[int | None, bool]:
+    """Return the last same-day candle allowed for NSE backtest evaluation."""
+    event_time = event_time.tz_convert(IST)
+    cutoff = pd.Timestamp(
+        datetime.combine(event_time.date(), NSE_BACKTEST_CLOSE_CUTOFF),
+        tz=IST,
+    )
+    now_ist = pd.Timestamp.now(tz=IST)
+    if event_time.date() == now_ist.date() and now_ist < cutoff:
+        return None, False
+
+    same_day = frame.index.normalize() == event_time.normalize()
+    before_cutoff = frame.index <= cutoff
+    positions = [
+        index for index, keep in enumerate(same_day & before_cutoff)
+        if keep
+    ]
+    if not positions:
+        return None, True
+    return positions[-1], True
+
+
+def simulate_alert(
+    frame: pd.DataFrame,
+    alert: dict,
+    event_index: int,
+    tracking_end_index: int,
+) -> dict:
     side = alert["side"]
     direction = 1.0 if side == "long" else -1.0
     entry_price = body_entry_price(frame, alert, event_index)
-    entry_index = find_entry(frame, event_index, entry_price)
+    entry_index = find_entry(frame, event_index, entry_price, tracking_end_index)
     if entry_index is None:
         return unfilled(alert, "zone_not_touched")
 
@@ -212,7 +249,7 @@ def simulate_alert(frame: pd.DataFrame, alert: dict, event_index: int) -> dict:
     )
     cost_r = fee_cover_offset / risk
 
-    end_index = min(entry_index + MAX_HOLD_BARS, len(frame) - 1)
+    end_index = tracking_end_index
     target_1_hit = False
     target_2_hit = False
     stopped = False
@@ -347,8 +384,13 @@ def original_stop_price(alert: dict) -> float:
     return float(alert["level"])
 
 
-def find_entry(frame: pd.DataFrame, event_index: int, entry_price: float) -> int | None:
-    end_index = min(event_index + ENTRY_WAIT_BARS, len(frame) - 1)
+def find_entry(
+    frame: pd.DataFrame,
+    event_index: int,
+    entry_price: float,
+    tracking_end_index: int,
+) -> int | None:
+    end_index = min(event_index + ENTRY_WAIT_BARS, tracking_end_index)
     for index in range(event_index + 1, end_index + 1):
         if float(frame["low"].iloc[index]) <= entry_price <= float(frame["high"].iloc[index]):
             return index
