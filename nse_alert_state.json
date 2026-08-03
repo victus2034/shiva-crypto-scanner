@@ -23042,9 +23042,9 @@
     "last_attempt_at": 0.0
   },
   "ACC.NS|supply|1389.0000|1395.6000": {
-    "in_zone": false,
-    "last_alert_at": 1785307946.7078414,
-    "last_attempt_at": 1785307946.7078414
+    "in_zone": true,
+    "last_alert_at": 1785735154.943717,
+    "last_attempt_at": 1785735154.943717
   },
   "ACC.NS|demand|1297.7000|1303.2000": {
     "in_zone": false,
@@ -25887,6 +25887,11 @@
     "last_attempt_at": 0.0
   },
   "IKS.NS|demand|1738.0000|1759.8000": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "INDIGO.NS|supply|5926.0000|5959.0000": {
     "in_zone": false,
     "last_alert_at": 0.0,
     "last_attempt_at": 0.0
