@@ -12252,7 +12252,7 @@
     "last_alert_at": 0.0
   },
   "TRUMP/USDT|demand|1.45500000|1.46000000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1785840107.0016794
   },
   "ADAUSD|demand|0.19120000|0.19220000": {
@@ -12312,8 +12312,8 @@
     "last_alert_at": 0.0
   },
   "ALGO/USDT|supply|0.09148000|0.09175000": {
-    "in_zone": false,
-    "last_alert_at": 1785826931.0770826
+    "in_zone": true,
+    "last_alert_at": 1785841334.9457328
   },
   "PENGU/USDT|supply|0.00620200|0.00623400": {
     "in_zone": false,
@@ -12948,6 +12948,10 @@
     "last_alert_at": 0.0
   },
   "ALGO/USDT|demand|0.08866000|0.08909000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "AMZNXUSD|supply|281.50000000|281.90000000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
