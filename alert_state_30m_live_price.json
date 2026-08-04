@@ -12184,8 +12184,8 @@
     "last_alert_at": 0.0
   },
   "UNIUSD|supply|3.93400000|3.95100000": {
-    "in_zone": false,
-    "last_alert_at": 1785824511.1596768
+    "in_zone": true,
+    "last_alert_at": 1785871318.5191066
   },
   "APTUSD|supply|0.57740000|0.57900000": {
     "in_zone": true,
@@ -13112,6 +13112,10 @@
     "last_alert_at": 0.0
   },
   "OPENAI/USDT:USDT|demand|115.16000000|115.65000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "DOGEUSD|demand|0.06983000|0.07003000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
