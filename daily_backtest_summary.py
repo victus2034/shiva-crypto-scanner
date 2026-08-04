@@ -484,6 +484,7 @@ def build_summary(
     filled = results[results["filled"] == True].copy() if not results.empty else pd.DataFrame()  # noqa: E712
     outcome_counts = results["outcome"].value_counts() if not results.empty else pd.Series(dtype=int)
     completed = len(filled)
+    open_count = max(0, len(results) - completed) if not results.empty else 0
     net_r = pd.to_numeric(filled.get("net_realized_r", pd.Series(dtype=float)), errors="coerce").sum()
     wins = int(outcome_counts.get("target_2r", 0))
     breakeven = int(outcome_counts.get("cost_to_cost", 0))
@@ -500,7 +501,7 @@ def build_summary(
         "",
         f"Closed {completed} | Result {format_r(net_r) if completed else 'waiting'}",
         f"Win {wins} | BE {breakeven} | SL {stops}",
-        f"Pending: immature {immature} | no-touch {not_touched} | cooldown {cooldown_blocked}",
+        f"Open {open_count} | wait {immature} | no entry {not_touched} | duplicate {cooldown_blocked}",
     ]
     if data_missing:
         lines.append(f"Data missing {data_missing}")
@@ -523,7 +524,12 @@ def format_rating_line(records: pd.DataFrame) -> str:
     if ratings.empty:
         return "Scores: none"
     counts = ratings.astype(int).value_counts().sort_index(ascending=False)
-    return "Scores: " + " | ".join(f"{score}/10 {count}" for score, count in counts.items())
+    high_scores = " | ".join(f"{score}/10 {int(counts.get(score, 0))}" for score in range(10, 5, -1))
+    low_scores = " | ".join(f"{score}/10 {int(counts.get(score, 0))}" for score in range(5, 0, -1))
+    unrated = int(records["rating"].isna().sum())
+    if unrated:
+        low_scores = f"{low_scores} | unrated {unrated}"
+    return f"Scores: {high_scores}\n{low_scores}"
 
 
 def format_r(value: float) -> str:

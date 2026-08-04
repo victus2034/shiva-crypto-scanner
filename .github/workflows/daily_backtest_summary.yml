@@ -6,9 +6,10 @@ on:
       timeframe:
         description: "NSE timeframe to summarize"
         required: false
-        default: "30m"
+        default: "both"
         type: choice
         options:
+          - "both"
           - "30m"
           - "4h"
       date:
@@ -53,9 +54,17 @@ jobs:
           INPUT_DATE: ${{ github.event.inputs.date }}
           INPUT_TIMEFRAME: ${{ github.event.inputs.timeframe }}
         run: |
-          TIMEFRAME="${INPUT_TIMEFRAME:-30m}"
-          if [ -n "$INPUT_DATE" ]; then
-            python daily_backtest_summary.py --timeframe "$TIMEFRAME" --date "$INPUT_DATE"
+          TIMEFRAME="${INPUT_TIMEFRAME:-both}"
+          run_summary() {
+            if [ -n "$INPUT_DATE" ]; then
+              python daily_backtest_summary.py --timeframe "$1" --date "$INPUT_DATE"
+            else
+              python daily_backtest_summary.py --timeframe "$1"
+            fi
+          }
+          if [ "$TIMEFRAME" = "both" ]; then
+            run_summary "30m"
+            run_summary "4h"
           else
-            python daily_backtest_summary.py --timeframe "$TIMEFRAME"
+            run_summary "$TIMEFRAME"
           fi
