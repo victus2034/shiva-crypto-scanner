@@ -1,0 +1,45 @@
+name: Shiva Daily Astrology
+
+on:
+  schedule:
+    # GitHub Actions uses UTC. 01:30 UTC = 07:00 IST.
+    - cron: "30 1 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: shiva-daily-astrology
+  cancel-in-progress: false
+
+jobs:
+  daily-briefing:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+
+      - name: Install astrology dependency
+        run: npm ci
+
+      - name: Check private Discord webhook
+        env:
+          DISCORD_ASTROLOGY_WEBHOOK_URL: ${{ secrets.DISCORD_ASTROLOGY_WEBHOOK_URL }}
+        run: |
+          if [ -z "$DISCORD_ASTROLOGY_WEBHOOK_URL" ]; then
+            echo "::error::DISCORD_ASTROLOGY_WEBHOOK_URL is not configured."
+            exit 1
+          fi
+
+      - name: Send Shiva's daily astrology briefing
+        env:
+          DISCORD_ASTROLOGY_WEBHOOK_URL: ${{ secrets.DISCORD_ASTROLOGY_WEBHOOK_URL }}
+        run: npm run astrology

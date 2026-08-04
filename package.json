@@ -1,0 +1,12 @@
+{
+  "name": "shiva-crypto-scanner-astrology",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Isolated daily Vedic astrology briefing for Shiva's private Discord channel.",
+  "scripts": {
+    "astrology": "node daily_astrology.js"
+  },
+  "dependencies": {
+    "sweph": "2.10.3-7"
+  }
+}
