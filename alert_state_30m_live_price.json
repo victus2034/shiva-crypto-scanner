@@ -10388,8 +10388,8 @@
     "last_alert_at": 0.0
   },
   "EWYBUSD|supply|167.45000000|167.85000000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1785846108.3483324
   },
   "ZAMA/USDT|supply|0.05511000|0.05581000": {
     "in_zone": false,
@@ -12976,8 +12976,8 @@
     "last_alert_at": 0.0
   },
   "ESP/USDT|demand|0.06134000|0.06150000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1785846108.1285
   },
   "ATOM/USDT|demand|1.35900000|1.36500000": {
     "in_zone": false,
@@ -12996,6 +12996,10 @@
     "last_alert_at": 0.0
   },
   "SLVONUSD|demand|53.02000000|53.56000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "ONDOUSD|demand|0.36500000|0.36660000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
