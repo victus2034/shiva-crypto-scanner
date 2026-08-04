@@ -12252,8 +12252,8 @@
     "last_alert_at": 0.0
   },
   "TRUMP/USDT|demand|1.45500000|1.46000000": {
-    "in_zone": false,
-    "last_alert_at": 1785840107.0016794
+    "in_zone": true,
+    "last_alert_at": 1785862940.3043802
   },
   "ADAUSD|demand|0.19120000|0.19220000": {
     "in_zone": false,
@@ -13044,7 +13044,11 @@
     "last_alert_at": 0.0
   },
   "METAXUSD|demand|577.00000000|579.20000000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1785861715.8251615
+  },
+  "LA/USDT|demand|0.04553000|0.04624000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
   }
 }
