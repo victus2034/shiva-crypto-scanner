@@ -52156,7 +52156,7 @@
     "last_attempt_at": 0.0
   },
   "MFSL.NS|supply|1544.1000|1549.9000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1785817314.5749948,
     "last_attempt_at": 1785817314.5749948
   },
@@ -53036,7 +53036,7 @@
     "last_attempt_at": 0.0
   },
   "AUROPHARMA.NS|demand|1540.2000|1543.3000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1785816144.8889706,
     "last_attempt_at": 1785816144.8889706
   },
@@ -54345,9 +54345,9 @@
     "last_attempt_at": 0.0
   },
   "ANANDRATHI.NS|demand|2031.2000|2037.1000": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1785819743.16927,
+    "last_attempt_at": 1785819743.16927
   },
   "MAHABANK.NS|demand|79.1200|79.2400": {
     "in_zone": false,
@@ -54610,9 +54610,9 @@
     "last_attempt_at": 1785732130.161245
   },
   "CGPOWER.NS|supply|876.0000|878.8000": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1785819743.3991582,
+    "last_attempt_at": 1785819743.3991582
   },
   "GRSE.NS|supply|2619.6001|2632.0000": {
     "in_zone": false,
@@ -54965,7 +54965,7 @@
     "last_attempt_at": 0.0
   },
   "RRKABEL.NS|demand|2593.0000|2600.0000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1785818522.346092,
     "last_attempt_at": 1785818522.346092
   },
@@ -55205,7 +55205,7 @@
     "last_attempt_at": 1785817314.3778386
   },
   "JKCEMENT.NS|supply|5579.5000|5591.5000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1785818520.324331,
     "last_attempt_at": 1785818520.324331
   },
@@ -55285,7 +55285,7 @@
     "last_attempt_at": 0.0
   },
   "LINDEINDIA.NS|supply|7211.0000|7245.0000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1785818520.8574884,
     "last_attempt_at": 1785818520.8574884
   },
@@ -55293,5 +55293,20 @@
     "in_zone": true,
     "last_alert_at": 1785818521.414966,
     "last_attempt_at": 1785818521.414966
+  },
+  "GRAPHITE.NS|demand|654.3500|660.3000": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "HONAUT.NS|supply|38820.0000|38915.0000": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "JKTYRE.NS|supply|415.7000|418.2500": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
   }
 }
