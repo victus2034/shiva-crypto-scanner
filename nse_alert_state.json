@@ -23687,9 +23687,9 @@
     "last_attempt_at": 0.0
   },
   "CASTROLIND.NS|supply|188.2500|190.1000": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1785815546.6914814,
+    "last_attempt_at": 1785815546.6914814
   },
   "CASTROLIND.NS|demand|181.2700|182.0100": {
     "in_zone": false,
@@ -24872,7 +24872,7 @@
     "last_attempt_at": 0.0
   },
   "M&MFIN.NS|supply|404.0000|409.6500": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1785749575.5961888,
     "last_attempt_at": 1785749575.5961888
   },
@@ -25403,8 +25403,8 @@
   },
   "JSWENERGY.NS|supply|568.0500|572.5000": {
     "in_zone": true,
-    "last_alert_at": 1785747180.6040022,
-    "last_attempt_at": 1785747180.6040022
+    "last_alert_at": 1785815547.971025,
+    "last_attempt_at": 1785815547.971025
   },
   "JSWSTEEL.NS|supply|1266.9000|1279.3000": {
     "in_zone": true,
@@ -25673,8 +25673,8 @@
   },
   "FORTIS.NS|demand|927.9000|940.0000": {
     "in_zone": true,
-    "last_alert_at": 1785750739.8307114,
-    "last_attempt_at": 1785750739.8307114
+    "last_alert_at": 1785815546.9197178,
+    "last_attempt_at": 1785815546.9197178
   },
   "GAIL.NS|demand|167.3800|169.8800": {
     "in_zone": false,
@@ -25682,9 +25682,9 @@
     "last_attempt_at": 0.0
   },
   "GRSE.NS|demand|2536.1001|2555.0000": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1785815547.7783532,
+    "last_attempt_at": 1785815547.7783532
   },
   "GMDCLTD.NS|demand|551.1000|557.9500": {
     "in_zone": false,
@@ -25782,7 +25782,7 @@
     "last_attempt_at": 0.0
   },
   "LUPIN.NS|demand|2340.3000|2358.8000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1785742380.5359666,
     "last_attempt_at": 1785742380.5359666
   },
@@ -25908,10 +25908,40 @@
   },
   "APOLLOHOSP.NS|demand|8745.0000|8791.0000": {
     "in_zone": true,
-    "last_alert_at": 1785744788.2029848,
-    "last_attempt_at": 1785744788.2029848
+    "last_alert_at": 1785815546.4428864,
+    "last_attempt_at": 1785815546.4428864
   },
   "GPIL.NS|demand|230.5500|234.3500": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "ARE&M.NS|supply|1037.0000|1057.8000": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "BATAINDIA.NS|supply|916.2500|957.5000": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "CARBORUNIV.NS|supply|1219.6000|1304.6000": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "GRSE.NS|supply|2635.0000|2659.0000": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "IGL.NS|supply|179.7200|182.0200": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "KIRLOSENG.NS|supply|2278.0000|2297.0000": {
     "in_zone": false,
     "last_alert_at": 0.0,
     "last_attempt_at": 0.0
