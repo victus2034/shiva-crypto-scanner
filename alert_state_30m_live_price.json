@@ -10256,8 +10256,8 @@
     "last_alert_at": 0.0
   },
   "SLVONUSD|supply|53.75000000|53.87000000": {
-    "in_zone": false,
-    "last_alert_at": 1785705713.5597992
+    "in_zone": true,
+    "last_alert_at": 1785818505.4503891
   },
   "DOTUSD|supply|0.77700000|0.78000000": {
     "in_zone": false,
@@ -12156,8 +12156,8 @@
     "last_alert_at": 0.0
   },
   "ETHUSD|supply|1871.60000000|1875.85000000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1785818505.2351356
   },
   "BTW/USDT|demand|0.09230000|0.09803000": {
     "in_zone": false,
@@ -12222,5 +12222,9 @@
   "AERO/USDT|demand|0.39830000|0.39990000": {
     "in_zone": false,
     "last_alert_at": 0.0
+  },
+  "OPENAI/USDT:USDT|supply|114.38000000|114.74000000": {
+    "in_zone": true,
+    "last_alert_at": 1785818505.6704092
   }
 }
