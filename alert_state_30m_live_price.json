@@ -13028,8 +13028,8 @@
     "last_alert_at": 0.0
   },
   "STRK/USDT|supply|0.02494000|0.02510000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1785865308.7559268
   },
   "FLNC/USDT:USDT|supply|15.89000000|16.10000000": {
     "in_zone": false,
@@ -13050,5 +13050,17 @@
   "LA/USDT|demand|0.04553000|0.04624000": {
     "in_zone": false,
     "last_alert_at": 0.0
+  },
+  "FARTCOIN/USDT|supply|0.13190000|0.13310000": {
+    "in_zone": true,
+    "last_alert_at": 1785865308.4603024
+  },
+  "LABUSD|demand|0.13620000|0.13760000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "OPENAI/USDT:USDT|supply|116.85000000|116.96000000": {
+    "in_zone": true,
+    "last_alert_at": 1785865308.9670665
   }
 }
