@@ -13000,8 +13000,8 @@
     "last_alert_at": 0.0
   },
   "ONDOUSD|demand|0.36500000|0.36660000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1785858105.9543977
   },
   "TSLAXUSD|supply|326.00000000|327.00000000": {
     "in_zone": false,
@@ -13018,5 +13018,9 @@
   "ZAMA/USDT|demand|0.04836000|0.04863000": {
     "in_zone": true,
     "last_alert_at": 1785854507.1505666
+  },
+  "VVV/USDT|demand|11.90300000|12.00500000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
   }
 }
