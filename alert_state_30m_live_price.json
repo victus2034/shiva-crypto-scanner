@@ -12336,7 +12336,7 @@
     "last_alert_at": 1785838904.061353
   },
   "PEOPLE/USDT|demand|0.00690300|0.00693700": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1785842503.8436766
   },
   "BANK/USDT|supply|0.04921000|0.05037000": {
@@ -12956,6 +12956,10 @@
     "last_alert_at": 0.0
   },
   "AAVEUSD|supply|93.00000000|93.27000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "PEOPLE/USDT|supply|0.00708400|0.00716900": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
