@@ -12013,7 +12013,7 @@
   },
   "MNT/USDT|demand|0.39320000|0.39540000": {
     "in_zone": true,
-    "last_alert_at": 1785822112.783117
+    "last_alert_at": 1785824511.3616662
   },
   "STRK/USDT|supply|0.02481000|0.02493000": {
     "in_zone": true,
@@ -12024,7 +12024,7 @@
     "last_alert_at": 0.0
   },
   "HYPEUSD|supply|54.65000000|54.84000000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1785822112.4600112
   },
   "RE/USDT|supply|0.41399000|0.41900000": {
@@ -12184,8 +12184,8 @@
     "last_alert_at": 0.0
   },
   "UNIUSD|supply|3.93400000|3.95100000": {
-    "in_zone": false,
-    "last_alert_at": 1785811310.136827
+    "in_zone": true,
+    "last_alert_at": 1785824511.1596768
   },
   "APTUSD|supply|0.57740000|0.57900000": {
     "in_zone": true,
@@ -12288,6 +12288,10 @@
     "last_alert_at": 0.0
   },
   "GALA/USDT|demand|0.00179100|0.00179400": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "APTUSD|demand|0.56930000|0.57020000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
