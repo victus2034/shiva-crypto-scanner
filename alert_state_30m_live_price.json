@@ -12324,7 +12324,7 @@
     "last_alert_at": 1785860506.1924682
   },
   "ICP/USDT|supply|2.11800000|2.12500000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1785877347.60876
   },
   "MNT/USDT|demand|0.39150000|0.39420000": {
@@ -13164,6 +13164,18 @@
     "last_alert_at": 0.0
   },
   "ETHFI/USDT|demand|0.35650000|0.35930000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "AKE/USDT|demand|0.00406000|0.00410400": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "AAVEUSD|demand|89.61000000|89.94000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "DELL/USDT:USDT|supply|473.73000000|477.07000000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
