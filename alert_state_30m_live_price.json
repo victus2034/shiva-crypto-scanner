@@ -11869,7 +11869,7 @@
   },
   "OPENAI/USDT:USDT|demand|113.32000000|113.53000000": {
     "in_zone": true,
-    "last_alert_at": 1785800506.5100174
+    "last_alert_at": 1785802904.6319628
   },
   "1000BONKUSD|demand|0.00279600|0.00280700": {
     "in_zone": false,
@@ -12052,11 +12052,11 @@
     "last_alert_at": 0.0
   },
   "WLD/USDT|supply|0.32440000|0.32650000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1785802904.4588811
   },
   "FARTCOIN/USDT|supply|0.13190000|0.13330000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1785801745.2153165
   },
   "CRCLXUSD|supply|61.07000000|61.58000000": {
@@ -12148,6 +12148,10 @@
     "last_alert_at": 0.0
   },
   "SLVONUSD|supply|52.82000000|52.95000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "PUMPUSD|supply|0.00224400|0.00226100": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
