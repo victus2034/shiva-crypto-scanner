@@ -12012,7 +12012,7 @@
     "last_alert_at": 0.0
   },
   "MNT/USDT|demand|0.39320000|0.39540000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1785853315.623398
   },
   "STRK/USDT|supply|0.02481000|0.02493000": {
@@ -12952,7 +12952,7 @@
     "last_alert_at": 0.0
   },
   "AMZNXUSD|supply|281.50000000|281.90000000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1785853315.8150322
   },
   "AAVEUSD|supply|93.00000000|93.27000000": {
@@ -12964,7 +12964,7 @@
     "last_alert_at": 0.0
   },
   "ETHUSD|demand|1852.50000000|1856.30000000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1785852129.8379447
   },
   "WLD/USDT|demand|0.31630000|0.32160000": {
@@ -13013,6 +13013,10 @@
   },
   "TRX/USDT|supply|0.33000000|0.33049000": {
     "in_zone": true,
-    "last_alert_at": 1785852130.845422
+    "last_alert_at": 1785854507.50807
+  },
+  "ZAMA/USDT|demand|0.04836000|0.04863000": {
+    "in_zone": true,
+    "last_alert_at": 1785854507.1505666
   }
 }
