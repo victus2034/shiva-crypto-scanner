@@ -54311,8 +54311,8 @@
   },
   "OBEROIRLTY.NS|demand|1804.1000|1811.0000": {
     "in_zone": true,
-    "last_alert_at": 1785818521.6086671,
-    "last_attempt_at": 1785818521.6086671
+    "last_alert_at": 1785820921.3241067,
+    "last_attempt_at": 1785820921.3241067
   },
   "APOLLOTYRE.NS|demand|422.4000|422.9000": {
     "in_zone": false,
@@ -54610,7 +54610,7 @@
     "last_attempt_at": 1785732130.161245
   },
   "CGPOWER.NS|supply|876.0000|878.8000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1785819743.3991582,
     "last_attempt_at": 1785819743.3991582
   },
@@ -55125,9 +55125,9 @@
     "last_attempt_at": 0.0
   },
   "PVRINOX.NS|supply|1146.3000|1151.0000": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1785820921.541875,
+    "last_attempt_at": 1785820921.541875
   },
   "POLYCAB.NS|supply|9123.5000|9143.5000": {
     "in_zone": false,
@@ -55155,7 +55155,7 @@
     "last_attempt_at": 0.0
   },
   "BANKINDIA.NS|supply|140.9500|141.5700": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1785818519.2623212,
     "last_attempt_at": 1785818519.2623212
   },
@@ -55305,6 +55305,26 @@
     "last_attempt_at": 0.0
   },
   "JKTYRE.NS|supply|415.7000|418.2500": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "CHALET.NS|supply|827.0500|828.4500": {
+    "in_zone": true,
+    "last_alert_at": 1785820921.0221255,
+    "last_attempt_at": 1785820921.0221255
+  },
+  "GALLANTT.NS|demand|614.0000|617.9000": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "NATCOPHARM.NS|supply|935.8500|938.8500": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "OLECTRA.NS|supply|1351.0000|1352.9000": {
     "in_zone": false,
     "last_alert_at": 0.0,
     "last_attempt_at": 0.0
