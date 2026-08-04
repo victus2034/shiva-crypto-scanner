@@ -11988,7 +11988,7 @@
     "last_alert_at": 0.0
   },
   "0G/USDT|supply|0.14050000|0.14130000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1785812535.7654204
   },
   "INTCBUSD|supply|93.59000000|94.17000000": {
@@ -12212,6 +12212,14 @@
     "last_alert_at": 0.0
   },
   "DOGEUSD|supply|0.07314000|0.07362000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "ZAMA/USDT|demand|0.04936000|0.04965000": {
+    "in_zone": true,
+    "last_alert_at": 1785816132.0303698
+  },
+  "AERO/USDT|demand|0.39830000|0.39990000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
