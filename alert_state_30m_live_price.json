@@ -11712,7 +11712,7 @@
     "last_alert_at": 1785759709.4447293
   },
   "SOXX/USDT:USDT|supply|522.20000000|523.57000000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1785834132.6002867
   },
   "CRV/USDT|demand|0.19980000|0.20020000": {
@@ -11873,7 +11873,7 @@
   },
   "1000BONKUSD|demand|0.00279600|0.00280700": {
     "in_zone": true,
-    "last_alert_at": 1785832911.7256632
+    "last_alert_at": 1785835304.7318969
   },
   "AAPLXUSD|supply|312.30000000|313.60000000": {
     "in_zone": false,
@@ -11981,7 +11981,7 @@
   },
   "AAPLXUSD|demand|303.30000000|304.15000000": {
     "in_zone": true,
-    "last_alert_at": 1785832912.4305198
+    "last_alert_at": 1785835305.2459357
   },
   "BANK/USDT|demand|0.04033000|0.04150000": {
     "in_zone": false,
@@ -12269,7 +12269,7 @@
   },
   "TAO/USDT|demand|189.20000000|189.80000000": {
     "in_zone": true,
-    "last_alert_at": 1785832911.365802
+    "last_alert_at": 1785835304.3492446
   },
   "GRAMUSD|demand|1.29800000|1.32400000": {
     "in_zone": false,
@@ -12924,6 +12924,10 @@
     "last_alert_at": 0.0
   },
   "ADAUSD|supply|0.19680000|0.19960000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "PAXGUSD|demand|4048.00000000|4051.10000000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
