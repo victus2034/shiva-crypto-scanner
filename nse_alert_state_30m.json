@@ -51997,8 +51997,8 @@
   },
   "KIMS.NS|demand|790.1000|791.5000": {
     "in_zone": true,
-    "last_alert_at": 1785824532.1609147,
-    "last_attempt_at": 1785824532.1609147
+    "last_alert_at": 1785826949.4556427,
+    "last_attempt_at": 1785826949.4556427
   },
   "LTF.NS|supply|318.3000|320.5500": {
     "in_zone": false,
@@ -54346,8 +54346,8 @@
   },
   "ANANDRATHI.NS|demand|2031.2000|2037.1000": {
     "in_zone": true,
-    "last_alert_at": 1785824531.3957946,
-    "last_attempt_at": 1785824531.3957946
+    "last_alert_at": 1785826948.8343537,
+    "last_attempt_at": 1785826948.8343537
   },
   "MAHABANK.NS|demand|79.1200|79.2400": {
     "in_zone": false,
@@ -54751,8 +54751,8 @@
   },
   "NTPC.NS|demand|343.6000|344.0000": {
     "in_zone": true,
-    "last_alert_at": 1785824532.4151862,
-    "last_attempt_at": 1785824532.4151862
+    "last_alert_at": 1785826949.661274,
+    "last_attempt_at": 1785826949.661274
   },
   "PIIND.NS|supply|2846.0000|2854.6001": {
     "in_zone": false,
@@ -54826,8 +54826,8 @@
   },
   "HONAUT.NS|demand|38000.0000|38105.0000": {
     "in_zone": true,
-    "last_alert_at": 1785824531.8420405,
-    "last_attempt_at": 1785824531.8420405
+    "last_alert_at": 1785826949.225719,
+    "last_attempt_at": 1785826949.225719
   },
   "JSWINFRA.NS|demand|311.6000|312.5000": {
     "in_zone": false,
@@ -55295,7 +55295,7 @@
     "last_attempt_at": 1785818521.414966
   },
   "GRAPHITE.NS|demand|654.3500|660.3000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1785825724.7029064,
     "last_attempt_at": 1785825724.7029064
   },
@@ -55315,7 +55315,7 @@
     "last_attempt_at": 1785824531.5985575
   },
   "GALLANTT.NS|demand|614.0000|617.9000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1785825724.479278,
     "last_attempt_at": 1785825724.479278
   },
@@ -55350,6 +55350,11 @@
     "last_attempt_at": 0.0
   },
   "PFOCUS.NS|supply|303.2500|304.4500": {
+    "in_zone": true,
+    "last_alert_at": 1785826949.874766,
+    "last_attempt_at": 1785826949.874766
+  },
+  "DELHIVERY.NS|demand|449.7000|450.5500": {
     "in_zone": false,
     "last_alert_at": 0.0,
     "last_attempt_at": 0.0
