@@ -25807,9 +25807,9 @@
     "last_attempt_at": 0.0
   },
   "NATCOPHARM.NS|demand|912.2000|920.0000": {
-    "in_zone": false,
-    "last_alert_at": 1785487960.0315847,
-    "last_attempt_at": 1785487960.0315847
+    "in_zone": true,
+    "last_alert_at": 1785816751.2081082,
+    "last_attempt_at": 1785816751.2081082
   },
   "NLCINDIA.NS|demand|281.0500|288.0000": {
     "in_zone": false,
@@ -25942,6 +25942,11 @@
     "last_attempt_at": 0.0
   },
   "KIRLOSENG.NS|supply|2278.0000|2297.0000": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "HEROMOTOCO.NS|supply|6346.0000|6388.0000": {
     "in_zone": false,
     "last_alert_at": 0.0,
     "last_attempt_at": 0.0
