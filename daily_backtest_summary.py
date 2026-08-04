@@ -505,7 +505,7 @@ def build_summary(
         format_rating_table(records, results),
     ]
     if immature:
-        lines.append(f"Waiting {immature}")
+        lines.append(f"Still open {immature}")
     if data_missing:
         lines.append(f"Data missing {data_missing}")
     if data_failures:
@@ -527,18 +527,13 @@ def format_rating_table(records: pd.DataFrame, results: pd.DataFrame) -> str:
         return "Rating table: none"
 
     records_by_rating = rating_counts(records)
-    rows = [
-        "| Rating | Alerts | Touch | No Touch | Duplicate | Entries | BE | 0.5R | 1R | 2R | SL | Neither | Decided WR |",
-        "|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|",
-    ]
+    rows = [rating_table_header()]
 
     if results.empty:
         for rating in range(4, 11):
             alerts = records_by_rating.get(rating, 0)
-            rows.append(
-                f"| {rating} | {alerts} | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | N/A |"
-            )
-        return "\n".join(rows)
+            rows.append(rating_table_row(rating, alerts, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "N/A"))
+        return "Rating breakdown\n```text\n" + "\n".join(rows) + "\n```"
 
     result_frame = results.copy()
     result_frame["_rating_bucket"] = pd.to_numeric(
@@ -561,10 +556,51 @@ def format_rating_table(records: pd.DataFrame, results: pd.DataFrame) -> str:
         neither = max(0, entries - one_r - breakeven - stops)
         decided_wr = format_win_rate(one_r, stops)
         rows.append(
-            f"| {rating} | {alerts} | {touch} | {no_touch} | {duplicates} | {entries} | "
-            f"{breakeven} | {half_r} | {one_r} | {two_r} | {stops} | {neither} | {decided_wr} |"
+            rating_table_row(
+                rating,
+                alerts,
+                touch,
+                no_touch,
+                duplicates,
+                entries,
+                breakeven,
+                half_r,
+                one_r,
+                two_r,
+                stops,
+                neither,
+                decided_wr,
+            )
         )
-    return "\n".join(rows)
+    return "Rating breakdown\n```text\n" + "\n".join(rows) + "\n```"
+
+
+def rating_table_header() -> str:
+    return (
+        "Rate  Alert Touch NoTouch Dup Entry BE .5R 1R 2R SL Neither WR"
+    )
+
+
+def rating_table_row(
+    rating: int,
+    alerts: int,
+    touch: int,
+    no_touch: int,
+    duplicate: int,
+    entries: int,
+    breakeven: int,
+    half_r: int,
+    one_r: int,
+    two_r: int,
+    stops: int,
+    neither: int,
+    decided_wr: str,
+) -> str:
+    return (
+        f"{rating:>2}/10 {alerts:>5} {touch:>5} {no_touch:>7} {duplicate:>3} "
+        f"{entries:>5} {breakeven:>2} {half_r:>3} {one_r:>2} {two_r:>2} "
+        f"{stops:>2} {neither:>7} {decided_wr:>6}"
+    )
 
 
 def rating_counts(records: pd.DataFrame) -> dict[int, int]:

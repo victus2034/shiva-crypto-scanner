@@ -1,6 +1,9 @@
 name: Shiva Daily Backtest Summary
 
 on:
+  schedule:
+    # GitHub Actions uses UTC. 10:05 UTC = 15:35 IST, after NSE close.
+    - cron: "5 10 * * 1-5"
   workflow_dispatch:
     inputs:
       timeframe:
