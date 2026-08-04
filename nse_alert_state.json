@@ -25422,7 +25422,7 @@
     "last_attempt_at": 0.0
   },
   "KIMS.NS|demand|778.4000|787.4000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1785832369.5925412,
     "last_attempt_at": 1785832369.5925412
   },
@@ -25792,9 +25792,9 @@
     "last_attempt_at": 1785829949.4752045
   },
   "MSUMI.NS|demand|39.3700|39.7500": {
-    "in_zone": false,
-    "last_alert_at": 1785825175.303453,
-    "last_attempt_at": 1785825175.303453
+    "in_zone": true,
+    "last_alert_at": 1785837150.2704504,
+    "last_attempt_at": 1785837150.2704504
   },
   "MPHASIS.NS|demand|2192.1001|2257.2000": {
     "in_zone": false,
@@ -26005,5 +26005,10 @@
     "in_zone": true,
     "last_alert_at": 1785832369.84723,
     "last_attempt_at": 1785832369.84723
+  },
+  "EIDPARRY.NS|supply|889.4000|913.6000": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
   }
 }
