@@ -478,31 +478,34 @@ def build_summary(
     side_counts = records["side"].value_counts()
     buy_count = int(side_counts.get("long", 0))
     sell_count = int(side_counts.get("short", 0))
-    rating_line = format_rating_line(records)
     tradable = int((pd.to_numeric(records["rating"], errors="coerce") >= 5).sum())
 
     filled = results[results["filled"] == True].copy() if not results.empty else pd.DataFrame()  # noqa: E712
     outcome_counts = results["outcome"].value_counts() if not results.empty else pd.Series(dtype=int)
     completed = len(filled)
-    open_count = max(0, len(results) - completed) if not results.empty else 0
     net_r = pd.to_numeric(filled.get("net_realized_r", pd.Series(dtype=float)), errors="coerce").sum()
-    wins = int(outcome_counts.get("target_2r", 0))
+    wins = int(filled.get("target_1_hit", pd.Series(dtype=bool)).sum()) if not filled.empty else 0
     breakeven = int(outcome_counts.get("cost_to_cost", 0))
     stops = int(outcome_counts.get("stopped", 0))
     immature = int(outcome_counts.get("immature", 0))
     not_touched = int(outcome_counts.get("zone_not_touched", 0))
+    duplicates = int(outcome_counts.get("zone_cooldown", 0))
     data_missing = int(outcome_counts.get("data_missing", 0)) + int(outcome_counts.get("alert_before_data", 0))
+    touched = completed + duplicates
 
     lines = [
         header,
         f"Alerts {len(records)} | Stocks {records['symbol'].nunique()} | Tradable {tradable}",
         f"BUY {buy_count} | SELL {sell_count}",
-        rating_line,
+        f"Touch {touched} | No touch {not_touched} | Duplicate {duplicates}",
         "",
         f"Closed {completed} | Result {format_r(net_r) if completed else 'waiting'}",
-        f"Win {wins} | BE {breakeven} | SL {stops}",
-        f"Open {open_count} | wait {immature} | no entry {not_touched} | duplicate {cooldown_blocked}",
+        f"1R {wins} | BE {breakeven} | SL {stops}",
+        "",
+        format_rating_table(records, results),
     ]
+    if immature:
+        lines.append(f"Waiting {immature}")
     if data_missing:
         lines.append(f"Data missing {data_missing}")
     if data_failures:
@@ -519,17 +522,64 @@ def build_summary(
     return "\n".join(lines)
 
 
-def format_rating_line(records: pd.DataFrame) -> str:
+def format_rating_table(records: pd.DataFrame, results: pd.DataFrame) -> str:
+    if records.empty:
+        return "Rating table: none"
+
+    records_by_rating = rating_counts(records)
+    rows = [
+        "| Rating | Alerts | Touch | No Touch | Duplicate | Entries | BE | 0.5R | 1R | 2R | SL | Neither | Decided WR |",
+        "|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|",
+    ]
+
+    if results.empty:
+        for rating in range(4, 11):
+            alerts = records_by_rating.get(rating, 0)
+            rows.append(
+                f"| {rating} | {alerts} | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | N/A |"
+            )
+        return "\n".join(rows)
+
+    result_frame = results.copy()
+    result_frame["_rating_bucket"] = pd.to_numeric(
+        result_frame["rating"], errors="coerce"
+    ).astype("Int64")
+    for rating in range(4, 11):
+        alerts = records_by_rating.get(rating, 0)
+        rating_results = result_frame[result_frame["_rating_bucket"] == rating]
+        filled = rating_results[rating_results["filled"] == True]  # noqa: E712
+        outcomes = rating_results["outcome"].value_counts()
+        duplicates = int(outcomes.get("zone_cooldown", 0))
+        no_touch = int(outcomes.get("zone_not_touched", 0))
+        entries = len(filled)
+        touch = entries + duplicates
+        breakeven = int(outcomes.get("cost_to_cost", 0))
+        half_r = int((pd.to_numeric(filled.get("mfe_r", pd.Series(dtype=float)), errors="coerce") >= 0.5).sum())
+        one_r = int(filled.get("target_1_hit", pd.Series(dtype=bool)).sum()) if not filled.empty else 0
+        two_r = int(filled.get("target_2_hit", pd.Series(dtype=bool)).sum()) if not filled.empty else 0
+        stops = int(outcomes.get("stopped", 0))
+        neither = max(0, entries - one_r - breakeven - stops)
+        decided_wr = format_win_rate(one_r, stops)
+        rows.append(
+            f"| {rating} | {alerts} | {touch} | {no_touch} | {duplicates} | {entries} | "
+            f"{breakeven} | {half_r} | {one_r} | {two_r} | {stops} | {neither} | {decided_wr} |"
+        )
+    return "\n".join(rows)
+
+
+def rating_counts(records: pd.DataFrame) -> dict[int, int]:
     ratings = pd.to_numeric(records["rating"], errors="coerce").dropna()
     if ratings.empty:
-        return "Scores: none"
-    counts = ratings.astype(int).value_counts().sort_index(ascending=False)
-    high_scores = " | ".join(f"{score}/10 {int(counts.get(score, 0))}" for score in range(10, 5, -1))
-    low_scores = " | ".join(f"{score}/10 {int(counts.get(score, 0))}" for score in range(5, 0, -1))
-    unrated = int(records["rating"].isna().sum())
-    if unrated:
-        low_scores = f"{low_scores} | unrated {unrated}"
-    return f"Scores: {high_scores}\n{low_scores}"
+        return {}
+    counts = ratings.astype(int).value_counts()
+    return {int(score): int(count) for score, count in counts.items() if 4 <= int(score) <= 10}
+
+
+def format_win_rate(wins: int, stops: int) -> str:
+    decided = wins + stops
+    if decided == 0:
+        return "N/A"
+    return f"{wins / decided * 100:.1f}%"
 
 
 def format_r(value: float) -> str:
