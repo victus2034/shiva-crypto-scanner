@@ -13388,8 +13388,8 @@
     "last_alert_at": 0.0
   },
   "ESP/USDT|demand|0.05986000|0.06002000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1785960141.7405393
   },
   "SOXLBUSD|demand|132.20000000|134.85000000": {
     "in_zone": false,
@@ -13676,7 +13676,7 @@
     "last_alert_at": 0.0
   },
   "NVDAXUSD|supply|221.40000000|222.55000000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1785958909.3214293
   },
   "NEARUSD|demand|1.68600000|1.69200000": {
@@ -13700,6 +13700,10 @@
     "last_alert_at": 0.0
   },
   "SNDKBUSD|demand|1368.38000000|1395.88000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "UB/USDT|demand|0.11236000|0.11608000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
