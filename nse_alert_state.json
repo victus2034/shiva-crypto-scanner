@@ -25152,7 +25152,7 @@
     "last_attempt_at": 0.0
   },
   "PGEL.NS|supply|627.9000|634.4000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1785903148.8768916,
     "last_attempt_at": 1785903148.8768916
   },
@@ -25782,7 +25782,7 @@
     "last_attempt_at": 0.0
   },
   "LUPIN.NS|demand|2340.3000|2358.8000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1785901952.7159517,
     "last_attempt_at": 1785901952.7159517
   },
@@ -26032,6 +26032,11 @@
     "last_attempt_at": 0.0
   },
   "RVNL.NS|demand|220.2500|221.2100": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "HINDCOPPER.NS|supply|524.8000|532.2000": {
     "in_zone": false,
     "last_alert_at": 0.0,
     "last_attempt_at": 0.0
