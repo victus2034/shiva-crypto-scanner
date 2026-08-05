@@ -13101,7 +13101,7 @@
   },
   "ASTER/USDT|demand|0.60200000|0.60410000": {
     "in_zone": true,
-    "last_alert_at": 1785912118.118199
+    "last_alert_at": 1785914512.6161904
   },
   "BOME/USDT|demand|0.00056540|0.00056970": {
     "in_zone": false,
@@ -13332,8 +13332,8 @@
     "last_alert_at": 0.0
   },
   "TAO/USDT|demand|194.90000000|195.50000000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1785914512.1018379
   },
   "PENGU/USDT|demand|0.00599100|0.00603100": {
     "in_zone": false,
@@ -13364,8 +13364,8 @@
     "last_alert_at": 0.0
   },
   "JUP/USDT|demand|0.18630000|0.18690000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1785914512.8771663
   },
   "DASH/USDT|demand|31.12000000|31.19000000": {
     "in_zone": true,
@@ -13376,6 +13376,14 @@
     "last_alert_at": 0.0
   },
   "GWEI/USDT|supply|0.01792000|0.01830000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "INJUSD|supply|4.92800000|4.94800000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "SLVONUSD|demand|53.57000000|53.68000000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
