@@ -24772,9 +24772,9 @@
     "last_attempt_at": 0.0
   },
   "LGEINDIA.NS|supply|1584.5000|1593.0000": {
-    "in_zone": false,
-    "last_alert_at": 1785817965.5293863,
-    "last_attempt_at": 1785817965.5293863
+    "in_zone": true,
+    "last_alert_at": 1785923552.7097363,
+    "last_attempt_at": 1785923552.7097363
   },
   "LGEINDIA.NS|demand|1463.1000|1489.1000": {
     "in_zone": false,
@@ -25527,9 +25527,9 @@
     "last_attempt_at": 0.0
   },
   "JUBLPHARMA.NS|demand|916.5000|926.4500": {
-    "in_zone": false,
-    "last_alert_at": 1785747180.829858,
-    "last_attempt_at": 1785747180.829858
+    "in_zone": true,
+    "last_alert_at": 1785923552.5227735,
+    "last_attempt_at": 1785923552.5227735
   },
   "BELRISE.NS|supply|247.0400|252.0000": {
     "in_zone": false,
@@ -26092,6 +26092,11 @@
     "last_attempt_at": 0.0
   },
   "PIRAMALFIN.NS|demand|1970.7000|2016.9000": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "HINDCOPPER.NS|supply|604.4500|617.8000": {
     "in_zone": false,
     "last_alert_at": 0.0,
     "last_attempt_at": 0.0
