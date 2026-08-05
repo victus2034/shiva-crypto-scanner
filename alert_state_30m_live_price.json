@@ -13224,7 +13224,7 @@
     "last_alert_at": 0.0
   },
   "HBAR/USDT|supply|0.07016000|0.07022000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1785961316.867265
   },
   "O/USDT|supply|0.51070000|0.51580000": {
@@ -13509,7 +13509,7 @@
   },
   "AAPLXUSD|supply|312.80000000|314.15000000": {
     "in_zone": true,
-    "last_alert_at": 1785961317.1419046
+    "last_alert_at": 1785963728.4274442
   },
   "MUBUSD|demand|869.50000000|877.05000000": {
     "in_zone": false,
@@ -13704,6 +13704,10 @@
     "last_alert_at": 0.0
   },
   "UB/USDT|demand|0.11236000|0.11608000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "METAXUSD|demand|581.45000000|583.50000000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
