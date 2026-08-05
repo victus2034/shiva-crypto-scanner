@@ -13416,7 +13416,7 @@
     "last_alert_at": 0.0
   },
   "ADAUSD|demand|0.18980000|0.19061000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1785940904.2411
   },
   "ENA/USDT|demand|0.08964000|0.09003000": {
@@ -13436,8 +13436,8 @@
     "last_alert_at": 0.0
   },
   "1000PEPEUSD|demand|0.00283790|0.00284720": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1785942134.5567763
   },
   "NEARUSD|demand|1.69500000|1.69900000": {
     "in_zone": false,
@@ -13505,11 +13505,11 @@
   },
   "1000SHIBUSD|demand|0.00486400|0.00487600": {
     "in_zone": true,
-    "last_alert_at": 1785939714.6811516
+    "last_alert_at": 1785942134.7708182
   },
   "AAPLXUSD|supply|312.80000000|314.15000000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1785942134.9384327
   },
   "MUBUSD|demand|869.50000000|877.05000000": {
     "in_zone": false,
@@ -13532,6 +13532,14 @@
     "last_alert_at": 0.0
   },
   "RE/USDT|supply|0.39791000|0.40074000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "BNBUSD|demand|594.92000000|597.10000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "PEOPLE/USDT|supply|0.00716100|0.00721100": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
