@@ -11572,8 +11572,8 @@
     "last_alert_at": 0.0
   },
   "VIRTUAL/USDT|supply|0.56820000|0.57010000": {
-    "in_zone": false,
-    "last_alert_at": 1785781313.1648908
+    "in_zone": true,
+    "last_alert_at": 1785951707.350973
   },
   "JTO/USDT|supply|0.49970000|0.50220000": {
     "in_zone": false,
@@ -13586,5 +13586,13 @@
   "IBM/USDT:USDT|supply|237.22000000|238.05000000": {
     "in_zone": false,
     "last_alert_at": 0.0
+  },
+  "ZECUSD|supply|523.65000000|526.01000000": {
+    "in_zone": true,
+    "last_alert_at": 1785951706.3626468
+  },
+  "ALLO/USDT|demand|0.25629000|0.25839000": {
+    "in_zone": true,
+    "last_alert_at": 1785951706.6764436
   }
 }
