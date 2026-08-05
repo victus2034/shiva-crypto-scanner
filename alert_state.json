@@ -61321,8 +61321,8 @@
     "last_alert_at": 0.0
   },
   "SOLUSD|supply|74.50700000|75.31800000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1785947499.9065464
   },
   "AAVEUSD|supply|99.90000000|101.60000000": {
     "in_zone": false,
@@ -61741,6 +61741,10 @@
     "last_alert_at": 0.0
   },
   "POL/USDT|demand|0.07218000|0.07300000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "APTUSD|supply|0.99400000|1.01100000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
