@@ -53921,7 +53921,7 @@
     "last_attempt_at": 0.0
   },
   "BSE.NS|demand|3504.0000|3509.8000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1785906129.0272865,
     "last_attempt_at": 1785906129.0272865
   },
@@ -55216,8 +55216,8 @@
   },
   "NBCC.NS|supply|96.1500|96.5900": {
     "in_zone": true,
-    "last_alert_at": 1785903722.2158904,
-    "last_attempt_at": 1785903722.2158904
+    "last_alert_at": 1785907326.3810897,
+    "last_attempt_at": 1785907326.3810897
   },
   "PREMIERENE.NS|supply|1105.3000|1110.6000": {
     "in_zone": false,
@@ -55625,9 +55625,9 @@
     "last_attempt_at": 1785902530.166491
   },
   "J&KBANK.NS|demand|155.5500|156.2900": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1785907326.142824,
+    "last_attempt_at": 1785907326.142824
   },
   "JYOTICNC.NS|supply|861.7500|874.7500": {
     "in_zone": false,
@@ -55726,8 +55726,8 @@
   },
   "IDFCFIRSTB.NS|supply|85.9500|86.1300": {
     "in_zone": true,
-    "last_alert_at": 1785904921.2056322,
-    "last_attempt_at": 1785904921.2056322
+    "last_alert_at": 1785907325.8978283,
+    "last_attempt_at": 1785907325.8978283
   },
   "KFINTECH.NS|supply|947.7500|961.2000": {
     "in_zone": false,
@@ -55797,5 +55797,30 @@
     "in_zone": true,
     "last_alert_at": 1785906130.595524,
     "last_attempt_at": 1785906130.595524
+  },
+  "GODREJPROP.NS|demand|1991.0000|2050.2000": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "HINDCOPPER.NS|supply|518.6500|522.3000": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "INDUSTOWER.NS|demand|387.3000|388.8000": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "NEWGEN.NS|demand|555.0500|556.4500": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "OLAELEC.NS|supply|45.5100|45.9300": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
   }
 }
