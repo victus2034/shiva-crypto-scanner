@@ -13216,8 +13216,8 @@
     "last_alert_at": 0.0
   },
   "DASH/USDT|supply|31.50000000|31.65000000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1785931333.1077485
   },
   "ETHUSD|supply|1874.30000000|1880.80000000": {
     "in_zone": false,
@@ -13316,8 +13316,8 @@
     "last_alert_at": 0.0
   },
   "DEXE/USDT|demand|2.24880000|2.25920000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1785931332.2924614
   },
   "PHAROS/USDT|supply|0.40270000|0.40470000": {
     "in_zone": true,
@@ -13332,12 +13332,12 @@
     "last_alert_at": 0.0
   },
   "TAO/USDT|demand|194.90000000|195.50000000": {
-    "in_zone": false,
-    "last_alert_at": 1785914512.1018379
+    "in_zone": true,
+    "last_alert_at": 1785931332.5266347
   },
   "PENGU/USDT|demand|0.00599100|0.00603100": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1785931332.925137
   },
   "RE/USDT|demand|0.38143000|0.38475000": {
     "in_zone": true,
@@ -13356,8 +13356,8 @@
     "last_alert_at": 0.0
   },
   "FARTCOIN/USDT|demand|0.13410000|0.13460000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1785931332.7067828
   },
   "COAI/USDT|demand|0.33610000|0.33790000": {
     "in_zone": false,
@@ -13488,6 +13488,10 @@
     "last_alert_at": 0.0
   },
   "ZRO/USDT|supply|0.79040000|0.80090000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "FARTCOIN/USDT|supply|0.13620000|0.13750000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
