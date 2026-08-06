@@ -12172,7 +12172,7 @@
     "last_alert_at": 1785825705.7868707
   },
   "DOTUSD|demand|0.81900000|0.82200000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1786012910.8180044
   },
   "HBAR/USDT|supply|0.07080000|0.07129000": {
@@ -13945,7 +13945,7 @@
   },
   "TRX/USDT|demand|0.32551000|0.32629000": {
     "in_zone": true,
-    "last_alert_at": 1786014139.0254507
+    "last_alert_at": 1786016499.088861
   },
   "ALGO/USDT|demand|0.08640000|0.08689000": {
     "in_zone": true,
@@ -13956,6 +13956,10 @@
     "last_alert_at": 0.0
   },
   "TIAUSD|supply|0.33680000|0.33810000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "ERA/USDT|supply|0.07181000|0.07835000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
