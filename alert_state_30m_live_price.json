@@ -12172,8 +12172,8 @@
     "last_alert_at": 1785825705.7868707
   },
   "DOTUSD|demand|0.81900000|0.82200000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1786012910.8180044
   },
   "HBAR/USDT|supply|0.07080000|0.07129000": {
     "in_zone": true,
@@ -13881,7 +13881,7 @@
   },
   "MSFT/USDT:USDT|demand|483.56000000|484.56000000": {
     "in_zone": true,
-    "last_alert_at": 1786009306.8886437
+    "last_alert_at": 1786012911.2903957
   },
   "AAVEUSD|demand|88.24000000|88.45000000": {
     "in_zone": true,
@@ -13920,6 +13920,14 @@
     "last_alert_at": 0.0
   },
   "GALA/USDT|supply|0.00179600|0.00180400": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "LA/USDT|demand|0.04421000|0.04454000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "PHAROS/USDT|supply|0.39740000|0.39940000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
