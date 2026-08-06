@@ -13676,7 +13676,7 @@
     "last_alert_at": 1785976909.349592
   },
   "NVDAXUSD|supply|221.40000000|222.55000000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1785972109.4954658
   },
   "NEARUSD|demand|1.68600000|1.69200000": {
@@ -13849,7 +13849,7 @@
   },
   "MNT/USDT|demand|0.40420000|0.40460000": {
     "in_zone": true,
-    "last_alert_at": 1786000905.0096085
+    "last_alert_at": 1786003325.6133466
   },
   "ETHUSD|demand|1893.85000000|1897.20000000": {
     "in_zone": false,
@@ -13858,5 +13858,29 @@
   "XPLUSD|supply|0.07510000|0.07630000": {
     "in_zone": false,
     "last_alert_at": 0.0
+  },
+  "AKE/USDT|demand|0.00385310|0.00390490": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "CRV/USDT|demand|0.20370000|0.20420000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "NVDL/USDT:USDT|supply|35.81000000|35.93000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "SOXX/USDT:USDT|demand|526.03000000|526.80000000": {
+    "in_zone": true,
+    "last_alert_at": 1786003325.7680736
+  },
+  "MSFT/USDT:USDT|supply|486.75000000|487.22000000": {
+    "in_zone": true,
+    "last_alert_at": 1786003325.9286065
+  },
+  "MSFT/USDT:USDT|demand|483.56000000|484.56000000": {
+    "in_zone": true,
+    "last_alert_at": 1786003325.9286065
   }
 }
