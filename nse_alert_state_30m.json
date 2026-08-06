@@ -52247,8 +52247,8 @@
   },
   "NLCINDIA.NS|supply|305.8000|306.4000": {
     "in_zone": true,
-    "last_alert_at": 1785997325.085958,
-    "last_attempt_at": 1785997325.085958
+    "last_alert_at": 1785999752.7871227,
+    "last_attempt_at": 1785999752.7871227
   },
   "NMDC.NS|supply|86.5200|86.8300": {
     "in_zone": true,
@@ -54131,8 +54131,8 @@
   },
   "HDBFS.NS|demand|673.0000|673.9500": {
     "in_zone": true,
-    "last_alert_at": 1785996138.228669,
-    "last_attempt_at": 1785996138.228669
+    "last_alert_at": 1785999752.3566642,
+    "last_attempt_at": 1785999752.3566642
   },
   "MAZDOCK.NS|supply|2573.8999|2580.0000": {
     "in_zone": false,
@@ -54615,9 +54615,9 @@
     "last_attempt_at": 1785828137.9132802
   },
   "GRSE.NS|supply|2619.6001|2632.0000": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1785999751.983667,
+    "last_attempt_at": 1785999751.983667
   },
   "HINDALCO.NS|supply|985.0000|988.0000": {
     "in_zone": true,
@@ -55725,7 +55725,7 @@
     "last_attempt_at": 0.0
   },
   "IDFCFIRSTB.NS|supply|85.9500|86.1300": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1785998532.0251017,
     "last_attempt_at": 1785998532.0251017
   },
@@ -56014,9 +56014,9 @@
     "last_attempt_at": 0.0
   },
   "IIFL.NS|demand|605.0000|607.6500": {
-    "in_zone": false,
-    "last_alert_at": 1785996138.4103134,
-    "last_attempt_at": 1785996138.4103134
+    "in_zone": true,
+    "last_alert_at": 1785999752.5631135,
+    "last_attempt_at": 1785999752.5631135
   },
   "IGL.NS|demand|153.6000|153.9700": {
     "in_zone": true,
@@ -56319,7 +56319,7 @@
     "last_attempt_at": 0.0
   },
   "INDUSINDBK.NS|supply|1034.5000|1037.9000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1785997324.542485,
     "last_attempt_at": 1785997324.542485
   },
@@ -56492,5 +56492,20 @@
     "in_zone": true,
     "last_alert_at": 1785997325.3423378,
     "last_attempt_at": 1785997325.3423378
+  },
+  "ASAHIINDIA.NS|supply|925.5000|930.9000": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "FIRSTCRY.NS|demand|213.6600|214.5800": {
+    "in_zone": true,
+    "last_alert_at": 1785999751.6919208,
+    "last_attempt_at": 1785999751.6919208
+  },
+  "COCHINSHIP.NS|demand|1415.6000|1418.1000": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
   }
 }
