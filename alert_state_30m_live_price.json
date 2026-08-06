@@ -14184,10 +14184,18 @@
     "last_alert_at": 0.0
   },
   "NVDAXUSD|demand|217.70000000|218.40000000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1786053749.7604527
   },
   "CRCLXUSD|supply|65.72000000|66.21000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "HYPEUSD|supply|56.32000000|56.64000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "DOTUSD|demand|0.81290000|0.81660000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
