@@ -11804,8 +11804,8 @@
     "last_alert_at": 0.0
   },
   "EUL/USDT|demand|1.36490000|1.37010000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1785976909.082995
   },
   "MNT/USDT|demand|0.39230000|0.39430000": {
     "in_zone": false,
@@ -13100,7 +13100,7 @@
     "last_alert_at": 0.0
   },
   "ASTER/USDT|demand|0.60200000|0.60410000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1785974538.039066
   },
   "BOME/USDT|demand|0.00056540|0.00056970": {
@@ -13672,8 +13672,8 @@
     "last_alert_at": 0.0
   },
   "SLVONUSD|supply|56.68000000|56.97000000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1785976909.349592
   },
   "NVDAXUSD|supply|221.40000000|222.55000000": {
     "in_zone": true,
@@ -13760,10 +13760,14 @@
     "last_alert_at": 1785973308.7636073
   },
   "LA/USDT|demand|0.04502000|0.04525000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1785974537.825313
   },
   "LABUSD|demand|0.11410000|0.12730000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "AERO/USDT|supply|0.42680000|0.42970000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
