@@ -11764,8 +11764,8 @@
     "last_alert_at": 0.0
   },
   "FARTCOIN/USDT|demand|0.12570000|0.12640000": {
-    "in_zone": false,
-    "last_alert_at": 1786114940.1636987
+    "in_zone": true,
+    "last_alert_at": 1786135304.1321602
   },
   "JUP/USDT|demand|0.18720000|0.18880000": {
     "in_zone": false,
@@ -14565,7 +14565,7 @@
   },
   "ASTER/USDT|supply|0.60250000|0.60330000": {
     "in_zone": true,
-    "last_alert_at": 1786132932.453347
+    "last_alert_at": 1786135304.3892624
   },
   "GOOGLXUSD|supply|360.10000000|360.30000000": {
     "in_zone": false,
@@ -14726,5 +14726,17 @@
   "COINXUSD|supply|153.80000000|155.50000000": {
     "in_zone": false,
     "last_alert_at": 0.0
+  },
+  "ATOM/USDT|supply|1.35200000|1.36700000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "SEIUSD|demand|0.04056000|0.04078000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "WLFI/USDT|demand|0.05118000|0.05146000": {
+    "in_zone": true,
+    "last_alert_at": 1786135304.581135
   }
 }
