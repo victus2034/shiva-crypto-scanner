@@ -14064,7 +14064,7 @@
     "last_alert_at": 1786056114.9098048
   },
   "METAXUSD|supply|594.80000000|596.90000000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1786110109.356454
   },
   "IBM/USDT:USDT|demand|228.05000000|229.99000000": {
@@ -14416,8 +14416,8 @@
     "last_alert_at": 1786098123.2364147
   },
   "SOXX/USDT:USDT|demand|535.09000000|535.78000000": {
-    "in_zone": false,
-    "last_alert_at": 1786098123.8439002
+    "in_zone": true,
+    "last_alert_at": 1786111341.5892413
   },
   "TQQQ/USDT:USDT|demand|71.80000000|72.03000000": {
     "in_zone": false,
@@ -14565,13 +14565,21 @@
   },
   "ASTER/USDT|supply|0.60250000|0.60330000": {
     "in_zone": true,
-    "last_alert_at": 1786108906.1024282
+    "last_alert_at": 1786111341.3384905
   },
   "GOOGLXUSD|supply|360.10000000|360.30000000": {
     "in_zone": false,
     "last_alert_at": 1786108906.3154483
   },
   "WLFI/USDT|demand|0.05143000|0.05170000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "PUMPUSD|demand|0.00225300|0.00226800": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "HBAR/USDT|supply|0.06870000|0.06878000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
