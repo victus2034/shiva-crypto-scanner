@@ -50847,8 +50847,8 @@
   },
   "CESC.NS|demand|161.5900|161.8900": {
     "in_zone": true,
-    "last_alert_at": 1786083736.5043283,
-    "last_attempt_at": 1786083736.5043283
+    "last_alert_at": 1786086135.704131,
+    "last_attempt_at": 1786086135.704131
   },
   "CGPOWER.NS|supply|920.7000|930.8000": {
     "in_zone": false,
@@ -55365,9 +55365,9 @@
     "last_attempt_at": 0.0
   },
   "IEX.NS|demand|126.2000|127.0100": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1786086136.4290621,
+    "last_attempt_at": 1786086136.4290621
   },
   "INDUSTOWER.NS|supply|396.5500|398.2000": {
     "in_zone": false,
@@ -55929,7 +55929,7 @@
     "last_attempt_at": 1785920564.1368768
   },
   "INDIGO.NS|demand|5302.5000|5312.5000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1786083737.522068,
     "last_attempt_at": 1786083737.522068
   },
@@ -55949,7 +55949,7 @@
     "last_attempt_at": 0.0
   },
   "ACE.NS|demand|1092.0000|1096.8000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1786084937.7388027,
     "last_attempt_at": 1786084937.7388027
   },
@@ -56299,9 +56299,9 @@
     "last_attempt_at": 1785991318.5538712
   },
   "NYKAA.NS|demand|327.7500|330.6000": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1786086136.196415,
+    "last_attempt_at": 1786086136.196415
   },
   "GILLETTE.NS|supply|7733.0000|7739.5000": {
     "in_zone": false,
@@ -56350,8 +56350,8 @@
   },
   "LTFOODS.NS|supply|422.2500|423.9000": {
     "in_zone": true,
-    "last_alert_at": 1786083738.723906,
-    "last_attempt_at": 1786083738.723906
+    "last_alert_at": 1786086136.9028516,
+    "last_attempt_at": 1786086136.9028516
   },
   "LEMONTREE.NS|supply|114.7100|115.6000": {
     "in_zone": false,
@@ -56875,8 +56875,8 @@
   },
   "NTPC.NS|demand|343.1500|343.9000": {
     "in_zone": true,
-    "last_alert_at": 1786083739.599397,
-    "last_attempt_at": 1786083739.599397
+    "last_alert_at": 1786086137.128008,
+    "last_attempt_at": 1786086137.128008
   },
   "ONGC.NS|demand|236.5500|237.0300": {
     "in_zone": false,
@@ -56890,8 +56890,8 @@
   },
   "CASTROLIND.NS|supply|193.9800|194.8000": {
     "in_zone": true,
-    "last_alert_at": 1786083737.0672123,
-    "last_attempt_at": 1786083737.0672123
+    "last_alert_at": 1786086135.994671,
+    "last_attempt_at": 1786086135.994671
   },
   "MINDACORP.NS|supply|726.4500|728.9000": {
     "in_zone": false,
@@ -56959,6 +56959,61 @@
     "last_attempt_at": 0.0
   },
   "MAZDOCK.NS|supply|2532.8000|2572.3000": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "APOLLOHOSP.NS|demand|8880.0000|8912.5000": {
+    "in_zone": true,
+    "last_alert_at": 1786086135.433458,
+    "last_attempt_at": 1786086135.433458
+  },
+  "APOLLOTYRE.NS|supply|449.9000|451.7000": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "BIOCON.NS|supply|441.2500|442.4500": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "CHOLAFIN.NS|supply|1946.1000|1952.4000": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "COROMANDEL.NS|demand|2046.3000|2060.2000": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "ENGINERSIN.NS|supply|244.4700|245.6500": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "FINCABLES.NS|supply|1035.5000|1042.7500": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "GODREJCP.NS|demand|994.7000|1000.0000": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "IFCI.NS|supply|75.3100|75.9000": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "INTELLECT.NS|demand|718.0500|719.7000": {
+    "in_zone": true,
+    "last_alert_at": 1786086136.6730373,
+    "last_attempt_at": 1786086136.6730373
+  },
+  "NLCINDIA.NS|supply|328.6000|329.1000": {
     "in_zone": false,
     "last_alert_at": 0.0,
     "last_attempt_at": 0.0
