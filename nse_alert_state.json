@@ -25627,12 +25627,12 @@
     "last_attempt_at": 0.0
   },
   "DCMSHRIRAM.NS|demand|1000.0000|1005.8000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1786006387.5630138,
     "last_attempt_at": 1786006387.5630138
   },
   "DELHIVERY.NS|demand|458.4000|461.2500": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1786009938.2402477,
     "last_attempt_at": 1786009938.2402477
   },
@@ -25887,9 +25887,9 @@
     "last_attempt_at": 0.0
   },
   "IKS.NS|demand|1738.0000|1759.8000": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1786074740.2392683,
+    "last_attempt_at": 1786074740.2392683
   },
   "INDIGO.NS|supply|5926.0000|5959.0000": {
     "in_zone": false,
@@ -26233,7 +26233,37 @@
   },
   "INDIANB.NS|supply|880.7000|884.7000": {
     "in_zone": true,
-    "last_alert_at": 1786006387.966818,
-    "last_attempt_at": 1786006387.966818
+    "last_alert_at": 1786074739.7460232,
+    "last_attempt_at": 1786074739.7460232
+  },
+  "CGCL.NS|demand|218.6100|221.1200": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "COHANCE.NS|supply|484.2000|505.0000": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "IRB.NS|supply|20.2900|21.0100": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "PHOENIXLTD.NS|demand|1877.3000|1887.5000": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "PREMIERENE.NS|demand|977.4000|982.2000": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "RHIM.NS|demand|383.3000|390.5500": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
   }
 }
