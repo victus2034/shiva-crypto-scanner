@@ -14552,7 +14552,7 @@
     "last_alert_at": 0.0
   },
   "ADAUSD|supply|0.20230000|0.20390000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1786130503.6141036
   },
   "PENGU/USDT|supply|0.00606800|0.00609600": {
@@ -14565,7 +14565,7 @@
   },
   "ASTER/USDT|supply|0.60250000|0.60330000": {
     "in_zone": true,
-    "last_alert_at": 1786130503.8325832
+    "last_alert_at": 1786132932.453347
   },
   "GOOGLXUSD|supply|360.10000000|360.30000000": {
     "in_zone": false,
@@ -14609,7 +14609,7 @@
   },
   "PHAROS/USDT|demand|0.39610000|0.39660000": {
     "in_zone": true,
-    "last_alert_at": 1786130504.0457797
+    "last_alert_at": 1786132932.693503
   },
   "EUL/USDT|supply|1.25000000|1.26540000": {
     "in_zone": false,
@@ -14718,5 +14718,13 @@
   "GOOGLXUSD|demand|354.45000000|356.15000000": {
     "in_zone": true,
     "last_alert_at": 1786131714.437463
+  },
+  "LABUSD|supply|0.12750000|0.13170000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "COINXUSD|supply|153.80000000|155.50000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
   }
 }
