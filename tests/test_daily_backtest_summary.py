@@ -1,8 +1,30 @@
+import tempfile
 import unittest
+from pathlib import Path
 
 import pandas as pd
 
 import daily_backtest_summary as summary
+
+
+def base_alert(**overrides):
+    alert = {
+        "event_time": pd.Timestamp("2026-08-04 10:00", tz=summary.IST),
+        "event_time_ist": pd.Timestamp("2026-08-04 10:00", tz=summary.IST),
+        "symbol": "TCS.NS",
+        "side": "long",
+        "distance_pct": 0.5,
+        "alert_price": 100.0,
+        "level": 99.0,
+        "zone_bottom": 99.0,
+        "zone_top": 100.0,
+        "body_entry": 100.0,
+        "rating": 6,
+        "zone_id": "TCS.NS|long|99.00000000|100.00000000",
+        "source_line": 1,
+    }
+    alert.update(overrides)
+    return alert
 
 
 class DailyBacktestSummaryTests(unittest.TestCase):
@@ -34,55 +56,90 @@ class DailyBacktestSummaryTests(unittest.TestCase):
         self.assertTrue(mature)
         self.assertEqual(end_index, 1)
 
-    def test_rating_table_includes_all_rating_buckets(self):
+    def test_half_r_is_kept_if_price_reverses_later(self):
+        index = pd.DatetimeIndex(
+            ["2026-08-04 10:00", "2026-08-04 10:30", "2026-08-04 11:00"],
+            tz=summary.IST,
+        )
+        frame = pd.DataFrame(
+            {
+                "open": [101.0, 100.0, 100.1],
+                "high": [101.2, 100.6, 100.2],
+                "low": [100.8, 100.0, 99.7],
+                "close": [101.0, 100.4, 99.9],
+                "volume": [1, 1, 1],
+            },
+            index=index,
+        )
+
+        result = summary.simulate_alert(frame, base_alert(), 0, 2)
+
+        self.assertEqual(result["final_result"], "+0.5R")
+        self.assertEqual(result["net_realized_r"], 0.5)
+
+    def test_stop_before_half_r_is_sl(self):
+        index = pd.DatetimeIndex(["2026-08-04 10:00", "2026-08-04 10:30"], tz=summary.IST)
+        frame = pd.DataFrame(
+            {
+                "open": [101.0, 100.0],
+                "high": [101.2, 100.2],
+                "low": [100.8, 98.9],
+                "close": [101.0, 99.2],
+                "volume": [1, 1],
+            },
+            index=index,
+        )
+
+        result = summary.simulate_alert(frame, base_alert(), 0, 1)
+
+        self.assertEqual(result["final_result"], "SL")
+        self.assertEqual(result["net_realized_r"], -1.0)
+
+    def test_mobile_summary_removes_tradable_be_and_verdict(self):
         records = pd.DataFrame(
             [
-                {"rating": 4},
-                {"rating": 5},
-                {"rating": 10},
+                base_alert(symbol="BTCUSDT", rating=4),
+                base_alert(symbol="SBIN.NS", rating=6, side="short"),
             ]
         )
-        table = summary.format_rating_table(records, pd.DataFrame())
-
-        self.assertIn("Rating breakdown", table)
-        self.assertIn("Rate  Alert Touch NoTouch Dup Entry BE .5R 1R 2R SL Neither WR", table)
-        for rating in range(4, 11):
-            self.assertIn(f"{rating:>2}/10", table)
-
-    def test_win_rate_uses_decided_one_r_and_sl_only(self):
-        records = pd.DataFrame([{"rating": 6}, {"rating": 6}, {"rating": 6}])
         results = pd.DataFrame(
             [
-                {
-                    "rating": 6,
-                    "filled": True,
-                    "outcome": "target_1_then_timeout",
-                    "target_1_hit": True,
-                    "target_2_hit": False,
-                    "mfe_r": 1.1,
-                },
-                {
-                    "rating": 6,
-                    "filled": True,
-                    "outcome": "stopped",
-                    "target_1_hit": False,
-                    "target_2_hit": False,
-                    "mfe_r": 0.1,
-                },
-                {
-                    "rating": 6,
-                    "filled": False,
-                    "outcome": "zone_not_touched",
-                    "target_1_hit": False,
-                    "target_2_hit": False,
-                    "mfe_r": float("nan"),
-                },
+                {**records.iloc[0].to_dict(), "filled": True, "outcome": "+2R", "final_result": "+2R", "net_realized_r": 2.0},
+                {**records.iloc[1].to_dict(), "filled": False, "outcome": "zone_not_touched", "final_result": "", "net_realized_r": float("nan")},
             ]
         )
 
-        table = summary.format_rating_table(records, results)
+        message = summary.build_summary(records, pd.Timestamp("2026-08-04").date(), results, {}, 0, "30m")
 
-        self.assertIn(" 6/10     3     2       1   0     2  0   1  1  0  1       0  50.0%", table)
+        self.assertIn("NSE 30m BACKTEST | 04 AUG 2026", message)
+        self.assertIn("Alerts - 2", message)
+        self.assertIn("No Touch - 1", message)
+        self.assertIn("4/10", message)
+        self.assertIn("1. BTC - Rating 4/10 - +2R", message)
+        self.assertNotIn("Tradable", message)
+        self.assertNotIn("BE -", message)
+        self.assertNotIn("Verdict", message)
+
+    def test_report_state_blocks_duplicate_key(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            path = Path(tmp) / "sent.json"
+            key = summary.report_key(pd.Timestamp("2026-08-04").date(), "30m")
+
+            self.assertNotIn(key, summary.load_sent_reports(path))
+            summary.mark_sent_report(key, path)
+            self.assertIn(key, summary.load_sent_reports(path))
+
+    def test_display_symbol_simplifies_common_forms(self):
+        cases = {
+            "TCS.NS": "TCS",
+            "AAPL.USD": "AAPL",
+            "BTCUSDT": "BTC",
+            "BTC/USD": "BTC",
+            "BTC-USD": "BTC",
+            "MSTRBUSD": "MSTR",
+        }
+        for raw, expected in cases.items():
+            self.assertEqual(summary.display_symbol(raw), expected)
 
 
 if __name__ == "__main__":
