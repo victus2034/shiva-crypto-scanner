@@ -14925,7 +14925,7 @@
   },
   "SLVONUSD|supply|58.15000000|58.21000000": {
     "in_zone": true,
-    "last_alert_at": 1786190547.898953
+    "last_alert_at": 1786192913.0040233
   },
   "ESP/USDT|supply|0.07076000|0.07148000": {
     "in_zone": false,
@@ -15000,8 +15000,8 @@
     "last_alert_at": 0.0
   },
   "TAO/USDT|supply|197.10000000|197.70000000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1786192912.0030503
   },
   "MMT/USDT|supply|0.23560000|0.24890000": {
     "in_zone": false,
@@ -15014,5 +15014,12 @@
   "1000SHIBUSD|supply|0.00469000|0.00469800": {
     "in_zone": false,
     "last_alert_at": 0.0
+  },
+  "ASTER/USDT|range_filter|buy": {
+    "last_alert_at": 1786192912.341376
+  },
+  "TRX/USDT|demand|0.32700000|0.32709000": {
+    "in_zone": true,
+    "last_alert_at": 1786192912.7104847
   }
 }
