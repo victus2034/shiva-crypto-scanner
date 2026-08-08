@@ -14916,8 +14916,8 @@
     "last_alert_at": 0.0
   },
   "ASTER/USDT|demand|0.59940000|0.60000000": {
-    "in_zone": false,
-    "last_alert_at": 1786196506.037732
+    "in_zone": true,
+    "last_alert_at": 1786227705.827898
   },
   "POL/USDT|demand|0.07456000|0.07477000": {
     "in_zone": false,
@@ -14925,7 +14925,7 @@
   },
   "SLVONUSD|supply|58.15000000|58.21000000": {
     "in_zone": true,
-    "last_alert_at": 1786225311.6815774
+    "last_alert_at": 1786227706.292075
   },
   "ESP/USDT|supply|0.07076000|0.07148000": {
     "in_zone": false,
@@ -15020,7 +15020,7 @@
   },
   "TRX/USDT|demand|0.32700000|0.32709000": {
     "in_zone": true,
-    "last_alert_at": 1786225311.359093
+    "last_alert_at": 1786227706.0447507
   },
   "BOME/USDT|supply|0.00065280|0.00066120": {
     "in_zone": false,
@@ -15545,5 +15545,13 @@
   "TAIKO/USDT|supply|0.07280000|0.07299000": {
     "in_zone": true,
     "last_alert_at": 1786226532.9465215
+  },
+  "PUMPUSD|demand|0.00210100|0.00211000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "FILUSD|supply|0.72000000|0.72600000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
   }
 }
