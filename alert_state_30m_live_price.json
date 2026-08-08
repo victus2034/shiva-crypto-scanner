@@ -14744,8 +14744,8 @@
     "last_alert_at": 0.0
   },
   "LINKUSD|supply|8.29100000|8.31400000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1786167713.7560833
   },
   "FILUSD|supply|0.69770000|0.70180000": {
     "in_zone": false,
@@ -14900,6 +14900,10 @@
     "last_alert_at": 0.0
   },
   "JUP/USDT|demand|0.17940000|0.18010000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "ORDI/USDT|demand|3.22200000|3.24400000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
