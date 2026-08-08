@@ -15012,7 +15012,7 @@
     "last_alert_at": 0.0
   },
   "1000SHIBUSD|supply|0.00469000|0.00469800": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1786208537.6733532
   },
   "ASTER/USDT|range_filter|buy": {
@@ -15405,5 +15405,13 @@
   "0G/USDT|supply|0.15840000|0.15990000": {
     "in_zone": false,
     "last_alert_at": 0.0
+  },
+  "BANK/USDT|demand|0.03846000|0.03921000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "TIAUSD|demand|0.32710000|0.32810000": {
+    "in_zone": true,
+    "last_alert_at": 1786212152.9808502
   }
 }
