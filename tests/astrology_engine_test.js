@@ -1,0 +1,83 @@
+"use strict";
+
+const assert = require("assert");
+const {
+  NATAL,
+  activeDasha,
+  buildDailyPayload,
+  buildWeeklyPayload,
+  evaluateDay,
+  houseFromSign,
+  nakshatraDetails,
+  planetaryHoras,
+  rahuKalam,
+  signName,
+  sunTimes,
+} = require("../astrology_engine");
+
+function assertRange(value, min, max, label) {
+  assert(
+    value >= min && value <= max,
+    `${label} expected ${min}-${max}, got ${value}`,
+  );
+}
+
+const natalMoon = nakshatraDetails(NATAL.moon);
+assert.strictEqual(signName(NATAL.ascendant), "Scorpio");
+assert.strictEqual(signName(NATAL.moon), "Capricorn");
+assert.strictEqual(natalMoon.name, "Uttarashadha");
+assert.strictEqual(natalMoon.pada, 2);
+
+const regressionDate = { year: 2026, month: 8, day: 8 };
+const dasha = activeDasha(regressionDate);
+assert.strictEqual(dasha.mahadasha, "Rahu");
+assert.strictEqual(dasha.antardasha.lord, "Rahu");
+
+const evaluation = evaluateDay(regressionDate);
+assert.strictEqual(evaluation.transit.sun.sign, "Cancer");
+assert.strictEqual(evaluation.transit.moon.sign, "Taurus");
+assert.strictEqual(evaluation.transit.mars.sign, "Gemini");
+assert.strictEqual(evaluation.transit.mercury.sign, "Cancer");
+assert.strictEqual(evaluation.transit.jupiter.sign, "Cancer");
+assert.strictEqual(evaluation.transit.venus.sign, "Virgo");
+assert.strictEqual(evaluation.transit.saturn.sign, "Pisces");
+assert.strictEqual(evaluation.transit.rahu.sign, "Aquarius");
+assert.strictEqual(evaluation.transit.ketu.sign, "Leo");
+
+assert.strictEqual(houseFromSign(NATAL.ascendant, evaluation.transits.sun.longitude), 9);
+assert.strictEqual(houseFromSign(NATAL.ascendant, evaluation.transits.moon.longitude), 7);
+assert.strictEqual(houseFromSign(NATAL.ascendant, evaluation.transits.mars.longitude), 8);
+assert.strictEqual(houseFromSign(NATAL.ascendant, evaluation.transits.mercury.longitude), 9);
+assert.strictEqual(houseFromSign(NATAL.ascendant, evaluation.transits.jupiter.longitude), 9);
+assert.strictEqual(houseFromSign(NATAL.ascendant, evaluation.transits.venus.longitude), 11);
+assert.strictEqual(houseFromSign(NATAL.ascendant, evaluation.transits.saturn.longitude), 5);
+assert.strictEqual(houseFromSign(NATAL.ascendant, evaluation.transits.rahu.longitude), 4);
+assert.strictEqual(houseFromSign(NATAL.ascendant, evaluation.transits.ketu.longitude), 10);
+
+const augustSun = sunTimes(regressionDate);
+const decemberSun = sunTimes({ year: 2026, month: 12, day: 8 });
+assert.notStrictEqual(augustSun.sunrise.toFixed(2), decemberSun.sunrise.toFixed(2));
+assertRange(augustSun.sunrise, 5, 7, "Jabalpur sunrise");
+assertRange(augustSun.sunset, 17, 19.5, "Jabalpur sunset");
+
+const rahu = rahuKalam(regressionDate);
+assert(rahu.start > augustSun.sunrise && rahu.end < augustSun.sunset);
+assert.notStrictEqual(rahu.start.toFixed(2), "6.00");
+
+const horas = planetaryHoras(regressionDate);
+assert.strictEqual(horas.length, 24);
+assert.notStrictEqual((horas[0].end - horas[0].start).toFixed(3), "1.000");
+
+const daily = buildDailyPayload(regressionDate).payload.content;
+assert(daily.includes("Communication & People"));
+assert(!/romance|dating|marriage|love-life/i.test(daily));
+assert(!/stop-loss|take-profit|leverage|position size|buy\/sell signal/i.test(daily));
+assert(!/disclaimer|not a trade signal/i.test(daily));
+
+const weekly = buildWeeklyPayload({ year: 2026, month: 8, day: 10 }).payload.content;
+assert(weekly.includes("NEXT WEEK ASTROLOGY"));
+assert(weekly.includes("Communication & People"));
+assert(!/romance|dating|marriage|love-life/i.test(weekly));
+assert(!/disclaimer|not a trade signal/i.test(weekly));
+
+console.log("Astrology engine regression tests passed.");
