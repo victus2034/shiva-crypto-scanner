@@ -157,12 +157,12 @@ class DailyBacktestSummaryTests(unittest.TestCase):
         message = summary.build_summary(records, pd.Timestamp("2026-08-04").date(), results, {}, 0, "30m")
 
         self.assertIn("NSE 30m BACKTEST | 04 AUG 2026", message)
-        self.assertIn("Alerts — 2", message)
-        self.assertIn("No Touch — 1", message)
+        self.assertIn("Alerts: 2", message)
+        self.assertIn("No Touch: 1", message)
         self.assertIn("4/10", message)
-        self.assertIn("1. BTC — Rating 4/10 — +2R", message)
+        self.assertIn("1. BTC - Rating 4/10 - +2R", message)
         self.assertNotIn("Tradable", message)
-        self.assertNotIn("BE —", message)
+        self.assertNotIn("BE:", message)
         self.assertNotIn("Verdict", message)
 
     def test_no_touch_excludes_data_errors(self):
@@ -183,7 +183,7 @@ class DailyBacktestSummaryTests(unittest.TestCase):
 
         message = summary.build_summary(records, pd.Timestamp("2026-08-04").date(), results, {}, 0, "30m")
 
-        self.assertIn("No Touch — 1", message)
+        self.assertIn("No Touch: 1", message)
 
     def test_report_state_blocks_duplicate_key(self):
         with tempfile.TemporaryDirectory() as tmp:
@@ -207,6 +207,26 @@ class DailyBacktestSummaryTests(unittest.TestCase):
 
         self.assertEqual(summary.crypto_report_date(before_cutoff), pd.Timestamp("2026-08-04").date())
         self.assertEqual(summary.crypto_report_date(after_cutoff), pd.Timestamp("2026-08-05").date())
+
+    def test_crypto_default_report_date_uses_completed_bucket(self):
+        today = pd.Timestamp.now(tz=summary.IST).date()
+        yesterday = today - pd.Timedelta(days=1)
+        tomorrow = today + pd.Timedelta(days=1)
+        records = pd.DataFrame(
+            [
+                {"report_date": yesterday},
+                {"report_date": today},
+                {"report_date": tomorrow},
+            ]
+        )
+
+        self.assertEqual(summary.select_target_date(records, None, "crypto", "30m"), yesterday)
+
+    def test_crypto_default_report_date_skips_when_no_bucket_is_complete(self):
+        today = pd.Timestamp.now(tz=summary.IST).date()
+        records = pd.DataFrame([{"report_date": today}])
+
+        self.assertIsNone(summary.select_target_date(records, None, "crypto", "4h"))
 
     def test_nse_cutoff_uses_only_bars_ending_before_cutoff(self):
         index = pd.DatetimeIndex(
@@ -356,6 +376,21 @@ class DailyBacktestSummaryTests(unittest.TestCase):
         result = summary.simulate_alert(frame, alert, 0, 1)
 
         self.assertEqual(result["final_result"], "Pending")
+
+    def test_crypto_no_entry_waits_until_entry_window_closes(self):
+        future_start = (pd.Timestamp.now(tz=summary.IST) + pd.Timedelta(hours=1)).floor("30min")
+        frame = crypto_frame(
+            start=future_start,
+            rows=[
+                (101.0, 101.2, 100.8, 101.0),
+                (101.0, 101.2, 100.8, 101.0),
+            ],
+        )
+        alert = crypto_alert(event_time=frame.index[0], event_time_ist=frame.index[0])
+
+        result = summary.simulate_alert(frame, alert, 0, 1)
+
+        self.assertEqual(result["outcome"], "immature")
 
     def test_crypto_tracking_is_not_forced_by_midnight(self):
         frame = crypto_frame(

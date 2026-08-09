@@ -199,14 +199,38 @@ def crypto_report_date(event_time_ist) -> object:
     return report_day
 
 
-def select_target_date(records: pd.DataFrame, requested: str | None):
+def select_target_date(
+    records: pd.DataFrame,
+    requested: str | None,
+    market: str = "nse",
+    timeframe: str = "30m",
+):
     if requested:
         return pd.Timestamp(requested).date()
     if records.empty:
         return pd.Timestamp.now(tz=IST).date()
     if "report_date" in records:
+        if market == "crypto":
+            completed_dates = [
+                date for date in records["report_date"].dropna().unique()
+                if crypto_report_bucket_ready(date, timeframe)
+            ]
+            if completed_dates:
+                return max(completed_dates)
+            return None
         return records["report_date"].max()
     return records["event_time_ist"].dt.date.max()
+
+
+def crypto_report_bucket_ready(report_date, timeframe: str) -> bool:
+    report_day = pd.Timestamp(report_date).date()
+    bucket_close = pd.Timestamp(
+        datetime.combine(report_day, CRYPTO_REPORT_CUTOFF),
+        tz=IST,
+    )
+    entry_window = timedelta(hours=12) if timeframe == "4h" else timedelta(minutes=30 * ENTRY_WAIT_BARS)
+    ready_at = bucket_close + entry_window + timedelta(hours=CRYPTO_EVALUATION_HOURS)
+    return pd.Timestamp.now(tz=IST) >= ready_at
 
 
 def fetch_frames(symbols: list[str]) -> tuple[dict[str, pd.DataFrame], dict[str, str]]:
@@ -395,6 +419,12 @@ def simulate_alert(
         alert.get("symbol", ""),
     )
     if entry_index is None:
+        if uses_six_hour_evaluation(alert.get("symbol", "")) and not entry_search_mature(
+            frame,
+            event_index,
+            tracking_end_index,
+        ):
+            return unfilled(alert, "immature")
         return unfilled(alert, "zone_not_touched")
 
     if uses_six_hour_evaluation(alert.get("symbol", "")):
@@ -681,6 +711,22 @@ def find_entry(
     return None
 
 
+def entry_search_mature(
+    frame: pd.DataFrame,
+    event_index: int,
+    tracking_end_index: int,
+) -> bool:
+    """A no-entry result is only final after the full entry window has closed."""
+    required_index = min(event_index + ENTRY_WAIT_BARS, len(frame.index) - 1)
+    if tracking_end_index < required_index:
+        return False
+    ends = candle_ends(frame)
+    if required_index >= len(ends):
+        return False
+    required_end = pd.Timestamp(ends[required_index]).tz_convert(IST)
+    return pd.Timestamp.now(tz=IST) >= required_end
+
+
 def is_nse_symbol(symbol: str) -> bool:
     return str(symbol).upper().endswith(".NS")
 
@@ -843,8 +889,11 @@ def build_summary(
     entries = len(filled)
     touched = entries + duplicates
     no_touch = int(outcome_counts.get("zone_not_touched", 0))
+    waiting = int(outcome_counts.get("immature", 0))
+    data_issues = int(outcome_counts.get("data_missing", 0)) + int(outcome_counts.get("alert_before_data", 0))
     finalized = filled[filled["final_result"] != "Pending"] if not filled.empty else filled
     pending_count = int((filled["final_result"] == "Pending").sum()) if not filled.empty else 0
+    waiting += pending_count
     net_r = pd.to_numeric(
         finalized.get("net_realized_r", pd.Series(dtype=float)), errors="coerce"
     ).sum()
@@ -853,22 +902,16 @@ def build_summary(
     lines = [
         header,
         "",
-        metric("Alerts", len(records)),
-        metric(asset_label, records["symbol"].nunique()),
-        metric("BUY", buy_count),
-        metric("SELL", sell_count),
+        f"Alerts: {len(records)} | {asset_label}: {records['symbol'].nunique()} | BUY: {buy_count} | SELL: {sell_count}",
+        f"Touch: {touched} | No Touch: {no_touch} | Duplicate: {duplicates} | Entries: {entries} | Waiting: {waiting}",
+        *([f"Data Issues: {data_issues}"] if data_issues else []),
         "",
-        metric("Touch", touched),
-        metric("No Touch", no_touch),
-        metric("Duplicates", duplicates),
-        metric("Entries", entries),
-        "",
-        "FINALIZED RESULTS" if market == "crypto" else "RESULTS",
+        "RESULTS",
         *format_outcome_lines(final_counts),
-        *([metric("Pending", pending_count)] if pending_count else []),
-        metric("Total Result", format_r(net_r)),
+        *([metric("Waiting", waiting)] if waiting else []),
+        metric("Total", format_r(net_r)),
         "",
-        "RATING PERFORMANCE",
+        "BY RATING",
         format_rating_table(records, results),
     ]
 
@@ -893,7 +936,10 @@ def format_rating_table(records: pd.DataFrame, results: pd.DataFrame) -> str:
             result_frame["rating"], errors="coerce"
         ).astype("Int64")
 
-    blocks: list[str] = []
+    rows: list[str] = [
+        "Rating | Alerts | Touch | No Touch | Duplicate | Entries | +0.5R | +1R | +2R | SL | Neither | Waiting | Win Rate",
+        "---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:",
+    ]
     for rating in range(4, 11):
         alerts = records_by_rating.get(rating, 0)
         if alerts == 0:
@@ -911,17 +957,34 @@ def format_rating_table(records: pd.DataFrame, results: pd.DataFrame) -> str:
         entries = len(filled)
         touch = entries + duplicates
         no_touch = int(outcomes.get("zone_not_touched", 0))
-        block_lines = [
-            f"{rating}/10",
-            metric("Alerts", alerts),
-            metric("Touch", touch),
-            metric("No Touch", no_touch),
-            metric("Duplicates", duplicates),
-            metric("Entries", entries),
-            *format_outcome_lines(final_counts),
-        ]
-        blocks.append("\n".join(block_lines))
-    return "\n\n".join(blocks) if blocks else "None"
+        half_r = int(final_counts.get("+0.5R", 0))
+        one_r = int(final_counts.get("+1R", 0))
+        two_r = int(final_counts.get("+2R", 0))
+        stops = int(final_counts.get("SL", 0))
+        neither = int(final_counts.get("Neither", 0))
+        waiting = int(outcomes.get("immature", 0))
+        waiting += int((filled["final_result"] == "Pending").sum()) if not filled.empty else 0
+        wins = half_r + one_r + two_r
+        rows.append(
+            " | ".join(
+                [
+                    f"{rating}/10",
+                    str(alerts),
+                    str(touch),
+                    str(no_touch),
+                    str(duplicates),
+                    str(entries),
+                    str(half_r),
+                    str(one_r),
+                    str(two_r),
+                    str(stops),
+                    str(neither),
+                    str(waiting),
+                    format_win_rate(wins, stops),
+                ]
+            )
+        )
+    return "\n".join(rows) if len(rows) > 2 else "None"
 
 
 def format_outcome_lines(counts: pd.Series) -> list[str]:
@@ -931,10 +994,6 @@ def format_outcome_lines(counts: pd.Series) -> list[str]:
         if count:
             lines.append(metric(outcome, count))
     return lines
-
-
-def metric(label: str, value) -> str:
-    return f"{label} — {value}"
 
 
 def display_symbol(symbol: str) -> str:
@@ -951,6 +1010,10 @@ def display_symbol(symbol: str) -> str:
         if text.endswith(suffix) and len(text) > len(suffix):
             return text[: -len(suffix)]
     return text
+
+
+def metric(label: str, value) -> str:
+    return f"{label}: {value}"
 
 
 def best_symbol_lines(filled: pd.DataFrame, best: bool) -> str:
@@ -970,7 +1033,7 @@ def best_symbol_lines(filled: pd.DataFrame, best: bool) -> str:
     for index, row in enumerate(frame.head(3).to_dict("records"), start=1):
         rating = int(row["rating"]) if pd.notna(row.get("rating")) else "N/A"
         lines.append(
-            f"{index}. {display_symbol(row['symbol'])} — Rating {rating}/10 — {row['final_result']}"
+            f"{index}. {display_symbol(row['symbol'])} - Rating {rating}/10 - {row['final_result']}"
         )
     return "\n".join(lines)
 
@@ -1152,7 +1215,10 @@ def main() -> None:
     )
     records = load_records(args.records or default_records, args.timeframe)
     records = assign_report_dates(records, args.market)
-    target_date = select_target_date(records, args.date)
+    target_date = select_target_date(records, args.date, args.market, args.timeframe)
+    if target_date is None:
+        print(f"CRYPTO {args.timeframe} BACKTEST\n\nNo completed crypto report bucket yet.")
+        return
     day_records = (
         records[records["report_date"] == target_date].copy()
         if not records.empty
