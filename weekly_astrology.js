@@ -1,14 +1,14 @@
 "use strict";
 
 const {
-  buildDailyPayload,
-  parseForecastDate,
+  buildWeeklyPayload,
+  parseWeekStart,
   postJson,
 } = require("./astrology_engine");
 
 async function main() {
-  const date = parseForecastDate();
-  const { payload, diagnostics } = buildDailyPayload(date);
+  const weekStart = parseWeekStart();
+  const { payload, diagnostics } = buildWeeklyPayload(weekStart);
 
   console.log(JSON.stringify(payload, null, 2));
   console.log("Diagnostic:", JSON.stringify(diagnostics));
@@ -24,7 +24,7 @@ async function main() {
   }
 
   await postJson(webhook, payload);
-  console.log("Daily astrology briefing sent.");
+  console.log("Weekly astrology briefing sent.");
 }
 
 main().catch((error) => {
