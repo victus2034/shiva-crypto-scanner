@@ -156,27 +156,35 @@ def rate_xstock_zone(
     extended_min_score=5,
 ):
     """Combine zone quality with the underlying and sector direction."""
-    if symbol not in XSTOCK_UNDERLYINGS:
-        return None
-
     base = int(base_score) if base_score is not None else 4
+    mapped = symbol in XSTOCK_UNDERLYINGS
     session = context.get("session", "unavailable") if context else "unavailable"
     minimum_score = (
         regular_min_score if session == "regular" else extended_min_score
     )
+    native_score = max(1, min(base, 10))
     rating = {
         "kind": "xstock_hybrid",
-        "score": max(1, min(base, 10)),
+        "score": native_score,
+        "native_score": native_score,
         "session": session,
         "minimum_score": minimum_score,
-        "alert_allowed": False,
+        "alert_allowed": native_score >= minimum_score,
         "basis_pct": None,
+        "context_status": "available" if context else "underlying_context_unavailable",
+        "mapped": mapped,
     }
+    if not mapped:
+        rating["context_status"] = "underlying_unmapped"
+        return rating
     if not context or not context.get("data_fresh"):
+        if context:
+            rating["context_status"] = "underlying_context_stale"
         return rating
 
     underlying_price = float(context.get("underlying_price") or 0.0)
     if underlying_price <= 0 or xstock_price <= 0:
+        rating["context_status"] = "invalid_basis"
         return rating
 
     direction = 1.0 if zone_type == "demand" else -1.0
@@ -216,6 +224,7 @@ def rate_xstock_zone(
             "score": score,
             "alert_allowed": alert_allowed,
             "basis_pct": basis_pct,
+            "context_status": "available",
         }
     )
     return rating

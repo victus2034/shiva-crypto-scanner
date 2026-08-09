@@ -127,7 +127,7 @@ class XStockHybridRatingTests(unittest.TestCase):
                 self.assertEqual(blocked["score"], 4)
                 self.assertFalse(blocked["alert_allowed"])
 
-    def test_closed_or_stale_context_suppresses_alert(self):
+    def test_closed_or_stale_context_keeps_native_alert_decision(self):
         closed = rate_xstock_zone(
             "NVDAXUSD",
             "demand",
@@ -143,8 +143,24 @@ class XStockHybridRatingTests(unittest.TestCase):
             self.context(data_fresh=False),
         )
 
-        self.assertFalse(closed["alert_allowed"])
-        self.assertFalse(stale["alert_allowed"])
+        self.assertTrue(closed["alert_allowed"])
+        self.assertTrue(stale["alert_allowed"])
+        self.assertEqual(closed["score"], 9)
+        self.assertEqual(stale["score"], 9)
+        self.assertEqual(closed["context_status"], "underlying_context_stale")
+
+    def test_unmapped_symbol_keeps_native_base_score(self):
+        rating = rate_xstock_zone(
+            "UNMAPPEDXUSD",
+            "demand",
+            6,
+            100.0,
+            None,
+        )
+
+        self.assertEqual(rating["score"], 6)
+        self.assertTrue(rating["alert_allowed"])
+        self.assertEqual(rating["context_status"], "underlying_unmapped")
 
     def test_large_basis_mismatch_suppresses_alert(self):
         rating = rate_xstock_zone(

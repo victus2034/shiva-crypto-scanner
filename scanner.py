@@ -60,6 +60,7 @@ from config import (
 from crypto_zone_rating import rate_crypto_zone
 from xstock_hybrid_rating import (
     BLOCKED_XSTOCK_SYMBOLS,
+    XSTOCK_UNDERLYINGS,
     is_hybrid_xstock,
     prepare_xstock_contexts,
     rate_xstock_zone,
@@ -758,6 +759,21 @@ def build_signal_state_key(symbol, signal_type):
     return f"{symbol}|range_filter|{signal_type}"
 
 
+def display_symbol(symbol):
+    raw = str(symbol).strip().upper()
+    mapping = XSTOCK_UNDERLYINGS.get(raw)
+    if mapping:
+        return str(mapping["ticker"]).upper()
+    text = raw
+    for separator in (":", "/", "-", "."):
+        if separator in text:
+            text = text.split(separator, 1)[0]
+    for suffix in ("USDT", "BUSD", "USD", "INR"):
+        if text.endswith(suffix) and len(text) > len(suffix):
+            return text[: -len(suffix)]
+    return text
+
+
 def record_delivered_zone_alert(result, zone_type, zone, distance_pct, message, now_ts):
     """Persist delivered zone alerts for the daily backtest summary."""
     rating = result.get(f"{zone_type}_rating") or {}
@@ -788,7 +804,7 @@ def record_delivered_zone_alert(result, zone_type, zone, distance_pct, message, 
 
 
 def format_alert(result, zone_type, zone, distance_pct):
-    symbol = result["symbol"]
+    symbol = display_symbol(result["symbol"])
     price = result["price"]
     reference = zone["top"] if zone_type == "supply" else zone["bottom"]
     side = "SELL zone" if zone_type == "supply" else "BUY zone"
@@ -814,7 +830,7 @@ def format_alert(result, zone_type, zone, distance_pct):
 
 
 def format_signal_alert(result, signal_type):
-    symbol = result["symbol"]
+    symbol = display_symbol(result["symbol"])
     price = result["price"]
     label = "BUY" if signal_type == "buy" else "SELL"
 

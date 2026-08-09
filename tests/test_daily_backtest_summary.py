@@ -66,18 +66,19 @@ class DailyBacktestSummaryTests(unittest.TestCase):
         index = pd.DatetimeIndex(
             [
                 "2026-07-22 09:15",
-                "2026-07-22 13:15",
+                "2026-07-22 10:15",
+                "2026-07-22 11:15",
                 "2026-07-23 09:15",
             ],
             tz=summary.IST,
         )
         frame = pd.DataFrame(
             {
-                "open": [100.0, 101.0, 120.0],
-                "high": [102.0, 103.0, 130.0],
-                "low": [99.0, 100.0, 110.0],
-                "close": [101.0, 102.0, 125.0],
-                "volume": [1, 1, 1],
+                "open": [100.0, 101.0, 102.0, 120.0],
+                "high": [102.0, 103.0, 104.0, 130.0],
+                "low": [99.0, 100.0, 101.0, 110.0],
+                "close": [101.0, 102.0, 103.0, 125.0],
+                "volume": [1, 1, 1, 1],
             },
             index=index,
         )
@@ -88,7 +89,7 @@ class DailyBacktestSummaryTests(unittest.TestCase):
         )
 
         self.assertTrue(mature)
-        self.assertEqual(end_index, 1)
+        self.assertEqual(end_index, 2)
 
     def test_half_r_is_kept_if_price_reverses_later(self):
         index = pd.DatetimeIndex(
@@ -146,13 +147,33 @@ class DailyBacktestSummaryTests(unittest.TestCase):
         message = summary.build_summary(records, pd.Timestamp("2026-08-04").date(), results, {}, 0, "30m")
 
         self.assertIn("NSE 30m BACKTEST | 04 AUG 2026", message)
-        self.assertIn("Alerts - 2", message)
-        self.assertIn("No Touch - 1", message)
+        self.assertIn("Alerts — 2", message)
+        self.assertIn("No Touch — 1", message)
         self.assertIn("4/10", message)
-        self.assertIn("1. BTC - Rating 4/10 - +2R", message)
+        self.assertIn("1. BTC — Rating 4/10 — +2R", message)
         self.assertNotIn("Tradable", message)
-        self.assertNotIn("BE -", message)
+        self.assertNotIn("BE —", message)
         self.assertNotIn("Verdict", message)
+
+    def test_no_touch_excludes_data_errors(self):
+        records = pd.DataFrame(
+            [
+                base_alert(symbol="A.NS", rating=5),
+                base_alert(symbol="B.NS", rating=5),
+                base_alert(symbol="C.NS", rating=5),
+            ]
+        )
+        results = pd.DataFrame(
+            [
+                {**records.iloc[0].to_dict(), "filled": False, "outcome": "zone_not_touched", "final_result": "", "net_realized_r": float("nan")},
+                {**records.iloc[1].to_dict(), "filled": False, "outcome": "data_missing", "final_result": "", "net_realized_r": float("nan")},
+                {**records.iloc[2].to_dict(), "filled": False, "outcome": "alert_before_data", "final_result": "", "net_realized_r": float("nan")},
+            ]
+        )
+
+        message = summary.build_summary(records, pd.Timestamp("2026-08-04").date(), results, {}, 0, "30m")
+
+        self.assertIn("No Touch — 1", message)
 
     def test_report_state_blocks_duplicate_key(self):
         with tempfile.TemporaryDirectory() as tmp:
@@ -169,6 +190,40 @@ class DailyBacktestSummaryTests(unittest.TestCase):
             summary.report_key(day, "30m", "nse"),
             summary.report_key(day, "30m", "crypto"),
         )
+
+    def test_crypto_report_date_uses_1630_cutoff(self):
+        before_cutoff = pd.Timestamp("2026-08-04 16:30", tz=summary.IST)
+        after_cutoff = pd.Timestamp("2026-08-04 16:31", tz=summary.IST)
+
+        self.assertEqual(summary.crypto_report_date(before_cutoff), pd.Timestamp("2026-08-04").date())
+        self.assertEqual(summary.crypto_report_date(after_cutoff), pd.Timestamp("2026-08-05").date())
+
+    def test_nse_cutoff_uses_only_bars_ending_before_cutoff(self):
+        index = pd.DatetimeIndex(
+            [
+                "2026-08-04 14:30",
+                "2026-08-04 15:00",
+            ],
+            tz=summary.IST,
+        )
+        frame = pd.DataFrame(
+            {
+                "open": [100.0, 100.0],
+                "high": [101.0, 130.0],
+                "low": [99.0, 80.0],
+                "close": [100.0, 100.0],
+                "volume": [1, 1],
+            },
+            index=index,
+        )
+
+        end_index, mature = summary.same_day_tracking_end(
+            frame,
+            pd.Timestamp("2026-08-04 14:00", tz=summary.IST),
+        )
+
+        self.assertTrue(mature)
+        self.assertEqual(end_index, 0)
 
     def test_crypto_sl_before_half_r_is_sl(self):
         frame = crypto_frame(
@@ -292,6 +347,8 @@ class DailyBacktestSummaryTests(unittest.TestCase):
         cases = {
             "TCS.NS": "TCS",
             "AAPL.USD": "AAPL",
+            "AAPLXUSD": "AAPL",
+            "AVGO/USDT:USDT": "AVGO",
             "BTCUSDT": "BTC",
             "BTC/USD": "BTC",
             "BTC-USD": "BTC",
