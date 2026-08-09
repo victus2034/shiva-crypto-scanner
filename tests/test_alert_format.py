@@ -47,6 +47,39 @@ class AlertFormatTests(unittest.TestCase):
             "Distance: 0.97%",
         )
 
+    def test_nse_zone_alert_adds_sector_bias_when_available(self):
+        result = {
+            "symbol": "INFY.NS",
+            "price": 100.0,
+            "sector": "Technology & Telecom",
+            "sector_session_pct": -2.1,
+        }
+        zone = {"bottom": 99.0, "top": 99.5}
+
+        message = nse_scanner.format_alert(result, "demand", zone, 0.6)
+
+        self.assertEqual(
+            message,
+            "INFY BUY\n"
+            "Price: 100.00\n"
+            "Zone: 99.00 - 99.50\n"
+            "Distance: 0.60%\n"
+            "Bias: Risky, Technology & Telecom -2.10%",
+        )
+
+    def test_nse_sell_alert_sector_bias_supports_down_sector(self):
+        result = {
+            "symbol": "INFY.NS",
+            "price": 100.0,
+            "sector": "Technology & Telecom",
+            "sector_session_pct": -2.1,
+        }
+        zone = {"bottom": 101.0, "top": 101.5}
+
+        message = nse_scanner.format_alert(result, "supply", zone, 0.6)
+
+        self.assertIn("Bias: Supports, Technology & Telecom -2.10%", message)
+
     def test_nse_30m_zone_rating_starts_at_four(self):
         result = {"symbol": "TEST.NS", "price": 100.0}
         zone = {"bottom": 99.0, "top": 99.5, "max_touch_streak": 1}

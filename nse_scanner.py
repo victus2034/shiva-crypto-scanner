@@ -2,6 +2,7 @@ import argparse
 from io import StringIO
 import json
 import os
+from statistics import median
 import time
 from pathlib import Path
 from zoneinfo import ZoneInfo
@@ -55,6 +56,20 @@ from zone_scoring import score_wick_zone
 STATE_FILE = Path(__file__).with_name("nse_alert_state.json")
 ALERT_RECORD_FILE = Path(__file__).with_name("nse_alert_records.jsonl")
 MARKET_DATA = {}
+NSE_SECTOR_MAP = {}
+NSE_SECTOR_BIAS_THRESHOLD_PCT = float(os.getenv("NSE_SECTOR_BIAS_THRESHOLD_PCT", "1.5"))
+NSE_SECTOR_BUCKETS = (
+    ("Financials", ("financial", "bank", "insurance", "capital market")),
+    ("Industrials", ("capital goods", "construction", "engineering", "industrial", "logistics", "transport", "infrastructure")),
+    ("Healthcare", ("healthcare", "pharma", "pharmaceutical", "hospital", "diagnostic", "biotech")),
+    ("Consumer", ("consumer", "fmcg", "retail", "textile", "media", "hotel", "food", "beverage", "durable", "services")),
+    ("Materials", ("metal", "mining", "cement", "chemical", "fertilizer", "paper", "packaging", "materials")),
+    ("Automobile", ("automobile", "auto", "automotive")),
+    ("Energy & Utilities", ("oil", "gas", "power", "energy", "utility", "utilities", "electric", "renewable")),
+    ("Technology & Telecom", ("information technology", "software", "telecom", "communication", "technology")),
+    ("Real Estate", ("realty", "real estate")),
+    ("Diversified", ("diversified",)),
+)
 
 
 def parse_hhmm(value):
@@ -127,7 +142,40 @@ def get_env_or_config(env_name, config_value):
     return value if value else config_value
 
 
+def normalize_nse_symbol(symbol):
+    text = str(symbol).strip().upper()
+    return text if text.endswith(".NS") else f"{text}.NS"
+
+
+def classify_nse_sector(raw_industry):
+    text = str(raw_industry or "").strip().lower()
+    for sector, keywords in NSE_SECTOR_BUCKETS:
+        if any(keyword in text for keyword in keywords):
+            return sector
+    return "Unclassified"
+
+
+def build_sector_map_from_constituents(csv):
+    symbol_column = "Symbol"
+    industry_column = next(
+        (
+            column
+            for column in csv.columns
+            if str(column).strip().lower() in {"industry", "sector", "macro-economic sector", "basic industry"}
+        ),
+        None,
+    )
+    if symbol_column not in csv.columns or industry_column is None:
+        return {}
+
+    sector_map = {}
+    for _, row in csv[[symbol_column, industry_column]].dropna(subset=[symbol_column]).iterrows():
+        sector_map[normalize_nse_symbol(row[symbol_column])] = classify_nse_sector(row.get(industry_column))
+    return sector_map
+
+
 def load_watchlist():
+    global NSE_SECTOR_MAP
     try:
         response = requests.get(
             NSE_INDEX_CSV_URL,
@@ -139,13 +187,15 @@ def load_watchlist():
         if "Symbol" not in csv.columns:
             raise RuntimeError("NSE index CSV did not include Symbol column")
 
-        symbols = [f"{symbol.strip()}.NS" for symbol in csv["Symbol"].dropna()]
+        symbols = [normalize_nse_symbol(symbol) for symbol in csv["Symbol"].dropna()]
         symbols = list(dict.fromkeys(symbols))
         if len(symbols) < 50:
             raise RuntimeError(f"NSE index CSV returned only {len(symbols)} symbols")
+        NSE_SECTOR_MAP = build_sector_map_from_constituents(csv)
         return symbols[:NSE_MAX_SYMBOLS]
     except Exception as error:
         print(f"Using fallback NSE watchlist because index CSV failed: {error}")
+        NSE_SECTOR_MAP = {symbol: "Unclassified" for symbol in FALLBACK_WATCHLIST}
         return FALLBACK_WATCHLIST
 
 
@@ -539,6 +589,84 @@ def fetch_stock_ohlcv(symbol):
     return prepare_ohlcv(data)
 
 
+def _localized_datetimes(df):
+    datetimes = pd.to_datetime(df["Datetime"])
+    if getattr(datetimes.dt, "tz", None) is None:
+        return datetimes.dt.tz_localize(MARKET_TIMEZONE)
+    return datetimes.dt.tz_convert(MARKET_TIMEZONE)
+
+
+def stock_session_move_pct(df):
+    if df is None or df.empty or "Datetime" not in df.columns or len(df) < 2:
+        return None
+
+    try:
+        localized = _localized_datetimes(df)
+        latest_date = localized.iloc[-1].date()
+        same_session = df.loc[localized.dt.date == latest_date]
+        if same_session.empty:
+            return None
+
+        base = float(same_session["open"].iloc[0])
+        latest = float(df["close"].iloc[-1])
+        if base <= 0:
+            return None
+        return (latest - base) / base * 100.0
+    except Exception:
+        return None
+
+
+def build_sector_context(watchlist):
+    grouped_moves = {}
+    for symbol in watchlist:
+        sector = NSE_SECTOR_MAP.get(symbol, "Unclassified")
+        move = stock_session_move_pct(MARKET_DATA.get(symbol))
+        if move is None:
+            continue
+        grouped_moves.setdefault(sector, []).append(move)
+
+    return {
+        sector: {
+            "session_pct": median(moves),
+            "members": len(moves),
+        }
+        for sector, moves in grouped_moves.items()
+    }
+
+
+def attach_sector_context(result, sector_context):
+    sector = NSE_SECTOR_MAP.get(result["symbol"], "Unclassified")
+    context = sector_context.get(sector)
+    result["sector"] = sector
+    result["sector_session_pct"] = context["session_pct"] if context else None
+    result["sector_member_count"] = context["members"] if context else 0
+    return result
+
+
+def sector_bias_line(result, zone_type):
+    sector = result.get("sector")
+    move = result.get("sector_session_pct")
+    if not sector or move is None:
+        return None
+
+    if abs(move) < NSE_SECTOR_BIAS_THRESHOLD_PCT:
+        label = "Neutral"
+    else:
+        wants_up = zone_type == "demand"
+        supports_trade = move > 0 if wants_up else move < 0
+        label = "Supports" if supports_trade else "Risky"
+
+    return f"{label}, {sector} {move:+.2f}%"
+
+
+def sector_coverage_summary(watchlist):
+    counts = {}
+    for symbol in watchlist:
+        sector = NSE_SECTOR_MAP.get(symbol, "Unclassified")
+        counts[sector] = counts.get(sector, 0) + 1
+    return ", ".join(f"{sector}: {counts[sector]}" for sector in sorted(counts))
+
+
 def scan_symbol(symbol):
     df = fetch_stock_ohlcv(symbol)
     price = float(df["close"].iloc[-1])
@@ -604,12 +732,16 @@ def format_alert(result, zone_type, zone, distance_pct):
         score_text = f" | {score}/10"
     elif SHOW_ZONE_RATINGS and TIMEFRAME == "30m":
         score_text = f" | {zone_rating(zone, distance_pct)}/10"
-    return (
+    lines = [
         f"{display_symbol(result['symbol'])} {side}{score_text}\n"
         f"Price: {result['price']:.2f}\n"
         f"Zone: {zone['bottom']:.2f} - {zone['top']:.2f}\n"
         f"Distance: {distance_pct:.2f}%"
-    )
+    ]
+    bias = sector_bias_line(result, zone_type)
+    if bias:
+        lines.append(f"Bias: {bias}")
+    return "\n".join(lines)
 
 
 def zone_rating(zone, distance_pct):
@@ -826,14 +958,16 @@ def run_scan_once(state):
         f"Run: {run_number}\n"
         f"Trigger: {trigger}\n"
         f"Timeframe: {TIMEFRAME}\n"
-        f"Watchlist: {len(watchlist)} symbols"
+        f"Watchlist: {len(watchlist)} symbols\n"
+        f"Sectors: {sector_coverage_summary(watchlist)}"
     )
 
     fetch_market_data(watchlist)
+    sector_context = build_sector_context(watchlist)
     scanned_by_symbol = {}
     for symbol in watchlist:
         try:
-            scanned_by_symbol[symbol] = scan_symbol(symbol)
+            scanned_by_symbol[symbol] = attach_sector_context(scan_symbol(symbol), sector_context)
         except Exception as error:
             error_message = f"{symbol} -> {error}"
             failures.append(error_message)
