@@ -13224,7 +13224,7 @@
     "last_alert_at": 0.0
   },
   "HBAR/USDT|supply|0.07016000|0.07022000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1786251739.6971166
   },
   "O/USDT|supply|0.51070000|0.51580000": {
@@ -14925,7 +14925,7 @@
   },
   "SLVONUSD|supply|58.15000000|58.21000000": {
     "in_zone": true,
-    "last_alert_at": 1786251739.9099424
+    "last_alert_at": 1786254113.5137205
   },
   "ESP/USDT|supply|0.07076000|0.07148000": {
     "in_zone": false,
@@ -15615,10 +15615,14 @@
     "last_alert_at": 0.0
   },
   "HBAR/USDT|demand|0.06875000|0.06892000": {
+    "in_zone": true,
+    "last_alert_at": 1786254113.221593
+  },
+  "LA/USDT|supply|0.05151000|0.05260000": {
     "in_zone": false,
     "last_alert_at": 0.0
   },
-  "LA/USDT|supply|0.05151000|0.05260000": {
+  "ZECUSD|demand|505.61000000|507.88000000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
