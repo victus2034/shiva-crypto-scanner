@@ -12,6 +12,7 @@ import yfinance as yf
 
 from nse_config import (
     ALERT_COOLDOWN_SECONDS,
+    ALERT_SCAN_START,
     ALERT_RANGE_FILTER_SIGNALS,
     ATR_PERIOD,
     BOX_WIDTH,
@@ -36,6 +37,7 @@ from nse_config import (
     PRINT_ALERTS_TO_CONSOLE,
     PRINT_SCAN_SUMMARY,
     REARM_FACTOR,
+    STRATEGY_CUTOFF,
     SHOW_4H_ZONE_SCORES,
     SCAN_SLEEP,
     SIGNAL_ALERT_COOLDOWN_SECONDS,
@@ -62,10 +64,10 @@ def parse_hhmm(value):
 
 def market_window_status(now=None):
     now = now or pd.Timestamp.now(tz=ZoneInfo(MARKET_TIMEZONE))
-    open_hour, open_minute = parse_hhmm(MARKET_OPEN)
-    close_hour, close_minute = parse_hhmm(MARKET_CLOSE)
-    market_open = now.replace(hour=open_hour, minute=open_minute, second=0, microsecond=0)
-    market_close = now.replace(hour=close_hour, minute=close_minute, second=0, microsecond=0)
+    scan_hour, scan_minute = parse_hhmm(ALERT_SCAN_START)
+    cutoff_hour, cutoff_minute = parse_hhmm(STRATEGY_CUTOFF)
+    market_open = now.replace(hour=scan_hour, minute=scan_minute, second=0, microsecond=0)
+    market_close = now.replace(hour=cutoff_hour, minute=cutoff_minute, second=0, microsecond=0)
     is_weekday = now.weekday() < 5
     return is_weekday and market_open <= now <= market_close, now, market_open, market_close
 

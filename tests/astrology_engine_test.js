@@ -3,6 +3,9 @@
 const assert = require("assert");
 const {
   NATAL,
+  NATAL_DISPLAY_REFERENCE,
+  SECTOR_THEME_DEFINITIONS,
+  SECTOR_THEME_THRESHOLD,
   activeDasha,
   buildDailyPayload,
   buildWeeklyPayload,
@@ -11,6 +14,7 @@ const {
   nakshatraDetails,
   planetaryHoras,
   rahuKalam,
+  scoreSectorTheme,
   signName,
   sunTimes,
 } = require("../astrology_engine");
@@ -27,6 +31,35 @@ assert.strictEqual(signName(NATAL.ascendant), "Scorpio");
 assert.strictEqual(signName(NATAL.moon), "Capricorn");
 assert.strictEqual(natalMoon.name, "Uttarashadha");
 assert.strictEqual(natalMoon.pada, 2);
+assert(Math.abs(NATAL.moon - NATAL_DISPLAY_REFERENCE.moon) > 0.000001);
+assert(Math.abs(NATAL.ascendant - NATAL_DISPLAY_REFERENCE.ascendant) > 0.000001);
+
+for (const [sector, factors] of Object.entries(SECTOR_THEME_DEFINITIONS)) {
+  const emptyTransit = {};
+  for (const factor of factors) {
+    if (factor.type === "house") {
+      emptyTransit[factor.planet] = emptyTransit[factor.planet] || {};
+      emptyTransit[factor.planet][factor.relation] = -1;
+    }
+  }
+  const diagnostics = scoreSectorTheme(
+    factors,
+    emptyTransit,
+    { mahadasha: "None", antardasha: { lord: "None" } },
+  );
+  if (diagnostics.supportReachable) {
+    assert(
+      diagnostics.theoreticalMax >= SECTOR_THEME_THRESHOLD,
+      `${sector} support threshold is unreachable`,
+    );
+  }
+  if (diagnostics.cautionReachable) {
+    assert(
+      diagnostics.theoreticalMin <= -SECTOR_THEME_THRESHOLD,
+      `${sector} caution threshold is unreachable`,
+    );
+  }
+}
 
 const regressionDate = { year: 2026, month: 8, day: 8 };
 const dasha = activeDasha(regressionDate);

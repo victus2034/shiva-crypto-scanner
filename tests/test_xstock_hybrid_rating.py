@@ -6,8 +6,11 @@ import pandas as pd
 
 from xstock_hybrid_rating import (
     BLOCKED_XSTOCK_SYMBOLS,
+    UNMAPPED_XSTOCK_SYMBOLS,
     XSTOCK_UNDERLYINGS,
     classify_us_session,
+    has_underlying_mapping,
+    is_xstock,
     prepare_xstock_contexts,
     rate_xstock_zone,
 )
@@ -35,6 +38,23 @@ class XStockHybridRatingTests(unittest.TestCase):
             BLOCKED_XSTOCK_SYMBOLS,
             {"BZ/USDT:USDT", "SLX/USDT:USDT"},
         )
+        for symbol in BLOCKED_XSTOCK_SYMBOLS:
+            self.assertFalse(is_xstock(symbol))
+
+    def test_xstock_classification_is_separate_from_mapping(self):
+        audit_targets = {
+            "SPCXXUSD",
+            "DRAMBUSD",
+            "CBRSBUSD",
+            "SKHYNIX/USDT:USDT",
+            "OPENAI/USDT:USDT",
+            "SAMSUNG/USDT:USDT",
+        }
+        self.assertEqual(UNMAPPED_XSTOCK_SYMBOLS, audit_targets)
+        for symbol in audit_targets:
+            with self.subTest(symbol=symbol):
+                self.assertTrue(is_xstock(symbol))
+                self.assertFalse(has_underlying_mapping(symbol))
 
     def test_us_session_clock(self):
         self.assertEqual(
@@ -151,7 +171,7 @@ class XStockHybridRatingTests(unittest.TestCase):
 
     def test_unmapped_symbol_keeps_native_base_score(self):
         rating = rate_xstock_zone(
-            "UNMAPPEDXUSD",
+            "SPCXXUSD",
             "demand",
             6,
             100.0,

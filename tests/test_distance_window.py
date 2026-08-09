@@ -1,4 +1,6 @@
 import unittest
+from pathlib import Path
+from tempfile import TemporaryDirectory
 from unittest.mock import patch
 
 import nse_scanner
@@ -6,6 +8,23 @@ import scanner
 
 
 class DistanceWindowTests(unittest.TestCase):
+    def setUp(self):
+        self._tmp = TemporaryDirectory()
+        tmp_path = Path(self._tmp.name)
+        self._crypto_record_patch = patch.object(
+            scanner, "ALERT_RECORD_FILE", tmp_path / "crypto_alert_records.jsonl"
+        )
+        self._nse_record_patch = patch.object(
+            nse_scanner, "ALERT_RECORD_FILE", tmp_path / "nse_alert_records.jsonl"
+        )
+        self._crypto_record_patch.start()
+        self._nse_record_patch.start()
+
+    def tearDown(self):
+        self._nse_record_patch.stop()
+        self._crypto_record_patch.stop()
+        self._tmp.cleanup()
+
     def test_crypto_range_signal_requires_an_active_zone(self):
         state = {}
         result = {
@@ -256,13 +275,16 @@ class DistanceWindowTests(unittest.TestCase):
         result = {"symbol": "RELIANCE.NS", "price": 100.0}
         zone = {"bottom": 99.0, "top": 100.0}
 
-        with (
-            patch.object(nse_scanner, "MIN_DISTANCE_PCT", 0.25),
-            patch.object(nse_scanner, "MAX_DISTANCE_PCT", 0.75),
-            patch.object(nse_scanner, "send_alert", return_value=True) as send,
-        ):
-            nse_scanner.process_candidate(state, result, "demand", zone, 0.20, 1000)
-            nse_scanner.process_candidate(state, result, "demand", zone, 0.50, 1100)
+        with TemporaryDirectory() as tmp:
+            record_path = Path(tmp) / "nse_alert_records.jsonl"
+            with (
+                patch.object(nse_scanner, "ALERT_RECORD_FILE", record_path),
+                patch.object(nse_scanner, "MIN_DISTANCE_PCT", 0.25),
+                patch.object(nse_scanner, "MAX_DISTANCE_PCT", 0.75),
+                patch.object(nse_scanner, "send_alert", return_value=True) as send,
+            ):
+                nse_scanner.process_candidate(state, result, "demand", zone, 0.20, 1000)
+                nse_scanner.process_candidate(state, result, "demand", zone, 0.50, 1100)
 
         self.assertEqual(send.call_count, 1)
 

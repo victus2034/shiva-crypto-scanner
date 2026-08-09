@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import os
 import time
@@ -13,7 +14,7 @@ import requests
 
 import nse_scanner
 import scanner as crypto_scanner
-from xstock_hybrid_rating import XSTOCK_UNDERLYINGS, is_hybrid_xstock
+from xstock_hybrid_rating import XSTOCK_UNDERLYINGS, is_xstock
 
 
 IST = ZoneInfo("Asia/Kolkata")
@@ -36,6 +37,7 @@ TIMEFRAME_SETTINGS = {
 ENTRY_WAIT_BARS = 3
 MAX_HOLD_BARS = 24
 NSE_BACKTEST_CLOSE_CUTOFF = datetime_time(15, 10)
+NSE_TRADE_START = datetime_time(9, 15)
 CRYPTO_REPORT_CUTOFF = datetime_time(16, 30)
 CRYPTO_EVALUATION_HOURS = 6
 FIXED_STOP_PCT = 0.5
@@ -118,6 +120,7 @@ def load_records(path: Path, timeframe_filter: str) -> pd.DataFrame:
                 {
                     "event_time": event_time,
                     "event_time_ist": event_time.tz_convert(IST),
+                    "timeframe": timeframe,
                     "symbol": str(raw["symbol"]),
                     "side": side,
                     "distance_pct": float(raw["distance_pct"]),
@@ -161,6 +164,20 @@ def parse_optional_float(value) -> float:
         return float(value)
     except (TypeError, ValueError):
         return float("nan")
+
+
+def format_optional_timestamp(value) -> str | None:
+    if value is None or value == "":
+        return None
+    try:
+        if pd.isna(value):
+            return None
+    except (TypeError, ValueError):
+        pass
+    try:
+        return pd.Timestamp(value).isoformat()
+    except (TypeError, ValueError):
+        return None
 
 
 def assign_report_dates(records: pd.DataFrame, market: str) -> pd.DataFrame:
@@ -373,7 +390,13 @@ def simulate_alert(
     side = alert["side"]
     direction = 1.0 if side == "long" else -1.0
     entry_price = body_entry_price(frame, alert, event_index)
-    entry_index = find_entry(frame, event_index, entry_price, tracking_end_index)
+    entry_index = find_entry(
+        frame,
+        event_index,
+        entry_price,
+        tracking_end_index,
+        alert.get("symbol", ""),
+    )
     if entry_index is None:
         return unfilled(alert, "zone_not_touched")
 
@@ -398,6 +421,10 @@ def simulate_alert(
     half_r_hit = False
     target_1_hit = False
     target_2_hit = False
+    time_to_half_r = None
+    time_to_1r = None
+    time_to_2r = None
+    time_to_sl = None
     outcome = "Neither"
     exit_index = end_index
     max_favorable_r = 0.0
@@ -419,19 +446,32 @@ def simulate_alert(
         if outcome == "Neither" and stop_hit:
             outcome = "SL"
             exit_index = index
+            time_to_sl = frame.index[index]
             break
         if half_target_hit:
             half_r_hit = True
+            if time_to_half_r is None:
+                time_to_half_r = frame.index[index]
             if outcome == "Neither":
                 outcome = "+0.5R"
         if first_target_hit:
             half_r_hit = True
             target_1_hit = True
+            if time_to_half_r is None:
+                time_to_half_r = frame.index[index]
+            if time_to_1r is None:
+                time_to_1r = frame.index[index]
             outcome = "+1R"
         if second_target_hit:
             half_r_hit = True
             target_1_hit = True
             target_2_hit = True
+            if time_to_half_r is None:
+                time_to_half_r = frame.index[index]
+            if time_to_1r is None:
+                time_to_1r = frame.index[index]
+            if time_to_2r is None:
+                time_to_2r = frame.index[index]
             outcome = "+2R"
             exit_index = index
             break
@@ -447,10 +487,21 @@ def simulate_alert(
     else:
         exit_price = float(frame["close"].iloc[exit_index])
     realized_r = FINAL_RESULT_R[outcome]
+    evaluation_end_time = candle_ends(frame)[exit_index]
+    final_resolution_time = resolution_time_for_outcome(
+        outcome,
+        evaluation_end_time,
+        time_to_half_r,
+        time_to_1r,
+        time_to_2r,
+        time_to_sl,
+    )
+    best_secured_time = best_secured_milestone_time(time_to_half_r, time_to_1r, time_to_2r)
 
     result = dict(alert)
     result.update(
         {
+            "trade_id": stable_trade_id(alert),
             "filled": True,
             "entry_time": frame.index[entry_index],
             "entry_price": entry_price,
@@ -470,10 +521,49 @@ def simulate_alert(
             "net_realized_r": realized_r,
             "mfe_r": max_favorable_r,
             "mae_r": max_adverse_r,
+            "time_to_half_r": time_to_half_r,
+            "time_to_1r": time_to_1r,
+            "time_to_2r": time_to_2r,
+            "time_to_sl": time_to_sl,
+            "final_resolution_time": final_resolution_time,
+            "time_to_resolution_seconds": duration_seconds(frame.index[entry_index], final_resolution_time),
+            "time_to_best_secured_milestone_seconds": duration_seconds(frame.index[entry_index], best_secured_time),
             "cooldown_blocked": False,
         }
     )
     return result
+
+
+def resolution_time_for_outcome(
+    outcome: str,
+    fallback_time,
+    time_to_half_r,
+    time_to_1r,
+    time_to_2r,
+    time_to_sl,
+):
+    if outcome == "+2R":
+        return time_to_2r
+    if outcome == "+1R":
+        return time_to_1r
+    if outcome == "+0.5R":
+        return time_to_half_r
+    if outcome == "SL":
+        return time_to_sl
+    return fallback_time
+
+
+def best_secured_milestone_time(time_to_half_r, time_to_1r, time_to_2r):
+    for value in (time_to_2r, time_to_1r, time_to_half_r):
+        if not pd.isna(value):
+            return value
+    return pd.NaT
+
+
+def duration_seconds(start, end) -> float | None:
+    if pd.isna(start) or pd.isna(end):
+        return None
+    return float((pd.Timestamp(end) - pd.Timestamp(start)).total_seconds())
 
 
 def crypto_entry_tracking_end(
@@ -482,8 +572,9 @@ def crypto_entry_tracking_end(
 ) -> tuple[int | None, bool]:
     expiry = pd.Timestamp(frame.index[entry_index]) + timedelta(hours=CRYPTO_EVALUATION_HOURS)
     mature = pd.Timestamp.now(tz=IST) >= expiry
+    ends = candle_ends(frame)
     positions = [
-        index for index, timestamp in enumerate(frame.index)
+        index for index, timestamp in enumerate(ends)
         if entry_index <= index and timestamp <= expiry
     ]
     if not positions:
@@ -500,6 +591,7 @@ def pending_trade(
     result = unfilled(alert, "Pending")
     result.update(
         {
+            "trade_id": stable_trade_id(alert),
             "filled": True,
             "entry_time": frame.index[entry_index],
             "entry_price": entry_price,
@@ -519,7 +611,7 @@ def is_crypto_symbol(symbol: str) -> bool:
 
 
 def is_xstock_symbol(symbol: str) -> bool:
-    return is_hybrid_xstock(str(symbol).upper())
+    return is_xstock(str(symbol).upper())
 
 
 def body_entry_price(frame: pd.DataFrame, alert: dict, event_index: int) -> float:
@@ -576,18 +668,27 @@ def find_entry(
     event_index: int,
     entry_price: float,
     tracking_end_index: int,
+    symbol: str = "",
 ) -> int | None:
     end_index = min(event_index + ENTRY_WAIT_BARS, tracking_end_index)
     for index in range(event_index + 1, end_index + 1):
+        timestamp = pd.Timestamp(frame.index[index]).tz_convert(IST)
+        if is_nse_symbol(symbol) and timestamp.time() < NSE_TRADE_START:
+            continue
         if float(frame["low"].iloc[index]) <= entry_price <= float(frame["high"].iloc[index]):
             return index
     return None
+
+
+def is_nse_symbol(symbol: str) -> bool:
+    return str(symbol).upper().endswith(".NS")
 
 
 def unfilled(alert: dict, outcome: str) -> dict:
     result = dict(alert)
     result.update(
         {
+            "trade_id": stable_trade_id(alert),
             "filled": False,
             "entry_time": pd.NaT,
             "entry_price": float("nan"),
@@ -606,10 +707,49 @@ def unfilled(alert: dict, outcome: str) -> dict:
             "net_realized_r": float("nan"),
             "mfe_r": float("nan"),
             "mae_r": float("nan"),
+            "time_to_half_r": pd.NaT,
+            "time_to_1r": pd.NaT,
+            "time_to_2r": pd.NaT,
+            "time_to_sl": pd.NaT,
+            "final_resolution_time": pd.NaT,
+            "time_to_resolution_seconds": None,
+            "time_to_best_secured_milestone_seconds": None,
             "cooldown_blocked": False,
         }
     )
     return result
+
+
+def stable_trade_id(alert: dict) -> str:
+    event_time = first_present_value(alert.get("event_time_ist"), alert.get("event_time"), "")
+    if not isinstance(event_time, str):
+        try:
+            event_time = pd.Timestamp(event_time).isoformat()
+        except (TypeError, ValueError):
+            event_time = str(event_time)
+    raw = "|".join(
+        [
+            str(alert.get("symbol", "")).upper(),
+            str(alert.get("timeframe", "")),
+            str(alert.get("side", "")),
+            str(alert.get("zone_id", "")),
+            str(event_time),
+        ]
+    )
+    return hashlib.sha1(raw.encode("utf-8")).hexdigest()[:16]
+
+
+def first_present_value(*values):
+    for value in values:
+        if value is None:
+            continue
+        try:
+            if pd.isna(value):
+                continue
+        except (TypeError, ValueError):
+            pass
+        return value
+    return None
 
 
 def apply_same_day_zone_cooldown(
@@ -924,9 +1064,19 @@ def persist_finalized_records(
                 "display_symbol": display_symbol(row.get("symbol", "")),
                 "side": row.get("side", ""),
                 "rating": parse_optional_float(row.get("rating")),
+                "trade_id": row.get("trade_id") or stable_trade_id(row),
+                "alert_time": format_optional_timestamp(first_present_value(row.get("event_time_ist"), row.get("event_time"))),
+                "entry_time": format_optional_timestamp(row.get("entry_time")),
                 "filled": bool(row.get("filled", False)),
                 "outcome": row.get("outcome", ""),
                 "final_result": row.get("final_result", ""),
+                "final_resolution_time": format_optional_timestamp(row.get("final_resolution_time")),
+                "time_to_half_r": format_optional_timestamp(row.get("time_to_half_r")),
+                "time_to_1r": format_optional_timestamp(row.get("time_to_1r")),
+                "time_to_2r": format_optional_timestamp(row.get("time_to_2r")),
+                "time_to_sl": format_optional_timestamp(row.get("time_to_sl")),
+                "time_to_resolution_seconds": parse_optional_float(row.get("time_to_resolution_seconds")),
+                "time_to_best_secured_milestone_seconds": parse_optional_float(row.get("time_to_best_secured_milestone_seconds")),
                 "realized_r": parse_optional_float(row.get("realized_r")),
                 "net_realized_r": parse_optional_float(row.get("net_realized_r")),
                 "cooldown_blocked": bool(row.get("cooldown_blocked", False)),
@@ -937,6 +1087,59 @@ def persist_finalized_records(
 
     all_rows = retained + new_rows
     path.write_text(("\n".join(all_rows) + "\n") if all_rows else "", encoding="utf-8")
+
+
+def build_timing_analytics(records: pd.DataFrame) -> pd.DataFrame:
+    if records.empty:
+        return pd.DataFrame()
+
+    frame = records.copy()
+    if "filled" not in frame or "final_result" not in frame:
+        return pd.DataFrame()
+
+    frame = frame[
+        (frame["filled"] == True)  # noqa: E712
+        & (frame["final_result"].notna())
+        & (~frame["final_result"].isin(["", "Pending"]))
+    ].copy()
+    if frame.empty:
+        return pd.DataFrame()
+
+    frame["time_to_resolution_seconds"] = pd.to_numeric(
+        frame.get("time_to_resolution_seconds"), errors="coerce"
+    )
+    frame = frame[frame["time_to_resolution_seconds"].notna()].copy()
+    if frame.empty:
+        return pd.DataFrame()
+
+    for column, fallback in (
+        ("market", "UNKNOWN"),
+        ("timeframe", ""),
+        ("side", ""),
+        ("rating", float("nan")),
+        ("final_result", ""),
+    ):
+        if column not in frame:
+            frame[column] = fallback
+
+    rows: list[dict] = []
+    group_columns = ["market", "timeframe", "rating", "side", "final_result"]
+    for key, group in frame.groupby(group_columns, dropna=False):
+        durations = pd.to_numeric(group["time_to_resolution_seconds"], errors="coerce").dropna()
+        if durations.empty:
+            continue
+        row = dict(zip(group_columns, key))
+        row["trades"] = int(len(durations))
+        for hours in range(1, 7):
+            row[f"resolved_within_{hours}h_pct"] = float((durations <= hours * 3600).mean() * 100.0)
+        row["median_resolution_seconds"] = float(durations.median())
+        row["p75_resolution_seconds"] = float(durations.quantile(0.75))
+        row["p90_resolution_seconds"] = float(durations.quantile(0.90))
+        rows.append(row)
+
+    if not rows:
+        return pd.DataFrame()
+    return pd.DataFrame(rows).sort_values(group_columns).reset_index(drop=True)
 
 
 def main() -> None:

@@ -42,6 +42,15 @@ XSTOCK_UNDERLYINGS = {
     "TQQQ/USDT:USDT": {"ticker": "TQQQ", "sector": "QQQ"},
 }
 
+UNMAPPED_XSTOCK_SYMBOLS = {
+    "SPCXXUSD",
+    "DRAMBUSD",
+    "CBRSBUSD",
+    "SKHYNIX/USDT:USDT",
+    "OPENAI/USDT:USDT",
+    "SAMSUNG/USDT:USDT",
+}
+
 # These public perpetual symbols resolve to unrelated instruments. They must
 # never be scanned as the xStocks implied by their display names.
 BLOCKED_XSTOCK_SYMBOLS = {
@@ -51,7 +60,18 @@ BLOCKED_XSTOCK_SYMBOLS = {
 
 
 def is_hybrid_xstock(symbol):
-    return symbol in XSTOCK_UNDERLYINGS
+    return has_underlying_mapping(symbol)
+
+
+def has_underlying_mapping(symbol):
+    return str(symbol).upper() in XSTOCK_UNDERLYINGS
+
+
+def is_xstock(symbol):
+    normalized = str(symbol).upper()
+    if normalized in BLOCKED_XSTOCK_SYMBOLS:
+        return False
+    return normalized in XSTOCK_UNDERLYINGS or normalized in UNMAPPED_XSTOCK_SYMBOLS
 
 
 def classify_us_session(now=None):
@@ -157,7 +177,7 @@ def rate_xstock_zone(
 ):
     """Combine zone quality with the underlying and sector direction."""
     base = int(base_score) if base_score is not None else 4
-    mapped = symbol in XSTOCK_UNDERLYINGS
+    mapped = has_underlying_mapping(symbol)
     session = context.get("session", "unavailable") if context else "unavailable"
     minimum_score = (
         regular_min_score if session == "regular" else extended_min_score

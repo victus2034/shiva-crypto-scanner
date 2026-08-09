@@ -11,6 +11,7 @@ def base_alert(**overrides):
     alert = {
         "event_time": pd.Timestamp("2026-08-04 10:00", tz=summary.IST),
         "event_time_ist": pd.Timestamp("2026-08-04 10:00", tz=summary.IST),
+        "timeframe": "30m",
         "symbol": "TCS.NS",
         "side": "long",
         "distance_pct": 0.5,
@@ -225,6 +226,36 @@ class DailyBacktestSummaryTests(unittest.TestCase):
         self.assertTrue(mature)
         self.assertEqual(end_index, 0)
 
+    def test_nse_preopen_alert_cannot_fill_before_trade_start(self):
+        index = pd.DatetimeIndex(
+            [
+                "2026-08-04 09:00",
+                "2026-08-04 09:05",
+                "2026-08-04 09:10",
+                "2026-08-04 09:15",
+            ],
+            tz=summary.IST,
+        )
+        frame = pd.DataFrame(
+            {
+                "open": [101.0, 100.0, 100.0, 101.0],
+                "high": [101.2, 100.2, 100.2, 101.5],
+                "low": [100.8, 99.8, 99.8, 100.8],
+                "close": [101.0, 100.1, 100.1, 101.2],
+                "volume": [1, 1, 1, 1],
+            },
+            index=index,
+        )
+
+        result = summary.simulate_alert(
+            frame,
+            base_alert(event_time=index[0], event_time_ist=index[0]),
+            0,
+            len(frame) - 1,
+        )
+
+        self.assertEqual(result["outcome"], "zone_not_touched")
+
     def test_crypto_sl_before_half_r_is_sl(self):
         frame = crypto_frame(
             rows=[
@@ -342,6 +373,101 @@ class DailyBacktestSummaryTests(unittest.TestCase):
 
         self.assertEqual(result["final_result"], "Neither")
         self.assertGreater(result["exit_time"].date(), frame.index[0].date())
+
+    def test_crypto_candle_starting_at_expiry_cannot_affect_result(self):
+        rows = [(101.0, 101.2, 100.8, 101.0), (100.0, 100.2, 100.0, 100.1)]
+        rows.extend([(100.1, 100.2, 99.8, 100.0)] * 23)
+        rows.append((100.0, 103.0, 99.8, 102.5))
+        frame = crypto_frame(start="2026-08-04 10:00", rows=rows)
+
+        result = summary.simulate_alert(frame, crypto_alert(), 0, len(frame) - 1)
+
+        self.assertEqual(result["final_result"], "Neither")
+        self.assertLess(result["exit_time"], frame.index[-1])
+
+    def test_finalized_records_include_stable_id_and_timing_fields(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            path = Path(tmp) / "records.jsonl"
+            frame = crypto_frame(
+                rows=[
+                    (101.0, 101.2, 100.8, 101.0),
+                    (100.0, 101.2, 100.0, 101.0),
+                ]
+            )
+            result = summary.simulate_alert(frame, crypto_alert(), 0, 1)
+            results = pd.DataFrame([result])
+
+            summary.persist_finalized_records(
+                pd.Timestamp("2026-08-04").date(),
+                "30m",
+                results,
+                "crypto",
+                path,
+            )
+
+            payload = __import__("json").loads(path.read_text(encoding="utf-8").strip())
+            self.assertRegex(payload["trade_id"], r"^[0-9a-f]{16}$")
+            self.assertEqual(payload["entry_time"], frame.index[1].isoformat())
+            self.assertEqual(payload["time_to_half_r"], frame.index[1].isoformat())
+            self.assertEqual(payload["time_to_1r"], frame.index[1].isoformat())
+            self.assertIsNone(payload["time_to_2r"])
+            self.assertEqual(payload["final_resolution_time"], frame.index[1].isoformat())
+
+    def test_neither_resolution_time_uses_last_usable_candle_end(self):
+        frame = crypto_frame(
+            rows=[
+                (101.0, 101.2, 100.8, 101.0),
+                (100.0, 100.2, 100.0, 100.1),
+                (100.1, 100.2, 99.8, 100.0),
+            ]
+        )
+
+        result = summary.simulate_alert(frame, crypto_alert(), 0, 2)
+
+        self.assertEqual(result["final_result"], "Neither")
+        self.assertEqual(result["final_resolution_time"], frame.index[2] + pd.Timedelta(minutes=30))
+
+    def test_timing_analytics_groups_finalized_trade_durations(self):
+        records = pd.DataFrame(
+            [
+                {
+                    **base_alert(symbol="BTCUSDT", side="long", rating=5),
+                    "market": "CRYPTO",
+                    "timeframe": "30m",
+                    "filled": True,
+                    "final_result": "+1R",
+                    "time_to_resolution_seconds": 1800,
+                },
+                {
+                    **base_alert(symbol="ETHUSDT", side="short", rating=6),
+                    "market": "CRYPTO",
+                    "timeframe": "30m",
+                    "filled": True,
+                    "final_result": "Pending",
+                    "time_to_resolution_seconds": None,
+                },
+                {
+                    **base_alert(symbol="SOLUSDT", side="long", rating=5),
+                    "market": "CRYPTO",
+                    "timeframe": "30m",
+                    "filled": False,
+                    "final_result": "",
+                    "time_to_resolution_seconds": None,
+                },
+            ]
+        )
+
+        analytics = summary.build_timing_analytics(records)
+
+        self.assertEqual(len(analytics), 1)
+        row = analytics.iloc[0]
+        self.assertEqual(row["market"], "CRYPTO")
+        self.assertEqual(row["rating"], 5)
+        self.assertEqual(row["side"], "long")
+        self.assertEqual(row["final_result"], "+1R")
+        self.assertEqual(row["trades"], 1)
+        self.assertEqual(row["resolved_within_1h_pct"], 100.0)
+        self.assertEqual(row["median_resolution_seconds"], 1800.0)
 
     def test_display_symbol_simplifies_common_forms(self):
         cases = {

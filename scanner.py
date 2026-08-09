@@ -61,7 +61,7 @@ from crypto_zone_rating import rate_crypto_zone
 from xstock_hybrid_rating import (
     BLOCKED_XSTOCK_SYMBOLS,
     XSTOCK_UNDERLYINGS,
-    is_hybrid_xstock,
+    is_xstock,
     prepare_xstock_contexts,
     rate_xstock_zone,
 )
@@ -679,7 +679,7 @@ def scan_symbol(symbol):
     demand_score = None
     should_score_zone = (
         (SHOW_4H_ZONE_SCORES and TIMEFRAME == "4h")
-        or (ENABLE_XSTOCK_HYBRID_RATINGS and is_hybrid_xstock(symbol))
+        or (ENABLE_XSTOCK_HYBRID_RATINGS and is_xstock(symbol))
     )
     if should_score_zone:
         supply_score = score_wick_zone(
@@ -708,7 +708,7 @@ def scan_symbol(symbol):
             demand_dist,
             SWING_LENGTH,
         )
-    if ENABLE_XSTOCK_HYBRID_RATINGS and is_hybrid_xstock(symbol):
+    if ENABLE_XSTOCK_HYBRID_RATINGS and is_xstock(symbol):
         context = XSTOCK_CONTEXTS.get(symbol)
         if nearest_supply is not None:
             supply_rating = rate_xstock_zone(

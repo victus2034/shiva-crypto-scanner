@@ -112,7 +112,7 @@ const HORA_SEQUENCE = Object.freeze([
 // Sunday..Saturday. Traditional Rahu Kalam daylight section numbers.
 const RAHU_KALAM_SECTION = Object.freeze([8, 2, 7, 5, 6, 4, 3]);
 
-const NATAL = Object.freeze({
+const NATAL_DISPLAY_REFERENCE = Object.freeze({
   birthUtc: Date.UTC(2004, 6, 3, 10, 50), // 03 Jul 2004 16:20 IST.
   ascendant: 222 + 32 / 60,
   moon: 270 + 1 + 58 / 60,
@@ -126,6 +126,8 @@ const NATAL = Object.freeze({
   ketu: 180 + 14 + 1 / 60,
 });
 
+const NATAL = Object.freeze(buildNatalLongitudes());
+
 const PLANETS = Object.freeze({
   sun: swe.constants.SE_SUN,
   moon: swe.constants.SE_MOON,
@@ -137,8 +139,100 @@ const PLANETS = Object.freeze({
   rahu: swe.constants.SE_MEAN_NODE,
 });
 
+const SECTOR_THEME_THRESHOLD = 3;
+
+const SECTOR_THEME_DEFINITIONS = Object.freeze({
+  "Technology / Communication": Object.freeze([
+    houseFactor("mercury", "houseFromLagna", [3, 10, 11], 2),
+    houseFactor("mercury", "houseFromLagna", [8, 12], -2),
+    dashaFactor("Rahu", 1),
+  ]),
+  "Banking / Financials": Object.freeze([
+    houseFactor("jupiter", "houseFromMoon", [2, 9, 11], 2),
+    houseFactor("jupiter", "houseFromMoon", [6, 8, 12], -1),
+    dashaFactor("Jupiter", 1),
+  ]),
+  Energy: Object.freeze([
+    houseFactor("sun", "houseFromLagna", [3, 6, 10, 11], 1),
+    houseFactor("mars", "houseFromLagna", [3, 6, 10, 11], 2),
+    houseFactor("mars", "houseFromLagna", [8, 12], -2),
+  ]),
+  "Consumer / Luxury": Object.freeze([
+    houseFactor("venus", "houseFromMoon", [2, 5, 9, 11], 2),
+    houseFactor("venus", "houseFromMoon", [6, 8, 12], -1),
+    houseFactor("moon", "houseFromLagna", [1, 5, 9, 11], 1),
+  ]),
+  "Metals / Gold": Object.freeze([
+    houseFactor("saturn", "houseFromMoon", [3, 6, 11], 1),
+    houseFactor("saturn", "houseFromMoon", [4, 8, 12], -1),
+    dashaFactor("Saturn", 1),
+  ]),
+  "Pharma / Healthcare": Object.freeze([
+    houseFactor("sun", "houseFromLagna", [1, 6, 10, 11], 1),
+    houseFactor("jupiter", "houseFromLagna", [6, 10, 11], 1),
+    houseFactor("moon", "houseFromMoon", [1, 5, 9, 11], 1),
+  ]),
+  "Real Estate": Object.freeze([
+    houseFactor("venus", "houseFromLagna", [4, 11], 1),
+    houseFactor("rahu", "houseFromLagna", [4, 10], -1),
+  ]),
+  Automobiles: Object.freeze([
+    houseFactor("mars", "houseFromLagna", [3, 6, 11], 1),
+    houseFactor("venus", "houseFromMoon", [2, 5, 9, 11], 1),
+    houseFactor("sun", "houseFromLagna", [3, 10, 11], 1),
+  ]),
+});
+
+function houseFactor(planet, relation, houses, score) {
+  return Object.freeze({ type: "house", planet, relation, houses, score });
+}
+
+function dashaFactor(lord, score) {
+  return Object.freeze({ type: "dasha", lord, score });
+}
+
 function normalizeDegrees(value) {
   return ((value % 360) + 360) % 360;
+}
+
+function buildNatalLongitudes() {
+  swe.set_sid_mode(swe.constants.SE_SIDM_LAHIRI, 0, 0);
+  const jd = julianDayForIst({ year: 2004, month: 7, day: 3 }, 16 + 20 / 60);
+  const flags =
+    swe.constants.SEFLG_MOSEPH |
+    swe.constants.SEFLG_SPEED |
+    swe.constants.SEFLG_SIDEREAL;
+  const natalPlanets = {
+    sun: swe.constants.SE_SUN,
+    moon: swe.constants.SE_MOON,
+    mars: swe.constants.SE_MARS,
+    mercury: swe.constants.SE_MERCURY,
+    jupiter: swe.constants.SE_JUPITER,
+    venus: swe.constants.SE_VENUS,
+    saturn: swe.constants.SE_SATURN,
+    rahu: swe.constants.SE_MEAN_NODE,
+  };
+  const values = { birthUtc: NATAL_DISPLAY_REFERENCE.birthUtc };
+  for (const [name, id] of Object.entries(natalPlanets)) {
+    const result = swe.calc_ut(jd, id, flags);
+    if (!result?.data || result.error) {
+      throw new Error(`Swiss Ephemeris failed for natal ${name}: ${result?.error}`);
+    }
+    values[name] = normalizeDegrees(result.data[0]);
+  }
+  const houses = swe.houses_ex(
+    jd,
+    flags,
+    JABALPUR.latitude,
+    JABALPUR.longitude,
+    "W",
+  );
+  if (!houses?.data?.points || houses.error) {
+    throw new Error(`Swiss Ephemeris failed for natal ascendant: ${houses?.error}`);
+  }
+  values.ascendant = normalizeDegrees(houses.data.points[0]);
+  values.ketu = normalizeDegrees(values.rahu + 180);
+  return values;
 }
 
 function signIndex(longitude) {
@@ -655,46 +749,72 @@ function avoidToday(evaluation) {
 }
 
 function sectorThemes(transit, dasha) {
-  const sectors = {
-    "Technology / Communication": 0,
-    "Banking / Financials": 0,
-    Energy: 0,
-    "Metals / Gold": 0,
-    "Pharma / Healthcare": 0,
-    "Consumer / Luxury": 0,
-    "Real Estate": 0,
-    Automobiles: 0,
-  };
+  const evaluated = Object.fromEntries(
+    Object.entries(SECTOR_THEME_DEFINITIONS).map(([name, factors]) => [
+      name,
+      scoreSectorTheme(factors, transit, dasha),
+    ]),
+  );
 
-  if ([3, 10, 11].includes(transit.mercury.houseFromLagna)) sectors["Technology / Communication"] += 2;
-  if ([8, 12].includes(transit.mercury.houseFromLagna)) sectors["Technology / Communication"] -= 2;
-  if ([2, 9, 11].includes(transit.jupiter.houseFromMoon)) sectors["Banking / Financials"] += 2;
-  if ([6, 8, 12].includes(transit.jupiter.houseFromMoon)) sectors["Banking / Financials"] -= 1;
-  if ([3, 6, 10, 11].includes(transit.sun.houseFromLagna)) sectors.Energy += 1;
-  if ([3, 6, 10, 11].includes(transit.mars.houseFromLagna)) sectors.Energy += 2;
-  if ([8, 12].includes(transit.mars.houseFromLagna)) sectors.Energy -= 2;
-  if ([2, 5, 9, 11].includes(transit.venus.houseFromMoon)) sectors["Consumer / Luxury"] += 2;
-  if ([6, 8, 12].includes(transit.venus.houseFromMoon)) sectors["Consumer / Luxury"] -= 1;
-  if ([3, 6, 11].includes(transit.saturn.houseFromMoon)) sectors["Metals / Gold"] += 1;
-  if ([4, 8, 12].includes(transit.saturn.houseFromMoon)) sectors["Metals / Gold"] -= 1;
-  if ([1, 6, 10, 11].includes(transit.sun.houseFromLagna)) sectors["Pharma / Healthcare"] += 1;
-  if ([6, 10, 11].includes(transit.jupiter.houseFromLagna)) sectors["Pharma / Healthcare"] += 1;
-  if ([4, 11].includes(transit.venus.houseFromLagna)) sectors["Real Estate"] += 1;
-  if ([4, 10].includes(transit.rahu.houseFromLagna)) sectors["Real Estate"] -= 1;
-  if ([3, 6, 11].includes(transit.mars.houseFromLagna)) sectors.Automobiles += 1;
-  if (dasha.mahadasha === "Rahu") sectors["Technology / Communication"] += 1;
-
-  const supportive = Object.entries(sectors)
-    .filter(([, value]) => value >= 3)
+  const supportive = Object.entries(evaluated)
+    .filter(([, item]) => item.supportReachable)
+    .filter(([, item]) => item.score >= SECTOR_THEME_THRESHOLD && item.supporting >= 2)
     .map(([name]) => name);
-  const caution = Object.entries(sectors)
-    .filter(([, value]) => value <= -3)
+  const caution = Object.entries(evaluated)
+    .filter(([, item]) => item.cautionReachable)
+    .filter(([, item]) => item.score <= -SECTOR_THEME_THRESHOLD && item.cautioning >= 2)
     .map(([name]) => name);
 
   if (!supportive.length && !caution.length) {
     return null;
   }
-  return { supportive, caution, raw: sectors };
+  return {
+    supportive,
+    caution,
+    raw: Object.fromEntries(
+      Object.entries(evaluated).map(([name, item]) => [name, item.score]),
+    ),
+    diagnostics: evaluated,
+  };
+}
+
+function scoreSectorTheme(factors, transit, dasha) {
+  let score = 0;
+  let supporting = 0;
+  let cautioning = 0;
+  let theoreticalMin = 0;
+  let theoreticalMax = 0;
+  for (const factor of factors) {
+    if (factor.score > 0) theoreticalMax += factor.score;
+    if (factor.score < 0) theoreticalMin += factor.score;
+    if (!sectorFactorApplies(factor, transit, dasha)) continue;
+    score += factor.score;
+    if (factor.score > 0) supporting += 1;
+    if (factor.score < 0) cautioning += 1;
+  }
+  return {
+    score,
+    supporting,
+    cautioning,
+    theoreticalMin,
+    theoreticalMax,
+    supportReachable:
+      theoreticalMax >= SECTOR_THEME_THRESHOLD &&
+      factors.filter((factor) => factor.score > 0).length >= 2,
+    cautionReachable:
+      theoreticalMin <= -SECTOR_THEME_THRESHOLD &&
+      factors.filter((factor) => factor.score < 0).length >= 2,
+  };
+}
+
+function sectorFactorApplies(factor, transit, dasha) {
+  if (factor.type === "dasha") {
+    return dasha.mahadasha === factor.lord || dasha.antardasha?.lord === factor.lord;
+  }
+  if (factor.type === "house") {
+    return factor.houses.includes(transit[factor.planet]?.[factor.relation]);
+  }
+  return false;
 }
 
 function displayDate(date) {
@@ -986,6 +1106,9 @@ function postJson(url, payload, attempt = 1) {
 
 module.exports = {
   NATAL,
+  NATAL_DISPLAY_REFERENCE,
+  SECTOR_THEME_DEFINITIONS,
+  SECTOR_THEME_THRESHOLD,
   addDays,
   activeDasha,
   buildDailyPayload,
@@ -999,6 +1122,7 @@ module.exports = {
   planetaryHoras,
   postJson,
   rahuKalam,
+  scoreSectorTheme,
   signName,
   sunTimes,
   transitDiagnostics,

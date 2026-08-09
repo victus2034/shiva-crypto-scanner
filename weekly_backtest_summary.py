@@ -74,7 +74,7 @@ def build_weekly_summary(frame: pd.DataFrame, timeframe: str, week_start, week_e
     entries = len(filled)
     duplicates = int(outcomes.get("zone_cooldown", 0))
     touch = entries + duplicates
-    no_touch = max(0, len(frame) - touch)
+    no_touch = int(outcomes.get("zone_not_touched", 0))
     net_r = pd.to_numeric(filled.get("net_realized_r", pd.Series(dtype=float)), errors="coerce").sum()
 
     lines = [
@@ -119,7 +119,7 @@ def format_weekly_rating_blocks(frame: pd.DataFrame) -> str:
         entries = len(filled)
         duplicates = int(outcomes.get("zone_cooldown", 0))
         touch = entries + duplicates
-        no_touch = max(0, len(rating_rows) - touch)
+        no_touch = int(outcomes.get("zone_not_touched", 0))
         blocks.append(
             "\n".join(
                 [
