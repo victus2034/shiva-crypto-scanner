@@ -35,8 +35,17 @@ NSE_BACKTEST_CLOSE_CUTOFF = datetime_time(15, 10)
 FIXED_STOP_PCT = 0.5
 TARGET_1_R = 1.0
 TARGET_2_R = 2.0
-COST_TO_COST_TRIGGER_PCT = 0.25
-ROUND_TRIP_COST_PCT = 0.25
+HALF_R = 0.5
+FINAL_RESULT_R = {
+    "SL": -1.0,
+    "+0.5R": 0.5,
+    "+1R": 1.0,
+    "+2R": 2.0,
+    "Neither": 0.0,
+}
+OUTCOME_ORDER = ["SL", "+0.5R", "+1R", "+2R", "Neither"]
+SENT_REPORTS_PATH = Path(__file__).with_name("daily_backtest_reports_sent.json")
+FINALIZED_RECORDS_PATH = Path(__file__).with_name("daily_backtest_finalized_records.jsonl")
 
 
 def parse_args() -> argparse.Namespace:
@@ -52,6 +61,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--date", help="IST date to summarize, YYYY-MM-DD.")
     parser.add_argument("--records", type=Path, help="Override alert-record JSONL path.")
     parser.add_argument("--dry-run", action="store_true")
+    parser.add_argument("--force", action="store_true", help="Send even if this report key was already sent.")
     return parser.parse_args()
 
 
@@ -240,22 +250,15 @@ def simulate_alert(
     if risk <= 0:
         risk = entry_price * FIXED_STOP_PCT / 100.0
         stop = entry_price - direction * risk
+    target_half = entry_price + direction * risk * HALF_R
     target_1 = entry_price + direction * risk * TARGET_1_R
     target_2 = entry_price + direction * risk * TARGET_2_R
-    fee_cover_offset = min(entry_price * ROUND_TRIP_COST_PCT / 100.0, risk * 0.999)
-    fee_cover_stop = entry_price + direction * fee_cover_offset
-    cost_to_cost_trigger = (
-        entry_price + direction * entry_price * COST_TO_COST_TRIGGER_PCT / 100.0
-    )
-    cost_r = fee_cover_offset / risk
 
     end_index = tracking_end_index
+    half_r_hit = False
     target_1_hit = False
     target_2_hit = False
-    stopped = False
-    cost_to_cost_active = False
-    cost_to_cost_exit = False
-    outcome = "timeout"
+    outcome = "Neither"
     exit_index = end_index
     max_favorable_r = 0.0
     max_adverse_r = 0.0
@@ -268,45 +271,42 @@ def simulate_alert(
         max_favorable_r = max(max_favorable_r, favorable / risk)
         max_adverse_r = max(max_adverse_r, adverse / risk)
 
-        active_stop = fee_cover_stop if cost_to_cost_active else stop
-        stop_hit = low <= active_stop if side == "long" else high >= active_stop
+        stop_hit = low <= stop if side == "long" else high >= stop
+        half_target_hit = high >= target_half if side == "long" else low <= target_half
         first_target_hit = high >= target_1 if side == "long" else low <= target_1
         second_target_hit = high >= target_2 if side == "long" else low <= target_2
-        trigger_hit = (
-            high >= cost_to_cost_trigger if side == "long" else low <= cost_to_cost_trigger
-        )
 
-        if stop_hit:
-            outcome = "cost_to_cost" if cost_to_cost_active else "stopped"
-            cost_to_cost_exit = cost_to_cost_active
-            stopped = not cost_to_cost_active
+        if outcome == "Neither" and stop_hit:
+            outcome = "SL"
             exit_index = index
             break
+        if half_target_hit:
+            half_r_hit = True
+            if outcome == "Neither":
+                outcome = "+0.5R"
         if first_target_hit:
+            half_r_hit = True
             target_1_hit = True
+            outcome = "+1R"
         if second_target_hit:
+            half_r_hit = True
             target_1_hit = True
             target_2_hit = True
-            outcome = "target_2r"
+            outcome = "+2R"
             exit_index = index
             break
-        if trigger_hit:
-            cost_to_cost_active = True
 
-    if stopped:
+    if outcome == "SL":
         exit_price = stop
-        realized_r = -1.0
-    elif cost_to_cost_exit:
-        exit_price = fee_cover_stop
-        realized_r = (direction * (exit_price - entry_price)) / risk
-    elif target_2_hit:
+    elif outcome == "+0.5R":
+        exit_price = target_half
+    elif outcome == "+1R":
+        exit_price = target_1
+    elif outcome == "+2R":
         exit_price = target_2
-        realized_r = TARGET_2_R
     else:
         exit_price = float(frame["close"].iloc[exit_index])
-        realized_r = (direction * (exit_price - entry_price)) / risk
-        if target_1_hit:
-            outcome = "target_1_then_timeout"
+    realized_r = FINAL_RESULT_R[outcome]
 
     result = dict(alert)
     result.update(
@@ -321,12 +321,13 @@ def simulate_alert(
             "exit_time": frame.index[exit_index],
             "exit_price": exit_price,
             "bars_held": exit_index - entry_index + 1,
+            "half_r_hit": half_r_hit,
             "target_1_hit": target_1_hit,
             "target_2_hit": target_2_hit,
-            "cost_to_cost_exit": cost_to_cost_exit,
             "outcome": outcome,
+            "final_result": outcome,
             "realized_r": realized_r,
-            "net_realized_r": realized_r - cost_r,
+            "net_realized_r": realized_r,
             "mfe_r": max_favorable_r,
             "mae_r": max_adverse_r,
             "cooldown_blocked": False,
@@ -410,10 +411,11 @@ def unfilled(alert: dict, outcome: str) -> dict:
             "exit_time": pd.NaT,
             "exit_price": float("nan"),
             "bars_held": 0,
+            "half_r_hit": False,
             "target_1_hit": False,
             "target_2_hit": False,
-            "cost_to_cost_exit": False,
             "outcome": outcome,
+            "final_result": "",
             "realized_r": float("nan"),
             "net_realized_r": float("nan"),
             "mfe_r": float("nan"),
@@ -468,7 +470,7 @@ def build_summary(
     cooldown_blocked: int,
     timeframe: str,
 ) -> str:
-    header = f"NSE {timeframe} BACKTEST | {pd.Timestamp(target_date).strftime('%d %b %Y')}"
+    header = f"NSE {timeframe} BACKTEST | {pd.Timestamp(target_date).strftime('%d %b %Y').upper()}"
     if records.empty:
         return (
             f"{header}\n\n"
@@ -478,129 +480,132 @@ def build_summary(
     side_counts = records["side"].value_counts()
     buy_count = int(side_counts.get("long", 0))
     sell_count = int(side_counts.get("short", 0))
-    tradable = int((pd.to_numeric(records["rating"], errors="coerce") >= 5).sum())
 
     filled = results[results["filled"] == True].copy() if not results.empty else pd.DataFrame()  # noqa: E712
     outcome_counts = results["outcome"].value_counts() if not results.empty else pd.Series(dtype=int)
-    completed = len(filled)
-    net_r = pd.to_numeric(filled.get("net_realized_r", pd.Series(dtype=float)), errors="coerce").sum()
-    wins = int(filled.get("target_1_hit", pd.Series(dtype=bool)).sum()) if not filled.empty else 0
-    breakeven = int(outcome_counts.get("cost_to_cost", 0))
-    stops = int(outcome_counts.get("stopped", 0))
-    immature = int(outcome_counts.get("immature", 0))
-    not_touched = int(outcome_counts.get("zone_not_touched", 0))
     duplicates = int(outcome_counts.get("zone_cooldown", 0))
-    data_missing = int(outcome_counts.get("data_missing", 0)) + int(outcome_counts.get("alert_before_data", 0))
-    touched = completed + duplicates
+    entries = len(filled)
+    touched = entries + duplicates
+    no_touch = max(0, len(records) - touched)
+    net_r = pd.to_numeric(filled.get("net_realized_r", pd.Series(dtype=float)), errors="coerce").sum()
+    final_counts = filled["final_result"].value_counts() if not filled.empty else pd.Series(dtype=int)
 
     lines = [
         header,
-        f"Alerts {len(records)} | Stocks {records['symbol'].nunique()} | Tradable {tradable}",
-        f"BUY {buy_count} | SELL {sell_count}",
-        f"Touch {touched} | No touch {not_touched} | Duplicate {duplicates}",
         "",
-        f"Closed {completed} | Result {format_r(net_r) if completed else 'waiting'}",
-        f"1R {wins} | BE {breakeven} | SL {stops}",
+        metric("Alerts", len(records)),
+        metric("Stocks", records["symbol"].nunique()),
+        metric("BUY", buy_count),
+        metric("SELL", sell_count),
         "",
+        metric("Touch", touched),
+        metric("No Touch", no_touch),
+        metric("Duplicates", duplicates),
+        metric("Entries", entries),
+        "",
+        "RESULTS",
+        *format_outcome_lines(final_counts),
+        metric("Total Result", format_r(net_r)),
+        "",
+        "RATING PERFORMANCE",
         format_rating_table(records, results),
     ]
-    if immature:
-        lines.append(f"Still open {immature}")
-    if data_missing:
-        lines.append(f"Data missing {data_missing}")
-    if data_failures:
-        lines.append(f"Data failures {len(data_failures)}")
 
-    best = best_symbol_line(filled, ascending=False)
-    worst = best_symbol_line(filled, ascending=True)
+    best = best_symbol_lines(filled, best=True)
+    worst = best_symbol_lines(filled, best=False)
     if best:
-        lines.extend(["", f"Best {best}"])
+        lines.extend(["", "BEST", best])
     if worst:
-        lines.append(f"Worst {worst}")
+        lines.extend(["", "WORST", worst])
 
-    lines.extend(["", f"Verdict: {verdict(completed, net_r, wins, stops)}"])
     return "\n".join(lines)
 
 
 def format_rating_table(records: pd.DataFrame, results: pd.DataFrame) -> str:
     if records.empty:
-        return "Rating table: none"
+        return "None"
 
     records_by_rating = rating_counts(records)
-    rows = [rating_table_header()]
-
-    if results.empty:
-        for rating in range(4, 11):
-            alerts = records_by_rating.get(rating, 0)
-            rows.append(rating_table_row(rating, alerts, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "N/A"))
-        return "Rating breakdown\n```text\n" + "\n".join(rows) + "\n```"
-
     result_frame = results.copy()
-    result_frame["_rating_bucket"] = pd.to_numeric(
-        result_frame["rating"], errors="coerce"
-    ).astype("Int64")
+    if not result_frame.empty:
+        result_frame["_rating_bucket"] = pd.to_numeric(
+            result_frame["rating"], errors="coerce"
+        ).astype("Int64")
+
+    blocks: list[str] = []
     for rating in range(4, 11):
         alerts = records_by_rating.get(rating, 0)
-        rating_results = result_frame[result_frame["_rating_bucket"] == rating]
+        if alerts == 0:
+            continue
+        rating_results = (
+            result_frame[result_frame["_rating_bucket"] == rating]
+            if not result_frame.empty
+            else pd.DataFrame()
+        )
         filled = rating_results[rating_results["filled"] == True]  # noqa: E712
-        outcomes = rating_results["outcome"].value_counts()
+        outcomes = rating_results["outcome"].value_counts() if not rating_results.empty else pd.Series(dtype=int)
+        final_counts = filled["final_result"].value_counts() if not filled.empty else pd.Series(dtype=int)
         duplicates = int(outcomes.get("zone_cooldown", 0))
-        no_touch = int(outcomes.get("zone_not_touched", 0))
         entries = len(filled)
         touch = entries + duplicates
-        breakeven = int(outcomes.get("cost_to_cost", 0))
-        half_r = int((pd.to_numeric(filled.get("mfe_r", pd.Series(dtype=float)), errors="coerce") >= 0.5).sum())
-        one_r = int(filled.get("target_1_hit", pd.Series(dtype=bool)).sum()) if not filled.empty else 0
-        two_r = int(filled.get("target_2_hit", pd.Series(dtype=bool)).sum()) if not filled.empty else 0
-        stops = int(outcomes.get("stopped", 0))
-        neither = max(0, entries - one_r - breakeven - stops)
-        decided_wr = format_win_rate(one_r, stops)
-        rows.append(
-            rating_table_row(
-                rating,
-                alerts,
-                touch,
-                no_touch,
-                duplicates,
-                entries,
-                breakeven,
-                half_r,
-                one_r,
-                two_r,
-                stops,
-                neither,
-                decided_wr,
-            )
+        no_touch = max(0, alerts - touch)
+        block_lines = [
+            f"{rating}/10",
+            metric("Alerts", alerts),
+            metric("Touch", touch),
+            metric("No Touch", no_touch),
+            metric("Duplicates", duplicates),
+            metric("Entries", entries),
+            *format_outcome_lines(final_counts),
+        ]
+        blocks.append("\n".join(block_lines))
+    return "\n\n".join(blocks) if blocks else "None"
+
+
+def format_outcome_lines(counts: pd.Series) -> list[str]:
+    lines: list[str] = []
+    for outcome in OUTCOME_ORDER:
+        count = int(counts.get(outcome, 0))
+        if count:
+            lines.append(metric(outcome, count))
+    return lines
+
+
+def metric(label: str, value) -> str:
+    return f"{label} - {value}"
+
+
+def display_symbol(symbol: str) -> str:
+    text = str(symbol).strip().upper()
+    for separator in (":", "/", "-", "."):
+        if separator in text:
+            text = text.split(separator, 1)[0]
+    for suffix in ("USDT", "BUSD", "USD", "INR"):
+        if text.endswith(suffix) and len(text) > len(suffix):
+            return text[: -len(suffix)]
+    return text
+
+
+def best_symbol_lines(filled: pd.DataFrame, best: bool) -> str:
+    if filled.empty:
+        return ""
+    frame = filled.copy()
+    frame["_result_r"] = frame["final_result"].map(FINAL_RESULT_R)
+    if best:
+        frame = frame[frame["final_result"].isin(["+0.5R", "+1R", "+2R"])]
+        frame = frame.sort_values(["_result_r", "rating"], ascending=[False, False])
+    else:
+        frame = frame[frame["final_result"] == "SL"]
+        frame = frame.sort_values(["_result_r", "rating"], ascending=[True, True])
+    if frame.empty:
+        return ""
+    lines = []
+    for index, row in enumerate(frame.head(3).to_dict("records"), start=1):
+        rating = int(row["rating"]) if pd.notna(row.get("rating")) else "N/A"
+        lines.append(
+            f"{index}. {display_symbol(row['symbol'])} - Rating {rating}/10 - {row['final_result']}"
         )
-    return "Rating breakdown\n```text\n" + "\n".join(rows) + "\n```"
-
-
-def rating_table_header() -> str:
-    return (
-        "Rate  Alert Touch NoTouch Dup Entry BE .5R 1R 2R SL Neither WR"
-    )
-
-
-def rating_table_row(
-    rating: int,
-    alerts: int,
-    touch: int,
-    no_touch: int,
-    duplicate: int,
-    entries: int,
-    breakeven: int,
-    half_r: int,
-    one_r: int,
-    two_r: int,
-    stops: int,
-    neither: int,
-    decided_wr: str,
-) -> str:
-    return (
-        f"{rating:>2}/10 {alerts:>5} {touch:>5} {no_touch:>7} {duplicate:>3} "
-        f"{entries:>5} {breakeven:>2} {half_r:>3} {one_r:>2} {two_r:>2} "
-        f"{stops:>2} {neither:>7} {decided_wr:>6}"
-    )
+    return "\n".join(lines)
 
 
 def rating_counts(records: pd.DataFrame) -> dict[int, int]:
@@ -623,26 +628,6 @@ def format_r(value: float) -> str:
     return f"{sign}{value:.2f}R"
 
 
-def best_symbol_line(filled: pd.DataFrame, ascending: bool) -> str:
-    if filled.empty or "net_realized_r" not in filled:
-        return ""
-    ranked = filled.sort_values("net_realized_r", ascending=ascending).head(3)
-    parts = []
-    for row in ranked.to_dict("records"):
-        parts.append(f"{row['symbol']} {format_r(float(row['net_realized_r']))}")
-    return " | ".join(parts)
-
-
-def verdict(completed: int, net_r: float, wins: int, stops: int) -> str:
-    if completed < 5:
-        return "wait for mature data"
-    if net_r > 0 and wins >= stops:
-        return "positive"
-    if net_r <= 0:
-        return "weak"
-    return "mixed"
-
-
 def send_discord_message(message: str) -> None:
     webhook_url = os.getenv(WEBHOOK_ENV, "").strip()
     if not webhook_url:
@@ -659,6 +644,72 @@ def send_discord_message(message: str) -> None:
         if attempt == 5:
             response.raise_for_status()
         time.sleep(max(0.25, min(retry_after, 30.0)))
+
+
+def report_key(target_date, timeframe: str) -> str:
+    return f"NSE|{timeframe}|{pd.Timestamp(target_date).date().isoformat()}"
+
+
+def load_sent_reports(path: Path = SENT_REPORTS_PATH) -> dict:
+    if not path.exists():
+        return {}
+    try:
+        data = json.loads(path.read_text(encoding="utf-8"))
+    except json.JSONDecodeError:
+        return {}
+    return data if isinstance(data, dict) else {}
+
+
+def mark_sent_report(key: str, path: Path = SENT_REPORTS_PATH) -> None:
+    data = load_sent_reports(path)
+    data[key] = datetime.now(tz=IST).isoformat()
+    path.write_text(json.dumps(data, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+
+
+def persist_finalized_records(
+    target_date,
+    timeframe: str,
+    results: pd.DataFrame,
+    path: Path = FINALIZED_RECORDS_PATH,
+) -> None:
+    day = pd.Timestamp(target_date).date().isoformat()
+    retained: list[str] = []
+    if path.exists():
+        for line in path.read_text(encoding="utf-8").splitlines():
+            if not line.strip():
+                continue
+            try:
+                row = json.loads(line)
+            except json.JSONDecodeError:
+                continue
+            if row.get("market") == "NSE" and row.get("timeframe") == timeframe and row.get("date") == day:
+                continue
+            retained.append(json.dumps(row, sort_keys=True))
+
+    new_rows: list[str] = []
+    if not results.empty:
+        for row in results.to_dict("records"):
+            payload = {
+                "market": "NSE",
+                "timeframe": timeframe,
+                "date": day,
+                "symbol": str(row.get("symbol", "")),
+                "display_symbol": display_symbol(row.get("symbol", "")),
+                "side": row.get("side", ""),
+                "rating": parse_optional_float(row.get("rating")),
+                "filled": bool(row.get("filled", False)),
+                "outcome": row.get("outcome", ""),
+                "final_result": row.get("final_result", ""),
+                "realized_r": parse_optional_float(row.get("realized_r")),
+                "net_realized_r": parse_optional_float(row.get("net_realized_r")),
+                "cooldown_blocked": bool(row.get("cooldown_blocked", False)),
+                "zone_id": row.get("zone_id", ""),
+                "source_line": int(row.get("source_line", 0) or 0),
+            }
+            new_rows.append(json.dumps(payload, sort_keys=True))
+
+    all_rows = retained + new_rows
+    path.write_text(("\n".join(all_rows) + "\n") if all_rows else "", encoding="utf-8")
 
 
 def main() -> None:
@@ -690,7 +741,13 @@ def main() -> None:
     )
     print(message)
     if not args.dry_run:
+        key = report_key(target_date, args.timeframe)
+        if not args.force and key in load_sent_reports():
+            print(f"Skipped duplicate report: {key}")
+            return
         send_discord_message(message)
+        mark_sent_report(key)
+        persist_finalized_records(target_date, args.timeframe, results)
 
 
 if __name__ == "__main__":

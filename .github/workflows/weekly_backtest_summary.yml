@@ -1,9 +1,9 @@
-name: Shiva Daily Backtest Summary
+name: Shiva Weekly Backtest Summary
 
 on:
   schedule:
-    # GitHub Actions uses UTC. 11:00 UTC = 16:30 IST, after NSE close.
-    - cron: "0 11 * * 1-5"
+    # GitHub Actions uses UTC. 11:30 UTC = 17:00 IST, after the Friday daily summary.
+    - cron: "30 11 * * 5"
   workflow_dispatch:
     inputs:
       timeframe:
@@ -15,21 +15,21 @@ on:
           - "both"
           - "30m"
           - "4h"
-      date:
-        description: "Optional IST date to summarize, YYYY-MM-DD"
+      week_ending:
+        description: "Optional IST week-ending date, YYYY-MM-DD"
         required: false
 
 permissions:
   contents: write
 
 concurrency:
-  group: shiva-daily-backtest-summary
+  group: shiva-weekly-backtest-summary
   cancel-in-progress: false
 
 jobs:
-  daily-backtest-summary:
+  weekly-backtest-summary:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 10
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -44,7 +44,7 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
-      - name: Check daily backtest Discord webhook
+      - name: Check weekly backtest Discord webhook
         env:
           DISCORD_DAILY_BACKTEST_WEBHOOK_URL: ${{ secrets.DISCORD_DAILY_BACKTEST_WEBHOOK_URL }}
         run: |
@@ -53,18 +53,18 @@ jobs:
             exit 1
           fi
 
-      - name: Post daily backtest summary
+      - name: Post weekly backtest summary
         env:
           DISCORD_DAILY_BACKTEST_WEBHOOK_URL: ${{ secrets.DISCORD_DAILY_BACKTEST_WEBHOOK_URL }}
-          INPUT_DATE: ${{ github.event.inputs.date }}
+          INPUT_WEEK_ENDING: ${{ github.event.inputs.week_ending }}
           INPUT_TIMEFRAME: ${{ github.event.inputs.timeframe }}
         run: |
           TIMEFRAME="${INPUT_TIMEFRAME:-both}"
           run_summary() {
-            if [ -n "$INPUT_DATE" ]; then
-              python daily_backtest_summary.py --timeframe "$1" --date "$INPUT_DATE"
+            if [ -n "$INPUT_WEEK_ENDING" ]; then
+              python weekly_backtest_summary.py --timeframe "$1" --week-ending "$INPUT_WEEK_ENDING"
             else
-              python daily_backtest_summary.py --timeframe "$1"
+              python weekly_backtest_summary.py --timeframe "$1"
             fi
           }
           if [ "$TIMEFRAME" = "both" ]; then
@@ -74,32 +74,29 @@ jobs:
             run_summary "$TIMEFRAME"
           fi
 
-      - name: Persist daily backtest report state
+      - name: Persist weekly backtest report state
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          if [ -f daily_backtest_reports_sent.json ]; then
-            git add -f daily_backtest_reports_sent.json
-          fi
-          if [ -f daily_backtest_finalized_records.jsonl ]; then
-            git add -f daily_backtest_finalized_records.jsonl
+          if [ -f weekly_backtest_reports_sent.json ]; then
+            git add -f weekly_backtest_reports_sent.json
           fi
           if git diff --cached --quiet; then
-            echo "No daily backtest report state changes to save."
+            echo "No weekly backtest report state changes to save."
             exit 0
           fi
 
-          git commit -m "Update daily backtest report state"
+          git commit -m "Update weekly backtest report state"
           for attempt in 1 2 3; do
             if git push; then
               exit 0
             fi
 
-            echo "::warning::Daily backtest state push failed on attempt ${attempt}; refreshing branch before retry."
+            echo "::warning::Weekly backtest state push failed on attempt ${attempt}; refreshing branch before retry."
             git pull --rebase origin main || {
-              echo "::warning::Could not rebase daily backtest state. Report was already sent, so not failing the workflow."
+              echo "::warning::Could not rebase weekly backtest state. Report was already sent, so not failing the workflow."
               exit 0
             }
           done
 
-          echo "::warning::Could not persist daily backtest report state after retries. Report was already sent, so not failing the workflow."
+          echo "::warning::Could not persist weekly backtest report state after retries. Report was already sent, so not failing the workflow."
