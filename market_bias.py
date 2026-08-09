@@ -15,7 +15,6 @@ import yfinance as yf
 MARKETS = {
     "INDIA": ("^NSEI", "NIFTY 50"),
     "US": ("^GSPC", "S&P 500"),
-    "LONDON": ("^FTSE", "FTSE 100"),
 }
 INTRADAY_MARKETS = {
     "india": {
@@ -25,10 +24,6 @@ INTRADAY_MARKETS = {
     "us": {
         "label": "US SESSION",
         "symbols": [("SPY", "S&P 500"), ("QQQ", "NASDAQ 100"), ("SMH", "AI / SEMIS"), ("XLK", "US TECH")],
-    },
-    "london": {
-        "label": "LONDON SESSION",
-        "symbols": [("^FTSE", "FTSE 100")],
     },
 }
 INTRADAY_SECTORS = {
@@ -53,7 +48,6 @@ INTRADAY_SECTORS = {
         ("XLB", "MATERIALS"),
         ("XLI", "INDUSTRIALS"),
     ],
-    "london": [],
 }
 SECTOR_ALERT_THRESHOLD = 1.5
 TIMEZONE = ZoneInfo("Asia/Kolkata")
@@ -61,7 +55,6 @@ WEBHOOK_ENV = "DISCORD_BIAS_WEBHOOK_URL"
 SESSION_WINDOWS = {
     "india": ("Asia/Kolkata", time(9, 15), time(15, 30)),
     "us": ("America/New_York", time(9, 30), time(16, 0)),
-    "london": ("Europe/London", time(8, 0), time(16, 30)),
 }
 
 
@@ -140,14 +133,6 @@ def session_is_active(session: str, now: datetime | None = None) -> bool:
     market_tz = ZoneInfo(timezone_name)
     current = now or datetime.now(market_tz)
     current = current.astimezone(market_tz) if current.tzinfo else current.replace(tzinfo=market_tz)
-    if session == "london":
-        # London is intentionally reported only after the first 30m bar and
-        # immediately after the regular close, never every 30 minutes.
-        return (
-            current.weekday() < 5
-            and current.minute in {29, 30, 31}
-            and current.hour in {8, 16}
-        )
     return open_time <= current.time() < close_time and current.weekday() < 5
 
 
@@ -347,7 +332,7 @@ def build_force_test_report(session: str, now: datetime | None = None) -> str:
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("--session", choices=["daily", "india", "us", "london"], default="daily")
+    parser.add_argument("--session", choices=["daily", "india", "us"], default="daily")
     parser.add_argument("--force-test", choices=["india", "us"], help="send a labeled Discord delivery test")
     args = parser.parse_args()
     if args.force_test:

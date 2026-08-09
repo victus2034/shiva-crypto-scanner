@@ -28,7 +28,7 @@ class MarketBiasTests(unittest.TestCase):
 
     def test_report_is_compact_and_labeled(self):
         item = {"name": "NIFTY 50", "metrics": {"bias": "Bullish", "score": 3, "last": 100.0, "one_day_pct": 1.0, "five_day_pct": 2.0}}
-        report = build_report({"INDIA": item, "US": item, "LONDON": item})
+        report = build_report({"INDIA": item, "US": item})
         self.assertIn("INDIA (NIFTY 50): Bullish", report)
         self.assertIn("Overall: Bullish", report)
 
@@ -122,24 +122,6 @@ class MarketBiasTests(unittest.TestCase):
                 "us", datetime(2026, 7, 29, 9, 0, tzinfo=ZoneInfo("America/New_York"))
             )
         )
-
-    def test_london_gate_allows_only_open_and_close_snapshots(self):
-        self.assertTrue(
-            session_is_active(
-                "london", datetime(2026, 7, 29, 8, 30, tzinfo=ZoneInfo("Europe/London"))
-            )
-        )
-        self.assertTrue(
-            session_is_active(
-                "london", datetime(2026, 7, 29, 16, 30, tzinfo=ZoneInfo("Europe/London"))
-            )
-        )
-        self.assertFalse(
-            session_is_active(
-                "london", datetime(2026, 7, 29, 12, 30, tzinfo=ZoneInfo("Europe/London"))
-            )
-        )
-
 
 if __name__ == "__main__":
     unittest.main()
