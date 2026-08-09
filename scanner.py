@@ -774,6 +774,11 @@ def display_symbol(symbol):
     return text
 
 
+def alert_symbol(symbol):
+    """Keep exchange symbols clear in Discord alerts while dropping TradingView suffixes."""
+    return str(symbol).strip().upper().split(":", 1)[0]
+
+
 def record_delivered_zone_alert(result, zone_type, zone, distance_pct, message, now_ts):
     """Persist delivered zone alerts for the daily backtest summary."""
     rating = result.get(f"{zone_type}_rating") or {}
@@ -804,29 +809,28 @@ def record_delivered_zone_alert(result, zone_type, zone, distance_pct, message, 
 
 
 def format_alert(result, zone_type, zone, distance_pct):
-    symbol = display_symbol(result["symbol"])
+    symbol = alert_symbol(result["symbol"])
     price = result["price"]
-    reference = zone["top"] if zone_type == "supply" else zone["bottom"]
-    side = "SELL zone" if zone_type == "supply" else "BUY zone"
-
-    message = (
-        f"{symbol} is {distance_pct:.2f}% away from a {side}\n"
-        f"Price: {price:.6f}\n"
-        f"Level: {reference:.6f}\n"
-        f"Zone: {zone['bottom']:.6f} - {zone['top']:.6f}"
-    )
+    side = "SELL" if zone_type == "supply" else "BUY"
     score = result.get(f"{zone_type}_score")
     rating = result.get(f"{zone_type}_rating")
+    score_text = ""
     if rating and rating.get("kind") == "xstock_hybrid":
-        message += f"\nScore: {rating['score']}/10"
+        score_text = f" | {rating['score']}/10"
     elif score is not None:
-        message += f"\nScore: {score}/10"
+        score_text = f" | {score}/10"
     elif rating:
         if rating.get("score") is not None:
-            message += f"\nScore: {rating['score']}/10"
+            score_text = f" | {rating['score']}/10"
         elif rating.get("rating"):
-            message += f"\nRating: {rating['rating']} ({rating.get('label', '')})"
-    return message
+            score_text = f" | {rating['rating']}"
+
+    return (
+        f"{symbol} {side}{score_text}\n"
+        f"Price: {price:.6f}\n"
+        f"Zone: {zone['bottom']:.6f} - {zone['top']:.6f}\n"
+        f"Distance: {distance_pct:.2f}%"
+    )
 
 
 def format_signal_alert(result, signal_type):

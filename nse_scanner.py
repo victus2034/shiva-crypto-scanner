@@ -597,20 +597,19 @@ def display_symbol(symbol):
 
 
 def format_alert(result, zone_type, zone, distance_pct):
-    reference = zone["top"] if zone_type == "supply" else zone["bottom"]
-    side = "SELL zone" if zone_type == "supply" else "BUY zone"
-    message = (
-        f"{display_symbol(result['symbol'])} is {distance_pct:.2f}% away from a {side}\n"
-        f"Price: {result['price']:.2f}\n"
-        f"Level: {reference:.2f}\n"
-        f"Zone: {zone['bottom']:.2f} - {zone['top']:.2f}"
-    )
+    side = "SELL" if zone_type == "supply" else "BUY"
     score = result.get(f"{zone_type}_score")
+    score_text = ""
     if score is not None:
-        message += f"\nScore: {score}/10"
+        score_text = f" | {score}/10"
     elif SHOW_ZONE_RATINGS and TIMEFRAME == "30m":
-        message += f"\nZone Rating: {zone_rating(zone, distance_pct)}/10"
-    return message
+        score_text = f" | {zone_rating(zone, distance_pct)}/10"
+    return (
+        f"{display_symbol(result['symbol'])} {side}{score_text}\n"
+        f"Price: {result['price']:.2f}\n"
+        f"Zone: {zone['bottom']:.2f} - {zone['top']:.2f}\n"
+        f"Distance: {distance_pct:.2f}%"
+    )
 
 
 def zone_rating(zone, distance_pct):
