@@ -39,6 +39,15 @@ def crypto_alert(**overrides):
     return alert
 
 
+def xstock_alert(**overrides):
+    alert = crypto_alert(
+        symbol="AAPLXUSD",
+        zone_id="AAPLXUSD|long|99.00000000|100.00000000",
+    )
+    alert.update(overrides)
+    return alert
+
+
 def crypto_frame(start="2026-08-04 10:00", rows=None):
     rows = rows or [
         (101.0, 101.2, 100.8, 101.0),
@@ -381,6 +390,45 @@ class DailyBacktestSummaryTests(unittest.TestCase):
         frame = crypto_frame(start="2026-08-04 10:00", rows=rows)
 
         result = summary.simulate_alert(frame, crypto_alert(), 0, len(frame) - 1)
+
+        self.assertEqual(result["final_result"], "Neither")
+        self.assertLess(result["exit_time"], frame.index[-1])
+
+    def test_xstock_uses_six_hour_evaluation(self):
+        frame = crypto_frame(
+            rows=[
+                (101.0, 101.2, 100.8, 101.0),
+                (100.0, 101.2, 100.0, 101.0),
+            ]
+        )
+
+        result = summary.simulate_alert(frame, xstock_alert(), 0, 1)
+
+        self.assertEqual(result["final_result"], "+1R")
+        self.assertNotEqual(result["outcome"], "xstock_timing_tbd")
+
+    def test_xstock_open_trade_inside_six_hours_is_pending(self):
+        future_start = (pd.Timestamp.now(tz=summary.IST) + pd.Timedelta(hours=1)).floor("30min")
+        frame = crypto_frame(
+            start=future_start,
+            rows=[
+                (101.0, 101.2, 100.8, 101.0),
+                (100.0, 100.3, 100.0, 100.1),
+            ],
+        )
+        alert = xstock_alert(event_time=frame.index[0], event_time_ist=frame.index[0])
+
+        result = summary.simulate_alert(frame, alert, 0, 1)
+
+        self.assertEqual(result["final_result"], "Pending")
+
+    def test_xstock_candle_starting_at_expiry_cannot_affect_result(self):
+        rows = [(101.0, 101.2, 100.8, 101.0), (100.0, 100.2, 100.0, 100.1)]
+        rows.extend([(100.1, 100.2, 99.8, 100.0)] * 23)
+        rows.append((100.0, 103.0, 99.8, 102.5))
+        frame = crypto_frame(start="2026-08-04 10:00", rows=rows)
+
+        result = summary.simulate_alert(frame, xstock_alert(), 0, len(frame) - 1)
 
         self.assertEqual(result["final_result"], "Neither")
         self.assertLess(result["exit_time"], frame.index[-1])

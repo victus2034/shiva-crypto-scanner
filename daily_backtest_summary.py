@@ -384,9 +384,6 @@ def simulate_alert(
     event_index: int,
     tracking_end_index: int,
 ) -> dict:
-    if is_xstock_symbol(alert.get("symbol", "")):
-        return unfilled(alert, "xstock_timing_tbd")
-
     side = alert["side"]
     direction = 1.0 if side == "long" else -1.0
     entry_price = body_entry_price(frame, alert, event_index)
@@ -400,12 +397,12 @@ def simulate_alert(
     if entry_index is None:
         return unfilled(alert, "zone_not_touched")
 
-    if is_crypto_symbol(alert.get("symbol", "")):
-        crypto_end_index, crypto_window_mature = crypto_entry_tracking_end(frame, entry_index)
-        if crypto_end_index is None or crypto_end_index < entry_index:
+    if uses_six_hour_evaluation(alert.get("symbol", "")):
+        six_hour_end_index, six_hour_window_mature = six_hour_entry_tracking_end(frame, entry_index)
+        if six_hour_end_index is None or six_hour_end_index < entry_index:
             return pending_trade(alert, frame, entry_index, entry_price)
-        tracking_end_index = min(tracking_end_index, crypto_end_index)
-        if not crypto_window_mature:
+        tracking_end_index = min(tracking_end_index, six_hour_end_index)
+        if not six_hour_window_mature:
             return pending_trade(alert, frame, entry_index, entry_price)
 
     stop = original_stop_price(alert)
@@ -566,7 +563,7 @@ def duration_seconds(start, end) -> float | None:
     return float((pd.Timestamp(end) - pd.Timestamp(start)).total_seconds())
 
 
-def crypto_entry_tracking_end(
+def six_hour_entry_tracking_end(
     frame: pd.DataFrame,
     entry_index: int,
 ) -> tuple[int | None, bool]:
@@ -580,6 +577,10 @@ def crypto_entry_tracking_end(
     if not positions:
         return None, mature
     return positions[-1], mature
+
+
+def uses_six_hour_evaluation(symbol: str) -> bool:
+    return is_crypto_symbol(symbol) or is_xstock_symbol(symbol)
 
 
 def pending_trade(
