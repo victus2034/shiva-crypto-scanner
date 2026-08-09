@@ -15363,8 +15363,8 @@
     "last_alert_at": 0.0
   },
   "STORJ/USDT|demand|0.04484000|0.04515000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1786248129.6212146
   },
   "OPENAI/USDT:USDT|supply|116.97000000|117.25000000": {
     "in_zone": true,
@@ -15611,6 +15611,10 @@
     "last_alert_at": 0.0
   },
   "EUL/USDT|supply|1.20650000|1.21270000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "HBAR/USDT|demand|0.06875000|0.06892000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
