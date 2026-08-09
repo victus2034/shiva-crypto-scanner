@@ -587,11 +587,18 @@ def build_signal_state_key(symbol, signal_type):
     return f"{symbol}|range_filter|{signal_type}"
 
 
+def display_symbol(symbol):
+    text = str(symbol).strip().upper()
+    if text.endswith(".NS"):
+        return text[:-3]
+    return text
+
+
 def format_alert(result, zone_type, zone, distance_pct):
     reference = zone["top"] if zone_type == "supply" else zone["bottom"]
     side = "SELL zone" if zone_type == "supply" else "BUY zone"
     message = (
-        f"{result['symbol']} is {distance_pct:.2f}% away from a {side}\n"
+        f"{display_symbol(result['symbol'])} is {distance_pct:.2f}% away from a {side}\n"
         f"Price: {result['price']:.2f}\n"
         f"Level: {reference:.2f}\n"
         f"Zone: {zone['bottom']:.2f} - {zone['top']:.2f}"
@@ -624,7 +631,7 @@ def format_signal_alert(result, signal_type):
         return f"{result[distance_key]:.2f}%"
 
     return (
-        f"{result['symbol']} Range Filter {label} signal\n"
+        f"{display_symbol(result['symbol'])} Range Filter {label} signal\n"
         f"Price: {result['price']:.2f}\n"
         f"Nearest Demand Distance: {display_distance('demand', 'demand_dist')}\n"
         f"Nearest Supply Distance: {display_distance('supply', 'supply_dist')}"

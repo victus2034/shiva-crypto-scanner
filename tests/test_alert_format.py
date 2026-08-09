@@ -18,7 +18,7 @@ class AlertFormatTests(unittest.TestCase):
 
         self.assertEqual(
             message,
-            "MSTRBUSD is 0.40% away from a BUY zone\n"
+            "MSTR is 0.40% away from a BUY zone\n"
             "Price: 100.600000\n"
             "Level: 100.200000\n"
             "Zone: 100.200000 - 100.336450",

@@ -13,6 +13,7 @@ import requests
 
 import nse_scanner
 import scanner as crypto_scanner
+from xstock_hybrid_rating import XSTOCK_UNDERLYINGS, is_hybrid_xstock
 
 
 IST = ZoneInfo("Asia/Kolkata")
@@ -35,6 +36,7 @@ TIMEFRAME_SETTINGS = {
 ENTRY_WAIT_BARS = 3
 MAX_HOLD_BARS = 24
 NSE_BACKTEST_CLOSE_CUTOFF = datetime_time(15, 10)
+CRYPTO_REPORT_CUTOFF = datetime_time(16, 30)
 CRYPTO_EVALUATION_HOURS = 6
 FIXED_STOP_PCT = 0.5
 TARGET_1_R = 1.0
@@ -161,11 +163,32 @@ def parse_optional_float(value) -> float:
         return float("nan")
 
 
+def assign_report_dates(records: pd.DataFrame, market: str) -> pd.DataFrame:
+    if records.empty:
+        return records
+    frame = records.copy()
+    if market == "crypto":
+        frame["report_date"] = frame["event_time_ist"].apply(crypto_report_date)
+    else:
+        frame["report_date"] = frame["event_time_ist"].dt.date
+    return frame
+
+
+def crypto_report_date(event_time_ist) -> object:
+    timestamp = pd.Timestamp(event_time_ist).tz_convert(IST)
+    report_day = timestamp.date()
+    if timestamp.time() > CRYPTO_REPORT_CUTOFF:
+        report_day = (timestamp + pd.Timedelta(days=1)).date()
+    return report_day
+
+
 def select_target_date(records: pd.DataFrame, requested: str | None):
     if requested:
         return pd.Timestamp(requested).date()
     if records.empty:
         return pd.Timestamp.now(tz=IST).date()
+    if "report_date" in records:
+        return records["report_date"].max()
     return records["event_time_ist"].dt.date.max()
 
 
@@ -291,7 +314,7 @@ def same_day_tracking_end(
         return None, False
 
     same_day = frame.index.normalize() == event_time.normalize()
-    before_cutoff = frame.index <= cutoff
+    before_cutoff = candle_ends(frame) <= cutoff
     positions = [
         index for index, keep in enumerate(same_day & before_cutoff)
         if keep
@@ -299,6 +322,23 @@ def same_day_tracking_end(
     if not positions:
         return None, True
     return positions[-1], True
+
+
+def candle_ends(frame: pd.DataFrame) -> pd.DatetimeIndex:
+    if frame.empty:
+        return frame.index
+    duration = infer_bar_duration(frame)
+    return pd.DatetimeIndex(frame.index + duration)
+
+
+def infer_bar_duration(frame: pd.DataFrame) -> pd.Timedelta:
+    if len(frame.index) < 2:
+        return pd.Timedelta(0)
+    diffs = pd.Series(frame.index[1:] - frame.index[:-1])
+    positive = diffs[diffs > pd.Timedelta(0)]
+    if positive.empty:
+        return pd.Timedelta(0)
+    return positive.median()
 
 
 def crypto_tracking_end(
@@ -327,6 +367,9 @@ def simulate_alert(
     event_index: int,
     tracking_end_index: int,
 ) -> dict:
+    if is_xstock_symbol(alert.get("symbol", "")):
+        return unfilled(alert, "xstock_timing_tbd")
+
     side = alert["side"]
     direction = 1.0 if side == "long" else -1.0
     entry_price = body_entry_price(frame, alert, event_index)
@@ -471,7 +514,12 @@ def pending_trade(
 
 
 def is_crypto_symbol(symbol: str) -> bool:
-    return not str(symbol).upper().endswith(".NS")
+    text = str(symbol).upper()
+    return not text.endswith(".NS") and not is_xstock_symbol(text)
+
+
+def is_xstock_symbol(symbol: str) -> bool:
+    return is_hybrid_xstock(str(symbol).upper())
 
 
 def body_entry_price(frame: pd.DataFrame, alert: dict, event_index: int) -> float:
@@ -653,7 +701,7 @@ def build_summary(
     duplicates = int(outcome_counts.get("zone_cooldown", 0))
     entries = len(filled)
     touched = entries + duplicates
-    no_touch = max(0, len(records) - touched)
+    no_touch = int(outcome_counts.get("zone_not_touched", 0))
     finalized = filled[filled["final_result"] != "Pending"] if not filled.empty else filled
     pending_count = int((filled["final_result"] == "Pending").sum()) if not filled.empty else 0
     net_r = pd.to_numeric(
@@ -674,7 +722,7 @@ def build_summary(
         metric("Duplicates", duplicates),
         metric("Entries", entries),
         "",
-        "RESULTS",
+        "FINALIZED RESULTS" if market == "crypto" else "RESULTS",
         *format_outcome_lines(final_counts),
         *([metric("Pending", pending_count)] if pending_count else []),
         metric("Total Result", format_r(net_r)),
@@ -716,11 +764,12 @@ def format_rating_table(records: pd.DataFrame, results: pd.DataFrame) -> str:
         )
         filled = rating_results[rating_results["filled"] == True]  # noqa: E712
         outcomes = rating_results["outcome"].value_counts() if not rating_results.empty else pd.Series(dtype=int)
-        final_counts = filled["final_result"].value_counts() if not filled.empty else pd.Series(dtype=int)
+        finalized = filled[filled["final_result"] != "Pending"] if not filled.empty else filled
+        final_counts = finalized["final_result"].value_counts() if not finalized.empty else pd.Series(dtype=int)
         duplicates = int(outcomes.get("zone_cooldown", 0))
         entries = len(filled)
         touch = entries + duplicates
-        no_touch = max(0, alerts - touch)
+        no_touch = int(outcomes.get("zone_not_touched", 0))
         block_lines = [
             f"{rating}/10",
             metric("Alerts", alerts),
@@ -744,11 +793,16 @@ def format_outcome_lines(counts: pd.Series) -> list[str]:
 
 
 def metric(label: str, value) -> str:
-    return f"{label} - {value}"
+    return f"{label} — {value}"
 
 
 def display_symbol(symbol: str) -> str:
-    text = str(symbol).strip().upper()
+    raw = str(symbol).strip().upper()
+    mapping = XSTOCK_UNDERLYINGS.get(raw)
+    if mapping:
+        return str(mapping["ticker"]).upper()
+
+    text = raw
     for separator in (":", "/", "-", "."):
         if separator in text:
             text = text.split(separator, 1)[0]
@@ -775,7 +829,7 @@ def best_symbol_lines(filled: pd.DataFrame, best: bool) -> str:
     for index, row in enumerate(frame.head(3).to_dict("records"), start=1):
         rating = int(row["rating"]) if pd.notna(row.get("rating")) else "N/A"
         lines.append(
-            f"{index}. {display_symbol(row['symbol'])} - Rating {rating}/10 - {row['final_result']}"
+            f"{index}. {display_symbol(row['symbol'])} — Rating {rating}/10 — {row['final_result']}"
         )
     return "\n".join(lines)
 
@@ -893,9 +947,10 @@ def main() -> None:
         else configure_nse_data(args.timeframe)
     )
     records = load_records(args.records or default_records, args.timeframe)
+    records = assign_report_dates(records, args.market)
     target_date = select_target_date(records, args.date)
     day_records = (
-        records[records["event_time_ist"].dt.date == target_date].copy()
+        records[records["report_date"] == target_date].copy()
         if not records.empty
         else records
     )
