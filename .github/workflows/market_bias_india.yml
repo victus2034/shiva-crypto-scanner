@@ -8,6 +8,8 @@ permissions:
 
 jobs:
   report:
+    # Temporarily paused by request. Remove this line to re-enable market bias.
+    if: ${{ false }}
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
