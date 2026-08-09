@@ -27,6 +27,40 @@ def base_alert(**overrides):
     return alert
 
 
+def crypto_alert(**overrides):
+    alert = base_alert(
+        symbol="BTCUSDT",
+        event_time=pd.Timestamp("2026-08-04 10:00", tz=summary.IST),
+        event_time_ist=pd.Timestamp("2026-08-04 10:00", tz=summary.IST),
+        zone_id="BTCUSDT|long|99.00000000|100.00000000",
+    )
+    alert.update(overrides)
+    return alert
+
+
+def crypto_frame(start="2026-08-04 10:00", rows=None):
+    rows = rows or [
+        (101.0, 101.2, 100.8, 101.0),
+        (100.0, 100.2, 100.0, 100.1),
+        (100.1, 100.4, 99.9, 100.2),
+        (100.2, 100.6, 100.0, 100.5),
+        (100.5, 101.0, 100.3, 100.9),
+        (100.9, 102.0, 100.7, 101.8),
+        (101.8, 102.2, 101.5, 102.0),
+    ]
+    index = pd.date_range(start, periods=len(rows), freq="30min", tz=summary.IST)
+    return pd.DataFrame(
+        {
+            "open": [row[0] for row in rows],
+            "high": [row[1] for row in rows],
+            "low": [row[2] for row in rows],
+            "close": [row[3] for row in rows],
+            "volume": [1] * len(rows),
+        },
+        index=index,
+    )
+
+
 class DailyBacktestSummaryTests(unittest.TestCase):
     def test_nse_tracking_stops_on_same_trading_day(self):
         index = pd.DatetimeIndex(
@@ -128,6 +162,131 @@ class DailyBacktestSummaryTests(unittest.TestCase):
             self.assertNotIn(key, summary.load_sent_reports(path))
             summary.mark_sent_report(key, path)
             self.assertIn(key, summary.load_sent_reports(path))
+
+    def test_crypto_report_key_does_not_collide_with_nse(self):
+        day = pd.Timestamp("2026-08-04").date()
+        self.assertNotEqual(
+            summary.report_key(day, "30m", "nse"),
+            summary.report_key(day, "30m", "crypto"),
+        )
+
+    def test_crypto_sl_before_half_r_is_sl(self):
+        frame = crypto_frame(
+            rows=[
+                (101.0, 101.2, 100.8, 101.0),
+                (100.0, 100.2, 98.9, 99.1),
+            ]
+        )
+
+        result = summary.simulate_alert(frame, crypto_alert(), 0, 1)
+
+        self.assertEqual(result["final_result"], "SL")
+
+    def test_crypto_half_r_is_kept_after_reversal(self):
+        frame = crypto_frame(
+            rows=[
+                (101.0, 101.2, 100.8, 101.0),
+                (100.0, 100.6, 100.0, 100.5),
+                (100.5, 100.6, 99.7, 99.9),
+            ]
+        )
+
+        result = summary.simulate_alert(frame, crypto_alert(), 0, 2)
+
+        self.assertEqual(result["final_result"], "+0.5R")
+        self.assertEqual(result["net_realized_r"], 0.5)
+
+    def test_crypto_one_r_supersedes_half_r_after_reversal(self):
+        frame = crypto_frame(
+            rows=[
+                (101.0, 101.2, 100.8, 101.0),
+                (100.0, 101.2, 100.0, 101.0),
+                (101.0, 101.1, 99.7, 99.9),
+            ]
+        )
+
+        result = summary.simulate_alert(frame, crypto_alert(), 0, 2)
+
+        self.assertEqual(result["final_result"], "+1R")
+
+    def test_crypto_two_r_stops_tracking(self):
+        frame = crypto_frame(
+            rows=[
+                (101.0, 101.2, 100.8, 101.0),
+                (100.0, 102.2, 100.0, 102.0),
+                (102.0, 102.1, 98.5, 99.0),
+            ]
+        )
+
+        result = summary.simulate_alert(frame, crypto_alert(), 0, 2)
+
+        self.assertEqual(result["final_result"], "+2R")
+        self.assertEqual(result["exit_time"], frame.index[1])
+
+    def test_crypto_expired_without_half_r_is_neither(self):
+        frame = crypto_frame(
+            rows=[
+                (101.0, 101.2, 100.8, 101.0),
+                (100.0, 100.3, 100.0, 100.1),
+                (100.1, 100.38, 99.8, 100.2),
+                (100.2, 100.3, 99.8, 100.1),
+                (100.1, 100.2, 99.8, 100.0),
+                (100.0, 100.3, 99.8, 100.1),
+                (100.1, 100.2, 99.8, 100.0),
+                (100.0, 100.2, 99.8, 100.1),
+                (100.1, 100.2, 99.8, 100.0),
+                (100.0, 100.2, 99.8, 100.1),
+                (100.1, 100.2, 99.8, 100.0),
+                (100.0, 100.2, 99.8, 100.1),
+                (100.1, 100.2, 99.8, 100.0),
+                (100.0, 100.2, 99.8, 100.1),
+            ]
+        )
+
+        result = summary.simulate_alert(frame, crypto_alert(), 0, len(frame) - 1)
+
+        self.assertEqual(result["final_result"], "Neither")
+
+    def test_crypto_open_trade_inside_six_hours_is_pending(self):
+        future_start = (pd.Timestamp.now(tz=summary.IST) + pd.Timedelta(hours=1)).floor("30min")
+        frame = crypto_frame(
+            start=future_start,
+            rows=[
+                (101.0, 101.2, 100.8, 101.0),
+                (100.0, 100.3, 100.0, 100.1),
+            ],
+        )
+        alert = crypto_alert(event_time=frame.index[0], event_time_ist=frame.index[0])
+
+        result = summary.simulate_alert(frame, alert, 0, 1)
+
+        self.assertEqual(result["final_result"], "Pending")
+
+    def test_crypto_tracking_is_not_forced_by_midnight(self):
+        frame = crypto_frame(
+            start="2026-08-04 23:00",
+            rows=[
+                (101.0, 101.2, 100.8, 101.0),
+                (100.0, 100.2, 100.0, 100.1),
+                (100.1, 100.2, 99.8, 100.0),
+                (100.0, 100.2, 99.8, 100.1),
+                (100.1, 100.2, 99.8, 100.0),
+                (100.0, 100.2, 99.8, 100.1),
+                (100.1, 100.2, 99.8, 100.0),
+                (100.0, 100.2, 99.8, 100.1),
+                (100.1, 100.2, 99.8, 100.0),
+                (100.0, 100.2, 99.8, 100.1),
+                (100.1, 100.2, 99.8, 100.0),
+                (100.0, 100.2, 99.8, 100.1),
+                (100.1, 100.2, 99.8, 100.0),
+                (100.0, 100.2, 99.8, 100.1),
+            ],
+        )
+
+        result = summary.simulate_alert(frame, crypto_alert(event_time=frame.index[0], event_time_ist=frame.index[0]), 0, len(frame) - 1)
+
+        self.assertEqual(result["final_result"], "Neither")
+        self.assertGreater(result["exit_time"].date(), frame.index[0].date())
 
     def test_display_symbol_simplifies_common_forms(self):
         cases = {

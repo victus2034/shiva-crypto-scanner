@@ -68,6 +68,12 @@ from zone_scoring import score_wick_zone
 
 
 STATE_FILE = Path(__file__).with_name(os.getenv("SHIVA_STATE_FILE", "alert_state.json"))
+ALERT_RECORD_FILE = Path(__file__).with_name(
+    os.getenv(
+        "SHIVA_ALERT_RECORD_FILE",
+        "crypto_alert_records_30m.jsonl" if TIMEFRAME == "30m" else "crypto_alert_records.jsonl",
+    )
+)
 EXCHANGE_OPTIONS = {
     "enableRateLimit": True,
     "options": {"defaultType": "future"},
@@ -752,6 +758,35 @@ def build_signal_state_key(symbol, signal_type):
     return f"{symbol}|range_filter|{signal_type}"
 
 
+def record_delivered_zone_alert(result, zone_type, zone, distance_pct, message, now_ts):
+    """Persist delivered zone alerts for the daily backtest summary."""
+    rating = result.get(f"{zone_type}_rating") or {}
+    score = result.get(f"{zone_type}_score")
+    if score is None and rating.get("score") is not None:
+        score = rating.get("score")
+
+    record = {
+        "delivered_at_utc": pd.Timestamp.fromtimestamp(now_ts, tz="UTC").isoformat(),
+        "symbol": result["symbol"],
+        "timeframe": TIMEFRAME,
+        "side": "short" if zone_type == "supply" else "long",
+        "zone_type": zone_type,
+        "distance_pct": float(distance_pct),
+        "alert_price": float(result["price"]),
+        "level": float(zone["top"] if zone_type == "supply" else zone["bottom"]),
+        "zone_bottom": float(zone["bottom"]),
+        "zone_top": float(zone["top"]),
+        "body_entry": zone.get("body_entry"),
+        "score": score,
+        "message": message,
+    }
+    try:
+        with ALERT_RECORD_FILE.open("a", encoding="utf-8") as file:
+            file.write(json.dumps(record, separators=(",", ":")) + "\n")
+    except OSError as error:
+        print(f"Crypto alert record write failed: {error}")
+
+
 def format_alert(result, zone_type, zone, distance_pct):
     symbol = result["symbol"]
     price = result["price"]
@@ -908,8 +943,10 @@ def process_candidate(state, result, zone_type, zone, distance_pct, now_ts):
     if MIN_DISTANCE_PCT <= distance_pct <= MAX_DISTANCE_PCT:
         should_alert = (not entry["in_zone"]) or (now_ts - entry["last_alert_at"] >= ALERT_COOLDOWN_SECONDS)
         if should_alert:
-            if send_alert(format_alert(result, zone_type, zone, distance_pct)):
+            message = format_alert(result, zone_type, zone, distance_pct)
+            if send_alert(message):
                 entry["last_alert_at"] = now_ts
+                record_delivered_zone_alert(result, zone_type, zone, distance_pct, message, now_ts)
                 alert_sent = True
         entry["in_zone"] = True
     elif distance_pct > MAX_DISTANCE_PCT * REARM_FACTOR:

@@ -4,7 +4,7 @@ import argparse
 import json
 import os
 import time
-from datetime import datetime, time as datetime_time
+from datetime import datetime, timedelta, time as datetime_time
 from pathlib import Path
 from zoneinfo import ZoneInfo
 
@@ -12,18 +12,21 @@ import pandas as pd
 import requests
 
 import nse_scanner
+import scanner as crypto_scanner
 
 
 IST = ZoneInfo("Asia/Kolkata")
 WEBHOOK_ENV = "DISCORD_DAILY_BACKTEST_WEBHOOK_URL"
 TIMEFRAME_SETTINGS = {
     "30m": {
-        "records": Path(__file__).with_name("nse_alert_records_30m.jsonl"),
+        "nse_records": Path(__file__).with_name("nse_alert_records_30m.jsonl"),
+        "crypto_records": Path(__file__).with_name("crypto_alert_records_30m.jsonl"),
         "source_interval": "15m",
         "source_period": "60d",
     },
     "4h": {
-        "records": Path(__file__).with_name("nse_alert_records.jsonl"),
+        "nse_records": Path(__file__).with_name("nse_alert_records.jsonl"),
+        "crypto_records": Path(__file__).with_name("crypto_alert_records.jsonl"),
         "source_interval": "1h",
         "source_period": "700d",
     },
@@ -32,6 +35,7 @@ TIMEFRAME_SETTINGS = {
 ENTRY_WAIT_BARS = 3
 MAX_HOLD_BARS = 24
 NSE_BACKTEST_CLOSE_CUTOFF = datetime_time(15, 10)
+CRYPTO_EVALUATION_HOURS = 6
 FIXED_STOP_PCT = 0.5
 TARGET_1_R = 1.0
 TARGET_2_R = 2.0
@@ -50,7 +54,13 @@ FINALIZED_RECORDS_PATH = Path(__file__).with_name("daily_backtest_finalized_reco
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
-        description="Post a clean daily NSE delivered-alert backtest summary."
+        description="Post a clean daily delivered-alert backtest summary."
+    )
+    parser.add_argument(
+        "--market",
+        choices=["nse", "crypto"],
+        default="nse",
+        help="Market to summarize.",
     )
     parser.add_argument(
         "--timeframe",
@@ -70,7 +80,12 @@ def configure_nse_data(timeframe: str) -> Path:
     nse_scanner.TIMEFRAME = timeframe
     nse_scanner.SOURCE_INTERVAL = settings["source_interval"]
     nse_scanner.SOURCE_PERIOD = settings["source_period"]
-    return settings["records"]
+    return settings["nse_records"]
+
+
+def configure_crypto_data(timeframe: str) -> Path:
+    crypto_scanner.TIMEFRAME = timeframe
+    return TIMEFRAME_SETTINGS[timeframe]["crypto_records"]
 
 
 def load_records(path: Path, timeframe_filter: str) -> pd.DataFrame:
@@ -166,6 +181,45 @@ def fetch_frames(symbols: list[str]) -> tuple[dict[str, pd.DataFrame], dict[str,
     return frames, failures
 
 
+def fetch_crypto_frames(symbols: list[str]) -> tuple[dict[str, pd.DataFrame], dict[str, str]]:
+    frames: dict[str, pd.DataFrame] = {}
+    failures: dict[str, str] = {}
+    for symbol in symbols:
+        try:
+            frames[symbol] = normalize_crypto_frame(crypto_fetch_ohlcv(symbol))
+        except Exception as error:
+            failures[symbol] = str(error)
+    return frames, failures
+
+
+def crypto_fetch_ohlcv(symbol: str):
+    last_error = None
+    symbol_for_fallback = crypto_scanner.fallback_symbol(symbol)
+
+    primary_exchange = crypto_scanner.EXCHANGES_BY_ID.get(crypto_scanner.PRIMARY_EXCHANGE_ID)
+    if primary_exchange is not None:
+        try:
+            return crypto_scanner.fetch_exchange_ohlcv(primary_exchange, symbol_for_fallback)
+        except Exception as error:
+            last_error = error
+
+    for exchange in crypto_scanner.EXCHANGES:
+        if exchange.id == crypto_scanner.PRIMARY_EXCHANGE_ID:
+            continue
+        try:
+            return crypto_scanner.fetch_exchange_ohlcv(exchange, symbol_for_fallback)
+        except Exception as error:
+            last_error = error
+
+    if crypto_scanner.is_coinswitch_configured():
+        try:
+            return crypto_scanner.fetch_coinswitch_ohlcv(symbol)
+        except Exception as error:
+            last_error = error
+
+    raise RuntimeError(f"all crypto exchanges failed for {symbol}: {last_error}")
+
+
 def normalize_frame(raw: pd.DataFrame) -> pd.DataFrame:
     frame = raw.copy()
     if "Datetime" in frame.columns:
@@ -179,7 +233,19 @@ def normalize_frame(raw: pd.DataFrame) -> pd.DataFrame:
     return frame[["open", "high", "low", "close", "volume"]].sort_index()
 
 
-def run_backtest(alerts: pd.DataFrame, frames: dict[str, pd.DataFrame]) -> tuple[pd.DataFrame, int]:
+def normalize_crypto_frame(raw) -> pd.DataFrame:
+    frame = pd.DataFrame(raw, columns=["time", "open", "high", "low", "close", "volume"])
+    frame["time"] = pd.to_datetime(frame["time"], unit="ms", utc=True).dt.tz_convert(IST)
+    frame = frame.set_index("time")
+    frame.index = pd.DatetimeIndex(frame.index).floor("s")
+    return frame[["open", "high", "low", "close", "volume"]].sort_index()
+
+
+def run_backtest(
+    alerts: pd.DataFrame,
+    frames: dict[str, pd.DataFrame],
+    market: str = "nse",
+) -> tuple[pd.DataFrame, int]:
     rows = []
     for alert in alerts.to_dict("records"):
         frame = frames.get(alert["symbol"])
@@ -193,8 +259,11 @@ def run_backtest(alerts: pd.DataFrame, frames: dict[str, pd.DataFrame]) -> tuple
             rows.append(unfilled(alert, "alert_before_data"))
             continue
 
-        tracking_end_index, close_window_mature = same_day_tracking_end(frame, event_time)
-        if not close_window_mature:
+        if market == "crypto":
+            tracking_end_index, window_mature = crypto_tracking_end(frame, event_time)
+        else:
+            tracking_end_index, window_mature = same_day_tracking_end(frame, event_time)
+        if not window_mature:
             rows.append(unfilled(alert, "immature"))
             continue
         if tracking_end_index is None or tracking_end_index <= event_index:
@@ -204,7 +273,7 @@ def run_backtest(alerts: pd.DataFrame, frames: dict[str, pd.DataFrame]) -> tuple
         rows.append(simulate_alert(frame, alert, event_index, tracking_end_index))
 
     results = pd.DataFrame(rows)
-    return apply_same_day_zone_cooldown(results)
+    return apply_same_day_zone_cooldown(results, market)
 
 
 def same_day_tracking_end(
@@ -232,6 +301,26 @@ def same_day_tracking_end(
     return positions[-1], True
 
 
+def crypto_tracking_end(
+    frame: pd.DataFrame,
+    event_time: pd.Timestamp,
+) -> tuple[int | None, bool]:
+    """Return a provisional crypto search window after alert time.
+
+    Actual final evaluation is limited to 6 hours after entry. This provisional
+    window only gives the entry finder enough future candles to locate entry.
+    """
+    event_time = event_time.tz_convert(IST)
+    provisional_expiry = event_time + timedelta(hours=CRYPTO_EVALUATION_HOURS + 1)
+    positions = [
+        index for index, timestamp in enumerate(frame.index)
+        if timestamp <= provisional_expiry
+    ]
+    if not positions:
+        return None, True
+    return positions[-1], True
+
+
 def simulate_alert(
     frame: pd.DataFrame,
     alert: dict,
@@ -244,6 +333,14 @@ def simulate_alert(
     entry_index = find_entry(frame, event_index, entry_price, tracking_end_index)
     if entry_index is None:
         return unfilled(alert, "zone_not_touched")
+
+    if is_crypto_symbol(alert.get("symbol", "")):
+        crypto_end_index, crypto_window_mature = crypto_entry_tracking_end(frame, entry_index)
+        if crypto_end_index is None or crypto_end_index < entry_index:
+            return pending_trade(alert, frame, entry_index, entry_price)
+        tracking_end_index = min(tracking_end_index, crypto_end_index)
+        if not crypto_window_mature:
+            return pending_trade(alert, frame, entry_index, entry_price)
 
     stop = original_stop_price(alert)
     risk = direction * (entry_price - stop)
@@ -336,6 +433,47 @@ def simulate_alert(
     return result
 
 
+def crypto_entry_tracking_end(
+    frame: pd.DataFrame,
+    entry_index: int,
+) -> tuple[int | None, bool]:
+    expiry = pd.Timestamp(frame.index[entry_index]) + timedelta(hours=CRYPTO_EVALUATION_HOURS)
+    mature = pd.Timestamp.now(tz=IST) >= expiry
+    positions = [
+        index for index, timestamp in enumerate(frame.index)
+        if entry_index <= index and timestamp <= expiry
+    ]
+    if not positions:
+        return None, mature
+    return positions[-1], mature
+
+
+def pending_trade(
+    alert: dict,
+    frame: pd.DataFrame,
+    entry_index: int,
+    entry_price: float,
+) -> dict:
+    result = unfilled(alert, "Pending")
+    result.update(
+        {
+            "filled": True,
+            "entry_time": frame.index[entry_index],
+            "entry_price": entry_price,
+            "entry_basis": "body",
+            "outcome": "Pending",
+            "final_result": "Pending",
+            "bars_held": 0,
+            "cooldown_blocked": False,
+        }
+    )
+    return result
+
+
+def is_crypto_symbol(symbol: str) -> bool:
+    return not str(symbol).upper().endswith(".NS")
+
+
 def body_entry_price(frame: pd.DataFrame, alert: dict, event_index: int) -> float:
     recorded_body_entry = pd.to_numeric(alert.get("body_entry"), errors="coerce")
     if pd.notna(recorded_body_entry):
@@ -426,7 +564,10 @@ def unfilled(alert: dict, outcome: str) -> dict:
     return result
 
 
-def apply_same_day_zone_cooldown(results: pd.DataFrame) -> tuple[pd.DataFrame, int]:
+def apply_same_day_zone_cooldown(
+    results: pd.DataFrame,
+    market: str = "nse",
+) -> tuple[pd.DataFrame, int]:
     if results.empty:
         return results, 0
     frame = results.copy()
@@ -439,7 +580,10 @@ def apply_same_day_zone_cooldown(results: pd.DataFrame) -> tuple[pd.DataFrame, i
         symbol = str(row["symbol"])
         current = row.to_dict()
         previous_trades = accepted.get(symbol, [])
-        conflict = any(same_day_overlap(current, previous) for previous in previous_trades)
+        conflict = any(
+            zone_cooldown_overlap(current, previous, market)
+            for previous in previous_trades
+        )
         if conflict:
             replacement = unfilled(current, "zone_cooldown")
             replacement["cooldown_blocked"] = True
@@ -452,11 +596,31 @@ def apply_same_day_zone_cooldown(results: pd.DataFrame) -> tuple[pd.DataFrame, i
     return frame.sort_values("_order").drop(columns="_order"), blocked
 
 
+def zone_cooldown_overlap(current: dict, previous: dict, market: str) -> bool:
+    if market == "crypto":
+        current_time = pd.Timestamp(current["entry_time"]).tz_convert(IST)
+        previous_time = pd.Timestamp(previous["entry_time"]).tz_convert(IST)
+        if current_time - previous_time > timedelta(hours=12):
+            return False
+    else:
+        current_day = pd.Timestamp(current["entry_time"]).tz_convert(IST).date()
+        previous_day = pd.Timestamp(previous["entry_time"]).tz_convert(IST).date()
+        if current_day != previous_day:
+            return False
+    return zones_overlap(current, previous)
+
+
 def same_day_overlap(current: dict, previous: dict) -> bool:
     current_day = pd.Timestamp(current["entry_time"]).tz_convert(IST).date()
     previous_day = pd.Timestamp(previous["entry_time"]).tz_convert(IST).date()
     if current_day != previous_day:
         return False
+    return max(float(current["zone_bottom"]), float(previous["zone_bottom"])) <= min(
+        float(current["zone_top"]), float(previous["zone_top"])
+    )
+
+
+def zones_overlap(current: dict, previous: dict) -> bool:
     return max(float(current["zone_bottom"]), float(previous["zone_bottom"])) <= min(
         float(current["zone_top"]), float(previous["zone_top"])
     )
@@ -469,8 +633,11 @@ def build_summary(
     data_failures: dict[str, str],
     cooldown_blocked: int,
     timeframe: str,
+    market: str = "nse",
 ) -> str:
-    header = f"NSE {timeframe} BACKTEST | {pd.Timestamp(target_date).strftime('%d %b %Y').upper()}"
+    market_label = "CRYPTO" if market == "crypto" else "NSE"
+    asset_label = "Coins" if market == "crypto" else "Stocks"
+    header = f"{market_label} {timeframe} BACKTEST | {pd.Timestamp(target_date).strftime('%d %b %Y').upper()}"
     if records.empty:
         return (
             f"{header}\n\n"
@@ -487,14 +654,18 @@ def build_summary(
     entries = len(filled)
     touched = entries + duplicates
     no_touch = max(0, len(records) - touched)
-    net_r = pd.to_numeric(filled.get("net_realized_r", pd.Series(dtype=float)), errors="coerce").sum()
-    final_counts = filled["final_result"].value_counts() if not filled.empty else pd.Series(dtype=int)
+    finalized = filled[filled["final_result"] != "Pending"] if not filled.empty else filled
+    pending_count = int((filled["final_result"] == "Pending").sum()) if not filled.empty else 0
+    net_r = pd.to_numeric(
+        finalized.get("net_realized_r", pd.Series(dtype=float)), errors="coerce"
+    ).sum()
+    final_counts = finalized["final_result"].value_counts() if not finalized.empty else pd.Series(dtype=int)
 
     lines = [
         header,
         "",
         metric("Alerts", len(records)),
-        metric("Stocks", records["symbol"].nunique()),
+        metric(asset_label, records["symbol"].nunique()),
         metric("BUY", buy_count),
         metric("SELL", sell_count),
         "",
@@ -505,6 +676,7 @@ def build_summary(
         "",
         "RESULTS",
         *format_outcome_lines(final_counts),
+        *([metric("Pending", pending_count)] if pending_count else []),
         metric("Total Result", format_r(net_r)),
         "",
         "RATING PERFORMANCE",
@@ -646,8 +818,8 @@ def send_discord_message(message: str) -> None:
         time.sleep(max(0.25, min(retry_after, 30.0)))
 
 
-def report_key(target_date, timeframe: str) -> str:
-    return f"NSE|{timeframe}|{pd.Timestamp(target_date).date().isoformat()}"
+def report_key(target_date, timeframe: str, market: str = "nse") -> str:
+    return f"{market.upper()}|{timeframe}|{pd.Timestamp(target_date).date().isoformat()}"
 
 
 def load_sent_reports(path: Path = SENT_REPORTS_PATH) -> dict:
@@ -670,6 +842,7 @@ def persist_finalized_records(
     target_date,
     timeframe: str,
     results: pd.DataFrame,
+    market: str = "nse",
     path: Path = FINALIZED_RECORDS_PATH,
 ) -> None:
     day = pd.Timestamp(target_date).date().isoformat()
@@ -682,7 +855,7 @@ def persist_finalized_records(
                 row = json.loads(line)
             except json.JSONDecodeError:
                 continue
-            if row.get("market") == "NSE" and row.get("timeframe") == timeframe and row.get("date") == day:
+            if row.get("market") == market.upper() and row.get("timeframe") == timeframe and row.get("date") == day:
                 continue
             retained.append(json.dumps(row, sort_keys=True))
 
@@ -690,7 +863,7 @@ def persist_finalized_records(
     if not results.empty:
         for row in results.to_dict("records"):
             payload = {
-                "market": "NSE",
+                "market": market.upper(),
                 "timeframe": timeframe,
                 "date": day,
                 "symbol": str(row.get("symbol", "")),
@@ -714,7 +887,11 @@ def persist_finalized_records(
 
 def main() -> None:
     args = parse_args()
-    default_records = configure_nse_data(args.timeframe)
+    default_records = (
+        configure_crypto_data(args.timeframe)
+        if args.market == "crypto"
+        else configure_nse_data(args.timeframe)
+    )
     records = load_records(args.records or default_records, args.timeframe)
     target_date = select_target_date(records, args.date)
     day_records = (
@@ -728,8 +905,11 @@ def main() -> None:
     cooldown_blocked = 0
     results = pd.DataFrame()
     if not day_records.empty:
-        frames, data_failures = fetch_frames(sorted(day_records["symbol"].unique()))
-        results, cooldown_blocked = run_backtest(day_records, frames)
+        if args.market == "crypto":
+            frames, data_failures = fetch_crypto_frames(sorted(day_records["symbol"].unique()))
+        else:
+            frames, data_failures = fetch_frames(sorted(day_records["symbol"].unique()))
+        results, cooldown_blocked = run_backtest(day_records, frames, args.market)
 
     message = build_summary(
         day_records,
@@ -738,16 +918,17 @@ def main() -> None:
         data_failures,
         cooldown_blocked,
         args.timeframe,
+        args.market,
     )
     print(message)
     if not args.dry_run:
-        key = report_key(target_date, args.timeframe)
+        key = report_key(target_date, args.timeframe, args.market)
         if not args.force and key in load_sent_reports():
             print(f"Skipped duplicate report: {key}")
             return
         send_discord_message(message)
         mark_sent_report(key)
-        persist_finalized_records(target_date, args.timeframe, results)
+        persist_finalized_records(target_date, args.timeframe, results, args.market)
 
 
 if __name__ == "__main__":
