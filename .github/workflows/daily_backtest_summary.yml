@@ -2,12 +2,13 @@ name: Shiva Daily Backtest Summary
 
 on:
   schedule:
-    # GitHub Actions uses UTC. 11:00 UTC = 16:30 IST, after NSE close.
-    - cron: "0 11 * * 1-5"
+    # GitHub Actions uses UTC. 11:00 UTC = 16:30 IST.
+    # Crypto runs daily; NSE duplicate protection prevents stale weekend reposts.
+    - cron: "0 11 * * *"
   workflow_dispatch:
     inputs:
       timeframe:
-        description: "NSE timeframe to summarize"
+        description: "Timeframe to summarize"
         required: false
         default: "both"
         type: choice
@@ -15,6 +16,15 @@ on:
           - "both"
           - "30m"
           - "4h"
+      market:
+        description: "Market to summarize"
+        required: false
+        default: "both"
+        type: choice
+        options:
+          - "both"
+          - "nse"
+          - "crypto"
       date:
         description: "Optional IST date to summarize, YYYY-MM-DD"
         required: false
@@ -56,23 +66,40 @@ jobs:
       - name: Post daily backtest summary
         env:
           DISCORD_DAILY_BACKTEST_WEBHOOK_URL: ${{ secrets.DISCORD_DAILY_BACKTEST_WEBHOOK_URL }}
+          COINSWITCH_API_KEY: ${{ secrets.COINSWITCH_API_KEY }}
+          COINSWITCH_SECRET_KEY: ${{ secrets.COINSWITCH_SECRET_KEY }}
+          COINSWITCH_EXCHANGE: ${{ secrets.COINSWITCH_EXCHANGE }}
           INPUT_DATE: ${{ github.event.inputs.date }}
           INPUT_TIMEFRAME: ${{ github.event.inputs.timeframe }}
+          INPUT_MARKET: ${{ github.event.inputs.market }}
         run: |
           TIMEFRAME="${INPUT_TIMEFRAME:-both}"
+          MARKET="${INPUT_MARKET:-both}"
           run_summary() {
             if [ -n "$INPUT_DATE" ]; then
-              python daily_backtest_summary.py --timeframe "$1" --date "$INPUT_DATE"
+              python daily_backtest_summary.py --market "$1" --timeframe "$2" --date "$INPUT_DATE"
             else
-              python daily_backtest_summary.py --timeframe "$1"
+              python daily_backtest_summary.py --market "$1" --timeframe "$2"
             fi
           }
-          if [ "$TIMEFRAME" = "both" ]; then
-            run_summary "30m"
-            run_summary "4h"
+
+          if [ "$MARKET" = "both" ]; then
+            MARKETS="nse crypto"
           else
-            run_summary "$TIMEFRAME"
+            MARKETS="$MARKET"
           fi
+
+          if [ "$TIMEFRAME" = "both" ]; then
+            TIMEFRAMES="30m 4h"
+          else
+            TIMEFRAMES="$TIMEFRAME"
+          fi
+
+          for market in $MARKETS; do
+            for timeframe in $TIMEFRAMES; do
+              run_summary "$market" "$timeframe"
+            done
+          done
 
       - name: Persist daily backtest report state
         run: |
