@@ -14925,7 +14925,7 @@
   },
   "SLVONUSD|supply|58.15000000|58.21000000": {
     "in_zone": true,
-    "last_alert_at": 1786280530.928308
+    "last_alert_at": 1786285307.0718508
   },
   "ESP/USDT|supply|0.07076000|0.07148000": {
     "in_zone": false,
@@ -15363,8 +15363,8 @@
     "last_alert_at": 0.0
   },
   "STORJ/USDT|demand|0.04484000|0.04515000": {
-    "in_zone": false,
-    "last_alert_at": 1786248129.6212146
+    "in_zone": true,
+    "last_alert_at": 1786285306.2523448
   },
   "OPENAI/USDT:USDT|supply|116.97000000|117.25000000": {
     "in_zone": true,
@@ -15679,7 +15679,7 @@
     "last_alert_at": 0.0
   },
   "1000SHIBUSD|demand|0.00458500|0.00460000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1786284131.4350128
   },
   "ALLO/USDT|demand|0.30193000|0.30888000": {
@@ -15700,7 +15700,7 @@
   },
   "DASH/USDT|demand|31.42000000|31.55000000": {
     "in_zone": true,
-    "last_alert_at": 1786282906.2979903
+    "last_alert_at": 1786285306.7612934
   },
   "GALA/USDT|demand|0.00178500|0.00179200": {
     "in_zone": false,
@@ -15728,7 +15728,7 @@
   },
   "DELL/USDT:USDT|demand|451.23000000|451.47000000": {
     "in_zone": true,
-    "last_alert_at": 1786282907.4225025
+    "last_alert_at": 1786285308.2915313
   },
   "MSFT/USDT:USDT|demand|499.39000000|499.78000000": {
     "in_zone": true,
@@ -15740,15 +15740,15 @@
   },
   "SNDKBUSD|supply|1227.33000000|1228.76000000": {
     "in_zone": true,
-    "last_alert_at": 1786282906.6550586
+    "last_alert_at": 1786285307.6162155
   },
   "IBM/USDT:USDT|demand|236.30000000|236.85000000": {
     "in_zone": true,
-    "last_alert_at": 1786282907.1548078
+    "last_alert_at": 1786285307.8527727
   },
   "AAPLXUSD|supply|313.65000000|313.75000000": {
     "in_zone": true,
-    "last_alert_at": 1786276943.0836844
+    "last_alert_at": 1786285307.3505933
   },
   "CRCLXUSD|demand|67.55000000|67.75000000": {
     "in_zone": false,
@@ -15799,8 +15799,8 @@
     "last_alert_at": 0.0
   },
   "OPENAI/USDT:USDT|demand|116.31000000|116.72000000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1786285308.0928097
   },
   "MSFT/USDT:USDT|supply|501.02000000|501.19000000": {
     "in_zone": false,
@@ -15827,7 +15827,7 @@
     "last_alert_at": 0.0
   },
   "ENA/USDT|demand|0.08675000|0.08764000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1786282906.0235202
   },
   "ZIL/USDT|supply|0.00246400|0.00247400": {
@@ -15845,5 +15845,13 @@
   "SPCXXUSD|demand|135.15000000|135.60000000": {
     "in_zone": true,
     "last_alert_at": 1786284132.3240428
+  },
+  "ARBUSD|demand|0.07690000|0.07760000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "SOXLBUSD|demand|141.50000000|142.00000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
   }
 }
