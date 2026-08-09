@@ -14780,8 +14780,8 @@
     "last_alert_at": 1786142514.333104
   },
   "DOTUSD|demand|0.80000000|0.80300000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1786315309.9179068
   },
   "RE/USDT|supply|0.38924000|0.39199000": {
     "in_zone": true,
@@ -14925,7 +14925,7 @@
   },
   "SLVONUSD|supply|58.15000000|58.21000000": {
     "in_zone": true,
-    "last_alert_at": 1786312938.7308352
+    "last_alert_at": 1786315310.441223
   },
   "ESP/USDT|supply|0.07076000|0.07148000": {
     "in_zone": false,
@@ -15471,7 +15471,7 @@
     "last_alert_at": 0.0
   },
   "ATOM/USDT|supply|1.39600000|1.40200000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1786312938.000731
   },
   "CRV/USDT|supply|0.22780000|0.22960000": {
@@ -15748,7 +15748,7 @@
   },
   "AAPLXUSD|supply|313.65000000|313.75000000": {
     "in_zone": true,
-    "last_alert_at": 1786312939.041418
+    "last_alert_at": 1786315310.6872373
   },
   "CRCLXUSD|demand|67.55000000|67.75000000": {
     "in_zone": false,
@@ -15792,7 +15792,7 @@
   },
   "SOXX/USDT:USDT|supply|546.53000000|547.08000000": {
     "in_zone": true,
-    "last_alert_at": 1786312940.036527
+    "last_alert_at": 1786315311.1385574
   },
   "ETHFI/USDT|supply|0.38980000|0.39190000": {
     "in_zone": false,
@@ -15843,8 +15843,8 @@
     "last_alert_at": 0.0
   },
   "SPCXXUSD|demand|135.15000000|135.60000000": {
-    "in_zone": false,
-    "last_alert_at": 1786302140.3787115
+    "in_zone": true,
+    "last_alert_at": 1786315310.9040074
   },
   "ARBUSD|demand|0.07690000|0.07760000": {
     "in_zone": false,
@@ -15975,7 +15975,7 @@
     "last_alert_at": 0.0
   },
   "CRCLXUSD|supply|68.45000000|68.55000000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1786312939.238938
   },
   "DASH/USDT|supply|31.79000000|31.91000000": {
@@ -15999,6 +15999,10 @@
     "last_alert_at": 0.0
   },
   "PENGU/USDT|supply|0.00678100|0.00691500": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "MMT/USDT|supply|0.22120000|0.22400000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
