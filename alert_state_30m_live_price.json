@@ -15900,7 +15900,7 @@
   },
   "AAPLXUSD|demand|312.55000000|312.70000000": {
     "in_zone": true,
-    "last_alert_at": 1786338135.0243282
+    "last_alert_at": 1786340502.1359768
   },
   "AVAXUSD|demand|6.46000000|6.46600000": {
     "in_zone": false,
@@ -16139,7 +16139,7 @@
     "last_alert_at": 0.0
   },
   "WIF/USDT|demand|0.14130000|0.14180000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1786336915.9753728
   },
   "ZRO/USDT|demand|0.83630000|0.83900000": {
@@ -16151,7 +16151,7 @@
     "last_alert_at": 0.0
   },
   "DASH/USDT|demand|30.85000000|30.98000000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1786339309.0855494
   },
   "XLM/USDT|supply|0.16311000|0.16481000": {
@@ -16179,6 +16179,10 @@
     "last_alert_at": 0.0
   },
   "FLNC/USDT:USDT|supply|13.26000000|13.37000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "ETHUSD|demand|1905.00000000|1911.95000000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
