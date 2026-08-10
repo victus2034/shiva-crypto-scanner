@@ -1,4 +1,8 @@
+import json
+import tempfile
 import unittest
+from pathlib import Path
+from unittest.mock import patch
 
 import nse_scanner
 import scanner
@@ -133,6 +137,32 @@ class AlertFormatTests(unittest.TestCase):
         self.assertTrue(message.startswith("NVDAXUSD | BUY | 8/10"))
         self.assertNotIn("5/10", message)
         self.assertEqual(message.count("/10"), 1)
+
+    def test_xstock_hybrid_score_is_saved_to_alert_record(self):
+        result = {
+            "symbol": "NVDAXUSD",
+            "price": 190.0,
+            "demand_score": 5,
+            "demand_rating": {
+                "kind": "xstock_hybrid",
+                "score": 8,
+            },
+        }
+        zone = {"bottom": 188.0, "top": 188.5}
+        with tempfile.TemporaryDirectory() as tmp:
+            record_path = Path(tmp) / "crypto_alert_records.jsonl"
+            with patch.object(scanner, "ALERT_RECORD_FILE", record_path):
+                scanner.record_delivered_zone_alert(
+                    result,
+                    "demand",
+                    zone,
+                    0.5,
+                    "NVDAXUSD | BUY | 8/10",
+                    1_785_000_000,
+                )
+
+            record = json.loads(record_path.read_text(encoding="utf-8"))
+            self.assertEqual(record["score"], 8)
 
     def test_xstock_range_filter_alert_has_one_compact_score(self):
         result = {

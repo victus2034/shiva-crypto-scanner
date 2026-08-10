@@ -232,12 +232,12 @@ class DailyBacktestSummaryTests(unittest.TestCase):
             summary.report_key(day, "30m", "crypto"),
         )
 
-    def test_crypto_report_date_uses_1630_cutoff(self):
-        before_cutoff = pd.Timestamp("2026-08-04 16:30", tz=summary.IST)
-        after_cutoff = pd.Timestamp("2026-08-04 16:31", tz=summary.IST)
+    def test_crypto_report_date_uses_ist_calendar_day(self):
+        afternoon = pd.Timestamp("2026-08-04 16:30", tz=summary.IST)
+        evening = pd.Timestamp("2026-08-04 23:59", tz=summary.IST)
 
-        self.assertEqual(summary.crypto_report_date(before_cutoff), pd.Timestamp("2026-08-04").date())
-        self.assertEqual(summary.crypto_report_date(after_cutoff), pd.Timestamp("2026-08-05").date())
+        self.assertEqual(summary.crypto_report_date(afternoon), pd.Timestamp("2026-08-04").date())
+        self.assertEqual(summary.crypto_report_date(evening), pd.Timestamp("2026-08-04").date())
 
     def test_crypto_default_report_date_uses_completed_bucket(self):
         today = pd.Timestamp.now(tz=summary.IST).date()

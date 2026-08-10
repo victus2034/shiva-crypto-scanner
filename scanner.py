@@ -803,7 +803,10 @@ def planned_stop_distance_pct(zone_type, zone, buffer_pct=SL_BUFFER_PCT):
 def record_delivered_zone_alert(result, zone_type, zone, distance_pct, message, now_ts):
     """Persist delivered zone alerts for the daily backtest summary."""
     rating = result.get(f"{zone_type}_rating") or {}
-    score = result.get(f"{zone_type}_score")
+    if rating and rating.get("kind") == "xstock_hybrid":
+        score = rating.get("score")
+    else:
+        score = result.get(f"{zone_type}_score")
     if score is None and rating.get("score") is not None:
         score = rating.get("score")
 

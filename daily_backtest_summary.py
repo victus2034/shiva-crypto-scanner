@@ -38,7 +38,6 @@ ENTRY_WAIT_BARS = 3
 MAX_HOLD_BARS = 24
 NSE_BACKTEST_CLOSE_CUTOFF = datetime_time(15, 10)
 NSE_TRADE_START = datetime_time(9, 15)
-CRYPTO_REPORT_CUTOFF = datetime_time(16, 30)
 CRYPTO_EVALUATION_HOURS = 6
 FIXED_STOP_PCT = 0.5
 SL_BUFFER_PCT = 0.10
@@ -200,10 +199,7 @@ def assign_report_dates(records: pd.DataFrame, market: str) -> pd.DataFrame:
 
 def crypto_report_date(event_time_ist) -> object:
     timestamp = pd.Timestamp(event_time_ist).tz_convert(IST)
-    report_day = timestamp.date()
-    if timestamp.time() > CRYPTO_REPORT_CUTOFF:
-        report_day = (timestamp + pd.Timedelta(days=1)).date()
-    return report_day
+    return timestamp.date()
 
 
 def select_target_date(
@@ -231,8 +227,9 @@ def select_target_date(
 
 def crypto_report_bucket_ready(report_date, timeframe: str) -> bool:
     report_day = pd.Timestamp(report_date).date()
+    next_day = report_day + pd.Timedelta(days=1)
     bucket_close = pd.Timestamp(
-        datetime.combine(report_day, CRYPTO_REPORT_CUTOFF),
+        datetime.combine(next_day, datetime_time(0, 0)),
         tz=IST,
     )
     entry_window = timedelta(hours=12) if timeframe == "4h" else timedelta(minutes=30 * ENTRY_WAIT_BARS)
