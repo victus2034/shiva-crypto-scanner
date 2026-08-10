@@ -14704,8 +14704,8 @@
     "last_alert_at": 0.0
   },
   "DRAMBUSD|demand|49.04000000|49.49000000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1786369320.0674367
   },
   "INTCBUSD|demand|98.19000000|99.63000000": {
     "in_zone": true,
@@ -15872,7 +15872,7 @@
   },
   "TRX/USDT|demand|0.32894000|0.32922000": {
     "in_zone": true,
-    "last_alert_at": 1786364502.5778608
+    "last_alert_at": 1786369319.90952
   },
   "ARBUSD|demand|0.07652000|0.07719000": {
     "in_zone": false,
@@ -16371,6 +16371,30 @@
     "last_alert_at": 0.0
   },
   "APTUSD|supply|0.59840000|0.59910000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "SOLUSD|supply|76.99900000|77.15000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "PHAROS/USDT|demand|0.39090000|0.39440000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "TIAUSD|supply|0.33090000|0.33250000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "GALA/USDT|supply|0.00183100|0.00183700": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "FLNC/USDT:USDT|supply|13.42000000|13.45000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "MSFT/USDT:USDT|demand|498.15000000|498.53000000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
