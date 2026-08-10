@@ -28,6 +28,14 @@ on:
       date:
         description: "Optional IST date to summarize, YYYY-MM-DD"
         required: false
+      force:
+        description: "Send even if the report was already sent"
+        required: false
+        default: "false"
+        type: choice
+        options:
+          - "false"
+          - "true"
 
 permissions:
   contents: write
@@ -72,14 +80,24 @@ jobs:
           INPUT_DATE: ${{ github.event.inputs.date }}
           INPUT_TIMEFRAME: ${{ github.event.inputs.timeframe }}
           INPUT_MARKET: ${{ github.event.inputs.market }}
+          INPUT_FORCE: ${{ github.event.inputs.force }}
         run: |
           TIMEFRAME="${INPUT_TIMEFRAME:-both}"
           MARKET="${INPUT_MARKET:-both}"
+          FORCE="${INPUT_FORCE:-false}"
           run_summary() {
             if [ -n "$INPUT_DATE" ]; then
-              python daily_backtest_summary.py --market "$1" --timeframe "$2" --date "$INPUT_DATE"
+              if [ "$FORCE" = "true" ]; then
+                python daily_backtest_summary.py --market "$1" --timeframe "$2" --date "$INPUT_DATE" --force
+              else
+                python daily_backtest_summary.py --market "$1" --timeframe "$2" --date "$INPUT_DATE"
+              fi
             else
-              python daily_backtest_summary.py --market "$1" --timeframe "$2"
+              if [ "$FORCE" = "true" ]; then
+                python daily_backtest_summary.py --market "$1" --timeframe "$2" --force
+              else
+                python daily_backtest_summary.py --market "$1" --timeframe "$2"
+              fi
             fi
           }
 

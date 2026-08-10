@@ -118,6 +118,11 @@ def load_records(path: Path, timeframe_filter: str) -> pd.DataFrame:
             side = str(raw["side"]).lower()
             if side not in {"long", "short"}:
                 continue
+            rating = parse_rating(raw.get("score"))
+            if pd.isna(rating):
+                # Older alert records did not always persist a score. Keep them
+                # reportable, but assign the lowest displayed rating.
+                rating = 4.0
             rows.append(
                 {
                     "event_time": event_time,
@@ -131,7 +136,7 @@ def load_records(path: Path, timeframe_filter: str) -> pd.DataFrame:
                     "zone_bottom": zone_bottom,
                     "zone_top": zone_top,
                     "body_entry": parse_optional_float(raw.get("body_entry")),
-                    "rating": parse_rating(raw.get("score")),
+                    "rating": rating,
                     "zone_id": (
                         f"{raw['symbol']}|{side}|{zone_bottom:.8f}|{zone_top:.8f}"
                     ),
