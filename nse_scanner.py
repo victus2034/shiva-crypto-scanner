@@ -55,6 +55,7 @@ from zone_scoring import score_wick_zone
 
 STATE_FILE = Path(__file__).with_name("nse_alert_state.json")
 ALERT_RECORD_FILE = Path(__file__).with_name("nse_alert_records.jsonl")
+SL_BUFFER_PCT = 0.10
 MARKET_DATA = {}
 NSE_SECTOR_MAP = {}
 NSE_SECTOR_BIAS_THRESHOLD_PCT = float(os.getenv("NSE_SECTOR_BIAS_THRESHOLD_PCT", "1.5"))
@@ -125,6 +126,9 @@ def record_delivered_zone_alert(result, zone_type, zone, distance_pct, message, 
         "zone_bottom": float(zone["bottom"]),
         "zone_top": float(zone["top"]),
         "body_entry": zone.get("body_entry"),
+        "planned_entry": planned_entry_price(zone_type, zone),
+        "stop_price": planned_stop_price(zone_type, zone),
+        "stop_distance_pct": planned_stop_distance_pct(zone_type, zone),
         "score": score,
         "message": message,
     }
@@ -724,6 +728,26 @@ def display_symbol(symbol):
     return text
 
 
+def planned_entry_price(zone_type, zone):
+    """Use the near/body edge as the practical planned entry."""
+    return float(zone["top"] if zone_type == "demand" else zone["bottom"])
+
+
+def planned_stop_price(zone_type, zone, buffer_pct=SL_BUFFER_PCT):
+    """Place SL beyond the far zone edge with a small fixed buffer."""
+    if zone_type == "demand":
+        return float(zone["bottom"]) * (1 - buffer_pct / 100.0)
+    return float(zone["top"]) * (1 + buffer_pct / 100.0)
+
+
+def planned_stop_distance_pct(zone_type, zone, buffer_pct=SL_BUFFER_PCT):
+    entry = planned_entry_price(zone_type, zone)
+    if entry == 0:
+        return 0.0
+    stop = planned_stop_price(zone_type, zone, buffer_pct)
+    return abs(entry - stop) / abs(entry) * 100.0
+
+
 def format_alert(result, zone_type, zone, distance_pct):
     side = "SELL" if zone_type == "supply" else "BUY"
     score = result.get(f"{zone_type}_score")
@@ -732,11 +756,13 @@ def format_alert(result, zone_type, zone, distance_pct):
         score_text = f" | {score}/10"
     elif SHOW_ZONE_RATINGS and TIMEFRAME == "30m":
         score_text = f" | {zone_rating(zone, distance_pct)}/10"
+    stop = planned_stop_price(zone_type, zone)
+    stop_distance = planned_stop_distance_pct(zone_type, zone)
     lines = [
-        f"{display_symbol(result['symbol'])} {side}{score_text}\n"
-        f"Price: {result['price']:.2f}\n"
+        f"{display_symbol(result['symbol'])} | {side}{score_text}\n"
+        f"Price: {result['price']:.2f} | {distance_pct:.2f}%\n"
         f"Zone: {zone['bottom']:.2f} - {zone['top']:.2f}\n"
-        f"Distance: {distance_pct:.2f}%"
+        f"SL: {stop:.2f} | {stop_distance:.2f}%"
     ]
     bias = sector_bias_line(result, zone_type)
     if bias:

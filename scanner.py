@@ -75,6 +75,7 @@ ALERT_RECORD_FILE = Path(__file__).with_name(
         "crypto_alert_records_30m.jsonl" if TIMEFRAME == "30m" else "crypto_alert_records.jsonl",
     )
 )
+SL_BUFFER_PCT = 0.10
 EXCHANGE_OPTIONS = {
     "enableRateLimit": True,
     "options": {"defaultType": "future"},
@@ -779,6 +780,26 @@ def alert_symbol(symbol):
     return str(symbol).strip().upper().split(":", 1)[0]
 
 
+def planned_entry_price(zone_type, zone):
+    """Use the near/body edge as the practical planned entry."""
+    return float(zone["top"] if zone_type == "demand" else zone["bottom"])
+
+
+def planned_stop_price(zone_type, zone, buffer_pct=SL_BUFFER_PCT):
+    """Place SL beyond the far zone edge with a small fixed buffer."""
+    if zone_type == "demand":
+        return float(zone["bottom"]) * (1 - buffer_pct / 100.0)
+    return float(zone["top"]) * (1 + buffer_pct / 100.0)
+
+
+def planned_stop_distance_pct(zone_type, zone, buffer_pct=SL_BUFFER_PCT):
+    entry = planned_entry_price(zone_type, zone)
+    if entry == 0:
+        return 0.0
+    stop = planned_stop_price(zone_type, zone, buffer_pct)
+    return abs(entry - stop) / abs(entry) * 100.0
+
+
 def record_delivered_zone_alert(result, zone_type, zone, distance_pct, message, now_ts):
     """Persist delivered zone alerts for the daily backtest summary."""
     rating = result.get(f"{zone_type}_rating") or {}
@@ -798,6 +819,9 @@ def record_delivered_zone_alert(result, zone_type, zone, distance_pct, message, 
         "zone_bottom": float(zone["bottom"]),
         "zone_top": float(zone["top"]),
         "body_entry": zone.get("body_entry"),
+        "planned_entry": planned_entry_price(zone_type, zone),
+        "stop_price": planned_stop_price(zone_type, zone),
+        "stop_distance_pct": planned_stop_distance_pct(zone_type, zone),
         "score": score,
         "message": message,
     }
@@ -824,12 +848,14 @@ def format_alert(result, zone_type, zone, distance_pct):
             score_text = f" | {rating['score']}/10"
         elif rating.get("rating"):
             score_text = f" | {rating['rating']}"
+    stop = planned_stop_price(zone_type, zone)
+    stop_distance = planned_stop_distance_pct(zone_type, zone)
 
     return (
-        f"{symbol} {side}{score_text}\n"
-        f"Price: {price:.6f}\n"
+        f"{symbol} | {side}{score_text}\n"
+        f"Price: {price:.6f} | {distance_pct:.2f}%\n"
         f"Zone: {zone['bottom']:.6f} - {zone['top']:.6f}\n"
-        f"Distance: {distance_pct:.2f}%"
+        f"SL: {stop:.6f} | {stop_distance:.2f}%"
     )
 
 

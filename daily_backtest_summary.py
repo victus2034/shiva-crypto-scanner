@@ -41,17 +41,19 @@ NSE_TRADE_START = datetime_time(9, 15)
 CRYPTO_REPORT_CUTOFF = datetime_time(16, 30)
 CRYPTO_EVALUATION_HOURS = 6
 FIXED_STOP_PCT = 0.5
+SL_BUFFER_PCT = 0.10
 TARGET_1_R = 1.0
 TARGET_2_R = 2.0
 HALF_R = 0.5
 FINAL_RESULT_R = {
     "SL": -1.0,
+    "Conflict": 0.0,
     "+0.5R": 0.5,
     "+1R": 1.0,
     "+2R": 2.0,
     "Neither": 0.0,
 }
-OUTCOME_ORDER = ["SL", "+0.5R", "+1R", "+2R", "Neither"]
+OUTCOME_ORDER = ["SL", "Conflict", "+0.5R", "+1R", "+2R", "Neither"]
 SENT_REPORTS_PATH = Path(__file__).with_name("daily_backtest_reports_sent.json")
 FINALIZED_RECORDS_PATH = Path(__file__).with_name("daily_backtest_finalized_records.jsonl")
 
@@ -470,6 +472,24 @@ def simulate_alert(
         first_target_hit = high >= target_1 if side == "long" else low <= target_1
         second_target_hit = high >= target_2 if side == "long" else low <= target_2
 
+        target_hit_this_candle = half_target_hit or first_target_hit or second_target_hit
+        if outcome == "Neither" and stop_hit and target_hit_this_candle:
+            outcome = "Conflict"
+            exit_index = index
+            time_to_sl = frame.index[index]
+            if half_target_hit:
+                half_r_hit = True
+                if time_to_half_r is None:
+                    time_to_half_r = frame.index[index]
+            if first_target_hit:
+                target_1_hit = True
+                if time_to_1r is None:
+                    time_to_1r = frame.index[index]
+            if second_target_hit:
+                target_2_hit = True
+                if time_to_2r is None:
+                    time_to_2r = frame.index[index]
+            break
         if outcome == "Neither" and stop_hit:
             outcome = "SL"
             exit_index = index
@@ -505,6 +525,8 @@ def simulate_alert(
 
     if outcome == "SL":
         exit_price = stop
+    elif outcome == "Conflict":
+        exit_price = float(frame["close"].iloc[exit_index])
     elif outcome == "+0.5R":
         exit_price = target_half
     elif outcome == "+1R":
@@ -691,7 +713,10 @@ def zones_match_alert(zone: dict, alert: dict) -> bool:
 
 
 def original_stop_price(alert: dict) -> float:
-    return float(alert["level"])
+    """Buffered far-side zone stop used by alerts and backtest."""
+    if alert["side"] == "long":
+        return float(alert["zone_bottom"]) * (1 - SL_BUFFER_PCT / 100.0)
+    return float(alert["zone_top"]) * (1 + SL_BUFFER_PCT / 100.0)
 
 
 def find_entry(
@@ -937,8 +962,8 @@ def format_rating_table(records: pd.DataFrame, results: pd.DataFrame) -> str:
         ).astype("Int64")
 
     rows: list[str] = [
-        "Rating | Alerts | Touch | No Touch | Duplicate | Entries | +0.5R | +1R | +2R | SL | Neither | Waiting | Win Rate",
-        "---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:",
+        "Rating | Alerts | Touch | No Touch | Duplicate | Entries | +0.5R | +1R | +2R | SL | Conflict | Neither | Waiting | Win Rate",
+        "---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:",
     ]
     for rating in range(4, 11):
         alerts = records_by_rating.get(rating, 0)
@@ -961,6 +986,7 @@ def format_rating_table(records: pd.DataFrame, results: pd.DataFrame) -> str:
         one_r = int(final_counts.get("+1R", 0))
         two_r = int(final_counts.get("+2R", 0))
         stops = int(final_counts.get("SL", 0))
+        conflicts = int(final_counts.get("Conflict", 0))
         neither = int(final_counts.get("Neither", 0))
         waiting = int(outcomes.get("immature", 0))
         waiting += int((filled["final_result"] == "Pending").sum()) if not filled.empty else 0
@@ -978,6 +1004,7 @@ def format_rating_table(records: pd.DataFrame, results: pd.DataFrame) -> str:
                     str(one_r),
                     str(two_r),
                     str(stops),
+                    str(conflicts),
                     str(neither),
                     str(waiting),
                     format_win_rate(wins, stops),

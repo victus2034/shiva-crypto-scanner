@@ -139,6 +139,27 @@ class DailyBacktestSummaryTests(unittest.TestCase):
 
         self.assertEqual(result["final_result"], "SL")
         self.assertEqual(result["net_realized_r"], -1.0)
+        self.assertAlmostEqual(result["stop_price"], 98.901)
+
+    def test_same_candle_stop_and_target_is_conflict(self):
+        index = pd.DatetimeIndex(["2026-08-04 10:00", "2026-08-04 10:30"], tz=summary.IST)
+        frame = pd.DataFrame(
+            {
+                "open": [101.0, 100.0],
+                "high": [101.2, 100.7],
+                "low": [100.8, 98.8],
+                "close": [101.0, 100.1],
+                "volume": [1, 1],
+            },
+            index=index,
+        )
+
+        result = summary.simulate_alert(frame, base_alert(), 0, 1)
+
+        self.assertEqual(result["final_result"], "Conflict")
+        self.assertEqual(result["net_realized_r"], 0.0)
+        self.assertTrue(result["half_r_hit"])
+        self.assertIsNotNone(result["time_to_sl"])
 
     def test_mobile_summary_removes_tradable_be_and_verdict(self):
         records = pd.DataFrame(

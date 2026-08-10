@@ -18,10 +18,10 @@ class AlertFormatTests(unittest.TestCase):
 
         self.assertEqual(
             message,
-            "MSTRBUSD BUY\n"
-            "Price: 100.600000\n"
+            "MSTRBUSD | BUY\n"
+            "Price: 100.600000 | 0.40%\n"
             "Zone: 100.200000 - 100.336450\n"
-            "Distance: 0.40%",
+            "SL: 100.099800 | 0.24%",
         )
 
     def test_nse_zone_alert_has_no_market_or_timeframe_lines(self):
@@ -41,10 +41,10 @@ class AlertFormatTests(unittest.TestCase):
         self.assertNotIn("Range Filter", message)
         self.assertEqual(
             message,
-            "PIDILITIND SELL\n"
-            "Price: 1610.90\n"
+            "PIDILITIND | SELL\n"
+            "Price: 1610.90 | 0.97%\n"
             "Zone: 1624.95 - 1626.60\n"
-            "Distance: 0.97%",
+            "SL: 1628.23 | 0.20%",
         )
 
     def test_nse_zone_alert_adds_sector_bias_when_available(self):
@@ -60,10 +60,10 @@ class AlertFormatTests(unittest.TestCase):
 
         self.assertEqual(
             message,
-            "INFY BUY\n"
-            "Price: 100.00\n"
+            "INFY | BUY\n"
+            "Price: 100.00 | 0.60%\n"
             "Zone: 99.00 - 99.50\n"
-            "Distance: 0.60%\n"
+            "SL: 98.90 | 0.60%\n"
             "Bias: Risky, Technology & Telecom -2.10%",
         )
 
@@ -89,7 +89,7 @@ class AlertFormatTests(unittest.TestCase):
 
         message = nse_scanner.format_alert(result, "demand", zone, 0.70)
 
-        self.assertIn("TEST BUY | 4/10", message)
+        self.assertIn("TEST | BUY | 4/10", message)
 
     def test_nse_4h_zone_alert_has_no_rating(self):
         result = {"symbol": "TEST.NS", "price": 100.0}
@@ -113,7 +113,7 @@ class AlertFormatTests(unittest.TestCase):
 
         message = scanner.format_alert(result, "demand", zone, 0.4)
 
-        self.assertTrue(message.startswith("BTCUSD BUY | 9/10"))
+        self.assertTrue(message.startswith("BTCUSD | BUY | 9/10"))
         self.assertNotIn("\n\n", message)
 
     def test_xstock_hybrid_score_overrides_base_display_score(self):
@@ -130,7 +130,7 @@ class AlertFormatTests(unittest.TestCase):
 
         message = scanner.format_alert(result, "demand", zone, 0.5)
 
-        self.assertTrue(message.startswith("NVDAXUSD BUY | 8/10"))
+        self.assertTrue(message.startswith("NVDAXUSD | BUY | 8/10"))
         self.assertNotIn("5/10", message)
         self.assertEqual(message.count("/10"), 1)
 
