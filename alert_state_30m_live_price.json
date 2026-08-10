@@ -14708,8 +14708,8 @@
     "last_alert_at": 0.0
   },
   "INTCBUSD|demand|98.19000000|99.63000000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1786363339.8955626
   },
   "AAPLXUSD|supply|314.75000000|315.30000000": {
     "in_zone": false,
@@ -16277,5 +16277,25 @@
   "POL/USDT|demand|0.07714000|0.07728000": {
     "in_zone": false,
     "last_alert_at": 0.0
+  },
+  "ADAUSD|supply|0.19860000|0.19940000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "ZAMA/USDT|supply|0.04620000|0.04653000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "VIRTUAL/USDT|supply|0.56760000|0.56970000": {
+    "in_zone": true,
+    "last_alert_at": 1786363339.7358067
+  },
+  "ERA/USDT|supply|0.07095000|0.07198000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "BABA/USDT:USDT|supply|129.46000000|129.84000000": {
+    "in_zone": true,
+    "last_alert_at": 1786363340.0968874
   }
 }
