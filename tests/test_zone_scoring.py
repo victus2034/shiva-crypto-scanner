@@ -42,6 +42,14 @@ class ZoneScoringTests(unittest.TestCase):
 
         self.assertTrue(message.startswith("RELIANCE | SELL | 7/10"))
 
+    def test_nse_thirty_minute_alert_displays_full_wick_score(self):
+        result = {"symbol": "INDIGO.NS", "price": 100.0, "demand_score": 9}
+        zone = {"bottom": 99.0, "top": 99.5}
+
+        message = nse_scanner.format_alert(result, "demand", zone, 0.5)
+
+        self.assertTrue(message.startswith("INDIGO | BUY | 9/10"))
+
 
 if __name__ == "__main__":
     unittest.main()

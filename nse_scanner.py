@@ -691,7 +691,10 @@ def scan_symbol(symbol):
     buy_signal, sell_signal = get_range_filter_signals(indicator_df)
     supply_score = None
     demand_score = None
-    if SHOW_4H_ZONE_SCORES and TIMEFRAME == "4h":
+    should_score_zones = (SHOW_4H_ZONE_SCORES and TIMEFRAME == "4h") or (
+        SHOW_ZONE_RATINGS and TIMEFRAME == "30m"
+    )
+    if should_score_zones:
         supply_score = score_wick_zone(
             nearest_supply, supply_dist, MIN_DISTANCE_PCT, MAX_DISTANCE_PCT
         )
