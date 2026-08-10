@@ -177,11 +177,12 @@ class DailyBacktestSummaryTests(unittest.TestCase):
 
         message = summary.build_summary(records, pd.Timestamp("2026-08-04").date(), results, {}, 0, "30m")
 
-        self.assertIn("NSE 30m BACKTEST | 04 AUG 2026", message)
-        self.assertIn("Alerts: 2", message)
-        self.assertIn("No Touch: 1", message)
-        self.assertIn("4/10", message)
-        self.assertIn("1. BTC - Rating 4/10 - +2R", message)
+        self.assertIn("NSE 30m BACKTEST\n04 AUG 2026", message)
+        self.assertIn("OVERVIEW\nAlerts — 2", message)
+        self.assertIn("No Touch — 1", message)
+        self.assertIn("4/10 — 1 entries | 1W / 0L | 100.0%", message)
+        self.assertIn("No Entries — 6/10", message)
+        self.assertIn("1. BTC — 4/10 — +2R", message)
         self.assertNotIn("Tradable", message)
         self.assertNotIn("BE:", message)
         self.assertNotIn("Verdict", message)
@@ -204,7 +205,16 @@ class DailyBacktestSummaryTests(unittest.TestCase):
 
         message = summary.build_summary(records, pd.Timestamp("2026-08-04").date(), results, {}, 0, "30m")
 
-        self.assertIn("No Touch: 1", message)
+        self.assertIn("No Touch — 1", message)
+
+    def test_discord_payload_uses_embeds_without_truncating_long_reports(self):
+        message = "\n".join([f"Line {index}" for index in range(900)])
+
+        payload = summary.discord_payload(message)
+        joined = "\n".join(embed["description"] for embed in payload["embeds"])
+
+        self.assertEqual(joined, message)
+        self.assertGreater(len(payload["embeds"]), 1)
 
     def test_report_state_blocks_duplicate_key(self):
         with tempfile.TemporaryDirectory() as tmp:

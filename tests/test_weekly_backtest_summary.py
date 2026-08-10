@@ -59,16 +59,15 @@ class WeeklyBacktestSummaryTests(unittest.TestCase):
             pd.Timestamp("2026-08-07").date(),
         )
 
-        self.assertIn("Stocks: 2", message)
-        self.assertIn("No Touch: 1", message)
-        self.assertNotIn("No Touch: 2", message)
+        self.assertIn("Stocks — 2", message)
+        self.assertIn("No Touch — 1", message)
+        self.assertNotIn("No Touch — 2", message)
 
     def test_weekly_rating_blocks_use_explicit_no_touch_only(self):
         blocks = weekly.format_weekly_rating_blocks(self.rows())
 
-        self.assertIn("5/10", blocks)
-        self.assertIn("No Touch: 1", blocks)
-        self.assertNotIn("No Touch: 2", blocks)
+        self.assertIn("No Entries — 5/10", blocks)
+        self.assertNotIn("No Touch", blocks)
 
 
 if __name__ == "__main__":

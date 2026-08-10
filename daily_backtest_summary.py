@@ -897,10 +897,12 @@ def build_summary(
 ) -> str:
     market_label = "CRYPTO" if market == "crypto" else "NSE"
     asset_label = "Coins" if market == "crypto" else "Stocks"
-    header = f"{market_label} {timeframe} BACKTEST | {pd.Timestamp(target_date).strftime('%d %b %Y').upper()}"
+    header = f"{market_label} {timeframe} BACKTEST"
+    date_line = pd.Timestamp(target_date).strftime("%d %b %Y").upper()
     if records.empty:
         return (
-            f"{header}\n\n"
+            f"{header}\n"
+            f"{date_line}\n\n"
             "No alerts recorded."
         )
 
@@ -926,17 +928,29 @@ def build_summary(
 
     lines = [
         header,
+        date_line,
         "",
-        f"Alerts: {len(records)} | {asset_label}: {records['symbol'].nunique()} | BUY: {buy_count} | SELL: {sell_count}",
-        f"Touch: {touched} | No Touch: {no_touch} | Duplicate: {duplicates} | Entries: {entries} | Waiting: {waiting}",
-        *([f"Data Issues: {data_issues}"] if data_issues else []),
+        "OVERVIEW",
+        metric("Alerts", len(records)),
+        metric(asset_label, records["symbol"].nunique()),
+        metric("BUY", buy_count),
+        metric("SELL", sell_count),
+        "",
+        "EXECUTION",
+        metric("Touch", touched),
+        metric("No Touch", no_touch),
+        *([metric("Duplicates", duplicates)] if duplicates else []),
+        metric("Entries", entries),
+        *([metric("Waiting", waiting)] if waiting else []),
+        *([metric("Data Issues", data_issues)] if data_issues else []),
         "",
         "RESULTS",
         *format_outcome_lines(final_counts),
-        *([metric("Waiting", waiting)] if waiting else []),
-        metric("Total", format_r(net_r)),
         "",
-        "BY RATING",
+        "TOTAL RESULT",
+        format_r(net_r),
+        "",
+        "RATING PERFORMANCE",
         format_rating_table(records, results),
     ]
 
@@ -961,10 +975,8 @@ def format_rating_table(records: pd.DataFrame, results: pd.DataFrame) -> str:
             result_frame["rating"], errors="coerce"
         ).astype("Int64")
 
-    rows: list[str] = [
-        "Rating | Alerts | Touch | No Touch | Duplicate | Entries | +0.5R | +1R | +2R | SL | Conflict | Neither | Waiting | Win Rate",
-        "---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:",
-    ]
+    rows: list[str] = []
+    no_entry_ratings: list[str] = []
     for rating in range(4, 11):
         alerts = records_by_rating.get(rating, 0)
         if alerts == 0:
@@ -991,27 +1003,26 @@ def format_rating_table(records: pd.DataFrame, results: pd.DataFrame) -> str:
         waiting = int(outcomes.get("immature", 0))
         waiting += int((filled["final_result"] == "Pending").sum()) if not filled.empty else 0
         wins = half_r + one_r + two_r
-        rows.append(
-            " | ".join(
-                [
-                    f"{rating}/10",
-                    str(alerts),
-                    str(touch),
-                    str(no_touch),
-                    str(duplicates),
-                    str(entries),
-                    str(half_r),
-                    str(one_r),
-                    str(two_r),
-                    str(stops),
-                    str(conflicts),
-                    str(neither),
-                    str(waiting),
-                    format_win_rate(wins, stops),
-                ]
-            )
+        if entries == 0:
+            no_entry_ratings.append(f"{rating}/10")
+            continue
+        detail_parts = []
+        if conflicts:
+            detail_parts.append(f"Conflict {conflicts}")
+        if neither:
+            detail_parts.append(f"Neither {neither}")
+        if waiting:
+            detail_parts.append(f"Waiting {waiting}")
+        line = (
+            f"{rating}/10 — {entries} entries | "
+            f"{wins}W / {stops}L | {format_win_rate(wins, stops)}"
         )
-    return "\n".join(rows) if len(rows) > 2 else "None"
+        if detail_parts:
+            line += f" | {', '.join(detail_parts)}"
+        rows.append(line)
+    if no_entry_ratings:
+        rows.append(f"No Entries — {', '.join(no_entry_ratings)}")
+    return "\n".join(rows) if rows else "None"
 
 
 def format_outcome_lines(counts: pd.Series) -> list[str]:
@@ -1040,7 +1051,7 @@ def display_symbol(symbol: str) -> str:
 
 
 def metric(label: str, value) -> str:
-    return f"{label}: {value}"
+    return f"{label} — {value}"
 
 
 def best_symbol_lines(filled: pd.DataFrame, best: bool) -> str:
@@ -1060,7 +1071,7 @@ def best_symbol_lines(filled: pd.DataFrame, best: bool) -> str:
     for index, row in enumerate(frame.head(3).to_dict("records"), start=1):
         rating = int(row["rating"]) if pd.notna(row.get("rating")) else "N/A"
         lines.append(
-            f"{index}. {display_symbol(row['symbol'])} - Rating {rating}/10 - {row['final_result']}"
+            f"{index}. {display_symbol(row['symbol'])} — {rating}/10 — {row['final_result']}"
         )
     return "\n".join(lines)
 
@@ -1089,8 +1100,9 @@ def send_discord_message(message: str) -> None:
     webhook_url = os.getenv(WEBHOOK_ENV, "").strip()
     if not webhook_url:
         raise RuntimeError(f"{WEBHOOK_ENV} is not configured")
+    payload = discord_payload(message)
     for attempt in range(6):
-        response = requests.post(webhook_url, json={"content": message}, timeout=15)
+        response = requests.post(webhook_url, json=payload, timeout=15)
         if response.status_code != 429:
             response.raise_for_status()
             return
@@ -1101,6 +1113,39 @@ def send_discord_message(message: str) -> None:
         if attempt == 5:
             response.raise_for_status()
         time.sleep(max(0.25, min(retry_after, 30.0)))
+
+
+def discord_payload(message: str) -> dict:
+    chunks = split_discord_embed_descriptions(message)
+    if chunks:
+        return {
+            "embeds": [
+                {"description": chunk, "color": 3447003}
+                for chunk in chunks[:10]
+            ]
+        }
+    return {"content": message[:2000]}
+
+
+def split_discord_embed_descriptions(message: str, limit: int = 4096) -> list[str]:
+    if not message:
+        return []
+    chunks: list[str] = []
+    current = ""
+    for line in message.splitlines():
+        candidate = f"{current}\n{line}" if current else line
+        if len(candidate) <= limit:
+            current = candidate
+            continue
+        if current:
+            chunks.append(current)
+        current = line
+        while len(current) > limit:
+            chunks.append(current[:limit])
+            current = current[limit:]
+    if current:
+        chunks.append(current)
+    return chunks
 
 
 def report_key(target_date, timeframe: str, market: str = "nse") -> str:

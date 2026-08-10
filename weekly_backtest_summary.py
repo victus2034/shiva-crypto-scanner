@@ -80,19 +80,23 @@ def build_weekly_summary(frame: pd.DataFrame, timeframe: str, week_start, week_e
     lines = [
         header,
         "",
+        "OVERVIEW",
         daily.metric("Alerts", len(frame)),
         daily.metric("Stocks", frame["symbol"].nunique()),
         daily.metric("BUY", int(side_counts.get("long", 0))),
         daily.metric("SELL", int(side_counts.get("short", 0))),
         "",
+        "EXECUTION",
         daily.metric("Touch", touch),
         daily.metric("No Touch", no_touch),
-        daily.metric("Duplicates", duplicates),
+        *([daily.metric("Duplicates", duplicates)] if duplicates else []),
         daily.metric("Entries", entries),
         "",
         "RESULTS",
         *daily.format_outcome_lines(final_counts),
-        daily.metric("Total Result", daily.format_r(net_r)),
+        "",
+        "TOTAL RESULT",
+        daily.format_r(net_r),
         "",
         "RATING PERFORMANCE",
         format_weekly_rating_blocks(frame),
@@ -109,31 +113,39 @@ def build_weekly_summary(frame: pd.DataFrame, timeframe: str, week_start, week_e
 
 def format_weekly_rating_blocks(frame: pd.DataFrame) -> str:
     blocks = []
+    no_entry_ratings: list[str] = []
     for rating in range(4, 11):
         rating_rows = frame[frame["rating"].astype("Int64") == rating]
         if rating_rows.empty:
             continue
         filled = rating_rows[rating_rows["filled"] == True]  # noqa: E712
-        outcomes = rating_rows["outcome"].value_counts()
         final_counts = filled["final_result"].value_counts() if not filled.empty else pd.Series(dtype=int)
         entries = len(filled)
-        duplicates = int(outcomes.get("zone_cooldown", 0))
-        touch = entries + duplicates
-        no_touch = int(outcomes.get("zone_not_touched", 0))
-        blocks.append(
-            "\n".join(
-                [
-                    f"{rating}/10",
-                    daily.metric("Alerts", len(rating_rows)),
-                    daily.metric("Touch", touch),
-                    daily.metric("No Touch", no_touch),
-                    daily.metric("Duplicates", duplicates),
-                    daily.metric("Entries", entries),
-                    *daily.format_outcome_lines(final_counts),
-                ]
-            )
+        if entries == 0:
+            no_entry_ratings.append(f"{rating}/10")
+            continue
+        half_r = int(final_counts.get("+0.5R", 0))
+        one_r = int(final_counts.get("+1R", 0))
+        two_r = int(final_counts.get("+2R", 0))
+        stops = int(final_counts.get("SL", 0))
+        conflicts = int(final_counts.get("Conflict", 0))
+        neither = int(final_counts.get("Neither", 0))
+        wins = half_r + one_r + two_r
+        detail_parts = []
+        if conflicts:
+            detail_parts.append(f"Conflict {conflicts}")
+        if neither:
+            detail_parts.append(f"Neither {neither}")
+        line = (
+            f"{rating}/10 — {entries} entries | "
+            f"{wins}W / {stops}L | {daily.format_win_rate(wins, stops)}"
         )
-    return "\n\n".join(blocks) if blocks else "None"
+        if detail_parts:
+            line += f" | {', '.join(detail_parts)}"
+        blocks.append(line)
+    if no_entry_ratings:
+        blocks.append(f"No Entries — {', '.join(no_entry_ratings)}")
+    return "\n".join(blocks) if blocks else "None"
 
 
 def weekly_report_key(week_end, timeframe: str) -> str:
