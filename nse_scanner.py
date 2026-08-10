@@ -654,13 +654,13 @@ def sector_bias_line(result, zone_type):
         return None
 
     if abs(move) < NSE_SECTOR_BIAS_THRESHOLD_PCT:
-        label = "Neutral"
+        label = "OK"
     else:
         wants_up = zone_type == "demand"
         supports_trade = move > 0 if wants_up else move < 0
-        label = "Supports" if supports_trade else "Risky"
+        label = "Good" if supports_trade else "Risk"
 
-    return f"{label}, {sector} {move:+.2f}%"
+    return f"{sector}: {move:+.2f}% | {label}"
 
 
 def sector_coverage_summary(watchlist):
@@ -766,7 +766,7 @@ def format_alert(result, zone_type, zone, distance_pct):
     ]
     bias = sector_bias_line(result, zone_type)
     if bias:
-        lines.append(f"Bias: {bias}")
+        lines.append(bias)
     return "\n".join(lines)
 
 

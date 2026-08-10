@@ -64,7 +64,7 @@ class AlertFormatTests(unittest.TestCase):
             "Price: 100.00 | 0.60%\n"
             "Zone: 99.00 - 99.50\n"
             "SL: 98.90 | 0.60%\n"
-            "Bias: Risky, Technology & Telecom -2.10%",
+            "Technology & Telecom: -2.10% | Risk",
         )
 
     def test_nse_sell_alert_sector_bias_supports_down_sector(self):
@@ -78,7 +78,7 @@ class AlertFormatTests(unittest.TestCase):
 
         message = nse_scanner.format_alert(result, "supply", zone, 0.6)
 
-        self.assertIn("Bias: Supports, Technology & Telecom -2.10%", message)
+        self.assertIn("Technology & Telecom: -2.10% | Good", message)
 
     def test_nse_30m_zone_rating_starts_at_four(self):
         result = {"symbol": "TEST.NS", "price": 100.0}
