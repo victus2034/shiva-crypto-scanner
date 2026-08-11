@@ -860,15 +860,82 @@ function buildDailyText(evaluation) {
   return lines.join("\n");
 }
 
+function buildDailyEmbed(evaluation) {
+  const fields = [
+    {
+      name: "Overall",
+      value: sentenceFor("overall", evaluation.scores.overall, evaluation),
+    },
+    {
+      name: "Study & Career",
+      value: sentenceFor("study", evaluation.scores.study, evaluation),
+    },
+    {
+      name: "Money & Trading Discipline",
+      value: sentenceFor("money", evaluation.scores.money, evaluation),
+    },
+    {
+      name: "Health & Energy",
+      value: sentenceFor("health", evaluation.scores.health, evaluation),
+    },
+    {
+      name: "Communication & People",
+      value: sentenceFor("communication", evaluation.scores.communication, evaluation),
+    },
+    {
+      name: "Favourable Period",
+      value: formatWindow(evaluation.favourable),
+      inline: true,
+    },
+    {
+      name: "Caution Period",
+      value: formatWindow(evaluation.timings.rahuKalam),
+      inline: true,
+    },
+    {
+      name: "Do Today",
+      value: doToday(evaluation),
+    },
+    {
+      name: "Avoid Today",
+      value: avoidToday(evaluation),
+    },
+  ];
+
+  if (evaluation.sectors) {
+    const sectorLines = [];
+    if (evaluation.sectors.supportive.length) {
+      sectorLines.push(`Supportive: ${evaluation.sectors.supportive.join(", ")}`);
+    }
+    if (evaluation.sectors.caution.length) {
+      sectorLines.push(`Caution: ${evaluation.sectors.caution.join(", ")}`);
+    }
+    if (sectorLines.length) {
+      fields.push({ name: "Sector Themes", value: sectorLines.join("\n") });
+    }
+  }
+
+  return {
+    title: `Shiva Daily Astrology - ${displayDate(evaluation.date)}`,
+    color: 0x5865f2,
+    fields,
+    footer: {
+      text: "Reflection only. Use your setup, stop-loss, and position-size rules.",
+    },
+  };
+}
+
 function buildDailyPayload(date) {
   const evaluation = evaluateDay(date);
   const content = buildDailyText(evaluation);
   return {
     payload: {
       username: "Shiva Daily Astrology",
-      content,
+      content: "",
+      embeds: [buildDailyEmbed(evaluation)],
       allowed_mentions: { parse: [] },
     },
+    text: content,
     diagnostics: diagnosticsFor(evaluation),
   };
 }
@@ -1019,6 +1086,94 @@ function buildWeeklyText(start, evaluations) {
   return lines.join("\n");
 }
 
+function buildWeeklyEmbed(start, evaluations) {
+  const totals = evaluations.map((item) => item.scores.overall.value);
+  const stronger = evaluations
+    .filter((item) => item.scores.overall.value >= 2)
+    .map((item) => weekdayLabel(item.date));
+  const caution = evaluations
+    .filter((item) => item.scores.overall.value <= -2 || item.scores.money.value <= -2)
+    .map((item) => weekdayLabel(item.date));
+  const bestDay = evaluations
+    .slice()
+    .sort((a, b) => b.scores.overall.value - a.scores.overall.value)[0];
+  const mainFocus =
+    totals.reduce((sum, value) => sum + value, 0) >= 7
+      ? "Use stronger days for difficult work; keep routines consistent on the rest."
+      : "Keep the week practical: fewer decisions, cleaner routines, and written priorities.";
+  const avoid =
+    evaluations.some((item) => item.scores.money.value <= -2)
+      ? "Avoid emotional money decisions and changing rules under pressure."
+      : "Avoid overloading the schedule and reacting before checking facts.";
+  const fields = [
+    {
+      name: "Overall",
+      value: summarizeWeekly(evaluations, "overall"),
+    },
+    {
+      name: "Study & Career",
+      value: summarizeWeekly(evaluations, "study"),
+    },
+    {
+      name: "Money & Trading Discipline",
+      value: summarizeWeekly(evaluations, "money"),
+    },
+    {
+      name: "Health & Energy",
+      value: summarizeWeekly(evaluations, "health"),
+    },
+    {
+      name: "Communication & People",
+      value: summarizeWeekly(evaluations, "communication"),
+    },
+    {
+      name: "Stronger Days",
+      value: stronger.length ? stronger.join(", ") : "None clearly stronger",
+      inline: true,
+    },
+    {
+      name: "Caution Days",
+      value: caution.length ? caution.join(", ") : "None clearly caution",
+      inline: true,
+    },
+    {
+      name: "Best Period",
+      value: `${weekdayLabel(bestDay.date)} ${formatWindow(bestDay.favourable)}`,
+    },
+    {
+      name: "Main Focus",
+      value: mainFocus,
+    },
+    {
+      name: "Avoid",
+      value: avoid,
+    },
+  ];
+
+  const weeklySectors = mergeWeeklySectors(evaluations);
+  if (weeklySectors) {
+    const sectorLines = [];
+    if (weeklySectors.supportive.length) {
+      sectorLines.push(`Supportive: ${weeklySectors.supportive.join(", ")}`);
+    }
+    if (weeklySectors.caution.length) {
+      sectorLines.push(`Caution: ${weeklySectors.caution.join(", ")}`);
+    }
+    if (sectorLines.length) {
+      fields.push({ name: "Sector Themes", value: sectorLines.join("\n") });
+    }
+  }
+
+  return {
+    title: `Shiva Weekly Astrology - ${weeklyRangeLabel(start)}`,
+    color: 0x5865f2,
+    fields,
+    footer: {
+      text: "Reflection only. Use your setup, stop-loss, and position-size rules.",
+    },
+  };
+}
+
 function mergeWeeklySectors(evaluations) {
   const totals = {};
   for (const evaluation of evaluations) {
@@ -1043,9 +1198,11 @@ function buildWeeklyPayload(start) {
   return {
     payload: {
       username: "Shiva Weekly Astrology",
-      content,
+      content: "",
+      embeds: [buildWeeklyEmbed(start, evaluations)],
       allowed_mentions: { parse: [] },
     },
+    text: content,
     diagnostics: evaluations.map(diagnosticsFor),
   };
 }

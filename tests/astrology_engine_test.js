@@ -101,15 +101,25 @@ const horas = planetaryHoras(regressionDate);
 assert.strictEqual(horas.length, 24);
 assert.notStrictEqual((horas[0].end - horas[0].start).toFixed(3), "1.000");
 
-const daily = buildDailyPayload(regressionDate).payload.content;
+const dailyPayload = buildDailyPayload(regressionDate);
+const daily = dailyPayload.text;
+const dailyEmbedText = JSON.stringify(dailyPayload.payload.embeds);
 assert(daily.includes("Communication & People"));
+assert(dailyEmbedText.includes("Communication & People"));
+assert.strictEqual(dailyPayload.payload.content, "");
+assert.strictEqual(dailyPayload.payload.embeds.length, 1);
 assert(!/romance|dating|marriage|love-life/i.test(daily));
 assert(!/stop-loss|take-profit|leverage|position size|buy\/sell signal/i.test(daily));
 assert(!/disclaimer|not a trade signal/i.test(daily));
 
-const weekly = buildWeeklyPayload({ year: 2026, month: 8, day: 10 }).payload.content;
+const weeklyPayload = buildWeeklyPayload({ year: 2026, month: 8, day: 10 });
+const weekly = weeklyPayload.text;
+const weeklyEmbedText = JSON.stringify(weeklyPayload.payload.embeds);
 assert(weekly.includes("NEXT WEEK ASTROLOGY"));
 assert(weekly.includes("Communication & People"));
+assert(weeklyEmbedText.includes("Communication & People"));
+assert.strictEqual(weeklyPayload.payload.content, "");
+assert.strictEqual(weeklyPayload.payload.embeds.length, 1);
 assert(!/romance|dating|marriage|love-life/i.test(weekly));
 assert(!/disclaimer|not a trade signal/i.test(weekly));
 
