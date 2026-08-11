@@ -1124,7 +1124,7 @@
     "last_alert_at": 0.0
   },
   "HBAR/USDT|demand|0.06579000|0.06608000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1786490504.4262593
   },
   "ORDI/USDT|demand|3.35200000|3.38800000": {
@@ -1210,5 +1210,17 @@
   "QQQXUSD|supply|726.07000000|726.24000000": {
     "in_zone": true,
     "last_alert_at": 1786490504.6758351
+  },
+  "HOME/USDT|demand|0.00815400|0.00825400": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "AAPLXUSD|demand|303.47000000|305.11000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "AVGO/USDT:USDT|demand|413.80000000|414.71000000": {
+    "in_zone": true,
+    "last_alert_at": 1786491710.7312393
   }
 }
