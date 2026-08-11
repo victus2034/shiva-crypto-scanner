@@ -44,6 +44,12 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
+      - name: Restore runtime state
+        run: |
+          bash .github/scripts/restore_runtime_state.sh \
+            daily_backtest_finalized_records.jsonl \
+            weekly_backtest_reports_sent.json
+
       - name: Check weekly backtest Discord webhook
         env:
           DISCORD_DAILY_BACKTEST_WEBHOOK_URL: ${{ secrets.DISCORD_DAILY_BACKTEST_WEBHOOK_URL }}
@@ -74,29 +80,5 @@ jobs:
             run_summary "$TIMEFRAME"
           fi
 
-      - name: Persist weekly backtest report state
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          if [ -f weekly_backtest_reports_sent.json ]; then
-            git add -f weekly_backtest_reports_sent.json
-          fi
-          if git diff --cached --quiet; then
-            echo "No weekly backtest report state changes to save."
-            exit 0
-          fi
-
-          git commit -m "Update weekly backtest report state"
-          for attempt in 1 2 3; do
-            if git push; then
-              exit 0
-            fi
-
-            echo "::warning::Weekly backtest state push failed on attempt ${attempt}; refreshing branch before retry."
-            git pull --rebase origin main || {
-              echo "::warning::Could not rebase weekly backtest state. Report was already sent, so not failing the workflow."
-              exit 0
-            }
-          done
-
-          echo "::warning::Could not persist weekly backtest report state after retries. Report was already sent, so not failing the workflow."
+      - name: Persist runtime state
+        run: bash .github/scripts/persist_runtime_state.sh weekly_backtest_reports_sent.json

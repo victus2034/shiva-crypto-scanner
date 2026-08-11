@@ -62,6 +62,16 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
+      - name: Restore runtime state
+        run: |
+          bash .github/scripts/restore_runtime_state.sh \
+            nse_alert_records.jsonl \
+            nse_alert_records_30m.jsonl \
+            crypto_alert_records.jsonl \
+            crypto_alert_records_30m.jsonl \
+            daily_backtest_reports_sent.json \
+            daily_backtest_finalized_records.jsonl
+
       - name: Check daily backtest Discord webhook
         env:
           DISCORD_DAILY_BACKTEST_WEBHOOK_URL: ${{ secrets.DISCORD_DAILY_BACKTEST_WEBHOOK_URL }}
@@ -119,32 +129,8 @@ jobs:
             done
           done
 
-      - name: Persist daily backtest report state
+      - name: Persist runtime state
         run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          if [ -f daily_backtest_reports_sent.json ]; then
-            git add -f daily_backtest_reports_sent.json
-          fi
-          if [ -f daily_backtest_finalized_records.jsonl ]; then
-            git add -f daily_backtest_finalized_records.jsonl
-          fi
-          if git diff --cached --quiet; then
-            echo "No daily backtest report state changes to save."
-            exit 0
-          fi
-
-          git commit -m "Update daily backtest report state"
-          for attempt in 1 2 3; do
-            if git push; then
-              exit 0
-            fi
-
-            echo "::warning::Daily backtest state push failed on attempt ${attempt}; refreshing branch before retry."
-            git pull --rebase origin main || {
-              echo "::warning::Could not rebase daily backtest state. Report was already sent, so not failing the workflow."
-              exit 0
-            }
-          done
-
-          echo "::warning::Could not persist daily backtest report state after retries. Report was already sent, so not failing the workflow."
+          bash .github/scripts/persist_runtime_state.sh \
+            daily_backtest_reports_sent.json \
+            daily_backtest_finalized_records.jsonl

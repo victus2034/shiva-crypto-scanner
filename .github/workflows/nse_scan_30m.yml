@@ -28,6 +28,9 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
+      - name: Restore runtime state
+        run: bash .github/scripts/restore_runtime_state.sh nse_alert_state_30m.json nse_alert_records_30m.jsonl
+
       - name: Check NSE 30-minute Discord webhook configuration
         env:
           DISCORD_NSE_30M_WEBHOOK_URL: ${{ secrets.DISCORD_NSE_30M_WEBHOOK_URL }}
@@ -48,30 +51,5 @@ jobs:
           DISCORD_STATUS_WEBHOOK_URL: ${{ secrets.DISCORD_STATUS_WEBHOOK_URL }}
         run: python nse_scanner_30m.py --once
 
-      - name: Persist NSE 30-minute alert state
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -f nse_alert_state_30m.json
-          if [ -f nse_alert_records_30m.jsonl ]; then
-            git add -f nse_alert_records_30m.jsonl
-          fi
-          if git diff --cached --quiet; then
-            echo "No NSE 30-minute alert state changes to save."
-            exit 0
-          fi
-
-          git commit -m "Update NSE 30-minute alert state"
-          for attempt in 1 2 3; do
-            if git push; then
-              exit 0
-            fi
-
-            echo "::warning::NSE 30-minute state push failed on attempt ${attempt}; refreshing branch."
-            git pull --rebase origin main || {
-              echo "::warning::Could not rebase NSE 30-minute state. Alerts were already sent."
-              exit 0
-            }
-          done
-
-          echo "::warning::Could not persist NSE 30-minute state after retries. Alerts were already sent."
+      - name: Persist runtime state
+        run: bash .github/scripts/persist_runtime_state.sh nse_alert_state_30m.json nse_alert_records_30m.jsonl

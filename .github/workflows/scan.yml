@@ -28,6 +28,9 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
+      - name: Restore runtime state
+        run: bash .github/scripts/restore_runtime_state.sh alert_state.json crypto_alert_records.jsonl
+
       - name: Check Discord webhook configuration
         env:
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
@@ -59,13 +62,5 @@ jobs:
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
         run: python scanner.py --once
 
-      - name: Persist alert state
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -f alert_state.json
-          if [ -f crypto_alert_records.jsonl ]; then
-            git add -f crypto_alert_records.jsonl
-          fi
-          git diff --cached --quiet || git commit -m "Update alert state"
-          git push
+      - name: Persist runtime state
+        run: bash .github/scripts/persist_runtime_state.sh alert_state.json crypto_alert_records.jsonl
