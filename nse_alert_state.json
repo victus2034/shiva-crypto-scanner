@@ -875,7 +875,7 @@
     "last_attempt_at": 0.0
   },
   "DEEPAKFERT.NS|demand|1478.6000|1507.0000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1786433564.8924978,
     "last_attempt_at": 1786433564.8924978
   },
@@ -2385,6 +2385,11 @@
     "last_attempt_at": 0.0
   },
   "MEESHO.NS|supply|193.0000|195.4000": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "ONGC.NS|demand|227.8000|234.0500": {
     "in_zone": false,
     "last_alert_at": 0.0,
     "last_attempt_at": 0.0
