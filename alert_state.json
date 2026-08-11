@@ -240,11 +240,11 @@
     "last_alert_at": 0.0
   },
   "ARBUSD|demand|0.07690000|0.07790000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1786464692.4922242
   },
   "WIF/USDT|demand|0.13620000|0.13750000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1786463493.0479672
   },
   "ESP/USDT|supply|0.10940000|0.12032000": {
@@ -878,5 +878,37 @@
   "UNIUSD|demand|3.61500000|3.66400000": {
     "in_zone": false,
     "last_alert_at": 0.0
+  },
+  "AAVEUSD|demand|71.13000000|72.24000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "ASTER/USDT|supply|0.61230000|0.62050000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "DASH/USDT|demand|28.81000000|29.64000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "PAXGUSD|demand|4303.50000000|4317.80000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "SLVONUSD|demand|57.20000000|57.67000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "SKHYNIX/USDT:USDT|supply|1030.25000000|1057.43000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "AVGO/USDT:USDT|demand|375.58000000|385.85000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "BABA/USDT:USDT|demand|126.96000000|128.89000000": {
+    "in_zone": true,
+    "last_alert_at": 1786464692.7325354
   }
 }
