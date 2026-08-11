@@ -428,7 +428,7 @@
     "last_alert_at": 0.0
   },
   "AMZNXUSD|supply|280.10000000|280.45000000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1786446143.5065517
   },
   "NVDAXUSD|supply|225.55000000|225.80000000": {
@@ -440,8 +440,8 @@
     "last_alert_at": 0.0
   },
   "AAPLXUSD|demand|305.45000000|307.35000000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1786455711.66837
   },
   "GOOGLXUSD|supply|360.10000000|360.30000000": {
     "in_zone": false,
@@ -528,8 +528,8 @@
     "last_alert_at": 0.0
   },
   "FLNC/USDT:USDT|supply|13.42000000|13.45000000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1786455712.085471
   },
   "FLNC/USDT:USDT|demand|12.61000000|12.69000000": {
     "in_zone": false,
@@ -902,5 +902,17 @@
   "MSFT/USDT:USDT|demand|503.49000000|505.04000000": {
     "in_zone": true,
     "last_alert_at": 1786453340.1009614
+  },
+  "ALLO/USDT|supply|0.31183000|0.31400000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "CRV/USDT|demand|0.25840000|0.25980000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "PEOPLE/USDT|demand|0.00845500|0.00851900": {
+    "in_zone": false,
+    "last_alert_at": 0.0
   }
 }
