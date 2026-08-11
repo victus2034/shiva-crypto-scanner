@@ -1144,7 +1144,7 @@
     "last_alert_at": 0.0
   },
   "VVV/USDT|demand|11.33900000|11.37300000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1786486910.9009411
   },
   "ALLO/USDT|supply|0.30349000|0.30984000": {
@@ -1172,6 +1172,14 @@
     "last_alert_at": 0.0
   },
   "ALGO/USDT|demand|0.07925000|0.07970000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "PUMPUSD|demand|0.00266700|0.00269500": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "UB/USDT|demand|0.13090000|0.13275000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
