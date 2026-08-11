@@ -15860,7 +15860,7 @@
   },
   "TRUMP/USDT|demand|1.47100000|1.47400000": {
     "in_zone": true,
-    "last_alert_at": 1786404109.704104
+    "last_alert_at": 1786406537.4243364
   },
   "MUBUSD|demand|879.56000000|880.02000000": {
     "in_zone": false,
@@ -16315,7 +16315,7 @@
     "last_alert_at": 1786371709.484971
   },
   "QQQXUSD|supply|725.75000000|726.21000000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1786390914.0700831
   },
   "TQQQ/USDT:USDT|supply|75.45000000|75.66000000": {
@@ -16715,6 +16715,10 @@
     "last_alert_at": 0.0
   },
   "PHAROS/USDT|supply|0.40540000|0.40670000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "BANK/USDT|supply|0.03902000|0.03970000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
