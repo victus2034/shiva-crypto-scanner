@@ -548,7 +548,7 @@
     "last_alert_at": 0.0
   },
   "SOXX/USDT:USDT|demand|529.21000000|530.80000000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1786474934.8986607
   },
   "MSFT/USDT:USDT|demand|498.15000000|498.53000000": {
@@ -1068,6 +1068,10 @@
     "last_alert_at": 0.0
   },
   "COINXUSD|supply|151.00000000|152.95000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "MSTRBUSD|supply|98.20000000|99.27000000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
