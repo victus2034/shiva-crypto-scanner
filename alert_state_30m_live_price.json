@@ -80,8 +80,8 @@
     "last_alert_at": 0.0
   },
   "SUIUSD|demand|0.68230000|0.68490000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1786432898.837139
   },
   "ENA/USDT|supply|0.09143000|0.09202000": {
     "in_zone": false,
@@ -108,8 +108,8 @@
     "last_alert_at": 0.0
   },
   "UNIUSD|demand|3.91000000|3.93200000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1786432899.0589359
   },
   "LINKUSD|demand|8.16900000|8.19500000": {
     "in_zone": false,
@@ -413,7 +413,7 @@
   },
   "QQQXUSD|supply|725.75000000|726.21000000": {
     "in_zone": true,
-    "last_alert_at": 1786429302.1647801
+    "last_alert_at": 1786432899.248629
   },
   "TSLAXUSD|supply|333.30000000|333.50000000": {
     "in_zone": true,
@@ -572,8 +572,8 @@
     "last_alert_at": 0.0
   },
   "ZECUSD|demand|484.80000000|486.58000000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1786432898.5160527
   },
   "LA/USDT|demand|0.05311000|0.05362000": {
     "in_zone": false,
@@ -604,6 +604,14 @@
     "last_alert_at": 1786431738.664536
   },
   "HOOD/USDT:USDT|demand|92.55000000|93.24000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "BTCUSD|demand|63792.00000000|63873.00000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "TAIKO/USDT|demand|0.06871000|0.06918000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
