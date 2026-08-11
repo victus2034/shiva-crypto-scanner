@@ -564,7 +564,7 @@
     "last_alert_at": 0.0
   },
   "ETHUSD|demand|1852.50000000|1856.30000000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1786462905.5673048
   },
   "SOLUSD|demand|75.70700000|75.87700000": {
@@ -1072,6 +1072,18 @@
     "last_alert_at": 0.0
   },
   "MSTRBUSD|supply|98.20000000|99.27000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "BANK/USDT|supply|0.03765000|0.03800000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "AVAXUSD|demand|6.12070000|6.24000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "OPENAI/USDT:USDT|demand|117.70000000|118.00000000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
