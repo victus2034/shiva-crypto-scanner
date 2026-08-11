@@ -24517,9 +24517,9 @@
     "last_attempt_at": 0.0
   },
   "IREDA.NS|demand|117.7600|118.1600": {
-    "in_zone": false,
-    "last_alert_at": 1786349554.403027,
-    "last_attempt_at": 1786349554.403027
+    "in_zone": true,
+    "last_alert_at": 1786421539.4319975,
+    "last_attempt_at": 1786421539.4319975
   },
   "IGL.NS|supply|154.3500|158.5900": {
     "in_zone": false,
@@ -24927,7 +24927,7 @@
     "last_attempt_at": 0.0
   },
   "MAZDOCK.NS|supply|2573.8999|2597.0000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1786419158.859374,
     "last_attempt_at": 1786419158.859374
   },
@@ -25727,9 +25727,9 @@
     "last_attempt_at": 0.0
   },
   "IOB.NS|demand|33.2300|33.6000": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1786421539.0019782,
+    "last_attempt_at": 1786421539.0019782
   },
   "IGL.NS|demand|147.3000|149.0000": {
     "in_zone": false,
@@ -25982,9 +25982,9 @@
     "last_attempt_at": 0.0
   },
   "KEC.NS|demand|460.3000|465.3500": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1786421539.63711,
+    "last_attempt_at": 1786421539.63711
   },
   "LATENTVIEW.NS|supply|315.2500|324.5000": {
     "in_zone": false,
@@ -26412,6 +26412,11 @@
     "last_attempt_at": 0.0
   },
   "PINELABS.NS|supply|241.3300|244.7000": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "DEVYANI.NS|supply|187.7600|191.0000": {
     "in_zone": false,
     "last_alert_at": 0.0,
     "last_attempt_at": 0.0
