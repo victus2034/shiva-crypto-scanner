@@ -212,8 +212,8 @@
     "last_alert_at": 0.0
   },
   "DOTUSD|supply|0.81000000|0.81200000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1786441306.0352962
   },
   "DOTUSD|demand|0.78600000|0.78900000": {
     "in_zone": false,
@@ -413,11 +413,11 @@
   },
   "QQQXUSD|supply|725.75000000|726.21000000": {
     "in_zone": true,
-    "last_alert_at": 1786435336.799373
+    "last_alert_at": 1786441306.2311497
   },
   "TSLAXUSD|supply|333.30000000|333.50000000": {
     "in_zone": true,
-    "last_alert_at": 1786438936.6870637
+    "last_alert_at": 1786441306.403703
   },
   "TSLAXUSD|demand|320.35000000|320.75000000": {
     "in_zone": false,
@@ -549,7 +549,7 @@
   },
   "SOXX/USDT:USDT|demand|529.21000000|530.80000000": {
     "in_zone": true,
-    "last_alert_at": 1786438937.0020502
+    "last_alert_at": 1786441306.8432784
   },
   "MSFT/USDT:USDT|demand|498.15000000|498.53000000": {
     "in_zone": false,
@@ -601,7 +601,7 @@
   },
   "HOOD/USDT:USDT|supply|94.99000000|95.16000000": {
     "in_zone": true,
-    "last_alert_at": 1786438936.8441138
+    "last_alert_at": 1786441306.7034729
   },
   "HOOD/USDT:USDT|demand|92.55000000|93.24000000": {
     "in_zone": false,
@@ -670,5 +670,21 @@
   "COINXUSD|demand|145.81000000|146.34000000": {
     "in_zone": false,
     "last_alert_at": 0.0
+  },
+  "FILUSD|supply|0.71280000|0.71660000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "FILUSD|demand|0.68880000|0.69540000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "PEOPLE/USDT|supply|0.00882400|0.00890800": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "COINXUSD|supply|150.22000000|150.43000000": {
+    "in_zone": true,
+    "last_alert_at": 1786441306.5706577
   }
 }
