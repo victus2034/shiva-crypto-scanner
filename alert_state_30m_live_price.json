@@ -548,8 +548,8 @@
     "last_alert_at": 0.0
   },
   "SOXX/USDT:USDT|demand|529.21000000|530.80000000": {
-    "in_zone": false,
-    "last_alert_at": 1786443709.574735
+    "in_zone": true,
+    "last_alert_at": 1786467741.3691425
   },
   "MSFT/USDT:USDT|demand|498.15000000|498.53000000": {
     "in_zone": true,
@@ -1004,6 +1004,18 @@
     "last_alert_at": 0.0
   },
   "WLFI/USDT|supply|0.05544000|0.05568000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "BTCUSD|supply|64365.00000000|64475.50000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "ETHUSD|supply|1892.10000000|1897.25000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "0G/USDT|supply|0.16480000|0.16850000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
