@@ -661,8 +661,8 @@
   },
   "COALINDIA.NS|demand|409.4000|409.7000": {
     "in_zone": true,
-    "last_alert_at": 1786434118.5362046,
-    "last_attempt_at": 1786434118.5362046
+    "last_alert_at": 1786436525.8637154,
+    "last_attempt_at": 1786436525.8637154
   },
   "COCHINSHIP.NS|demand|1415.6000|1418.1000": {
     "in_zone": false,
@@ -1125,7 +1125,7 @@
     "last_attempt_at": 0.0
   },
   "HDFCLIFE.NS|demand|531.2500|532.5000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1786434119.152333,
     "last_attempt_at": 1786434119.152333
   },
@@ -2270,11 +2270,71 @@
     "last_attempt_at": 0.0
   },
   "ICICIGI.NS|supply|1647.1000|1650.0000": {
+    "in_zone": true,
+    "last_alert_at": 1786436526.1436856,
+    "last_attempt_at": 1786436526.1436856
+  },
+  "PERSISTENT.NS|supply|5578.0000|5592.5000": {
     "in_zone": false,
     "last_alert_at": 0.0,
     "last_attempt_at": 0.0
   },
-  "PERSISTENT.NS|supply|5578.0000|5592.5000": {
+  "AFFLE.NS|demand|1580.1000|1589.7000": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "ARE&M.NS|demand|893.3500|897.3500": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "BAJAJ-AUTO.NS|demand|11552.0000|11588.0000": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "CASTROLIND.NS|supply|193.3900|193.6700": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "CONCOR.NS|demand|498.4000|499.4500": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "HINDCOPPER.NS|demand|522.5500|528.3500": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "HONAUT.NS|supply|38020.0000|38155.0000": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "IDFCFIRSTB.NS|supply|84.9900|85.1700": {
+    "in_zone": true,
+    "last_alert_at": 1786436526.418738,
+    "last_attempt_at": 1786436526.418738
+  },
+  "IREDA.NS|supply|120.0000|120.7400": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "LAURUSLABS.NS|demand|1832.8000|1845.0000": {
+    "in_zone": true,
+    "last_alert_at": 1786436526.5860047,
+    "last_attempt_at": 1786436526.5860047
+  },
+  "PATANJALI.NS|demand|351.4500|354.0000": {
+    "in_zone": true,
+    "last_alert_at": 1786436526.7474158,
+    "last_attempt_at": 1786436526.7474158
+  },
+  "SBICARD.NS|supply|655.0500|657.6500": {
     "in_zone": false,
     "last_alert_at": 0.0,
     "last_attempt_at": 0.0
