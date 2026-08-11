@@ -97,7 +97,9 @@ jobs:
           TIMEFRAME="${INPUT_TIMEFRAME:-both}"
           MARKET="${INPUT_MARKET:-both}"
           FORCE="${INPUT_FORCE:-false}"
+          echo "Daily backtest inputs: market=$MARKET timeframe=$TIMEFRAME date=${INPUT_DATE:-auto} force=$FORCE"
           run_summary() {
+            echo "Running daily backtest: market=$1 timeframe=$2 date=${INPUT_DATE:-auto}"
             if [ -n "$INPUT_DATE" ]; then
               if [ "$FORCE" = "true" ]; then
                 python daily_backtest_summary.py --market "$1" --timeframe "$2" --date "$INPUT_DATE" --force

@@ -296,6 +296,14 @@ class DailyBacktestSummaryTests(unittest.TestCase):
         self.assertEqual(joined, message)
         self.assertGreater(len(payload["embeds"]), 1)
 
+    def test_discord_wait_url_requests_message_response(self):
+        url = "https://discord.com/api/webhooks/123/token?foo=bar"
+
+        self.assertEqual(
+            summary.discord_wait_url(url),
+            "https://discord.com/api/webhooks/123/token?foo=bar&wait=true",
+        )
+
     def test_report_state_blocks_duplicate_key(self):
         with tempfile.TemporaryDirectory() as tmp:
             path = Path(tmp) / "sent.json"

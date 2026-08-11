@@ -7,6 +7,7 @@ import os
 import time
 from datetime import datetime, timedelta, time as datetime_time
 from pathlib import Path
+from urllib.parse import parse_qsl, urlencode, urlsplit, urlunsplit
 from zoneinfo import ZoneInfo
 
 import pandas as pd
@@ -1232,11 +1233,16 @@ def send_discord_message(message: str) -> None:
     webhook_url = os.getenv(WEBHOOK_ENV, "").strip()
     if not webhook_url:
         raise RuntimeError(f"{WEBHOOK_ENV} is not configured")
+    webhook_url = discord_wait_url(webhook_url)
     payload = discord_payload(message)
     for attempt in range(6):
         response = requests.post(webhook_url, json=payload, timeout=15)
         if response.status_code != 429:
             response.raise_for_status()
+            message_id = discord_message_id(response)
+            if not message_id:
+                raise RuntimeError("Discord webhook accepted the request but did not return a message id")
+            print(f"Discord daily backtest message posted: {message_id}")
             return
         try:
             retry_after = float(response.json().get("retry_after", 1.0))
@@ -1245,6 +1251,22 @@ def send_discord_message(message: str) -> None:
         if attempt == 5:
             response.raise_for_status()
         time.sleep(max(0.25, min(retry_after, 30.0)))
+
+
+def discord_wait_url(webhook_url: str) -> str:
+    parts = urlsplit(webhook_url)
+    query = dict(parse_qsl(parts.query, keep_blank_values=True))
+    query["wait"] = "true"
+    return urlunsplit((parts.scheme, parts.netloc, parts.path, urlencode(query), parts.fragment))
+
+
+def discord_message_id(response: requests.Response) -> str | None:
+    try:
+        body = response.json()
+    except requests.JSONDecodeError:
+        return None
+    message_id = body.get("id") if isinstance(body, dict) else None
+    return str(message_id) if message_id else None
 
 
 def discord_payload(message: str) -> dict:
