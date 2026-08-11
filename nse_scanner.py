@@ -1,4 +1,5 @@
 import argparse
+import hashlib
 from io import StringIO
 import json
 import os
@@ -132,6 +133,7 @@ def record_delivered_zone_alert(result, zone_type, zone, distance_pct, message, 
         "score": score,
         "message": message,
     }
+    record["trade_id"] = delivered_alert_id(record)
     try:
         with ALERT_RECORD_FILE.open("a", encoding="utf-8") as file:
             file.write(json.dumps(record, separators=(",", ":")) + "\n")
@@ -749,6 +751,19 @@ def planned_stop_distance_pct(zone_type, zone, buffer_pct=SL_BUFFER_PCT):
         return 0.0
     stop = planned_stop_price(zone_type, zone, buffer_pct)
     return abs(entry - stop) / abs(entry) * 100.0
+
+
+def delivered_alert_id(record):
+    """Stable ID carried from alert log into daily/weekly backtest summaries."""
+    parts = [
+        str(record.get("symbol", "")).upper(),
+        str(record.get("timeframe", "")),
+        str(record.get("side", "")),
+        f"{float(record.get('zone_bottom', 0.0)):.10f}",
+        f"{float(record.get('zone_top', 0.0)):.10f}",
+        str(record.get("delivered_at_utc", "")),
+    ]
+    return hashlib.sha1("|".join(parts).encode("utf-8")).hexdigest()[:16]
 
 
 def format_alert(result, zone_type, zone, distance_pct):

@@ -1,4 +1,4 @@
-import tempfile
+﻿import tempfile
 import unittest
 from pathlib import Path
 
@@ -141,7 +141,7 @@ class DailyBacktestSummaryTests(unittest.TestCase):
         self.assertEqual(result["net_realized_r"], -1.0)
         self.assertAlmostEqual(result["stop_price"], 98.901)
 
-    def test_same_candle_stop_and_target_is_conflict(self):
+    def test_same_candle_stop_and_target_is_ambiguous_without_resolution_data(self):
         index = pd.DatetimeIndex(["2026-08-04 10:00", "2026-08-04 10:30"], tz=summary.IST)
         frame = pd.DataFrame(
             {
@@ -156,10 +156,67 @@ class DailyBacktestSummaryTests(unittest.TestCase):
 
         result = summary.simulate_alert(frame, base_alert(), 0, 1)
 
-        self.assertEqual(result["final_result"], "Conflict")
-        self.assertEqual(result["net_realized_r"], 0.0)
-        self.assertTrue(result["half_r_hit"])
-        self.assertIsNotNone(result["time_to_sl"])
+        self.assertEqual(result["final_result"], summary.DATA_QUALITY_AMBIGUOUS)
+        self.assertTrue(pd.isna(result["net_realized_r"]))
+        self.assertFalse(result["half_r_hit"])
+        self.assertIsNone(result["time_to_sl"])
+
+    def test_same_candle_order_uses_resolution_frame_when_available(self):
+        index = pd.DatetimeIndex(["2026-08-04 10:00", "2026-08-04 10:30"], tz=summary.IST)
+        frame = pd.DataFrame(
+            {
+                "open": [101.0, 100.0],
+                "high": [101.2, 100.7],
+                "low": [100.8, 98.8],
+                "close": [101.0, 100.1],
+                "volume": [1, 1],
+            },
+            index=index,
+        )
+        resolution_index = pd.date_range("2026-08-04 10:30", periods=3, freq="1min", tz=summary.IST)
+        resolution_frame = pd.DataFrame(
+            {
+                "open": [100.0, 100.6, 99.5],
+                "high": [100.1, 100.7, 99.6],
+                "low": [99.9, 100.2, 98.8],
+                "close": [100.0, 100.3, 99.0],
+                "volume": [1, 1, 1],
+            },
+            index=resolution_index,
+        )
+
+        result = summary.simulate_alert(frame, base_alert(), 0, 1, resolution_frame)
+
+        self.assertEqual(result["final_result"], "+0.5R")
+        self.assertEqual(result["net_realized_r"], 0.5)
+
+    def test_same_candle_resolution_accepts_timezone_naive_fine_data(self):
+        index = pd.DatetimeIndex(["2026-08-04 10:00", "2026-08-04 10:30"], tz=summary.IST)
+        frame = pd.DataFrame(
+            {
+                "open": [101.0, 100.0],
+                "high": [101.2, 100.7],
+                "low": [100.8, 98.8],
+                "close": [101.0, 100.1],
+                "volume": [1, 1],
+            },
+            index=index,
+        )
+        resolution_index = pd.date_range("2026-08-04 10:30", periods=2, freq="1min")
+        resolution_frame = pd.DataFrame(
+            {
+                "open": [100.0, 99.5],
+                "high": [100.7, 99.6],
+                "low": [100.0, 98.8],
+                "close": [100.4, 99.0],
+                "volume": [1, 1],
+            },
+            index=resolution_index,
+        )
+
+        result = summary.simulate_alert(frame, base_alert(), 0, 1, resolution_frame)
+
+        self.assertEqual(result["final_result"], "+0.5R")
 
     def test_mobile_summary_removes_tradable_be_and_verdict(self):
         records = pd.DataFrame(
@@ -178,14 +235,37 @@ class DailyBacktestSummaryTests(unittest.TestCase):
         message = summary.build_summary(records, pd.Timestamp("2026-08-04").date(), results, {}, 0, "30m")
 
         self.assertIn("NSE 30m BACKTEST\n04 AUG 2026", message)
-        self.assertIn("OVERVIEW\nAlerts — 2", message)
-        self.assertIn("No Touch — 1", message)
-        self.assertIn("4/10 — 1 entries | 1W / 0L | 100.0%", message)
-        self.assertIn("No Entries — 6/10", message)
-        self.assertIn("1. BTC — 4/10 — +2R", message)
+        self.assertIn("OVERVIEW\nAlerts - 2", message)
+        self.assertIn("No Touch - 1", message)
+        self.assertIn("4/10 - 1 entries | 1W / 0L | 100.0%", message)
+        self.assertIn("No Entries - 6/10", message)
+        self.assertIn("1. BTC", message)
         self.assertNotIn("Tradable", message)
         self.assertNotIn("BE:", message)
         self.assertNotIn("Verdict", message)
+
+    def test_missing_rating_is_reported_as_unrated_not_rating_four(self):
+        records = pd.DataFrame(
+            [
+                base_alert(symbol="LEGACY.NS", rating=float("nan")),
+            ]
+        )
+        results = pd.DataFrame(
+            [
+                {
+                    **records.iloc[0].to_dict(),
+                    "filled": False,
+                    "outcome": "zone_not_touched",
+                    "final_result": "",
+                    "net_realized_r": float("nan"),
+                },
+            ]
+        )
+
+        message = summary.build_summary(records, pd.Timestamp("2026-08-04").date(), results, {}, 0, "30m")
+
+        self.assertIn("No Entries - Unrated/N/A", message)
+        self.assertNotIn("4/10", message)
 
     def test_no_touch_excludes_data_errors(self):
         records = pd.DataFrame(
@@ -205,7 +285,7 @@ class DailyBacktestSummaryTests(unittest.TestCase):
 
         message = summary.build_summary(records, pd.Timestamp("2026-08-04").date(), results, {}, 0, "30m")
 
-        self.assertIn("No Touch — 1", message)
+        self.assertIn("No Touch - 1", message)
 
     def test_discord_payload_uses_embeds_without_truncating_long_reports(self):
         message = "\n".join([f"Line {index}" for index in range(900)])
@@ -232,12 +312,12 @@ class DailyBacktestSummaryTests(unittest.TestCase):
             summary.report_key(day, "30m", "crypto"),
         )
 
-    def test_crypto_report_date_uses_ist_calendar_day(self):
+    def test_crypto_report_date_uses_ist_boundary_day(self):
         afternoon = pd.Timestamp("2026-08-04 16:30", tz=summary.IST)
         evening = pd.Timestamp("2026-08-04 23:59", tz=summary.IST)
 
         self.assertEqual(summary.crypto_report_date(afternoon), pd.Timestamp("2026-08-04").date())
-        self.assertEqual(summary.crypto_report_date(evening), pd.Timestamp("2026-08-04").date())
+        self.assertEqual(summary.crypto_report_date(evening), pd.Timestamp("2026-08-05").date())
 
     def test_crypto_default_report_date_uses_completed_bucket(self):
         today = pd.Timestamp.now(tz=summary.IST).date()
@@ -251,13 +331,13 @@ class DailyBacktestSummaryTests(unittest.TestCase):
             ]
         )
 
-        self.assertEqual(summary.select_target_date(records, None, "crypto", "30m"), yesterday)
+        self.assertEqual(summary.select_target_date(records, None, "crypto", "30m"), today)
 
     def test_crypto_default_report_date_skips_when_no_bucket_is_complete(self):
         today = pd.Timestamp.now(tz=summary.IST).date()
         records = pd.DataFrame([{"report_date": today}])
 
-        self.assertIsNone(summary.select_target_date(records, None, "crypto", "4h"))
+        self.assertEqual(summary.select_target_date(records, None, "crypto", "4h"), today)
 
     def test_nse_cutoff_uses_only_bars_ending_before_cutoff(self):
         index = pd.DatetimeIndex(

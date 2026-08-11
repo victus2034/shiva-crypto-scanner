@@ -39,20 +39,26 @@ MAX_HOLD_BARS = 24
 NSE_BACKTEST_CLOSE_CUTOFF = datetime_time(15, 10)
 NSE_TRADE_START = datetime_time(9, 15)
 CRYPTO_EVALUATION_HOURS = 6
+CRYPTO_REPORT_BOUNDARY = datetime_time(16, 30)
 FIXED_STOP_PCT = 0.5
 SL_BUFFER_PCT = 0.10
 TARGET_1_R = 1.0
 TARGET_2_R = 2.0
 HALF_R = 0.5
+DATA_QUALITY_AMBIGUOUS = "data_quality_ambiguous"
 FINAL_RESULT_R = {
     "SL": -1.0,
-    "Conflict": 0.0,
+    DATA_QUALITY_AMBIGUOUS: float("nan"),
     "+0.5R": 0.5,
     "+1R": 1.0,
     "+2R": 2.0,
     "Neither": 0.0,
 }
-OUTCOME_ORDER = ["SL", "Conflict", "+0.5R", "+1R", "+2R", "Neither"]
+OUTCOME_ORDER = ["SL", DATA_QUALITY_AMBIGUOUS, "+0.5R", "+1R", "+2R", "Neither"]
+MARKET_NSE = "NSE"
+MARKET_CRYPTO = "CRYPTO"
+MARKET_XSTOCK = "XSTOCK"
+MARKET_OTHER = "OTHER"
 SENT_REPORTS_PATH = Path(__file__).with_name("daily_backtest_reports_sent.json")
 FINALIZED_RECORDS_PATH = Path(__file__).with_name("daily_backtest_finalized_records.jsonl")
 
@@ -63,7 +69,7 @@ def parse_args() -> argparse.Namespace:
     )
     parser.add_argument(
         "--market",
-        choices=["nse", "crypto"],
+        choices=["nse", "crypto", "xstock", "other"],
         default="nse",
         help="Market to summarize.",
     )
@@ -117,17 +123,12 @@ def load_records(path: Path, timeframe_filter: str) -> pd.DataFrame:
             side = str(raw["side"]).lower()
             if side not in {"long", "short"}:
                 continue
-            rating = parse_rating(raw.get("score"))
-            if pd.isna(rating):
-                # Older alert records did not always persist a score. Keep them
-                # reportable, but assign the lowest displayed rating.
-                rating = 4.0
-            rows.append(
-                {
+            symbol = str(raw["symbol"])
+            row = {
                     "event_time": event_time,
                     "event_time_ist": event_time.tz_convert(IST),
                     "timeframe": timeframe,
-                    "symbol": str(raw["symbol"]),
+                    "symbol": symbol,
                     "side": side,
                     "distance_pct": float(raw["distance_pct"]),
                     "alert_price": float(raw["alert_price"]),
@@ -135,13 +136,18 @@ def load_records(path: Path, timeframe_filter: str) -> pd.DataFrame:
                     "zone_bottom": zone_bottom,
                     "zone_top": zone_top,
                     "body_entry": parse_optional_float(raw.get("body_entry")),
-                    "rating": rating,
+                    "planned_entry": parse_optional_float(raw.get("planned_entry")),
+                    "stop_price": parse_optional_float(raw.get("stop_price")),
+                    "stop_distance_pct": parse_optional_float(raw.get("stop_distance_pct")),
+                    "rating": parse_rating(raw.get("score")),
+                    "market_class": market_class(symbol),
                     "zone_id": (
                         f"{raw['symbol']}|{side}|{zone_bottom:.8f}|{zone_top:.8f}"
                     ),
                     "source_line": line_number,
                 }
-            )
+            row["trade_id"] = raw.get("trade_id") or stable_trade_id(row)
+            rows.append(row)
         except (KeyError, TypeError, ValueError, json.JSONDecodeError) as error:
             print(f"Skipping bad alert record line {line_number}: {error}")
 
@@ -172,6 +178,11 @@ def parse_optional_float(value) -> float:
         return float("nan")
 
 
+def json_optional_float(value):
+    parsed = parse_optional_float(value)
+    return None if pd.isna(parsed) else float(parsed)
+
+
 def format_optional_timestamp(value) -> str | None:
     if value is None or value == "":
         return None
@@ -190,7 +201,7 @@ def assign_report_dates(records: pd.DataFrame, market: str) -> pd.DataFrame:
     if records.empty:
         return records
     frame = records.copy()
-    if market == "crypto":
+    if market in {"crypto", "xstock", "other"}:
         frame["report_date"] = frame["event_time_ist"].apply(crypto_report_date)
     else:
         frame["report_date"] = frame["event_time_ist"].dt.date
@@ -199,6 +210,8 @@ def assign_report_dates(records: pd.DataFrame, market: str) -> pd.DataFrame:
 
 def crypto_report_date(event_time_ist) -> object:
     timestamp = pd.Timestamp(event_time_ist).tz_convert(IST)
+    if timestamp.time() > CRYPTO_REPORT_BOUNDARY:
+        return (timestamp + pd.Timedelta(days=1)).date()
     return timestamp.date()
 
 
@@ -213,7 +226,7 @@ def select_target_date(
     if records.empty:
         return pd.Timestamp.now(tz=IST).date()
     if "report_date" in records:
-        if market == "crypto":
+        if market in {"crypto", "xstock", "other"}:
             completed_dates = [
                 date for date in records["report_date"].dropna().unique()
                 if crypto_report_bucket_ready(date, timeframe)
@@ -227,14 +240,11 @@ def select_target_date(
 
 def crypto_report_bucket_ready(report_date, timeframe: str) -> bool:
     report_day = pd.Timestamp(report_date).date()
-    next_day = report_day + pd.Timedelta(days=1)
-    bucket_close = pd.Timestamp(
-        datetime.combine(next_day, datetime_time(0, 0)),
+    report_time = pd.Timestamp(
+        datetime.combine(report_day, CRYPTO_REPORT_BOUNDARY),
         tz=IST,
     )
-    entry_window = timedelta(hours=12) if timeframe == "4h" else timedelta(minutes=30 * ENTRY_WAIT_BARS)
-    ready_at = bucket_close + entry_window + timedelta(hours=CRYPTO_EVALUATION_HOURS)
-    return pd.Timestamp.now(tz=IST) >= ready_at
+    return pd.Timestamp.now(tz=IST) >= report_time
 
 
 def fetch_frames(symbols: list[str]) -> tuple[dict[str, pd.DataFrame], dict[str, str]]:
@@ -313,8 +323,10 @@ def run_backtest(
     alerts: pd.DataFrame,
     frames: dict[str, pd.DataFrame],
     market: str = "nse",
+    resolution_frames: dict[str, pd.DataFrame] | None = None,
 ) -> tuple[pd.DataFrame, int]:
     rows = []
+    resolution_frames = resolution_frames or {}
     for alert in alerts.to_dict("records"):
         frame = frames.get(alert["symbol"])
         if frame is None or frame.empty:
@@ -327,7 +339,7 @@ def run_backtest(
             rows.append(unfilled(alert, "alert_before_data"))
             continue
 
-        if market == "crypto":
+        if market in {"crypto", "xstock", "other"}:
             tracking_end_index, window_mature = crypto_tracking_end(frame, event_time)
         else:
             tracking_end_index, window_mature = same_day_tracking_end(frame, event_time)
@@ -338,7 +350,15 @@ def run_backtest(
             rows.append(unfilled(alert, "zone_not_touched"))
             continue
 
-        rows.append(simulate_alert(frame, alert, event_index, tracking_end_index))
+        rows.append(
+            simulate_alert(
+                frame,
+                alert,
+                event_index,
+                tracking_end_index,
+                resolution_frames.get(alert["symbol"]),
+            )
+        )
 
     results = pd.DataFrame(rows)
     return apply_same_day_zone_cooldown(results, market)
@@ -411,6 +431,7 @@ def simulate_alert(
     alert: dict,
     event_index: int,
     tracking_end_index: int,
+    resolution_frame: pd.DataFrame | None = None,
 ) -> dict:
     side = alert["side"]
     direction = 1.0 if side == "long" else -1.0
@@ -476,22 +497,44 @@ def simulate_alert(
 
         target_hit_this_candle = half_target_hit or first_target_hit or second_target_hit
         if outcome == "Neither" and stop_hit and target_hit_this_candle:
-            outcome = "Conflict"
-            exit_index = index
-            time_to_sl = frame.index[index]
-            if half_target_hit:
-                half_r_hit = True
-                if time_to_half_r is None:
-                    time_to_half_r = frame.index[index]
-            if first_target_hit:
-                target_1_hit = True
-                if time_to_1r is None:
-                    time_to_1r = frame.index[index]
-            if second_target_hit:
-                target_2_hit = True
-                if time_to_2r is None:
-                    time_to_2r = frame.index[index]
-            break
+            resolution = resolve_same_candle_order(
+                resolution_frame,
+                frame,
+                index,
+                side,
+                stop,
+                target_half,
+                target_1,
+                target_2,
+            )
+            if resolution == "SL":
+                outcome = "SL"
+                exit_index = index
+                time_to_sl = frame.index[index]
+                break
+            if resolution == DATA_QUALITY_AMBIGUOUS:
+                outcome = DATA_QUALITY_AMBIGUOUS
+                exit_index = index
+                break
+            if resolution in {"+0.5R", "+1R", "+2R"}:
+                if resolution in {"+0.5R", "+1R", "+2R"}:
+                    half_r_hit = True
+                    if time_to_half_r is None:
+                        time_to_half_r = frame.index[index]
+                    outcome = "+0.5R"
+                if resolution in {"+1R", "+2R"}:
+                    target_1_hit = True
+                    if time_to_1r is None:
+                        time_to_1r = frame.index[index]
+                    outcome = "+1R"
+                if resolution == "+2R":
+                    target_2_hit = True
+                    if time_to_2r is None:
+                        time_to_2r = frame.index[index]
+                    outcome = "+2R"
+                    exit_index = index
+                    break
+                continue
         if outcome == "Neither" and stop_hit:
             outcome = "SL"
             exit_index = index
@@ -527,8 +570,8 @@ def simulate_alert(
 
     if outcome == "SL":
         exit_price = stop
-    elif outcome == "Conflict":
-        exit_price = float(frame["close"].iloc[exit_index])
+    elif outcome == DATA_QUALITY_AMBIGUOUS:
+        exit_price = float("nan")
     elif outcome == "+0.5R":
         exit_price = target_half
     elif outcome == "+1R":
@@ -604,6 +647,55 @@ def resolution_time_for_outcome(
     return fallback_time
 
 
+def resolve_same_candle_order(
+    resolution_frame: pd.DataFrame | None,
+    frame: pd.DataFrame,
+    index: int,
+    side: str,
+    stop: float,
+    target_half: float,
+    target_1: float,
+    target_2: float,
+) -> str:
+    """Use finer candles to resolve an otherwise ambiguous SL/target candle."""
+    if resolution_frame is None or resolution_frame.empty:
+        return DATA_QUALITY_AMBIGUOUS
+
+    start = pd.Timestamp(frame.index[index])
+    duration = infer_bar_duration(frame)
+    end = start + duration if duration > pd.Timedelta(0) else start
+    fine = resolution_frame.copy()
+    fine_index = pd.DatetimeIndex(fine.index)
+    fine.index = fine_index.tz_localize(IST) if fine_index.tz is None else fine_index.tz_convert(IST)
+    if end > start:
+        fine = fine[(fine.index >= start) & (fine.index < end)]
+    else:
+        fine = fine[fine.index == start]
+    if fine.empty:
+        return DATA_QUALITY_AMBIGUOUS
+
+    for _, candle in fine.iterrows():
+        high = float(candle["high"])
+        low = float(candle["low"])
+        stop_hit = low <= stop if side == "long" else high >= stop
+        half_hit = high >= target_half if side == "long" else low <= target_half
+        one_hit = high >= target_1 if side == "long" else low <= target_1
+        two_hit = high >= target_2 if side == "long" else low <= target_2
+        target_hit = half_hit or one_hit or two_hit
+        if stop_hit and target_hit:
+            return DATA_QUALITY_AMBIGUOUS
+        if stop_hit:
+            return "SL"
+        if two_hit:
+            return "+2R"
+        if one_hit:
+            return "+1R"
+        if half_hit:
+            return "+0.5R"
+
+    return DATA_QUALITY_AMBIGUOUS
+
+
 def best_secured_milestone_time(time_to_half_r, time_to_1r, time_to_2r):
     for value in (time_to_2r, time_to_1r, time_to_half_r):
         if not pd.isna(value):
@@ -634,7 +726,7 @@ def six_hour_entry_tracking_end(
 
 
 def uses_six_hour_evaluation(symbol: str) -> bool:
-    return is_crypto_symbol(symbol) or is_xstock_symbol(symbol)
+    return market_class(symbol) in {MARKET_CRYPTO, MARKET_XSTOCK}
 
 
 def pending_trade(
@@ -661,15 +753,30 @@ def pending_trade(
 
 
 def is_crypto_symbol(symbol: str) -> bool:
-    text = str(symbol).upper()
-    return not text.endswith(".NS") and not is_xstock_symbol(text)
+    return market_class(symbol) == MARKET_CRYPTO
 
 
 def is_xstock_symbol(symbol: str) -> bool:
     return is_xstock(str(symbol).upper())
 
 
+def market_class(symbol: str) -> str:
+    text = str(symbol).strip().upper()
+    if text.endswith(".NS"):
+        return MARKET_NSE
+    if is_xstock_symbol(text):
+        return MARKET_XSTOCK
+    normalized = display_symbol(text)
+    if normalized in {"PAXG", "SLVON"}:
+        return MARKET_OTHER
+    return MARKET_CRYPTO
+
+
 def body_entry_price(frame: pd.DataFrame, alert: dict, event_index: int) -> float:
+    recorded_planned_entry = pd.to_numeric(alert.get("planned_entry"), errors="coerce")
+    if pd.notna(recorded_planned_entry):
+        return float(recorded_planned_entry)
+
     recorded_body_entry = pd.to_numeric(alert.get("body_entry"), errors="coerce")
     if pd.notna(recorded_body_entry):
         return float(recorded_body_entry)
@@ -716,6 +823,10 @@ def zones_match_alert(zone: dict, alert: dict) -> bool:
 
 def original_stop_price(alert: dict) -> float:
     """Buffered far-side zone stop used by alerts and backtest."""
+    recorded_stop = pd.to_numeric(alert.get("stop_price"), errors="coerce")
+    if pd.notna(recorded_stop):
+        return float(recorded_stop)
+
     if alert["side"] == "long":
         return float(alert["zone_bottom"]) * (1 - SL_BUFFER_PCT / 100.0)
     return float(alert["zone_top"]) * (1 + SL_BUFFER_PCT / 100.0)
@@ -859,7 +970,7 @@ def apply_same_day_zone_cooldown(
 
 
 def zone_cooldown_overlap(current: dict, previous: dict, market: str) -> bool:
-    if market == "crypto":
+    if market in {"crypto", "xstock"}:
         current_time = pd.Timestamp(current["entry_time"]).tz_convert(IST)
         previous_time = pd.Timestamp(previous["entry_time"]).tz_convert(IST)
         if current_time - previous_time > timedelta(hours=12):
@@ -897,8 +1008,13 @@ def build_summary(
     timeframe: str,
     market: str = "nse",
 ) -> str:
-    market_label = "CRYPTO" if market == "crypto" else "NSE"
-    asset_label = "Coins" if market == "crypto" else "Stocks"
+    label_map = {
+        "nse": ("NSE", "Stocks"),
+        "crypto": ("CRYPTO", "Coins"),
+        "xstock": ("XSTOCK", "xStocks"),
+        "other": ("OTHER", "Contracts"),
+    }
+    market_label, asset_label = label_map.get(market, (market.upper(), "Symbols"))
     header = f"{market_label} {timeframe} BACKTEST"
     date_line = pd.Timestamp(target_date).strftime("%d %b %Y").upper()
     if records.empty:
@@ -970,6 +1086,7 @@ def format_rating_table(records: pd.DataFrame, results: pd.DataFrame) -> str:
     if records.empty:
         return "None"
 
+    record_ratings = pd.to_numeric(records.get("rating", pd.Series(dtype=float)), errors="coerce")
     records_by_rating = rating_counts(records)
     result_frame = results.copy()
     if not result_frame.empty:
@@ -994,13 +1111,11 @@ def format_rating_table(records: pd.DataFrame, results: pd.DataFrame) -> str:
         final_counts = finalized["final_result"].value_counts() if not finalized.empty else pd.Series(dtype=int)
         duplicates = int(outcomes.get("zone_cooldown", 0))
         entries = len(filled)
-        touch = entries + duplicates
-        no_touch = int(outcomes.get("zone_not_touched", 0))
         half_r = int(final_counts.get("+0.5R", 0))
         one_r = int(final_counts.get("+1R", 0))
         two_r = int(final_counts.get("+2R", 0))
         stops = int(final_counts.get("SL", 0))
-        conflicts = int(final_counts.get("Conflict", 0))
+        ambiguous = int(final_counts.get(DATA_QUALITY_AMBIGUOUS, 0))
         neither = int(final_counts.get("Neither", 0))
         waiting = int(outcomes.get("immature", 0))
         waiting += int((filled["final_result"] == "Pending").sum()) if not filled.empty else 0
@@ -1009,30 +1124,45 @@ def format_rating_table(records: pd.DataFrame, results: pd.DataFrame) -> str:
             no_entry_ratings.append(f"{rating}/10")
             continue
         detail_parts = []
-        if conflicts:
-            detail_parts.append(f"Conflict {conflicts}")
+        if ambiguous:
+            detail_parts.append(f"Ambiguous {ambiguous}")
         if neither:
             detail_parts.append(f"Neither {neither}")
         if waiting:
             detail_parts.append(f"Waiting {waiting}")
-        line = (
-            f"{rating}/10 — {entries} entries | "
-            f"{wins}W / {stops}L | {format_win_rate(wins, stops)}"
-        )
+        line = f"{rating}/10 - {entries} entries | {wins}W / {stops}L | {format_win_rate(wins, stops)}"
         if detail_parts:
             line += f" | {', '.join(detail_parts)}"
         rows.append(line)
     if no_entry_ratings:
-        rows.append(f"No Entries — {', '.join(no_entry_ratings)}")
+        rows.append(f"No Entries - {', '.join(no_entry_ratings)}")
+
+    unrated_count = int(record_ratings.isna().sum())
+    if unrated_count:
+        unrated_results = (
+            result_frame[result_frame["_rating_bucket"].isna()]
+            if not result_frame.empty and "_rating_bucket" in result_frame
+            else pd.DataFrame()
+        )
+        unrated_filled = unrated_results[unrated_results["filled"] == True] if not unrated_results.empty else pd.DataFrame()  # noqa: E712
+        if unrated_filled.empty:
+            rows.append("No Entries - Unrated/N/A")
+        else:
+            finalized = unrated_filled[unrated_filled["final_result"] != "Pending"]
+            final_counts = finalized["final_result"].value_counts()
+            wins = int(final_counts.get("+0.5R", 0)) + int(final_counts.get("+1R", 0)) + int(final_counts.get("+2R", 0))
+            stops = int(final_counts.get("SL", 0))
+            rows.append(f"Unrated/N/A - {len(unrated_filled)} entries | {wins}W / {stops}L | {format_win_rate(wins, stops)}")
     return "\n".join(rows) if rows else "None"
 
 
 def format_outcome_lines(counts: pd.Series) -> list[str]:
+    labels = {DATA_QUALITY_AMBIGUOUS: "Ambiguous"}
     lines: list[str] = []
     for outcome in OUTCOME_ORDER:
         count = int(counts.get(outcome, 0))
         if count:
-            lines.append(metric(outcome, count))
+            lines.append(metric(labels.get(outcome, outcome), count))
     return lines
 
 
@@ -1053,7 +1183,7 @@ def display_symbol(symbol: str) -> str:
 
 
 def metric(label: str, value) -> str:
-    return f"{label} — {value}"
+    return f"{label} - {value}"
 
 
 def best_symbol_lines(filled: pd.DataFrame, best: bool) -> str:
@@ -1073,7 +1203,7 @@ def best_symbol_lines(filled: pd.DataFrame, best: bool) -> str:
     for index, row in enumerate(frame.head(3).to_dict("records"), start=1):
         rating = int(row["rating"]) if pd.notna(row.get("rating")) else "N/A"
         lines.append(
-            f"{index}. {display_symbol(row['symbol'])} — {rating}/10 — {row['final_result']}"
+            f"{index}. {display_symbol(row['symbol'])} - {rating}/10 - {row['final_result']}"
         )
     return "\n".join(lines)
 
@@ -1201,7 +1331,7 @@ def persist_finalized_records(
                 "symbol": str(row.get("symbol", "")),
                 "display_symbol": display_symbol(row.get("symbol", "")),
                 "side": row.get("side", ""),
-                "rating": parse_optional_float(row.get("rating")),
+                "rating": json_optional_float(row.get("rating")),
                 "trade_id": row.get("trade_id") or stable_trade_id(row),
                 "alert_time": format_optional_timestamp(first_present_value(row.get("event_time_ist"), row.get("event_time"))),
                 "entry_time": format_optional_timestamp(row.get("entry_time")),
@@ -1213,10 +1343,10 @@ def persist_finalized_records(
                 "time_to_1r": format_optional_timestamp(row.get("time_to_1r")),
                 "time_to_2r": format_optional_timestamp(row.get("time_to_2r")),
                 "time_to_sl": format_optional_timestamp(row.get("time_to_sl")),
-                "time_to_resolution_seconds": parse_optional_float(row.get("time_to_resolution_seconds")),
-                "time_to_best_secured_milestone_seconds": parse_optional_float(row.get("time_to_best_secured_milestone_seconds")),
-                "realized_r": parse_optional_float(row.get("realized_r")),
-                "net_realized_r": parse_optional_float(row.get("net_realized_r")),
+                "time_to_resolution_seconds": json_optional_float(row.get("time_to_resolution_seconds")),
+                "time_to_best_secured_milestone_seconds": json_optional_float(row.get("time_to_best_secured_milestone_seconds")),
+                "realized_r": json_optional_float(row.get("realized_r")),
+                "net_realized_r": json_optional_float(row.get("net_realized_r")),
                 "cooldown_blocked": bool(row.get("cooldown_blocked", False)),
                 "zone_id": row.get("zone_id", ""),
                 "source_line": int(row.get("source_line", 0) or 0),
@@ -1284,10 +1414,18 @@ def main() -> None:
     args = parse_args()
     default_records = (
         configure_crypto_data(args.timeframe)
-        if args.market == "crypto"
+        if args.market in {"crypto", "xstock", "other"}
         else configure_nse_data(args.timeframe)
     )
     records = load_records(args.records or default_records, args.timeframe)
+    if not records.empty:
+        wanted_market = {
+            "nse": MARKET_NSE,
+            "crypto": MARKET_CRYPTO,
+            "xstock": MARKET_XSTOCK,
+            "other": MARKET_OTHER,
+        }[args.market]
+        records = records[records["market_class"] == wanted_market].copy()
     records = assign_report_dates(records, args.market)
     target_date = select_target_date(records, args.date, args.market, args.timeframe)
     if target_date is None:
@@ -1304,7 +1442,7 @@ def main() -> None:
     cooldown_blocked = 0
     results = pd.DataFrame()
     if not day_records.empty:
-        if args.market == "crypto":
+        if args.market in {"crypto", "xstock", "other"}:
             frames, data_failures = fetch_crypto_frames(sorted(day_records["symbol"].unique()))
         else:
             frames, data_failures = fetch_frames(sorted(day_records["symbol"].unique()))

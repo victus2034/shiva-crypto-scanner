@@ -137,14 +137,14 @@ def format_weekly_rating_blocks(frame: pd.DataFrame) -> str:
         if neither:
             detail_parts.append(f"Neither {neither}")
         line = (
-            f"{rating}/10 — {entries} entries | "
+            f"{rating}/10 - {entries} entries | "
             f"{wins}W / {stops}L | {daily.format_win_rate(wins, stops)}"
         )
         if detail_parts:
             line += f" | {', '.join(detail_parts)}"
         blocks.append(line)
     if no_entry_ratings:
-        blocks.append(f"No Entries — {', '.join(no_entry_ratings)}")
+        blocks.append(f"No Entries - {', '.join(no_entry_ratings)}")
     return "\n".join(blocks) if blocks else "None"
 
 

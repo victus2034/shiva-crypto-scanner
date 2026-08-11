@@ -63,10 +63,11 @@ for attempt in 1 2 3; do
   if git -C "${STATE_WORKTREE}" fetch --quiet origin "${BRANCH}" 2>/dev/null; then
     git -C "${STATE_WORKTREE}" rebase "origin/${BRANCH}" || {
       git -C "${STATE_WORKTREE}" rebase --abort || true
-      echo "::warning::Could not rebase runtime state. Alerts/report were already sent."
-      exit 0
+      echo "::error::Could not rebase runtime state after alerts/report were sent."
+      exit 1
     }
   fi
 done
 
-echo "::warning::Could not persist runtime state after retries. Alerts/report were already sent."
+echo "::error::Could not persist runtime state after retries. Alerts/report were already sent."
+exit 1

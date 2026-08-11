@@ -25,6 +25,8 @@ on:
           - "both"
           - "nse"
           - "crypto"
+          - "xstock"
+          - "other"
       date:
         description: "Optional IST date to summarize, YYYY-MM-DD"
         required: false
@@ -112,7 +114,7 @@ jobs:
           }
 
           if [ "$MARKET" = "both" ]; then
-            MARKETS="nse crypto"
+            MARKETS="nse crypto xstock"
           else
             MARKETS="$MARKET"
           fi
