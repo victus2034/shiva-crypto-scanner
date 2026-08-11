@@ -16763,7 +16763,7 @@
     "last_alert_at": 1786425708.342405
   },
   "DOTUSD|supply|0.81000000|0.81200000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1786426916.218689
   },
   "TAIKO/USDT|demand|0.07043000|0.07075000": {
@@ -16915,6 +16915,10 @@
     "last_alert_at": 0.0
   },
   "AXTI/USDT:USDT|supply|75.72000000|76.63000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "HBAR/USDT|demand|0.06731000|0.06754000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
