@@ -1004,7 +1004,7 @@
     "last_alert_at": 0.0
   },
   "WLFI/USDT|supply|0.05544000|0.05568000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1786474934.6301315
   },
   "BTCUSD|supply|64365.00000000|64475.50000000": {
@@ -1053,17 +1053,21 @@
   },
   "TSLAXUSD|demand|330.35000000|333.30000000": {
     "in_zone": true,
-    "last_alert_at": 1786473713.868705
+    "last_alert_at": 1786476105.0208404
   },
   "SKHYNIX/USDT:USDT|supply|1022.18000000|1028.20000000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1786476105.2624245
   },
   "ZRO/USDT|supply|0.87800000|0.88940000": {
     "in_zone": false,
     "last_alert_at": 0.0
   },
   "INTCBUSD|demand|95.51000000|96.72000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "COINXUSD|supply|151.00000000|152.95000000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
