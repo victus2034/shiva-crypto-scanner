@@ -108,7 +108,7 @@
     "last_alert_at": 0.0
   },
   "UNIUSD|demand|3.91000000|3.93200000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1786432899.0589359
   },
   "LINKUSD|demand|8.16900000|8.19500000": {
@@ -372,8 +372,8 @@
     "last_alert_at": 0.0
   },
   "GALA/USDT|demand|0.00174000|0.00174500": {
-    "in_zone": false,
-    "last_alert_at": 1786431737.898216
+    "in_zone": true,
+    "last_alert_at": 1786435336.591062
   },
   "PEOPLE/USDT|supply|0.00941400|0.00956100": {
     "in_zone": false,
@@ -413,7 +413,7 @@
   },
   "QQQXUSD|supply|725.75000000|726.21000000": {
     "in_zone": true,
-    "last_alert_at": 1786432899.248629
+    "last_alert_at": 1786435336.799373
   },
   "TSLAXUSD|supply|333.30000000|333.50000000": {
     "in_zone": true,
@@ -620,10 +620,22 @@
     "last_alert_at": 0.0
   },
   "LDO/USDT|supply|0.29900000|0.30010000": {
+    "in_zone": true,
+    "last_alert_at": 1786435336.183855
+  },
+  "CRCLXUSD|demand|63.41000000|63.60000000": {
     "in_zone": false,
     "last_alert_at": 0.0
   },
-  "CRCLXUSD|demand|63.41000000|63.60000000": {
+  "ZIL/USDT|demand|0.00233000|0.00233900": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "ICP/USDT|supply|2.37800000|2.39700000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "JUP/USDT|supply|0.18210000|0.18280000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
