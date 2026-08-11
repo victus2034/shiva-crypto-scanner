@@ -360,8 +360,8 @@
     "last_alert_at": 0.0
   },
   "ETHFI/USDT|demand|0.38220000|0.38350000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1786453339.70239
   },
   "DASH/USDT|supply|31.79000000|31.91000000": {
     "in_zone": false,
@@ -372,7 +372,7 @@
     "last_alert_at": 0.0
   },
   "GALA/USDT|demand|0.00174000|0.00174500": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1786450915.8371065
   },
   "PEOPLE/USDT|supply|0.00941400|0.00956100": {
@@ -890,5 +890,17 @@
   "DELL/USDT:USDT|demand|416.80000000|429.68000000": {
     "in_zone": false,
     "last_alert_at": 0.0
+  },
+  "TRUMP/USDT|demand|1.48700000|1.49600000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "POL/USDT|supply|0.07589000|0.07600000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "MSFT/USDT:USDT|demand|503.49000000|505.04000000": {
+    "in_zone": true,
+    "last_alert_at": 1786453340.1009614
   }
 }
