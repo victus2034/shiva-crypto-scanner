@@ -432,8 +432,8 @@
     "last_alert_at": 1786446143.5065517
   },
   "NVDAXUSD|supply|225.55000000|225.80000000": {
-    "in_zone": false,
-    "last_alert_at": 1786548113.4669387
+    "in_zone": true,
+    "last_alert_at": 1786554140.079882
   },
   "AAPLXUSD|supply|314.75000000|315.30000000": {
     "in_zone": false,
@@ -1460,13 +1460,22 @@
     "last_alert_at": 0.0
   },
   "_noise_control": {
-    "ICP/USDT|30m|long|2.2010000000|2.2120000000": 1786551716.5618508
+    "ICP/USDT|30m|long|2.2010000000|2.2120000000": 1786551716.5618508,
+    "NVDAXUSD|30m|short|225.5500000000|225.8000000000": 1786554140.079882
   },
   "METAXUSD|demand|577.00000000|579.20000000": {
     "in_zone": false,
     "last_alert_at": 0.0
   },
   "ICP/USDT|demand|2.08500000|2.08900000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "DOGEUSD|supply|0.07214000|0.07225000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "HOME/USDT|demand|0.00902800|0.00924500": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
