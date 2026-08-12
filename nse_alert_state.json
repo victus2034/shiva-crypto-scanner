@@ -1115,9 +1115,9 @@
     "last_attempt_at": 0.0
   },
   "GLENMARK.NS|supply|2311.0000|2325.7000": {
-    "in_zone": false,
-    "last_alert_at": 1786507950.926319,
-    "last_attempt_at": 1786507950.926319
+    "in_zone": true,
+    "last_alert_at": 1786512755.9124694,
+    "last_attempt_at": 1786512755.9124694
   },
   "GLENMARK.NS|demand|2163.0000|2235.0000": {
     "in_zone": false,
@@ -2445,6 +2445,11 @@
     "last_attempt_at": 0.0
   },
   "PFIZER.NS|demand|4531.2002|4585.7002": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "CRAFTSMAN.NS|demand|9070.5000|9101.0000": {
     "in_zone": false,
     "last_alert_at": 0.0,
     "last_attempt_at": 0.0
