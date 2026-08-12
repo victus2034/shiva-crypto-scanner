@@ -172,8 +172,8 @@
     "last_alert_at": 0.0
   },
   "OPUSD|demand|0.08550000|0.08710000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1786571481.9427435
   },
   "INJUSD|demand|4.05500000|4.18200000": {
     "in_zone": false,
@@ -1492,7 +1492,8 @@
     "last_alert_at": 0.0
   },
   "_noise_control": {
-    "SPYXUSD|4h|short|772.2500000000|773.1100000000": 1786558279.2288058
+    "SPYXUSD|4h|short|772.2500000000|773.1100000000": 1786558279.2288058,
+    "OPUSD|4h|long|0.0855000000|0.0871000000": 1786571481.9427435
   },
   "ARBUSD|supply|0.08030000|0.08180000": {
     "in_zone": false,
