@@ -433,7 +433,7 @@
   },
   "NVDAXUSD|supply|225.55000000|225.80000000": {
     "in_zone": true,
-    "last_alert_at": 1786545708.7659042
+    "last_alert_at": 1786548113.4669387
   },
   "AAPLXUSD|supply|314.75000000|315.30000000": {
     "in_zone": false,
@@ -468,8 +468,8 @@
     "last_alert_at": 0.0
   },
   "DRAMBUSD|supply|55.23000000|55.40000000": {
-    "in_zone": false,
-    "last_alert_at": 1786545709.072065
+    "in_zone": true,
+    "last_alert_at": 1786548113.683073
   },
   "DRAMBUSD|demand|49.04000000|49.49000000": {
     "in_zone": false,
@@ -1448,6 +1448,10 @@
     "last_alert_at": 0.0
   },
   "TAO/USDT|supply|204.30000000|205.10000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "SEIUSD|demand|0.03971000|0.03980000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
