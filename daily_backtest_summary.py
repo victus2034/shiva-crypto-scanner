@@ -12,6 +12,7 @@ from zoneinfo import ZoneInfo
 
 import pandas as pd
 import requests
+import yfinance as yf
 
 import nse_scanner
 import scanner as crypto_scanner
@@ -62,6 +63,7 @@ MARKET_XSTOCK = "XSTOCK"
 MARKET_OTHER = "OTHER"
 SENT_REPORTS_PATH = Path(__file__).with_name("daily_backtest_reports_sent.json")
 FINALIZED_RECORDS_PATH = Path(__file__).with_name("daily_backtest_finalized_records.jsonl")
+PENDING_RECORDS_PATH = Path(__file__).with_name("daily_backtest_pending_records.jsonl")
 
 
 def parse_args() -> argparse.Namespace:
@@ -271,6 +273,116 @@ def fetch_crypto_frames(symbols: list[str]) -> tuple[dict[str, pd.DataFrame], di
     return frames, failures
 
 
+def normalize_yfinance_frame(raw: pd.DataFrame) -> pd.DataFrame:
+    """Normalize yfinance output, including single-ticker MultiIndex frames."""
+    frame = raw.copy()
+    if isinstance(frame.columns, pd.MultiIndex):
+        frame.columns = [str(column[0]) for column in frame.columns]
+    columns = {str(column).lower(): column for column in frame.columns}
+    required = {name: columns.get(name) for name in ("open", "high", "low", "close", "volume")}
+    if any(value is None for value in required.values()):
+        raise ValueError("fine-resolution data missing OHLCV columns")
+    frame = frame[[required[name] for name in required]].copy()
+    frame.columns = list(required)
+    index = pd.DatetimeIndex(pd.to_datetime(frame.index))
+    if index.tz is None:
+        index = index.tz_localize(IST)
+    else:
+        index = index.tz_convert(IST)
+    frame.index = index.floor("s")
+    return frame.dropna().sort_index()
+
+
+def _as_ist_timestamp(value) -> pd.Timestamp:
+    timestamp = pd.Timestamp(value)
+    return timestamp.tz_localize(IST) if timestamp.tzinfo is None else timestamp.tz_convert(IST)
+
+
+def crypto_fetch_resolution_ohlcv(symbol: str, start=None, end=None):
+    """Fetch only the 1-minute window needed to resolve an ambiguous candle."""
+    fallback = crypto_scanner.fallback_symbol(symbol)
+    last_error = None
+    exchanges = []
+    primary = crypto_scanner.EXCHANGES_BY_ID.get(crypto_scanner.PRIMARY_EXCHANGE_ID)
+    if primary is not None:
+        exchanges.append(primary)
+    exchanges.extend(exchange for exchange in crypto_scanner.EXCHANGES if exchange not in exchanges)
+    for exchange in exchanges:
+        for candidate in crypto_scanner.exchange_symbol_candidates(fallback):
+            try:
+                if start is None or end is None:
+                    return exchange.fetch_ohlcv(candidate, timeframe="1m", limit=1000)
+
+                start_ms = int(_as_ist_timestamp(start).tz_convert("UTC").timestamp() * 1000)
+                end_ms = int(_as_ist_timestamp(end).tz_convert("UTC").timestamp() * 1000)
+                cursor = start_ms
+                rows = []
+                while cursor < end_ms:
+                    batch = exchange.fetch_ohlcv(
+                        candidate,
+                        timeframe="1m",
+                        since=cursor,
+                        limit=min(1000, max(2, int((end_ms - cursor) / 60000) + 2)),
+                    )
+                    if not batch:
+                        break
+                    rows.extend(row for row in batch if int(row[0]) < end_ms)
+                    next_cursor = int(batch[-1][0]) + 60000
+                    if next_cursor <= cursor:
+                        break
+                    cursor = next_cursor
+                    if len(batch) < 1000:
+                        break
+                if rows:
+                    return rows
+                raise RuntimeError("no 1-minute candles in requested resolution window")
+            except Exception as error:
+                last_error = error
+    raise RuntimeError(f"all crypto 1m exchanges failed for {symbol}: {last_error}")
+
+
+def fetch_resolution_frames(
+    symbols: list[str],
+    market: str,
+    windows: dict[str, tuple[pd.Timestamp, pd.Timestamp]] | None = None,
+) -> tuple[dict[str, pd.DataFrame], dict[str, str]]:
+    """Fetch fine candles only for coarse-candle conflicts."""
+    frames: dict[str, pd.DataFrame] = {}
+    failures: dict[str, str] = {}
+    for symbol in symbols:
+        try:
+            if market == "nse":
+                start, end = (windows or {}).get(symbol, (None, None))
+                download_kwargs = {
+                    "interval": "1m",
+                    "auto_adjust": False,
+                    "progress": False,
+                    "threads": False,
+                }
+                if start is not None and end is not None:
+                    download_kwargs.update({
+                        "start": _as_ist_timestamp(start).to_pydatetime(),
+                        "end": _as_ist_timestamp(end).to_pydatetime(),
+                    })
+                else:
+                    download_kwargs["period"] = "7d"
+                raw = yf.download(
+                    symbol,
+                    **download_kwargs,
+                )
+                frames[symbol] = normalize_yfinance_frame(raw)
+            elif market == "crypto":
+                start, end = (windows or {}).get(symbol, (None, None))
+                frames[symbol] = normalize_crypto_frame(
+                    crypto_fetch_resolution_ohlcv(symbol, start=start, end=end)
+                )
+            else:
+                failures[symbol] = "fine-resolution timing is TBD for xStocks"
+        except Exception as error:
+            failures[symbol] = str(error)
+    return frames, failures
+
+
 def crypto_fetch_ohlcv(symbol: str):
     last_error = None
     symbol_for_fallback = crypto_scanner.fallback_symbol(symbol)
@@ -340,7 +452,13 @@ def run_backtest(
             rows.append(unfilled(alert, "alert_before_data"))
             continue
 
-        if market in {"crypto", "xstock", "other"}:
+        if market == "crypto":
+            tracking_end_index, window_mature = crypto_tracking_end(frame, event_time)
+        elif market == "xstock":
+            # xStocks have no approved fixed evaluation horizon yet.  Do not
+            # silently apply crypto's six-hour provisional window to them.
+            tracking_end_index, window_mature = all_available_tracking_end(frame)
+        elif market == "other":
             tracking_end_index, window_mature = crypto_tracking_end(frame, event_time)
         else:
             tracking_end_index, window_mature = same_day_tracking_end(frame, event_time)
@@ -358,6 +476,7 @@ def run_backtest(
                 event_index,
                 tracking_end_index,
                 resolution_frames.get(alert["symbol"]),
+                market,
             )
         )
 
@@ -427,12 +546,20 @@ def crypto_tracking_end(
     return positions[-1], True
 
 
+def all_available_tracking_end(frame: pd.DataFrame) -> tuple[int | None, bool]:
+    """Use all currently available bars when no fixed horizon is approved."""
+    if frame.empty:
+        return None, True
+    return len(frame.index) - 1, True
+
+
 def simulate_alert(
     frame: pd.DataFrame,
     alert: dict,
     event_index: int,
     tracking_end_index: int,
     resolution_frame: pd.DataFrame | None = None,
+    market: str | None = None,
 ) -> dict:
     side = alert["side"]
     direction = 1.0 if side == "long" else -1.0
@@ -452,6 +579,15 @@ def simulate_alert(
         ):
             return unfilled(alert, "immature")
         return unfilled(alert, "zone_not_touched")
+
+    if market_class(alert.get("symbol", "")) == MARKET_XSTOCK:
+        return pending_trade(
+            alert,
+            frame,
+            entry_index,
+            entry_price,
+            timing_status="xstock_timing_tbd",
+        )
 
     if uses_six_hour_evaluation(alert.get("symbol", "")):
         six_hour_end_index, six_hour_window_mature = six_hour_entry_tracking_end(frame, entry_index)
@@ -482,6 +618,8 @@ def simulate_alert(
     exit_index = end_index
     max_favorable_r = 0.0
     max_adverse_r = 0.0
+    ambiguous_interval_start = None
+    ambiguous_interval_end = None
 
     for index in range(entry_index, end_index + 1):
         high = float(frame["high"].iloc[index])
@@ -507,6 +645,7 @@ def simulate_alert(
                 target_half,
                 target_1,
                 target_2,
+                market=market,
             )
             if resolution == "SL":
                 outcome = "SL"
@@ -516,6 +655,9 @@ def simulate_alert(
             if resolution == DATA_QUALITY_AMBIGUOUS:
                 outcome = DATA_QUALITY_AMBIGUOUS
                 exit_index = index
+                ambiguous_interval_start = frame.index[index]
+                bar_duration = infer_bar_duration(frame)
+                ambiguous_interval_end = frame.index[index] + bar_duration
                 break
             if resolution in {"+0.5R", "+1R", "+2R"}:
                 if resolution in {"+0.5R", "+1R", "+2R"}:
@@ -624,6 +766,8 @@ def simulate_alert(
             "time_to_resolution_seconds": duration_seconds(frame.index[entry_index], final_resolution_time),
             "time_to_best_secured_milestone_seconds": duration_seconds(frame.index[entry_index], best_secured_time),
             "cooldown_blocked": False,
+            "ambiguous_interval_start": ambiguous_interval_start,
+            "ambiguous_interval_end": ambiguous_interval_end,
         }
     )
     return result
@@ -657,6 +801,7 @@ def resolve_same_candle_order(
     target_half: float,
     target_1: float,
     target_2: float,
+    market: str | None = None,
 ) -> str:
     """Use finer candles to resolve an otherwise ambiguous SL/target candle."""
     if resolution_frame is None or resolution_frame.empty:
@@ -674,6 +819,15 @@ def resolve_same_candle_order(
         fine = fine[fine.index == start]
     if fine.empty:
         return DATA_QUALITY_AMBIGUOUS
+
+    if market == "nse":
+        cutoff = pd.Timestamp(
+            datetime.combine(start.date(), NSE_BACKTEST_CLOSE_CUTOFF),
+            tz=IST,
+        )
+        fine = fine[candle_ends(fine) <= cutoff]
+        if fine.empty:
+            return DATA_QUALITY_AMBIGUOUS
 
     for _, candle in fine.iterrows():
         high = float(candle["high"])
@@ -727,7 +881,7 @@ def six_hour_entry_tracking_end(
 
 
 def uses_six_hour_evaluation(symbol: str) -> bool:
-    return market_class(symbol) in {MARKET_CRYPTO, MARKET_XSTOCK}
+    return market_class(symbol) == MARKET_CRYPTO
 
 
 def pending_trade(
@@ -735,6 +889,7 @@ def pending_trade(
     frame: pd.DataFrame,
     entry_index: int,
     entry_price: float,
+    timing_status: str = "pending",
 ) -> dict:
     result = unfilled(alert, "Pending")
     result.update(
@@ -746,6 +901,7 @@ def pending_trade(
             "entry_basis": "body",
             "outcome": "Pending",
             "final_result": "Pending",
+            "timing_status": timing_status,
             "bars_held": 0,
             "cooldown_blocked": False,
         }
@@ -901,6 +1057,7 @@ def unfilled(alert: dict, outcome: str) -> dict:
             "time_to_resolution_seconds": None,
             "time_to_best_secured_milestone_seconds": None,
             "cooldown_blocked": False,
+            "timing_status": "",
         }
     )
     return result
@@ -1329,54 +1486,198 @@ def persist_finalized_records(
     market: str = "nse",
     path: Path = FINALIZED_RECORDS_PATH,
 ) -> None:
-    day = pd.Timestamp(target_date).date().isoformat()
-    retained: list[str] = []
-    if path.exists():
+    pending_path = path.with_name(PENDING_RECORDS_PATH.name) if path == FINALIZED_RECORDS_PATH else None
+    lifecycle_rows = load_lifecycle_rows(path, pending_path)
+    for row in results.to_dict("records") if not results.empty else []:
+        payload = lifecycle_payload(row, target_date, timeframe, market)
+        lifecycle_rows[payload["trade_id"]] = payload
+    write_lifecycle_rows(lifecycle_rows, path, pending_path)
+
+
+def lifecycle_payload(row: dict, target_date, timeframe: str, market: str) -> dict:
+    alert_time = first_present_value(row.get("event_time_ist"), row.get("event_time"))
+    row_date = row.get("report_date") or row.get("date") or target_date
+    payload = {
+        "market": market.upper(),
+        "timeframe": timeframe,
+        "date": pd.Timestamp(row_date).date().isoformat(),
+        "symbol": str(row.get("symbol", "")),
+        "display_symbol": display_symbol(row.get("symbol", "")),
+        "side": row.get("side", ""),
+        "rating": json_optional_float(row.get("rating")),
+        "trade_id": row.get("trade_id") or stable_trade_id(row),
+        "alert_time": format_optional_timestamp(alert_time),
+        "entry_time": format_optional_timestamp(row.get("entry_time")),
+        "entry_price": json_optional_float(row.get("entry_price")),
+        "planned_entry": json_optional_float(row.get("planned_entry")),
+        "stop_price": json_optional_float(row.get("stop_price")),
+        "zone_bottom": json_optional_float(row.get("zone_bottom")),
+        "zone_top": json_optional_float(row.get("zone_top")),
+        "alert_price": json_optional_float(row.get("alert_price")),
+        "filled": bool(row.get("filled", False)),
+        "outcome": row.get("outcome", ""),
+        "final_result": row.get("final_result", ""),
+        "timing_status": row.get("timing_status", ""),
+        "final_resolution_time": format_optional_timestamp(row.get("final_resolution_time")),
+        "time_to_half_r": format_optional_timestamp(row.get("time_to_half_r")),
+        "time_to_1r": format_optional_timestamp(row.get("time_to_1r")),
+        "time_to_2r": format_optional_timestamp(row.get("time_to_2r")),
+        "time_to_sl": format_optional_timestamp(row.get("time_to_sl")),
+        "time_to_resolution_seconds": json_optional_float(row.get("time_to_resolution_seconds")),
+        "time_to_best_secured_milestone_seconds": json_optional_float(row.get("time_to_best_secured_milestone_seconds")),
+        "realized_r": json_optional_float(row.get("realized_r")),
+        "net_realized_r": json_optional_float(row.get("net_realized_r")),
+        "cooldown_blocked": bool(row.get("cooldown_blocked", False)),
+        "ambiguous_interval_start": format_optional_timestamp(row.get("ambiguous_interval_start")),
+        "ambiguous_interval_end": format_optional_timestamp(row.get("ambiguous_interval_end")),
+        "zone_id": row.get("zone_id", ""),
+        "source_line": int(row.get("source_line", 0) or 0),
+    }
+    return payload
+
+
+def load_lifecycle_rows(finalized_path: Path, pending_path: Path | None) -> dict[str, dict]:
+    rows: dict[str, dict] = {}
+    for path in (finalized_path, pending_path):
+        if path is None or not path.exists():
+            continue
         for line in path.read_text(encoding="utf-8").splitlines():
-            if not line.strip():
-                continue
             try:
                 row = json.loads(line)
             except json.JSONDecodeError:
                 continue
-            if row.get("market") == market.upper() and row.get("timeframe") == timeframe and row.get("date") == day:
+            trade_id = row.get("trade_id")
+            if trade_id:
+                rows[str(trade_id)] = row
+    return rows
+
+
+def write_lifecycle_rows(rows: dict[str, dict], finalized_path: Path, pending_path: Path | None) -> None:
+    finalized = []
+    pending = []
+    for row in rows.values():
+        if (
+            row.get("final_result") in {"Pending", DATA_QUALITY_AMBIGUOUS}
+            or str(row.get("timing_status", "")).endswith("_tbd")
+        ):
+            pending.append(row)
+        else:
+            finalized.append(row)
+    finalized_path.write_text(
+        "\n".join(json.dumps(row, sort_keys=True) for row in finalized) + ("\n" if finalized else ""),
+        encoding="utf-8",
+    )
+    if pending_path is not None:
+        pending_path.write_text(
+            "\n".join(json.dumps(row, sort_keys=True) for row in pending) + ("\n" if pending else ""),
+            encoding="utf-8",
+        )
+
+
+def load_pending_records(path: Path = PENDING_RECORDS_PATH, timeframe: str | None = None, market: str | None = None) -> pd.DataFrame:
+    if not path.exists():
+        return pd.DataFrame()
+    rows = []
+    for line in path.read_text(encoding="utf-8").splitlines():
+        try:
+            row = json.loads(line)
+        except json.JSONDecodeError:
+            continue
+        if timeframe and row.get("timeframe") != timeframe:
+            continue
+        if market and row.get("market") != market.upper():
+            continue
+        row["event_time_ist"] = row.get("alert_time")
+        row["event_time"] = row.get("alert_time")
+        row["market_class"] = row.get("market", "")
+        row["report_date"] = pd.Timestamp(row.get("date")).date() if row.get("date") else None
+        rows.append(row)
+    return pd.DataFrame(rows)
+
+
+def resolution_windows(results: pd.DataFrame) -> dict[str, tuple[pd.Timestamp, pd.Timestamp]]:
+    """Return exact fine-data windows for unresolved same-candle conflicts."""
+    if results.empty or "final_result" not in results:
+        return {}
+    ambiguous = results[results["final_result"] == DATA_QUALITY_AMBIGUOUS].copy()
+    if ambiguous.empty:
+        return {}
+    windows: dict[str, tuple[pd.Timestamp, pd.Timestamp]] = {}
+    for _, row in ambiguous.iterrows():
+        symbol = str(row.get("symbol", ""))
+        start = row.get("ambiguous_interval_start")
+        end = row.get("ambiguous_interval_end")
+        if not symbol or pd.isna(start) or pd.isna(end):
+            continue
+        start_ts = _as_ist_timestamp(start)
+        end_ts = _as_ist_timestamp(end)
+        if symbol not in windows:
+            windows[symbol] = (start_ts, end_ts)
+        else:
+            current_start, current_end = windows[symbol]
+            windows[symbol] = (min(current_start, start_ts), max(current_end, end_ts))
+    return windows
+
+
+def reconciliation_diagnostics(
+    delivered: pd.DataFrame,
+    backtested: pd.DataFrame,
+    finalized_path: Path = FINALIZED_RECORDS_PATH,
+) -> dict[str, object]:
+    """Check delivered -> backtested -> finalized lifecycle continuity."""
+    delivered_ids = (
+        set(delivered.get("trade_id", pd.Series(dtype=str)).dropna().astype(str))
+        if not delivered.empty else set()
+    )
+    backtested_ids = (
+        set(backtested.get("trade_id", pd.Series(dtype=str)).dropna().astype(str))
+        if not backtested.empty else set()
+    )
+    finalized_rows = []
+    raw_id_counts: dict[str, int] = {}
+    if finalized_path.exists():
+        for line in finalized_path.read_text(encoding="utf-8").splitlines():
+            try:
+                row = json.loads(line)
+            except json.JSONDecodeError:
                 continue
-            retained.append(json.dumps(row, sort_keys=True))
-
-    new_rows: list[str] = []
-    if not results.empty:
-        for row in results.to_dict("records"):
-            payload = {
-                "market": market.upper(),
-                "timeframe": timeframe,
-                "date": day,
-                "symbol": str(row.get("symbol", "")),
-                "display_symbol": display_symbol(row.get("symbol", "")),
-                "side": row.get("side", ""),
-                "rating": json_optional_float(row.get("rating")),
-                "trade_id": row.get("trade_id") or stable_trade_id(row),
-                "alert_time": format_optional_timestamp(first_present_value(row.get("event_time_ist"), row.get("event_time"))),
-                "entry_time": format_optional_timestamp(row.get("entry_time")),
-                "filled": bool(row.get("filled", False)),
-                "outcome": row.get("outcome", ""),
-                "final_result": row.get("final_result", ""),
-                "final_resolution_time": format_optional_timestamp(row.get("final_resolution_time")),
-                "time_to_half_r": format_optional_timestamp(row.get("time_to_half_r")),
-                "time_to_1r": format_optional_timestamp(row.get("time_to_1r")),
-                "time_to_2r": format_optional_timestamp(row.get("time_to_2r")),
-                "time_to_sl": format_optional_timestamp(row.get("time_to_sl")),
-                "time_to_resolution_seconds": json_optional_float(row.get("time_to_resolution_seconds")),
-                "time_to_best_secured_milestone_seconds": json_optional_float(row.get("time_to_best_secured_milestone_seconds")),
-                "realized_r": json_optional_float(row.get("realized_r")),
-                "net_realized_r": json_optional_float(row.get("net_realized_r")),
-                "cooldown_blocked": bool(row.get("cooldown_blocked", False)),
-                "zone_id": row.get("zone_id", ""),
-                "source_line": int(row.get("source_line", 0) or 0),
-            }
-            new_rows.append(json.dumps(payload, sort_keys=True))
-
-    all_rows = retained + new_rows
-    path.write_text(("\n".join(all_rows) + "\n") if all_rows else "", encoding="utf-8")
+            trade_id = str(row.get("trade_id", ""))
+            if not trade_id:
+                continue
+            raw_id_counts[trade_id] = raw_id_counts.get(trade_id, 0) + 1
+            finalized_rows.append(row)
+    finalized_ids = {str(row["trade_id"]) for row in finalized_rows}
+    completed_ids = {
+        str(row.get("trade_id"))
+        for row in backtested.to_dict("records") if not backtested.empty
+        if row.get("final_result") in OUTCOME_ORDER and row.get("final_result") != DATA_QUALITY_AMBIGUOUS
+    }
+    duplicate_finalization = sorted(
+        trade_id for trade_id, count in raw_id_counts.items() if count > 1
+    )
+    issues = []
+    if delivered_ids - backtested_ids:
+        issues.append(f"delivered_without_backtest={len(delivered_ids - backtested_ids)}")
+    if completed_ids - finalized_ids:
+        issues.append(f"backtest_without_finalized={len(completed_ids - finalized_ids)}")
+    if duplicate_finalization:
+        issues.append(f"duplicate_finalization={len(duplicate_finalization)}")
+    cohort_keys = {}
+    cross_cohort = set()
+    for row in finalized_rows:
+        trade_id = str(row.get("trade_id", ""))
+        cohort = (row.get("market"), row.get("timeframe"), row.get("date"))
+        previous = cohort_keys.setdefault(trade_id, cohort)
+        if previous != cohort:
+            cross_cohort.add(trade_id)
+    if cross_cohort:
+        issues.append(f"cross_cohort={len(cross_cohort)}")
+    return {
+        "delivered": len(delivered_ids),
+        "backtested": len(backtested_ids),
+        "finalized": len(finalized_ids),
+        "issues": issues,
+    }
 
 
 def build_timing_analytics(records: pd.DataFrame) -> pd.DataFrame:
@@ -1440,16 +1741,30 @@ def main() -> None:
         else configure_nse_data(args.timeframe)
     )
     records = load_records(args.records or default_records, args.timeframe)
+    wanted_market = {
+        "nse": MARKET_NSE,
+        "crypto": MARKET_CRYPTO,
+        "xstock": MARKET_XSTOCK,
+        "other": MARKET_OTHER,
+    }[args.market]
     if not records.empty:
-        wanted_market = {
-            "nse": MARKET_NSE,
-            "crypto": MARKET_CRYPTO,
-            "xstock": MARKET_XSTOCK,
-            "other": MARKET_OTHER,
-        }[args.market]
         records = records[records["market_class"] == wanted_market].copy()
     records = assign_report_dates(records, args.market)
+    pending = load_pending_records(
+        PENDING_RECORDS_PATH,
+        timeframe=args.timeframe,
+        market=wanted_market,
+    )
+    if not pending.empty:
+        pending = pending[pending["market_class"] == wanted_market].copy()
+        pending_ids = set(pending.get("trade_id", pd.Series(dtype=str)).astype(str))
+        if not records.empty and "trade_id" in records:
+            records = records[~records["trade_id"].astype(str).isin(pending_ids)].copy()
     target_date = select_target_date(records, args.date, args.market, args.timeframe)
+    if target_date is None and not pending.empty and not args.date:
+        # A pending-only run is a reconciliation run.  It must continue even
+        # when the current crypto report bucket is not complete yet.
+        target_date = max(pending["report_date"].dropna())
     if target_date is None:
         print(f"CRYPTO {args.timeframe} BACKTEST\n\nNo completed crypto report bucket yet.")
         return
@@ -1459,21 +1774,55 @@ def main() -> None:
         else records
     )
 
+    current_day_records = day_records.copy()
+    evaluation_records = pd.concat([day_records, pending], ignore_index=True) if not pending.empty else day_records
+    if not evaluation_records.empty and "trade_id" in evaluation_records:
+        evaluation_records = evaluation_records.drop_duplicates("trade_id", keep="last")
+
     frames: dict[str, pd.DataFrame] = {}
     data_failures: dict[str, str] = {}
     cooldown_blocked = 0
     results = pd.DataFrame()
-    if not day_records.empty:
+    if not evaluation_records.empty:
         if args.market in {"crypto", "xstock", "other"}:
-            frames, data_failures = fetch_crypto_frames(sorted(day_records["symbol"].unique()))
+            frames, data_failures = fetch_crypto_frames(sorted(evaluation_records["symbol"].unique()))
         else:
-            frames, data_failures = fetch_frames(sorted(day_records["symbol"].unique()))
-        results, cooldown_blocked = run_backtest(day_records, frames, args.market)
+            frames, data_failures = fetch_frames(sorted(evaluation_records["symbol"].unique()))
+        results, cooldown_blocked = run_backtest(evaluation_records, frames, args.market)
+
+        ambiguous_symbols = sorted(
+            results.loc[
+                results.get("final_result", pd.Series(dtype=str)) == DATA_QUALITY_AMBIGUOUS,
+                "symbol",
+            ].dropna().astype(str).unique()
+        ) if not results.empty and "final_result" in results else []
+        if ambiguous_symbols:
+            fine_frames, fine_failures = fetch_resolution_frames(
+                ambiguous_symbols,
+                args.market,
+                windows=resolution_windows(results),
+            )
+            data_failures.update({f"{symbol} (fine)": error for symbol, error in fine_failures.items()})
+            results, cooldown_blocked = run_backtest(
+                evaluation_records,
+                frames,
+                args.market,
+                resolution_frames=fine_frames,
+            )
+
+    # The Discord report represents only today's newly delivered alerts. Pending
+    # rows are reconciled in storage, but must not inflate today's alert counts.
+    current_ids = set(current_day_records.get("trade_id", pd.Series(dtype=str)).astype(str))
+    report_results = (
+        results[results["trade_id"].astype(str).isin(current_ids)].copy()
+        if not results.empty and current_ids and "trade_id" in results
+        else results.iloc[0:0].copy() if not results.empty else results
+    )
 
     message = build_summary(
-        day_records,
+        current_day_records,
         target_date,
-        results,
+        report_results,
         data_failures,
         cooldown_blocked,
         args.timeframe,
@@ -1481,13 +1830,34 @@ def main() -> None:
     )
     print(message)
     if not args.dry_run:
+        # Persist before duplicate-report gating so a rerun can still reconcile
+        # a pending trade even when the Discord report was already sent.
+        persist_finalized_records(target_date, args.timeframe, results, args.market)
+        diagnostics = reconciliation_diagnostics(
+            evaluation_records,
+            results,
+            FINALIZED_RECORDS_PATH,
+        )
+        if diagnostics["issues"]:
+            print("RECONCILIATION ISSUES: " + "; ".join(diagnostics["issues"]))
         key = report_key(target_date, args.timeframe, args.market)
         if not args.force and key in load_sent_reports():
             print(f"Skipped duplicate report: {key}")
             return
         send_discord_message(message)
         mark_sent_report(key)
-        persist_finalized_records(target_date, args.timeframe, results, args.market)
+
+    if not evaluation_records.empty:
+        finalized_count = int(
+            (results.get("final_result", pd.Series(dtype=str)).isin(OUTCOME_ORDER)).sum()
+        ) if not results.empty else 0
+        pending_count = int(
+            (results.get("final_result", pd.Series(dtype=str)) == "Pending").sum()
+        ) if not results.empty else 0
+        print(
+            f"RECONCILIATION delivered={len(evaluation_records)} "
+            f"backtested={len(results)} finalized={finalized_count} pending={pending_count}"
+        )
 
 
 if __name__ == "__main__":

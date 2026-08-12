@@ -1,5 +1,6 @@
 ﻿import tempfile
 import unittest
+from unittest.mock import patch
 from pathlib import Path
 
 import pandas as pd
@@ -72,6 +73,18 @@ def crypto_frame(start="2026-08-04 10:00", rows=None):
 
 
 class DailyBacktestSummaryTests(unittest.TestCase):
+
+    def test_xstock_backtest_does_not_use_crypto_six_hour_window(self):
+        alerts = pd.DataFrame([xstock_alert()])
+        frame = crypto_frame()
+        with patch.object(summary, "crypto_tracking_end", side_effect=AssertionError):
+            results, _ = summary.run_backtest(
+                alerts,
+                {"AAPLXUSD": frame},
+                market="xstock",
+            )
+        self.assertEqual(len(results), 1)
+
     def test_nse_tracking_stops_on_same_trading_day(self):
         index = pd.DatetimeIndex(
             [
@@ -160,6 +173,39 @@ class DailyBacktestSummaryTests(unittest.TestCase):
         self.assertTrue(pd.isna(result["net_realized_r"]))
         self.assertFalse(result["half_r_hit"])
         self.assertIsNone(result["time_to_sl"])
+
+    def test_resolution_windows_preserve_exact_ambiguous_interval(self):
+        results = pd.DataFrame(
+            [
+                {
+                    "symbol": "BTCUSDT",
+                    "final_result": summary.DATA_QUALITY_AMBIGUOUS,
+                    "ambiguous_interval_start": pd.Timestamp("2026-08-04 10:30", tz=summary.IST),
+                    "ambiguous_interval_end": pd.Timestamp("2026-08-04 11:00", tz=summary.IST),
+                }
+            ]
+        )
+
+        self.assertEqual(
+            summary.resolution_windows(results)["BTCUSDT"],
+            (
+                pd.Timestamp("2026-08-04 10:30", tz=summary.IST),
+                pd.Timestamp("2026-08-04 11:00", tz=summary.IST),
+            ),
+        )
+
+    def test_reconciliation_diagnostics_detects_missing_finalization(self):
+        delivered = pd.DataFrame([{"trade_id": "trade-1"}])
+        backtested = pd.DataFrame([{"trade_id": "trade-1", "final_result": "+1R"}])
+
+        with tempfile.TemporaryDirectory() as tmp:
+            diagnostics = summary.reconciliation_diagnostics(
+                delivered,
+                backtested,
+                Path(tmp) / "finalized.jsonl",
+            )
+
+        self.assertIn("backtest_without_finalized=1", diagnostics["issues"])
 
     def test_same_candle_order_uses_resolution_frame_when_available(self):
         index = pd.DatetimeIndex(["2026-08-04 10:00", "2026-08-04 10:30"], tz=summary.IST)
@@ -548,7 +594,7 @@ class DailyBacktestSummaryTests(unittest.TestCase):
         self.assertEqual(result["final_result"], "Neither")
         self.assertLess(result["exit_time"], frame.index[-1])
 
-    def test_xstock_uses_six_hour_evaluation(self):
+    def test_xstock_timing_remains_pending_until_policy_is_approved(self):
         frame = crypto_frame(
             rows=[
                 (101.0, 101.2, 100.8, 101.0),
@@ -558,8 +604,8 @@ class DailyBacktestSummaryTests(unittest.TestCase):
 
         result = summary.simulate_alert(frame, xstock_alert(), 0, 1)
 
-        self.assertEqual(result["final_result"], "+1R")
-        self.assertNotEqual(result["outcome"], "xstock_timing_tbd")
+        self.assertEqual(result["final_result"], "Pending")
+        self.assertEqual(result["timing_status"], "xstock_timing_tbd")
 
     def test_xstock_open_trade_inside_six_hours_is_pending(self):
         future_start = (pd.Timestamp.now(tz=summary.IST) + pd.Timedelta(hours=1)).floor("30min")
@@ -584,8 +630,8 @@ class DailyBacktestSummaryTests(unittest.TestCase):
 
         result = summary.simulate_alert(frame, xstock_alert(), 0, len(frame) - 1)
 
-        self.assertEqual(result["final_result"], "Neither")
-        self.assertLess(result["exit_time"], frame.index[-1])
+        self.assertEqual(result["final_result"], "Pending")
+        self.assertEqual(result["timing_status"], "xstock_timing_tbd")
 
     def test_finalized_records_include_stable_id_and_timing_fields(self):
         with tempfile.TemporaryDirectory() as tmp:

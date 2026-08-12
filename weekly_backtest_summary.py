@@ -2,7 +2,8 @@ from __future__ import annotations
 
 import argparse
 import json
-from datetime import datetime, timedelta
+import os
+from datetime import date, datetime, timedelta
 from pathlib import Path
 
 import pandas as pd
@@ -41,6 +42,26 @@ def week_bounds(week_ending) -> tuple:
     return start, end
 
 
+def expected_nse_sessions(week_start, week_end, now=None) -> set[date]:
+    """Return completed NSE sessions that must be represented in a week."""
+    now = now or datetime.now(tz=daily.IST)
+    last_date = min(pd.Timestamp(week_end).date(), now.date())
+    first_date = pd.Timestamp(week_start).date()
+    holidays = {
+        date.fromisoformat(item.strip())
+        for item in os.getenv("NSE_HOLIDAYS", "").split(",")
+        if item.strip()
+    }
+    sessions = set()
+    current = first_date
+    while current <= last_date:
+        if current.weekday() < 5 and current not in holidays:
+            if current < now.date() or now.timetz().replace(tzinfo=None) >= daily.NSE_BACKTEST_CLOSE_CUTOFF:
+                sessions.add(current)
+        current += timedelta(days=1)
+    return sessions
+
+
 def load_finalized_records(path: Path = daily.FINALIZED_RECORDS_PATH) -> pd.DataFrame:
     if not path.exists():
         return pd.DataFrame()
@@ -67,6 +88,11 @@ def build_weekly_summary(frame: pd.DataFrame, timeframe: str, week_start, week_e
     frame = frame.copy()
     frame["rating"] = pd.to_numeric(frame["rating"], errors="coerce")
     frame["net_realized_r"] = pd.to_numeric(frame["net_realized_r"], errors="coerce")
+    # Pending and ambiguous rows are not completed outcomes and must not be
+    # presented as weekly wins/losses.
+    frame = frame[~frame["final_result"].isin(["Pending", daily.DATA_QUALITY_AMBIGUOUS])].copy()
+    if frame.empty:
+        return f"{header}\n\nNo finalized daily records."
     side_counts = frame["side"].value_counts()
     filled = frame[frame["filled"] == True].copy()  # noqa: E712
     outcomes = frame["outcome"].value_counts()
@@ -111,6 +137,46 @@ def build_weekly_summary(frame: pd.DataFrame, timeframe: str, week_start, week_e
     return "\n".join(lines)
 
 
+def weekly_readiness(
+    finalized: pd.DataFrame,
+    pending: pd.DataFrame,
+    week_start,
+    week_end,
+) -> tuple[bool, str]:
+    """Prevent a final weekly report while lifecycle rows remain unresolved."""
+    unresolved = []
+    if not pending.empty:
+        unresolved.append(f"pending={len(pending)}")
+    if not finalized.empty and "final_result" in finalized:
+        ambiguous = finalized[finalized["final_result"] == daily.DATA_QUALITY_AMBIGUOUS]
+        if not ambiguous.empty:
+            unresolved.append(f"data_quality_ambiguous={len(ambiguous)}")
+    expected = expected_nse_sessions(week_start, week_end)
+    represented = set()
+    if not finalized.empty and "date" in finalized:
+        represented = {
+            pd.Timestamp(value).date()
+            for value in finalized["date"].dropna()
+        }
+    missing_sessions = sorted(expected - represented)
+    if missing_sessions:
+        unresolved.append(
+            "missing_sessions=" + ",".join(item.isoformat() for item in missing_sessions)
+        )
+    if unresolved:
+        header = (
+            f"NSE {pd.Timestamp(week_start).strftime('%d %b').upper()}-"
+            f"{pd.Timestamp(week_end).strftime('%d %b %Y').upper()}"
+        )
+        return False, (
+            f"{header} WEEKLY BACKTEST\n\n"
+            "INCOMPLETE WEEK - final report withheld.\n"
+            f"Unresolved lifecycle rows: {', '.join(unresolved)}.\n"
+            "Reconcile pending and ambiguous rows before publishing."
+        )
+    return True, ""
+
+
 def format_weekly_rating_blocks(frame: pd.DataFrame) -> str:
     blocks = []
     no_entry_ratings: list[str] = []
@@ -128,7 +194,7 @@ def format_weekly_rating_blocks(frame: pd.DataFrame) -> str:
         one_r = int(final_counts.get("+1R", 0))
         two_r = int(final_counts.get("+2R", 0))
         stops = int(final_counts.get("SL", 0))
-        conflicts = int(final_counts.get("Conflict", 0))
+        conflicts = int(final_counts.get(daily.DATA_QUALITY_AMBIGUOUS, 0))
         neither = int(final_counts.get("Neither", 0))
         wins = half_r + one_r + two_r
         detail_parts = []
@@ -181,6 +247,22 @@ def main() -> None:
             & (frame["date"] >= week_start)
             & (frame["date"] <= week_end)
         ].copy()
+
+    pending = daily.load_pending_records(
+        daily.PENDING_RECORDS_PATH,
+        timeframe=args.timeframe,
+        market=daily.MARKET_NSE,
+    )
+    if not pending.empty and "report_date" in pending:
+        pending = pending[
+            (pending["report_date"] >= week_start)
+            & (pending["report_date"] <= week_end)
+        ].copy()
+
+    ready, diagnostic = weekly_readiness(frame, pending, week_start, week_end)
+    if not ready:
+        print(diagnostic)
+        return
 
     message = build_weekly_summary(frame, args.timeframe, week_start, week_end)
     print(message)

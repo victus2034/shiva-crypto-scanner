@@ -1,11 +1,44 @@
 ﻿import unittest
 
+from datetime import date
+
 import pandas as pd
 
 import weekly_backtest_summary as weekly
 
 
 class WeeklyBacktestSummaryTests(unittest.TestCase):
+
+    def test_weekly_readiness_withholds_unresolved_rows(self):
+        pending = pd.DataFrame([{"trade_id": "pending-1"}])
+        ready, message = weekly.weekly_readiness(
+            pd.DataFrame(),
+            pending,
+            date(2026, 8, 3),
+            date(2026, 8, 7),
+        )
+        self.assertFalse(ready)
+        self.assertIn("final report withheld", message)
+
+    def test_weekly_readiness_withholds_missing_completed_sessions(self):
+        finalized = pd.DataFrame(
+            [
+                {"date": "2026-08-03", "final_result": "+1R"},
+                {"date": "2026-08-04", "final_result": "+1R"},
+                {"date": "2026-08-05", "final_result": "+1R"},
+                {"date": "2026-08-06", "final_result": "+1R"},
+            ]
+        )
+        ready, message = weekly.weekly_readiness(
+            finalized,
+            pd.DataFrame(),
+            date(2026, 8, 3),
+            date(2026, 8, 7),
+        )
+
+        self.assertFalse(ready)
+        self.assertIn("missing_sessions=2026-08-07", message)
+
     def rows(self):
         return pd.DataFrame(
             [

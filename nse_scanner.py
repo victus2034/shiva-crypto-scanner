@@ -58,6 +58,7 @@ STATE_FILE = Path(__file__).with_name("nse_alert_state.json")
 ALERT_RECORD_FILE = Path(__file__).with_name("nse_alert_records.jsonl")
 SL_BUFFER_PCT = 0.10
 MARKET_DATA = {}
+ZONE_REPEAT_SUPPRESSION_SECONDS = 60 * 60
 NSE_SECTOR_MAP = {}
 NSE_SECTOR_BIAS_THRESHOLD_PCT = float(os.getenv("NSE_SECTOR_BIAS_THRESHOLD_PCT", "1.5"))
 NSE_SECTOR_BUCKETS = (
@@ -85,8 +86,26 @@ def market_window_status(now=None):
     cutoff_hour, cutoff_minute = parse_hhmm(STRATEGY_CUTOFF)
     market_open = now.replace(hour=scan_hour, minute=scan_minute, second=0, microsecond=0)
     market_close = now.replace(hour=cutoff_hour, minute=cutoff_minute, second=0, microsecond=0)
-    is_weekday = now.weekday() < 5
-    return is_weekday and market_open <= now <= market_close, now, market_open, market_close
+    holiday_text = os.getenv("NSE_HOLIDAYS", "")
+    holidays = {item.strip() for item in holiday_text.split(",") if item.strip()}
+    is_session = now.weekday() < 5 and now.date().isoformat() not in holidays
+    return is_session and market_open <= now <= market_close, now, market_open, market_close
+
+
+def has_current_session_data(watchlist, now=None):
+    """Reject stale previous-session data before producing executable alerts."""
+    now = now or pd.Timestamp.now(tz=ZoneInfo(MARKET_TIMEZONE))
+    for symbol in watchlist:
+        data = MARKET_DATA.get(symbol)
+        if data is None or data.empty or "Datetime" not in data.columns:
+            return False
+        try:
+            latest = _localized_datetimes(data).iloc[-1]
+        except Exception:
+            return False
+        if latest.date() != now.date():
+            return False
+    return True
 
 
 def load_state():
@@ -886,25 +905,43 @@ def process_candidate(state, result, zone_type, zone, distance_pct, now_ts):
         state_key,
         {"in_zone": False, "last_alert_at": 0.0, "last_attempt_at": 0.0},
     )
+    noise_state = state.setdefault("_noise_control", {})
+    noise_key = exact_zone_identity(result["symbol"], zone_type, zone)
     alert_sent = None
 
     if MIN_DISTANCE_PCT <= distance_pct <= MAX_DISTANCE_PCT:
         last_attempt_at = max(entry.get("last_alert_at", 0.0), entry.get("last_attempt_at", 0.0))
         should_alert = (not entry["in_zone"]) or (now_ts - last_attempt_at >= ALERT_COOLDOWN_SECONDS)
-        if should_alert:
+        last_success = float(noise_state.get(noise_key, 0.0) or 0.0)
+        noise_open = not last_success or now_ts - last_success >= ZONE_REPEAT_SUPPRESSION_SECONDS
+        if should_alert and noise_open:
             entry["last_attempt_at"] = now_ts
             message = format_alert(result, zone_type, zone, distance_pct)
             alert_sent = send_alert(message)
             if alert_sent:
                 entry["last_alert_at"] = now_ts
+                noise_state[noise_key] = now_ts
                 record_delivered_zone_alert(
                     result, zone_type, zone, distance_pct, message, now_ts
                 )
+        elif should_alert and last_success:
+            remaining = max(0, int(ZONE_REPEAT_SUPPRESSION_SECONDS - (now_ts - last_success)))
+            print(f"Suppressed repeat alert: {noise_key} | {remaining // 60}m remaining")
         entry["in_zone"] = True
+    # Keep the successful-delivery timestamp through a zone touch.  A touch
+    # must not re-arm the same zone before the suppression window expires.
     elif distance_pct > MAX_DISTANCE_PCT * REARM_FACTOR:
         entry["in_zone"] = False
 
     return alert_sent
+
+
+def exact_zone_identity(symbol, zone_type, zone):
+    side = "long" if zone_type == "demand" else "short"
+    return (
+        f"{str(symbol).upper()}|{TIMEFRAME}|{side}|"
+        f"{float(zone['bottom']):.10f}|{float(zone['top']):.10f}"
+    )
 
 
 def process_signal_candidate(state, result, signal_type, now_ts):
@@ -996,6 +1033,22 @@ def run_scan_once(state):
         )
         return
 
+    trade_start_hour, trade_start_minute = parse_hhmm(MARKET_OPEN)
+    trade_start = market_now.replace(
+        hour=trade_start_hour,
+        minute=trade_start_minute,
+        second=0,
+        microsecond=0,
+    )
+    if market_now < trade_start:
+        send_status_message(
+            "Shiva NSE scanner context-only pre-open update\n"
+            f"Time: {market_now.strftime('%Y-%m-%d %H:%M:%S %Z')}\n"
+            "Reference Price: Previous Close\n"
+            "Executable alerts begin at 09:15 IST."
+        )
+        return
+
     send_status_message(
         f"Shiva NSE scanner started\n"
         f"Time: {started_at}\n"
@@ -1007,6 +1060,14 @@ def run_scan_once(state):
     )
 
     fetch_market_data(watchlist)
+    if not has_current_session_data(watchlist, market_now):
+        send_status_message(
+            "Shiva NSE scanner skipped - stale or incomplete session data\n"
+            f"Time: {market_now.strftime('%Y-%m-%d %H:%M:%S %Z')}\n"
+            "Reference Price: Previous Close\n"
+            "No executable alerts were generated."
+        )
+        return
     sector_context = build_sector_context(watchlist)
     scanned_by_symbol = {}
     for symbol in watchlist:

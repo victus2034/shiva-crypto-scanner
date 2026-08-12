@@ -72,7 +72,8 @@ jobs:
             crypto_alert_records.jsonl \
             crypto_alert_records_30m.jsonl \
             daily_backtest_reports_sent.json \
-            daily_backtest_finalized_records.jsonl
+            daily_backtest_finalized_records.jsonl \
+            daily_backtest_pending_records.jsonl
 
       - name: Check daily backtest Discord webhook
         env:
@@ -137,4 +138,5 @@ jobs:
         run: |
           bash .github/scripts/persist_runtime_state.sh \
             daily_backtest_reports_sent.json \
-            daily_backtest_finalized_records.jsonl
+            daily_backtest_finalized_records.jsonl \
+            daily_backtest_pending_records.jsonl

@@ -77,6 +77,7 @@ ALERT_RECORD_FILE = Path(__file__).with_name(
     )
 )
 SL_BUFFER_PCT = 0.10
+ZONE_REPEAT_SUPPRESSION_SECONDS = 60 * 60
 EXCHANGE_OPTIONS = {
     "enableRateLimit": True,
     "options": {"defaultType": "future"},
@@ -1002,21 +1003,39 @@ def process_candidate(state, result, zone_type, zone, distance_pct, now_ts):
 
     state_key = build_state_key(result["symbol"], zone_type, zone)
     entry = state.setdefault(state_key, {"in_zone": False, "last_alert_at": 0.0})
+    noise_state = state.setdefault("_noise_control", {})
+    noise_key = exact_zone_identity(result["symbol"], zone_type, zone)
     alert_sent = False
 
     if MIN_DISTANCE_PCT <= distance_pct <= MAX_DISTANCE_PCT:
         should_alert = (not entry["in_zone"]) or (now_ts - entry["last_alert_at"] >= ALERT_COOLDOWN_SECONDS)
-        if should_alert:
+        last_success = float(noise_state.get(noise_key, 0.0) or 0.0)
+        noise_open = not last_success or now_ts - last_success >= ZONE_REPEAT_SUPPRESSION_SECONDS
+        if should_alert and noise_open:
             message = format_alert(result, zone_type, zone, distance_pct)
             if send_alert(message):
                 entry["last_alert_at"] = now_ts
+                noise_state[noise_key] = now_ts
                 record_delivered_zone_alert(result, zone_type, zone, distance_pct, message, now_ts)
                 alert_sent = True
+        elif should_alert and last_success:
+            remaining = max(0, int(ZONE_REPEAT_SUPPRESSION_SECONDS - (now_ts - last_success)))
+            print(f"Suppressed repeat alert: {noise_key} | {remaining // 60}m remaining")
         entry["in_zone"] = True
+    # Keep the successful-delivery timestamp through a zone touch.  A touch
+    # must not re-arm the same zone before the suppression window expires.
     elif distance_pct > MAX_DISTANCE_PCT * REARM_FACTOR:
         entry["in_zone"] = False
 
     return alert_sent
+
+
+def exact_zone_identity(symbol, zone_type, zone):
+    side = "long" if zone_type == "demand" else "short"
+    return (
+        f"{str(symbol).upper()}|{TIMEFRAME}|{side}|"
+        f"{float(zone['bottom']):.10f}|{float(zone['top']):.10f}"
+    )
 
 
 def process_signal_candidate(state, result, signal_type, now_ts):
