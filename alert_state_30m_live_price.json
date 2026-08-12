@@ -924,8 +924,8 @@
     "last_alert_at": 0.0
   },
   "MNT/USDT|supply|0.45460000|0.45550000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1786560112.0372
   },
   "SOXLBUSD|demand|130.70000000|131.75000000": {
     "in_zone": false,
@@ -1464,10 +1464,12 @@
     "NVDAXUSD|30m|short|225.5500000000|225.8000000000": 1786558906.138719,
     "WIF/USDT|30m|short|0.1404000000|0.1409000000": 1786556507.4763682,
     "METAXUSD|30m|long|577.0000000000|579.2000000000": 1786556507.8313873,
-    "DRAMBUSD|30m|short|55.2300000000|55.4000000000": 1786556508.0297835
+    "DRAMBUSD|30m|short|55.2300000000|55.4000000000": 1786556508.0297835,
+    "UNIUSD|30m|short|3.5488000000|3.5690000000": 1786560111.6569679,
+    "MNT/USDT|30m|short|0.4546000000|0.4555000000": 1786560112.0372
   },
   "METAXUSD|demand|577.00000000|579.20000000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1786556507.8313873
   },
   "ICP/USDT|demand|2.08500000|2.08900000": {
@@ -1539,6 +1541,22 @@
     "last_alert_at": 0.0
   },
   "UNIUSD|supply|3.54880000|3.56900000": {
+    "in_zone": true,
+    "last_alert_at": 1786560111.6569679
+  },
+  "ESPORTS/USDT|supply|0.01510000|0.01557000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "SEIUSD|supply|0.04037000|0.04058000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "SNDKBUSD|demand|1313.24000000|1360.68000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "INTCBUSD|supply|101.57000000|103.08000000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
