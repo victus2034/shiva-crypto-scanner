@@ -165,9 +165,9 @@
     "last_attempt_at": 0.0
   },
   "ALKEM.NS|demand|5399.0000|5414.0000": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1786516936.8694277,
+    "last_attempt_at": 1786516936.8694277
   },
   "ABDL.NS|demand|585.2000|593.7000": {
     "in_zone": false,
@@ -411,8 +411,8 @@
   },
   "BHARTIARTL.NS|demand|1892.5000|1895.8000": {
     "in_zone": true,
-    "last_alert_at": 1786514535.0884285,
-    "last_attempt_at": 1786514535.0884285
+    "last_alert_at": 1786516937.113678,
+    "last_attempt_at": 1786516937.113678
   },
   "BHARTIHEXA.NS|supply|1664.3000|1676.8000": {
     "in_zone": false,
@@ -425,9 +425,9 @@
     "last_attempt_at": 0.0
   },
   "GROWW.NS|supply|196.2200|196.9700": {
-    "in_zone": false,
-    "last_alert_at": 1786512124.7037125,
-    "last_attempt_at": 1786512124.7037125
+    "in_zone": true,
+    "last_alert_at": 1786516937.3759222,
+    "last_attempt_at": 1786516937.3759222
   },
   "GROWW.NS|demand|188.1900|189.0000": {
     "in_zone": false,
@@ -1266,8 +1266,8 @@
   },
   "IRCON.NS|demand|125.3000|125.6800": {
     "in_zone": true,
-    "last_alert_at": 1786514535.9524941,
-    "last_attempt_at": 1786514535.9524941
+    "last_alert_at": 1786516938.1354115,
+    "last_attempt_at": 1786516938.1354115
   },
   "ITCHOTELS.NS|supply|187.1900|187.7800": {
     "in_zone": false,
@@ -1360,9 +1360,9 @@
     "last_attempt_at": 1786507348.7656834
   },
   "IGL.NS|supply|154.8000|155.3100": {
-    "in_zone": false,
-    "last_alert_at": 1786508538.1348567,
-    "last_attempt_at": 1786508538.1348567
+    "in_zone": true,
+    "last_alert_at": 1786516938.488471,
+    "last_attempt_at": 1786516938.488471
   },
   "INDUSTOWER.NS|supply|391.2500|392.9000": {
     "in_zone": false,
@@ -1560,9 +1560,9 @@
     "last_attempt_at": 0.0
   },
   "KAJARIACER.NS|supply|1242.2000|1248.8000": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1786516938.778503,
+    "last_attempt_at": 1786516938.778503
   },
   "KPIL.NS|supply|1387.8000|1392.0000": {
     "in_zone": true,
@@ -1601,8 +1601,8 @@
   },
   "KOTAKBANK.NS|demand|386.6000|388.0000": {
     "in_zone": true,
-    "last_alert_at": 1786513325.9813573,
-    "last_attempt_at": 1786513325.9813573
+    "last_alert_at": 1786516939.2321577,
+    "last_attempt_at": 1786516939.2321577
   },
   "KIMS.NS|demand|783.6000|794.6500": {
     "in_zone": false,
@@ -2361,8 +2361,8 @@
   },
   "GICRE.NS|demand|351.6000|352.8000": {
     "in_zone": true,
-    "last_alert_at": 1786514535.6326754,
-    "last_attempt_at": 1786514535.6326754
+    "last_alert_at": 1786516937.605078,
+    "last_attempt_at": 1786516937.605078
   },
   "GESHIP.NS|supply|1329.6000|1332.5000": {
     "in_zone": false,
@@ -2601,8 +2601,8 @@
   },
   "NTPCGREEN.NS|demand|91.4100|91.5900": {
     "in_zone": true,
-    "last_alert_at": 1786514536.463747,
-    "last_attempt_at": 1786514536.463747
+    "last_alert_at": 1786516940.4203262,
+    "last_attempt_at": 1786516940.4203262
   },
   "NATIONALUM.NS|supply|390.9000|393.7000": {
     "in_zone": false,
@@ -2781,8 +2781,8 @@
   },
   "APLAPOLLO.NS|demand|1991.8000|1995.3000": {
     "in_zone": true,
-    "last_alert_at": 1786514534.602631,
-    "last_attempt_at": 1786514534.602631
+    "last_alert_at": 1786516936.6149433,
+    "last_attempt_at": 1786516936.6149433
   },
   "BRITANNIA.NS|supply|5646.0000|5652.0000": {
     "in_zone": false,
@@ -2790,7 +2790,7 @@
     "last_attempt_at": 0.0
   },
   "COCHINSHIP.NS|demand|1488.1000|1492.7000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1786514535.4062524,
     "last_attempt_at": 1786514535.4062524
   },
@@ -2801,8 +2801,8 @@
   },
   "NMDC.NS|demand|84.8100|85.0000": {
     "in_zone": true,
-    "last_alert_at": 1786514536.2363236,
-    "last_attempt_at": 1786514536.2363236
+    "last_alert_at": 1786516940.139254,
+    "last_attempt_at": 1786516940.139254
   },
   "BLS.NS|demand|258.8000|260.5400": {
     "in_zone": false,
@@ -2835,6 +2835,11 @@
     "last_attempt_at": 0.0
   },
   "PGEL.NS|demand|571.5000|573.0000": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "MSUMI.NS|demand|37.5900|37.9500": {
     "in_zone": false,
     "last_alert_at": 0.0,
     "last_attempt_at": 0.0
