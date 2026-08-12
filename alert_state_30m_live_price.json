@@ -1004,8 +1004,8 @@
     "last_alert_at": 0.0
   },
   "WLFI/USDT|supply|0.05544000|0.05568000": {
-    "in_zone": false,
-    "last_alert_at": 1786474934.6301315
+    "in_zone": true,
+    "last_alert_at": 1786494110.6743257
   },
   "BTCUSD|supply|64365.00000000|64475.50000000": {
     "in_zone": false,
@@ -1224,6 +1224,10 @@
     "last_alert_at": 1786491710.7312393
   },
   "ALLO/USDT|demand|0.29327000|0.29590000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "COINXUSD|demand|146.80000000|147.25000000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
