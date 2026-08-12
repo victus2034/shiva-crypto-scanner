@@ -1595,7 +1595,7 @@
     "last_attempt_at": 0.0
   },
   "JSWINFRA.NS|supply|352.5500|355.7000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1786517562.9923496,
     "last_attempt_at": 1786517562.9923496
   },
@@ -2250,9 +2250,9 @@
     "last_attempt_at": 0.0
   },
   "RHIM.NS|demand|383.3000|390.5500": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1786524750.0355718,
+    "last_attempt_at": 1786524750.0355718
   },
   "RITES.NS|demand|199.1500|200.2800": {
     "in_zone": false,
