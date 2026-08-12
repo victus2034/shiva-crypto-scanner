@@ -961,7 +961,7 @@
   },
   "SPYXUSD|supply|772.25000000|773.11000000": {
     "in_zone": true,
-    "last_alert_at": 1786542688.726034
+    "last_alert_at": 1786558279.2288058
   },
   "BTCUSD|demand|57758.60000000|58605.40000000": {
     "in_zone": false,
@@ -1491,5 +1491,7 @@
     "in_zone": false,
     "last_alert_at": 0.0
   },
-  "_noise_control": {}
+  "_noise_control": {
+    "SPYXUSD|4h|short|772.2500000000|773.1100000000": 1786558279.2288058
+  }
 }
