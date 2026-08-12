@@ -1124,8 +1124,8 @@
     "last_alert_at": 0.0
   },
   "HBAR/USDT|demand|0.06579000|0.06608000": {
-    "in_zone": false,
-    "last_alert_at": 1786490504.4262593
+    "in_zone": true,
+    "last_alert_at": 1786542109.178852
   },
   "ORDI/USDT|demand|3.35200000|3.38800000": {
     "in_zone": false,
@@ -1304,7 +1304,7 @@
     "last_alert_at": 1786536127.2274442
   },
   "GALA/USDT|supply|0.00172700|0.00173400": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1786538507.9037209
   },
   "TQQQ/USDT:USDT|demand|72.98000000|73.21000000": {
@@ -1408,6 +1408,26 @@
     "last_alert_at": 0.0
   },
   "INTCBUSD|supply|99.95000000|100.35000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "ZIL/USDT|demand|0.00229100|0.00231100": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "BTW/USDT|supply|0.23252000|0.24990000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "ZAMA/USDT|demand|0.04484000|0.04518000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "TAIKO/USDT|demand|0.07001000|0.07027000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "STRK/USDT|demand|0.02241000|0.02260000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
