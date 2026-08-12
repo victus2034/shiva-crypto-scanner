@@ -2110,9 +2110,9 @@
     "last_attempt_at": 0.0
   },
   "PIIND.NS|demand|2527.0000|2537.2000": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1786518749.4858682,
+    "last_attempt_at": 1786518749.4858682
   },
   "PVRINOX.NS|supply|1241.0000|1249.6000": {
     "in_zone": false,
@@ -2470,6 +2470,11 @@
     "last_attempt_at": 0.0
   },
   "MANAPPURAM.NS|demand|318.8000|320.4500": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "LAURUSLABS.NS|demand|1080.0000|1093.4500": {
     "in_zone": false,
     "last_alert_at": 0.0,
     "last_attempt_at": 0.0
