@@ -468,8 +468,8 @@
     "last_alert_at": 0.0
   },
   "DRAMBUSD|supply|55.23000000|55.40000000": {
-    "in_zone": false,
-    "last_alert_at": 1786548113.683073
+    "in_zone": true,
+    "last_alert_at": 1786556508.0297835
   },
   "DRAMBUSD|demand|49.04000000|49.49000000": {
     "in_zone": false,
@@ -1461,11 +1461,14 @@
   },
   "_noise_control": {
     "ICP/USDT|30m|long|2.2010000000|2.2120000000": 1786551716.5618508,
-    "NVDAXUSD|30m|short|225.5500000000|225.8000000000": 1786554140.079882
+    "NVDAXUSD|30m|short|225.5500000000|225.8000000000": 1786554140.079882,
+    "WIF/USDT|30m|short|0.1404000000|0.1409000000": 1786556507.4763682,
+    "METAXUSD|30m|long|577.0000000000|579.2000000000": 1786556507.8313873,
+    "DRAMBUSD|30m|short|55.2300000000|55.4000000000": 1786556508.0297835
   },
   "METAXUSD|demand|577.00000000|579.20000000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1786556507.8313873
   },
   "ICP/USDT|demand|2.08500000|2.08900000": {
     "in_zone": false,
@@ -1476,6 +1479,42 @@
     "last_alert_at": 0.0
   },
   "HOME/USDT|demand|0.00902800|0.00924500": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "COTI/USDT|supply|0.01591800|0.01634700": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "ONDOUSD|supply|0.33770000|0.34020000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "WIF/USDT|supply|0.14040000|0.14090000": {
+    "in_zone": true,
+    "last_alert_at": 1786556507.4763682
+  },
+  "LDO/USDT|supply|0.29670000|0.29790000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "DOTUSD|supply|0.79500000|0.79900000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "ZRO/USDT|supply|0.84770000|0.85440000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "JUP/USDT|supply|0.17390000|0.17470000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "STRK/USDT|supply|0.02336000|0.02345000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "SLVONUSD|supply|60.37000000|60.72000000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
