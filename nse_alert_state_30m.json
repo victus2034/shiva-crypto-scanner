@@ -206,8 +206,8 @@
   },
   "APOLLOHOSP.NS|demand|8570.5000|8592.0000": {
     "in_zone": true,
-    "last_alert_at": 1786507346.017906,
-    "last_attempt_at": 1786507346.017906
+    "last_alert_at": 1786509715.2725081,
+    "last_attempt_at": 1786509715.2725081
   },
   "APOLLOTYRE.NS|supply|458.8500|461.5500": {
     "in_zone": false,
@@ -1360,7 +1360,7 @@
     "last_attempt_at": 1786507348.7656834
   },
   "IGL.NS|supply|154.8000|155.3100": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1786508538.1348567,
     "last_attempt_at": 1786508538.1348567
   },
@@ -1505,9 +1505,9 @@
     "last_attempt_at": 0.0
   },
   "JSL.NS|demand|710.3000|715.6000": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1786509716.6664813,
+    "last_attempt_at": 1786509716.6664813
   },
   "JINDALSTEL.NS|demand|1021.7000|1027.8000": {
     "in_zone": false,
@@ -2150,9 +2150,9 @@
     "last_attempt_at": 0.0
   },
   "RAILTEL.NS|demand|283.8500|284.5000": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1786509717.2359936,
+    "last_attempt_at": 1786509717.2359936
   },
   "RAINBOW.NS|supply|1607.4000|1610.0000": {
     "in_zone": false,
@@ -2225,9 +2225,9 @@
     "last_attempt_at": 1786506122.40784
   },
   "HINDCOPPER.NS|supply|542.7000|551.9000": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1786509715.6513147,
+    "last_attempt_at": 1786509715.6513147
   },
   "GROWW.NS|supply|193.8400|194.3000": {
     "in_zone": true,
@@ -2245,7 +2245,7 @@
     "last_attempt_at": 0.0
   },
   "ABB.NS|supply|7693.0000|7723.5000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1786508535.7172534,
     "last_attempt_at": 1786508535.7172534
   },
@@ -2270,9 +2270,9 @@
     "last_attempt_at": 0.0
   },
   "ICICIGI.NS|supply|1647.1000|1650.0000": {
-    "in_zone": false,
-    "last_alert_at": 1786506123.2807906,
-    "last_attempt_at": 1786506123.2807906
+    "in_zone": true,
+    "last_alert_at": 1786509715.8957746,
+    "last_attempt_at": 1786509715.8957746
   },
   "PERSISTENT.NS|supply|5578.0000|5592.5000": {
     "in_zone": false,
@@ -2315,9 +2315,9 @@
     "last_attempt_at": 1786506122.9967208
   },
   "IDFCFIRSTB.NS|supply|84.9900|85.1700": {
-    "in_zone": false,
-    "last_alert_at": 1786436526.418738,
-    "last_attempt_at": 1786436526.418738
+    "in_zone": true,
+    "last_alert_at": 1786509716.1889548,
+    "last_attempt_at": 1786509716.1889548
   },
   "IREDA.NS|supply|120.0000|120.7400": {
     "in_zone": false,
@@ -2580,9 +2580,9 @@
     "last_attempt_at": 0.0
   },
   "INDUSTOWER.NS|supply|374.9000|377.5000": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1786509716.389235,
+    "last_attempt_at": 1786509716.389235
   },
   "JINDALSAW.NS|supply|277.6500|281.0000": {
     "in_zone": false,
@@ -2600,9 +2600,9 @@
     "last_attempt_at": 1786507349.4861906
   },
   "NTPCGREEN.NS|demand|91.4100|91.5900": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1786509716.8829486,
+    "last_attempt_at": 1786509716.8829486
   },
   "NATIONALUM.NS|supply|390.9000|393.7000": {
     "in_zone": false,
@@ -2695,6 +2695,11 @@
     "last_attempt_at": 0.0
   },
   "RAINBOW.NS|demand|1405.6000|1410.8000": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "CONCOR.NS|supply|521.9000|528.5000": {
     "in_zone": false,
     "last_alert_at": 0.0,
     "last_attempt_at": 0.0
