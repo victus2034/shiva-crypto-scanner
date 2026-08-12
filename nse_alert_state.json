@@ -1115,7 +1115,7 @@
     "last_attempt_at": 0.0
   },
   "GLENMARK.NS|supply|2311.0000|2325.7000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1786512755.9124694,
     "last_attempt_at": 1786512755.9124694
   },
@@ -1865,9 +1865,9 @@
     "last_attempt_at": 0.0
   },
   "MARICO.NS|demand|829.9000|837.5000": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1786515141.9746432,
+    "last_attempt_at": 1786515141.9746432
   },
   "MARUTI.NS|demand|12201.0000|12300.0000": {
     "in_zone": false,
