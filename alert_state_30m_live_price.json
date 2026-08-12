@@ -1220,8 +1220,8 @@
     "last_alert_at": 0.0
   },
   "AVGO/USDT:USDT|demand|413.80000000|414.71000000": {
-    "in_zone": false,
-    "last_alert_at": 1786512102.5274494
+    "in_zone": true,
+    "last_alert_at": 1786563710.7446666
   },
   "ALLO/USDT|demand|0.29327000|0.29590000": {
     "in_zone": false,
@@ -1467,7 +1467,8 @@
     "DRAMBUSD|30m|short|55.2300000000|55.4000000000": 1786556508.0297835,
     "UNIUSD|30m|short|3.5488000000|3.5690000000": 1786560111.6569679,
     "MNT/USDT|30m|short|0.4546000000|0.4555000000": 1786560112.0372,
-    "ESPORTS/USDT|30m|short|0.0151000000|0.0155700000": 1786561333.716595
+    "ESPORTS/USDT|30m|short|0.0151000000|0.0155700000": 1786561333.716595,
+    "AVGO/USDT:USDT|30m|long|413.8000000000|414.7100000000": 1786563710.7446666
   },
   "METAXUSD|demand|577.00000000|579.20000000": {
     "in_zone": true,
@@ -1562,6 +1563,22 @@
     "last_alert_at": 0.0
   },
   "NVDL/USDT:USDT|supply|36.39000000|36.59000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "OPUSD|demand|0.08880000|0.08890000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "NVDAXUSD|supply|224.40000000|225.25000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "SNDKBUSD|supply|1381.95000000|1390.00000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "FLNC/USDT:USDT|demand|12.77000000|12.81000000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
