@@ -544,8 +544,8 @@
     "last_alert_at": 0.0
   },
   "SOXX/USDT:USDT|supply|551.04000000|552.00000000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1786538508.346929
   },
   "SOXX/USDT:USDT|demand|529.21000000|530.80000000": {
     "in_zone": false,
@@ -1084,7 +1084,7 @@
     "last_alert_at": 0.0
   },
   "OPENAI/USDT:USDT|demand|117.70000000|118.00000000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1786537299.8176298
   },
   "DOTUSD|demand|0.77700000|0.78200000": {
@@ -1304,8 +1304,8 @@
     "last_alert_at": 1786536127.2274442
   },
   "GALA/USDT|supply|0.00172700|0.00173400": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1786538507.9037209
   },
   "TQQQ/USDT:USDT|demand|72.98000000|73.21000000": {
     "in_zone": false,
@@ -1384,6 +1384,18 @@
     "last_alert_at": 0.0
   },
   "NEARUSD|supply|1.67700000|1.68300000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "SOLUSD|supply|77.44800000|77.88000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "AAVEUSD|demand|88.98000000|89.33000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "PUMPUSD|demand|0.00263100|0.00265500": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
