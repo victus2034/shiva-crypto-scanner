@@ -395,9 +395,9 @@
     "last_attempt_at": 0.0
   },
   "BHEL.NS|supply|416.4500|418.7000": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1786522923.7960234,
+    "last_attempt_at": 1786522923.7960234
   },
   "BPCL.NS|demand|299.7500|300.4500": {
     "in_zone": false,
@@ -691,8 +691,8 @@
   },
   "COLPAL.NS|demand|1987.4000|1998.4000": {
     "in_zone": true,
-    "last_alert_at": 1786520528.611744,
-    "last_attempt_at": 1786520528.611744
+    "last_alert_at": 1786522924.0695395,
+    "last_attempt_at": 1786522924.0695395
   },
   "CAMS.NS|supply|796.8500|798.4000": {
     "in_zone": false,
@@ -1001,8 +1001,8 @@
   },
   "GILLETTE.NS|demand|7548.5000|7588.0000": {
     "in_zone": true,
-    "last_alert_at": 1786520529.1428032,
-    "last_attempt_at": 1786520529.1428032
+    "last_alert_at": 1786522924.5199878,
+    "last_attempt_at": 1786522924.5199878
   },
   "GLAND.NS|demand|2497.5000|2517.5000": {
     "in_zone": false,
@@ -2316,8 +2316,8 @@
   },
   "IDFCFIRSTB.NS|supply|84.9900|85.1700": {
     "in_zone": true,
-    "last_alert_at": 1786518131.5619626,
-    "last_attempt_at": 1786518131.5619626
+    "last_alert_at": 1786522924.761621,
+    "last_attempt_at": 1786522924.761621
   },
   "IREDA.NS|supply|120.0000|120.7400": {
     "in_zone": false,
@@ -2360,7 +2360,7 @@
     "last_attempt_at": 0.0
   },
   "GICRE.NS|demand|351.6000|352.8000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1786519328.586561,
     "last_attempt_at": 1786519328.586561
   },
@@ -2635,7 +2635,7 @@
     "last_attempt_at": 0.0
   },
   "ITC.NS|demand|275.0500|275.2500": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1786520529.4167507,
     "last_attempt_at": 1786520529.4167507
   },
@@ -2905,6 +2905,26 @@
     "last_attempt_at": 0.0
   },
   "POLICYBZR.NS|supply|1731.9000|1746.7000": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "CAPLIPOINT.NS|demand|2455.3999|2467.8000": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "CHENNPETRO.NS|supply|1427.0000|1446.7000": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "GILLETTE.NS|supply|7635.0000|7682.0000": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "RVNL.NS|demand|227.6100|229.2800": {
     "in_zone": false,
     "last_alert_at": 0.0,
     "last_attempt_at": 0.0
