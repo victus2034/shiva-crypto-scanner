@@ -468,7 +468,7 @@
     "last_alert_at": 0.0
   },
   "DRAMBUSD|supply|55.23000000|55.40000000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1786545709.072065
   },
   "DRAMBUSD|demand|49.04000000|49.49000000": {
@@ -1444,6 +1444,10 @@
     "last_alert_at": 0.0
   },
   "KGEN/USDT|supply|0.20200000|0.20400000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "TAO/USDT|supply|204.30000000|205.10000000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
