@@ -1499,15 +1499,17 @@
     "XRPUSD|4h|long|0.9917000000|1.0045000000": 1786620700.227285,
     "TSLAXUSD|4h|short|334.0000000000|336.5500000000": 1786629092.776231,
     "TQQQ/USDT:USDT|4h|short|77.4100000000|77.7000000000": 1786629093.20527,
-    "SOXX/USDT:USDT|4h|short|558.4400000000|564.9400000000": 1786632686.0793915
+    "SOXX/USDT:USDT|4h|short|558.4400000000|564.9400000000": 1786632686.0793915,
+    "PUMPUSD|4h|short|0.0028230000|0.0029400000": 1786636294.9974027,
+    "COINXUSD|4h|long|146.8000000000|148.4500000000": 1786636295.679617
   },
   "ARBUSD|supply|0.08030000|0.08180000": {
     "in_zone": false,
     "last_alert_at": 0.0
   },
   "PUMPUSD|supply|0.00282300|0.00294000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1786636294.9974027
   },
   "LA/USDT|supply|0.05560000|0.05789000": {
     "in_zone": false,
@@ -1618,8 +1620,8 @@
     "last_alert_at": 0.0
   },
   "COINXUSD|demand|146.80000000|148.45000000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1786636295.679617
   },
   "TQQQ/USDT:USDT|demand|72.25000000|73.04000000": {
     "in_zone": false,
