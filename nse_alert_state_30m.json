@@ -286,8 +286,8 @@
   },
   "AXISBANK.NS|demand|1211.0000|1214.8000": {
     "in_zone": true,
-    "last_alert_at": 1786596124.1652439,
-    "last_attempt_at": 1786596124.1652439
+    "last_alert_at": 1786600905.045959,
+    "last_attempt_at": 1786600905.045959
   },
   "BEML.NS|demand|1691.5000|1733.2000": {
     "in_zone": false,
@@ -2360,9 +2360,9 @@
     "last_attempt_at": 0.0
   },
   "GICRE.NS|demand|351.6000|352.8000": {
-    "in_zone": false,
-    "last_alert_at": 1786519328.586561,
-    "last_attempt_at": 1786519328.586561
+    "in_zone": true,
+    "last_alert_at": 1786600905.7874994,
+    "last_attempt_at": 1786600905.7874994
   },
   "GESHIP.NS|supply|1329.6000|1332.5000": {
     "in_zone": false,
@@ -2945,7 +2945,7 @@
     "last_attempt_at": 0.0
   },
   "EIHOTEL.NS|supply|302.3500|302.9500": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1786596125.0573483,
     "last_attempt_at": 1786596125.0573483
   },
@@ -3115,7 +3115,7 @@
     "RAILTEL.NS|30m|long|283.8500061035|284.5000000000": 1786597354.2399054,
     "SBFC.NS|30m|long|92.6999969482|93.5000000000": 1786593736.2061908,
     "ADANIENSOL.NS|30m|long|1571.3000488281|1579.5999755859": 1786596123.214858,
-    "AXISBANK.NS|30m|long|1211.0000000000|1214.8000488281": 1786596124.1652439,
+    "AXISBANK.NS|30m|long|1211.0000000000|1214.8000488281": 1786600905.045959,
     "CENTRALBK.NS|30m|short|31.5799999237|31.6599998474": 1786596124.5909255,
     "EIHOTEL.NS|30m|short|302.3500061035|302.9500122070": 1786596125.0573483,
     "FIVESTAR.NS|30m|long|538.9000244141|540.7999877930": 1786596125.371069,
@@ -3135,7 +3135,9 @@
     "CUMMINSIND.NS|30m|long|5330.5000000000|5343.5000000000": 1786598525.1866515,
     "HDFCBANK.NS|30m|long|722.0000000000|722.6500244141": 1786598525.4543989,
     "NAVINFLUOR.NS|30m|short|8408.5000000000|8444.0000000000": 1786598525.7639132,
-    "3MINDIA.NS|30m|short|36350.0000000000|36595.0000000000": 1786599719.838621
+    "3MINDIA.NS|30m|short|36350.0000000000|36595.0000000000": 1786599719.838621,
+    "BLUESTARCO.NS|30m|short|1497.9000244141|1507.6999511719": 1786600905.519536,
+    "GICRE.NS|30m|long|351.6000061035|352.7999877930": 1786600905.7874994
   },
   "ANANDRATHI.NS|supply|2187.5000|2221.0000": {
     "in_zone": true,
@@ -3331,5 +3333,20 @@
     "in_zone": false,
     "last_alert_at": 0.0,
     "last_attempt_at": 0.0
+  },
+  "BAJAJHFL.NS|demand|84.6200|84.6900": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "BIKAJI.NS|demand|606.1500|607.7000": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "BLUESTARCO.NS|supply|1497.9000|1507.7000": {
+    "in_zone": true,
+    "last_alert_at": 1786600905.519536,
+    "last_attempt_at": 1786600905.519536
   }
 }
