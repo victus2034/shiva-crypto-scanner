@@ -608,8 +608,8 @@
     "last_alert_at": 0.0
   },
   "TQQQ/USDT:USDT|supply|77.41000000|77.70000000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1786629093.20527
   },
   "TQQQ/USDT:USDT|demand|70.24000000|71.89000000": {
     "in_zone": false,
@@ -1496,7 +1496,9 @@
     "OPUSD|4h|long|0.0855000000|0.0871000000": 1786571481.9427435,
     "VVV/USDT|4h|short|12.1200000000|12.2920000000": 1786599094.0897152,
     "BTCUSD|4h|long|63217.5000000000|63515.0000000000": 1786624293.0429618,
-    "XRPUSD|4h|long|0.9917000000|1.0045000000": 1786620700.227285
+    "XRPUSD|4h|long|0.9917000000|1.0045000000": 1786620700.227285,
+    "TSLAXUSD|4h|short|334.0000000000|336.5500000000": 1786629092.776231,
+    "TQQQ/USDT:USDT|4h|short|77.4100000000|77.7000000000": 1786629093.20527
   },
   "ARBUSD|supply|0.08030000|0.08180000": {
     "in_zone": false,
@@ -1527,8 +1529,8 @@
     "last_alert_at": 0.0
   },
   "TSLAXUSD|supply|334.00000000|336.55000000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1786629092.776231
   },
   "MRVL/USDT:USDT|demand|206.74000000|210.39000000": {
     "in_zone": false,
