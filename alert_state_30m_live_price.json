@@ -1502,7 +1502,8 @@
     "ICP/USDT|30m|long|2.1300000000|2.1460000000": 1786639310.597496,
     "1000BONKUSD|30m|short|0.0023300000|0.0023590000": 1786644133.8647828,
     "NVDAXUSD|30m|short|226.1000000000|227.4000000000": 1786647740.3599477,
-    "GOOGLXUSD|30m|short|347.1500000000|348.8000000000": 1786648912.6801748
+    "GOOGLXUSD|30m|short|347.1500000000|348.8000000000": 1786648912.6801748,
+    "MSFT/USDT:USDT|30m|short|498.9500000000|501.5600000000": 1786650119.9273772
   },
   "METAXUSD|demand|577.00000000|579.20000000": {
     "in_zone": false,
@@ -1996,11 +1997,23 @@
     "last_alert_at": 0.0
   },
   "MSFT/USDT:USDT|supply|498.95000000|501.56000000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1786650119.9273772
   },
   "GOOGLXUSD|supply|347.15000000|348.80000000": {
     "in_zone": true,
     "last_alert_at": 1786648912.6801748
+  },
+  "BTCUSD|supply|63842.50000000|63985.50000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "OPUSD|supply|0.08773000|0.08811000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "WIF/USDT|supply|0.13930000|0.13990000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
   }
 }
