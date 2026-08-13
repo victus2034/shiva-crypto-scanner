@@ -68,7 +68,7 @@
     "last_alert_at": 0.0
   },
   "WLD/USDT|supply|0.35210000|0.35430000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1786631007.5653985
   },
   "WLD/USDT|demand|0.29200000|0.29630000": {
@@ -1280,7 +1280,7 @@
     "last_alert_at": 0.0
   },
   "ASTER/USDT|supply|0.60780000|0.60940000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1786631007.7997015
   },
   "0G/USDT|supply|0.16210000|0.16290000": {
@@ -1912,7 +1912,7 @@
     "last_alert_at": 0.0
   },
   "SLVONUSD|demand|58.28000000|58.57000000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1786631008.024899
   },
   "FILUSD|supply|0.68050000|0.68190000": {
@@ -1932,6 +1932,10 @@
     "last_alert_at": 0.0
   },
   "APTUSD|supply|0.56690000|0.56820000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "IBM/USDT:USDT|supply|238.88000000|243.48000000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
