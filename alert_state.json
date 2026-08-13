@@ -460,8 +460,8 @@
     "last_alert_at": 0.0
   },
   "POL/USDT|demand|0.07218000|0.07300000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1786637482.3244689
   },
   "KGEN/USDT|demand|0.16580000|0.16960000": {
     "in_zone": false,
@@ -1501,7 +1501,8 @@
     "TQQQ/USDT:USDT|4h|short|77.4100000000|77.7000000000": 1786629093.20527,
     "SOXX/USDT:USDT|4h|short|558.4400000000|564.9400000000": 1786632686.0793915,
     "PUMPUSD|4h|short|0.0028230000|0.0029400000": 1786636294.9974027,
-    "COINXUSD|4h|long|146.8000000000|148.4500000000": 1786636295.679617
+    "COINXUSD|4h|long|146.8000000000|148.4500000000": 1786636295.679617,
+    "POL/USDT|4h|long|0.0721800000|0.0730000000": 1786637482.3244689
   },
   "ARBUSD|supply|0.08030000|0.08180000": {
     "in_zone": false,
@@ -1640,6 +1641,14 @@
     "last_alert_at": 0.0
   },
   "SNDKBUSD|supply|1644.26000000|1695.95000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "KGEN/USDT|supply|0.20180000|0.20650000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "SOXX/USDT:USDT|supply|580.06000000|584.24000000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
