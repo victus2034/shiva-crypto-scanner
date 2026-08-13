@@ -1500,7 +1500,8 @@
     "DASH/USDT|30m|long|29.8200000000|29.9600000000": 1786636939.044151,
     "TAO/USDT|30m|long|198.5000000000|198.8000000000": 1786639310.30069,
     "ICP/USDT|30m|long|2.1300000000|2.1460000000": 1786639310.597496,
-    "1000BONKUSD|30m|short|0.0023300000|0.0023590000": 1786644133.8647828
+    "1000BONKUSD|30m|short|0.0023300000|0.0023590000": 1786644133.8647828,
+    "NVDAXUSD|30m|short|226.1000000000|227.4000000000": 1786647740.3599477
   },
   "METAXUSD|demand|577.00000000|579.20000000": {
     "in_zone": false,
@@ -1982,14 +1983,18 @@
     "last_alert_at": 0.0
   },
   "NVDAXUSD|supply|226.10000000|227.40000000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1786647740.3599477
   },
   "CBRSBUSD|supply|228.25000000|238.97000000": {
     "in_zone": false,
     "last_alert_at": 0.0
   },
   "DELL/USDT:USDT|supply|501.77000000|514.20000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "MSFT/USDT:USDT|supply|498.95000000|501.56000000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
