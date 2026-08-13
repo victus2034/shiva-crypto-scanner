@@ -3131,7 +3131,10 @@
     "GILLETTE.NS|30m|short|7635.0000000000|7682.0000000000": 1786597352.6052432,
     "GRANULES.NS|30m|long|854.4000244141|857.0499877930": 1786597352.8359163,
     "IOC.NS|30m|long|139.2899932861|139.6300048828": 1786597353.4742632,
-    "LICHSGFIN.NS|30m|long|499.5000000000|499.9500122070": 1786597353.927514
+    "LICHSGFIN.NS|30m|long|499.5000000000|499.9500122070": 1786597353.927514,
+    "CUMMINSIND.NS|30m|long|5330.5000000000|5343.5000000000": 1786598525.1866515,
+    "HDFCBANK.NS|30m|long|722.0000000000|722.6500244141": 1786598525.4543989,
+    "NAVINFLUOR.NS|30m|short|8408.5000000000|8444.0000000000": 1786598525.7639132
   },
   "ANANDRATHI.NS|supply|2187.5000|2221.0000": {
     "in_zone": true,
@@ -3284,6 +3287,41 @@
     "last_attempt_at": 1786597353.927514
   },
   "NTPC.NS|demand|335.4000|336.2500": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "CUMMINSIND.NS|demand|5330.5000|5343.5000": {
+    "in_zone": true,
+    "last_alert_at": 1786598525.1866515,
+    "last_attempt_at": 1786598525.1866515
+  },
+  "GPIL.NS|supply|251.0000|251.8900": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "HDFCBANK.NS|demand|722.0000|722.6500": {
+    "in_zone": true,
+    "last_alert_at": 1786598525.4543989,
+    "last_attempt_at": 1786598525.4543989
+  },
+  "IEX.NS|demand|123.9000|124.2700": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "LT.NS|demand|3990.0000|3995.8000": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "NAVINFLUOR.NS|supply|8408.5000|8444.0000": {
+    "in_zone": true,
+    "last_alert_at": 1786598525.7639132,
+    "last_attempt_at": 1786598525.7639132
+  },
+  "RADICO.NS|demand|4485.0000|4498.7998": {
     "in_zone": false,
     "last_alert_at": 0.0,
     "last_attempt_at": 0.0
