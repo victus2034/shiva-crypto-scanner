@@ -10,9 +10,9 @@
     "last_attempt_at": 0.0
   },
   "3MINDIA.NS|supply|36350.0000|36595.0000": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1786599719.838621,
+    "last_attempt_at": 1786599719.838621
   },
   "3MINDIA.NS|demand|33990.0000|34240.0000": {
     "in_zone": false,
@@ -2920,7 +2920,7 @@
     "last_attempt_at": 0.0
   },
   "GILLETTE.NS|supply|7635.0000|7682.0000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1786597352.6052432,
     "last_attempt_at": 1786597352.6052432
   },
@@ -3134,7 +3134,8 @@
     "LICHSGFIN.NS|30m|long|499.5000000000|499.9500122070": 1786597353.927514,
     "CUMMINSIND.NS|30m|long|5330.5000000000|5343.5000000000": 1786598525.1866515,
     "HDFCBANK.NS|30m|long|722.0000000000|722.6500244141": 1786598525.4543989,
-    "NAVINFLUOR.NS|30m|short|8408.5000000000|8444.0000000000": 1786598525.7639132
+    "NAVINFLUOR.NS|30m|short|8408.5000000000|8444.0000000000": 1786598525.7639132,
+    "3MINDIA.NS|30m|short|36350.0000000000|36595.0000000000": 1786599719.838621
   },
   "ANANDRATHI.NS|supply|2187.5000|2221.0000": {
     "in_zone": true,
@@ -3317,11 +3318,16 @@
     "last_attempt_at": 0.0
   },
   "NAVINFLUOR.NS|supply|8408.5000|8444.0000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1786598525.7639132,
     "last_attempt_at": 1786598525.7639132
   },
   "RADICO.NS|demand|4485.0000|4498.7998": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "IFCI.NS|supply|78.5600|79.5900": {
     "in_zone": false,
     "last_alert_at": 0.0,
     "last_attempt_at": 0.0
