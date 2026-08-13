@@ -1263,7 +1263,11 @@ def format_rating_table(records: pd.DataFrame, results: pd.DataFrame) -> str:
             if not result_frame.empty
             else pd.DataFrame()
         )
-        filled = rating_results[rating_results["filled"] == True]  # noqa: E712
+        filled = (
+            rating_results[rating_results["filled"] == True]  # noqa: E712
+            if not rating_results.empty
+            else pd.DataFrame()
+        )
         outcomes = rating_results["outcome"].value_counts() if not rating_results.empty else pd.Series(dtype=int)
         finalized = filled[filled["final_result"] != "Pending"] if not filled.empty else filled
         final_counts = finalized["final_result"].value_counts() if not finalized.empty else pd.Series(dtype=int)

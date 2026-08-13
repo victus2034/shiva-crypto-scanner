@@ -717,6 +717,17 @@ class DailyBacktestSummaryTests(unittest.TestCase):
         self.assertEqual(row["resolved_within_1h_pct"], 100.0)
         self.assertEqual(row["median_resolution_seconds"], 1800.0)
 
+    def test_format_rating_table_handles_no_results_yet(self):
+        records = pd.DataFrame([
+            {"symbol": "BTCUSDT", "rating": 7},
+        ])
+        results = pd.DataFrame()
+
+        table = summary.format_rating_table(records, results)
+
+        self.assertIsInstance(table, str)
+        self.assertIn("7/10", table)
+
     def test_display_symbol_simplifies_common_forms(self):
         cases = {
             "TCS.NS": "TCS",
