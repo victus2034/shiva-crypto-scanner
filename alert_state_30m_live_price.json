@@ -1997,7 +1997,7 @@
     "last_alert_at": 0.0
   },
   "MSFT/USDT:USDT|supply|498.95000000|501.56000000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1786650119.9273772
   },
   "GOOGLXUSD|supply|347.15000000|348.80000000": {
@@ -2029,6 +2029,10 @@
     "last_alert_at": 0.0
   },
   "FLNC/USDT:USDT|supply|13.53000000|13.62000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "SPYXUSD|demand|774.68000000|774.99000000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
