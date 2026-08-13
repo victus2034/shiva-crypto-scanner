@@ -1095,9 +1095,9 @@
     "last_attempt_at": 0.0
   },
   "GRSE.NS|supply|2635.0000|2659.0000": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1786597958.3792732,
+    "last_attempt_at": 1786597958.3792732
   },
   "GICRE.NS|supply|390.1000|394.4500": {
     "in_zone": false,
@@ -2500,9 +2500,9 @@
     "last_attempt_at": 0.0
   },
   "GRAPHITE.NS|supply|724.8000|744.7000": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1786597958.5931623,
+    "last_attempt_at": 1786597958.5931623
   },
   "HBLENGINE.NS|supply|736.1500|744.8500": {
     "in_zone": false,
@@ -2528,7 +2528,9 @@
     "HUDCO.NS|4h|long|191.7700042725|193.3999938965": 1786593151.6628404,
     "IRCON.NS|4h|long|123.5199966431|124.9700012207": 1786593152.1220179,
     "MCX.NS|4h|short|2985.1999511719|3037.1999511719": 1786593152.3633075,
-    "GLENMARK.NS|4h|short|2311.0000000000|2325.6999511719": 1786594360.309462
+    "GLENMARK.NS|4h|short|2311.0000000000|2325.6999511719": 1786594360.309462,
+    "GRSE.NS|4h|short|2635.0000000000|2659.0000000000": 1786597958.3792732,
+    "GRAPHITE.NS|4h|short|724.7999877930|744.7000122070": 1786597958.5931623
   },
   "GESHIP.NS|demand|1057.1000|1070.5000": {
     "in_zone": false,
