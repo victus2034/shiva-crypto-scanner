@@ -107,7 +107,7 @@ def load_records(path: Path, timeframe_filter: str) -> pd.DataFrame:
         return pd.DataFrame()
 
     rows: list[dict] = []
-    for line_number, line in enumerate(path.read_text(encoding="utf-8").splitlines(), start=1):
+    for line_number, line in enumerate(path.read_text(encoding="utf-8-sig").splitlines(), start=1):
         if not line.strip():
             continue
         try:
@@ -209,6 +209,53 @@ def assign_report_dates(records: pd.DataFrame, market: str) -> pd.DataFrame:
     else:
         frame["report_date"] = frame["event_time_ist"].dt.date
     return frame
+
+
+def normalized_report_date(value):
+    if value is None:
+        return None
+    try:
+        if pd.isna(value):
+            return None
+    except (TypeError, ValueError):
+        pass
+    try:
+        return pd.Timestamp(value).date()
+    except (TypeError, ValueError):
+        return None
+
+
+def report_results_for_current_day(
+    results: pd.DataFrame,
+    current_day_records: pd.DataFrame,
+    target_date,
+) -> pd.DataFrame:
+    """Return result rows for the report without silently dropping valid results."""
+    if results.empty:
+        return results.copy()
+    if current_day_records.empty:
+        return results.iloc[0:0].copy()
+
+    if "trade_id" in results:
+        current_ids = set(
+            current_day_records.get("trade_id", pd.Series(dtype=str)).dropna().astype(str)
+        )
+        if current_ids:
+            matched = results[results["trade_id"].astype(str).isin(current_ids)].copy()
+            if not matched.empty:
+                return matched
+
+    # Trade IDs are derived from evolving alert fields. If old runtime rows were
+    # produced before an ID-shape change, fall back to the already-assigned
+    # report_date so the summary does not show fake zero execution.
+    if "report_date" in results:
+        target = pd.Timestamp(target_date).date()
+        result_dates = results["report_date"].apply(normalized_report_date)
+        matched = results[result_dates == target].copy()
+        if not matched.empty:
+            return matched
+
+    return results.iloc[0:0].copy()
 
 
 def crypto_report_date(event_time_ist) -> object:
@@ -1471,7 +1518,7 @@ def load_sent_reports(path: Path = SENT_REPORTS_PATH) -> dict:
     if not path.exists():
         return {}
     try:
-        data = json.loads(path.read_text(encoding="utf-8"))
+        data = json.loads(path.read_text(encoding="utf-8-sig"))
     except json.JSONDecodeError:
         return {}
     return data if isinstance(data, dict) else {}
@@ -1545,7 +1592,7 @@ def load_lifecycle_rows(finalized_path: Path, pending_path: Path | None) -> dict
     for path in (finalized_path, pending_path):
         if path is None or not path.exists():
             continue
-        for line in path.read_text(encoding="utf-8").splitlines():
+        for line in path.read_text(encoding="utf-8-sig").splitlines():
             try:
                 row = json.loads(line)
             except json.JSONDecodeError:
@@ -1582,7 +1629,7 @@ def load_pending_records(path: Path = PENDING_RECORDS_PATH, timeframe: str | Non
     if not path.exists():
         return pd.DataFrame()
     rows = []
-    for line in path.read_text(encoding="utf-8").splitlines():
+    for line in path.read_text(encoding="utf-8-sig").splitlines():
         try:
             row = json.loads(line)
         except json.JSONDecodeError:
@@ -1640,7 +1687,7 @@ def reconciliation_diagnostics(
     finalized_rows = []
     raw_id_counts: dict[str, int] = {}
     if finalized_path.exists():
-        for line in finalized_path.read_text(encoding="utf-8").splitlines():
+        for line in finalized_path.read_text(encoding="utf-8-sig").splitlines():
             try:
                 row = json.loads(line)
             except json.JSONDecodeError:
@@ -1816,12 +1863,7 @@ def main() -> None:
 
     # The Discord report represents only today's newly delivered alerts. Pending
     # rows are reconciled in storage, but must not inflate today's alert counts.
-    current_ids = set(current_day_records.get("trade_id", pd.Series(dtype=str)).astype(str))
-    report_results = (
-        results[results["trade_id"].astype(str).isin(current_ids)].copy()
-        if not results.empty and current_ids and "trade_id" in results
-        else results.iloc[0:0].copy() if not results.empty else results
-    )
+    report_results = report_results_for_current_day(results, current_day_records, target_date)
 
     message = build_summary(
         current_day_records,

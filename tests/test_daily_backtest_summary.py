@@ -333,6 +333,46 @@ class DailyBacktestSummaryTests(unittest.TestCase):
 
         self.assertIn("No Touch - 1", message)
 
+    def test_report_results_fall_back_to_report_date_when_trade_ids_change(self):
+        target = pd.Timestamp("2026-08-04").date()
+        records = pd.DataFrame(
+            [
+                {**base_alert(symbol="A.NS", rating=5), "trade_id": "current-a", "report_date": target},
+                {**base_alert(symbol="B.NS", rating=6, side="short"), "trade_id": "current-b", "report_date": target},
+            ]
+        )
+        results = pd.DataFrame(
+            [
+                {
+                    **records.iloc[0].to_dict(),
+                    "trade_id": "old-a",
+                    "filled": False,
+                    "outcome": "zone_not_touched",
+                    "final_result": "",
+                    "net_realized_r": float("nan"),
+                    "report_date": target,
+                },
+                {
+                    **records.iloc[1].to_dict(),
+                    "trade_id": "old-b",
+                    "filled": True,
+                    "outcome": "+1R",
+                    "final_result": "+1R",
+                    "net_realized_r": 1.0,
+                    "report_date": target,
+                },
+            ]
+        )
+
+        filtered = summary.report_results_for_current_day(results, records, target)
+        message = summary.build_summary(records, target, filtered, {}, 0, "30m")
+
+        self.assertEqual(len(filtered), 2)
+        self.assertIn("Touch - 1", message)
+        self.assertIn("No Touch - 1", message)
+        self.assertIn("Entries - 1", message)
+        self.assertIn("+1R - 1", message)
+
     def test_discord_payload_uses_embeds_without_truncating_long_reports(self):
         message = "\n".join([f"Line {index}" for index in range(900)])
 
