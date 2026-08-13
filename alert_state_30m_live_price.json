@@ -68,8 +68,8 @@
     "last_alert_at": 0.0
   },
   "WLD/USDT|supply|0.35210000|0.35430000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1786631007.5653985
   },
   "WLD/USDT|demand|0.29200000|0.29630000": {
     "in_zone": false,
@@ -1281,7 +1281,7 @@
   },
   "ASTER/USDT|supply|0.60780000|0.60940000": {
     "in_zone": true,
-    "last_alert_at": 1786627312.9223037
+    "last_alert_at": 1786631007.7997015
   },
   "0G/USDT|supply|0.16210000|0.16290000": {
     "in_zone": true,
@@ -1487,12 +1487,14 @@
     "TQQQ/USDT:USDT|30m|long|74.1400000000|74.1900000000": 1786624908.537553,
     "LA/USDT|30m|long|0.0477800000|0.0483200000": 1786609307.3163462,
     "STRK/USDT|30m|short|0.0233600000|0.0234500000": 1786609307.6222754,
-    "ASTER/USDT|30m|short|0.6078000000|0.6094000000": 1786627312.9223037,
+    "ASTER/USDT|30m|short|0.6078000000|0.6094000000": 1786631007.7997015,
     "HYPEUSD|30m|short|57.7900000000|58.0200000000": 1786629746.7185435,
     "O/USDT|30m|long|0.4220000000|0.4237000000": 1786615348.6051247,
     "CRCLXUSD|30m|long|70.3500000000|70.4500000000": 1786621304.5316782,
     "ICP/USDT|30m|short|2.1900000000|2.1940000000": 1786622539.5054865,
-    "0G/USDT|30m|short|0.1621000000|0.1629000000": 1786628510.3059392
+    "0G/USDT|30m|short|0.1621000000|0.1629000000": 1786628510.3059392,
+    "WLD/USDT|30m|short|0.3521000000|0.3543000000": 1786631007.5653985,
+    "SLVONUSD|30m|long|58.2800000000|58.5700000000": 1786631008.024899
   },
   "METAXUSD|demand|577.00000000|579.20000000": {
     "in_zone": false,
@@ -1627,7 +1629,7 @@
     "last_alert_at": 0.0
   },
   "SPYXUSD|demand|769.79000000|770.33000000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1786627313.1278603
   },
   "FLNC/USDT:USDT|demand|13.10000000|13.18000000": {
@@ -1910,8 +1912,8 @@
     "last_alert_at": 0.0
   },
   "SLVONUSD|demand|58.28000000|58.57000000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1786631008.024899
   },
   "FILUSD|supply|0.68050000|0.68190000": {
     "in_zone": false,
@@ -1922,6 +1924,14 @@
     "last_alert_at": 0.0
   },
   "RE/USDT|supply|0.45558000|0.47000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "ARBUSD|supply|0.07636000|0.07664000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "APTUSD|supply|0.56690000|0.56820000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
