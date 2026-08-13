@@ -1116,8 +1116,8 @@
   },
   "GLENMARK.NS|supply|2311.0000|2325.7000": {
     "in_zone": true,
-    "last_alert_at": 1786522362.618724,
-    "last_attempt_at": 1786522362.618724
+    "last_alert_at": 1786594360.309462,
+    "last_attempt_at": 1786594360.309462
   },
   "GLENMARK.NS|demand|2163.0000|2235.0000": {
     "in_zone": false,
@@ -1920,7 +1920,7 @@
     "last_attempt_at": 0.0
   },
   "MCX.NS|supply|2985.2000|3037.2000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1786593152.3633075,
     "last_attempt_at": 1786593152.3633075
   },
@@ -2527,7 +2527,8 @@
   "_noise_control": {
     "HUDCO.NS|4h|long|191.7700042725|193.3999938965": 1786593151.6628404,
     "IRCON.NS|4h|long|123.5199966431|124.9700012207": 1786593152.1220179,
-    "MCX.NS|4h|short|2985.1999511719|3037.1999511719": 1786593152.3633075
+    "MCX.NS|4h|short|2985.1999511719|3037.1999511719": 1786593152.3633075,
+    "GLENMARK.NS|4h|short|2311.0000000000|2325.6999511719": 1786594360.309462
   },
   "GESHIP.NS|demand|1057.1000|1070.5000": {
     "in_zone": false,
@@ -2555,6 +2556,11 @@
     "last_attempt_at": 0.0
   },
   "RELIANCE.NS|demand|1271.4000|1280.0000": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "NATCOPHARM.NS|supply|1204.9000|1224.7000": {
     "in_zone": false,
     "last_alert_at": 0.0,
     "last_attempt_at": 0.0
