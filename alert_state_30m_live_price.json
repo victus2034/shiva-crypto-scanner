@@ -1504,7 +1504,7 @@
     "NVDAXUSD|30m|short|226.1000000000|227.4000000000": 1786647740.3599477,
     "GOOGLXUSD|30m|short|347.1500000000|348.8000000000": 1786648912.6801748,
     "MSFT/USDT:USDT|30m|short|498.9500000000|501.5600000000": 1786650119.9273772,
-    "BABA/USDT:USDT|30m|long|121.6100000000|121.9000000000": 1786654938.5759404
+    "BABA/USDT:USDT|30m|long|121.6100000000|121.9000000000": 1786658542.6475403
   },
   "METAXUSD|demand|577.00000000|579.20000000": {
     "in_zone": false,
@@ -2067,7 +2067,7 @@
   },
   "BABA/USDT:USDT|demand|121.61000000|121.90000000": {
     "in_zone": true,
-    "last_alert_at": 1786654938.5759404
+    "last_alert_at": 1786658542.6475403
   },
   "SUIUSD|supply|0.69780000|0.69960000": {
     "in_zone": false,
@@ -2126,6 +2126,22 @@
     "last_alert_at": 0.0
   },
   "ERA/USDT|demand|0.06267000|0.06313000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "1000PEPEUSD|demand|0.00263690|0.00264720": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "ONDOUSD|demand|0.33080000|0.33310000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "AVAXUSD|demand|6.36530000|6.38600000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "MMT/USDT|supply|0.16910000|0.17340000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
