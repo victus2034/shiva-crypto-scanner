@@ -2460,9 +2460,9 @@
     "last_attempt_at": 0.0
   },
   "COFORGE.NS|supply|1826.4000|1835.2000": {
-    "in_zone": false,
-    "last_alert_at": 1786603334.0268939,
-    "last_attempt_at": 1786603334.0268939
+    "in_zone": true,
+    "last_alert_at": 1786609318.942354,
+    "last_attempt_at": 1786609318.942354
   },
   "LALPATHLAB.NS|demand|1918.0000|1942.6000": {
     "in_zone": false,
@@ -2656,8 +2656,8 @@
   },
   "CHOLAFIN.NS|supply|1918.4000|1925.4000": {
     "in_zone": true,
-    "last_alert_at": 1786603333.7460551,
-    "last_attempt_at": 1786603333.7460551
+    "last_alert_at": 1786609318.753126,
+    "last_attempt_at": 1786609318.753126
   },
   "COHANCE.NS|supply|468.1500|474.6000": {
     "in_zone": false,
@@ -3142,8 +3142,8 @@
     "CESC.NS|30m|long|160.3999938965|160.8399963379": 1786602125.7217164,
     "NHPC.NS|30m|short|77.7900009155|78.1999969482": 1786602127.9274933,
     "ADANIPORTS.NS|30m|long|1641.5000000000|1645.0000000000": 1786608142.1442723,
-    "CHOLAFIN.NS|30m|short|1918.4000244141|1925.4000244141": 1786603333.7460551,
-    "COFORGE.NS|30m|short|1826.4000244141|1835.1999511719": 1786603334.0268939,
+    "CHOLAFIN.NS|30m|short|1918.4000244141|1925.4000244141": 1786609318.753126,
+    "COFORGE.NS|30m|short|1826.4000244141|1835.1999511719": 1786609318.942354,
     "HCLTECH.NS|30m|short|1371.0999755859|1379.8000488281": 1786603334.4823954,
     "SBFC.NS|30m|short|94.2399978638|94.7200012207": 1786603334.7611232,
     "GAIL.NS|30m|long|173.3099975586|173.6999969482": 1786604529.438973,
@@ -3152,7 +3152,9 @@
     "CHOICEIN.NS|30m|long|810.5499877930|812.7000122070": 1786606922.726507,
     "CANFINHOME.NS|30m|short|826.0000000000|829.0000000000": 1786608142.9184394,
     "GODFRYPHLP.NS|30m|long|2152.0000000000|2182.8000488281": 1786608143.2030056,
-    "ITC.NS|30m|long|275.3999938965|277.1000061035": 1786608143.3915036
+    "ITC.NS|30m|long|275.3999938965|277.1000061035": 1786608143.3915036,
+    "BAYERCROP.NS|30m|short|4117.1000976562|4127.5000000000": 1786609318.562974,
+    "IRB.NS|30m|short|19.3400001526|19.3999996185": 1786609319.1700563
   },
   "ANANDRATHI.NS|supply|2187.5000|2221.0000": {
     "in_zone": true,
@@ -3465,6 +3467,76 @@
     "last_attempt_at": 1786608143.3915036
   },
   "JSWDULUX.NS|demand|3080.2000|3095.0000": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "BAYERCROP.NS|supply|4117.1001|4127.5000": {
+    "in_zone": true,
+    "last_alert_at": 1786609318.562974,
+    "last_attempt_at": 1786609318.562974
+  },
+  "BHARTIHEXA.NS|demand|1477.8000|1483.5000": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "BOSCHLTD.NS|demand|46215.0000|46350.0000": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "CONCORDBIO.NS|supply|1447.0000|1458.7000": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "CYIENT.NS|demand|839.0000|840.0000": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "GRAVITA.NS|supply|1808.1000|1838.9000": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "IRB.NS|supply|19.3400|19.4000": {
+    "in_zone": true,
+    "last_alert_at": 1786609319.1700563,
+    "last_attempt_at": 1786609319.1700563
+  },
+  "NAUKRI.NS|demand|1330.1000|1336.0000": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "JKCEMENT.NS|supply|5392.0000|5429.0000": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "KAYNES.NS|supply|3830.1001|3860.0000": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "KOTAKBANK.NS|supply|392.5500|394.2500": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "LENSKART.NS|demand|583.0000|584.6500": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "LINDEINDIA.NS|demand|6743.0000|6770.0000": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "RAINBOW.NS|supply|1487.9000|1500.0000": {
     "in_zone": false,
     "last_alert_at": 0.0,
     "last_attempt_at": 0.0
