@@ -1701,7 +1701,7 @@
     "last_alert_at": 1786590135.7169838
   },
   "ALGO/USDT|demand|0.07811000|0.07863000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1786588909.0162535
   },
   "PEOPLE/USDT|demand|0.00790900|0.00794200": {
@@ -1737,6 +1737,14 @@
     "last_alert_at": 0.0
   },
   "DASH/USDT|demand|29.82000000|29.96000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "TIAUSD|demand|0.29580000|0.29950000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "0G/USDT|demand|0.15540000|0.15660000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
