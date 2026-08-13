@@ -2460,7 +2460,7 @@
     "last_attempt_at": 0.0
   },
   "COFORGE.NS|supply|1826.4000|1835.2000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1786603334.0268939,
     "last_attempt_at": 1786603334.0268939
   },
@@ -2555,7 +2555,7 @@
     "last_attempt_at": 0.0
   },
   "HCLTECH.NS|supply|1371.1000|1379.8000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1786603334.4823954,
     "last_attempt_at": 1786603334.4823954
   },
@@ -2945,7 +2945,7 @@
     "last_attempt_at": 0.0
   },
   "EIHOTEL.NS|supply|302.3500|302.9500": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1786603334.304787,
     "last_attempt_at": 1786603334.304787
   },
@@ -3148,7 +3148,8 @@
     "SBFC.NS|30m|short|94.2399978638|94.7200012207": 1786603334.7611232,
     "GAIL.NS|30m|long|173.3099975586|173.6999969482": 1786604529.438973,
     "CHAMBLFERT.NS|30m|long|441.3500061035|442.2500000000": 1786605728.7390625,
-    "PHOENIXLTD.NS|30m|long|1870.4000244141|1881.9000244141": 1786605730.2909725
+    "PHOENIXLTD.NS|30m|long|1870.4000244141|1881.9000244141": 1786605730.2909725,
+    "CHOICEIN.NS|30m|long|810.5499877930|812.7000122070": 1786606922.726507
   },
   "ANANDRATHI.NS|supply|2187.5000|2221.0000": {
     "in_zone": true,
@@ -3416,9 +3417,9 @@
     "last_attempt_at": 0.0
   },
   "CHOICEIN.NS|demand|810.5500|812.7000": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1786606922.726507,
+    "last_attempt_at": 1786606922.726507
   },
   "ELECON.NS|demand|428.0000|430.7000": {
     "in_zone": false,
