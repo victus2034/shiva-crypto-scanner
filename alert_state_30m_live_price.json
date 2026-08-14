@@ -1513,7 +1513,9 @@
     "ATOM/USDT|30m|short|1.5240000000|1.5290000000": 1786671707.367849,
     "ERA/USDT|30m|long|0.0626700000|0.0631300000": 1786674106.3456707,
     "CRCLXUSD|30m|short|75.5500000000|76.1500000000": 1786674106.7466993,
-    "ALGO/USDT|30m|short|0.0787800000|0.0789300000": 1786676544.4301982
+    "ALGO/USDT|30m|short|0.0787800000|0.0789300000": 1786676544.4301982,
+    "JUP/USDT|30m|long|0.1668000000|0.1676000000": 1786678908.9964943,
+    "KGEN/USDT|30m|long|0.1874000000|0.1888000000": 1786678909.3546495
   },
   "METAXUSD|demand|577.00000000|579.20000000": {
     "in_zone": false,
@@ -2131,8 +2133,8 @@
     "last_alert_at": 0.0
   },
   "JUP/USDT|demand|0.16680000|0.16760000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1786678908.9964943
   },
   "ERA/USDT|demand|0.06267000|0.06313000": {
     "in_zone": true,
@@ -2199,8 +2201,8 @@
     "last_alert_at": 0.0
   },
   "KGEN/USDT|demand|0.18740000|0.18880000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1786678909.3546495
   },
   "GWEI/USDT|demand|0.02368000|0.02391000": {
     "in_zone": false,
@@ -2275,6 +2277,22 @@
     "last_alert_at": 1786676544.4301982
   },
   "SKHYNIX/USDT:USDT|supply|1207.47000000|1221.42000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "BOME/USDT|demand|0.00073020|0.00073440": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "JUP/USDT|supply|0.17010000|0.17060000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "ERA/USDT|supply|0.06385000|0.06417000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "SAMSUNG/USDT:USDT|supply|194.26000000|195.28000000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
