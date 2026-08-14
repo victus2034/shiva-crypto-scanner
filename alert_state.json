@@ -280,8 +280,8 @@
     "last_alert_at": 0.0
   },
   "DOTUSD|demand|0.74300000|0.75500000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1786696289.3047597
   },
   "UB/USDT|supply|0.19633000|0.21185000": {
     "in_zone": false,
@@ -1507,7 +1507,8 @@
     "PAXGUSD|4h|long|4303.5000000000|4317.8000000000": 1786677080.7079203,
     "FARTCOIN/USDT|4h|short|0.1418000000|0.1437000000": 1786667492.4641726,
     "SLVONUSD|4h|long|57.2000000000|57.6700000000": 1786685496.489513,
-    "APTUSD|4h|long|0.5430000000|0.5520000000": 1786678298.8500984
+    "APTUSD|4h|long|0.5430000000|0.5520000000": 1786678298.8500984,
+    "DOTUSD|4h|long|0.7430000000|0.7550000000": 1786696289.3047597
   },
   "ARBUSD|supply|0.08030000|0.08180000": {
     "in_zone": false,
@@ -1758,6 +1759,14 @@
     "last_alert_at": 0.0
   },
   "TQQQ/USDT:USDT|demand|72.28000000|73.03000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "VANRY/USDT|supply|0.00311300|0.00329100": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "PHAROS/USDT|demand|0.31600000|0.32230000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
