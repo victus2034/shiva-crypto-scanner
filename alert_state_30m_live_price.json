@@ -1504,7 +1504,8 @@
     "NVDAXUSD|30m|short|226.1000000000|227.4000000000": 1786647740.3599477,
     "GOOGLXUSD|30m|short|347.1500000000|348.8000000000": 1786648912.6801748,
     "MSFT/USDT:USDT|30m|short|498.9500000000|501.5600000000": 1786650119.9273772,
-    "BABA/USDT:USDT|30m|long|121.6100000000|121.9000000000": 1786658542.6475403
+    "BABA/USDT:USDT|30m|long|121.6100000000|121.9000000000": 1786658542.6475403,
+    "PEOPLE/USDT|30m|long|0.0077280000|0.0077630000": 1786665741.684314
   },
   "METAXUSD|demand|577.00000000|579.20000000": {
     "in_zone": false,
@@ -2200,5 +2201,21 @@
   "COINXUSD|demand|147.69000000|148.26000000": {
     "in_zone": false,
     "last_alert_at": 0.0
+  },
+  "TAO/USDT|supply|202.80000000|203.90000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "INJUSD|supply|4.63600000|4.64700000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "VVV/USDT|supply|12.48900000|12.58400000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "PEOPLE/USDT|demand|0.00772800|0.00776300": {
+    "in_zone": true,
+    "last_alert_at": 1786665741.684314
   }
 }
