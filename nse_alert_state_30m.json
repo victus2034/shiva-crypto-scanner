@@ -66,8 +66,8 @@
   },
   "AWL.NS|demand|189.5000|190.3000": {
     "in_zone": true,
-    "last_alert_at": 1786687336.6556978,
-    "last_attempt_at": 1786687336.6556978
+    "last_alert_at": 1786690951.8538923,
+    "last_attempt_at": 1786690951.8538923
   },
   "AARTIIND.NS|demand|475.1000|476.7500": {
     "in_zone": false,
@@ -1301,8 +1301,8 @@
   },
   "INDIACEM.NS|demand|374.1000|375.4500": {
     "in_zone": true,
-    "last_alert_at": 1786686122.356701,
-    "last_attempt_at": 1786686122.356701
+    "last_alert_at": 1786690952.3237455,
+    "last_attempt_at": 1786690952.3237455
   },
   "INDIAMART.NS|supply|1796.6000|1809.1000": {
     "in_zone": false,
@@ -3215,10 +3215,11 @@
     "INOXWIND.NS|30m|long|72.7799987793|73.2200012207": 1786684937.1127193,
     "MFSL.NS|30m|short|1544.0999755859|1549.9000244141": 1786689712.9750867,
     "BHARTIHEXA.NS|30m|short|1591.0000000000|1614.0000000000": 1786686121.9701996,
-    "INDIACEM.NS|30m|long|374.1000061035|375.4500122070": 1786686122.356701,
-    "AWL.NS|30m|long|189.5000000000|190.3000030518": 1786687336.6556978,
+    "INDIACEM.NS|30m|long|374.1000061035|375.4500122070": 1786690952.3237455,
+    "AWL.NS|30m|long|189.5000000000|190.3000030518": 1786690951.8538923,
     "MCX.NS|30m|long|2929.0000000000|2938.0000000000": 1786688528.5918093,
-    "PERSISTENT.NS|30m|short|5578.0000000000|5592.5000000000": 1786689713.5508373
+    "PERSISTENT.NS|30m|short|5578.0000000000|5592.5000000000": 1786689713.5508373,
+    "BIKAJI.NS|30m|long|606.1500244141|607.7000122070": 1786690952.1191208
   },
   "ANANDRATHI.NS|supply|2187.5000|2221.0000": {
     "in_zone": true,
@@ -3421,9 +3422,9 @@
     "last_attempt_at": 1786602125.4872396
   },
   "BIKAJI.NS|demand|606.1500|607.7000": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1786690952.1191208,
+    "last_attempt_at": 1786690952.1191208
   },
   "BLUESTARCO.NS|supply|1497.9000|1507.7000": {
     "in_zone": true,
@@ -4129,5 +4130,15 @@
     "in_zone": true,
     "last_alert_at": 1786688528.5918093,
     "last_attempt_at": 1786688528.5918093
+  },
+  "IPCALAB.NS|supply|1830.0000|1903.3000": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "MFSL.NS|supply|1655.7000|1661.5000": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
   }
 }
