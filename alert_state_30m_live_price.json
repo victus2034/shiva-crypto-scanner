@@ -1528,7 +1528,8 @@
     "ADAUSD|30m|short|0.1832400000|0.1836000000": 1786699303.7651863,
     "1000SHIBUSD|30m|short|0.0045200000|0.0045330000": 1786700496.0389957,
     "ORDI/USDT|30m|long|3.4210000000|3.4410000000": 1786700496.279205,
-    "MSFT/USDT:USDT|30m|long|494.6200000000|495.3300000000": 1786701741.9324844
+    "MSFT/USDT:USDT|30m|long|494.6200000000|495.3300000000": 1786701741.9324844,
+    "BABA/USDT:USDT|30m|short|122.8100000000|123.7500000000": 1786702899.99107
   },
   "METAXUSD|demand|577.00000000|579.20000000": {
     "in_zone": false,
@@ -2358,8 +2359,8 @@
     "last_alert_at": 0.0
   },
   "BABA/USDT:USDT|supply|122.81000000|123.75000000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1786702899.99107
   },
   "SAMSUNG/USDT:USDT|demand|188.11000000|189.24000000": {
     "in_zone": false,
@@ -2410,7 +2411,7 @@
     "last_alert_at": 0.0
   },
   "HBAR/USDT|supply|0.06566000|0.06576000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1786698124.4249175
   },
   "O/USDT|supply|0.47720000|0.48500000": {
