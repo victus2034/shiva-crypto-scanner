@@ -2062,7 +2062,7 @@
     "last_alert_at": 0.0
   },
   "FLNC/USDT:USDT|supply|13.53000000|13.62000000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1786718498.7813723
   },
   "SPYXUSD|demand|774.68000000|774.99000000": {
@@ -2514,6 +2514,18 @@
     "last_alert_at": 0.0
   },
   "COAI/USDT|supply|0.33310000|0.33720000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "COTI/USDT|supply|0.01144500|0.01171200": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "BTW/USDT|demand|0.25568000|0.28839000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "TAIKO/USDT|demand|0.06926000|0.06984000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
