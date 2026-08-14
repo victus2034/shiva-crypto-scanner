@@ -1526,13 +1526,14 @@
     "SAMSUNG/USDT:USDT|30m|short|194.2600000000|195.2800000000": 1786696900.1297972,
     "HBAR/USDT|30m|short|0.0656600000|0.0657600000": 1786711301.2399967,
     "ADAUSD|30m|short|0.1832400000|0.1836000000": 1786699303.7651863,
-    "1000SHIBUSD|30m|short|0.0045200000|0.0045330000": 1786706500.847077,
+    "1000SHIBUSD|30m|short|0.0045200000|0.0045330000": 1786714900.3843727,
     "ORDI/USDT|30m|long|3.4210000000|3.4410000000": 1786700496.279205,
     "MSFT/USDT:USDT|30m|long|494.6200000000|495.3300000000": 1786701741.9324844,
     "BABA/USDT:USDT|30m|short|122.8100000000|123.7500000000": 1786702899.99107,
     "BOME/USDT|30m|long|0.0007302000|0.0007344000": 1786705319.6368792,
     "LDO/USDT|30m|long|0.2912000000|0.2927000000": 1786713691.9755907,
-    "NBIS/USDT:USDT|30m|long|255.9700000000|256.9700000000": 1786713692.5287683
+    "NBIS/USDT:USDT|30m|long|255.9700000000|256.9700000000": 1786713692.5287683,
+    "WLD/USDT|30m|short|0.3409000000|0.3442000000": 1786714900.2017355
   },
   "METAXUSD|demand|577.00000000|579.20000000": {
     "in_zone": false,
@@ -1938,8 +1939,8 @@
     "last_alert_at": 1786669346.674746
   },
   "1000SHIBUSD|supply|0.00452000|0.00453300": {
-    "in_zone": false,
-    "last_alert_at": 1786706500.847077
+    "in_zone": true,
+    "last_alert_at": 1786714900.3843727
   },
   "KAITO/USDT|supply|0.46310000|0.46900000": {
     "in_zone": false,
@@ -2458,7 +2459,7 @@
     "last_alert_at": 0.0
   },
   "NBIS/USDT:USDT|demand|255.97000000|256.97000000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1786713692.5287683
   },
   "MSFT/USDT:USDT|demand|494.62000000|495.33000000": {
@@ -2474,8 +2475,8 @@
     "last_alert_at": 0.0
   },
   "WLD/USDT|supply|0.34090000|0.34420000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1786714900.2017355
   },
   "KAITO/USDT|demand|0.39670000|0.40450000": {
     "in_zone": false,
@@ -2494,6 +2495,14 @@
     "last_alert_at": 0.0
   },
   "INTCBUSD|supply|106.47000000|106.98000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "OPENAI/USDT:USDT|demand|116.62000000|116.83000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "FLNC/USDT:USDT|supply|13.44000000|13.47000000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
