@@ -1400,8 +1400,8 @@
     "last_alert_at": 0.0
   },
   "EUL/USDT|demand|1.10030000|1.10240000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1786680138.769731
   },
   "HOME/USDT|supply|0.00959400|0.00995000": {
     "in_zone": false,
@@ -1515,7 +1515,8 @@
     "CRCLXUSD|30m|short|75.5500000000|76.1500000000": 1786674106.7466993,
     "ALGO/USDT|30m|short|0.0787800000|0.0789300000": 1786676544.4301982,
     "JUP/USDT|30m|long|0.1668000000|0.1676000000": 1786678908.9964943,
-    "KGEN/USDT|30m|long|0.1874000000|0.1888000000": 1786678909.3546495
+    "KGEN/USDT|30m|long|0.1874000000|0.1888000000": 1786678909.3546495,
+    "EUL/USDT|30m|long|1.1003000000|1.1024000000": 1786680138.769731
   },
   "METAXUSD|demand|577.00000000|579.20000000": {
     "in_zone": false,
@@ -2293,6 +2294,18 @@
     "last_alert_at": 0.0
   },
   "SAMSUNG/USDT:USDT|supply|194.26000000|195.28000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "ETHUSD|supply|1892.70000000|1897.00000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "PENGU/USDT|supply|0.00626800|0.00628400": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "HOME/USDT|demand|0.00973300|0.00994000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
