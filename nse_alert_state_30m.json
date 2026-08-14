@@ -1300,9 +1300,9 @@
     "last_attempt_at": 0.0
   },
   "INDIACEM.NS|demand|374.1000|375.4500": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1786686122.356701,
+    "last_attempt_at": 1786686122.356701
   },
   "INDIAMART.NS|supply|1796.6000|1809.1000": {
     "in_zone": false,
@@ -1755,7 +1755,7 @@
     "last_attempt_at": 0.0
   },
   "MFSL.NS|supply|1544.1000|1549.9000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1786684937.333915,
     "last_attempt_at": 1786684937.333915
   },
@@ -3213,7 +3213,9 @@
     "CREDITACC.NS|30m|long|1536.6999511719|1540.0000000000": 1786684935.3177047,
     "HYUNDAI.NS|30m|long|2220.0000000000|2225.5000000000": 1786684936.763358,
     "INOXWIND.NS|30m|long|72.7799987793|73.2200012207": 1786684937.1127193,
-    "MFSL.NS|30m|short|1544.0999755859|1549.9000244141": 1786684937.333915
+    "MFSL.NS|30m|short|1544.0999755859|1549.9000244141": 1786684937.333915,
+    "BHARTIHEXA.NS|30m|short|1591.0000000000|1614.0000000000": 1786686121.9701996,
+    "INDIACEM.NS|30m|long|374.1000061035|375.4500122070": 1786686122.356701
   },
   "ANANDRATHI.NS|supply|2187.5000|2221.0000": {
     "in_zone": true,
@@ -3636,7 +3638,7 @@
     "last_attempt_at": 0.0
   },
   "ESCORTS.NS|supply|3128.0000|3131.0000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1786684935.6118827,
     "last_attempt_at": 1786684935.6118827
   },
@@ -3981,9 +3983,9 @@
     "last_attempt_at": 0.0
   },
   "BHARTIHEXA.NS|supply|1591.0000|1614.0000": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1786686121.9701996,
+    "last_attempt_at": 1786686121.9701996
   },
   "DIVISLAB.NS|demand|8415.0000|8455.5000": {
     "in_zone": false,
@@ -4064,5 +4066,10 @@
     "in_zone": true,
     "last_alert_at": 1786684936.763358,
     "last_attempt_at": 1786684936.763358
+  },
+  "ICICIPRULI.NS|supply|506.2000|508.2000": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
   }
 }
