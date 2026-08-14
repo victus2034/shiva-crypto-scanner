@@ -1907,7 +1907,7 @@
     "last_alert_at": 0.0
   },
   "ICP/USDT|supply|2.19000000|2.19400000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1786664511.1124732
   },
   "1000SHIBUSD|supply|0.00452000|0.00453300": {
@@ -2219,6 +2219,10 @@
     "last_alert_at": 1786665741.684314
   },
   "QQQXUSD|supply|732.63000000|733.29000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "EWYBUSD|demand|178.07000000|178.70000000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
