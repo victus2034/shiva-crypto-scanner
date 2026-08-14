@@ -115,7 +115,7 @@
     "last_attempt_at": 0.0
   },
   "ATGL.NS|demand|650.2500|651.3000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1786680138.880869,
     "last_attempt_at": 1786680138.880869
   },
@@ -260,9 +260,9 @@
     "last_attempt_at": 0.0
   },
   "ATUL.NS|demand|6706.0000|6738.5000": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1786682534.4945748,
+    "last_attempt_at": 1786682534.4945748
   },
   "AUROPHARMA.NS|demand|1540.2000|1543.3000": {
     "in_zone": false,
@@ -1100,9 +1100,9 @@
     "last_attempt_at": 0.0
   },
   "HBLENGINE.NS|demand|685.6500|687.4000": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1786682535.7381454,
+    "last_attempt_at": 1786682535.7381454
   },
   "HCLTECH.NS|demand|1332.9000|1334.8000": {
     "in_zone": false,
@@ -2635,7 +2635,7 @@
     "last_attempt_at": 0.0
   },
   "ITC.NS|demand|275.0500|275.2500": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1786680142.0211396,
     "last_attempt_at": 1786680142.0211396
   },
@@ -2945,9 +2945,9 @@
     "last_attempt_at": 1786608142.9184394
   },
   "EIHOTEL.NS|supply|302.3500|302.9500": {
-    "in_zone": false,
-    "last_alert_at": 1786603334.304787,
-    "last_attempt_at": 1786603334.304787
+    "in_zone": true,
+    "last_alert_at": 1786682535.3444474,
+    "last_attempt_at": 1786682535.3444474
   },
   "GODIGIT.NS|supply|265.2000|266.8500": {
     "in_zone": false,
@@ -3025,9 +3025,9 @@
     "last_attempt_at": 0.0
   },
   "FACT.NS|supply|827.5000|833.8500": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1786682535.5359514,
+    "last_attempt_at": 1786682535.5359514
   },
   "GICRE.NS|supply|355.7500|358.2000": {
     "in_zone": false,
@@ -3116,8 +3116,8 @@
     "SBFC.NS|30m|long|92.6999969482|93.5000000000": 1786593736.2061908,
     "ADANIENSOL.NS|30m|long|1571.3000488281|1579.5999755859": 1786596123.214858,
     "AXISBANK.NS|30m|long|1211.0000000000|1214.8000488281": 1786611753.9566722,
-    "CENTRALBK.NS|30m|short|31.5799999237|31.6599998474": 1786612928.010497,
-    "EIHOTEL.NS|30m|short|302.3500061035|302.9500122070": 1786603334.304787,
+    "CENTRALBK.NS|30m|short|31.5799999237|31.6599998474": 1786682534.9340966,
+    "EIHOTEL.NS|30m|short|302.3500061035|302.9500122070": 1786682535.3444474,
     "FIVESTAR.NS|30m|long|538.9000244141|540.7999877930": 1786596125.371069,
     "GPIL.NS|30m|short|241.3000030518|241.8000030518": 1786596125.6020696,
     "IDFCFIRSTB.NS|30m|short|85.9499969482|86.1299972534": 1786596125.8705096,
@@ -3163,7 +3163,7 @@
     "FACT.NS|30m|long|816.0000000000|819.5499877930": 1786611754.490437,
     "LGEINDIA.NS|30m|short|1579.3000488281|1583.0000000000": 1786611754.7047112,
     "MINDACORP.NS|30m|long|712.4000244141|721.4500122070": 1786611755.1810427,
-    "PNB.NS|30m|short|118.8600006104|119.4700012207": 1786611755.550925,
+    "PNB.NS|30m|short|118.8600006104|119.4700012207": 1786682536.2753913,
     "ANGELONE.NS|30m|short|290.5000000000|292.2500000000": 1786612927.719983,
     "HDBFS.NS|30m|short|695.0499877930|697.7500000000": 1786612928.390595,
     "ICICIAMC.NS|30m|short|3153.3999023438|3160.0000000000": 1786612928.9001653,
@@ -3192,7 +3192,13 @@
     "AAVAS.NS|30m|long|1404.6999511719|1414.1999511719": 1786681318.4126832,
     "ASAHIINDIA.NS|30m|short|907.5499877930|918.9500122070": 1786681318.8039532,
     "ESCORTS.NS|30m|short|3128.0000000000|3131.0000000000": 1786681319.092229,
-    "PFC.NS|30m|long|374.1000061035|374.8500061035": 1786681320.0746825
+    "PFC.NS|30m|long|374.1000061035|374.8500061035": 1786681320.0746825,
+    "ACUTAAS.NS|30m|short|3200.0000000000|3212.3000488281": 1786682534.309775,
+    "ATUL.NS|30m|long|6706.0000000000|6738.5000000000": 1786682534.4945748,
+    "BOSCHLTD.NS|30m|long|46215.0000000000|46350.0000000000": 1786682534.7118075,
+    "FACT.NS|30m|short|827.5000000000|833.8499755859": 1786682535.5359514,
+    "HBLENGINE.NS|30m|long|685.6500244141|687.4000244141": 1786682535.7381454,
+    "JSWENERGY.NS|30m|short|559.0000000000|562.2000122070": 1786682535.966187
   },
   "ANANDRATHI.NS|supply|2187.5000|2221.0000": {
     "in_zone": true,
@@ -3216,8 +3222,8 @@
   },
   "CENTRALBK.NS|supply|31.5800|31.6600": {
     "in_zone": true,
-    "last_alert_at": 1786612928.010497,
-    "last_attempt_at": 1786612928.010497
+    "last_alert_at": 1786682534.9340966,
+    "last_attempt_at": 1786682534.9340966
   },
   "FIVESTAR.NS|supply|556.5000|563.9500": {
     "in_zone": false,
@@ -3265,9 +3271,9 @@
     "last_attempt_at": 0.0
   },
   "PNB.NS|supply|118.8600|119.4700": {
-    "in_zone": false,
-    "last_alert_at": 1786611755.550925,
-    "last_attempt_at": 1786611755.550925
+    "in_zone": true,
+    "last_alert_at": 1786682536.2753913,
+    "last_attempt_at": 1786682536.2753913
   },
   "SBFC.NS|supply|94.2400|94.7200": {
     "in_zone": true,
@@ -3520,9 +3526,9 @@
     "last_attempt_at": 0.0
   },
   "BOSCHLTD.NS|demand|46215.0000|46350.0000": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1786682534.7118075,
+    "last_attempt_at": 1786682534.7118075
   },
   "CONCORDBIO.NS|supply|1447.0000|1458.7000": {
     "in_zone": true,
@@ -3745,9 +3751,9 @@
     "last_attempt_at": 0.0
   },
   "JSWENERGY.NS|supply|559.0000|562.2000": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1786682535.966187,
+    "last_attempt_at": 1786682535.966187
   },
   "JSWSTEEL.NS|demand|1264.2000|1267.6000": {
     "in_zone": true,
@@ -3910,7 +3916,7 @@
     "last_attempt_at": 0.0
   },
   "KIRLOSENG.NS|supply|2112.8999|2120.0000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1786680142.899492,
     "last_attempt_at": 1786680142.899492
   },
@@ -3945,9 +3951,9 @@
     "last_attempt_at": 0.0
   },
   "ACUTAAS.NS|supply|3200.0000|3212.3000": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1786682534.309775,
+    "last_attempt_at": 1786682534.309775
   },
   "ADANIENT.NS|demand|2933.3999|2943.5000": {
     "in_zone": false,
