@@ -2067,7 +2067,7 @@
     "last_alert_at": 0.0
   },
   "BABA/USDT:USDT|demand|121.61000000|121.90000000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1786658542.6475403
   },
   "SUIUSD|supply|0.69780000|0.69960000": {
@@ -2215,7 +2215,11 @@
     "last_alert_at": 0.0
   },
   "PEOPLE/USDT|demand|0.00772800|0.00776300": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1786665741.684314
+  },
+  "QQQXUSD|supply|732.63000000|733.29000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
   }
 }
