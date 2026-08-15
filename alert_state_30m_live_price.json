@@ -1554,7 +1554,8 @@
     "QQQXUSD|30m|long|731.3700000000|731.7700000000": 1786746096.6842363,
     "PHAROS/USDT|30m|long|0.3672000000|0.3687000000": 1786752129.0565326,
     "XMRUSD|30m|short|401.7000000000|403.0700000000": 1786752128.7894237,
-    "WIF/USDT|30m|short|0.1393000000|0.1399000000": 1786753296.6215374
+    "WIF/USDT|30m|short|0.1393000000|0.1399000000": 1786753296.6215374,
+    "GOOGLXUSD|30m|short|348.9500000000|351.2000000000": 1786754506.1777167
   },
   "METAXUSD|demand|577.00000000|579.20000000": {
     "in_zone": false,
@@ -2064,7 +2065,7 @@
     "last_alert_at": 0.0
   },
   "WIF/USDT|supply|0.13930000|0.13990000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1786753296.6215374
   },
   "BEAT/USDT|demand|0.82030000|0.88120000": {
@@ -2604,8 +2605,8 @@
     "last_alert_at": 1786752129.349051
   },
   "GOOGLXUSD|supply|348.95000000|351.20000000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1786754506.1777167
   },
   "DELL/USDT:USDT|supply|495.79000000|502.25000000": {
     "in_zone": false,
@@ -2780,6 +2781,10 @@
     "last_alert_at": 0.0
   },
   "INTCBUSD|supply|106.29000000|106.96000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "FLNC/USDT:USDT|demand|13.09000000|13.15000000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
