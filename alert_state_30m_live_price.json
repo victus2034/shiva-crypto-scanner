@@ -1567,7 +1567,7 @@
     "BANK/USDT|30m|long|0.0374300000|0.0376200000": 1786768901.6623147,
     "ATOM/USDT|30m|long|1.4740000000|1.4880000000": 1786776094.8246176,
     "CRV/USDT|30m|long|0.2376000000|0.2390000000": 1786779702.4747753,
-    "HYPEUSD|30m|short|56.6700000000|56.8500000000": 1786780916.8786275,
+    "HYPEUSD|30m|short|56.6700000000|56.8500000000": 1786801292.2592452,
     "LDO/USDT|30m|short|0.3037000000|0.3047000000": 1786780917.0671673,
     "TRX/USDT|30m|short|0.3330500000|0.3332500000": 1786797695.5996563,
     "TAIKO/USDT|30m|short|0.0710600000|0.0714900000": 1786783305.6435544,
@@ -2806,7 +2806,7 @@
     "last_alert_at": 0.0
   },
   "FLNC/USDT:USDT|demand|13.09000000|13.15000000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1786785704.8044324
   },
   "VANRY/USDT|demand|0.00141700|0.00154800": {
@@ -3422,8 +3422,8 @@
     "last_alert_at": 0.0
   },
   "HYPEUSD|supply|56.67000000|56.85000000": {
-    "in_zone": false,
-    "last_alert_at": 1786780916.8786275
+    "in_zone": true,
+    "last_alert_at": 1786801292.2592452
   },
   "AVAXUSD|supply|6.79000000|6.85400000": {
     "in_zone": false,
@@ -3526,6 +3526,14 @@
     "last_alert_at": 0.0
   },
   "FILUSD|demand|0.68140000|0.68630000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "WLD/USDT|supply|0.34980000|0.35370000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "TRUMP/USDT|demand|1.39900000|1.40500000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
