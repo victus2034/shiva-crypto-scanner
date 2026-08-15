@@ -1364,7 +1364,7 @@
     "last_alert_at": 1786532533.620106
   },
   "POL/USDT|supply|0.07581000|0.07596000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1786772498.4616933
   },
   "HOME/USDT|demand|0.00912100|0.00926200": {
@@ -3452,6 +3452,10 @@
     "last_alert_at": 0.0
   },
   "WLFI/USDT|demand|0.05283000|0.05294000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "BOME/USDT|demand|0.00076510|0.00077370": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
