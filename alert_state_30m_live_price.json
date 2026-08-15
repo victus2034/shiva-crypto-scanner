@@ -1569,7 +1569,8 @@
     "CRV/USDT|30m|long|0.2376000000|0.2390000000": 1786779702.4747753,
     "HYPEUSD|30m|short|56.6700000000|56.8500000000": 1786780916.8786275,
     "LDO/USDT|30m|short|0.3037000000|0.3047000000": 1786780917.0671673,
-    "TRX/USDT|30m|short|0.3330500000|0.3332500000": 1786782100.3224192
+    "TRX/USDT|30m|short|0.3330500000|0.3332500000": 1786782100.3224192,
+    "TAIKO/USDT|30m|short|0.0710600000|0.0714900000": 1786783305.6435544
   },
   "METAXUSD|demand|577.00000000|579.20000000": {
     "in_zone": false,
@@ -3371,8 +3372,8 @@
     "last_alert_at": 0.0
   },
   "TAIKO/USDT|supply|0.07106000|0.07149000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1786783305.6435544
   },
   "FILUSD|supply|0.68900000|0.70400000": {
     "in_zone": false,
@@ -3435,6 +3436,22 @@
     "last_alert_at": 0.0
   },
   "XPLUSD|demand|0.07524000|0.07539000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "DOGEUSD|supply|0.07047000|0.07060000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "SUIUSD|supply|0.68560000|0.68860000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "ARBUSD|supply|0.07521000|0.07543000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "WLFI/USDT|demand|0.05283000|0.05294000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
