@@ -142,7 +142,11 @@ def classify_intraday(
     now: datetime | None = None,
 ) -> dict:
     close = _session_close(data, session, now) if session else data["close"].dropna()
-    if len(close) < 3:
+    # _session_close already enforces its own documented minimum of 2 bars
+    # (session start + one completed candle). Requiring 3 here contradicted
+    # that and raised an uncaught RuntimeError - instead of the handled
+    # SessionDataNotReady - right at the first valid reporting window.
+    if len(close) < 2:
         raise RuntimeError("not enough intraday candles")
     last = float(close.iloc[-1])
     previous = float(close.iloc[-2])
