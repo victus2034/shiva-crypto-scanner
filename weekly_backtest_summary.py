@@ -123,20 +123,24 @@ def build_weekly_summary(
     frame = frame.copy()
     frame["rating"] = pd.to_numeric(frame["rating"], errors="coerce")
     frame["net_realized_r"] = pd.to_numeric(frame["net_realized_r"], errors="coerce")
-    # Pending and ambiguous rows are not completed outcomes and must not be
-    # presented as weekly wins/losses.
-    frame = frame[~frame["final_result"].isin(["Pending", daily.DATA_QUALITY_AMBIGUOUS])].copy()
-    if frame.empty:
-        return f"{header}\n\nNo finalized daily records."
     side_counts = frame["side"].value_counts()
     filled = frame[frame["filled"] == True].copy()  # noqa: E712
     outcomes = frame["outcome"].value_counts()
-    final_counts = filled["final_result"].value_counts() if not filled.empty else pd.Series(dtype=int)
     entries = len(filled)
     duplicates = int(outcomes.get("zone_cooldown", 0))
     touch = entries + duplicates
     no_touch = int(outcomes.get("zone_not_touched", 0))
-    net_r = pd.to_numeric(filled.get("net_realized_r", pd.Series(dtype=float)), errors="coerce").sum()
+    # Pending trades (still open - xStock entries never leave this state by
+    # design, since outcome resolution isn't built for that market yet) are
+    # kept in Touch/Entries but excluded from win/loss RESULTS, shown as
+    # "Waiting" instead - matching how the daily report already handles it.
+    waiting = int((filled["final_result"] == "Pending").sum()) if not filled.empty else 0
+    finalized = (
+        filled[~filled["final_result"].isin(["Pending", daily.DATA_QUALITY_AMBIGUOUS])]
+        if not filled.empty else filled
+    )
+    final_counts = finalized["final_result"].value_counts() if not finalized.empty else pd.Series(dtype=int)
+    net_r = pd.to_numeric(finalized.get("net_realized_r", pd.Series(dtype=float)), errors="coerce").sum()
 
     lines = [
         header,
@@ -152,6 +156,7 @@ def build_weekly_summary(
         daily.metric("No Touch", no_touch),
         *([daily.metric("Duplicates", duplicates)] if duplicates else []),
         daily.metric("Entries", entries),
+        *([daily.metric("Waiting", waiting)] if waiting else []),
         "",
         "RESULTS",
         *daily.format_outcome_lines(final_counts),
@@ -180,12 +185,17 @@ def weekly_stats_summary(frame: pd.DataFrame, market: str = "nse") -> list[tuple
     side_counts = frame["side"].value_counts()
     filled = frame[frame["filled"] == True].copy()  # noqa: E712
     outcomes = frame["outcome"].value_counts()
-    final_counts = filled["final_result"].value_counts() if not filled.empty else pd.Series(dtype=int)
     entries = len(filled)
     duplicates = int(outcomes.get("zone_cooldown", 0))
     touch = entries + duplicates
     no_touch = int(outcomes.get("zone_not_touched", 0))
-    net_r = pd.to_numeric(filled.get("net_realized_r", pd.Series(dtype=float)), errors="coerce").sum()
+    waiting = int((filled["final_result"] == "Pending").sum()) if not filled.empty else 0
+    finalized = (
+        filled[~filled["final_result"].isin(["Pending", daily.DATA_QUALITY_AMBIGUOUS])]
+        if not filled.empty else filled
+    )
+    final_counts = finalized["final_result"].value_counts() if not finalized.empty else pd.Series(dtype=int)
+    net_r = pd.to_numeric(finalized.get("net_realized_r", pd.Series(dtype=float)), errors="coerce").sum()
 
     rows: list[tuple[str, object]] = [
         ("Alerts", len(frame)),
@@ -199,6 +209,8 @@ def weekly_stats_summary(frame: pd.DataFrame, market: str = "nse") -> list[tuple
     ]
     if duplicates:
         rows.insert(5, ("Duplicates", duplicates))
+    if waiting:
+        rows.append(("Waiting", waiting))
     for label in ["SL", "+0.5R", "+1R", "+2R", "Neither"]:
         count = int(final_counts.get(label, 0))
         if count:
@@ -241,14 +253,16 @@ def weekly_readiness(
 ) -> tuple[bool, str]:
     """Prevent a final weekly report while lifecycle rows remain unresolved."""
     unresolved = []
-    if not pending.empty:
-        unresolved.append(f"pending={len(pending)}")
     if not finalized.empty and "final_result" in finalized:
         ambiguous = finalized[finalized["final_result"] == daily.DATA_QUALITY_AMBIGUOUS]
         if not ambiguous.empty:
             unresolved.append(f"data_quality_ambiguous={len(ambiguous)}")
 
     if market == "nse":
+        # NSE trades resolve same-day, so any pending row genuinely means
+        # something is still processing (or stuck) - worth withholding for.
+        if not pending.empty:
+            unresolved.append(f"pending={len(pending)}")
         expected = expected_nse_sessions(week_start, week_end)
         represented = set()
         if not finalized.empty and "date" in finalized:
@@ -303,12 +317,15 @@ def format_weekly_rating_blocks(frame: pd.DataFrame) -> str:
         stops = int(final_counts.get("SL", 0))
         conflicts = int(final_counts.get(daily.DATA_QUALITY_AMBIGUOUS, 0))
         neither = int(final_counts.get("Neither", 0))
+        waiting = int(final_counts.get("Pending", 0))
         wins = half_r + one_r + two_r
         detail_parts = []
         if conflicts:
             detail_parts.append(f"Conflict {conflicts}")
         if neither:
             detail_parts.append(f"Neither {neither}")
+        if waiting:
+            detail_parts.append(f"Waiting {waiting}")
         line = (
             f"{rating}/10 - {entries} entries | "
             f"{wins}W / {stops}L | {daily.format_win_rate(wins, stops)}"
@@ -375,11 +392,18 @@ def main() -> None:
         print(diagnostic)
         return
 
-    message = build_weekly_summary(frame, args.timeframe, week_start, week_end, market=args.market)
+    # Merge still-open trades into the reporting frame so they show as
+    # "Waiting" instead of being silently invisible. For NSE this is a
+    # no-op in practice (weekly_readiness already withholds the report
+    # while any NSE row is pending), but crypto/xstock don't block on
+    # pending, so their entered-but-unresolved trades need to be counted.
+    combined = pd.concat([frame, pending], ignore_index=True) if not pending.empty else frame
+
+    message = build_weekly_summary(combined, args.timeframe, week_start, week_end, market=args.market)
     print(message)
 
     workbook_bytes = build_weekly_workbook(
-        frame, args.timeframe, week_start, week_end, market=args.market
+        combined, args.timeframe, week_start, week_end, market=args.market
     )
     filename = (
         f"weekly_backtest_{market_label}_{args.timeframe}_"
