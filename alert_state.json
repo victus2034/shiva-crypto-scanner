@@ -1519,9 +1519,11 @@
     "TAIKO/USDT|4h|short|0.0723400000|0.0732000000": 1786818692.886494,
     "PENGU/USDT|4h|long|0.0059110000|0.0059840000": 1786836694.604395,
     "HBAR/USDT|4h|long|0.0647500000|0.0652200000": 1786854691.1024077,
-    "ZRO/USDT|4h|long|0.7682000000|0.7766000000": 1786853482.6541588,
+    "ZRO/USDT|4h|long|0.7682000000|0.7766000000": 1786867883.0881565,
     "ZECUSD|4h|long|481.0800000000|485.8900000000": 1786855882.1138704,
-    "ENA/USDT|4h|long|0.0822500000|0.0834700000": 1786861891.0877774
+    "ENA/USDT|4h|long|0.0822500000|0.0834700000": 1786861891.0877774,
+    "DEXE/USDT|4h|long|1.8961000000|1.9171000000": 1786867882.8216908,
+    "ORDI/USDT|4h|long|3.3770000000|3.4080000000": 1786867883.2996664
   },
   "ARBUSD|supply|0.08030000|0.08180000": {
     "in_zone": false,
@@ -1881,7 +1883,7 @@
   },
   "ZRO/USDT|demand|0.76820000|0.77660000": {
     "in_zone": true,
-    "last_alert_at": 1786853482.6541588
+    "last_alert_at": 1786867883.0881565
   },
   "CAP/USDT|supply|0.06682000|0.07886000": {
     "in_zone": false,
@@ -1902,5 +1904,41 @@
   "ZECUSD|demand|481.08000000|485.89000000": {
     "in_zone": true,
     "last_alert_at": 1786855882.1138704
+  },
+  "HYPEUSD|demand|55.33000000|55.68000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "AKE/USDT|supply|0.01083690|0.01638250": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "DEXE/USDT|demand|1.89610000|1.91710000": {
+    "in_zone": true,
+    "last_alert_at": 1786867882.8216908
+  },
+  "LA/USDT|supply|0.04969000|0.05284000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "CAP/USDT|demand|0.05104000|0.05971000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "RE/USDT|demand|0.42220000|0.43693000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "ORDI/USDT|demand|3.37700000|3.40800000": {
+    "in_zone": true,
+    "last_alert_at": 1786867883.2996664
+  },
+  "GALA/USDT|supply|0.00167400|0.00170100": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "MSTRBUSD|demand|91.90000000|93.40000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
   }
 }
