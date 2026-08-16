@@ -494,7 +494,7 @@ def require_fresh_ohlcv(ohlcv, source_name):
     return ohlcv
 
 
-def fetch_delta_ohlcv(symbol):
+def fetch_delta_ohlcv(symbol, attempts=3, retry_delay=1.5):
     if not is_delta_symbol(symbol):
         return None
 
@@ -502,6 +502,18 @@ def fetch_delta_ohlcv(symbol):
     if timeframe_seconds is None:
         raise RuntimeError(f"Delta does not support timeframe {TIMEFRAME}")
 
+    last_error = None
+    for attempt in range(attempts):
+        try:
+            return _fetch_delta_ohlcv_once(symbol, timeframe_seconds)
+        except Exception as error:
+            last_error = error
+            if attempt < attempts - 1:
+                time.sleep(retry_delay)
+    raise last_error
+
+
+def _fetch_delta_ohlcv_once(symbol, timeframe_seconds):
     end_ts = int(time.time())
     start_ts = end_ts - (OHLCV_LIMIT + SWING_LENGTH * 2 + ATR_PERIOD) * timeframe_seconds
     response = requests.get(
@@ -559,7 +571,7 @@ def sign_coinswitch_request(method, path, params):
     }
 
 
-def fetch_coinswitch_ohlcv(symbol):
+def fetch_coinswitch_ohlcv(symbol, attempts=3, retry_delay=1.5):
     if not is_coinswitch_configured():
         return None
 
@@ -567,6 +579,18 @@ def fetch_coinswitch_ohlcv(symbol):
     if interval is None:
         raise RuntimeError(f"CoinSwitch does not support timeframe {TIMEFRAME}")
 
+    last_error = None
+    for attempt in range(attempts):
+        try:
+            return _fetch_coinswitch_ohlcv_once(symbol, interval)
+        except Exception as error:
+            last_error = error
+            if attempt < attempts - 1:
+                time.sleep(retry_delay)
+    raise last_error
+
+
+def _fetch_coinswitch_ohlcv_once(symbol, interval):
     path = "/trade/api/v2/futures/klines"
     params = {
         "exchange": get_env_or_config("COINSWITCH_EXCHANGE", COINSWITCH_EXCHANGE),
