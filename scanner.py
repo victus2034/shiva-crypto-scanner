@@ -828,6 +828,7 @@ def record_delivered_zone_alert(result, zone_type, zone, distance_pct, message, 
     record = {
         "delivered_at_utc": pd.Timestamp.fromtimestamp(now_ts, tz="UTC").isoformat(),
         "symbol": result["symbol"],
+        "exchange": result.get("exchange"),
         "timeframe": TIMEFRAME,
         "side": "short" if zone_type == "supply" else "long",
         "zone_type": zone_type,

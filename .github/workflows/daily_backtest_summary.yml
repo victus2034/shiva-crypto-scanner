@@ -38,6 +38,22 @@ on:
         options:
           - "false"
           - "true"
+      dry_run:
+        description: "Compute and print the report without posting to Discord or persisting state"
+        required: false
+        default: "false"
+        type: choice
+        options:
+          - "false"
+          - "true"
+      debug_exchange:
+        description: "Log which exchange served crypto OHLCV data for each symbol"
+        required: false
+        default: "false"
+        type: choice
+        options:
+          - "false"
+          - "true"
 
 permissions:
   contents: write
@@ -94,26 +110,27 @@ jobs:
           INPUT_TIMEFRAME: ${{ github.event.inputs.timeframe }}
           INPUT_MARKET: ${{ github.event.inputs.market }}
           INPUT_FORCE: ${{ github.event.inputs.force }}
+          INPUT_DRY_RUN: ${{ github.event.inputs.dry_run }}
+          SHIVA_BACKTEST_DEBUG_EXCHANGE: ${{ github.event.inputs.debug_exchange }}
         run: |
           TIMEFRAME="${INPUT_TIMEFRAME:-both}"
           MARKET="${INPUT_MARKET:-both}"
           FORCE="${INPUT_FORCE:-false}"
-          echo "Daily backtest inputs: market=$MARKET timeframe=$TIMEFRAME date=${INPUT_DATE:-auto} force=$FORCE"
+          DRY_RUN="${INPUT_DRY_RUN:-false}"
+          echo "Daily backtest inputs: market=$MARKET timeframe=$TIMEFRAME date=${INPUT_DATE:-auto} force=$FORCE dry_run=$DRY_RUN"
           run_summary() {
             echo "Running daily backtest: market=$1 timeframe=$2 date=${INPUT_DATE:-auto}"
+            EXTRA_ARGS=()
             if [ -n "$INPUT_DATE" ]; then
-              if [ "$FORCE" = "true" ]; then
-                python daily_backtest_summary.py --market "$1" --timeframe "$2" --date "$INPUT_DATE" --force
-              else
-                python daily_backtest_summary.py --market "$1" --timeframe "$2" --date "$INPUT_DATE"
-              fi
-            else
-              if [ "$FORCE" = "true" ]; then
-                python daily_backtest_summary.py --market "$1" --timeframe "$2" --force
-              else
-                python daily_backtest_summary.py --market "$1" --timeframe "$2"
-              fi
+              EXTRA_ARGS+=(--date "$INPUT_DATE")
             fi
+            if [ "$FORCE" = "true" ]; then
+              EXTRA_ARGS+=(--force)
+            fi
+            if [ "$DRY_RUN" = "true" ]; then
+              EXTRA_ARGS+=(--dry-run)
+            fi
+            python daily_backtest_summary.py --market "$1" --timeframe "$2" "${EXTRA_ARGS[@]}"
           }
 
           if [ "$MARKET" = "both" ]; then

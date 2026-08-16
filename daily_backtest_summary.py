@@ -4,6 +4,7 @@ import argparse
 import hashlib
 import json
 import os
+import sys
 import time
 from datetime import datetime, timedelta, time as datetime_time
 from pathlib import Path
@@ -430,6 +431,26 @@ def fetch_resolution_frames(
     return frames, failures
 
 
+CRYPTO_FETCH_DEBUG = os.getenv("SHIVA_BACKTEST_DEBUG_EXCHANGE", "").strip().lower() in {"1", "true", "yes"}
+CRYPTO_FETCH_SOURCE_COUNTS: dict[str, int] = {}
+
+
+def _log_crypto_fetch_source(symbol: str, source: str, ohlcv) -> None:
+    CRYPTO_FETCH_SOURCE_COUNTS[source] = CRYPTO_FETCH_SOURCE_COUNTS.get(source, 0) + 1
+    if not CRYPTO_FETCH_DEBUG:
+        return
+    try:
+        first_ts = pd.Timestamp(ohlcv[0][0], unit="ms", tz="UTC") if ohlcv else None
+        last_ts = pd.Timestamp(ohlcv[-1][0], unit="ms", tz="UTC") if ohlcv else None
+    except Exception:
+        first_ts = last_ts = None
+    print(
+        f"[backtest-exchange-debug] {symbol} <- {source} "
+        f"candles={len(ohlcv) if ohlcv else 0} range={first_ts}..{last_ts}",
+        file=sys.stderr,
+    )
+
+
 def crypto_fetch_ohlcv(symbol: str):
     last_error = None
     symbol_for_fallback = crypto_scanner.fallback_symbol(symbol)
@@ -437,21 +458,31 @@ def crypto_fetch_ohlcv(symbol: str):
     primary_exchange = crypto_scanner.EXCHANGES_BY_ID.get(crypto_scanner.PRIMARY_EXCHANGE_ID)
     if primary_exchange is not None:
         try:
-            return crypto_scanner.fetch_exchange_ohlcv(primary_exchange, symbol_for_fallback)
+            ohlcv = crypto_scanner.fetch_exchange_ohlcv(primary_exchange, symbol_for_fallback)
+            _log_crypto_fetch_source(symbol, primary_exchange.id, ohlcv)
+            return ohlcv
         except Exception as error:
             last_error = error
+            if CRYPTO_FETCH_DEBUG:
+                print(f"[backtest-exchange-debug] {symbol} primary({primary_exchange.id}) failed: {error}", file=sys.stderr)
 
     for exchange in crypto_scanner.EXCHANGES:
         if exchange.id == crypto_scanner.PRIMARY_EXCHANGE_ID:
             continue
         try:
-            return crypto_scanner.fetch_exchange_ohlcv(exchange, symbol_for_fallback)
+            ohlcv = crypto_scanner.fetch_exchange_ohlcv(exchange, symbol_for_fallback)
+            _log_crypto_fetch_source(symbol, exchange.id, ohlcv)
+            return ohlcv
         except Exception as error:
             last_error = error
+            if CRYPTO_FETCH_DEBUG:
+                print(f"[backtest-exchange-debug] {symbol} fallback({exchange.id}) failed: {error}", file=sys.stderr)
 
     if crypto_scanner.is_coinswitch_configured():
         try:
-            return crypto_scanner.fetch_coinswitch_ohlcv(symbol)
+            ohlcv = crypto_scanner.fetch_coinswitch_ohlcv(symbol)
+            _log_crypto_fetch_source(symbol, "coinswitch", ohlcv)
+            return ohlcv
         except Exception as error:
             last_error = error
 
@@ -1860,6 +1891,9 @@ def main() -> None:
                 args.market,
                 resolution_frames=fine_frames,
             )
+
+    if CRYPTO_FETCH_SOURCE_COUNTS:
+        print(f"[backtest-exchange-summary] {CRYPTO_FETCH_SOURCE_COUNTS}", file=sys.stderr)
 
     # The Discord report represents only today's newly delivered alerts. Pending
     # rows are reconciled in storage, but must not inflate today's alert counts.
