@@ -683,6 +683,7 @@ def scan_symbol(symbol):
     should_score_zone = (
         (SHOW_4H_ZONE_SCORES and TIMEFRAME == "4h")
         or (ENABLE_XSTOCK_HYBRID_RATINGS and is_xstock(symbol))
+        or (ENABLE_CRYPTO_ZONE_RATINGS and not is_xstock(symbol))
     )
     if should_score_zone:
         supply_score = score_wick_zone(
@@ -818,12 +819,12 @@ def delivered_alert_id(record):
 def record_delivered_zone_alert(result, zone_type, zone, distance_pct, message, now_ts):
     """Persist delivered zone alerts for the daily backtest summary."""
     rating = result.get(f"{zone_type}_rating") or {}
-    if rating and rating.get("kind") == "xstock_hybrid":
-        score = rating.get("score")
-    else:
+    # Prefer the validated rating (ML crypto model or xstock hybrid) when
+    # available; fall back to the transparent rule-based score for symbols
+    # the rating model doesn't cover, so alerts aren't left unrated.
+    score = rating.get("score")
+    if score is None:
         score = result.get(f"{zone_type}_score")
-    if score is None and rating.get("score") is not None:
-        score = rating.get("score")
 
     record = {
         "delivered_at_utc": pd.Timestamp.fromtimestamp(now_ts, tz="UTC").isoformat(),
