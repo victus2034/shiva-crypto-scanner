@@ -1248,6 +1248,14 @@ def zones_overlap(current: dict, previous: dict) -> bool:
     )
 
 
+MARKET_LABELS = {
+    "nse": ("NSE", "Stocks"),
+    "crypto": ("CRYPTO", "Coins"),
+    "xstock": ("XSTOCK", "xStocks"),
+    "other": ("OTHER", "Contracts"),
+}
+
+
 def build_summary(
     records: pd.DataFrame,
     target_date,
@@ -1257,13 +1265,7 @@ def build_summary(
     timeframe: str,
     market: str = "nse",
 ) -> str:
-    label_map = {
-        "nse": ("NSE", "Stocks"),
-        "crypto": ("CRYPTO", "Coins"),
-        "xstock": ("XSTOCK", "xStocks"),
-        "other": ("OTHER", "Contracts"),
-    }
-    market_label, asset_label = label_map.get(market, (market.upper(), "Symbols"))
+    market_label, asset_label = MARKET_LABELS.get(market, (market.upper(), "Symbols"))
     header = f"{market_label} {timeframe} BACKTEST"
     date_line = pd.Timestamp(target_date).strftime("%d %b %Y").upper()
     if records.empty:

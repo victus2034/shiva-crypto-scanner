@@ -37,7 +37,13 @@ WEEKLY_SENT_REPORTS_PATH = Path(__file__).with_name("weekly_backtest_reports_sen
 
 
 def parse_args() -> argparse.Namespace:
-    parser = argparse.ArgumentParser(description="Post weekly NSE backtest summary.")
+    parser = argparse.ArgumentParser(description="Post weekly backtest summary.")
+    parser.add_argument(
+        "--market",
+        choices=["nse", "crypto", "xstock"],
+        default="nse",
+        help="Market to summarize.",
+    )
     parser.add_argument(
         "--timeframe",
         choices=sorted(daily.TIMEFRAME_SETTINGS),
@@ -98,9 +104,16 @@ def load_finalized_records(path: Path = daily.FINALIZED_RECORDS_PATH) -> pd.Data
     return pd.DataFrame(rows)
 
 
-def build_weekly_summary(frame: pd.DataFrame, timeframe: str, week_start, week_end) -> str:
+def build_weekly_summary(
+    frame: pd.DataFrame,
+    timeframe: str,
+    week_start,
+    week_end,
+    market: str = "nse",
+) -> str:
+    market_label, asset_label = daily.MARKET_LABELS.get(market, (market.upper(), "Symbols"))
     header = (
-        f"NSE {timeframe} WEEKLY BACKTEST | "
+        f"{market_label} {timeframe} WEEKLY BACKTEST | "
         f"{pd.Timestamp(week_start).strftime('%d %b').upper()}-"
         f"{pd.Timestamp(week_end).strftime('%d %b %Y').upper()}"
     )
@@ -130,7 +143,7 @@ def build_weekly_summary(frame: pd.DataFrame, timeframe: str, week_start, week_e
         "",
         "OVERVIEW",
         daily.metric("Alerts", len(frame)),
-        daily.metric("Stocks", frame["symbol"].nunique()),
+        daily.metric(asset_label, frame["symbol"].nunique()),
         daily.metric("BUY", int(side_counts.get("long", 0))),
         daily.metric("SELL", int(side_counts.get("short", 0))),
         "",
@@ -159,8 +172,9 @@ def build_weekly_summary(frame: pd.DataFrame, timeframe: str, week_start, week_e
     return "\n".join(lines)
 
 
-def weekly_stats_summary(frame: pd.DataFrame) -> list[tuple[str, object]]:
+def weekly_stats_summary(frame: pd.DataFrame, market: str = "nse") -> list[tuple[str, object]]:
     """Overview/execution/results numbers as (label, value) rows for the Excel Summary tab."""
+    _, asset_label = daily.MARKET_LABELS.get(market, (market.upper(), "Symbols"))
     if frame.empty:
         return [("Alerts", 0)]
     side_counts = frame["side"].value_counts()
@@ -175,7 +189,7 @@ def weekly_stats_summary(frame: pd.DataFrame) -> list[tuple[str, object]]:
 
     rows: list[tuple[str, object]] = [
         ("Alerts", len(frame)),
-        ("Stocks", int(frame["symbol"].nunique())),
+        (asset_label, int(frame["symbol"].nunique())),
         ("BUY", int(side_counts.get("long", 0))),
         ("SELL", int(side_counts.get("short", 0))),
         ("Touch", touch),
@@ -197,6 +211,7 @@ def build_weekly_workbook(
     timeframe: str,
     week_start,
     week_end,
+    market: str = "nse",
 ) -> bytes:
     """Build a two-sheet (Trades, Summary) workbook for the week's entered trades."""
     filled = frame[frame["filled"] == True].copy() if not frame.empty else frame  # noqa: E712
@@ -206,7 +221,7 @@ def build_weekly_workbook(
     if "Date" in trades.columns:
         trades = trades.sort_values(["Date", "Entry Time"], na_position="last")
 
-    summary = pd.DataFrame(weekly_stats_summary(frame), columns=["Metric", "Value"])
+    summary = pd.DataFrame(weekly_stats_summary(frame, market), columns=["Metric", "Value"])
 
     buffer = io.BytesIO()
     with pd.ExcelWriter(buffer, engine="openpyxl") as writer:
@@ -221,6 +236,8 @@ def weekly_readiness(
     pending: pd.DataFrame,
     week_start,
     week_end,
+    market: str = "nse",
+    timeframe: str = "30m",
 ) -> tuple[bool, str]:
     """Prevent a final weekly report while lifecycle rows remain unresolved."""
     unresolved = []
@@ -230,21 +247,32 @@ def weekly_readiness(
         ambiguous = finalized[finalized["final_result"] == daily.DATA_QUALITY_AMBIGUOUS]
         if not ambiguous.empty:
             unresolved.append(f"data_quality_ambiguous={len(ambiguous)}")
-    expected = expected_nse_sessions(week_start, week_end)
-    represented = set()
-    if not finalized.empty and "date" in finalized:
-        represented = {
-            pd.Timestamp(value).date()
-            for value in finalized["date"].dropna()
-        }
-    missing_sessions = sorted(expected - represented)
-    if missing_sessions:
-        unresolved.append(
-            "missing_sessions=" + ",".join(item.isoformat() for item in missing_sessions)
-        )
+
+    if market == "nse":
+        expected = expected_nse_sessions(week_start, week_end)
+        represented = set()
+        if not finalized.empty and "date" in finalized:
+            represented = {
+                pd.Timestamp(value).date()
+                for value in finalized["date"].dropna()
+            }
+        missing_sessions = sorted(expected - represented)
+        if missing_sessions:
+            unresolved.append(
+                "missing_sessions=" + ",".join(item.isoformat() for item in missing_sessions)
+            )
+    else:
+        # Crypto/xstock trade continuously - there's no trading-day session
+        # calendar to check against. Readiness just needs the week's final
+        # day's report bucket to have closed, mirroring the same 16:30 IST
+        # cutoff the daily crypto report already uses.
+        if not daily.crypto_report_bucket_ready(week_end, timeframe):
+            unresolved.append(f"report_bucket_not_closed={week_end}")
+
     if unresolved:
+        market_label, _ = daily.MARKET_LABELS.get(market, (market.upper(), "Symbols"))
         header = (
-            f"NSE {pd.Timestamp(week_start).strftime('%d %b').upper()}-"
+            f"{market_label} {pd.Timestamp(week_start).strftime('%d %b').upper()}-"
             f"{pd.Timestamp(week_end).strftime('%d %b %Y').upper()}"
         )
         return False, (
@@ -259,7 +287,7 @@ def weekly_readiness(
 def format_weekly_rating_blocks(frame: pd.DataFrame) -> str:
     blocks = []
     no_entry_ratings: list[str] = []
-    for rating in range(4, 11):
+    for rating in range(1, 11):
         rating_rows = frame[frame["rating"].astype("Int64") == rating]
         if rating_rows.empty:
             continue
@@ -293,8 +321,9 @@ def format_weekly_rating_blocks(frame: pd.DataFrame) -> str:
     return "\n".join(blocks) if blocks else "None"
 
 
-def weekly_report_key(week_end, timeframe: str) -> str:
-    return f"NSE|{timeframe}|{pd.Timestamp(week_end).date().isoformat()}"
+def weekly_report_key(week_end, timeframe: str, market: str = "nse") -> str:
+    market_label, _ = daily.MARKET_LABELS.get(market, (market.upper(), "Symbols"))
+    return f"{market_label}|{timeframe}|{pd.Timestamp(week_end).date().isoformat()}"
 
 
 def load_sent_reports(path: Path = WEEKLY_SENT_REPORTS_PATH) -> dict:
@@ -315,13 +344,14 @@ def mark_sent_report(key: str, path: Path = WEEKLY_SENT_REPORTS_PATH) -> None:
 
 def main() -> None:
     args = parse_args()
+    market_label, _ = daily.MARKET_LABELS.get(args.market, (args.market.upper(), "Symbols"))
     week_end = select_week_ending(args.week_ending)
     week_start, week_end = week_bounds(week_end)
     frame = load_finalized_records()
     if not frame.empty:
         frame["date"] = pd.to_datetime(frame["date"]).dt.date
         frame = frame[
-            (frame["market"] == "NSE")
+            (frame["market"] == market_label)
             & (frame["timeframe"] == args.timeframe)
             & (frame["date"] >= week_start)
             & (frame["date"] <= week_end)
@@ -330,7 +360,7 @@ def main() -> None:
     pending = daily.load_pending_records(
         daily.PENDING_RECORDS_PATH,
         timeframe=args.timeframe,
-        market=daily.MARKET_NSE,
+        market=market_label,
     )
     if not pending.empty and "report_date" in pending:
         pending = pending[
@@ -338,17 +368,21 @@ def main() -> None:
             & (pending["report_date"] <= week_end)
         ].copy()
 
-    ready, diagnostic = weekly_readiness(frame, pending, week_start, week_end)
+    ready, diagnostic = weekly_readiness(
+        frame, pending, week_start, week_end, market=args.market, timeframe=args.timeframe
+    )
     if not ready:
         print(diagnostic)
         return
 
-    message = build_weekly_summary(frame, args.timeframe, week_start, week_end)
+    message = build_weekly_summary(frame, args.timeframe, week_start, week_end, market=args.market)
     print(message)
 
-    workbook_bytes = build_weekly_workbook(frame, args.timeframe, week_start, week_end)
+    workbook_bytes = build_weekly_workbook(
+        frame, args.timeframe, week_start, week_end, market=args.market
+    )
     filename = (
-        f"weekly_backtest_NSE_{args.timeframe}_"
+        f"weekly_backtest_{market_label}_{args.timeframe}_"
         f"{week_start.isoformat()}_to_{week_end.isoformat()}.xlsx"
     )
     print(f"Workbook built: {filename} ({len(workbook_bytes)} bytes)")
@@ -356,7 +390,7 @@ def main() -> None:
     if args.dry_run:
         return
 
-    key = weekly_report_key(week_end, args.timeframe)
+    key = weekly_report_key(week_end, args.timeframe, market=args.market)
     if not args.force and key in load_sent_reports():
         print(f"Skipped duplicate weekly report: {key}")
         return

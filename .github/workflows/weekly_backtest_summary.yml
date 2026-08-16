@@ -6,8 +6,18 @@ on:
     - cron: "30 11 * * 5"
   workflow_dispatch:
     inputs:
+      market:
+        description: "Market to summarize"
+        required: false
+        default: "both"
+        type: choice
+        options:
+          - "both"
+          - "nse"
+          - "crypto"
+          - "xstock"
       timeframe:
-        description: "NSE timeframe to summarize"
+        description: "Timeframe to summarize"
         required: false
         default: "both"
         type: choice
@@ -64,6 +74,7 @@ jobs:
         run: |
           bash .github/scripts/restore_runtime_state.sh \
             daily_backtest_finalized_records.jsonl \
+            daily_backtest_pending_records.jsonl \
             weekly_backtest_reports_sent.json
 
       - name: Check weekly backtest Discord webhook
@@ -79,10 +90,12 @@ jobs:
         env:
           DISCORD_DAILY_BACKTEST_WEBHOOK_URL: ${{ secrets.DISCORD_DAILY_BACKTEST_WEBHOOK_URL }}
           INPUT_WEEK_ENDING: ${{ github.event.inputs.week_ending }}
+          INPUT_MARKET: ${{ github.event.inputs.market }}
           INPUT_TIMEFRAME: ${{ github.event.inputs.timeframe }}
           INPUT_DRY_RUN: ${{ github.event.inputs.dry_run }}
           INPUT_FORCE: ${{ github.event.inputs.force }}
         run: |
+          MARKET="${INPUT_MARKET:-both}"
           TIMEFRAME="${INPUT_TIMEFRAME:-both}"
           run_summary() {
             EXTRA_ARGS=()
@@ -95,14 +108,25 @@ jobs:
             if [ "$INPUT_FORCE" = "true" ]; then
               EXTRA_ARGS+=(--force)
             fi
-            python weekly_backtest_summary.py --timeframe "$1" "${EXTRA_ARGS[@]}"
+            python weekly_backtest_summary.py --market "$1" --timeframe "$2" "${EXTRA_ARGS[@]}"
           }
-          if [ "$TIMEFRAME" = "both" ]; then
-            run_summary "30m"
-            run_summary "4h"
+
+          if [ "$MARKET" = "both" ]; then
+            MARKETS="nse crypto xstock"
           else
-            run_summary "$TIMEFRAME"
+            MARKETS="$MARKET"
           fi
+          if [ "$TIMEFRAME" = "both" ]; then
+            TIMEFRAMES="30m 4h"
+          else
+            TIMEFRAMES="$TIMEFRAME"
+          fi
+
+          for market in $MARKETS; do
+            for timeframe in $TIMEFRAMES; do
+              run_summary "$market" "$timeframe"
+            done
+          done
 
       - name: Persist runtime state
         run: bash .github/scripts/persist_runtime_state.sh weekly_backtest_reports_sent.json
