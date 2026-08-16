@@ -18,6 +18,22 @@ on:
       week_ending:
         description: "Optional IST week-ending date, YYYY-MM-DD"
         required: false
+      dry_run:
+        description: "Compute and print the report without posting to Discord"
+        required: false
+        default: "false"
+        type: choice
+        options:
+          - "false"
+          - "true"
+      force:
+        description: "Send even if the report was already sent"
+        required: false
+        default: "false"
+        type: choice
+        options:
+          - "false"
+          - "true"
 
 permissions:
   contents: write
@@ -64,14 +80,22 @@ jobs:
           DISCORD_DAILY_BACKTEST_WEBHOOK_URL: ${{ secrets.DISCORD_DAILY_BACKTEST_WEBHOOK_URL }}
           INPUT_WEEK_ENDING: ${{ github.event.inputs.week_ending }}
           INPUT_TIMEFRAME: ${{ github.event.inputs.timeframe }}
+          INPUT_DRY_RUN: ${{ github.event.inputs.dry_run }}
+          INPUT_FORCE: ${{ github.event.inputs.force }}
         run: |
           TIMEFRAME="${INPUT_TIMEFRAME:-both}"
           run_summary() {
+            EXTRA_ARGS=()
             if [ -n "$INPUT_WEEK_ENDING" ]; then
-              python weekly_backtest_summary.py --timeframe "$1" --week-ending "$INPUT_WEEK_ENDING"
-            else
-              python weekly_backtest_summary.py --timeframe "$1"
+              EXTRA_ARGS+=(--week-ending "$INPUT_WEEK_ENDING")
             fi
+            if [ "$INPUT_DRY_RUN" = "true" ]; then
+              EXTRA_ARGS+=(--dry-run)
+            fi
+            if [ "$INPUT_FORCE" = "true" ]; then
+              EXTRA_ARGS+=(--force)
+            fi
+            python weekly_backtest_summary.py --timeframe "$1" "${EXTRA_ARGS[@]}"
           }
           if [ "$TIMEFRAME" = "both" ]; then
             run_summary "30m"
