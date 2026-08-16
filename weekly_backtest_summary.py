@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import argparse
+import io
 import json
 import os
 from datetime import date, datetime, timedelta
@@ -9,6 +10,27 @@ from pathlib import Path
 import pandas as pd
 
 import daily_backtest_summary as daily
+
+TRADE_COLUMNS = {
+    "date": "Date",
+    "display_symbol": "Symbol",
+    "side": "Side",
+    "rating": "Rating",
+    "alert_time": "Alert Time",
+    "entry_time": "Entry Time",
+    "entry_price": "Entry Price",
+    "stop_price": "Stop Price",
+    "zone_bottom": "Zone Bottom",
+    "zone_top": "Zone Top",
+    "outcome": "Outcome",
+    "final_result": "Final Result",
+    "realized_r": "Realized R",
+    "net_realized_r": "Net Realized R",
+    "time_to_half_r": "Time to +0.5R",
+    "time_to_1r": "Time to +1R",
+    "time_to_2r": "Time to +2R",
+    "time_to_sl": "Time to SL",
+}
 
 
 WEEKLY_SENT_REPORTS_PATH = Path(__file__).with_name("weekly_backtest_reports_sent.json")
@@ -135,6 +157,63 @@ def build_weekly_summary(frame: pd.DataFrame, timeframe: str, week_start, week_e
     if worst:
         lines.extend(["", "WORST", worst])
     return "\n".join(lines)
+
+
+def weekly_stats_summary(frame: pd.DataFrame) -> list[tuple[str, object]]:
+    """Overview/execution/results numbers as (label, value) rows for the Excel Summary tab."""
+    if frame.empty:
+        return [("Alerts", 0)]
+    side_counts = frame["side"].value_counts()
+    filled = frame[frame["filled"] == True].copy()  # noqa: E712
+    outcomes = frame["outcome"].value_counts()
+    final_counts = filled["final_result"].value_counts() if not filled.empty else pd.Series(dtype=int)
+    entries = len(filled)
+    duplicates = int(outcomes.get("zone_cooldown", 0))
+    touch = entries + duplicates
+    no_touch = int(outcomes.get("zone_not_touched", 0))
+    net_r = pd.to_numeric(filled.get("net_realized_r", pd.Series(dtype=float)), errors="coerce").sum()
+
+    rows: list[tuple[str, object]] = [
+        ("Alerts", len(frame)),
+        ("Stocks", int(frame["symbol"].nunique())),
+        ("BUY", int(side_counts.get("long", 0))),
+        ("SELL", int(side_counts.get("short", 0))),
+        ("Touch", touch),
+        ("No Touch", no_touch),
+        ("Entries", entries),
+        ("Total Result", daily.format_r(net_r)),
+    ]
+    if duplicates:
+        rows.insert(5, ("Duplicates", duplicates))
+    for label in ["SL", "+0.5R", "+1R", "+2R", "Neither"]:
+        count = int(final_counts.get(label, 0))
+        if count:
+            rows.append((label, count))
+    return rows
+
+
+def build_weekly_workbook(
+    frame: pd.DataFrame,
+    timeframe: str,
+    week_start,
+    week_end,
+) -> bytes:
+    """Build a two-sheet (Trades, Summary) workbook for the week's entered trades."""
+    filled = frame[frame["filled"] == True].copy() if not frame.empty else frame  # noqa: E712
+    trades = filled[[column for column in TRADE_COLUMNS if column in filled.columns]].rename(
+        columns=TRADE_COLUMNS
+    ) if not filled.empty else pd.DataFrame(columns=list(TRADE_COLUMNS.values()))
+    if "Date" in trades.columns:
+        trades = trades.sort_values(["Date", "Entry Time"], na_position="last")
+
+    summary = pd.DataFrame(weekly_stats_summary(frame), columns=["Metric", "Value"])
+
+    buffer = io.BytesIO()
+    with pd.ExcelWriter(buffer, engine="openpyxl") as writer:
+        trades.to_excel(writer, sheet_name="Trades", index=False)
+        summary.to_excel(writer, sheet_name="Summary", index=False)
+    buffer.seek(0)
+    return buffer.getvalue()
 
 
 def weekly_readiness(
@@ -266,6 +345,14 @@ def main() -> None:
 
     message = build_weekly_summary(frame, args.timeframe, week_start, week_end)
     print(message)
+
+    workbook_bytes = build_weekly_workbook(frame, args.timeframe, week_start, week_end)
+    filename = (
+        f"weekly_backtest_NSE_{args.timeframe}_"
+        f"{week_start.isoformat()}_to_{week_end.isoformat()}.xlsx"
+    )
+    print(f"Workbook built: {filename} ({len(workbook_bytes)} bytes)")
+
     if args.dry_run:
         return
 
@@ -273,7 +360,7 @@ def main() -> None:
     if not args.force and key in load_sent_reports():
         print(f"Skipped duplicate weekly report: {key}")
         return
-    daily.send_discord_message(message)
+    daily.send_discord_message_with_attachment(message, filename, workbook_bytes)
     mark_sent_report(key)
 
 

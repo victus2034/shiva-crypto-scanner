@@ -1541,6 +1541,38 @@ def send_discord_message(message: str) -> None:
         time.sleep(max(0.25, min(retry_after, 30.0)))
 
 
+def send_discord_message_with_attachment(message: str, filename: str, file_bytes: bytes) -> None:
+    webhook_url = os.getenv(WEBHOOK_ENV, "").strip()
+    if not webhook_url:
+        raise RuntimeError(f"{WEBHOOK_ENV} is not configured")
+    webhook_url = discord_wait_url(webhook_url)
+    payload = discord_payload(message)
+    for attempt in range(6):
+        files = {
+            "file": (
+                filename,
+                file_bytes,
+                "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+            )
+        }
+        data = {"payload_json": json.dumps(payload)}
+        response = requests.post(webhook_url, data=data, files=files, timeout=30)
+        if response.status_code != 429:
+            response.raise_for_status()
+            message_id = discord_message_id(response)
+            if not message_id:
+                raise RuntimeError("Discord webhook accepted the request but did not return a message id")
+            print(f"Discord message with attachment posted: {message_id}")
+            return
+        try:
+            retry_after = float(response.json().get("retry_after", 1.0))
+        except (TypeError, ValueError, requests.JSONDecodeError):
+            retry_after = 1.0
+        if attempt == 5:
+            response.raise_for_status()
+        time.sleep(max(0.25, min(retry_after, 30.0)))
+
+
 def discord_wait_url(webhook_url: str) -> str:
     parts = urlsplit(webhook_url)
     query = dict(parse_qsl(parts.query, keep_blank_values=True))
