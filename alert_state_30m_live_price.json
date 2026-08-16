@@ -1650,7 +1650,8 @@
     "DRAMBUSD|30m|long|57.4200000000|57.4800000000": 1786908093.704881,
     "MSTRBUSD|30m|long|93.8500000000|93.9200000000": 1786908094.0903986,
     "POL/USDT|30m|short|0.0753600000|0.0755200000": 1786914117.6473358,
-    "AMZNXUSD|30m|long|263.8000000000|263.9000000000": 1786914118.0459845
+    "AMZNXUSD|30m|long|263.8000000000|263.9000000000": 1786914118.0459845,
+    "ENA/USDT|30m|long|0.0822500000|0.0826200000": 1786915136.0235796
   },
   "METAXUSD|demand|577.00000000|579.20000000": {
     "in_zone": false,
@@ -2736,8 +2737,8 @@
     "last_alert_at": 1786814503.1012714
   },
   "ENA/USDT|demand|0.08225000|0.08262000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1786915136.0235796
   },
   "SEIUSD|demand|0.03951000|0.03974000": {
     "in_zone": false,
@@ -4498,6 +4499,14 @@
     "last_alert_at": 1786914117.6473358
   },
   "GWEI/USDT|supply|0.02326000|0.02385000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "SUIUSD|supply|0.68070000|0.68240000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "UNIUSD|supply|3.32200000|3.34200000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
