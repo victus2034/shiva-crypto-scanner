@@ -1214,6 +1214,11 @@ def apply_same_day_zone_cooldown(
 
 
 def zone_cooldown_overlap(current: dict, previous: dict, market: str) -> bool:
+    if current.get("side") != previous.get("side"):
+        # A long and a short zone that happen to overlap in price are two
+        # genuinely distinct trades, not duplicate deliveries of the same
+        # setup - never merge them.
+        return False
     if market in {"crypto", "xstock"}:
         current_time = pd.Timestamp(current["entry_time"]).tz_convert(IST)
         previous_time = pd.Timestamp(previous["entry_time"]).tz_convert(IST)
@@ -1344,7 +1349,7 @@ def format_rating_table(records: pd.DataFrame, results: pd.DataFrame) -> str:
 
     rows: list[str] = []
     no_entry_ratings: list[str] = []
-    for rating in range(4, 11):
+    for rating in range(1, 11):
         alerts = records_by_rating.get(rating, 0)
         if alerts == 0:
             continue
@@ -1497,7 +1502,7 @@ def rating_counts(records: pd.DataFrame) -> dict[int, int]:
     if ratings.empty:
         return {}
     counts = ratings.astype(int).value_counts()
-    return {int(score): int(count) for score, count in counts.items() if 4 <= int(score) <= 10}
+    return {int(score): int(count) for score, count in counts.items() if 1 <= int(score) <= 10}
 
 
 def format_win_rate(wins: int, stops: int) -> str:
