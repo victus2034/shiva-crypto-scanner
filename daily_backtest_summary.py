@@ -1316,6 +1316,10 @@ def build_summary(
         format_rating_table(records, results),
     ]
 
+    hourly_lines = hourly_breakdown_lines(results)
+    if hourly_lines:
+        lines.extend(["", "HOURLY BREAKDOWN (IST, by alert time)", *hourly_lines])
+
     best = best_symbol_lines(filled, best=True)
     worst = best_symbol_lines(filled, best=False)
     if best:
@@ -1432,6 +1436,38 @@ def display_symbol(symbol: str) -> str:
 
 def metric(label: str, value) -> str:
     return f"{label} - {value}"
+
+
+def hourly_breakdown_lines(results: pd.DataFrame) -> list[str]:
+    """Per-hour (IST, by alert time) alert/entry/outcome/rating breakdown."""
+    if results.empty or "event_time_ist" not in results.columns:
+        return []
+
+    frame = results.copy()
+    frame["hour"] = pd.to_datetime(frame["event_time_ist"]).dt.floor("h")
+
+    lines = []
+    for hour in sorted(frame["hour"].dropna().unique()):
+        group = frame[frame["hour"] == hour]
+        parts = [f"Alerts {len(group)}"]
+
+        filled_group = group[group["filled"] == True]  # noqa: E712
+        if len(filled_group):
+            parts.append(f"Entries {len(filled_group)}")
+            finalized_group = filled_group[filled_group["final_result"] != "Pending"]
+            outcome_counts = finalized_group["final_result"].value_counts()
+            for label in ["+0.5R", "+1R", "+2R", "SL"]:
+                count = int(outcome_counts.get(label, 0))
+                if count:
+                    parts.append(f"{label} {count}")
+
+        ratings = pd.to_numeric(group["rating"], errors="coerce").dropna()
+        if not ratings.empty:
+            parts.append(f"Avg Rating {ratings.mean():.1f}")
+
+        hour_label = pd.Timestamp(hour).strftime("%H:%M")
+        lines.append(f"{hour_label} - " + " | ".join(parts))
+    return lines
 
 
 def best_symbol_lines(filled: pd.DataFrame, best: bool) -> str:
