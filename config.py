@@ -131,12 +131,10 @@ OTHER_WATCHLIST = [
 ]
 
 XSTOCK_WATCHLIST = [
-    "QQQXUSD",
     "TSLAXUSD",
     "METAXUSD",
     "SPYXUSD",
     "AMZNXUSD",
-    "NVDAXUSD",
     "AAPLXUSD",
     "CRCLXUSD",
     "GOOGLXUSD",
@@ -145,11 +143,11 @@ XSTOCK_WATCHLIST = [
     "SNDKBUSD",
     "MUBUSD",
     "SPCXXUSD",
-    "EWYBUSD",
-    "DRAMBUSD",
-    "CBRSBUSD",
     "INTCBUSD",
     "MSTRBUSD",
+    # Removed (no live data on Delta/CoinSwitch/any exchange - confirmed
+    # via a two-round audit 30s apart, all 5 failed both times):
+    # QQQXUSD, NVDAXUSD, EWYBUSD, DRAMBUSD, CBRSBUSD
     "SKHYNIX/USDT:USDT",
     "AVGO/USDT:USDT",
     "IBM/USDT:USDT",
