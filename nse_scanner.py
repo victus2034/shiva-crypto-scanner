@@ -63,10 +63,16 @@ NSE_SECTOR_MAP = {}
 NSE_SECTOR_BIAS_THRESHOLD_PCT = float(os.getenv("NSE_SECTOR_BIAS_THRESHOLD_PCT", "1.5"))
 NSE_SECTOR_BUCKETS = (
     ("Financials", ("financial", "bank", "insurance", "capital market")),
+    ("Materials", ("metal", "mining", "cement", "chemical", "fertilizer", "paper", "packaging", "materials")),
     ("Industrials", ("capital goods", "construction", "engineering", "industrial", "logistics", "transport", "infrastructure")),
     ("Healthcare", ("healthcare", "pharma", "pharmaceutical", "hospital", "diagnostic", "biotech")),
-    ("Consumer", ("consumer", "fmcg", "retail", "textile", "media", "hotel", "food", "beverage", "durable", "services")),
-    ("Materials", ("metal", "mining", "cement", "chemical", "fertilizer", "paper", "packaging", "materials")),
+    # "services" was deliberately dropped here: it's a generic qualifier
+    # that real industry labels append to a specific sector name (e.g.
+    # "Telecom - Services", "IT - Services"), so it was pre-empting the
+    # correct, more specific bucket (Technology & Telecom) below since
+    # this bucket is checked first. "consumer" alone already covers
+    # genuine consumer-services labels like "Consumer Services".
+    ("Consumer", ("consumer", "fmcg", "retail", "textile", "media", "hotel", "food", "beverage", "durable")),
     ("Automobile", ("automobile", "auto", "automotive")),
     ("Energy & Utilities", ("oil", "gas", "power", "energy", "utility", "utilities", "electric", "renewable")),
     ("Technology & Telecom", ("information technology", "software", "telecom", "communication", "technology")),
