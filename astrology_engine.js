@@ -728,6 +728,15 @@ function sentenceFor(section, score, context) {
   return context;
 }
 
+function reasonsSuffix(score) {
+  if (!score.reasons || !score.reasons.length) return "";
+  return ` (${score.reasons.join(", ")})`;
+}
+
+function sectionSentence(section, score, evaluation) {
+  return `${sentenceFor(section, score, evaluation)}${reasonsSuffix(score)}`;
+}
+
 function doToday(evaluation) {
   if (evaluation.scores.money.value <= -2) {
     return "Write rules before any money decision; finish one priority study task.";
@@ -830,15 +839,15 @@ function buildDailyText(evaluation) {
   const lines = [
     `DAILY ASTROLOGY | ${displayDate(evaluation.date)}`,
     "",
-    `Overall: ${sentenceFor("overall", evaluation.scores.overall, evaluation)}`,
+    `Overall: ${sectionSentence("overall", evaluation.scores.overall, evaluation)}`,
     "",
-    `Study & Career: ${sentenceFor("study", evaluation.scores.study, evaluation)}`,
+    `Study & Career: ${sectionSentence("study", evaluation.scores.study, evaluation)}`,
     "",
-    `Money & Trading Discipline: ${sentenceFor("money", evaluation.scores.money, evaluation)}`,
+    `Money & Trading Discipline: ${sectionSentence("money", evaluation.scores.money, evaluation)}`,
     "",
-    `Health & Energy: ${sentenceFor("health", evaluation.scores.health, evaluation)}`,
+    `Health & Energy: ${sectionSentence("health", evaluation.scores.health, evaluation)}`,
     "",
-    `Communication & People: ${sentenceFor("communication", evaluation.scores.communication, evaluation)}`,
+    `Communication & People: ${sectionSentence("communication", evaluation.scores.communication, evaluation)}`,
     "",
     `Favourable Period: ${formatWindow(evaluation.favourable)}`,
     `Caution Period: ${formatWindow(evaluation.timings.rahuKalam)}`,
@@ -864,23 +873,23 @@ function buildDailyEmbed(evaluation) {
   const fields = [
     {
       name: "Overall",
-      value: sentenceFor("overall", evaluation.scores.overall, evaluation),
+      value: sectionSentence("overall", evaluation.scores.overall, evaluation),
     },
     {
       name: "Study & Career",
-      value: sentenceFor("study", evaluation.scores.study, evaluation),
+      value: sectionSentence("study", evaluation.scores.study, evaluation),
     },
     {
       name: "Money & Trading Discipline",
-      value: sentenceFor("money", evaluation.scores.money, evaluation),
+      value: sectionSentence("money", evaluation.scores.money, evaluation),
     },
     {
       name: "Health & Energy",
-      value: sentenceFor("health", evaluation.scores.health, evaluation),
+      value: sectionSentence("health", evaluation.scores.health, evaluation),
     },
     {
       name: "Communication & People",
-      value: sentenceFor("communication", evaluation.scores.communication, evaluation),
+      value: sectionSentence("communication", evaluation.scores.communication, evaluation),
     },
     {
       name: "Favourable Period",
