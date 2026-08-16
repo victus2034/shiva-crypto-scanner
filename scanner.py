@@ -412,7 +412,11 @@ def is_delta_symbol(symbol):
 
 
 def fallback_symbol(symbol):
-    if is_delta_symbol(symbol):
+    # XUSD/BUSD-suffixed xStock tickers (e.g. QQQXUSD, MSTRBUSD) are
+    # Delta-native symbols, not "<base>USD" crypto pairs - stripping the
+    # trailing "USD" would produce a bogus ccxt symbol (QQQX/USDT) that
+    # could coincidentally match an unrelated token on a small exchange.
+    if is_delta_symbol(symbol) and not symbol.upper().endswith(("XUSD", "BUSD")):
         return f"{symbol[:-3]}/USDT"
     return symbol
 
