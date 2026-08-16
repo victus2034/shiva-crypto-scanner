@@ -1517,7 +1517,8 @@
     "OPUSD|4h|long|0.0846000000|0.0857000000": 1786818692.3089128,
     "GWEI/USDT|4h|long|0.0226900000|0.0232600000": 1786813887.301107,
     "TAIKO/USDT|4h|short|0.0723400000|0.0732000000": 1786818692.886494,
-    "PENGU/USDT|4h|long|0.0059110000|0.0059840000": 1786836694.604395
+    "PENGU/USDT|4h|long|0.0059110000|0.0059840000": 1786836694.604395,
+    "HBAR/USDT|4h|long|0.0647500000|0.0652200000": 1786839084.9283378
   },
   "ARBUSD|supply|0.08030000|0.08180000": {
     "in_zone": false,
@@ -1844,6 +1845,30 @@
     "last_alert_at": 0.0
   },
   "TIAUSD|supply|0.31020000|0.31280000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "HBAR/USDT|demand|0.06475000|0.06522000": {
+    "in_zone": true,
+    "last_alert_at": 1786839084.9283378
+  },
+  "TIAUSD|supply|0.31070000|0.31380000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "WLFI/USDT|demand|0.05344000|0.05486000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "LABUSD|demand|0.08040000|0.08680000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "EWYBUSD|supply|185.35000000|186.38000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "EWYBUSD|demand|162.18000000|163.47000000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
