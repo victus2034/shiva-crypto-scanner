@@ -586,15 +586,19 @@ def fetch_market_data(watchlist):
 
     for start in range(0, len(watchlist), chunk_size):
         chunk = watchlist[start:start + chunk_size]
-        raw = yf.download(
-            tickers=" ".join(chunk),
-            interval=SOURCE_INTERVAL,
-            auto_adjust=False,
-            progress=False,
-            threads=True,
-            group_by="column",
-            **yfinance_time_range(),
-        )
+        try:
+            raw = yf.download(
+                tickers=" ".join(chunk),
+                interval=SOURCE_INTERVAL,
+                auto_adjust=False,
+                progress=False,
+                threads=True,
+                group_by="column",
+                **yfinance_time_range(),
+            )
+        except Exception as error:
+            print(f"chunk starting at {chunk[0]} -> yf.download failed: {error}")
+            continue
         grouped = normalize_yfinance_columns(raw)
 
         if None in grouped and len(chunk) == 1:

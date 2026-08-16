@@ -83,7 +83,10 @@ EXCHANGE_OPTIONS = {
     "options": {"defaultType": "future"},
 }
 EXCHANGES = [
-    getattr(ccxt, exchange_id)(EXCHANGE_OPTIONS.copy())
+    # dict.copy() is shallow - the nested "options" dict must be copied
+    # separately, or every exchange instance would share the same
+    # mutable dict object.
+    getattr(ccxt, exchange_id)({**EXCHANGE_OPTIONS, "options": dict(EXCHANGE_OPTIONS["options"])})
     for exchange_id in EXCHANGE_IDS
 ]
 EXCHANGES_BY_ID = {exchange.id: exchange for exchange in EXCHANGES}
