@@ -1518,7 +1518,8 @@
     "GWEI/USDT|4h|long|0.0226900000|0.0232600000": 1786813887.301107,
     "TAIKO/USDT|4h|short|0.0723400000|0.0732000000": 1786818692.886494,
     "PENGU/USDT|4h|long|0.0059110000|0.0059840000": 1786836694.604395,
-    "HBAR/USDT|4h|long|0.0647500000|0.0652200000": 1786839084.9283378
+    "HBAR/USDT|4h|long|0.0647500000|0.0652200000": 1786839084.9283378,
+    "ZRO/USDT|4h|long|0.7682000000|0.7766000000": 1786853482.6541588
   },
   "ARBUSD|supply|0.08030000|0.08180000": {
     "in_zone": false,
@@ -1869,6 +1870,30 @@
     "last_alert_at": 0.0
   },
   "EWYBUSD|demand|162.18000000|163.47000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "ENA/USDT|demand|0.08225000|0.08347000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "ZRO/USDT|demand|0.76820000|0.77660000": {
+    "in_zone": true,
+    "last_alert_at": 1786853482.6541588
+  },
+  "CAP/USDT|supply|0.06682000|0.07886000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "ERA/USDT|demand|0.05865000|0.05921000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "METAXUSD|supply|597.00000000|603.00000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "NVDL/USDT:USDT|supply|36.88000000|37.31000000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
