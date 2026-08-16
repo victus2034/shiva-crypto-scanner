@@ -458,7 +458,10 @@ def crypto_fetch_ohlcv(symbol: str):
     primary_exchange = crypto_scanner.EXCHANGES_BY_ID.get(crypto_scanner.PRIMARY_EXCHANGE_ID)
     if primary_exchange is not None:
         try:
-            ohlcv = crypto_scanner.fetch_exchange_ohlcv(primary_exchange, symbol_for_fallback)
+            ohlcv = crypto_scanner.require_fresh_ohlcv(
+                crypto_scanner.fetch_exchange_ohlcv(primary_exchange, symbol_for_fallback),
+                primary_exchange.id,
+            )
             _log_crypto_fetch_source(symbol, primary_exchange.id, ohlcv)
             return ohlcv
         except Exception as error:
@@ -470,7 +473,10 @@ def crypto_fetch_ohlcv(symbol: str):
         if exchange.id == crypto_scanner.PRIMARY_EXCHANGE_ID:
             continue
         try:
-            ohlcv = crypto_scanner.fetch_exchange_ohlcv(exchange, symbol_for_fallback)
+            ohlcv = crypto_scanner.require_fresh_ohlcv(
+                crypto_scanner.fetch_exchange_ohlcv(exchange, symbol_for_fallback),
+                exchange.id,
+            )
             _log_crypto_fetch_source(symbol, exchange.id, ohlcv)
             return ohlcv
         except Exception as error:
@@ -480,7 +486,9 @@ def crypto_fetch_ohlcv(symbol: str):
 
     if crypto_scanner.is_coinswitch_configured():
         try:
-            ohlcv = crypto_scanner.fetch_coinswitch_ohlcv(symbol)
+            ohlcv = crypto_scanner.require_fresh_ohlcv(
+                crypto_scanner.fetch_coinswitch_ohlcv(symbol), "coinswitch"
+            )
             _log_crypto_fetch_source(symbol, "coinswitch", ohlcv)
             return ohlcv
         except Exception as error:
