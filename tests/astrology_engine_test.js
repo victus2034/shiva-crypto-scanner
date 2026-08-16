@@ -49,16 +49,23 @@ for (const [sector, factors] of Object.entries(SECTOR_THEME_DEFINITIONS)) {
   );
   if (diagnostics.supportReachable) {
     assert(
-      diagnostics.theoreticalMax >= SECTOR_THEME_THRESHOLD,
+      diagnostics.theoreticalMax >= diagnostics.supportThreshold,
       `${sector} support threshold is unreachable`,
     );
   }
   if (diagnostics.cautionReachable) {
     assert(
-      diagnostics.theoreticalMin <= -SECTOR_THEME_THRESHOLD,
+      diagnostics.theoreticalMin <= diagnostics.cautionThreshold,
       `${sector} caution threshold is unreachable`,
     );
   }
+  // Every sector must be reachable in at least one direction - a theme
+  // that can never fire either way (support or caution) regardless of
+  // real transits would be silently dead weight in the report.
+  assert(
+    diagnostics.supportReachable || diagnostics.cautionReachable,
+    `${sector} is unreachable in both directions`,
+  );
 }
 
 const regressionDate = { year: 2026, month: 8, day: 8 };

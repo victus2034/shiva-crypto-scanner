@@ -767,11 +767,11 @@ function sectorThemes(transit, dasha) {
 
   const supportive = Object.entries(evaluated)
     .filter(([, item]) => item.supportReachable)
-    .filter(([, item]) => item.score >= SECTOR_THEME_THRESHOLD && item.supporting >= 2)
+    .filter(([, item]) => item.score >= item.supportThreshold && item.supporting >= 1)
     .map(([name]) => name);
   const caution = Object.entries(evaluated)
     .filter(([, item]) => item.cautionReachable)
-    .filter(([, item]) => item.score <= -SECTOR_THEME_THRESHOLD && item.cautioning >= 2)
+    .filter(([, item]) => item.score <= item.cautionThreshold && item.cautioning >= 1)
     .map(([name]) => name);
 
   if (!supportive.length && !caution.length) {
@@ -801,18 +801,26 @@ function scoreSectorTheme(factors, transit, dasha) {
     if (factor.score > 0) supporting += 1;
     if (factor.score < 0) cautioning += 1;
   }
+  // SECTOR_THEME_THRESHOLD (a fixed magnitude of 3) doesn't fit every
+  // sector: each theme is defined with a different number/strength of
+  // factors (e.g. Metals/Gold tops out at +2, Real Estate at +1, and no
+  // sector has more than one negative-scored factor), so a single global
+  // bar made caution unreachable for every sector and support unreachable
+  // for two of them. Instead require a majority of that sector's own
+  // achievable range - a threshold calibrated to what the theme can
+  // actually produce, not an arbitrary constant every theme must match.
+  const supportThreshold = theoreticalMax > 0 ? Math.max(1, Math.ceil(theoreticalMax * 0.6)) : Infinity;
+  const cautionThreshold = theoreticalMin < 0 ? Math.min(-1, Math.floor(theoreticalMin * 0.6)) : -Infinity;
   return {
     score,
     supporting,
     cautioning,
     theoreticalMin,
     theoreticalMax,
-    supportReachable:
-      theoreticalMax >= SECTOR_THEME_THRESHOLD &&
-      factors.filter((factor) => factor.score > 0).length >= 2,
-    cautionReachable:
-      theoreticalMin <= -SECTOR_THEME_THRESHOLD &&
-      factors.filter((factor) => factor.score < 0).length >= 2,
+    supportThreshold,
+    cautionThreshold,
+    supportReachable: theoreticalMax >= supportThreshold,
+    cautionReachable: theoreticalMin <= cautionThreshold,
   };
 }
 
