@@ -93,19 +93,29 @@ def market_window_status(now=None):
 
 
 def has_current_session_data(watchlist, now=None):
-    """Reject stale previous-session data before producing executable alerts."""
+    """Reject stale previous-session data before producing executable alerts.
+
+    A single symbol failing to fetch (delisted ticker, transient API hiccup)
+    must not blank the entire scan - only a majority-stale feed indicates a
+    real systemic staleness problem worth skipping the whole run for.
+    """
     now = now or pd.Timestamp.now(tz=ZoneInfo(MARKET_TIMEZONE))
+    available = 0
+    current = 0
     for symbol in watchlist:
         data = MARKET_DATA.get(symbol)
         if data is None or data.empty or "Datetime" not in data.columns:
-            return False
+            continue
         try:
             latest = _localized_datetimes(data).iloc[-1]
         except Exception:
-            return False
-        if latest.date() != now.date():
-            return False
-    return True
+            continue
+        available += 1
+        if latest.date() == now.date():
+            current += 1
+    if available == 0:
+        return False
+    return current / available >= 0.5
 
 
 def load_state():
