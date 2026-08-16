@@ -1606,7 +1606,8 @@
     "ZRO/USDT|30m|long|0.7682000000|0.7722000000": 1786844501.9580634,
     "DELL/USDT:USDT|30m|short|494.2100000000|494.4500000000": 1786852927.2900498,
     "MUBUSD|30m|short|982.7000000000|988.9000000000": 1786849323.8416746,
-    "EWYBUSD|30m|long|179.8200000000|180.1200000000": 1786850491.185441
+    "EWYBUSD|30m|long|179.8200000000|180.1200000000": 1786850491.185441,
+    "UNIUSD|30m|short|3.2520000000|3.2620000000": 1786854092.696573
   },
   "METAXUSD|demand|577.00000000|579.20000000": {
     "in_zone": false,
@@ -3818,8 +3819,8 @@
     "last_alert_at": 0.0
   },
   "UNIUSD|supply|3.25200000|3.26200000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1786854092.696573
   },
   "EWYBUSD|demand|179.82000000|180.12000000": {
     "in_zone": true,
@@ -3846,6 +3847,14 @@
     "last_alert_at": 0.0
   },
   "TSLAXUSD|supply|344.02000000|344.90000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "PUMPUSD|demand|0.00271000|0.00274400": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "MNT/USDT|demand|0.42220000|0.42350000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
