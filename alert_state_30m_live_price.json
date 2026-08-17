@@ -1675,9 +1675,12 @@
     "HOOD/USDT:USDT|30m|short|96.4600000000|96.5600000000": 1786974682.7366338,
     "VVV/USDT|30m|short|12.4890000000|12.5840000000": 1786981885.1476817,
     "UNIUSD|30m|short|3.3030000000|3.3200000000": 1786983081.6008997,
-    "HBAR/USDT|30m|short|0.0662600000|0.0663500000": 1786983081.8617096,
+    "HBAR/USDT|30m|short|0.0662600000|0.0663500000": 1786987885.7187438,
     "OPENAI/USDT:USDT|30m|long|125.6200000000|126.1200000000": 1786983083.1812274,
-    "PENGU/USDT|30m|long|0.0059100000|0.0059350000": 1786984291.6339293
+    "PENGU/USDT|30m|long|0.0059100000|0.0059350000": 1786984291.6339293,
+    "AERO/USDT|30m|long|0.4093000000|0.4102000000": 1786987885.4563828,
+    "ALGO/USDT|30m|long|0.0781100000|0.0783400000": 1786987885.9714315,
+    "TQQQ/USDT:USDT|30m|long|75.9200000000|76.2500000000": 1786987886.181972
   },
   "METAXUSD|demand|577.00000000|579.20000000": {
     "in_zone": false,
@@ -2807,8 +2810,8 @@
     "last_alert_at": 1786906921.4295266
   },
   "TQQQ/USDT:USDT|demand|75.92000000|76.25000000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1786987886.181972
   },
   "VANRY/USDT|supply|0.00168400|0.00177800": {
     "in_zone": false,
@@ -4833,8 +4836,8 @@
     "last_alert_at": 0.0
   },
   "AERO/USDT|demand|0.40930000|0.41020000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1786987885.4563828
   },
   "GWEI/USDT|supply|0.02275000|0.02297000": {
     "in_zone": false,
@@ -4881,14 +4884,34 @@
     "last_alert_at": 0.0
   },
   "HBAR/USDT|supply|0.06626000|0.06635000": {
-    "in_zone": false,
-    "last_alert_at": 1786983081.8617096
+    "in_zone": true,
+    "last_alert_at": 1786987885.7187438
   },
   "BOME/USDT|demand|0.00078170|0.00078570": {
     "in_zone": false,
     "last_alert_at": 0.0
   },
   "FILUSD|demand|0.66250000|0.66400000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "ONDOUSD|supply|0.34140000|0.34230000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "TRUMP/USDT|demand|1.39200000|1.39900000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "WIF/USDT|demand|0.13610000|0.13660000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "ALGO/USDT|demand|0.07811000|0.07834000": {
+    "in_zone": true,
+    "last_alert_at": 1786987885.9714315
+  },
+  "AXTI/USDT:USDT|demand|83.81000000|84.40000000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
