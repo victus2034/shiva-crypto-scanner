@@ -242,7 +242,10 @@ class DailyBacktestSummaryTests(unittest.TestCase):
         result = summary.simulate_alert(frame, base_alert(), 0, 1)
 
         self.assertEqual(result["final_result"], "SL")
-        self.assertEqual(result["net_realized_r"], -1.0)
+        # Slightly worse than a flat -1.0R: SL fills assume a small adverse
+        # slip beyond the stop trigger (see SL_FILL_SLIPPAGE_PCT).
+        self.assertLess(result["net_realized_r"], -1.0)
+        self.assertAlmostEqual(result["net_realized_r"], -1.0449959053685223)
         self.assertAlmostEqual(result["stop_price"], 98.901)
 
     def test_same_candle_stop_and_target_is_ambiguous_without_resolution_data(self):

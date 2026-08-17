@@ -166,6 +166,13 @@ def record_delivered_zone_alert(result, zone_type, zone, distance_pct, message, 
         "stop_price": planned_stop_price(zone_type, zone),
         "stop_distance_pct": planned_stop_distance_pct(zone_type, zone),
         "score": score,
+        # Raw score_wick_zone inputs, logged so a future validation pass can
+        # tell which criterion actually predicts outcomes instead of only
+        # seeing the capped 4-10 total (see rating_validation_report.py).
+        "wick_to_body": zone.get("wick_to_body"),
+        "wick_atr": zone.get("wick_atr"),
+        "departure_atr": zone.get("departure_atr"),
+        "touch_count": zone.get("touch_count"),
         "message": message,
     }
     record["trade_id"] = delivered_alert_id(record)

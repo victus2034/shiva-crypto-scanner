@@ -45,6 +45,14 @@ CRYPTO_EVALUATION_HOURS = 6
 CRYPTO_REPORT_BOUNDARY = datetime_time(16, 30)
 FIXED_STOP_PCT = 0.5
 SL_BUFFER_PCT = 0.10
+# A resting SL is a stop order, not a limit order - once triggered it fills
+# at whatever price is next available, not necessarily the exact trigger
+# price, especially since the same fast move that triggered it is often
+# still running. Crediting every SL as landing at exactly -1.0R is
+# frictionless and overstates results. This is a conservative, clearly
+# labeled assumption (not derived from real fills) rather than a measured
+# figure - revisit if real execution data becomes available.
+SL_FILL_SLIPPAGE_PCT = 0.05
 TARGET_1_R = 1.0
 TARGET_2_R = 2.0
 HALF_R = 0.5
@@ -828,7 +836,9 @@ def simulate_alert(
             break
 
     if outcome == "SL":
-        exit_price = stop
+        # Stop orders fill at the next available price, not necessarily the
+        # exact trigger - assume a small adverse slip beyond the stop.
+        exit_price = stop - direction * stop * SL_FILL_SLIPPAGE_PCT / 100.0
     elif outcome == DATA_QUALITY_AMBIGUOUS:
         exit_price = float("nan")
     elif outcome == "+0.5R":
@@ -839,7 +849,10 @@ def simulate_alert(
         exit_price = target_2
     else:
         exit_price = float(frame["close"].iloc[exit_index])
-    realized_r = FINAL_RESULT_R[outcome]
+    if outcome == "SL":
+        realized_r = direction * (exit_price - entry_price) / risk
+    else:
+        realized_r = FINAL_RESULT_R[outcome]
     evaluation_end_time = candle_ends(frame)[exit_index]
     final_resolution_time = resolution_time_for_outcome(
         outcome,
@@ -1700,6 +1713,13 @@ def lifecycle_payload(row: dict, target_date, timeframe: str, market: str) -> di
         "display_symbol": display_symbol(row.get("symbol", "")),
         "side": row.get("side", ""),
         "rating": json_optional_float(row.get("rating")),
+        # Raw score_wick_zone inputs, carried through so a future validation
+        # pass can decompose which criterion actually predicts outcomes
+        # instead of only seeing the capped 4-10 total.
+        "wick_to_body": json_optional_float(row.get("wick_to_body")),
+        "wick_atr": json_optional_float(row.get("wick_atr")),
+        "departure_atr": json_optional_float(row.get("departure_atr")),
+        "touch_count": json_optional_float(row.get("touch_count")),
         "trade_id": row.get("trade_id") or stable_trade_id(row),
         "alert_time": format_optional_timestamp(alert_time),
         "entry_time": format_optional_timestamp(row.get("entry_time")),

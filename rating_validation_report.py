@@ -59,7 +59,11 @@ def load_decided_trades(market: str, timeframe: str) -> pd.DataFrame:
     ].copy()
     frame["rating"] = pd.to_numeric(frame["rating"], errors="coerce")
     frame["win"] = frame["final_result"].isin(WIN_RESULTS)
-    frame["r"] = frame["final_result"].map(R_VALUES)
+    # Use the trade's actual realized R (reflects SL fill slippage) rather
+    # than the flat per-outcome map, so this report's avg-R figures match
+    # what the daily/weekly summaries actually report.
+    recorded_r = pd.to_numeric(frame.get("net_realized_r"), errors="coerce")
+    frame["r"] = recorded_r.where(recorded_r.notna(), frame["final_result"].map(R_VALUES))
     return frame
 
 
@@ -129,7 +133,53 @@ def build_report(frame: pd.DataFrame, market: str, timeframe: str, min_sample: i
         ]
     )
 
+    if market == "nse":
+        criterion_lines = build_criterion_breakdown(frame, baseline_win_rate, min_sample)
+        if criterion_lines:
+            lines.extend(["", "BY score_wick_zone CRITERION (which one is actually predictive)", *criterion_lines])
+
     return "\n".join(lines)
+
+
+# Mirrors zone_scoring.score_wick_zone's own boolean checks, so each one
+# can be judged individually against real outcomes rather than only seeing
+# the combined, capped 4-10 total (which can hide a criterion that's
+# actually counter-predictive behind ones that aren't).
+CRITERIA = {
+    "wick_to_body >= 2.5": lambda f: f["wick_to_body"] >= 2.5,
+    "wick_atr >= 0.5": lambda f: f["wick_atr"] >= 0.5,
+    "departure_atr >= 1.5": lambda f: f["departure_atr"] >= 1.5,
+    "departure_atr >= 2.5": lambda f: f["departure_atr"] >= 2.5,
+    "touch_count == 0": lambda f: f["touch_count"] == 0,
+    "touch_count == 1": lambda f: f["touch_count"] == 1,
+}
+
+
+def build_criterion_breakdown(frame: pd.DataFrame, baseline_win_rate: float, min_sample: int) -> list[str]:
+    feature_columns = {"wick_to_body", "wick_atr", "departure_atr", "touch_count"}
+    if not feature_columns.issubset(frame.columns):
+        return []
+    typed = frame.copy()
+    for column in feature_columns:
+        typed[column] = pd.to_numeric(typed[column], errors="coerce")
+    typed = typed.dropna(subset=feature_columns)
+    if typed.empty:
+        return []
+
+    lines = []
+    for label, predicate in CRITERIA.items():
+        met = typed[predicate(typed)]
+        unmet = typed[~predicate(typed)]
+        if met.empty or unmet.empty:
+            continue
+        met_rate = met["win"].mean() * 100
+        unmet_rate = unmet["win"].mean() * 100
+        confidence = "reliable" if min(len(met), len(unmet)) >= min_sample else "low sample"
+        lines.append(
+            f"{label}: met n={len(met)} win {met_rate:.1f}% | "
+            f"not-met n={len(unmet)} win {unmet_rate:.1f}% | {confidence}"
+        )
+    return lines
 
 
 def main() -> None:
