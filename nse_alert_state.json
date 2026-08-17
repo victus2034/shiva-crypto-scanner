@@ -150,7 +150,7 @@
     "last_attempt_at": 0.0
   },
   "AEGISVOPAK.NS|demand|262.5600|266.9500": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1786939947.2098415,
     "last_attempt_at": 1786939947.2098415
   },
@@ -1455,9 +1455,9 @@
     "last_attempt_at": 0.0
   },
   "IOC.NS|demand|136.6000|137.7600": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1786945952.0979128,
+    "last_attempt_at": 1786945952.0979128
   },
   "IOB.NS|demand|33.2300|33.6000": {
     "in_zone": true,
@@ -2554,7 +2554,8 @@
     "NSLNISP.NS|4h|long|40.5999984741|41.0600013733": 1786941169.7550447,
     "AADHARHFC.NS|4h|long|487.1000061035|494.6000061035": 1786942353.2838724,
     "COROMANDEL.NS|4h|short|2115.3000488281|2128.5000000000": 1786942353.5655885,
-    "FACT.NS|4h|long|789.4000244141|799.5000000000": 1786942353.8102632
+    "FACT.NS|4h|long|789.4000244141|799.5000000000": 1786942353.8102632,
+    "IOC.NS|4h|long|136.6000061035|137.7599945068": 1786945952.0979128
   },
   "GESHIP.NS|demand|1057.1000|1070.5000": {
     "in_zone": false,
