@@ -849,7 +849,11 @@ def simulate_alert(
         exit_price = target_2
     else:
         exit_price = float(frame["close"].iloc[exit_index])
-    if outcome == "SL":
+    if outcome in {"SL", "Neither"}:
+        # Price off the real exit level instead of crediting a flat number -
+        # a "Neither" trade that quietly drifted against (or in favor of)
+        # the position without confirming SL/target must not be scored as
+        # a free breakeven.
         realized_r = direction * (exit_price - entry_price) / risk
     else:
         realized_r = FINAL_RESULT_R[outcome]
