@@ -150,9 +150,9 @@
     "last_attempt_at": 0.0
   },
   "AEGISVOPAK.NS|demand|262.5600|266.9500": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1786939947.2098415,
+    "last_attempt_at": 1786939947.2098415
   },
   "AFCONS.NS|supply|334.5000|346.1500": {
     "in_zone": false,
@@ -835,7 +835,7 @@
     "last_attempt_at": 1786431146.6992311
   },
   "DLF.NS|supply|669.7000|671.9500": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1786695143.1819549,
     "last_attempt_at": 1786695143.1819549
   },
@@ -2547,7 +2547,9 @@
     "DELHIVERY.NS|4h|long|458.3999938965|461.2500000000": 1786691547.4917803,
     "ABFRL.NS|4h|long|55.1100006104|55.7999992371": 1786695142.4816835,
     "DOMS.NS|4h|long|2192.0000000000|2200.0000000000": 1786938748.2911055,
-    "IGL.NS|4h|long|147.3000030518|149.0000000000": 1786938748.5121295
+    "IGL.NS|4h|long|147.3000030518|149.0000000000": 1786938748.5121295,
+    "AEGISVOPAK.NS|4h|long|262.5599975586|266.9500122070": 1786939947.2098415,
+    "PGEL.NS|4h|long|597.1500244141|605.0000000000": 1786939947.372899
   },
   "GESHIP.NS|demand|1057.1000|1070.5000": {
     "in_zone": false,
@@ -2625,9 +2627,9 @@
     "last_attempt_at": 1786608761.2194152
   },
   "PGEL.NS|demand|597.1500|605.0000": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1786939947.372899,
+    "last_attempt_at": 1786939947.372899
   },
   "AUBANK.NS|supply|1087.6000|1104.4000": {
     "in_zone": false,
