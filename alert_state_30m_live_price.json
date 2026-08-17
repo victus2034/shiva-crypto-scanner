@@ -1676,7 +1676,8 @@
     "VVV/USDT|30m|short|12.4890000000|12.5840000000": 1786981885.1476817,
     "UNIUSD|30m|short|3.3030000000|3.3200000000": 1786983081.6008997,
     "HBAR/USDT|30m|short|0.0662600000|0.0663500000": 1786983081.8617096,
-    "OPENAI/USDT:USDT|30m|long|125.6200000000|126.1200000000": 1786983083.1812274
+    "OPENAI/USDT:USDT|30m|long|125.6200000000|126.1200000000": 1786983083.1812274,
+    "PENGU/USDT|30m|long|0.0059100000|0.0059350000": 1786984291.6339293
   },
   "METAXUSD|demand|577.00000000|579.20000000": {
     "in_zone": false,
@@ -4848,8 +4849,8 @@
     "last_alert_at": 0.0
   },
   "PENGU/USDT|demand|0.00591000|0.00593500": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1786984291.6339293
   },
   "CAP/USDT|demand|0.06164000|0.06410000": {
     "in_zone": false,
@@ -4872,7 +4873,7 @@
     "last_alert_at": 0.0
   },
   "UNIUSD|supply|3.30300000|3.32000000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1786983081.6008997
   },
   "BTW/USDT|demand|0.31832000|0.33023000": {
@@ -4880,7 +4881,7 @@
     "last_alert_at": 0.0
   },
   "HBAR/USDT|supply|0.06626000|0.06635000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1786983081.8617096
   },
   "BOME/USDT|demand|0.00078170|0.00078570": {
