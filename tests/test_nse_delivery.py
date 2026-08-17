@@ -1,6 +1,8 @@
 import unittest
 from unittest.mock import Mock, patch
+from zoneinfo import ZoneInfo
 
+import pandas as pd
 import requests
 
 import nse_scanner
@@ -76,6 +78,39 @@ class NseDeliveryTests(unittest.TestCase):
             nse_scanner.process_signal_candidate(state, result, "buy", 2100)
 
         self.assertEqual(send.call_count, 1)
+
+
+class SessionDataFreshnessTests(unittest.TestCase):
+    """has_current_session_data() must not blank the whole scan over one
+    missing symbol - a delisted ticker or a transient fetch hiccup for a
+    single name previously suppressed alerts for every other symbol too.
+    """
+
+    def _frame(self, day_offset):
+        now = pd.Timestamp.now(tz=ZoneInfo(nse_scanner.MARKET_TIMEZONE))
+        ts = now - pd.Timedelta(days=day_offset)
+        return pd.DataFrame({"Datetime": [ts], "close": [100.0]})
+
+    def test_one_missing_symbol_does_not_block_the_scan(self):
+        now = pd.Timestamp.now(tz=ZoneInfo(nse_scanner.MARKET_TIMEZONE))
+        with patch.object(nse_scanner, "MARKET_DATA", {
+            f"SYM{i}": self._frame(0) for i in range(99)
+        }):
+            watchlist = [f"SYM{i}" for i in range(100)]  # SYM99 has no data at all
+            self.assertTrue(nse_scanner.has_current_session_data(watchlist, now))
+
+    def test_majority_stale_data_still_blocks_the_scan(self):
+        now = pd.Timestamp.now(tz=ZoneInfo(nse_scanner.MARKET_TIMEZONE))
+        data = {f"SYM{i}": self._frame(1) for i in range(90)}
+        data.update({f"SYM{i}": self._frame(0) for i in range(90, 100)})
+        with patch.object(nse_scanner, "MARKET_DATA", data):
+            watchlist = [f"SYM{i}" for i in range(100)]
+            self.assertFalse(nse_scanner.has_current_session_data(watchlist, now))
+
+    def test_no_data_at_all_blocks_the_scan(self):
+        now = pd.Timestamp.now(tz=ZoneInfo(nse_scanner.MARKET_TIMEZONE))
+        with patch.object(nse_scanner, "MARKET_DATA", {}):
+            self.assertFalse(nse_scanner.has_current_session_data(["SYM0"], now))
 
 
 if __name__ == "__main__":

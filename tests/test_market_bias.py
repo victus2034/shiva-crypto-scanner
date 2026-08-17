@@ -111,6 +111,22 @@ class MarketBiasTests(unittest.TestCase):
                 now=datetime(2026, 7, 29, 9, 30, tzinfo=ZoneInfo("America/New_York")),
             )
 
+    def test_intraday_session_succeeds_with_exactly_two_completed_bars(self):
+        # _session_close's own documented minimum is 2 bars (session start +
+        # one completed candle). classify_intraday previously re-checked
+        # with a stricter "< 3" threshold on the same data, raising an
+        # uncaught RuntimeError - instead of the handled SessionDataNotReady
+        # - right at the first valid reporting window of a session.
+        index = pd.date_range(
+            "2026-07-29 09:30", periods=2, freq="30min", tz="America/New_York"
+        )
+        result = classify_intraday(
+            pd.DataFrame({"close": pd.Series([100.0, 101.0], index=index)}),
+            session="us",
+            now=datetime(2026, 7, 29, 10, 0, tzinfo=ZoneInfo("America/New_York")),
+        )
+        self.assertEqual(result["bias"], "Bullish")
+
     def test_session_gate_handles_us_daylight_saving_time(self):
         self.assertTrue(
             session_is_active(

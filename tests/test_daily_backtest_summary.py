@@ -114,6 +114,112 @@ class DailyBacktestSummaryTests(unittest.TestCase):
         self.assertTrue(mature)
         self.assertEqual(end_index, 2)
 
+    def test_infer_bar_duration_uses_minimum_not_median_gap(self):
+        # NSE 4h has only ~2 bars/session, split evenly between the short
+        # intraday gap (4h) and the long overnight gap (~20h) - the median
+        # of alternating 4h/20h diffs is unstable and can land on the
+        # overnight side, making every candle appear to "end" almost a day
+        # later than it really does. The minimum gap reliably picks the
+        # true bar interval since session breaks are always larger.
+        index = pd.DatetimeIndex(
+            [
+                "2026-08-11 09:15",
+                "2026-08-11 13:15",
+                "2026-08-12 09:15",
+                "2026-08-12 13:15",
+                "2026-08-13 09:15",
+                "2026-08-13 13:15",
+            ],
+            tz=summary.IST,
+        )
+        frame = pd.DataFrame(
+            {
+                "open": [100.0] * 6,
+                "high": [101.0] * 6,
+                "low": [99.0] * 6,
+                "close": [100.5] * 6,
+                "volume": [1] * 6,
+            },
+            index=index,
+        )
+        self.assertEqual(summary.infer_bar_duration(frame), pd.Timedelta(hours=4))
+
+    def test_same_day_tracking_end_caps_last_candle_at_market_close(self):
+        # A 4h candle starting at 13:15 nominally "ends" at 17:15 (start +
+        # 4h), but NSE stops trading at 15:30 - the candle is fully settled
+        # by then regardless of its nominal duration. Without capping at
+        # market close, this candle looks "not yet confirmed" by the
+        # close-cutoff buffer and gets excluded even though it's real,
+        # final, same-day data.
+        index = pd.DatetimeIndex(
+            ["2026-08-14 09:15", "2026-08-14 13:15"], tz=summary.IST
+        )
+        frame = pd.DataFrame(
+            {
+                "open": [100.0, 101.0],
+                "high": [102.0, 103.0],
+                "low": [99.0, 100.0],
+                "close": [101.0, 102.0],
+                "volume": [1, 1],
+            },
+            index=index,
+        )
+        ends = summary.candle_ends(frame)
+        self.assertEqual(ends[1], pd.Timestamp("2026-08-14 17:15", tz=summary.IST))
+
+    def test_nse_multi_day_tracking_spans_sessions_for_4h(self):
+        # NSE 4h alerts structurally cannot resolve same-day (only ~2
+        # candles/session, and the close-cutoff buffer always excludes the
+        # second one) - a 4h alert must be allowed to look at candles from
+        # later trading days to ever find a touch.
+        index = pd.DatetimeIndex(
+            [
+                "2026-08-14 09:15",
+                "2026-08-14 13:15",
+                "2026-08-17 09:15",
+                "2026-08-17 13:15",
+            ],
+            tz=summary.IST,
+        )
+        frame = pd.DataFrame(
+            {
+                "open": [100.0] * 4,
+                "high": [102.0] * 4,
+                "low": [99.0] * 4,
+                "close": [101.0] * 4,
+                "volume": [1] * 4,
+            },
+            index=index,
+        )
+        end_index, mature = summary.nse_multi_day_tracking_end(frame, event_index=0)
+        self.assertTrue(mature)
+        self.assertEqual(end_index, 3)  # spans into the next trading session
+
+    def test_nse_4h_alert_uses_multi_day_tracking_not_same_day(self):
+        alerts = pd.DataFrame([base_alert(timeframe="4h")])
+        index = pd.DatetimeIndex(
+            [
+                "2026-08-04 09:15",
+                "2026-08-04 13:15",
+                "2026-08-05 09:15",
+            ],
+            tz=summary.IST,
+        )
+        # Zone touch only happens on the next trading day's candle - same
+        # day alone (09:15 + 13:15) never has enough room to find it.
+        frame = pd.DataFrame(
+            {
+                "open": [102.0, 102.0, 100.0],
+                "high": [103.0, 103.0, 100.5],
+                "low": [101.5, 101.5, 98.5],
+                "close": [102.5, 102.5, 99.5],
+                "volume": [1, 1, 1],
+            },
+            index=index,
+        )
+        results, _ = summary.run_backtest(alerts, {"TCS.NS": frame}, market="nse")
+        self.assertTrue(bool(results.iloc[0]["filled"]))
+
     def test_half_r_is_kept_if_price_reverses_later(self):
         index = pd.DatetimeIndex(
             ["2026-08-04 10:00", "2026-08-04 10:30", "2026-08-04 11:00"],
