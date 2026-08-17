@@ -3247,7 +3247,7 @@
     "CHAMBLFERT.NS|30m|long|437.8999938965|438.8500061035": 1786941705.619679,
     "GESHIP.NS|30m|long|1267.0000000000|1269.0000000000": 1786941705.9536905,
     "KALYANKJIL.NS|30m|short|615.9000244141|619.7999877930": 1786941706.247939,
-    "NTPC.NS|30m|long|335.3999938965|336.2500000000": 1786941706.7515523,
+    "NTPC.NS|30m|long|335.3999938965|336.2500000000": 1786946517.6129522,
     "ATGL.NS|30m|long|644.0499877930|645.4000244141": 1786944132.8814712,
     "KOTAKBANK.NS|30m|long|389.8999938965|391.2500000000": 1786944133.135248,
     "BAJFINANCE.NS|30m|short|1096.3000488281|1098.4000244141": 1786945326.3334186,
@@ -3406,9 +3406,9 @@
     "last_attempt_at": 1786610533.1970127
   },
   "NTPC.NS|demand|335.4000|336.2500": {
-    "in_zone": false,
-    "last_alert_at": 1786941706.7515523,
-    "last_attempt_at": 1786941706.7515523
+    "in_zone": true,
+    "last_alert_at": 1786946517.6129522,
+    "last_attempt_at": 1786946517.6129522
   },
   "CUMMINSIND.NS|demand|5330.5000|5343.5000": {
     "in_zone": true,
@@ -4566,6 +4566,16 @@
     "last_attempt_at": 0.0
   },
   "HCLTECH.NS|demand|1238.5000|1247.0000": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "GROWW.NS|demand|194.6000|195.3600": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "EIDPARRY.NS|demand|772.6500|775.0000": {
     "in_zone": false,
     "last_alert_at": 0.0,
     "last_attempt_at": 0.0
