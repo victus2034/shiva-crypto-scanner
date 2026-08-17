@@ -89,7 +89,8 @@ jobs:
             crypto_alert_records_30m.jsonl \
             daily_backtest_reports_sent.json \
             daily_backtest_finalized_records.jsonl \
-            daily_backtest_pending_records.jsonl
+            daily_backtest_pending_records.jsonl \
+            paper_trading_state.json
 
       - name: Check daily backtest Discord webhook
         env:
@@ -150,6 +151,26 @@ jobs:
               run_summary "$market" "$timeframe"
             done
           done
+
+      # Posted after the backtest so the finalized records it compares
+      # against already include today's rows. NSE 30m only for now - paper
+      # trading is not wired to crypto/xStock yet.
+      - name: Post paper vs backtest comparison
+        if: ${{ github.event.inputs.market == '' || github.event.inputs.market == 'both' || github.event.inputs.market == 'nse' }}
+        env:
+          DISCORD_PAPER_TRADING_WEBHOOK_URL: ${{ secrets.DISCORD_PAPER_TRADING_WEBHOOK_URL }}
+          DISCORD_DAILY_BACKTEST_WEBHOOK_URL: ${{ secrets.DISCORD_DAILY_BACKTEST_WEBHOOK_URL }}
+          INPUT_DATE: ${{ github.event.inputs.date }}
+          INPUT_DRY_RUN: ${{ github.event.inputs.dry_run }}
+        run: |
+          EXTRA_ARGS=()
+          if [ -n "$INPUT_DATE" ]; then
+            EXTRA_ARGS+=(--date "$INPUT_DATE")
+          fi
+          if [ "$INPUT_DRY_RUN" = "true" ]; then
+            EXTRA_ARGS+=(--dry-run)
+          fi
+          python paper_trading.py --report --timeframe 30m "${EXTRA_ARGS[@]}"
 
       - name: Persist runtime state
         run: |

@@ -61,7 +61,8 @@ jobs:
           bash .github/scripts/restore_runtime_state.sh \
             nse_alert_records_30m.jsonl \
             nse_alert_records.jsonl \
-            entry_confirm_state.json
+            entry_confirm_state.json \
+            paper_trading_state.json
 
       - name: Send entry confirmation pings
         env:
@@ -79,9 +80,30 @@ jobs:
           fi
           python entry_confirm.py --timeframe "${INPUT_TIMEFRAME:-30m}" "${EXTRA_ARGS[@]}"
 
+      # Runs in the same job as the pings: identical cadence, same symbols,
+      # and one shared runner boot instead of two. Placed after the pings so
+      # a paper-side problem can never delay a real alert.
+      - name: Advance paper trading
+        env:
+          INPUT_TIMEFRAME: ${{ github.event.inputs.timeframe }}
+          INPUT_DRY_RUN: ${{ github.event.inputs.dry_run }}
+          INPUT_IGNORE_SESSION: ${{ github.event.inputs.ignore_session }}
+        run: |
+          EXTRA_ARGS=()
+          if [ "$INPUT_DRY_RUN" = "true" ]; then
+            EXTRA_ARGS+=(--dry-run)
+          fi
+          if [ "$INPUT_IGNORE_SESSION" = "true" ]; then
+            EXTRA_ARGS+=(--ignore-session)
+          fi
+          python paper_trading.py --tick --timeframe "${INPUT_TIMEFRAME:-30m}" "${EXTRA_ARGS[@]}"
+
       - name: Persist runtime state
         if: ${{ github.event.inputs.dry_run != 'true' }}
-        run: bash .github/scripts/persist_runtime_state.sh entry_confirm_state.json
+        run: |
+          bash .github/scripts/persist_runtime_state.sh \
+            entry_confirm_state.json \
+            paper_trading_state.json
 
       - name: Notify on failure
         if: failure()

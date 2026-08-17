@@ -1,0 +1,420 @@
+"""Forward paper trading against live prices, with no broker and no money.
+
+The daily backtest replays history through the same logic that produced the
+alerts, so it can only ever be in-sample. This module runs the same trade
+rules forward in real time instead: it opens a virtual position only when
+live price actually reaches the alert's recorded entry, carries it under the
+locked stop, and squares off at 15:10 like the user does. Comparing its
+results against the backtest's for the same day is therefore a genuinely
+out-of-sample check on both the edge and the fill assumptions.
+
+Deliberately reuses daily_backtest_summary's constants and
+entry_confirm's watch-window logic rather than re-deriving them, so any
+divergence in the report reflects reality and not two drifting copies of
+the same rules.
+
+  --tick    advance the simulation (schedule this through the session)
+  --report  post the day's paper-vs-backtest comparison
+"""
+from __future__ import annotations
+
+import argparse
+import json
+import os
+from datetime import datetime
+from pathlib import Path
+
+import pandas as pd
+import requests
+import yfinance as yf
+
+import daily_backtest_summary as backtest
+import entry_confirm
+
+
+IST = backtest.IST
+STATE_PATH = Path(__file__).with_name("paper_trading_state.json")
+# Falls back to the daily backtest channel so the comparison lands next to
+# the report it is meant to be read against, with no extra setup.
+WEBHOOK_ENV = "DISCORD_PAPER_TRADING_WEBHOOK_URL"
+FALLBACK_WEBHOOK_ENV = backtest.WEBHOOK_ENV
+# 5-minute bars keep same-bar stop/target collisions rare without needing
+# the backtest's separate 1-minute resolution fetch. Collisions that do
+# happen are reported as ambiguous rather than guessed, matching the
+# backtest's own refusal to invent an ordering it cannot see.
+BAR_INTERVAL = "5m"
+AMBIGUOUS = backtest.DATA_QUALITY_AMBIGUOUS
+
+
+def parse_args() -> argparse.Namespace:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--timeframe", choices=sorted(entry_confirm.ALERT_RECORDS), default="30m")
+    parser.add_argument("--tick", action="store_true", help="Advance the simulation.")
+    parser.add_argument("--report", action="store_true", help="Post the daily comparison.")
+    parser.add_argument("--date", help="IST date for --report, YYYY-MM-DD.")
+    parser.add_argument("--dry-run", action="store_true")
+    parser.add_argument("--ignore-session", action="store_true")
+    return parser.parse_args()
+
+
+def load_state() -> dict:
+    if not STATE_PATH.exists():
+        return {"open": {}, "closed": [], "handled": {}}
+    try:
+        state = json.loads(STATE_PATH.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError):
+        return {"open": {}, "closed": [], "handled": {}}
+    for key, default in (("open", {}), ("closed", []), ("handled", {})):
+        state.setdefault(key, default)
+    return state
+
+
+def save_state(state: dict) -> None:
+    STATE_PATH.write_text(json.dumps(state, indent=2, sort_keys=True), encoding="utf-8")
+
+
+def fetch_bars(symbols: list[str]) -> dict[str, pd.DataFrame]:
+    """Intraday OHLC per symbol for the current session."""
+    if not symbols:
+        return {}
+    try:
+        raw = yf.download(
+            tickers=" ".join(symbols),
+            period="1d",
+            interval=BAR_INTERVAL,
+            auto_adjust=False,
+            progress=False,
+            threads=True,
+            group_by="ticker" if len(symbols) > 1 else "column",
+        )
+    except Exception as error:
+        print(f"paper bar fetch failed: {error}")
+        return {}
+    if raw is None or raw.empty:
+        return {}
+
+    frames: dict[str, pd.DataFrame] = {}
+    for symbol in symbols:
+        try:
+            frame = raw[symbol] if len(symbols) > 1 else raw
+        except (KeyError, IndexError):
+            continue
+        if frame is None or frame.empty:
+            continue
+        columns = {str(name).lower(): name for name in frame.columns}
+        if not {"high", "low", "close"}.issubset(columns):
+            continue
+        tidy = frame[[columns["high"], columns["low"], columns["close"]]].copy()
+        tidy.columns = ["high", "low", "close"]
+        index = pd.DatetimeIndex(pd.to_datetime(tidy.index))
+        tidy.index = index.tz_localize(IST) if index.tz is None else index.tz_convert(IST)
+        frames[symbol] = tidy.dropna().sort_index()
+    return frames
+
+
+def targets_for(entry: float, stop: float, side: str) -> dict[str, float]:
+    direction = 1.0 if side == "long" else -1.0
+    risk = abs(entry - stop)
+    if risk <= 0:
+        risk = entry * backtest.FIXED_STOP_PCT / 100.0
+    return {
+        "risk": risk,
+        "half": entry + direction * risk * backtest.HALF_R,
+        "one": entry + direction * risk * backtest.TARGET_1_R,
+        "two": entry + direction * risk * backtest.TARGET_2_R,
+    }
+
+
+def open_new_positions(state: dict, watched: list[dict], frames: dict[str, pd.DataFrame]) -> list[str]:
+    """Fill a virtual limit order only if price genuinely reached entry."""
+    opened = []
+    for record in watched:
+        trade_id = record.get("trade_id") or entry_confirm.watch_key(record)
+        if trade_id in state["handled"] or trade_id in state["open"]:
+            continue
+        frame = frames.get(record["symbol"])
+        if frame is None or frame.empty:
+            continue
+
+        entry = record["_entry"]
+        stop = record["_stop"]
+        side = record.get("side", "long")
+        after_alert = frame[frame.index > record["_delivered"]]
+        if after_alert.empty:
+            continue
+
+        touched = (
+            (after_alert["low"] <= entry) if side == "long" else (after_alert["high"] >= entry)
+        )
+        if not bool(touched.any()):
+            continue
+
+        fill_time = after_alert.index[list(touched).index(True)]
+        levels = targets_for(entry, stop, side)
+        # Fill at the recorded entry, matching the backtest's assumption, so
+        # the comparison isolates whether the fill happened rather than
+        # crediting a favourable gap the backtest never modelled.
+        state["open"][trade_id] = {
+            "symbol": record["symbol"],
+            "side": side,
+            "entry": entry,
+            "stop": stop,
+            "risk": levels["risk"],
+            "target_half": levels["half"],
+            "target_1": levels["one"],
+            "target_2": levels["two"],
+            "rating": record.get("score"),
+            "alert_time": record["_delivered"].isoformat(),
+            "entry_time": fill_time.isoformat(),
+            "half_r_hit": False,
+        }
+        state["handled"][trade_id] = "filled"
+        opened.append(trade_id)
+    return opened
+
+
+def evaluate_open_positions(state: dict, frames: dict[str, pd.DataFrame], now: pd.Timestamp) -> list[dict]:
+    """Walk each open position forward and close it if a level was hit."""
+    closed = []
+    for trade_id in list(state["open"]):
+        position = state["open"][trade_id]
+        frame = frames.get(position["symbol"])
+        if frame is None or frame.empty:
+            continue
+
+        entry_time = pd.Timestamp(position["entry_time"])
+        side = position["side"]
+        entry = position["entry"]
+        stop = position["stop"]
+        risk = position["risk"]
+        window = frame[frame.index >= entry_time]
+        if window.empty:
+            continue
+
+        outcome = None
+        exit_price = None
+        exit_time = None
+        for timestamp, bar in window.iterrows():
+            high = float(bar["high"])
+            low = float(bar["low"])
+            stop_hit = low <= stop if side == "long" else high >= stop
+            two_hit = high >= position["target_2"] if side == "long" else low <= position["target_2"]
+            one_hit = high >= position["target_1"] if side == "long" else low <= position["target_1"]
+            half_hit = high >= position["target_half"] if side == "long" else low <= position["target_half"]
+
+            if stop_hit and (two_hit or one_hit or half_hit):
+                # Both sides of the trade printed inside one bar; the real
+                # order is unknowable here, so report it rather than guess.
+                outcome, exit_time = AMBIGUOUS, timestamp
+                exit_price = float("nan")
+                break
+            if stop_hit:
+                direction = 1.0 if side == "long" else -1.0
+                exit_price = stop - direction * stop * backtest.SL_FILL_SLIPPAGE_PCT / 100.0
+                outcome, exit_time = "SL", timestamp
+                break
+            if half_hit:
+                position["half_r_hit"] = True
+            if two_hit:
+                outcome, exit_price, exit_time = "+2R", position["target_2"], timestamp
+                break
+            if one_hit:
+                outcome, exit_price, exit_time = "+1R", position["target_1"], timestamp
+                break
+
+        square_off = pd.Timestamp(
+            datetime.combine(now.date(), backtest.NSE_BACKTEST_CLOSE_CUTOFF), tz=IST
+        )
+        if outcome is None and now >= square_off:
+            # The user is flat by 15:10, so an unresolved position exits at
+            # the last price before that, priced off the real close the same
+            # way the backtest now prices its "Neither" trades.
+            before_cutoff = window[window.index <= square_off]
+            last = before_cutoff if not before_cutoff.empty else window
+            exit_price = float(last["close"].iloc[-1])
+            exit_time = last.index[-1]
+            outcome = "+0.5R" if position["half_r_hit"] else "Neither"
+            if outcome == "+0.5R":
+                exit_price = position["target_half"]
+
+        if outcome is None:
+            continue
+
+        if outcome == AMBIGUOUS:
+            realized_r = float("nan")
+        elif outcome in {"+1R", "+2R", "+0.5R"}:
+            realized_r = backtest.FINAL_RESULT_R[outcome]
+        else:
+            direction = 1.0 if side == "long" else -1.0
+            realized_r = direction * (exit_price - entry) / risk
+
+        record = dict(position)
+        record.update(
+            {
+                "trade_id": trade_id,
+                "outcome": outcome,
+                "final_result": outcome,
+                "exit_price": None if pd.isna(exit_price) else float(exit_price),
+                "exit_time": pd.Timestamp(exit_time).isoformat(),
+                "realized_r": None if pd.isna(realized_r) else float(realized_r),
+                "date": pd.Timestamp(position["entry_time"]).date().isoformat(),
+            }
+        )
+        state["closed"].append(record)
+        state["open"].pop(trade_id)
+        closed.append(record)
+    return closed
+
+
+def run_tick(args: argparse.Namespace) -> None:
+    now = pd.Timestamp.now(tz=IST)
+    if not args.ignore_session and not entry_confirm.in_trading_session(now):
+        print(f"Outside trading window ({now:%Y-%m-%d %H:%M} IST); nothing to do.")
+        return
+
+    state = load_state()
+    watched = entry_confirm.load_watched_alerts(args.timeframe, now)
+    symbols = sorted(
+        {record["symbol"] for record in watched}
+        | {position["symbol"] for position in state["open"].values()}
+    )
+    frames = fetch_bars(symbols)
+
+    opened = open_new_positions(state, watched, frames)
+    closed = evaluate_open_positions(state, frames, now)
+
+    for trade_id in opened:
+        position = state["open"].get(trade_id)
+        if position:
+            print(
+                f"OPEN  {backtest.display_symbol(position['symbol'])} {position['side']} "
+                f"@ {position['entry']:.2f} SL {position['stop']:.2f}"
+            )
+    for record in closed:
+        realized = record["realized_r"]
+        realized_text = "n/a" if realized is None else f"{realized:+.2f}R"
+        print(
+            f"CLOSE {backtest.display_symbol(record['symbol'])} {record['outcome']} {realized_text}"
+        )
+    print(f"open={len(state['open'])} closed_total={len(state['closed'])}")
+
+    if not args.dry_run:
+        save_state(state)
+
+
+def backtest_day_stats(date_iso: str, timeframe: str) -> dict | None:
+    """Same-day NSE figures from the backtest's own finalized records."""
+    path = backtest.FINALIZED_RECORDS_PATH
+    if not path.exists():
+        return None
+    rows = []
+    for line in path.read_text(encoding="utf-8-sig").splitlines():
+        if not line.strip():
+            continue
+        try:
+            row = json.loads(line)
+        except json.JSONDecodeError:
+            continue
+        if (
+            row.get("market") == "NSE"
+            and row.get("timeframe") == timeframe
+            and row.get("date") == date_iso
+            and row.get("filled")
+        ):
+            rows.append(row)
+    if not rows:
+        return None
+    decided = [r for r in rows if r.get("final_result") in {"SL", "+0.5R", "+1R", "+2R"}]
+    wins = sum(1 for r in decided if r.get("final_result") != "SL")
+    total_r = sum(float(r.get("net_realized_r") or 0.0) for r in rows)
+    return {
+        "entries": len(rows),
+        "decided": len(decided),
+        "wins": wins,
+        "total_r": total_r,
+    }
+
+
+def build_report(date_iso: str, timeframe: str, state: dict) -> str:
+    paper = [row for row in state["closed"] if row.get("date") == date_iso]
+    header = f"PAPER vs BACKTEST | NSE {timeframe}"
+    date_line = pd.Timestamp(date_iso).strftime("%d %b %Y").upper()
+    if not paper:
+        return f"{header}\n{date_line}\n\nNo paper trades closed on this date."
+
+    counts = pd.Series([row["outcome"] for row in paper]).value_counts()
+    decided = [row for row in paper if row["outcome"] in {"SL", "+0.5R", "+1R", "+2R"}]
+    wins = sum(1 for row in decided if row["outcome"] != "SL")
+    paper_r = sum(row["realized_r"] or 0.0 for row in paper if row["realized_r"] is not None)
+
+    lines = [
+        header,
+        date_line,
+        "",
+        "PAPER (forward, live fills)",
+        backtest.metric("Entries", len(paper)),
+        *[
+            backtest.metric("Ambiguous" if outcome == AMBIGUOUS else outcome, int(counts[outcome]))
+            for outcome in backtest.OUTCOME_ORDER
+            if outcome in counts
+        ],
+        backtest.metric("Win rate", f"{wins / len(decided) * 100:.1f}%" if decided else "N/A"),
+        backtest.metric("Total", backtest.format_r(paper_r)),
+    ]
+
+    reference = backtest_day_stats(date_iso, timeframe)
+    if reference is None:
+        lines.extend(["", "BACKTEST", "No finalized backtest rows for this date yet."])
+        return "\n".join(lines)
+
+    ref_win = (
+        f"{reference['wins'] / reference['decided'] * 100:.1f}%" if reference["decided"] else "N/A"
+    )
+    lines.extend(
+        [
+            "",
+            "BACKTEST (replayed history)",
+            backtest.metric("Entries", reference["entries"]),
+            backtest.metric("Win rate", ref_win),
+            backtest.metric("Total", backtest.format_r(reference["total_r"])),
+            "",
+            "DIVERGENCE",
+            backtest.metric("Entries", f"{len(paper) - reference['entries']:+d}"),
+            backtest.metric("Total", backtest.format_r(paper_r - reference["total_r"])),
+            "",
+            "Paper is forward and out-of-sample; the backtest replays history",
+            "through the logic that made the alerts. Persistent gaps favour",
+            "the backtest being optimistic, not the paper run being unlucky.",
+        ]
+    )
+    return "\n".join(lines)
+
+
+def post_report(message: str) -> None:
+    webhook = os.getenv(WEBHOOK_ENV, "").strip() or os.getenv(FALLBACK_WEBHOOK_ENV, "").strip()
+    if not webhook:
+        print(f"Neither {WEBHOOK_ENV} nor {FALLBACK_WEBHOOK_ENV} is configured; skipping send.")
+        return
+    response = requests.post(webhook, json={"content": message}, timeout=15)
+    response.raise_for_status()
+    print("Paper trading report posted.")
+
+
+def run_report(args: argparse.Namespace) -> None:
+    date_iso = args.date or pd.Timestamp.now(tz=IST).date().isoformat()
+    message = build_report(date_iso, args.timeframe, load_state())
+    print(message)
+    if not args.dry_run:
+        post_report(message)
+
+
+def main() -> None:
+    args = parse_args()
+    if args.report:
+        run_report(args)
+    else:
+        run_tick(args)
+
+
+if __name__ == "__main__":
+    main()
