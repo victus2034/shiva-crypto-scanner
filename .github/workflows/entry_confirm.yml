@@ -1,0 +1,95 @@
+name: Shiva Entry Confirm
+
+on:
+  workflow_dispatch:
+    inputs:
+      timeframe:
+        description: "Alert timeframe to watch"
+        required: false
+        default: "30m"
+        type: choice
+        options:
+          - "30m"
+          - "4h"
+      dry_run:
+        description: "Print stage pings without posting to Discord"
+        required: false
+        default: "false"
+        type: choice
+        options:
+          - "false"
+          - "true"
+      ignore_session:
+        description: "Skip the 09:15-15:10 IST guard (testing only)"
+        required: false
+        default: "false"
+        type: choice
+        options:
+          - "false"
+          - "true"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: shiva-entry-confirm
+  cancel-in-progress: false
+
+jobs:
+  entry-confirm:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          # Cached wheels keep the run short - this job is scheduled every
+          # few minutes, so install time is most of the ping's latency.
+          cache: pip
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Restore runtime state
+        run: |
+          bash .github/scripts/restore_runtime_state.sh \
+            nse_alert_records_30m.jsonl \
+            nse_alert_records.jsonl \
+            entry_confirm_state.json
+
+      - name: Send entry confirmation pings
+        env:
+          DISCORD_ENTRY_CONFIRM_WEBHOOK_URL: ${{ secrets.DISCORD_ENTRY_CONFIRM_WEBHOOK_URL }}
+          INPUT_TIMEFRAME: ${{ github.event.inputs.timeframe }}
+          INPUT_DRY_RUN: ${{ github.event.inputs.dry_run }}
+          INPUT_IGNORE_SESSION: ${{ github.event.inputs.ignore_session }}
+        run: |
+          EXTRA_ARGS=()
+          if [ "$INPUT_DRY_RUN" = "true" ]; then
+            EXTRA_ARGS+=(--dry-run)
+          fi
+          if [ "$INPUT_IGNORE_SESSION" = "true" ]; then
+            EXTRA_ARGS+=(--ignore-session)
+          fi
+          python entry_confirm.py --timeframe "${INPUT_TIMEFRAME:-30m}" "${EXTRA_ARGS[@]}"
+
+      - name: Persist runtime state
+        if: ${{ github.event.inputs.dry_run != 'true' }}
+        run: bash .github/scripts/persist_runtime_state.sh entry_confirm_state.json
+
+      - name: Notify on failure
+        if: failure()
+        env:
+          DISCORD_STATUS_WEBHOOK_URL: ${{ secrets.DISCORD_STATUS_WEBHOOK_URL }}
+        run: |
+          if [ -n "$DISCORD_STATUS_WEBHOOK_URL" ]; then
+            curl -sf -X POST -H "Content-Type: application/json" \
+              -d "{\"content\":\"⚠️ **${{ github.workflow }}** failed (run ${{ github.run_id }}): https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}\"}" \
+              "$DISCORD_STATUS_WEBHOOK_URL" || true
+          fi
