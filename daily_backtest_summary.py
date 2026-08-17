@@ -1432,7 +1432,20 @@ def format_rating_table(records: pd.DataFrame, results: pd.DataFrame) -> str:
             detail_parts.append(f"Neither {neither}")
         if waiting:
             detail_parts.append(f"Waiting {waiting}")
-        line = f"{rating}/10 - {entries} entries | {wins}W / {stops}L | {format_win_rate(wins, stops)}"
+        outcome_parts = []
+        if stops:
+            outcome_parts.append(f"SL {stops}")
+        if half_r:
+            outcome_parts.append(f"+0.5R {half_r}")
+        if one_r:
+            outcome_parts.append(f"+1R {one_r}")
+        if two_r:
+            outcome_parts.append(f"+2R {two_r}")
+        line_parts = [f"{rating}/10 - {entries} entries"]
+        if outcome_parts:
+            line_parts.append(" | ".join(outcome_parts))
+        line_parts.append(format_win_rate(wins, stops))
+        line = " | ".join(line_parts)
         if detail_parts:
             line += f" | {', '.join(detail_parts)}"
         rows.append(line)
@@ -1452,9 +1465,25 @@ def format_rating_table(records: pd.DataFrame, results: pd.DataFrame) -> str:
         else:
             finalized = unrated_filled[unrated_filled["final_result"] != "Pending"]
             final_counts = finalized["final_result"].value_counts()
-            wins = int(final_counts.get("+0.5R", 0)) + int(final_counts.get("+1R", 0)) + int(final_counts.get("+2R", 0))
+            half_r = int(final_counts.get("+0.5R", 0))
+            one_r = int(final_counts.get("+1R", 0))
+            two_r = int(final_counts.get("+2R", 0))
             stops = int(final_counts.get("SL", 0))
-            rows.append(f"Unrated/N/A - {len(unrated_filled)} entries | {wins}W / {stops}L | {format_win_rate(wins, stops)}")
+            wins = half_r + one_r + two_r
+            outcome_parts = []
+            if stops:
+                outcome_parts.append(f"SL {stops}")
+            if half_r:
+                outcome_parts.append(f"+0.5R {half_r}")
+            if one_r:
+                outcome_parts.append(f"+1R {one_r}")
+            if two_r:
+                outcome_parts.append(f"+2R {two_r}")
+            line_parts = [f"Unrated/N/A - {len(unrated_filled)} entries"]
+            if outcome_parts:
+                line_parts.append(" | ".join(outcome_parts))
+            line_parts.append(format_win_rate(wins, stops))
+            rows.append(" | ".join(line_parts))
     return "\n".join(rows) if rows else "None"
 
 
@@ -1510,10 +1539,10 @@ def hourly_breakdown_lines(results: pd.DataFrame) -> list[str]:
                 count = int(outcome_counts.get(label, 0))
                 if count:
                     parts.append(f"{label} {count}")
-
-        ratings = pd.to_numeric(group["rating"], errors="coerce").dropna()
-        if not ratings.empty:
-            parts.append(f"Avg Rating {ratings.mean():.1f}")
+            wins = sum(int(outcome_counts.get(label, 0)) for label in ["+0.5R", "+1R", "+2R"])
+            stops = int(outcome_counts.get("SL", 0))
+            if wins + stops:
+                parts.append(format_win_rate(wins, stops))
 
         hour_label = pd.Timestamp(hour).strftime("%H:%M")
         lines.append(f"{hour_label} - " + " | ".join(parts))

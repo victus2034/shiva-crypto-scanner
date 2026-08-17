@@ -377,7 +377,7 @@ class DailyBacktestSummaryTests(unittest.TestCase):
         self.assertIn("NSE 30m BACKTEST\n04 AUG 2026", message)
         self.assertIn("OVERVIEW\nAlerts - 2", message)
         self.assertIn("No Touch - 1", message)
-        self.assertIn("4/10 - 1 entries | 1W / 0L | 100.0%", message)
+        self.assertIn("4/10 - 1 entries | +2R 1 | 100.0%", message)
         self.assertIn("No Entries - 6/10", message)
         self.assertIn("1. BTC", message)
         self.assertNotIn("Tradable", message)
