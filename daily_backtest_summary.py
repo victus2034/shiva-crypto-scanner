@@ -548,12 +548,13 @@ def run_backtest(
         elif market == "other":
             tracking_end_index, window_mature = crypto_tracking_end(frame, event_time)
         elif alert.get("timeframe") == "4h":
-            # NSE 4h bars (~2/session) can't resolve under same-day-only
-            # rules - a signal on the 09:15 candle needs the 13:15 candle
-            # to even check for a touch, but that candle always falls after
-            # the close-cutoff buffer. Span multiple sessions instead,
-            # mirroring how crypto/xStock already handle multi-day holds.
-            tracking_end_index, window_mature = nse_multi_day_tracking_end(frame, event_index)
+            # NSE is traded intraday - a position is squared off same-day
+            # regardless of timeframe, never carried overnight. 4h bars
+            # (~2/session) just need the day's last candle to actually be
+            # usable, which the standard close-cutoff buffer (tuned for
+            # 30m, where losing ~20min still leaves a dozen bars) excludes
+            # entirely for 4h, leaving zero room to check for a touch.
+            tracking_end_index, window_mature = nse_session_tracking_end(frame, event_time)
         else:
             tracking_end_index, window_mature = same_day_tracking_end(frame, event_time)
         if not window_mature:
@@ -614,19 +615,39 @@ def same_day_tracking_end(
     return positions[-1], True
 
 
-def nse_multi_day_tracking_end(
+def nse_session_tracking_end(
     frame: pd.DataFrame,
-    event_index: int,
+    event_time: pd.Timestamp,
 ) -> tuple[int | None, bool]:
-    """Multi-day tracking window for NSE timeframes too coarse for same-day
-    resolution (4h has only ~2 bars/session). Mirrors xStock's
-    all-available-data approach, capped at MAX_HOLD_BARS so a signal isn't
-    held indefinitely.
+    """Same-day tracking window anchored to real market close (15:30).
+
+    NSE is traded intraday - a position is squared off same-day, never
+    carried overnight, on any timeframe. same_day_tracking_end's
+    close-cutoff buffer (15:10, tuned for 30m where losing ~20min still
+    leaves a dozen usable bars) excludes 4h's day-ending candle entirely,
+    since that candle only closes at real market close. Using market
+    close itself as the boundary keeps the day's last candle usable
+    without ever looking past today.
     """
-    if frame.empty:
+    event_time = event_time.tz_convert(IST)
+    close_ts = pd.Timestamp(
+        datetime.combine(event_time.date(), NSE_MARKET_CLOSE),
+        tz=IST,
+    )
+    now_ist = pd.Timestamp.now(tz=IST)
+    if event_time.date() == now_ist.date() and now_ist < close_ts:
+        return None, False
+
+    same_day = frame.index.normalize() == event_time.normalize()
+    capped_ends = candle_ends(frame).map(lambda ts: min(ts, close_ts))
+    before_close = capped_ends <= close_ts
+    positions = [
+        index for index, keep in enumerate(same_day & before_close)
+        if keep
+    ]
+    if not positions:
         return None, True
-    max_index = min(event_index + MAX_HOLD_BARS, len(frame.index) - 1)
-    return max_index, True
+    return positions[-1], True
 
 
 def candle_ends(frame: pd.DataFrame) -> pd.DatetimeIndex:

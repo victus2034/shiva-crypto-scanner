@@ -167,35 +167,36 @@ class DailyBacktestSummaryTests(unittest.TestCase):
         ends = summary.candle_ends(frame)
         self.assertEqual(ends[1], pd.Timestamp("2026-08-14 17:15", tz=summary.IST))
 
-    def test_nse_multi_day_tracking_spans_sessions_for_4h(self):
-        # NSE 4h alerts structurally cannot resolve same-day (only ~2
-        # candles/session, and the close-cutoff buffer always excludes the
-        # second one) - a 4h alert must be allowed to look at candles from
-        # later trading days to ever find a touch.
+    def test_nse_session_tracking_stays_same_day_using_market_close(self):
+        # NSE is traded intraday - a position is squared off same-day,
+        # never carried overnight, on any timeframe. nse_session_tracking_end
+        # must make the day's last (13:15) candle usable via real market
+        # close (15:30), not span into a later trading session to find it.
         index = pd.DatetimeIndex(
             [
                 "2026-08-14 09:15",
                 "2026-08-14 13:15",
                 "2026-08-17 09:15",
-                "2026-08-17 13:15",
             ],
             tz=summary.IST,
         )
         frame = pd.DataFrame(
             {
-                "open": [100.0] * 4,
-                "high": [102.0] * 4,
-                "low": [99.0] * 4,
-                "close": [101.0] * 4,
-                "volume": [1] * 4,
+                "open": [100.0] * 3,
+                "high": [102.0] * 3,
+                "low": [99.0] * 3,
+                "close": [101.0] * 3,
+                "volume": [1] * 3,
             },
             index=index,
         )
-        end_index, mature = summary.nse_multi_day_tracking_end(frame, event_index=0)
+        end_index, mature = summary.nse_session_tracking_end(
+            frame, pd.Timestamp("2026-08-14 09:22", tz=summary.IST)
+        )
         self.assertTrue(mature)
-        self.assertEqual(end_index, 3)  # spans into the next trading session
+        self.assertEqual(end_index, 1)  # stays within 14 Aug, never reaches 17 Aug
 
-    def test_nse_4h_alert_uses_multi_day_tracking_not_same_day(self):
+    def test_nse_4h_alert_resolves_same_day_not_next_session(self):
         alerts = pd.DataFrame([base_alert(timeframe="4h")])
         index = pd.DatetimeIndex(
             [
@@ -205,20 +206,21 @@ class DailyBacktestSummaryTests(unittest.TestCase):
             ],
             tz=summary.IST,
         )
-        # Zone touch only happens on the next trading day's candle - same
-        # day alone (09:15 + 13:15) never has enough room to find it.
+        # Zone touch happens on the day's own second (13:15) candle - must
+        # resolve there, not by looking at the next trading day at all.
         frame = pd.DataFrame(
             {
-                "open": [102.0, 102.0, 100.0],
-                "high": [103.0, 103.0, 100.5],
-                "low": [101.5, 101.5, 98.5],
-                "close": [102.5, 102.5, 99.5],
+                "open": [102.0, 100.0, 200.0],
+                "high": [103.0, 100.5, 201.0],
+                "low": [101.5, 98.5, 199.0],
+                "close": [102.5, 99.5, 200.5],
                 "volume": [1, 1, 1],
             },
             index=index,
         )
         results, _ = summary.run_backtest(alerts, {"TCS.NS": frame}, market="nse")
         self.assertTrue(bool(results.iloc[0]["filled"]))
+        self.assertEqual(results.iloc[0]["entry_time"], index[1])
 
     def test_half_r_is_kept_if_price_reverses_later(self):
         index = pd.DatetimeIndex(
