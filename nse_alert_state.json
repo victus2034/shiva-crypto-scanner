@@ -1455,7 +1455,7 @@
     "last_attempt_at": 0.0
   },
   "IOC.NS|demand|136.6000|137.7600": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1786945952.0979128,
     "last_attempt_at": 1786945952.0979128
   },
@@ -2765,6 +2765,11 @@
     "last_attempt_at": 0.0
   },
   "POLYMED.NS|demand|1668.4000|1695.2000": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "DLF.NS|supply|766.3500|773.5000": {
     "in_zone": false,
     "last_alert_at": 0.0,
     "last_attempt_at": 0.0
