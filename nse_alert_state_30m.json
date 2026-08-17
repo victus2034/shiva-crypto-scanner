@@ -3263,7 +3263,8 @@
     "AXISBANK.NS|30m|short|1231.6999511719|1234.9000244141": 1786952529.4923189,
     "JINDALSAW.NS|30m|short|267.7000122070|268.3999938965": 1786952530.330927,
     "ANGELONE.NS|30m|short|294.4500122070|296.3500061035": 1786953733.6081092,
-    "LLOYDSME.NS|30m|short|1934.0000000000|1944.8000488281": 1786953734.6652224
+    "LLOYDSME.NS|30m|short|1934.0000000000|1944.8000488281": 1786953734.6652224,
+    "GODREJCP.NS|30m|short|940.0999755859|942.5999755859": 1786954933.2107866
   },
   "ANANDRATHI.NS|supply|2187.5000|2221.0000": {
     "in_zone": true,
@@ -4616,9 +4617,9 @@
     "last_attempt_at": 0.0
   },
   "GODREJCP.NS|supply|940.1000|942.6000": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1786954933.2107866,
+    "last_attempt_at": 1786954933.2107866
   },
   "OIL.NS|demand|465.8000|466.7000": {
     "in_zone": false,
@@ -4646,6 +4647,26 @@
     "last_attempt_at": 0.0
   },
   "PIDILITIND.NS|supply|1704.0000|1707.4000": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "FINCABLES.NS|demand|1238.1500|1241.5000": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "GODIGIT.NS|supply|259.9500|261.4000": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "KEI.NS|demand|5673.0000|5691.0000": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "RKFORGE.NS|demand|728.4500|733.9000": {
     "in_zone": false,
     "last_alert_at": 0.0,
     "last_attempt_at": 0.0
