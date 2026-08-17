@@ -12,48 +12,18 @@ RATING_LABELS = {
     "B": "mixed",
     "C": "weak",
 }
-RATED_CRYPTO_SYMBOLS = {
-    "BTCUSD",
-    "ETHUSD",
-    "SOLUSD",
-    "DEXE/USDT",
-    "XRPUSD",
-    "DOGEUSD",
-    "ZECUSD",
-    "PUMPUSD",
-    "NEARUSD",
-    "AAVEUSD",
-    "LINKUSD",
-    "ENA/USDT",
-    "ONDOUSD",
-    "PAXGUSD",
-    "SUIUSD",
-    "ADAUSD",
-    "XLM/USDT",
-    "WLD/USDT",
-    "LTCUSD",
-    "RIF/USDT",
-    "UNIUSD",
-    "TAO/USDT",
-    "FET/USDT",
-    "ALLO/USDT",
-    "BCHUSD",
-    "INJUSD",
-    "FILUSD",
-    "XPLUSD",
-    "GRAMUSD",
-    "DOTUSD",
-    "VIRTUAL/USDT",
-    "SYN/USDT",
-    "LDO/USDT",
-    "APTUSD",
-    "DODO/USDT",
-    "OPUSD",
-    "CRV/USDT",
-    "ETCUSD",
-    "SXT/USDT",
-    "SEIUSD",
-}
+def rated_crypto_symbols() -> set[str]:
+    """Symbols the loaded model bundle actually validates.
+
+    Derived from the bundle itself (the single source of truth used by
+    is_rating_eligible) rather than a hand-maintained list, which could
+    silently drift out of sync with what the model really supports.
+    """
+    try:
+        bundle = load_rating_bundle()
+    except Exception:
+        return set()
+    return {str(value).upper() for value in bundle.get("validated_symbols", [])}
 
 
 @lru_cache(maxsize=1)

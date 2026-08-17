@@ -2055,8 +2055,14 @@ def main() -> None:
         mark_sent_report(key)
 
     if not evaluation_records.empty:
+        # DATA_QUALITY_AMBIGUOUS rows are unresolved (write_lifecycle_rows
+        # routes them to the pending file, weekly_readiness treats them as
+        # unresolved too) - counting them as "finalized" here misled anyone
+        # reading this diagnostic line into thinking unresolved same-candle
+        # conflicts were done.
+        finalized_outcomes = set(OUTCOME_ORDER) - {DATA_QUALITY_AMBIGUOUS}
         finalized_count = int(
-            (results.get("final_result", pd.Series(dtype=str)).isin(OUTCOME_ORDER)).sum()
+            (results.get("final_result", pd.Series(dtype=str)).isin(finalized_outcomes)).sum()
         ) if not results.empty else 0
         pending_count = int(
             (results.get("final_result", pd.Series(dtype=str)) == "Pending").sum()

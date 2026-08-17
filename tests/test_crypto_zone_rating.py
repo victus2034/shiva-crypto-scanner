@@ -70,7 +70,7 @@ class CryptoZoneRatingTests(unittest.TestCase):
             set(features),
             set(bundle["feature_columns"]),
         )
-        self.assertTrue(crypto_zone_rating.RATED_CRYPTO_SYMBOLS)
+        self.assertTrue(crypto_zone_rating.rated_crypto_symbols())
 
     def test_model_returns_a_known_rating(self):
         frame = candle_frame()
