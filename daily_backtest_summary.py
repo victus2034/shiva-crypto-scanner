@@ -41,7 +41,6 @@ ENTRY_WAIT_BARS = 3
 MAX_HOLD_BARS = 24
 NSE_BACKTEST_CLOSE_CUTOFF = datetime_time(15, 10)
 NSE_TRADE_START = datetime_time(9, 15)
-NSE_MARKET_CLOSE = datetime_time(15, 30)
 CRYPTO_EVALUATION_HOURS = 6
 CRYPTO_REPORT_BOUNDARY = datetime_time(16, 30)
 FIXED_STOP_PCT = 0.5
@@ -93,7 +92,15 @@ def parse_args() -> argparse.Namespace:
 
 def configure_nse_data(timeframe: str) -> Path:
     settings = TIMEFRAME_SETTINGS[timeframe]
-    nse_scanner.TIMEFRAME = timeframe
+    # 4h backtest evaluation uses the raw source-interval candles (1h)
+    # instead of resampling up to 4h. The user trades intraday and stops
+    # by 15:10 - a coarse 4h candle (e.g. 13:15-17:15 nominal) spans well
+    # past that and would smuggle in price action they never actually
+    # traded on. Zone levels still come from the alert record itself
+    # (built live off real 4h structure); only touch/target/SL detection
+    # uses the finer candles, which lets the same 15:10 same-day cutoff
+    # used for 30m apply cleanly here too.
+    nse_scanner.TIMEFRAME = settings["source_interval"] if timeframe == "4h" else timeframe
     nse_scanner.SOURCE_INTERVAL = settings["source_interval"]
     nse_scanner.SOURCE_PERIOD = settings["source_period"]
     return settings["nse_records"]
@@ -547,15 +554,9 @@ def run_backtest(
             tracking_end_index, window_mature = all_available_tracking_end(frame)
         elif market == "other":
             tracking_end_index, window_mature = crypto_tracking_end(frame, event_time)
-        elif alert.get("timeframe") == "4h":
-            # NSE is traded intraday - a position is squared off same-day
-            # regardless of timeframe, never carried overnight. 4h bars
-            # (~2/session) just need the day's last candle to actually be
-            # usable, which the standard close-cutoff buffer (tuned for
-            # 30m, where losing ~20min still leaves a dozen bars) excludes
-            # entirely for 4h, leaving zero room to check for a touch.
-            tracking_end_index, window_mature = nse_session_tracking_end(frame, event_time)
         else:
+            # NSE is traded intraday - a position is squared off same-day
+            # on any timeframe, never carried overnight.
             tracking_end_index, window_mature = same_day_tracking_end(frame, event_time)
         if not window_mature:
             rows.append(unfilled(alert, "immature"))
@@ -583,7 +584,17 @@ def same_day_tracking_end(
     frame: pd.DataFrame,
     event_time: pd.Timestamp,
 ) -> tuple[int | None, bool]:
-    """Return the last same-day candle allowed for NSE backtest evaluation."""
+    """Return the last same-day candle allowed for NSE backtest evaluation.
+
+    Cut off at 15:10, not real market close (15:30) - the user personally
+    stops trading at 15:10 because of unpredictable volume/moves in the
+    last ~20 minutes of the session, so evaluation must never credit a
+    touch/target/SL that only happened in that window. For 4h alerts the
+    frame passed in is already raw 1h-source candles (see
+    configure_nse_data), not resampled 4h bars, so this cutoff has enough
+    same-day granularity to bite cleanly instead of excluding the day's
+    only other candle outright.
+    """
     event_time = event_time.tz_convert(IST)
     cutoff = pd.Timestamp(
         datetime.combine(event_time.date(), NSE_BACKTEST_CLOSE_CUTOFF),
@@ -593,56 +604,10 @@ def same_day_tracking_end(
     if event_time.date() == now_ist.date() and now_ist < cutoff:
         return None, False
 
-    # NSE doesn't trade past market close, so the day's last candle (e.g. a
-    # 4h bar starting at 13:15) is fully settled by close even though its
-    # nominal start+duration end extends past it - cap at market close so
-    # that candle isn't wrongly treated as "not yet confirmed" by the
-    # cutoff, which left same-day evaluation with zero forward room on
-    # timeframes with only ~2 candles/session (e.g. 4h).
-    market_close = pd.Timestamp(
-        datetime.combine(event_time.date(), NSE_MARKET_CLOSE),
-        tz=IST,
-    )
-    capped_ends = candle_ends(frame).map(lambda ts: min(ts, market_close))
     same_day = frame.index.normalize() == event_time.normalize()
-    before_cutoff = capped_ends <= cutoff
+    before_cutoff = candle_ends(frame) <= cutoff
     positions = [
         index for index, keep in enumerate(same_day & before_cutoff)
-        if keep
-    ]
-    if not positions:
-        return None, True
-    return positions[-1], True
-
-
-def nse_session_tracking_end(
-    frame: pd.DataFrame,
-    event_time: pd.Timestamp,
-) -> tuple[int | None, bool]:
-    """Same-day tracking window anchored to real market close (15:30).
-
-    NSE is traded intraday - a position is squared off same-day, never
-    carried overnight, on any timeframe. same_day_tracking_end's
-    close-cutoff buffer (15:10, tuned for 30m where losing ~20min still
-    leaves a dozen usable bars) excludes 4h's day-ending candle entirely,
-    since that candle only closes at real market close. Using market
-    close itself as the boundary keeps the day's last candle usable
-    without ever looking past today.
-    """
-    event_time = event_time.tz_convert(IST)
-    close_ts = pd.Timestamp(
-        datetime.combine(event_time.date(), NSE_MARKET_CLOSE),
-        tz=IST,
-    )
-    now_ist = pd.Timestamp.now(tz=IST)
-    if event_time.date() == now_ist.date() and now_ist < close_ts:
-        return None, False
-
-    same_day = frame.index.normalize() == event_time.normalize()
-    capped_ends = candle_ends(frame).map(lambda ts: min(ts, close_ts))
-    before_close = capped_ends <= close_ts
-    positions = [
-        index for index, keep in enumerate(same_day & before_close)
         if keep
     ]
     if not positions:

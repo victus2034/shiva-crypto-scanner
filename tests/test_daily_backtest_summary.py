@@ -144,39 +144,17 @@ class DailyBacktestSummaryTests(unittest.TestCase):
         )
         self.assertEqual(summary.infer_bar_duration(frame), pd.Timedelta(hours=4))
 
-    def test_same_day_tracking_end_caps_last_candle_at_market_close(self):
-        # A 4h candle starting at 13:15 nominally "ends" at 17:15 (start +
-        # 4h), but NSE stops trading at 15:30 - the candle is fully settled
-        # by then regardless of its nominal duration. Without capping at
-        # market close, this candle looks "not yet confirmed" by the
-        # close-cutoff buffer and gets excluded even though it's real,
-        # final, same-day data.
-        index = pd.DatetimeIndex(
-            ["2026-08-14 09:15", "2026-08-14 13:15"], tz=summary.IST
-        )
-        frame = pd.DataFrame(
-            {
-                "open": [100.0, 101.0],
-                "high": [102.0, 103.0],
-                "low": [99.0, 100.0],
-                "close": [101.0, 102.0],
-                "volume": [1, 1],
-            },
-            index=index,
-        )
-        ends = summary.candle_ends(frame)
-        self.assertEqual(ends[1], pd.Timestamp("2026-08-14 17:15", tz=summary.IST))
-
-    def test_nse_session_tracking_stays_same_day_using_market_close(self):
-        # NSE is traded intraday - a position is squared off same-day,
-        # never carried overnight, on any timeframe. nse_session_tracking_end
-        # must make the day's last (13:15) candle usable via real market
-        # close (15:30), not span into a later trading session to find it.
+    def test_same_day_tracking_end_stops_at_1510_not_market_close(self):
+        # The user personally stops trading at 15:10, not real market
+        # close (15:30), because of unpredictable volume/moves in the
+        # last ~20 minutes of the session. A candle ending after 15:10
+        # must never be treated as usable for evaluation, even though the
+        # exchange itself is still open.
         index = pd.DatetimeIndex(
             [
                 "2026-08-14 09:15",
                 "2026-08-14 13:15",
-                "2026-08-17 09:15",
+                "2026-08-14 14:15",
             ],
             tz=summary.IST,
         )
@@ -190,31 +168,36 @@ class DailyBacktestSummaryTests(unittest.TestCase):
             },
             index=index,
         )
-        end_index, mature = summary.nse_session_tracking_end(
+        end_index, mature = summary.same_day_tracking_end(
             frame, pd.Timestamp("2026-08-14 09:22", tz=summary.IST)
         )
         self.assertTrue(mature)
-        self.assertEqual(end_index, 1)  # stays within 14 Aug, never reaches 17 Aug
+        # 14:15 candle ends 15:15 - past the 15:10 cutoff, excluded.
+        # 13:15 candle ends 14:15 - the last usable one.
+        self.assertEqual(end_index, 1)
 
     def test_nse_4h_alert_resolves_same_day_not_next_session(self):
+        # NSE 4h backtest evaluation runs against raw 1h source candles
+        # (see configure_nse_data), not resampled 4h bars, so the day's
+        # zone touch must resolve using those finer same-day candles, not
+        # by spilling into the next trading session.
         alerts = pd.DataFrame([base_alert(timeframe="4h")])
         index = pd.DatetimeIndex(
             [
                 "2026-08-04 09:15",
-                "2026-08-04 13:15",
+                "2026-08-04 10:15",
+                "2026-08-04 11:15",
                 "2026-08-05 09:15",
             ],
             tz=summary.IST,
         )
-        # Zone touch happens on the day's own second (13:15) candle - must
-        # resolve there, not by looking at the next trading day at all.
         frame = pd.DataFrame(
             {
-                "open": [102.0, 100.0, 200.0],
-                "high": [103.0, 100.5, 201.0],
-                "low": [101.5, 98.5, 199.0],
-                "close": [102.5, 99.5, 200.5],
-                "volume": [1, 1, 1],
+                "open": [102.0, 100.0, 100.0, 200.0],
+                "high": [103.0, 100.5, 100.5, 201.0],
+                "low": [101.5, 98.5, 98.5, 199.0],
+                "close": [102.5, 99.5, 99.5, 200.5],
+                "volume": [1, 1, 1, 1],
             },
             index=index,
         )
