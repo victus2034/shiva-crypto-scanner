@@ -53,3 +53,14 @@ jobs:
           DISCORD_ASTROLOGY_WEBHOOK_URL: ${{ secrets.DISCORD_ASTROLOGY_WEBHOOK_URL }}
           ASTROLOGY_DRY_RUN: ${{ github.event.inputs.dry_run }}
         run: npm run astrology
+
+      - name: Notify on failure
+        if: failure()
+        env:
+          DISCORD_STATUS_WEBHOOK_URL: ${{ secrets.DISCORD_STATUS_WEBHOOK_URL }}
+        run: |
+          if [ -n "$DISCORD_STATUS_WEBHOOK_URL" ]; then
+            curl -sf -X POST -H "Content-Type: application/json" \
+              -d "{\"content\":\"⚠️ **${{ github.workflow }}** failed (run ${{ github.run_id }}): https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}\"}" \
+              "$DISCORD_STATUS_WEBHOOK_URL" || true
+          fi
