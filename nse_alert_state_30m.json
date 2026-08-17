@@ -3133,7 +3133,7 @@
     "IOC.NS|30m|long|139.2899932861|139.6300048828": 1786680142.2119102,
     "LICHSGFIN.NS|30m|long|499.5000000000|499.9500122070": 1786610533.1970127,
     "CUMMINSIND.NS|30m|long|5330.5000000000|5343.5000000000": 1786598525.1866515,
-    "HDFCBANK.NS|30m|long|722.0000000000|722.6500244141": 1786942933.9505455,
+    "HDFCBANK.NS|30m|long|722.0000000000|722.6500244141": 1786947728.320035,
     "NAVINFLUOR.NS|30m|short|8408.5000000000|8444.0000000000": 1786598525.7639132,
     "3MINDIA.NS|30m|short|36350.0000000000|36595.0000000000": 1786599719.838621,
     "BLUESTARCO.NS|30m|short|1497.9000244141|1507.6999511719": 1786600905.519536,
@@ -3321,7 +3321,7 @@
     "last_attempt_at": 1786593735.479038
   },
   "PRESTIGE.NS|demand|1555.5000|1560.2000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1786945327.7652032,
     "last_attempt_at": 1786945327.7652032
   },
@@ -3422,8 +3422,8 @@
   },
   "HDFCBANK.NS|demand|722.0000|722.6500": {
     "in_zone": true,
-    "last_alert_at": 1786942933.9505455,
-    "last_attempt_at": 1786942933.9505455
+    "last_alert_at": 1786947728.320035,
+    "last_attempt_at": 1786947728.320035
   },
   "IEX.NS|demand|123.9000|124.2700": {
     "in_zone": true,
@@ -4281,7 +4281,7 @@
     "last_attempt_at": 0.0
   },
   "HSCL.NS|demand|775.9000|778.0000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1786945327.3044994,
     "last_attempt_at": 1786945327.3044994
   },
@@ -4576,6 +4576,21 @@
     "last_attempt_at": 0.0
   },
   "EIDPARRY.NS|demand|772.6500|775.0000": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "3MINDIA.NS|supply|36315.0000|37300.0000": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "HOMEFIRST.NS|supply|1184.7000|1187.7000": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "NH.NS|supply|1834.6000|1843.3000": {
     "in_zone": false,
     "last_alert_at": 0.0,
     "last_attempt_at": 0.0
