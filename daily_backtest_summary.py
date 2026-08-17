@@ -41,6 +41,7 @@ ENTRY_WAIT_BARS = 3
 MAX_HOLD_BARS = 24
 NSE_BACKTEST_CLOSE_CUTOFF = datetime_time(15, 10)
 NSE_TRADE_START = datetime_time(9, 15)
+NSE_MARKET_CLOSE = datetime_time(15, 30)
 CRYPTO_EVALUATION_HOURS = 6
 CRYPTO_REPORT_BOUNDARY = datetime_time(16, 30)
 FIXED_STOP_PCT = 0.5
@@ -546,6 +547,13 @@ def run_backtest(
             tracking_end_index, window_mature = all_available_tracking_end(frame)
         elif market == "other":
             tracking_end_index, window_mature = crypto_tracking_end(frame, event_time)
+        elif alert.get("timeframe") == "4h":
+            # NSE 4h bars (~2/session) can't resolve under same-day-only
+            # rules - a signal on the 09:15 candle needs the 13:15 candle
+            # to even check for a touch, but that candle always falls after
+            # the close-cutoff buffer. Span multiple sessions instead,
+            # mirroring how crypto/xStock already handle multi-day holds.
+            tracking_end_index, window_mature = nse_multi_day_tracking_end(frame, event_index)
         else:
             tracking_end_index, window_mature = same_day_tracking_end(frame, event_time)
         if not window_mature:
@@ -584,8 +592,19 @@ def same_day_tracking_end(
     if event_time.date() == now_ist.date() and now_ist < cutoff:
         return None, False
 
+    # NSE doesn't trade past market close, so the day's last candle (e.g. a
+    # 4h bar starting at 13:15) is fully settled by close even though its
+    # nominal start+duration end extends past it - cap at market close so
+    # that candle isn't wrongly treated as "not yet confirmed" by the
+    # cutoff, which left same-day evaluation with zero forward room on
+    # timeframes with only ~2 candles/session (e.g. 4h).
+    market_close = pd.Timestamp(
+        datetime.combine(event_time.date(), NSE_MARKET_CLOSE),
+        tz=IST,
+    )
+    capped_ends = candle_ends(frame).map(lambda ts: min(ts, market_close))
     same_day = frame.index.normalize() == event_time.normalize()
-    before_cutoff = candle_ends(frame) <= cutoff
+    before_cutoff = capped_ends <= cutoff
     positions = [
         index for index, keep in enumerate(same_day & before_cutoff)
         if keep
@@ -593,6 +612,21 @@ def same_day_tracking_end(
     if not positions:
         return None, True
     return positions[-1], True
+
+
+def nse_multi_day_tracking_end(
+    frame: pd.DataFrame,
+    event_index: int,
+) -> tuple[int | None, bool]:
+    """Multi-day tracking window for NSE timeframes too coarse for same-day
+    resolution (4h has only ~2 bars/session). Mirrors xStock's
+    all-available-data approach, capped at MAX_HOLD_BARS so a signal isn't
+    held indefinitely.
+    """
+    if frame.empty:
+        return None, True
+    max_index = min(event_index + MAX_HOLD_BARS, len(frame.index) - 1)
+    return max_index, True
 
 
 def candle_ends(frame: pd.DataFrame) -> pd.DatetimeIndex:
@@ -603,13 +637,23 @@ def candle_ends(frame: pd.DataFrame) -> pd.DatetimeIndex:
 
 
 def infer_bar_duration(frame: pd.DataFrame) -> pd.Timedelta:
+    """Return the true single-candle duration, robust to session breaks.
+
+    NSE only has ~2 bars/session on the 4h timeframe, split evenly between
+    the short intraday gap (4h) and the long overnight/weekend gap (~20h+).
+    The median of those diffs is unstable and can land on the overnight
+    side, making every candle appear to "end" almost a day later than it
+    really does. The minimum positive gap reliably picks the true bar
+    interval instead - overnight/weekend/holiday gaps are always larger
+    than the real interval, never smaller.
+    """
     if len(frame.index) < 2:
         return pd.Timedelta(0)
     diffs = pd.Series(frame.index[1:] - frame.index[:-1])
     positive = diffs[diffs > pd.Timedelta(0)]
     if positive.empty:
         return pd.Timedelta(0)
-    return positive.median()
+    return positive.min()
 
 
 def crypto_tracking_end(
