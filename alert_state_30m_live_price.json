@@ -1697,7 +1697,13 @@
     "DEXE/USDT|30m|long|1.9118000000|1.9171000000": 1787029879.1345165,
     "IBM/USDT:USDT|30m|short|229.5600000000|229.6700000000": 1787039479.1292272,
     "TQQQ/USDT:USDT|30m|long|74.3200000000|74.6100000000": 1787029880.0139532,
-    "AAPLXUSD|30m|short|306.9000000000|307.0000000000": 1787037081.4231784
+    "AAPLXUSD|30m|short|306.9000000000|307.0000000000": 1787037081.4231784,
+    "1000PEPEUSD|30m|long|0.0025302000|0.0025484000": 1787040669.752639,
+    "1000BONKUSD|30m|long|0.0022740000|0.0022840000": 1787040669.9664512,
+    "AERO/USDT|30m|long|0.4005000000|0.4030000000": 1787040670.2114742,
+    "VIRTUAL/USDT|30m|long|0.5674000000|0.5702000000": 1787040670.510099,
+    "ALGO/USDT|30m|long|0.0764900000|0.0768500000": 1787040670.7799482,
+    "NBIS/USDT:USDT|30m|long|260.7900000000|261.8800000000": 1787040671.0038288
   },
   "METAXUSD|demand|577.00000000|579.20000000": {
     "in_zone": false,
@@ -4609,8 +4615,8 @@
     "last_alert_at": 0.0
   },
   "AERO/USDT|demand|0.40050000|0.40300000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1787040670.2114742
   },
   "VIRTUAL/USDT|demand|0.54840000|0.55060000": {
     "in_zone": false,
@@ -4637,8 +4643,8 @@
     "last_alert_at": 0.0
   },
   "1000PEPEUSD|demand|0.00253020|0.00254840": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1787040669.752639
   },
   "LDO/USDT|demand|0.29790000|0.29870000": {
     "in_zone": false,
@@ -5365,14 +5371,34 @@
     "last_alert_at": 0.0
   },
   "VIRTUAL/USDT|demand|0.56740000|0.57020000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1787040670.510099
   },
   "COAI/USDT|demand|0.30270000|0.30550000": {
     "in_zone": false,
     "last_alert_at": 0.0
   },
   "NBIS/USDT:USDT|demand|260.79000000|261.88000000": {
+    "in_zone": true,
+    "last_alert_at": 1787040671.0038288
+  },
+  "BNBUSD|demand|601.95000000|602.58000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "1000BONKUSD|demand|0.00227400|0.00228400": {
+    "in_zone": true,
+    "last_alert_at": 1787040669.9664512
+  },
+  "JUP/USDT|demand|0.16360000|0.16460000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "ALGO/USDT|demand|0.07649000|0.07685000": {
+    "in_zone": true,
+    "last_alert_at": 1787040670.7799482
+  },
+  "POL/USDT|demand|0.07841000|0.07919000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
