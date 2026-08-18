@@ -293,6 +293,48 @@
       "target_2": 6742.3110000000015,
       "target_half": 6796.82775,
       "trade_id": "8c71af0d0b70df74"
+    },
+    {
+      "alert_time": "2026-08-18T10:32:11.199674+05:30",
+      "date": "2026-08-18",
+      "entry": 277.3999938964844,
+      "entry_time": "2026-08-18T10:35:00+05:30",
+      "exit_price": 275.6210939025879,
+      "exit_time": "2026-08-18T11:30:00+05:30",
+      "final_result": "+1R",
+      "half_r_hit": true,
+      "outcome": "+1R",
+      "rating": 7,
+      "realized_r": 1.0,
+      "risk": 1.7788999938964594,
+      "side": "short",
+      "stop": 279.17889389038083,
+      "symbol": "AEGISVOPAK.NS",
+      "target_1": 275.6210939025879,
+      "target_2": 273.84219390869146,
+      "target_half": 276.5105438995362,
+      "trade_id": "6a93e5b12e3a67de"
+    },
+    {
+      "alert_time": "2026-08-18T11:12:19.193877+05:30",
+      "date": "2026-08-18",
+      "entry": 1461.9000244140625,
+      "entry_time": "2026-08-18T11:30:00+05:30",
+      "exit_price": 1465.959300048828,
+      "exit_time": "2026-08-18T11:30:00+05:30",
+      "final_result": "+1R",
+      "half_r_hit": true,
+      "outcome": "+1R",
+      "rating": 9,
+      "realized_r": 1.0,
+      "risk": 4.059275634765527,
+      "side": "long",
+      "stop": 1457.840748779297,
+      "symbol": "ATHERENERG.NS",
+      "target_1": 1465.959300048828,
+      "target_2": 1470.0185756835936,
+      "target_half": 1463.9296622314453,
+      "trade_id": "e18e10de543af0fc"
     }
   ],
   "handled": {
@@ -324,6 +366,7 @@
     "d683c95024d5bd8f": "filled",
     "dd0b855f16a93672": "filled",
     "ddb573630055e490": "filled",
+    "e18e10de543af0fc": "filled",
     "f03f76ebaca48da2": "filled",
     "f8f3a1dc9e546137": "filled",
     "f93f18d6e7495d7f": "filled"
@@ -426,20 +469,6 @@
       "target_1": 17.467210762023925,
       "target_2": 17.604421600341794,
       "target_half": 17.39860534286499
-    },
-    "6a93e5b12e3a67de": {
-      "alert_time": "2026-08-18T10:32:11.199674+05:30",
-      "entry": 277.3999938964844,
-      "entry_time": "2026-08-18T10:35:00+05:30",
-      "half_r_hit": true,
-      "rating": 7,
-      "risk": 1.7788999938964594,
-      "side": "short",
-      "stop": 279.17889389038083,
-      "symbol": "AEGISVOPAK.NS",
-      "target_1": 275.6210939025879,
-      "target_2": 273.84219390869146,
-      "target_half": 276.5105438995362
     },
     "7513136fe9bc30b3": {
       "alert_time": "2026-08-18T09:32:39.631420+05:30",
