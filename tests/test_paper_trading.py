@@ -129,18 +129,20 @@ class OutcomeTests(unittest.TestCase):
         self.assertEqual(closed[0]["outcome"], "Neither")
         self.assertAlmostEqual(closed[0]["realized_r"], 0.05)
 
-    def test_half_r_moves_the_stop_to_entry_so_a_reversal_exits_flat(self):
-        # Reaching +0.5R moves the stop to entry rather than closing the
-        # trade, so giving it back is a breakeven exit - not +0.5R banked
-        # and not a full -1R. Paper must match daily_backtest_summary here
-        # or the two measure different strategies.
+    def test_half_r_moves_the_stop_past_entry_to_clear_costs(self):
+        # Reaching +0.5R moves the stop above entry rather than closing the
+        # trade, far enough to cover the round trip - so giving it back
+        # scratches a hair positive instead of losing the charges. Paper
+        # must match daily_backtest_summary or the two measure different
+        # strategies.
         state = self._open()
         frames = {"TCS.NS": bars([[101.2, 99.9, 100.1], [100.0, 97.0, 97.2]])}
         closed = paper_trading.evaluate_open_positions(
             state, frames, pd.Timestamp("2026-08-17 11:00", tz=IST)
         )
         self.assertEqual(closed[0]["outcome"], backtest.BREAK_EVEN)
-        self.assertAlmostEqual(closed[0]["realized_r"], 0.0)
+        self.assertGreater(closed[0]["net_realized_r"], 0.0)
+        self.assertLess(closed[0]["net_realized_r"], 0.05)
 
     def test_a_stop_before_any_milestone_still_closes_as_sl(self):
         state = self._open()

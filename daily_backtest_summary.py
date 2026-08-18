@@ -45,6 +45,20 @@ CRYPTO_EVALUATION_HOURS = 6
 CRYPTO_REPORT_BOUNDARY = datetime_time(16, 30)
 FIXED_STOP_PCT = 0.5
 SL_BUFFER_PCT = 0.10
+# Dhan NSE equity intraday, both legs, derived from a real contract note and
+# reconciled component by component: brokerage 0.03% x2, STT 0.025% on the
+# sell, exchange ~0.00307% x2, SEBI Rs10/cr x2, stamp 0.003% on the buy, and
+# 18% GST on brokerage + exchange + SEBI. Constant at any size below the
+# ~Rs66,667 where the Rs20 brokerage cap starts to bite and the rate falls.
+ROUND_TRIP_COST_PCT = 0.1063
+# Where the stop goes once +0.5R trades. Entry alone is not breakeven - the
+# round trip has already been paid - so the stop sits far enough past entry
+# to clear costs with a little room to spare.
+BREAK_EVEN_OFFSET_PCT = 0.120
+# Below this stop distance the +0.5R trigger arrives while the trade is
+# still net negative (0.5 x SL% < BREAK_EVEN_OFFSET_PCT), so the rule cannot
+# protect capital at all.
+MIN_SAFE_STOP_PCT = BREAK_EVEN_OFFSET_PCT * 2
 # A resting SL is a stop order, not a limit order - once triggered it fills
 # at whatever price is next available, not necessarily the exact trigger
 # price, especially since the same fast move that triggered it is often
@@ -734,6 +748,10 @@ def simulate_alert(
     target_half = entry_price + direction * risk * HALF_R
     target_1 = entry_price + direction * risk * TARGET_1_R
     target_2 = entry_price + direction * risk * TARGET_2_R
+    # The offset exists to clear Dhan's NSE charges, so it only applies
+    # where those charges do; no equivalent has been measured for crypto.
+    break_even_offset = BREAK_EVEN_OFFSET_PCT if market in (None, "nse") else 0.0
+    break_even_stop = entry_price + direction * entry_price * break_even_offset / 100.0
 
     end_index = tracking_end_index
     half_r_hit = False
@@ -758,12 +776,12 @@ def simulate_alert(
         max_favorable_r = max(max_favorable_r, favorable / risk)
         max_adverse_r = max(max_adverse_r, adverse / risk)
 
-        # Once +0.5R has traded, the stop sits at entry - that is the user's
-        # actual rule, so a trade that reaches +0.5R and gives it back exits
-        # flat rather than banking half a risk unit it never took off the
-        # table. The move only applies from the next bar, since the ordering
-        # inside the bar that reached +0.5R is unknowable.
-        active_stop = entry_price if half_r_hit else stop
+        # Once +0.5R has traded the stop moves up to clear costs, which is
+        # the point of the rule: leaving it at entry would still book a loss
+        # the size of the round trip. The move only applies from the next
+        # bar, since the ordering inside the bar that reached +0.5R is
+        # unknowable.
+        active_stop = break_even_stop if half_r_hit else stop
         stop_hit = low <= active_stop if side == "long" else high >= active_stop
         half_target_hit = high >= target_half if side == "long" else low <= target_half
         first_target_hit = high >= target_1 if side == "long" else low <= target_1
@@ -867,8 +885,8 @@ def simulate_alert(
     elif outcome == DATA_QUALITY_AMBIGUOUS:
         exit_price = float("nan")
     elif outcome == BREAK_EVEN:
-        # The stop was sitting at entry by then, so the exit is entry.
-        exit_price = entry_price
+        # The stop had already moved past entry to clear costs by then.
+        exit_price = break_even_stop
     elif outcome == "+0.5R":
         exit_price = target_half
     elif outcome == "+1R":
@@ -885,6 +903,11 @@ def simulate_alert(
         realized_r = direction * (exit_price - entry_price) / risk
     else:
         realized_r = FINAL_RESULT_R[outcome]
+    # Brokerage and statutory charges are a fixed share of turnover, so on a
+    # tight stop they consume a large share of R - roughly a third at a 0.3%
+    # stop. Reporting gross would overstate every outcome by that amount.
+    cost_r = round_trip_cost_r(entry_price, risk, market)
+    net_realized_r = realized_r - cost_r if pd.notna(realized_r) else realized_r
     evaluation_end_time = candle_ends(frame)[exit_index]
     final_resolution_time = resolution_time_for_outcome(
         outcome,
@@ -916,7 +939,8 @@ def simulate_alert(
             "outcome": outcome,
             "final_result": outcome,
             "realized_r": realized_r,
-            "net_realized_r": realized_r,
+            "net_realized_r": net_realized_r,
+            "cost_r": cost_r,
             "mfe_r": max_favorable_r,
             "mae_r": max_adverse_r,
             "time_to_half_r": time_to_half_r,
@@ -1137,6 +1161,19 @@ def zones_match_alert(zone: dict, alert: dict) -> bool:
     alert_bottom = float(alert["zone_bottom"])
     tolerance = max(abs(alert_top - alert_bottom) * 0.05, abs(alert_top) * 0.00005, 0.01)
     return abs(top - alert_top) <= tolerance and abs(bottom - alert_bottom) <= tolerance
+
+
+def round_trip_cost_r(entry_price: float, risk: float, market: str | None) -> float:
+    """Round-trip charges expressed in R.
+
+    Costs are a fixed share of turnover while risk is set by the stop, so
+    the same charge is a much bigger fraction of R on a tight stop than a
+    wide one. NSE only - these are Dhan equity intraday rates, and no
+    equivalent has been measured for the crypto venues.
+    """
+    if market not in (None, "nse") or risk <= 0:
+        return 0.0
+    return (entry_price * ROUND_TRIP_COST_PCT / 100.0) / risk
 
 
 def original_stop_price(alert: dict) -> float:

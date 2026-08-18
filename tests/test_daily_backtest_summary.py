@@ -227,7 +227,10 @@ class DailyBacktestSummaryTests(unittest.TestCase):
         result = summary.simulate_alert(frame, base_alert(), 0, 2)
 
         self.assertEqual(result["final_result"], summary.BREAK_EVEN)
-        self.assertEqual(result["net_realized_r"], 0.0)
+        # The stop sits far enough past entry to clear the round trip, so
+        # this scratches a hair positive rather than losing the charges.
+        self.assertGreater(result["net_realized_r"], 0.0)
+        self.assertLess(result["net_realized_r"], 0.05)
 
     def test_a_stopped_out_trade_cannot_be_upgraded_by_a_later_recovery(self):
         # Touches +0.5R, then trades through the stop, then recovers to
@@ -281,8 +284,10 @@ class DailyBacktestSummaryTests(unittest.TestCase):
         self.assertEqual(result["final_result"], "SL")
         # Slightly worse than a flat -1.0R: SL fills assume a small adverse
         # slip beyond the stop trigger (see SL_FILL_SLIPPAGE_PCT).
-        self.assertLess(result["net_realized_r"], -1.0)
-        self.assertAlmostEqual(result["net_realized_r"], -1.0449959053685223)
+        # Worse than -1R on two counts: the stop slips past its trigger,
+        # and the round-trip charges land on top.
+        self.assertLess(result["net_realized_r"], -1.1)
+        self.assertAlmostEqual(result["realized_r"], -1.0449959053685223)
         self.assertAlmostEqual(result["stop_price"], 98.901)
 
     def test_same_candle_stop_and_target_is_ambiguous_without_resolution_data(self):
@@ -367,7 +372,7 @@ class DailyBacktestSummaryTests(unittest.TestCase):
         result = summary.simulate_alert(frame, base_alert(), 0, 1, resolution_frame)
 
         self.assertEqual(result["final_result"], summary.BREAK_EVEN)
-        self.assertEqual(result["net_realized_r"], 0.0)
+        self.assertGreater(result["net_realized_r"], 0.0)
 
     def test_same_candle_resolution_accepts_timezone_naive_fine_data(self):
         index = pd.DatetimeIndex(["2026-08-04 10:00", "2026-08-04 10:30"], tz=summary.IST)
@@ -646,9 +651,10 @@ class DailyBacktestSummaryTests(unittest.TestCase):
             ]
         )
 
-        result = summary.simulate_alert(frame, crypto_alert(), 0, 2)
+        result = summary.simulate_alert(frame, crypto_alert(), 0, 2, market="crypto")
 
         self.assertEqual(result["final_result"], summary.BREAK_EVEN)
+        # No Dhan charges apply off NSE, so this is a true flat scratch.
         self.assertEqual(result["net_realized_r"], 0.0)
 
     def test_crypto_one_r_supersedes_half_r_after_reversal(self):

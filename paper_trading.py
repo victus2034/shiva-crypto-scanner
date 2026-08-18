@@ -226,7 +226,11 @@ def evaluate_open_positions(state: dict, frames: dict[str, pd.DataFrame], now: p
             # entry rather than closing the trade, so giving it back exits
             # flat. Diverging here would compare two different strategies
             # rather than test the same one against live prices.
-            active_stop = entry if position["half_r_hit"] else stop
+            direction = 1.0 if side == "long" else -1.0
+            break_even_stop = (
+                entry + direction * entry * backtest.BREAK_EVEN_OFFSET_PCT / 100.0
+            )
+            active_stop = break_even_stop if position["half_r_hit"] else stop
             stop_hit = low <= active_stop if side == "long" else high >= active_stop
             two_hit = high >= position["target_2"] if side == "long" else low <= position["target_2"]
             one_hit = high >= position["target_1"] if side == "long" else low <= position["target_1"]
@@ -241,9 +245,8 @@ def evaluate_open_positions(state: dict, frames: dict[str, pd.DataFrame], now: p
             if stop_hit:
                 if outcome is None:
                     if position["half_r_hit"]:
-                        outcome, exit_price = backtest.BREAK_EVEN, entry
+                        outcome, exit_price = backtest.BREAK_EVEN, break_even_stop
                     else:
-                        direction = 1.0 if side == "long" else -1.0
                         outcome = "SL"
                         exit_price = stop - direction * stop * backtest.SL_FILL_SLIPPAGE_PCT / 100.0
                 exit_time = timestamp
@@ -275,6 +278,11 @@ def evaluate_open_positions(state: dict, frames: dict[str, pd.DataFrame], now: p
             direction = 1.0 if side == "long" else -1.0
             realized_r = direction * (exit_price - entry) / risk
 
+        # Same charge model as the backtest, so the two totals stay
+        # comparable rather than one being gross and the other net.
+        cost_r = backtest.round_trip_cost_r(entry, risk, "nse")
+        net_r = realized_r - cost_r if pd.notna(realized_r) else realized_r
+
         record = dict(position)
         record.update(
             {
@@ -284,6 +292,8 @@ def evaluate_open_positions(state: dict, frames: dict[str, pd.DataFrame], now: p
                 "exit_price": None if pd.isna(exit_price) else float(exit_price),
                 "exit_time": pd.Timestamp(exit_time).isoformat(),
                 "realized_r": None if pd.isna(realized_r) else float(realized_r),
+                "cost_r": float(cost_r),
+                "net_realized_r": None if pd.isna(net_r) else float(net_r),
                 "date": pd.Timestamp(position["entry_time"]).date().isoformat(),
             }
         )
@@ -379,7 +389,12 @@ def build_report(date_iso: str, timeframe: str, state: dict) -> str:
     counts = pd.Series([row["outcome"] for row in paper]).value_counts()
     decided = [row for row in paper if row["outcome"] in {"SL", "+0.5R", "+1R", "+2R"}]
     wins = sum(1 for row in decided if row["outcome"] != "SL")
-    paper_r = sum(row["realized_r"] or 0.0 for row in paper if row["realized_r"] is not None)
+    # Net of charges, matching what the backtest side of this report sums,
+    # and falling back to gross for rows written before costs were modelled.
+    paper_r = sum(
+        (row.get("net_realized_r") if row.get("net_realized_r") is not None else row.get("realized_r")) or 0.0
+        for row in paper
+    )
 
     lines = [
         header,
