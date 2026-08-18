@@ -1688,7 +1688,8 @@
     "HOOD/USDT:USDT|30m|short|96.4900000000|97.0300000000": 1786993880.3036969,
     "ZIL/USDT|30m|long|0.0022180000|0.0022230000": 1787020286.1728897,
     "TRX/USDT|30m|long|0.3281800000|0.3294500000": 1787020286.4580522,
-    "SLVONUSD|30m|long|59.0600000000|59.2600000000": 1787020286.7218344
+    "SLVONUSD|30m|long|59.0600000000|59.2600000000": 1787020286.7218344,
+    "SAMSUNG/USDT:USDT|30m|long|190.3900000000|190.8800000000": 1787021481.7639616
   },
   "METAXUSD|demand|577.00000000|579.20000000": {
     "in_zone": false,
@@ -4676,8 +4677,8 @@
     "last_alert_at": 0.0
   },
   "SAMSUNG/USDT:USDT|demand|190.39000000|190.88000000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1787021481.7639616
   },
   "XRPUSD|demand|0.98890000|0.99180000": {
     "in_zone": false,
@@ -5004,7 +5005,7 @@
     "last_alert_at": 0.0
   },
   "TRX/USDT|demand|0.32818000|0.32945000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1787020286.4580522
   },
   "RE/USDT|supply|0.41821000|0.42011000": {
