@@ -1715,7 +1715,9 @@
     "COINXUSD|30m|long|146.8000000000|147.2500000000": 1787062280.741249,
     "SPCXXUSD|30m|long|139.4500000000|140.1500000000": 1787062280.9253924,
     "SOXX/USDT:USDT|30m|long|529.2100000000|530.8000000000": 1787062281.0992117,
-    "TSLAXUSD|30m|short|340.7000000000|340.9500000000": 1787068279.2641175
+    "TSLAXUSD|30m|short|340.7000000000|340.9500000000": 1787068279.2641175,
+    "1000PEPEUSD|30m|short|0.0026137000|0.0026240000": 1787070685.409157,
+    "AXTI/USDT:USDT|30m|long|80.8900000000|81.0400000000": 1787070685.6032608
   },
   "METAXUSD|demand|577.00000000|579.20000000": {
     "in_zone": false,
@@ -4683,8 +4685,8 @@
     "last_alert_at": 1786956687.572924
   },
   "AXTI/USDT:USDT|demand|80.89000000|81.04000000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1787070685.6032608
   },
   "BTCUSD|demand|62687.00000000|62825.00000000": {
     "in_zone": false,
@@ -4827,8 +4829,8 @@
     "last_alert_at": 0.0
   },
   "1000PEPEUSD|supply|0.00261370|0.00262400": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1787070685.409157
   },
   "LA/USDT|supply|0.05003000|0.05072000": {
     "in_zone": false,
@@ -5555,6 +5557,10 @@
     "last_alert_at": 0.0
   },
   "PEOPLE/USDT|supply|0.00783400|0.00793800": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "SOON/USDT|supply|0.19780000|0.19870000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
