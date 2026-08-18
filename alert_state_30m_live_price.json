@@ -4644,7 +4644,7 @@
     "last_alert_at": 0.0
   },
   "1000PEPEUSD|demand|0.00253020|0.00254840": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1787040669.752639
   },
   "LDO/USDT|demand|0.29790000|0.29870000": {
@@ -5372,7 +5372,7 @@
     "last_alert_at": 0.0
   },
   "VIRTUAL/USDT|demand|0.56740000|0.57020000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1787040670.510099
   },
   "COAI/USDT|demand|0.30270000|0.30550000": {
@@ -5406,5 +5406,9 @@
   "MNT/USDT|demand|0.43750000|0.43780000": {
     "in_zone": true,
     "last_alert_at": 1787041885.515779
+  },
+  "SEIUSD|demand|0.03816000|0.03847000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
   }
 }
