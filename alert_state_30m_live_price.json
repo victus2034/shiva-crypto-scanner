@@ -1675,7 +1675,7 @@
     "HOOD/USDT:USDT|30m|short|96.4600000000|96.5600000000": 1786974682.7366338,
     "VVV/USDT|30m|short|12.4890000000|12.5840000000": 1786981885.1476817,
     "UNIUSD|30m|short|3.3030000000|3.3200000000": 1786983081.6008997,
-    "HBAR/USDT|30m|short|0.0662600000|0.0663500000": 1787034683.1767972,
+    "HBAR/USDT|30m|short|0.0662600000|0.0663500000": 1787044286.0618908,
     "OPENAI/USDT:USDT|30m|long|125.6200000000|126.1200000000": 1786983083.1812274,
     "PENGU/USDT|30m|long|0.0059100000|0.0059350000": 1786984291.6339293,
     "AERO/USDT|30m|long|0.4093000000|0.4102000000": 1786992677.2323973,
@@ -1704,7 +1704,8 @@
     "VIRTUAL/USDT|30m|long|0.5674000000|0.5702000000": 1787040670.510099,
     "ALGO/USDT|30m|long|0.0764900000|0.0768500000": 1787040670.7799482,
     "NBIS/USDT:USDT|30m|long|260.7900000000|261.8800000000": 1787040671.0038288,
-    "MNT/USDT|30m|long|0.4375000000|0.4378000000": 1787041885.515779
+    "MNT/USDT|30m|long|0.4375000000|0.4378000000": 1787041885.515779,
+    "MRVL/USDT:USDT|30m|long|221.7400000000|222.0700000000": 1787044286.3125098
   },
   "METAXUSD|demand|577.00000000|579.20000000": {
     "in_zone": false,
@@ -4640,8 +4641,8 @@
     "last_alert_at": 1786937485.659138
   },
   "MRVL/USDT:USDT|demand|221.74000000|222.07000000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1787044286.3125098
   },
   "1000PEPEUSD|demand|0.00253020|0.00254840": {
     "in_zone": false,
@@ -4908,8 +4909,8 @@
     "last_alert_at": 0.0
   },
   "HBAR/USDT|supply|0.06626000|0.06635000": {
-    "in_zone": false,
-    "last_alert_at": 1787034683.1767972
+    "in_zone": true,
+    "last_alert_at": 1787044286.0618908
   },
   "BOME/USDT|demand|0.00078170|0.00078570": {
     "in_zone": false,
@@ -5408,6 +5409,30 @@
     "last_alert_at": 1787041885.515779
   },
   "SEIUSD|demand|0.03816000|0.03847000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "COTI/USDT|supply|0.01011900|0.01018800": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "XPLUSD|demand|0.07470000|0.07500000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "WIF/USDT|demand|0.13400000|0.13480000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "ZRO/USDT|supply|0.77540000|0.78360000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "TIAUSD|demand|0.29240000|0.29350000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "O/USDT|supply|0.46650000|0.47090000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
