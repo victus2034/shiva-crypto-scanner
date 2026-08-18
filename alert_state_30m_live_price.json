@@ -1718,7 +1718,8 @@
     "TSLAXUSD|30m|short|340.7000000000|340.9500000000": 1787071881.107804,
     "1000PEPEUSD|30m|short|0.0026137000|0.0026240000": 1787070685.409157,
     "AXTI/USDT:USDT|30m|long|80.8900000000|81.0400000000": 1787070685.6032608,
-    "WLFI/USDT|30m|long|0.0595400000|0.0598800000": 1787071880.9087324
+    "WLFI/USDT|30m|long|0.0595400000|0.0598800000": 1787071880.9087324,
+    "0G/USDT|30m|long|0.1444000000|0.1453000000": 1787077892.6430612
   },
   "METAXUSD|demand|577.00000000|579.20000000": {
     "in_zone": false,
@@ -5570,6 +5571,58 @@
     "last_alert_at": 0.0
   },
   "LABUSD|supply|0.08090000|0.08180000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "DEXE/USDT|supply|1.90900000|1.93200000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "WIF/USDT|demand|0.13550000|0.13570000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "FILUSD|demand|0.61700000|0.62200000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "0G/USDT|demand|0.14440000|0.14530000": {
+    "in_zone": true,
+    "last_alert_at": 1787077892.6430612
+  },
+  "PAXGUSD|supply|4389.80000000|4401.10000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "SLVONUSD|supply|58.91000000|59.28000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "SNDKBUSD|supply|1680.00000000|1721.80000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "MUBUSD|supply|962.15000000|977.70000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "SKHYNIX/USDT:USDT|supply|1150.05000000|1164.99000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "AXTI/USDT:USDT|supply|89.80000000|95.06000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "HOOD/USDT:USDT|demand|92.28000000|93.45000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "MRVL/USDT:USDT|supply|220.67000000|225.36000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "NVDL/USDT:USDT|supply|35.10000000|35.40000000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
