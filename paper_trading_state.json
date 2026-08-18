@@ -732,12 +732,14 @@
     "b7c5521914d15284": "filled",
     "bbd07ddc15cbcd70": "filled",
     "c78bb65b87031fb3": "filled",
+    "c9cbbe985c564b33": "filled",
     "cd25c65f51a68a05": "filled",
     "cf357eb07d9da901": "filled",
     "d683c95024d5bd8f": "filled",
     "dbb232a92d0cf87c": "filled",
     "dc6d736ea43a2d5a": "filled",
     "dd0b855f16a93672": "filled",
+    "dd3482913f239093": "filled",
     "ddb573630055e490": "filled",
     "e18e10de543af0fc": "filled",
     "f03f76ebaca48da2": "filled",
@@ -913,6 +915,20 @@
       "target_2": 103.87170579528808,
       "target_half": 102.31042713546753
     },
+    "c9cbbe985c564b33": {
+      "alert_time": "2026-08-18T13:51:53.629029+05:30",
+      "entry": 323.95001220703125,
+      "entry_time": "2026-08-18T13:55:00+05:30",
+      "half_r_hit": true,
+      "rating": 9,
+      "risk": 2.175775573730448,
+      "side": "short",
+      "stop": 326.1257877807617,
+      "symbol": "LTF.NS",
+      "target_1": 321.7742366333008,
+      "target_2": 319.59846105957035,
+      "target_half": 322.862124420166
+    },
     "cd25c65f51a68a05": {
       "alert_time": "2026-08-18T12:52:23.407749+05:30",
       "entry": 2220.39990234375,
@@ -954,6 +970,20 @@
       "target_1": 19.159039390563965,
       "target_2": 19.22807862854004,
       "target_half": 19.124519771575926
+    },
+    "dd3482913f239093": {
+      "alert_time": "2026-08-18T13:32:30.293805+05:30",
+      "entry": 317.75,
+      "entry_time": "2026-08-18T13:55:00+05:30",
+      "half_r_hit": false,
+      "rating": 8,
+      "risk": 1.0170621948242342,
+      "side": "long",
+      "stop": 316.73293780517577,
+      "symbol": "EMMVEE.NS",
+      "target_1": 318.76706219482423,
+      "target_2": 319.78412438964847,
+      "target_half": 318.2585310974121
     }
   }
 }
