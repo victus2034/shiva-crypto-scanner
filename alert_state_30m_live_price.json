@@ -1944,7 +1944,7 @@
     "last_alert_at": 1786639310.597496
   },
   "TAIKO/USDT|demand|0.06806000|0.06834000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1787022677.8707561
   },
   "JUP/USDT|demand|0.16840000|0.16930000": {
@@ -5049,6 +5049,14 @@
     "last_alert_at": 0.0
   },
   "MRVL/USDT:USDT|supply|239.03000000|240.39000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "0G/USDT|demand|0.14170000|0.14420000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "TQQQ/USDT:USDT|demand|74.32000000|74.61000000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
