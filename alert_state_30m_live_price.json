@@ -5362,7 +5362,7 @@
     "last_alert_at": 0.0
   },
   "TSLAXUSD|supply|340.70000000|340.95000000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1787071881.107804
   },
   "HOME/USDT|supply|0.00675800|0.00688200": {
@@ -5566,6 +5566,10 @@
     "last_alert_at": 0.0
   },
   "GRAMUSD|demand|1.29600000|1.30200000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "LABUSD|supply|0.08090000|0.08180000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
