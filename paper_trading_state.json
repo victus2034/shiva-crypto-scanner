@@ -581,6 +581,7 @@
     "c78bb65b87031fb3": "filled",
     "cf357eb07d9da901": "filled",
     "d683c95024d5bd8f": "filled",
+    "dbb232a92d0cf87c": "filled",
     "dc6d736ea43a2d5a": "filled",
     "dd0b855f16a93672": "filled",
     "ddb573630055e490": "filled",
@@ -748,7 +749,7 @@
       "alert_time": "2026-08-18T12:12:11.922498+05:30",
       "entry": 1181.699951171875,
       "entry_time": "2026-08-18T12:15:00+05:30",
-      "half_r_hit": false,
+      "half_r_hit": true,
       "rating": 8,
       "risk": 8.589124389648305,
       "side": "short",
@@ -771,6 +772,20 @@
       "target_1": 246.7432152557373,
       "target_2": 248.636424407959,
       "target_half": 245.79661067962647
+    },
+    "dbb232a92d0cf87c": {
+      "alert_time": "2026-08-18T12:52:24.903022+05:30",
+      "entry": 138.30999755859375,
+      "entry_time": "2026-08-18T13:00:00+05:30",
+      "half_r_hit": false,
+      "rating": 9,
+      "risk": 0.3181226806640609,
+      "side": "long",
+      "stop": 137.9918748779297,
+      "symbol": "IOC.NS",
+      "target_1": 138.6281202392578,
+      "target_2": 138.94624291992187,
+      "target_half": 138.46905889892577
     },
     "dd0b855f16a93672": {
       "alert_time": "2026-08-18T09:32:35.730493+05:30",
