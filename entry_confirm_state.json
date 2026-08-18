@@ -10,15 +10,25 @@
     "reached_entry": false
   },
   "CANFINHOME.NS|30m|short|820.8000|823.9732": {
-    "reached_entry": false,
-    "stage": 1
+    "reached_entry": true,
+    "stage": 3
+  },
+  "CCL.NS|30m|long|1130.9000|1125.8730": {
+    "reached_entry": false
   },
   "DOMS.NS|30m|short|2220.3999|2225.8237": {
-    "reached_entry": false
+    "reached_entry": true,
+    "stage": 3
   },
   "EIDPARRY.NS|30m|long|775.0000|771.8774": {
     "reached_entry": true,
     "stage": 2
+  },
+  "EMMVEE.NS|30m|long|317.7500|316.7329": {
+    "reached_entry": false
+  },
+  "FIRSTCRY.NS|30m|long|203.3000|202.7670": {
+    "reached_entry": false
   },
   "HDFCBANK.NS|30m|long|722.6500|721.2780": {
     "reached_entry": false
@@ -42,6 +52,13 @@
   "JKTYRE.NS|30m|short|384.1500|385.0847": {
     "reached_entry": false
   },
+  "LTF.NS|30m|short|320.3500|322.4721": {
+    "reached_entry": true,
+    "stage": 2
+  },
+  "MSUMI.NS|30m|long|40.2400|40.0000": {
+    "reached_entry": false
+  },
   "NAUKRI.NS|30m|short|1366.3000|1375.0737": {
     "reached_entry": false
   },
@@ -50,6 +67,9 @@
     "stage": 1
   },
   "NHPC.NS|30m|long|76.1500|75.9839": {
+    "reached_entry": false
+  },
+  "PNBHOUSING.NS|30m|short|1152.8000|1155.1540": {
     "reached_entry": false
   }
 }
