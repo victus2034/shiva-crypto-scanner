@@ -1541,7 +1541,8 @@
     "TRUMP/USDT|4h|long|1.3610000000|1.3830000000": 1787022075.8390582,
     "TAIKO/USDT|4h|long|0.0680600000|0.0689100000": 1787022076.0384145,
     "BNBUSD|4h|long|597.4600000000|600.2000000000": 1787025690.4513993,
-    "PEOPLE/USDT|4h|short|0.0076380000|0.0078750000": 1787049672.302961
+    "PEOPLE/USDT|4h|short|0.0076380000|0.0078750000": 1787049672.302961,
+    "SLVONUSD|4h|long|58.6400000000|58.8700000000": 1787054481.3846529
   },
   "ARBUSD|supply|0.08030000|0.08180000": {
     "in_zone": false,
@@ -2142,5 +2143,21 @@
   "HYPEUSD|supply|62.95000000|63.40000000": {
     "in_zone": false,
     "last_alert_at": 0.0
+  },
+  "1000PEPEUSD|demand|0.00253020|0.00257560": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "SOON/USDT|demand|0.18620000|0.19060000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "VVV/USDT|demand|11.65000000|11.79900000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "SLVONUSD|demand|58.64000000|58.87000000": {
+    "in_zone": true,
+    "last_alert_at": 1787054481.3846529
   }
 }
