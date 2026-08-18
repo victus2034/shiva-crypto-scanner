@@ -755,6 +755,27 @@
       "target_2": 19.22807862854004,
       "target_half": 19.124519771575926,
       "trade_id": "dd0b855f16a93672"
+    },
+    {
+      "alert_time": "2026-08-18T13:32:30.061126+05:30",
+      "date": "2026-08-18",
+      "entry": 820.7999877929688,
+      "entry_time": "2026-08-18T13:35:00+05:30",
+      "exit_price": 824.3851610256957,
+      "exit_time": "2026-08-18T14:30:00+05:30",
+      "final_result": "SL",
+      "half_r_hit": false,
+      "outcome": "SL",
+      "rating": 10,
+      "realized_r": -1.1298337076397444,
+      "risk": 3.1731866455077125,
+      "side": "short",
+      "stop": 823.9731744384765,
+      "symbol": "CANFINHOME.NS",
+      "target_1": 817.626801147461,
+      "target_2": 814.4536145019533,
+      "target_half": 819.2133944702149,
+      "trade_id": "a74a955b28fdff41"
     }
   ],
   "handled": {
@@ -777,6 +798,7 @@
     "59cb3bd86666b9ea": "filled",
     "5c30cce4b2624da7": "filled",
     "64312ff41c54d9b1": "filled",
+    "676fdc0605aaf5bd": "filled",
     "6a93e5b12e3a67de": "filled",
     "7513136fe9bc30b3": "filled",
     "7bfeefe8f9d76b72": "filled",
@@ -909,6 +931,20 @@
       "target_2": 1348.7528442382813,
       "target_half": 1361.913247680664
     },
+    "676fdc0605aaf5bd": {
+      "alert_time": "2026-08-18T14:32:28.454063+05:30",
+      "entry": 3355.0,
+      "entry_time": "2026-08-18T14:35:00+05:30",
+      "half_r_hit": false,
+      "rating": 10,
+      "risk": 38.38999999999942,
+      "side": "short",
+      "stop": 3393.3899999999994,
+      "symbol": "ACUTAAS.NS",
+      "target_1": 3316.6100000000006,
+      "target_2": 3278.220000000001,
+      "target_half": 3335.8050000000003
+    },
     "8a73afb4a03e88e4": {
       "alert_time": "2026-08-18T09:32:32.482230+05:30",
       "entry": 404.79998779296875,
@@ -922,20 +958,6 @@
       "target_1": 407.3026633911133,
       "target_2": 409.80533898925785,
       "target_half": 406.05132559204105
-    },
-    "a74a955b28fdff41": {
-      "alert_time": "2026-08-18T13:32:30.061126+05:30",
-      "entry": 820.7999877929688,
-      "entry_time": "2026-08-18T13:35:00+05:30",
-      "half_r_hit": false,
-      "rating": 10,
-      "risk": 3.1731866455077125,
-      "side": "short",
-      "stop": 823.9731744384765,
-      "symbol": "CANFINHOME.NS",
-      "target_1": 817.626801147461,
-      "target_2": 814.4536145019533,
-      "target_half": 819.2133944702149
     },
     "b6bab5e273bb25db": {
       "alert_time": "2026-08-18T10:52:13.155982+05:30",
