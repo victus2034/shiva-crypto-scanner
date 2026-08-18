@@ -763,6 +763,7 @@
     "dd3482913f239093": "filled",
     "ddb573630055e490": "filled",
     "e18e10de543af0fc": "filled",
+    "e7ad977a88978b08": "filled",
     "f03f76ebaca48da2": "filled",
     "f8f3a1dc9e546137": "filled",
     "f93f18d6e7495d7f": "filled"
@@ -870,7 +871,7 @@
       "alert_time": "2026-08-18T12:52:25.172984+05:30",
       "entry": 1366.300048828125,
       "entry_time": "2026-08-18T13:45:00+05:30",
-      "half_r_hit": false,
+      "half_r_hit": true,
       "rating": 8,
       "risk": 8.77360229492183,
       "side": "short",
@@ -991,6 +992,20 @@
       "target_1": 19.159039390563965,
       "target_2": 19.22807862854004,
       "target_half": 19.124519771575926
+    },
+    "e7ad977a88978b08": {
+      "alert_time": "2026-08-18T14:12:27.776135+05:30",
+      "entry": 147.97000122070312,
+      "entry_time": "2026-08-18T14:15:00+05:30",
+      "half_r_hit": false,
+      "rating": 8,
+      "risk": 1.459277557373042,
+      "side": "short",
+      "stop": 149.42927877807617,
+      "symbol": "PARADEEP.NS",
+      "target_1": 146.51072366333008,
+      "target_2": 145.05144610595704,
+      "target_half": 147.2403624420166
     }
   }
 }
