@@ -44,7 +44,8 @@
     "stage": 2
   },
   "DATAPATTNS.NS|30m|short|4663.7998|4689.5848": {
-    "reached_entry": false
+    "reached_entry": false,
+    "stage": 1
   },
   "DIVISLAB.NS|30m|short|8613.0000|8682.1735": {
     "reached_entry": false,
@@ -95,8 +96,8 @@
     "stage": 1
   },
   "JIOFIN.NS|30m|long|246.6000|245.5043": {
-    "reached_entry": false,
-    "stage": 1
+    "reached_entry": true,
+    "stage": 2
   },
   "JKTYRE.NS|30m|short|384.1500|385.0847": {
     "reached_entry": false
@@ -107,7 +108,7 @@
   },
   "JUBLFOOD.NS|30m|long|504.9000|501.6978": {
     "reached_entry": true,
-    "stage": 2
+    "stage": 3
   },
   "KALYANKJIL.NS|30m|long|607.5000|603.5459": {
     "reached_entry": true,
@@ -118,7 +119,7 @@
   },
   "M&MFIN.NS|30m|long|385.7500|384.2154": {
     "reached_entry": true,
-    "stage": 2
+    "stage": 3
   },
   "NBCC.NS|30m|long|89.3000|88.4615": {
     "reached_entry": true,
@@ -140,7 +141,7 @@
     "stage": 2
   },
   "POWERGRID.NS|30m|long|266.2500|265.0847": {
-    "reached_entry": false,
-    "stage": 1
+    "reached_entry": true,
+    "stage": 2
   }
 }
