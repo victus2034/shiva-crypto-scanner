@@ -251,6 +251,48 @@
       "target_2": 7239.718000000001,
       "target_half": 7319.0545,
       "trade_id": "cf357eb07d9da901"
+    },
+    {
+      "alert_time": "2026-08-18T09:52:12.541682+05:30",
+      "date": "2026-08-18",
+      "entry": 500.6499938964844,
+      "entry_time": "2026-08-18T09:55:00+05:30",
+      "exit_price": 495.84502557373054,
+      "exit_time": "2026-08-18T11:20:00+05:30",
+      "final_result": "+1R",
+      "half_r_hit": true,
+      "outcome": "+1R",
+      "rating": 7,
+      "realized_r": 1.0,
+      "risk": 4.804968322753837,
+      "side": "short",
+      "stop": 505.4549622192382,
+      "symbol": "POONAWALLA.NS",
+      "target_1": 495.84502557373054,
+      "target_2": 491.0400572509767,
+      "target_half": 498.2475097351074,
+      "trade_id": "283e9d166fc4964b"
+    },
+    {
+      "alert_time": "2026-08-18T10:32:11.638776+05:30",
+      "date": "2026-08-18",
+      "entry": 6815.0,
+      "entry_time": "2026-08-18T10:35:00+05:30",
+      "exit_price": 6778.655500000001,
+      "exit_time": "2026-08-18T11:25:00+05:30",
+      "final_result": "+1R",
+      "half_r_hit": true,
+      "outcome": "+1R",
+      "rating": 10,
+      "realized_r": 1.0,
+      "risk": 36.34449999999924,
+      "side": "short",
+      "stop": 6851.344499999999,
+      "symbol": "LINDEINDIA.NS",
+      "target_1": 6778.655500000001,
+      "target_2": 6742.3110000000015,
+      "target_half": 6796.82775,
+      "trade_id": "8c71af0d0b70df74"
     }
   ],
   "handled": {
@@ -282,6 +324,7 @@
     "d683c95024d5bd8f": "filled",
     "dd0b855f16a93672": "filled",
     "ddb573630055e490": "filled",
+    "f03f76ebaca48da2": "filled",
     "f8f3a1dc9e546137": "filled",
     "f93f18d6e7495d7f": "filled"
   },
@@ -299,20 +342,6 @@
       "target_1": 508.0512377929688,
       "target_2": 511.7024816894532,
       "target_half": 506.2256158447266
-    },
-    "283e9d166fc4964b": {
-      "alert_time": "2026-08-18T09:52:12.541682+05:30",
-      "entry": 500.6499938964844,
-      "entry_time": "2026-08-18T09:55:00+05:30",
-      "half_r_hit": true,
-      "rating": 7,
-      "risk": 4.804968322753837,
-      "side": "short",
-      "stop": 505.4549622192382,
-      "symbol": "POONAWALLA.NS",
-      "target_1": 495.84502557373054,
-      "target_2": 491.0400572509767,
-      "target_half": 498.2475097351074
     },
     "2990f8a0923aa10d": {
       "alert_time": "2026-08-18T10:32:11.442576+05:30",
@@ -440,20 +469,6 @@
       "target_2": 409.80533898925785,
       "target_half": 406.05132559204105
     },
-    "8c71af0d0b70df74": {
-      "alert_time": "2026-08-18T10:32:11.638776+05:30",
-      "entry": 6815.0,
-      "entry_time": "2026-08-18T10:35:00+05:30",
-      "half_r_hit": false,
-      "rating": 10,
-      "risk": 36.34449999999924,
-      "side": "short",
-      "stop": 6851.344499999999,
-      "symbol": "LINDEINDIA.NS",
-      "target_1": 6778.655500000001,
-      "target_2": 6742.3110000000015,
-      "target_half": 6796.82775
-    },
     "b64efd509aa29d25": {
       "alert_time": "2026-08-18T09:52:08.471439+05:30",
       "entry": 6655.5,
@@ -537,6 +552,20 @@
       "target_1": 14096.715000000002,
       "target_2": 13995.430000000004,
       "target_half": 14147.357500000002
+    },
+    "f03f76ebaca48da2": {
+      "alert_time": "2026-08-18T11:12:20.459271+05:30",
+      "entry": 348.1000061035156,
+      "entry_time": "2026-08-18T11:25:00+05:30",
+      "half_r_hit": false,
+      "rating": 9,
+      "risk": 1.147318298339826,
+      "side": "long",
+      "stop": 346.9526878051758,
+      "symbol": "PATANJALI.NS",
+      "target_1": 349.24732440185545,
+      "target_2": 350.3946427001953,
+      "target_half": 348.6736652526855
     }
   }
 }
