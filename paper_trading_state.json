@@ -41,22 +41,49 @@
       "target_2": 10158.271,
       "target_half": 10391.69275,
       "trade_id": "8f1eb0296fd68aca"
+    },
+    {
+      "alert_time": "2026-08-18T09:32:32.710351+05:30",
+      "date": "2026-08-18",
+      "entry": 4663.7998046875,
+      "entry_time": "2026-08-18T09:50:00+05:30",
+      "exit_price": 4638.014807128907,
+      "exit_time": "2026-08-18T09:50:00+05:30",
+      "final_result": "+1R",
+      "half_r_hit": true,
+      "outcome": "+1R",
+      "rating": 8,
+      "realized_r": 1.0,
+      "risk": 25.784997558593204,
+      "side": "short",
+      "stop": 4689.584802246093,
+      "symbol": "DATAPATTNS.NS",
+      "target_1": 4638.014807128907,
+      "target_2": 4612.229809570314,
+      "target_half": 4650.907305908204,
+      "trade_id": "0785d7e4c3ea921b"
     }
   ],
   "handled": {
+    "0785d7e4c3ea921b": "filled",
     "22ff2858c7651f95": "filled",
+    "283e9d166fc4964b": "filled",
     "3dd7cb305f420f70": "filled",
     "4d3d0c531f237dd9": "filled",
     "4fa9428473c0eaad": "filled",
     "55da263162a4bf62": "filled",
     "5c30cce4b2624da7": "filled",
+    "7513136fe9bc30b3": "filled",
+    "8109877bf99ae11d": "filled",
     "8a73afb4a03e88e4": "filled",
     "8f1eb0296fd68aca": "filled",
     "a0dca581200fcc44": "filled",
+    "a8a455e9eb8e32d6": "filled",
     "b7c5521914d15284": "filled",
     "cf357eb07d9da901": "filled",
     "d683c95024d5bd8f": "filled",
     "dd0b855f16a93672": "filled",
+    "ddb573630055e490": "filled",
     "f8f3a1dc9e546137": "filled"
   },
   "open": {
@@ -73,6 +100,20 @@
       "target_1": 90.13855305480958,
       "target_2": 90.97710305786134,
       "target_half": 89.71927805328369
+    },
+    "283e9d166fc4964b": {
+      "alert_time": "2026-08-18T09:52:12.541682+05:30",
+      "entry": 500.6499938964844,
+      "entry_time": "2026-08-18T09:55:00+05:30",
+      "half_r_hit": false,
+      "rating": 7,
+      "risk": 4.804968322753837,
+      "side": "short",
+      "stop": 505.4549622192382,
+      "symbol": "POONAWALLA.NS",
+      "target_1": 495.84502557373054,
+      "target_2": 491.0400572509767,
+      "target_half": 498.2475097351074
     },
     "3dd7cb305f420f70": {
       "alert_time": "2026-08-18T09:32:37.743580+05:30",
@@ -134,7 +175,7 @@
       "alert_time": "2026-08-18T09:32:38.333340+05:30",
       "entry": 40.849998474121094,
       "entry_time": "2026-08-18T09:35:00+05:30",
-      "half_r_hit": false,
+      "half_r_hit": true,
       "rating": 9,
       "risk": 0.22067030334472548,
       "side": "long",
@@ -143,6 +184,34 @@
       "target_1": 41.07066877746582,
       "target_2": 41.291339080810545,
       "target_half": 40.96033362579345
+    },
+    "7513136fe9bc30b3": {
+      "alert_time": "2026-08-18T09:32:39.631420+05:30",
+      "entry": 266.25,
+      "entry_time": "2026-08-18T09:50:00+05:30",
+      "half_r_hit": false,
+      "rating": 6,
+      "risk": 1.1653439025878924,
+      "side": "long",
+      "stop": 265.0846560974121,
+      "symbol": "POWERGRID.NS",
+      "target_1": 267.4153439025879,
+      "target_2": 268.5806878051758,
+      "target_half": 266.83267195129395
+    },
+    "8109877bf99ae11d": {
+      "alert_time": "2026-08-18T09:52:11.383637+05:30",
+      "entry": 504.8999938964844,
+      "entry_time": "2026-08-18T09:55:00+05:30",
+      "half_r_hit": false,
+      "rating": 10,
+      "risk": 3.2021817016601517,
+      "side": "long",
+      "stop": 501.6978121948242,
+      "symbol": "JUBLFOOD.NS",
+      "target_1": 508.1021755981445,
+      "target_2": 511.3043572998047,
+      "target_half": 506.50108474731445
     },
     "8a73afb4a03e88e4": {
       "alert_time": "2026-08-18T09:32:32.482230+05:30",
@@ -171,6 +240,20 @@
       "target_1": 320.4764877929688,
       "target_2": 318.8029816894532,
       "target_half": 321.3132408447266
+    },
+    "a8a455e9eb8e32d6": {
+      "alert_time": "2026-08-18T09:52:11.707314+05:30",
+      "entry": 607.5,
+      "entry_time": "2026-08-18T09:55:00+05:30",
+      "half_r_hit": false,
+      "rating": 9,
+      "risk": 3.954125610351525,
+      "side": "long",
+      "stop": 603.5458743896485,
+      "symbol": "KALYANKJIL.NS",
+      "target_1": 611.4541256103515,
+      "target_2": 615.408251220703,
+      "target_half": 609.4770628051758
     },
     "b7c5521914d15284": {
       "alert_time": "2026-08-18T09:32:33.687321+05:30",
@@ -227,6 +310,20 @@
       "target_1": 19.159039390563965,
       "target_2": 19.22807862854004,
       "target_half": 19.124519771575926
+    },
+    "ddb573630055e490": {
+      "alert_time": "2026-08-18T09:52:10.226761+05:30",
+      "entry": 14198.0,
+      "entry_time": "2026-08-18T09:55:00+05:30",
+      "half_r_hit": false,
+      "rating": 8,
+      "risk": 101.28499999999804,
+      "side": "short",
+      "stop": 14299.284999999998,
+      "symbol": "DIXON.NS",
+      "target_1": 14096.715000000002,
+      "target_2": 13995.430000000004,
+      "target_half": 14147.357500000002
     }
   }
 }
