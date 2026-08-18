@@ -370,6 +370,7 @@
     "4d3d0c531f237dd9": "filled",
     "4fa9428473c0eaad": "filled",
     "55da263162a4bf62": "filled",
+    "59cb3bd86666b9ea": "filled",
     "5c30cce4b2624da7": "filled",
     "6a93e5b12e3a67de": "filled",
     "7513136fe9bc30b3": "filled",
@@ -386,6 +387,7 @@
     "bbd07ddc15cbcd70": "filled",
     "cf357eb07d9da901": "filled",
     "d683c95024d5bd8f": "filled",
+    "dc6d736ea43a2d5a": "filled",
     "dd0b855f16a93672": "filled",
     "ddb573630055e490": "filled",
     "e18e10de543af0fc": "filled",
@@ -468,7 +470,7 @@
       "alert_time": "2026-08-18T09:32:37.303100+05:30",
       "entry": 246.60000610351562,
       "entry_time": "2026-08-18T09:45:00+05:30",
-      "half_r_hit": false,
+      "half_r_hit": true,
       "rating": 10,
       "risk": 1.0957561035156118,
       "side": "long",
@@ -491,6 +493,20 @@
       "target_1": 17.467210762023925,
       "target_2": 17.604421600341794,
       "target_half": 17.39860534286499
+    },
+    "59cb3bd86666b9ea": {
+      "alert_time": "2026-08-18T11:52:14.657227+05:30",
+      "entry": 748.8499755859375,
+      "entry_time": "2026-08-18T11:55:00+05:30",
+      "half_r_hit": false,
+      "rating": 9,
+      "risk": 4.802948852538975,
+      "side": "short",
+      "stop": 753.6529244384765,
+      "symbol": "JSL.NS",
+      "target_1": 744.0470267333985,
+      "target_2": 739.2440778808595,
+      "target_half": 746.448501159668
     },
     "7513136fe9bc30b3": {
       "alert_time": "2026-08-18T09:32:39.631420+05:30",
@@ -575,6 +591,20 @@
       "target_1": 246.7432152557373,
       "target_2": 248.636424407959,
       "target_half": 245.79661067962647
+    },
+    "dc6d736ea43a2d5a": {
+      "alert_time": "2026-08-18T11:12:19.728898+05:30",
+      "entry": 10740.0,
+      "entry_time": "2026-08-18T11:50:00+05:30",
+      "half_r_hit": true,
+      "rating": 9,
+      "risk": 30.7599999999984,
+      "side": "short",
+      "stop": 10770.759999999998,
+      "symbol": "CRAFTSMAN.NS",
+      "target_1": 10709.240000000002,
+      "target_2": 10678.480000000003,
+      "target_half": 10724.62
     },
     "dd0b855f16a93672": {
       "alert_time": "2026-08-18T09:32:35.730493+05:30",
