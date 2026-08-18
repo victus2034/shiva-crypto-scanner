@@ -213,9 +213,11 @@
   ],
   "handled": {
     "0785d7e4c3ea921b": "filled",
+    "17033c2dcdc3037d": "filled",
     "22ff2858c7651f95": "filled",
     "283e9d166fc4964b": "filled",
     "2990f8a0923aa10d": "filled",
+    "38dab80bbfde42ec": "filled",
     "3b2d06910f8f7671": "filled",
     "3dd7cb305f420f70": "filled",
     "4d3d0c531f237dd9": "filled",
@@ -232,6 +234,7 @@
     "a0dca581200fcc44": "filled",
     "a8a455e9eb8e32d6": "filled",
     "b64efd509aa29d25": "filled",
+    "b6bab5e273bb25db": "filled",
     "b7c5521914d15284": "filled",
     "cf357eb07d9da901": "filled",
     "d683c95024d5bd8f": "filled",
@@ -241,11 +244,25 @@
     "f93f18d6e7495d7f": "filled"
   },
   "open": {
+    "17033c2dcdc3037d": {
+      "alert_time": "2026-08-18T09:32:34.660872+05:30",
+      "entry": 504.3999938964844,
+      "entry_time": "2026-08-18T10:50:00+05:30",
+      "half_r_hit": false,
+      "rating": 9,
+      "risk": 3.6512438964844023,
+      "side": "long",
+      "stop": 500.74875,
+      "symbol": "ICICIPRULI.NS",
+      "target_1": 508.0512377929688,
+      "target_2": 511.7024816894532,
+      "target_half": 506.2256158447266
+    },
     "283e9d166fc4964b": {
       "alert_time": "2026-08-18T09:52:12.541682+05:30",
       "entry": 500.6499938964844,
       "entry_time": "2026-08-18T09:55:00+05:30",
-      "half_r_hit": false,
+      "half_r_hit": true,
       "rating": 7,
       "risk": 4.804968322753837,
       "side": "short",
@@ -268,6 +285,20 @@
       "target_1": 225.86935084533695,
       "target_2": 223.3687065734864,
       "target_half": 227.11967298126223
+    },
+    "38dab80bbfde42ec": {
+      "alert_time": "2026-08-18T10:52:12.601479+05:30",
+      "entry": 81.6500015258789,
+      "entry_time": "2026-08-18T10:55:00+05:30",
+      "half_r_hit": false,
+      "rating": 10,
+      "risk": 0.3214078674316454,
+      "side": "long",
+      "stop": 81.32859365844726,
+      "symbol": "IDBI.NS",
+      "target_1": 81.97140939331055,
+      "target_2": 82.2928172607422,
+      "target_half": 81.81070545959473
     },
     "3b2d06910f8f7671": {
       "alert_time": "2026-08-18T09:52:09.727039+05:30",
@@ -329,7 +360,7 @@
       "alert_time": "2026-08-18T10:32:11.199674+05:30",
       "entry": 277.3999938964844,
       "entry_time": "2026-08-18T10:35:00+05:30",
-      "half_r_hit": false,
+      "half_r_hit": true,
       "rating": 7,
       "risk": 1.7788999938964594,
       "side": "short",
@@ -408,6 +439,20 @@
       "target_1": 6691.626,
       "target_2": 6727.752,
       "target_half": 6673.563
+    },
+    "b6bab5e273bb25db": {
+      "alert_time": "2026-08-18T10:52:13.155982+05:30",
+      "entry": 164.9199981689453,
+      "entry_time": "2026-08-18T10:55:00+05:30",
+      "half_r_hit": false,
+      "rating": 9,
+      "risk": 0.8142639007568278,
+      "side": "long",
+      "stop": 164.10573426818848,
+      "symbol": "ITCHOTELS.NS",
+      "target_1": 165.73426206970214,
+      "target_2": 166.54852597045897,
+      "target_half": 165.32713011932373
     },
     "b7c5521914d15284": {
       "alert_time": "2026-08-18T09:32:33.687321+05:30",

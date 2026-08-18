@@ -25,7 +25,10 @@
   },
   "BSOFT.NS|30m|long|306.6500|305.7439": {
     "reached_entry": true,
-    "stage": 2
+    "stage": 3
+  },
+  "CANFINHOME.NS|30m|short|820.8000|823.9732": {
+    "reached_entry": false
   },
   "CCL.NS|30m|long|1130.9000|1125.8730": {
     "reached_entry": false
@@ -60,6 +63,9 @@
     "reached_entry": true,
     "stage": 2
   },
+  "EIDPARRY.NS|30m|long|775.0000|771.8774": {
+    "reached_entry": false
+  },
   "EMCURE.NS|30m|long|1861.0000|1854.2439": {
     "reached_entry": false
   },
@@ -85,10 +91,12 @@
     "reached_entry": false
   },
   "ICICIPRULI.NS|30m|long|504.4000|500.7487": {
-    "reached_entry": false
+    "reached_entry": true,
+    "stage": 2
   },
   "IDBI.NS|30m|long|81.6500|81.3286": {
-    "reached_entry": false
+    "reached_entry": false,
+    "stage": 1
   },
   "IDFCFIRSTB.NS|30m|long|84.5800|84.4255": {
     "reached_entry": false
@@ -137,6 +145,12 @@
   "NBCC.NS|30m|long|89.3000|88.4615": {
     "reached_entry": true,
     "stage": 3
+  },
+  "NCC.NS|30m|long|137.9300|137.2127": {
+    "reached_entry": false
+  },
+  "NHPC.NS|30m|long|76.1500|75.9839": {
+    "reached_entry": false
   },
   "NSLNISP.NS|30m|long|40.8500|40.6293": {
     "reached_entry": true,
