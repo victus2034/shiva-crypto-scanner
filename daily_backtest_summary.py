@@ -27,15 +27,24 @@ TIMEFRAME_SETTINGS = {
         "nse_records": Path(__file__).with_name("nse_alert_records_30m.jsonl"),
         "crypto_records": Path(__file__).with_name("crypto_alert_records_30m.jsonl"),
         "source_interval": "15m",
+        # Entry detection can only start on the bar after the alert, since
+        # within a bar there is no way to tell a touch before the alert from
+        # one after it. On 30m bars that blind spot swallowed most fills -
+        # real fills land a median 3 minutes after the alert - so evaluation
+        # runs on 5m candles, cutting the blind spot to ~5 minutes and
+        # matching the granularity paper_trading already uses.
+        "eval_interval": "5m",
         "source_period": "60d",
     },
     "4h": {
         "nse_records": Path(__file__).with_name("nse_alert_records.jsonl"),
         "crypto_records": Path(__file__).with_name("crypto_alert_records.jsonl"),
         "source_interval": "1h",
+        "eval_interval": "1h",
         "source_period": "700d",
     },
 }
+ALERT_BAR_DURATION = {"30m": pd.Timedelta(minutes=30), "4h": pd.Timedelta(hours=4)}
 
 ENTRY_WAIT_BARS = 3
 MAX_HOLD_BARS = 24
@@ -119,16 +128,16 @@ def parse_args() -> argparse.Namespace:
 
 def configure_nse_data(timeframe: str) -> Path:
     settings = TIMEFRAME_SETTINGS[timeframe]
-    # 4h backtest evaluation uses the raw source-interval candles (1h)
-    # instead of resampling up to 4h. The user trades intraday and stops
-    # by 15:10 - a coarse 4h candle (e.g. 13:15-17:15 nominal) spans well
-    # past that and would smuggle in price action they never actually
-    # traded on. Zone levels still come from the alert record itself
-    # (built live off real 4h structure); only touch/target/SL detection
-    # uses the finer candles, which lets the same 15:10 same-day cutoff
-    # used for 30m apply cleanly here too.
-    nse_scanner.TIMEFRAME = settings["source_interval"] if timeframe == "4h" else timeframe
-    nse_scanner.SOURCE_INTERVAL = settings["source_interval"]
+    # Evaluation runs on finer candles than the alert timeframe rather than
+    # resampling up to it. Coarse candles hurt twice: a 4h bar spans well
+    # past the 15:10 cut-off and would smuggle in price action never traded
+    # on, and the bar containing the alert has to be skipped entirely for
+    # entry detection, which on 30m bars hid most real fills. Zone levels
+    # still come from the alert record itself, built live off the real
+    # timeframe; only touch/target/SL detection uses the finer candles.
+    interval = settings["eval_interval"]
+    nse_scanner.TIMEFRAME = interval
+    nse_scanner.SOURCE_INTERVAL = interval
     nse_scanner.SOURCE_PERIOD = settings["source_period"]
     return settings["nse_records"]
 
@@ -713,12 +722,15 @@ def simulate_alert(
         entry_price,
         tracking_end_index,
         alert.get("symbol", ""),
+        alert.get("timeframe"),
+        side,
     )
     if entry_index is None:
         if uses_six_hour_evaluation(alert.get("symbol", "")) and not entry_search_mature(
             frame,
             event_index,
             tracking_end_index,
+            alert.get("timeframe"),
         ):
             return unfilled(alert, "immature")
         return unfilled(alert, "zone_not_touched")
@@ -1187,19 +1199,45 @@ def original_stop_price(alert: dict) -> float:
     return float(alert["zone_top"]) * (1 + SL_BUFFER_PCT / 100.0)
 
 
+def entry_window_bars(frame: pd.DataFrame, timeframe: str | None) -> int:
+    """ENTRY_WAIT_BARS translated into the evaluation frame's own bars.
+
+    The wait is a duration - three bars of the alert's timeframe - but
+    evaluation runs on finer candles, so counting raw bars would silently
+    shrink a 90-minute window down to 15. Scale it instead.
+    """
+    alert_bar = ALERT_BAR_DURATION.get(str(timeframe))
+    if alert_bar is None:
+        return ENTRY_WAIT_BARS
+    eval_bar = infer_bar_duration(frame)
+    if eval_bar <= pd.Timedelta(0):
+        return ENTRY_WAIT_BARS
+    return max(ENTRY_WAIT_BARS, int(alert_bar * ENTRY_WAIT_BARS / eval_bar))
+
+
 def find_entry(
     frame: pd.DataFrame,
     event_index: int,
     entry_price: float,
     tracking_end_index: int,
     symbol: str = "",
+    timeframe: str | None = None,
+    side: str = "long",
 ) -> int | None:
-    end_index = min(event_index + ENTRY_WAIT_BARS, tracking_end_index)
+    end_index = min(event_index + entry_window_bars(frame, timeframe), tracking_end_index)
     for index in range(event_index + 1, end_index + 1):
         timestamp = pd.Timestamp(frame.index[index]).tz_convert(IST)
         if is_nse_symbol(symbol) and timestamp.time() < NSE_TRADE_START:
             continue
-        if float(frame["low"].iloc[index]) <= entry_price <= float(frame["high"].iloc[index]):
+        # A resting limit fills whenever price reaches it, so only the side
+        # price approaches from matters. Requiring the bar to straddle entry
+        # missed every fill where price ran clean past the level - which is
+        # most of them, since the alert already fires with price inside the
+        # zone roughly six times in ten.
+        if side == "long":
+            if float(frame["low"].iloc[index]) <= entry_price:
+                return index
+        elif float(frame["high"].iloc[index]) >= entry_price:
             return index
     return None
 
@@ -1208,9 +1246,12 @@ def entry_search_mature(
     frame: pd.DataFrame,
     event_index: int,
     tracking_end_index: int,
+    timeframe: str | None = None,
 ) -> bool:
     """A no-entry result is only final after the full entry window has closed."""
-    required_index = min(event_index + ENTRY_WAIT_BARS, len(frame.index) - 1)
+    required_index = min(
+        event_index + entry_window_bars(frame, timeframe), len(frame.index) - 1
+    )
     if tracking_end_index < required_index:
         return False
     ends = candle_ends(frame)

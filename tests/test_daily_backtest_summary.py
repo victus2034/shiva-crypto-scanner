@@ -266,6 +266,78 @@ class DailyBacktestSummaryTests(unittest.TestCase):
         self.assertEqual(result["final_result"], summary.BREAK_EVEN)
         self.assertEqual(result["exit_time"], index[2])
 
+    def test_price_running_clean_past_entry_still_fills(self):
+        # A resting buy limit at 100 fills when price trades down through
+        # it, even if no single bar happens to straddle the level. The old
+        # low <= entry <= high test missed exactly these, and they are the
+        # common case since alerts fire with price already inside the zone.
+        index = pd.date_range("2026-08-04 10:00", periods=4, freq="5min", tz=summary.IST)
+        frame = pd.DataFrame(
+            {
+                "open": [101.0, 99.0, 98.5, 98.0],
+                "high": [101.2, 99.2, 98.8, 98.3],
+                "low": [100.9, 98.8, 98.2, 97.8],
+                "close": [101.0, 98.9, 98.4, 98.0],
+                "volume": [1] * 4,
+            },
+            index=index,
+        )
+        self.assertEqual(
+            summary.find_entry(frame, 0, 100.0, 3, "TCS.NS", "30m", "long"), 1
+        )
+
+    def test_short_side_fills_when_price_runs_up_through_entry(self):
+        index = pd.date_range("2026-08-04 10:00", periods=3, freq="5min", tz=summary.IST)
+        frame = pd.DataFrame(
+            {
+                "open": [99.0, 101.0, 102.0],
+                "high": [99.2, 101.5, 102.5],
+                "low": [98.8, 100.8, 101.8],
+                "close": [99.0, 101.2, 102.2],
+                "volume": [1] * 3,
+            },
+            index=index,
+        )
+        self.assertEqual(
+            summary.find_entry(frame, 0, 100.0, 2, "TCS.NS", "30m", "short"), 1
+        )
+
+    def test_entry_window_is_a_duration_not_a_raw_bar_count(self):
+        # ENTRY_WAIT_BARS means three bars of the *alert's* timeframe. Since
+        # evaluation runs on finer candles, counting raw bars would shrink a
+        # 30m alert's 90-minute window down to 15 minutes of 5m bars.
+        five_min = pd.DataFrame(
+            {"open": [1.0] * 40, "high": [1.0] * 40, "low": [1.0] * 40,
+             "close": [1.0] * 40, "volume": [1] * 40},
+            index=pd.date_range("2026-08-04 09:15", periods=40, freq="5min", tz=summary.IST),
+        )
+        self.assertEqual(summary.entry_window_bars(five_min, "30m"), 18)  # 90 min
+
+        one_hour = pd.DataFrame(
+            {"open": [1.0] * 12, "high": [1.0] * 12, "low": [1.0] * 12,
+             "close": [1.0] * 12, "volume": [1] * 12},
+            index=pd.date_range("2026-08-04 09:15", periods=12, freq="1h", tz=summary.IST),
+        )
+        self.assertEqual(summary.entry_window_bars(one_hour, "4h"), 12)  # 12 hours
+
+    def test_entry_is_found_within_the_scaled_window_on_fine_candles(self):
+        # The touch lands 45 minutes after the alert - inside a 30m alert's
+        # 90-minute window, but well past a naive 3-bar count on 5m candles.
+        index = pd.date_range("2026-08-04 10:00", periods=12, freq="5min", tz=summary.IST)
+        highs = [101.0] * 12
+        lows = [100.5] * 12
+        lows[9] = 99.5  # 10:45, nine 5m bars after the alert bar
+        frame = pd.DataFrame(
+            {"open": highs, "high": highs, "low": lows, "close": highs, "volume": [1] * 12},
+            index=index,
+        )
+
+        self.assertEqual(
+            summary.find_entry(frame, 0, 100.0, 11, "TCS.NS", "30m"), 9
+        )
+        # Without the timeframe the old three-bar count applies and misses it.
+        self.assertIsNone(summary.find_entry(frame, 0, 100.0, 11, "TCS.NS", None))
+
     def test_stop_before_half_r_is_sl(self):
         index = pd.DatetimeIndex(["2026-08-04 10:00", "2026-08-04 10:30"], tz=summary.IST)
         frame = pd.DataFrame(
