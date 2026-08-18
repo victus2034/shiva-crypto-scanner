@@ -807,6 +807,15 @@ def simulate_alert(
             exit_index = index
             time_to_sl = frame.index[index]
             break
+        if stop_hit:
+            # A milestone was already secured, and the stop has now traded
+            # through: the position is closed at that milestone. Without
+            # this the loop kept running and let later price action upgrade
+            # a trade that had been stopped out - crediting, say, +2R to a
+            # position that was flat well before the +2R print.
+            exit_index = index
+            time_to_sl = frame.index[index]
+            break
         if half_target_hit:
             half_r_hit = True
             if time_to_half_r is None:
