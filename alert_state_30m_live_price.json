@@ -1689,7 +1689,9 @@
     "ZIL/USDT|30m|long|0.0022180000|0.0022230000": 1787020286.1728897,
     "TRX/USDT|30m|long|0.3281800000|0.3294500000": 1787020286.4580522,
     "SLVONUSD|30m|long|59.0600000000|59.2600000000": 1787020286.7218344,
-    "SAMSUNG/USDT:USDT|30m|long|190.3900000000|190.8800000000": 1787021481.7639616
+    "SAMSUNG/USDT:USDT|30m|long|190.3900000000|190.8800000000": 1787021481.7639616,
+    "TAIKO/USDT|30m|long|0.0680600000|0.0683400000": 1787022677.8707561,
+    "MNT/USDT|30m|long|0.4349000000|0.4350000000": 1787022678.0263388
   },
   "METAXUSD|demand|577.00000000|579.20000000": {
     "in_zone": false,
@@ -1940,8 +1942,8 @@
     "last_alert_at": 1786639310.597496
   },
   "TAIKO/USDT|demand|0.06806000|0.06834000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1787022677.8707561
   },
   "JUP/USDT|demand|0.16840000|0.16930000": {
     "in_zone": false,
@@ -4169,8 +4171,8 @@
     "last_alert_at": 0.0
   },
   "MNT/USDT|demand|0.43490000|0.43500000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1787022678.0263388
   },
   "DELL/USDT:USDT|demand|489.96000000|490.30000000": {
     "in_zone": false,
