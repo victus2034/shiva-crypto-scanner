@@ -21,7 +21,7 @@ from __future__ import annotations
 import argparse
 import json
 import os
-from datetime import datetime
+from datetime import datetime, time as datetime_time
 from pathlib import Path
 
 import pandas as pd
@@ -44,6 +44,13 @@ FALLBACK_WEBHOOK_ENV = backtest.WEBHOOK_ENV
 # backtest's own refusal to invent an ordering it cannot see.
 BAR_INTERVAL = "5m"
 AMBIGUOUS = backtest.DATA_QUALITY_AMBIGUOUS
+# Ticks keep running past the 15:10 trading cut-off purely so open
+# positions get squared off. The cron fires at 15:10 but the runner needs a
+# minute or two to boot, so a guard that stopped at 15:10 would reject the
+# very tick that closes the day's remaining positions and leave them open
+# forever. Fills and level checks are still capped at 15:10 internally, so
+# nothing here lets a trade the user could not have taken into the results.
+SQUARE_OFF_GRACE_END = datetime_time(16, 0)
 
 
 def parse_args() -> argparse.Namespace:
@@ -125,7 +132,12 @@ def targets_for(entry: float, stop: float, side: str) -> dict[str, float]:
     }
 
 
-def open_new_positions(state: dict, watched: list[dict], frames: dict[str, pd.DataFrame]) -> list[str]:
+def open_new_positions(
+    state: dict,
+    watched: list[dict],
+    frames: dict[str, pd.DataFrame],
+    now: pd.Timestamp,
+) -> list[str]:
     """Fill a virtual limit order only if price genuinely reached entry."""
     opened = []
     for record in watched:
@@ -139,7 +151,14 @@ def open_new_positions(state: dict, watched: list[dict], frames: dict[str, pd.Da
         entry = record["_entry"]
         stop = record["_stop"]
         side = record.get("side", "long")
-        after_alert = frame[frame.index > record["_delivered"]]
+        square_off = pd.Timestamp(
+            datetime.combine(now.date(), backtest.NSE_BACKTEST_CLOSE_CUTOFF), tz=IST
+        )
+        # A fill after the user has stopped trading is not a trade they
+        # could have taken, so it must not open a position.
+        after_alert = frame[
+            (frame.index > record["_delivered"]) & (frame.index < square_off)
+        ]
         if after_alert.empty:
             continue
 
@@ -187,7 +206,13 @@ def evaluate_open_positions(state: dict, frames: dict[str, pd.DataFrame], now: p
         entry = position["entry"]
         stop = position["stop"]
         risk = position["risk"]
-        window = frame[frame.index >= entry_time]
+        square_off = pd.Timestamp(
+            datetime.combine(now.date(), backtest.NSE_BACKTEST_CLOSE_CUTOFF), tz=IST
+        )
+        # Bars are stamped at their start, so a bar opening at 15:10 covers
+        # price action the user is already flat for. Anything from the
+        # cut-off onwards must not decide the trade.
+        window = frame[(frame.index >= entry_time) & (frame.index < square_off)]
         if window.empty:
             continue
 
@@ -202,40 +227,39 @@ def evaluate_open_positions(state: dict, frames: dict[str, pd.DataFrame], now: p
             one_hit = high >= position["target_1"] if side == "long" else low <= position["target_1"]
             half_hit = high >= position["target_half"] if side == "long" else low <= position["target_half"]
 
-            if stop_hit and (two_hit or one_hit or half_hit):
-                # Both sides of the trade printed inside one bar; the real
-                # order is unknowable here, so report it rather than guess.
+            # A milestone, once reached, is banked and cannot be undone by a
+            # later stop - the same rule daily_backtest_summary applies (it
+            # only converts to SL while the outcome is still unresolved).
+            # Diverging here would compare two different strategies rather
+            # than test the same one against live prices.
+            if outcome is None and stop_hit and (two_hit or one_hit or half_hit):
+                # Both sides printed inside one bar; the real order is
+                # unknowable here, so report it rather than guess.
                 outcome, exit_time = AMBIGUOUS, timestamp
                 exit_price = float("nan")
                 break
-            if stop_hit:
+            if outcome is None and stop_hit:
                 direction = 1.0 if side == "long" else -1.0
                 exit_price = stop - direction * stop * backtest.SL_FILL_SLIPPAGE_PCT / 100.0
                 outcome, exit_time = "SL", timestamp
                 break
             if half_hit:
                 position["half_r_hit"] = True
+                if outcome is None:
+                    outcome, exit_price, exit_time = "+0.5R", position["target_half"], timestamp
+            if one_hit:
+                outcome, exit_price, exit_time = "+1R", position["target_1"], timestamp
             if two_hit:
                 outcome, exit_price, exit_time = "+2R", position["target_2"], timestamp
                 break
-            if one_hit:
-                outcome, exit_price, exit_time = "+1R", position["target_1"], timestamp
-                break
 
-        square_off = pd.Timestamp(
-            datetime.combine(now.date(), backtest.NSE_BACKTEST_CLOSE_CUTOFF), tz=IST
-        )
         if outcome is None and now >= square_off:
             # The user is flat by 15:10, so an unresolved position exits at
             # the last price before that, priced off the real close the same
             # way the backtest now prices its "Neither" trades.
-            before_cutoff = window[window.index <= square_off]
-            last = before_cutoff if not before_cutoff.empty else window
-            exit_price = float(last["close"].iloc[-1])
-            exit_time = last.index[-1]
-            outcome = "+0.5R" if position["half_r_hit"] else "Neither"
-            if outcome == "+0.5R":
-                exit_price = position["target_half"]
+            exit_price = float(window["close"].iloc[-1])
+            exit_time = window.index[-1]
+            outcome = "Neither"
 
         if outcome is None:
             continue
@@ -266,10 +290,17 @@ def evaluate_open_positions(state: dict, frames: dict[str, pd.DataFrame], now: p
     return closed
 
 
+def in_paper_window(now: pd.Timestamp) -> bool:
+    """Trading hours plus a grace tail for squaring off open positions."""
+    if now.weekday() >= 5:
+        return False
+    return entry_confirm.TRADE_START <= now.time() <= SQUARE_OFF_GRACE_END
+
+
 def run_tick(args: argparse.Namespace) -> None:
     now = pd.Timestamp.now(tz=IST)
-    if not args.ignore_session and not entry_confirm.in_trading_session(now):
-        print(f"Outside trading window ({now:%Y-%m-%d %H:%M} IST); nothing to do.")
+    if not args.ignore_session and not in_paper_window(now):
+        print(f"Outside paper window ({now:%Y-%m-%d %H:%M} IST); nothing to do.")
         return
 
     state = load_state()
@@ -280,7 +311,7 @@ def run_tick(args: argparse.Namespace) -> None:
     )
     frames = fetch_bars(symbols)
 
-    opened = open_new_positions(state, watched, frames)
+    opened = open_new_positions(state, watched, frames, now)
     closed = evaluate_open_positions(state, frames, now)
 
     for trade_id in opened:
