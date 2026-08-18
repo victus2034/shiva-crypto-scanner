@@ -335,6 +335,27 @@
       "target_2": 1470.0185756835936,
       "target_half": 1463.9296622314453,
       "trade_id": "e18e10de543af0fc"
+    },
+    {
+      "alert_time": "2026-08-18T10:52:11.647016+05:30",
+      "date": "2026-08-18",
+      "entry": 775.0,
+      "entry_time": "2026-08-18T11:35:00+05:30",
+      "exit_price": 778.1226256103515,
+      "exit_time": "2026-08-18T11:40:00+05:30",
+      "final_result": "+1R",
+      "half_r_hit": true,
+      "outcome": "+1R",
+      "rating": 8,
+      "realized_r": 1.0,
+      "risk": 3.1226256103515198,
+      "side": "long",
+      "stop": 771.8773743896485,
+      "symbol": "EIDPARRY.NS",
+      "target_1": 778.1226256103515,
+      "target_2": 781.245251220703,
+      "target_half": 776.5613128051757,
+      "trade_id": "bbd07ddc15cbcd70"
     }
   ],
   "handled": {
@@ -540,20 +561,6 @@
       "target_1": 102.83085335540771,
       "target_2": 103.87170579528808,
       "target_half": 102.31042713546753
-    },
-    "bbd07ddc15cbcd70": {
-      "alert_time": "2026-08-18T10:52:11.647016+05:30",
-      "entry": 775.0,
-      "entry_time": "2026-08-18T11:35:00+05:30",
-      "half_r_hit": false,
-      "rating": 8,
-      "risk": 3.1226256103515198,
-      "side": "long",
-      "stop": 771.8773743896485,
-      "symbol": "EIDPARRY.NS",
-      "target_1": 778.1226256103515,
-      "target_2": 781.245251220703,
-      "target_half": 776.5613128051757
     },
     "d683c95024d5bd8f": {
       "alert_time": "2026-08-18T09:32:32.258437+05:30",
