@@ -356,9 +356,31 @@
       "target_2": 781.245251220703,
       "target_half": 776.5613128051757,
       "trade_id": "bbd07ddc15cbcd70"
+    },
+    {
+      "alert_time": "2026-08-18T11:12:19.728898+05:30",
+      "date": "2026-08-18",
+      "entry": 10740.0,
+      "entry_time": "2026-08-18T11:50:00+05:30",
+      "exit_price": 10776.145379999998,
+      "exit_time": "2026-08-18T11:55:00+05:30",
+      "final_result": "SL",
+      "half_r_hit": true,
+      "outcome": "SL",
+      "rating": 9,
+      "realized_r": -1.1750773732119635,
+      "risk": 30.7599999999984,
+      "side": "short",
+      "stop": 10770.759999999998,
+      "symbol": "CRAFTSMAN.NS",
+      "target_1": 10709.240000000002,
+      "target_2": 10678.480000000003,
+      "target_half": 10724.62,
+      "trade_id": "dc6d736ea43a2d5a"
     }
   ],
   "handled": {
+    "05f71516a0f678b4": "filled",
     "0785d7e4c3ea921b": "filled",
     "17033c2dcdc3037d": "filled",
     "22ff2858c7651f95": "filled",
@@ -396,6 +418,20 @@
     "f93f18d6e7495d7f": "filled"
   },
   "open": {
+    "05f71516a0f678b4": {
+      "alert_time": "2026-08-18T11:32:29.040416+05:30",
+      "entry": 205.8000030517578,
+      "entry_time": "2026-08-18T11:55:00+05:30",
+      "half_r_hit": false,
+      "rating": 8,
+      "risk": 1.2147997589111412,
+      "side": "long",
+      "stop": 204.58520329284667,
+      "symbol": "FIRSTCRY.NS",
+      "target_1": 207.01480281066895,
+      "target_2": 208.2296025695801,
+      "target_half": 206.40740293121337
+    },
     "17033c2dcdc3037d": {
       "alert_time": "2026-08-18T09:32:34.660872+05:30",
       "entry": 504.3999938964844,
@@ -442,7 +478,7 @@
       "alert_time": "2026-08-18T09:52:09.727039+05:30",
       "entry": 8613.0,
       "entry_time": "2026-08-18T09:55:00+05:30",
-      "half_r_hit": false,
+      "half_r_hit": true,
       "rating": 9,
       "risk": 69.17349999999897,
       "side": "short",
@@ -592,20 +628,6 @@
       "target_2": 248.636424407959,
       "target_half": 245.79661067962647
     },
-    "dc6d736ea43a2d5a": {
-      "alert_time": "2026-08-18T11:12:19.728898+05:30",
-      "entry": 10740.0,
-      "entry_time": "2026-08-18T11:50:00+05:30",
-      "half_r_hit": true,
-      "rating": 9,
-      "risk": 30.7599999999984,
-      "side": "short",
-      "stop": 10770.759999999998,
-      "symbol": "CRAFTSMAN.NS",
-      "target_1": 10709.240000000002,
-      "target_2": 10678.480000000003,
-      "target_half": 10724.62
-    },
     "dd0b855f16a93672": {
       "alert_time": "2026-08-18T09:32:35.730493+05:30",
       "entry": 19.09000015258789,
@@ -638,7 +660,7 @@
       "alert_time": "2026-08-18T11:12:20.459271+05:30",
       "entry": 348.1000061035156,
       "entry_time": "2026-08-18T11:25:00+05:30",
-      "half_r_hit": false,
+      "half_r_hit": true,
       "rating": 9,
       "risk": 1.147318298339826,
       "side": "long",
