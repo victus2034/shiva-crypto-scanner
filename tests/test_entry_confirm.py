@@ -81,6 +81,17 @@ class ClassifyTests(unittest.TestCase):
         self.assertIsNone(entry_confirm.classify(99.0, short, reached_entry=True)[0])
 
 
+class NegativeZeroTests(unittest.TestCase):
+    def test_price_exactly_at_entry_does_not_render_minus_zero(self):
+        # risk_progress returns -0.0 when price equals entry on a long,
+        # which formats as "-0% of risk used".
+        message = entry_confirm.format_ping(
+            entry_confirm.STAGE_ENTRY, 100.0, watched(entry=100.0, stop=98.0)
+        )
+        self.assertIn("0% of risk used", message)
+        self.assertNotIn("-0%", message)
+
+
 class SessionGuardTests(unittest.TestCase):
     def test_window_is_open_during_the_session_and_shut_after_1510(self):
         monday = "2026-08-17"

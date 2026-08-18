@@ -207,7 +207,8 @@ def format_ping(stage: int, price: float, record: dict) -> str:
     score = record.get("score")
     score_text = f" | {int(score)}/10" if score is not None else ""
     stop_pct = abs(entry - stop) / entry * 100.0
-    progress = risk_progress(price, entry, stop, record.get("side", "long"))
+    # Price sitting exactly at entry yields -0.0, which formats as "-0%".
+    progress = risk_progress(price, entry, stop, record.get("side", "long")) or 0.0
     symbol = display_symbol(record.get("symbol", ""))
 
     if stage == STAGE_READY:

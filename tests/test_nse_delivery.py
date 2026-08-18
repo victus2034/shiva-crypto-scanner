@@ -80,6 +80,35 @@ class NseDeliveryTests(unittest.TestCase):
         self.assertEqual(send.call_count, 1)
 
 
+class TightStopWarningTests(unittest.TestCase):
+    """Reaching +0.5R only moves price half the stop distance. When that is
+    smaller than the round-trip charges, moving the stop up at +0.5R still
+    locks in a loss, so the capital-protection rule cannot work at all.
+    """
+
+    def test_threshold_is_twice_the_break_even_cushion(self):
+        self.assertTrue(nse_scanner.stop_is_too_tight(0.20))
+        self.assertTrue(nse_scanner.stop_is_too_tight(0.23))
+        self.assertFalse(nse_scanner.stop_is_too_tight(0.24))
+        self.assertFalse(nse_scanner.stop_is_too_tight(1.01))
+
+    def _alert_for(self, bottom, top):
+        result = {"symbol": "TCS.NS", "price": float(top) * 1.004}
+        zone = {"bottom": float(bottom), "top": float(top)}
+        return nse_scanner.format_alert(result, "demand", zone, 0.5)
+
+    def test_a_tight_stop_alert_carries_the_warning(self):
+        # top 100 / bottom 99.9 -> stop 99.80, about 0.20% away.
+        message = self._alert_for(99.9, 100.0)
+        self.assertIn("WARNING", message)
+        self.assertIn("cannot protect capital", message)
+
+    def test_a_workable_stop_alert_is_left_alone(self):
+        # top 100 / bottom 99 -> stop 98.90, about 1.10% away.
+        message = self._alert_for(99.0, 100.0)
+        self.assertNotIn("WARNING", message)
+
+
 class SessionDataFreshnessTests(unittest.TestCase):
     """has_current_session_data() must not blank the whole scan over one
     missing symbol - a delisted ticker or a transient fetch hiccup for a
