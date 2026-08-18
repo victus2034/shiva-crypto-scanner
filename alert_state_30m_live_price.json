@@ -1693,7 +1693,10 @@
     "TAIKO/USDT|30m|long|0.0680600000|0.0683400000": 1787022677.8707561,
     "MNT/USDT|30m|long|0.4349000000|0.4350000000": 1787022678.0263388,
     "AMZNXUSD|30m|long|258.9000000000|259.0500000000": 1787028684.801944,
-    "SKHYNIX/USDT:USDT|30m|long|1171.0700000000|1174.6100000000": 1787023884.175661
+    "SKHYNIX/USDT:USDT|30m|long|1171.0700000000|1174.6100000000": 1787023884.175661,
+    "DEXE/USDT|30m|long|1.9118000000|1.9171000000": 1787029879.1345165,
+    "IBM/USDT:USDT|30m|short|229.5600000000|229.6700000000": 1787029879.455672,
+    "TQQQ/USDT:USDT|30m|long|74.3200000000|74.6100000000": 1787029880.0139532
   },
   "METAXUSD|demand|577.00000000|579.20000000": {
     "in_zone": false,
@@ -4977,8 +4980,8 @@
     "last_alert_at": 0.0
   },
   "DEXE/USDT|demand|1.91180000|1.91710000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1787029879.1345165
   },
   "KAITO/USDT|supply|0.37170000|0.37830000": {
     "in_zone": false,
@@ -5057,8 +5060,8 @@
     "last_alert_at": 0.0
   },
   "TQQQ/USDT:USDT|demand|74.32000000|74.61000000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1787029880.0139532
   },
   "ETHUSD|supply|1914.85000000|1918.25000000": {
     "in_zone": false,
@@ -5299,5 +5302,25 @@
   "TQQQ/USDT:USDT|demand|74.14000000|74.21000000": {
     "in_zone": false,
     "last_alert_at": 0.0
+  },
+  "AAVEUSD|supply|89.40000000|89.54500000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "JTO/USDT|demand|0.56900000|0.57750000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "MNT/USDT|demand|0.43430000|0.43450000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "DASH/USDT|supply|30.50000000|30.66000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "IBM/USDT:USDT|supply|229.56000000|229.67000000": {
+    "in_zone": true,
+    "last_alert_at": 1787029879.455672
   }
 }
