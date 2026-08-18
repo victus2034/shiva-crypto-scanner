@@ -205,7 +205,7 @@ class DailyBacktestSummaryTests(unittest.TestCase):
         self.assertTrue(bool(results.iloc[0]["filled"]))
         self.assertEqual(results.iloc[0]["entry_time"], index[1])
 
-    def test_half_r_is_kept_if_price_reverses_later(self):
+    def test_reaching_half_r_then_reversing_exits_at_breakeven(self):
         index = pd.DatetimeIndex(
             ["2026-08-04 10:00", "2026-08-04 10:30", "2026-08-04 11:00"],
             tz=summary.IST,
@@ -221,10 +221,13 @@ class DailyBacktestSummaryTests(unittest.TestCase):
             index=index,
         )
 
+        # +0.5R moves the stop to entry rather than closing the trade, so
+        # giving it back exits flat instead of banking half a risk unit
+        # that was never taken off the table.
         result = summary.simulate_alert(frame, base_alert(), 0, 2)
 
-        self.assertEqual(result["final_result"], "+0.5R")
-        self.assertEqual(result["net_realized_r"], 0.5)
+        self.assertEqual(result["final_result"], summary.BREAK_EVEN)
+        self.assertEqual(result["net_realized_r"], 0.0)
 
     def test_a_stopped_out_trade_cannot_be_upgraded_by_a_later_recovery(self):
         # Touches +0.5R, then trades through the stop, then recovers to
@@ -257,7 +260,7 @@ class DailyBacktestSummaryTests(unittest.TestCase):
 
         result = summary.simulate_alert(frame, base_alert(), 0, 3)
 
-        self.assertEqual(result["final_result"], "+0.5R")
+        self.assertEqual(result["final_result"], summary.BREAK_EVEN)
         self.assertEqual(result["exit_time"], index[2])
 
     def test_stop_before_half_r_is_sl(self):
@@ -359,10 +362,12 @@ class DailyBacktestSummaryTests(unittest.TestCase):
             index=resolution_index,
         )
 
+        # The fine data shows +0.5R printing before the stop, so the stop
+        # had already moved to entry - the trade exits flat, not at -1R.
         result = summary.simulate_alert(frame, base_alert(), 0, 1, resolution_frame)
 
-        self.assertEqual(result["final_result"], "+0.5R")
-        self.assertEqual(result["net_realized_r"], 0.5)
+        self.assertEqual(result["final_result"], summary.BREAK_EVEN)
+        self.assertEqual(result["net_realized_r"], 0.0)
 
     def test_same_candle_resolution_accepts_timezone_naive_fine_data(self):
         index = pd.DatetimeIndex(["2026-08-04 10:00", "2026-08-04 10:30"], tz=summary.IST)
@@ -388,9 +393,11 @@ class DailyBacktestSummaryTests(unittest.TestCase):
             index=resolution_index,
         )
 
+        # The fine data shows +0.5R printing before the stop, so the stop
+        # had already moved to entry - the trade exits flat, not at -1R.
         result = summary.simulate_alert(frame, base_alert(), 0, 1, resolution_frame)
 
-        self.assertEqual(result["final_result"], "+0.5R")
+        self.assertEqual(result["final_result"], summary.BREAK_EVEN)
 
     def test_mobile_summary_removes_tradable_be_and_verdict(self):
         records = pd.DataFrame(
@@ -630,7 +637,7 @@ class DailyBacktestSummaryTests(unittest.TestCase):
 
         self.assertEqual(result["final_result"], "SL")
 
-    def test_crypto_half_r_is_kept_after_reversal(self):
+    def test_crypto_half_r_then_reversal_exits_at_breakeven(self):
         frame = crypto_frame(
             rows=[
                 (101.0, 101.2, 100.8, 101.0),
@@ -641,8 +648,8 @@ class DailyBacktestSummaryTests(unittest.TestCase):
 
         result = summary.simulate_alert(frame, crypto_alert(), 0, 2)
 
-        self.assertEqual(result["final_result"], "+0.5R")
-        self.assertEqual(result["net_realized_r"], 0.5)
+        self.assertEqual(result["final_result"], summary.BREAK_EVEN)
+        self.assertEqual(result["net_realized_r"], 0.0)
 
     def test_crypto_one_r_supersedes_half_r_after_reversal(self):
         frame = crypto_frame(

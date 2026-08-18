@@ -117,27 +117,30 @@ class OutcomeTests(unittest.TestCase):
         # small loss rather than a free breakeven.
         self.assertLess(closed[0]["realized_r"], 0.0)
 
-    def test_half_r_is_banked_when_squaring_off_after_touching_it(self):
+    def test_still_open_at_square_off_is_priced_off_the_real_close(self):
+        # Touched +0.5R but never came back to entry and never reached +1R,
+        # so it is still open at 15:10 and exits at whatever it is actually
+        # worth - not a flat +0.5R credit.
         state = self._open()
         frames = {"TCS.NS": bars([[101.2, 99.9, 100.1]])}
         closed = paper_trading.evaluate_open_positions(
             state, frames, pd.Timestamp("2026-08-17 15:10", tz=IST)
         )
-        self.assertEqual(closed[0]["outcome"], "+0.5R")
-        self.assertAlmostEqual(closed[0]["realized_r"], 0.5)
+        self.assertEqual(closed[0]["outcome"], "Neither")
+        self.assertAlmostEqual(closed[0]["realized_r"], 0.05)
 
-    def test_touching_half_r_banks_it_against_a_later_stop(self):
-        # daily_backtest_summary only converts to SL while the outcome is
-        # still unresolved, so a milestone already reached survives a later
-        # stop. Paper must apply the same rule or the two are measuring
-        # different strategies rather than the same one against live prices.
+    def test_half_r_moves_the_stop_to_entry_so_a_reversal_exits_flat(self):
+        # Reaching +0.5R moves the stop to entry rather than closing the
+        # trade, so giving it back is a breakeven exit - not +0.5R banked
+        # and not a full -1R. Paper must match daily_backtest_summary here
+        # or the two measure different strategies.
         state = self._open()
         frames = {"TCS.NS": bars([[101.2, 99.9, 100.1], [100.0, 97.0, 97.2]])}
         closed = paper_trading.evaluate_open_positions(
             state, frames, pd.Timestamp("2026-08-17 11:00", tz=IST)
         )
-        self.assertEqual(closed[0]["outcome"], "+0.5R")
-        self.assertAlmostEqual(closed[0]["realized_r"], 0.5)
+        self.assertEqual(closed[0]["outcome"], backtest.BREAK_EVEN)
+        self.assertAlmostEqual(closed[0]["realized_r"], 0.0)
 
     def test_a_stop_before_any_milestone_still_closes_as_sl(self):
         state = self._open()

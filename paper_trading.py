@@ -222,31 +222,34 @@ def evaluate_open_positions(state: dict, frames: dict[str, pd.DataFrame], now: p
         for timestamp, bar in window.iterrows():
             high = float(bar["high"])
             low = float(bar["low"])
-            stop_hit = low <= stop if side == "long" else high >= stop
+            # Same rule as daily_backtest_summary: +0.5R moves the stop to
+            # entry rather than closing the trade, so giving it back exits
+            # flat. Diverging here would compare two different strategies
+            # rather than test the same one against live prices.
+            active_stop = entry if position["half_r_hit"] else stop
+            stop_hit = low <= active_stop if side == "long" else high >= active_stop
             two_hit = high >= position["target_2"] if side == "long" else low <= position["target_2"]
             one_hit = high >= position["target_1"] if side == "long" else low <= position["target_1"]
             half_hit = high >= position["target_half"] if side == "long" else low <= position["target_half"]
 
-            # A milestone, once reached, is banked and cannot be undone by a
-            # later stop - the same rule daily_backtest_summary applies (it
-            # only converts to SL while the outcome is still unresolved).
-            # Diverging here would compare two different strategies rather
-            # than test the same one against live prices.
             if outcome is None and stop_hit and (two_hit or one_hit or half_hit):
                 # Both sides printed inside one bar; the real order is
                 # unknowable here, so report it rather than guess.
                 outcome, exit_time = AMBIGUOUS, timestamp
                 exit_price = float("nan")
                 break
-            if outcome is None and stop_hit:
-                direction = 1.0 if side == "long" else -1.0
-                exit_price = stop - direction * stop * backtest.SL_FILL_SLIPPAGE_PCT / 100.0
-                outcome, exit_time = "SL", timestamp
+            if stop_hit:
+                if outcome is None:
+                    if position["half_r_hit"]:
+                        outcome, exit_price = backtest.BREAK_EVEN, entry
+                    else:
+                        direction = 1.0 if side == "long" else -1.0
+                        outcome = "SL"
+                        exit_price = stop - direction * stop * backtest.SL_FILL_SLIPPAGE_PCT / 100.0
+                exit_time = timestamp
                 break
             if half_hit:
                 position["half_r_hit"] = True
-                if outcome is None:
-                    outcome, exit_price, exit_time = "+0.5R", position["target_half"], timestamp
             if one_hit:
                 outcome, exit_price, exit_time = "+1R", position["target_1"], timestamp
             if two_hit:
@@ -266,7 +269,7 @@ def evaluate_open_positions(state: dict, frames: dict[str, pd.DataFrame], now: p
 
         if outcome == AMBIGUOUS:
             realized_r = float("nan")
-        elif outcome in {"+1R", "+2R", "+0.5R"}:
+        elif outcome in {"+1R", "+2R"}:
             realized_r = backtest.FINAL_RESULT_R[outcome]
         else:
             direction = 1.0 if side == "long" else -1.0

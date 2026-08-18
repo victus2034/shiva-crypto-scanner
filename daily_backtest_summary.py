@@ -57,15 +57,20 @@ TARGET_1_R = 1.0
 TARGET_2_R = 2.0
 HALF_R = 0.5
 DATA_QUALITY_AMBIGUOUS = "data_quality_ambiguous"
+# Reaching +0.5R moves the stop to entry rather than closing the trade, so
+# giving it back exits flat. This is a real outcome, distinct from both a
+# full stop and a win.
+BREAK_EVEN = "BE"
 FINAL_RESULT_R = {
     "SL": -1.0,
     DATA_QUALITY_AMBIGUOUS: float("nan"),
+    BREAK_EVEN: 0.0,
     "+0.5R": 0.5,
     "+1R": 1.0,
     "+2R": 2.0,
     "Neither": 0.0,
 }
-OUTCOME_ORDER = ["SL", DATA_QUALITY_AMBIGUOUS, "+0.5R", "+1R", "+2R", "Neither"]
+OUTCOME_ORDER = ["SL", DATA_QUALITY_AMBIGUOUS, BREAK_EVEN, "+0.5R", "+1R", "+2R", "Neither"]
 MARKET_NSE = "NSE"
 MARKET_CRYPTO = "CRYPTO"
 MARKET_XSTOCK = "XSTOCK"
@@ -753,29 +758,38 @@ def simulate_alert(
         max_favorable_r = max(max_favorable_r, favorable / risk)
         max_adverse_r = max(max_adverse_r, adverse / risk)
 
-        stop_hit = low <= stop if side == "long" else high >= stop
+        # Once +0.5R has traded, the stop sits at entry - that is the user's
+        # actual rule, so a trade that reaches +0.5R and gives it back exits
+        # flat rather than banking half a risk unit it never took off the
+        # table. The move only applies from the next bar, since the ordering
+        # inside the bar that reached +0.5R is unknowable.
+        active_stop = entry_price if half_r_hit else stop
+        stop_hit = low <= active_stop if side == "long" else high >= active_stop
         half_target_hit = high >= target_half if side == "long" else low <= target_half
         first_target_hit = high >= target_1 if side == "long" else low <= target_1
         second_target_hit = high >= target_2 if side == "long" else low <= target_2
 
-        target_hit_this_candle = half_target_hit or first_target_hit or second_target_hit
-        if outcome == "Neither" and stop_hit and target_hit_this_candle:
+        # Only levels that would still change the outcome make the bar
+        # ambiguous. Once +0.5R has traded the stop is already at entry, so
+        # touching +0.5R again decides nothing - the open question is
+        # whether the breakeven stop or a higher target came first.
+        deciding_target_hit = (
+            (half_target_hit or first_target_hit or second_target_hit)
+            if not half_r_hit
+            else (first_target_hit or second_target_hit)
+        )
+        if outcome == "Neither" and stop_hit and deciding_target_hit:
             resolution = resolve_same_candle_order(
                 resolution_frame,
                 frame,
                 index,
                 side,
-                stop,
+                active_stop,
                 target_half,
                 target_1,
                 target_2,
                 market=market,
             )
-            if resolution == "SL":
-                outcome = "SL"
-                exit_index = index
-                time_to_sl = frame.index[index]
-                break
             if resolution == DATA_QUALITY_AMBIGUOUS:
                 outcome = DATA_QUALITY_AMBIGUOUS
                 exit_index = index
@@ -783,45 +797,47 @@ def simulate_alert(
                 bar_duration = infer_bar_duration(frame)
                 ambiguous_interval_end = frame.index[index] + bar_duration
                 break
+            if resolution == "SL":
+                outcome = BREAK_EVEN if half_r_hit else "SL"
+                exit_index = index
+                time_to_sl = frame.index[index]
+                break
+            # A target printed before the stop did. Bank the best level
+            # reached, then close - the stop trades inside this same bar.
             if resolution in {"+0.5R", "+1R", "+2R"}:
-                if resolution in {"+0.5R", "+1R", "+2R"}:
-                    half_r_hit = True
-                    if time_to_half_r is None:
-                        time_to_half_r = frame.index[index]
-                    outcome = "+0.5R"
-                if resolution in {"+1R", "+2R"}:
-                    target_1_hit = True
-                    if time_to_1r is None:
-                        time_to_1r = frame.index[index]
-                    outcome = "+1R"
-                if resolution == "+2R":
-                    target_2_hit = True
-                    if time_to_2r is None:
-                        time_to_2r = frame.index[index]
-                    outcome = "+2R"
-                    exit_index = index
-                    break
-                continue
-        if outcome == "Neither" and stop_hit:
-            outcome = "SL"
+                half_r_hit = True
+                if time_to_half_r is None:
+                    time_to_half_r = frame.index[index]
+                outcome = BREAK_EVEN
+            if resolution in {"+1R", "+2R"}:
+                target_1_hit = True
+                if time_to_1r is None:
+                    time_to_1r = frame.index[index]
+                outcome = "+1R"
+            if resolution == "+2R":
+                target_2_hit = True
+                if time_to_2r is None:
+                    time_to_2r = frame.index[index]
+                outcome = "+2R"
             exit_index = index
             time_to_sl = frame.index[index]
             break
         if stop_hit:
-            # A milestone was already secured, and the stop has now traded
-            # through: the position is closed at that milestone. Without
-            # this the loop kept running and let later price action upgrade
-            # a trade that had been stopped out - crediting, say, +2R to a
-            # position that was flat well before the +2R print.
+            # Whichever stop was live has traded through, so the position is
+            # closed here. Without this the loop kept running and let later
+            # price action upgrade a trade that was already out - crediting,
+            # say, +2R to a position flat well before the +2R print.
+            if outcome == "Neither":
+                outcome = BREAK_EVEN if half_r_hit else "SL"
             exit_index = index
             time_to_sl = frame.index[index]
             break
         if half_target_hit:
+            # +0.5R is where the stop moves, not where the trade is closed,
+            # so it never becomes an outcome on its own.
             half_r_hit = True
             if time_to_half_r is None:
                 time_to_half_r = frame.index[index]
-            if outcome == "Neither":
-                outcome = "+0.5R"
         if first_target_hit:
             half_r_hit = True
             target_1_hit = True
@@ -850,6 +866,9 @@ def simulate_alert(
         exit_price = stop - direction * stop * SL_FILL_SLIPPAGE_PCT / 100.0
     elif outcome == DATA_QUALITY_AMBIGUOUS:
         exit_price = float("nan")
+    elif outcome == BREAK_EVEN:
+        # The stop was sitting at entry by then, so the exit is entry.
+        exit_price = entry_price
     elif outcome == "+0.5R":
         exit_price = target_half
     elif outcome == "+1R":
@@ -858,7 +877,7 @@ def simulate_alert(
         exit_price = target_2
     else:
         exit_price = float(frame["close"].iloc[exit_index])
-    if outcome in {"SL", "Neither"}:
+    if outcome in {"SL", "Neither", BREAK_EVEN}:
         # Price off the real exit level instead of crediting a flat number -
         # a "Neither" trade that quietly drifted against (or in favor of)
         # the position without confirming SL/target must not be scored as
