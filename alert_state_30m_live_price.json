@@ -4970,7 +4970,7 @@
     "last_alert_at": 0.0
   },
   "SPCXXUSD|demand|139.45000000|140.15000000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1787062280.9253924
   },
   "NBIS/USDT:USDT|demand|264.09000000|274.06000000": {
@@ -5470,7 +5470,7 @@
     "last_alert_at": 1787049092.455974
   },
   "HYPEUSD|demand|58.90000000|59.12000000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1787059881.8902318
   },
   "ETHUSD|demand|1884.60000000|1890.15000000": {
@@ -5530,6 +5530,10 @@
     "last_alert_at": 0.0
   },
   "ERA/USDT|demand|0.05540000|0.05553000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "DELL/USDT:USDT|demand|462.22000000|463.98000000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
