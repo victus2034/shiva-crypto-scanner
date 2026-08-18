@@ -125,6 +125,48 @@
       "target_2": 318.8029816894532,
       "target_half": 321.3132408447266,
       "trade_id": "a0dca581200fcc44"
+    },
+    {
+      "alert_time": "2026-08-18T09:32:38.333340+05:30",
+      "date": "2026-08-18",
+      "entry": 40.849998474121094,
+      "entry_time": "2026-08-18T09:35:00+05:30",
+      "exit_price": 40.60901350669098,
+      "exit_time": "2026-08-18T10:35:00+05:30",
+      "final_result": "SL",
+      "half_r_hit": true,
+      "outcome": "SL",
+      "rating": 9,
+      "realized_r": -1.0920588940943954,
+      "risk": 0.22067030334472548,
+      "side": "long",
+      "stop": 40.62932817077637,
+      "symbol": "NSLNISP.NS",
+      "target_1": 41.07066877746582,
+      "target_2": 41.291339080810545,
+      "target_half": 40.96033362579345,
+      "trade_id": "5c30cce4b2624da7"
+    },
+    {
+      "alert_time": "2026-08-18T09:32:36.437967+05:30",
+      "date": "2026-08-18",
+      "entry": 164.9199981689453,
+      "entry_time": "2026-08-18T10:35:00+05:30",
+      "exit_price": 165.73426206970214,
+      "exit_time": "2026-08-18T10:35:00+05:30",
+      "final_result": "+1R",
+      "half_r_hit": true,
+      "outcome": "+1R",
+      "rating": 9,
+      "realized_r": 1.0,
+      "risk": 0.8142639007568278,
+      "side": "long",
+      "stop": 164.10573426818848,
+      "symbol": "ITCHOTELS.NS",
+      "target_1": 165.73426206970214,
+      "target_2": 166.54852597045897,
+      "target_half": 165.32713011932373,
+      "trade_id": "f93f18d6e7495d7f"
     }
   ],
   "handled": {
@@ -142,6 +184,7 @@
     "7513136fe9bc30b3": "filled",
     "8109877bf99ae11d": "filled",
     "8a73afb4a03e88e4": "filled",
+    "8c71af0d0b70df74": "filled",
     "8f1eb0296fd68aca": "filled",
     "a0dca581200fcc44": "filled",
     "a8a455e9eb8e32d6": "filled",
@@ -151,7 +194,8 @@
     "d683c95024d5bd8f": "filled",
     "dd0b855f16a93672": "filled",
     "ddb573630055e490": "filled",
-    "f8f3a1dc9e546137": "filled"
+    "f8f3a1dc9e546137": "filled",
+    "f93f18d6e7495d7f": "filled"
   },
   "open": {
     "22ff2858c7651f95": {
@@ -266,20 +310,6 @@
       "target_2": 17.604421600341794,
       "target_half": 17.39860534286499
     },
-    "5c30cce4b2624da7": {
-      "alert_time": "2026-08-18T09:32:38.333340+05:30",
-      "entry": 40.849998474121094,
-      "entry_time": "2026-08-18T09:35:00+05:30",
-      "half_r_hit": true,
-      "rating": 9,
-      "risk": 0.22067030334472548,
-      "side": "long",
-      "stop": 40.62932817077637,
-      "symbol": "NSLNISP.NS",
-      "target_1": 41.07066877746582,
-      "target_2": 41.291339080810545,
-      "target_half": 40.96033362579345
-    },
     "6a93e5b12e3a67de": {
       "alert_time": "2026-08-18T10:32:11.199674+05:30",
       "entry": 277.3999938964844,
@@ -321,6 +351,20 @@
       "target_1": 407.3026633911133,
       "target_2": 409.80533898925785,
       "target_half": 406.05132559204105
+    },
+    "8c71af0d0b70df74": {
+      "alert_time": "2026-08-18T10:32:11.638776+05:30",
+      "entry": 6815.0,
+      "entry_time": "2026-08-18T10:35:00+05:30",
+      "half_r_hit": false,
+      "rating": 10,
+      "risk": 36.34449999999924,
+      "side": "short",
+      "stop": 6851.344499999999,
+      "symbol": "LINDEINDIA.NS",
+      "target_1": 6778.655500000001,
+      "target_2": 6742.3110000000015,
+      "target_half": 6796.82775
     },
     "b64efd509aa29d25": {
       "alert_time": "2026-08-18T09:52:08.471439+05:30",
@@ -382,7 +426,7 @@
       "alert_time": "2026-08-18T09:32:35.730493+05:30",
       "entry": 19.09000015258789,
       "entry_time": "2026-08-18T09:35:00+05:30",
-      "half_r_hit": false,
+      "half_r_hit": true,
       "rating": 9,
       "risk": 0.06903923797607447,
       "side": "long",
