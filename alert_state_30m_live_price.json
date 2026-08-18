@@ -4176,7 +4176,7 @@
     "last_alert_at": 0.0
   },
   "MNT/USDT|demand|0.43490000|0.43500000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1787022678.0263388
   },
   "DELL/USDT:USDT|demand|489.96000000|490.30000000": {
@@ -5322,5 +5322,17 @@
   "IBM/USDT:USDT|supply|229.56000000|229.67000000": {
     "in_zone": true,
     "last_alert_at": 1787029879.455672
+  },
+  "LTCUSD|supply|44.64000000|44.67000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "SKHYNIX/USDT:USDT|supply|1254.75000000|1269.73000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "TQQQ/USDT:USDT|supply|76.53000000|76.67000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
   }
 }
