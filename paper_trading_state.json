@@ -104,6 +104,27 @@
       "target_2": 615.408251220703,
       "target_half": 609.4770628051758,
       "trade_id": "a8a455e9eb8e32d6"
+    },
+    {
+      "alert_time": "2026-08-18T09:32:38.572729+05:30",
+      "date": "2026-08-18",
+      "entry": 322.1499938964844,
+      "entry_time": "2026-08-18T09:35:00+05:30",
+      "exit_price": 320.4764877929688,
+      "exit_time": "2026-08-18T10:10:00+05:30",
+      "final_result": "+1R",
+      "half_r_hit": true,
+      "outcome": "+1R",
+      "rating": 10,
+      "realized_r": 1.0,
+      "risk": 1.6735061035155923,
+      "side": "short",
+      "stop": 323.82349999999997,
+      "symbol": "PCBL.NS",
+      "target_1": 320.4764877929688,
+      "target_2": 318.8029816894532,
+      "target_half": 321.3132408447266,
+      "trade_id": "a0dca581200fcc44"
     }
   ],
   "handled": {
@@ -122,6 +143,7 @@
     "8f1eb0296fd68aca": "filled",
     "a0dca581200fcc44": "filled",
     "a8a455e9eb8e32d6": "filled",
+    "b64efd509aa29d25": "filled",
     "b7c5521914d15284": "filled",
     "cf357eb07d9da901": "filled",
     "d683c95024d5bd8f": "filled",
@@ -270,19 +292,19 @@
       "target_2": 409.80533898925785,
       "target_half": 406.05132559204105
     },
-    "a0dca581200fcc44": {
-      "alert_time": "2026-08-18T09:32:38.572729+05:30",
-      "entry": 322.1499938964844,
-      "entry_time": "2026-08-18T09:35:00+05:30",
-      "half_r_hit": true,
-      "rating": 10,
-      "risk": 1.6735061035155923,
-      "side": "short",
-      "stop": 323.82349999999997,
-      "symbol": "PCBL.NS",
-      "target_1": 320.4764877929688,
-      "target_2": 318.8029816894532,
-      "target_half": 321.3132408447266
+    "b64efd509aa29d25": {
+      "alert_time": "2026-08-18T09:52:08.471439+05:30",
+      "entry": 6655.5,
+      "entry_time": "2026-08-18T10:15:00+05:30",
+      "half_r_hit": false,
+      "rating": 9,
+      "risk": 36.126000000000204,
+      "side": "long",
+      "stop": 6619.374,
+      "symbol": "ATUL.NS",
+      "target_1": 6691.626,
+      "target_2": 6727.752,
+      "target_half": 6673.563
     },
     "b7c5521914d15284": {
       "alert_time": "2026-08-18T09:32:33.687321+05:30",
