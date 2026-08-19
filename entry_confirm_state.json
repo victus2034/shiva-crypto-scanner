@@ -3,10 +3,6 @@
     "reached_entry": true,
     "stage": 3
   },
-  "AARTIIND.NS|30m|long|523.8000|520.5789": {
-    "reached_entry": true,
-    "stage": 3
-  },
   "ABBOTINDIA.NS|30m|long|26180.6303|26123.8500": {
     "reached_entry": false
   },
@@ -99,7 +95,8 @@
     "stage": 1
   },
   "BELRISE.NS|30m|long|232.8807|232.0178": {
-    "reached_entry": false
+    "reached_entry": false,
+    "stage": 1
   },
   "BIKAJI.NS|30m|long|607.0077|605.5439": {
     "reached_entry": false
@@ -202,10 +199,6 @@
   "FORTIS.NS|30m|long|908.2551|905.7933": {
     "reached_entry": false
   },
-  "GAIL.NS|30m|short|172.7200|173.7236": {
-    "reached_entry": true,
-    "stage": 3
-  },
   "GAIL.NS|30m|short|174.7040|175.0749": {
     "reached_entry": false
   },
@@ -224,9 +217,6 @@
   "GODIGIT.NS|30m|long|252.1640|251.3484": {
     "reached_entry": false
   },
-  "GODREJCP.NS|30m|short|940.1000|943.5426": {
-    "reached_entry": false
-  },
   "GODREJCP.NS|30m|short|940.8904|943.5426": {
     "reached_entry": false
   },
@@ -239,10 +229,6 @@
   },
   "HUDCO.NS|30m|short|191.1910|191.6114": {
     "reached_entry": false
-  },
-  "ICICIAMC.NS|30m|short|3182.8000|3205.2020": {
-    "reached_entry": true,
-    "stage": 3
   },
   "ICICIAMC.NS|30m|short|3252.9019|3261.2580": {
     "reached_entry": true,
@@ -258,19 +244,11 @@
     "reached_entry": true,
     "stage": 3
   },
-  "IGIL.NS|30m|long|340.4500|338.9607": {
-    "reached_entry": true,
-    "stage": 3
-  },
   "IGL.NS|30m|short|155.1573|155.4653": {
     "reached_entry": false
   },
   "IKS.NS|30m|long|1826.6723|1821.7764": {
-    "reached_entry": false
-  },
-  "INDHOTEL.NS|30m|short|721.0000|723.7730": {
-    "reached_entry": true,
-    "stage": 3
+    "reached_entry": true
   },
   "INDHOTEL.NS|30m|short|723.2076|724.7240": {
     "reached_entry": true,
@@ -385,16 +363,16 @@
     "reached_entry": false
   },
   "NEWGEN.NS|30m|long|522.5509|520.5789": {
-    "reached_entry": false,
-    "stage": 1
+    "reached_entry": true,
+    "stage": 3
   },
   "NEWGEN.NS|30m|long|522.5510|520.5789": {
-    "reached_entry": false,
-    "stage": 1
+    "reached_entry": true,
+    "stage": 3
   },
   "NEWGEN.NS|30m|long|522.5724|520.5789": {
-    "reached_entry": false,
-    "stage": 1
+    "reached_entry": true,
+    "stage": 3
   },
   "NIVABUPA.NS|30m|short|84.3933|84.5845": {
     "reached_entry": false
@@ -403,12 +381,12 @@
     "reached_entry": false
   },
   "OLAELEC.NS|30m|long|37.6767|37.5624": {
-    "reached_entry": false,
-    "stage": 1
+    "reached_entry": true,
+    "stage": 2
   },
   "OLAELEC.NS|30m|long|37.6768|37.5624": {
-    "reached_entry": false,
-    "stage": 1
+    "reached_entry": true,
+    "stage": 2
   },
   "PATANJALI.NS|30m|long|347.8687|346.9527": {
     "reached_entry": false
@@ -432,9 +410,6 @@
   "PNBHOUSING.NS|30m|short|1172.4133|1175.9748": {
     "reached_entry": true,
     "stage": 2
-  },
-  "RECLTD.NS|30m|short|340.9000|342.0917": {
-    "reached_entry": false
   },
   "RECLTD.NS|30m|short|341.3237|342.0917": {
     "reached_entry": false
