@@ -868,7 +868,9 @@
     "6057d8a3b3a775ce": "filled",
     "6622d65505d82ce1": "filled",
     "6e71d7b35a1b551f": "filled",
+    "793d0e05bbce9a5e": "filled",
     "8a5f23124123ac2b": "filled",
+    "92240d209318f6ba": "filled",
     "93452f87274f7e01": "filled",
     "93edee48e899188b": "filled",
     "96c999853e7a69dd": "filled",
@@ -889,9 +891,11 @@
     "e2dd9c6197a6ed55": "filled",
     "e4dde4faa2884c99": "filled",
     "e9a327188312d6dd": "filled",
+    "ecb9fa607d146c85": "filled",
     "ecbd59226d49c52e": "filled",
     "f0e6c713612f0613": "filled",
     "f3dab638b4211f9e": "filled",
+    "f439cdebb9241872": "filled",
     "f46904ce713775e5": "filled",
     "f551cf31fb063be6": "filled",
     "f936cb29666d3645": "filled"
@@ -925,6 +929,34 @@
       "target_2": 161.1280328063965,
       "target_half": 159.9895086593628
     },
+    "793d0e05bbce9a5e": {
+      "alert_time": "2026-08-19T12:51:57.953219+05:30",
+      "entry": 523.7999877929688,
+      "entry_time": "2026-08-19T12:55:00+05:30",
+      "half_r_hit": false,
+      "rating": 8,
+      "risk": 3.221112182617162,
+      "side": "long",
+      "stop": 520.5788756103516,
+      "symbol": "AARTIIND.NS",
+      "target_1": 527.0210999755859,
+      "target_2": 530.2422121582031,
+      "target_half": 525.4105438842773
+    },
+    "92240d209318f6ba": {
+      "alert_time": "2026-08-19T12:32:11.786354+05:30",
+      "entry": 239.24000549316406,
+      "entry_time": "2026-08-19T12:50:00+05:30",
+      "half_r_hit": false,
+      "rating": 6,
+      "risk": 1.428052444458018,
+      "side": "long",
+      "stop": 237.81195304870604,
+      "symbol": "ENGINERSIN.NS",
+      "target_1": 240.66805793762208,
+      "target_2": 242.0961103820801,
+      "target_half": 239.95403171539306
+    },
     "be0156ccea7b15b3": {
       "alert_time": "2026-08-19T11:32:23.812286+05:30",
       "entry": 1991.9000244140625,
@@ -953,6 +985,20 @@
       "target_2": 14086.110000000004,
       "target_half": 14272.7775
     },
+    "ecb9fa607d146c85": {
+      "alert_time": "2026-08-19T12:51:58.141750+05:30",
+      "entry": 172.72000122070312,
+      "entry_time": "2026-08-19T12:55:00+05:30",
+      "half_r_hit": false,
+      "rating": 8,
+      "risk": 1.0035518341064176,
+      "side": "short",
+      "stop": 173.72355305480954,
+      "symbol": "GAIL.NS",
+      "target_1": 171.7164493865967,
+      "target_2": 170.7128975524903,
+      "target_half": 172.21822530364992
+    },
     "f3dab638b4211f9e": {
       "alert_time": "2026-08-19T10:52:07.885884+05:30",
       "entry": 3052.199951171875,
@@ -966,6 +1012,20 @@
       "target_1": 3062.44490234375,
       "target_2": 3072.689853515625,
       "target_half": 3057.3224267578125
+    },
+    "f439cdebb9241872": {
+      "alert_time": "2026-08-19T12:51:58.545169+05:30",
+      "entry": 3182.800048828125,
+      "entry_time": "2026-08-19T12:55:00+05:30",
+      "half_r_hit": false,
+      "rating": 9,
+      "risk": 22.40195117187477,
+      "side": "short",
+      "stop": 3205.2019999999998,
+      "symbol": "ICICIAMC.NS",
+      "target_1": 3160.3980976562502,
+      "target_2": 3137.9961464843755,
+      "target_half": 3171.599073242188
     }
   }
 }
