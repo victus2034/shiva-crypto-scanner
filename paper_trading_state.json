@@ -735,6 +735,52 @@
       "target_2": 280.12775115966804,
       "target_half": 283.2569286346436,
       "trade_id": "8a5f23124123ac2b"
+    },
+    {
+      "alert_time": "2026-08-19T10:32:18.949993+05:30",
+      "cost_r": 0.16671292023888415,
+      "date": "2026-08-19",
+      "entry": 3128.0,
+      "entry_time": "2026-08-19T10:35:00+05:30",
+      "exit_price": 3149.518821301391,
+      "exit_time": "2026-08-19T12:30:00+05:30",
+      "final_result": "SL",
+      "half_r_hit": false,
+      "net_realized_r": -1.245629157416163,
+      "outcome": "SL",
+      "rating": 7,
+      "realized_r": -1.078916237177279,
+      "risk": 19.94484887695262,
+      "side": "short",
+      "stop": 3147.9448488769526,
+      "symbol": "ICICIAMC.NS",
+      "target_1": 3108.0551511230474,
+      "target_2": 3088.1103022460948,
+      "target_half": 3118.027575561524,
+      "trade_id": "018819f1ade27fff"
+    },
+    {
+      "alert_time": "2026-08-19T10:52:06.260214+05:30",
+      "cost_r": 0.4258887688984967,
+      "date": "2026-08-19",
+      "entry": 1669.5,
+      "entry_time": "2026-08-19T11:25:00+05:30",
+      "exit_price": null,
+      "exit_time": "2026-08-19T12:30:00+05:30",
+      "final_result": "data_quality_ambiguous",
+      "half_r_hit": true,
+      "net_realized_r": null,
+      "outcome": "data_quality_ambiguous",
+      "rating": 9,
+      "realized_r": null,
+      "risk": 4.166999999999916,
+      "side": "long",
+      "stop": 1665.333,
+      "symbol": "ADANIPORTS.NS",
+      "target_1": 1673.667,
+      "target_2": 1677.8339999999998,
+      "target_half": 1671.5835,
+      "trade_id": "f936cb29666d3645"
     }
   ],
   "handled": {
@@ -779,20 +825,6 @@
     "f936cb29666d3645": "filled"
   },
   "open": {
-    "018819f1ade27fff": {
-      "alert_time": "2026-08-19T10:32:18.949993+05:30",
-      "entry": 3128.0,
-      "entry_time": "2026-08-19T10:35:00+05:30",
-      "half_r_hit": false,
-      "rating": 7,
-      "risk": 19.94484887695262,
-      "side": "short",
-      "stop": 3147.9448488769526,
-      "symbol": "ICICIAMC.NS",
-      "target_1": 3108.0551511230474,
-      "target_2": 3088.1103022460948,
-      "target_half": 3118.027575561524
-    },
     "3eebc2f6cbc5a876": {
       "alert_time": "2026-08-19T12:12:02.390942+05:30",
       "entry": 1199.0,
@@ -862,20 +894,6 @@
       "target_1": 3062.44490234375,
       "target_2": 3072.689853515625,
       "target_half": 3057.3224267578125
-    },
-    "f936cb29666d3645": {
-      "alert_time": "2026-08-19T10:52:06.260214+05:30",
-      "entry": 1669.5,
-      "entry_time": "2026-08-19T11:25:00+05:30",
-      "half_r_hit": false,
-      "rating": 9,
-      "risk": 4.166999999999916,
-      "side": "long",
-      "stop": 1665.333,
-      "symbol": "ADANIPORTS.NS",
-      "target_1": 1673.667,
-      "target_2": 1677.8339999999998,
-      "target_half": 1671.5835
     }
   }
 }
