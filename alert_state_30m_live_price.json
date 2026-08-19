@@ -1864,7 +1864,7 @@
     "1000BONKUSD|30m|short|0.0023668400|0.0023680000": 1787152283.7056758,
     "MNT/USDT|30m|short|0.4509430000|0.4513000000": 1787152284.0891943,
     "HOOD/USDT:USDT|30m|short|96.9685000000|97.0300000000": 1787152285.0573318,
-    "XMRUSD|30m|short|422.0397500000|422.3700000000": 1787153485.9575574,
+    "XMRUSD|30m|short|422.0397500000|422.3700000000": 1787159479.1909091,
     "TRX/USDT|30m|short|0.3349760000|0.3351200000": 1787157088.6804655,
     "WLFI/USDT|30m|short|0.0608557000|0.0610000000": 1787157089.487618,
     "ETHFI/USDT|30m|short|0.5219780000|0.5233000000": 1787153487.2915747,
@@ -6399,8 +6399,8 @@
     "last_alert_at": 1787137883.435571
   },
   "XMRUSD|supply|422.03975000|422.37000000": {
-    "in_zone": false,
-    "last_alert_at": 1787153485.9575574
+    "in_zone": true,
+    "last_alert_at": 1787159479.1909091
   },
   "XMRUSD|demand|409.05000000|409.33750000": {
     "in_zone": false,
@@ -8574,6 +8574,22 @@
     "last_alert_at": 0.0
   },
   "BOME/USDT|demand|0.00074630|0.00074806": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "DEXE/USDT|supply|2.01655850|2.02110000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "ARBUSD|supply|0.08169400|0.08180000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "BOME/USDT|supply|0.00093994|0.00094400": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "POL/USDT|demand|0.08067000|0.08080095": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
