@@ -1574,7 +1574,10 @@
     "ALGO/USDT|4h|short|0.0803672500|0.0807100000": 1787140885.4207575,
     "FARTCOIN/USDT|4h|short|0.1457145000|0.1466000000": 1787143272.0511236,
     "LDO/USDT|4h|short|0.3086765000|0.3102000000": 1787143272.2502108,
-    "PAXGUSD|4h|short|4431.6203000000|4439.3000000000": 1787143272.7763472
+    "PAXGUSD|4h|short|4431.6203000000|4439.3000000000": 1787143272.7763472,
+    "WIF/USDT|4h|short|0.1386265000|0.1392000000": 1787144481.9688666,
+    "SPYXUSD|4h|short|777.0781000000|777.5200000000": 1787144482.2096632,
+    "AVGO/USDT:USDT|4h|long|368.4000000000|369.5938500000": 1787144482.693007
   },
   "ARBUSD|supply|0.08030000|0.08180000": {
     "in_zone": false,
@@ -2969,8 +2972,8 @@
     "last_alert_at": 0.0
   },
   "SPYXUSD|supply|777.07810000|777.52000000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1787144482.2096632
   },
   "SPYXUSD|demand|725.80000000|726.49115000": {
     "in_zone": false,
@@ -3013,7 +3016,7 @@
     "last_alert_at": 0.0
   },
   "COINXUSD|demand|145.60000000|146.36960000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1787140886.401953
   },
   "SOXLBUSD|supply|156.05465000|156.90000000": {
@@ -3077,8 +3080,8 @@
     "last_alert_at": 0.0
   },
   "AVGO/USDT:USDT|demand|368.40000000|369.59385000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1787144482.693007
   },
   "IBM/USDT:USDT|supply|235.34780000|235.79000000": {
     "in_zone": false,
@@ -3241,8 +3244,8 @@
     "last_alert_at": 0.0
   },
   "WIF/USDT|supply|0.13862650|0.13920000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1787144481.9688666
   },
   "GWEI/USDT|supply|0.02361475|0.02402000": {
     "in_zone": false,
@@ -3253,6 +3256,18 @@
     "last_alert_at": 0.0
   },
   "MRVL/USDT:USDT|supply|250.28120000|252.09000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "ETHUSD|supply|1975.28300000|1981.00000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "XRPUSD|supply|1.04649300|1.04940000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "EUL/USDT|supply|1.64988150|1.69800000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
