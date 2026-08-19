@@ -246,7 +246,7 @@
   },
   "ICICIAMC.NS|30m|short|3252.9019|3261.2580": {
     "reached_entry": true,
-    "stage": 2
+    "stage": 3
   },
   "ICICIGI.NS|30m|long|1611.8035|1607.4909": {
     "reached_entry": false
@@ -331,11 +331,12 @@
     "reached_entry": false
   },
   "JUBLFOOD.NS|30m|long|497.3920|495.9036": {
-    "reached_entry": false
+    "reached_entry": true,
+    "stage": 2
   },
   "KEI.NS|30m|long|5681.7183|5667.3270": {
-    "reached_entry": false,
-    "stage": 1
+    "reached_entry": true,
+    "stage": 2
   },
   "LICHSGFIN.NS|30m|long|496.4310|495.5040": {
     "reached_entry": false
@@ -370,7 +371,8 @@
     "reached_entry": false
   },
   "NAM-INDIA.NS|30m|short|1213.0076|1216.2150": {
-    "reached_entry": false
+    "reached_entry": true,
+    "stage": 2
   },
   "NAVINFLUOR.NS|30m|short|8286.9089|8308.3000": {
     "reached_entry": true,
@@ -387,10 +389,12 @@
     "stage": 1
   },
   "NEWGEN.NS|30m|long|522.5510|520.5789": {
-    "reached_entry": false
+    "reached_entry": false,
+    "stage": 1
   },
   "NEWGEN.NS|30m|long|522.5724|520.5789": {
-    "reached_entry": false
+    "reached_entry": false,
+    "stage": 1
   },
   "NIVABUPA.NS|30m|short|84.3933|84.5845": {
     "reached_entry": false
