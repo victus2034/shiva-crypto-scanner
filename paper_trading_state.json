@@ -1195,6 +1195,29 @@
       "target_2": 720.1749293714616,
       "target_half": 722.4494646857308,
       "trade_id": "aca814c7fd968227"
+    },
+    {
+      "alert_time": "2026-08-19T13:12:44.361434+05:30",
+      "cost_r": 0.4118053224191214,
+      "date": "2026-08-19",
+      "entry": 8286.908862873634,
+      "entry_time": "2026-08-19T13:30:00+05:30",
+      "exit_price": 8265.517725747268,
+      "exit_time": "2026-08-19T13:35:00+05:30",
+      "final_result": "+1R",
+      "half_r_hit": true,
+      "net_realized_r": 0.5881946775808786,
+      "outcome": "+1R",
+      "rating": 7,
+      "realized_r": 1.0,
+      "risk": 21.39113712636572,
+      "side": "short",
+      "stop": 8308.3,
+      "symbol": "NAVINFLUOR.NS",
+      "target_1": 8265.517725747268,
+      "target_2": 8244.126588620902,
+      "target_half": 8276.213294310452,
+      "trade_id": "c5948b554739c4ac"
     }
   ],
   "handled": {
@@ -1202,6 +1225,7 @@
     "053cdd03b7104d64": "filled",
     "07842aadbbd492d2": "filled",
     "11a4b9d19fc0876c": "filled",
+    "18e7954ec30a12e5": "filled",
     "1b0578d4e8a4bf0e": "filled",
     "213cf6f3b5c83f2e": "filled",
     "22ab31e5be1f0497": "filled",
@@ -1237,6 +1261,7 @@
     "b918189032b3bc5a": "filled",
     "bb4546b1fb2118ac": "filled",
     "be0156ccea7b15b3": "filled",
+    "c5948b554739c4ac": "filled",
     "cae4617f29e7728e": "filled",
     "ced0421f1fed146d": "filled",
     "d507a063147ced25": "filled",
@@ -1259,6 +1284,20 @@
     "fa95f6e0a4f0a901": "filled"
   },
   "open": {
+    "18e7954ec30a12e5": {
+      "alert_time": "2026-08-19T13:12:20.472085+05:30",
+      "entry": 1732.5192821781902,
+      "entry_time": "2026-08-19T13:30:00+05:30",
+      "half_r_hit": false,
+      "rating": 9,
+      "risk": 4.149406567838696,
+      "side": "long",
+      "stop": 1728.3698756103515,
+      "symbol": "INDIAMART.NS",
+      "target_1": 1736.668688746029,
+      "target_2": 1740.8180953138676,
+      "target_half": 1734.5939854621097
+    },
     "22ab31e5be1f0497": {
       "alert_time": "2026-08-19T13:12:18.404824+05:30",
       "entry": 252.1639409203348,
@@ -1305,7 +1344,7 @@
       "alert_time": "2026-08-19T13:12:15.889351+05:30",
       "entry": 819.5720429648785,
       "entry_time": "2026-08-19T13:25:00+05:30",
-      "half_r_hit": false,
+      "half_r_hit": true,
       "rating": 9,
       "risk": 2.2401685752300864,
       "side": "long",
