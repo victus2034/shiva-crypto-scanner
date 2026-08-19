@@ -1730,7 +1730,9 @@
     "ASTER/USDT|30m|long|0.5977000000|0.5997000000": 1787106686.7531579,
     "SOXX/USDT:USDT|30m|short|531.8000000000|532.6300000000": 1787106687.235016,
     "SOON/USDT|30m|long|0.1925000000|0.1933000000": 1787107875.9889538,
-    "XLM/USDT|30m|short|0.1551800000|0.1553900000": 1787107876.2112513
+    "XLM/USDT|30m|short|0.1551800000|0.1553900000": 1787107876.2112513,
+    "FILUSD|30m|short|0.6350000000|0.6380000000": 1787109079.054215,
+    "MRVL/USDT:USDT|30m|long|211.3600000000|212.8000000000": 1787109079.3253584
   },
   "METAXUSD|demand|577.00000000|579.20000000": {
     "in_zone": false,
@@ -5834,8 +5836,8 @@
     "last_alert_at": 0.0
   },
   "FILUSD|supply|0.63500000|0.63800000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1787109079.054215
   },
   "ORDI/USDT|supply|3.43700000|3.46900000": {
     "in_zone": false,
@@ -5866,8 +5868,8 @@
     "last_alert_at": 0.0
   },
   "MRVL/USDT:USDT|demand|211.36000000|212.80000000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1787109079.3253584
   },
   "SOXX/USDT:USDT|supply|531.80000000|532.63000000": {
     "in_zone": true,
@@ -5880,5 +5882,9 @@
   "XLM/USDT|supply|0.15518000|0.15539000": {
     "in_zone": true,
     "last_alert_at": 1787107876.2112513
+  },
+  "LTCUSD|demand|43.29000000|43.54000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
   }
 }
