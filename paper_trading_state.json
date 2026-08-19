@@ -1,5 +1,112 @@
 {
   "closed": [],
-  "handled": {},
-  "open": {}
+  "handled": {
+    "07842aadbbd492d2": "filled",
+    "569ef807e52ec2ae": "filled",
+    "5c8260fe4cb7b403": "filled",
+    "6057d8a3b3a775ce": "filled",
+    "93452f87274f7e01": "filled",
+    "995bec270ee3fc3c": "filled",
+    "e9a327188312d6dd": "filled"
+  },
+  "open": {
+    "07842aadbbd492d2": {
+      "alert_time": "2026-08-19T09:32:23.256348+05:30",
+      "entry": 293.3999938964844,
+      "entry_time": "2026-08-19T09:35:00+05:30",
+      "half_r_hit": false,
+      "rating": 9,
+      "risk": 1.891806091308581,
+      "side": "long",
+      "stop": 291.5081878051758,
+      "symbol": "JAINREC.NS",
+      "target_1": 295.29179998779296,
+      "target_2": 297.18360607910154,
+      "target_half": 294.34589694213867
+    },
+    "569ef807e52ec2ae": {
+      "alert_time": "2026-08-19T09:32:18.002035+05:30",
+      "entry": 1083.199951171875,
+      "entry_time": "2026-08-19T09:35:00+05:30",
+      "half_r_hit": false,
+      "rating": 10,
+      "risk": 5.478702392578043,
+      "side": "long",
+      "stop": 1077.721248779297,
+      "symbol": "BAJFINANCE.NS",
+      "target_1": 1088.678653564453,
+      "target_2": 1094.157355957031,
+      "target_half": 1085.9393023681641
+    },
+    "5c8260fe4cb7b403": {
+      "alert_time": "2026-08-19T09:32:17.804478+05:30",
+      "entry": 11588.0,
+      "entry_time": "2026-08-19T09:35:00+05:30",
+      "half_r_hit": false,
+      "rating": 10,
+      "risk": 47.55199999999968,
+      "side": "long",
+      "stop": 11540.448,
+      "symbol": "BAJAJ-AUTO.NS",
+      "target_1": 11635.552,
+      "target_2": 11683.104,
+      "target_half": 11611.776
+    },
+    "6057d8a3b3a775ce": {
+      "alert_time": "2026-08-19T09:32:21.455412+05:30",
+      "entry": 1329.5999755859375,
+      "entry_time": "2026-08-19T09:35:00+05:30",
+      "half_r_hit": false,
+      "rating": 10,
+      "risk": 4.232524414062254,
+      "side": "short",
+      "stop": 1333.8324999999998,
+      "symbol": "GESHIP.NS",
+      "target_1": 1325.3674511718752,
+      "target_2": 1321.134926757813,
+      "target_half": 1327.4837133789065
+    },
+    "93452f87274f7e01": {
+      "alert_time": "2026-08-19T09:32:20.275882+05:30",
+      "entry": 160.83999633789062,
+      "entry_time": "2026-08-19T09:35:00+05:30",
+      "half_r_hit": false,
+      "rating": 9,
+      "risk": 0.6004024353027262,
+      "side": "long",
+      "stop": 160.2395939025879,
+      "symbol": "CESC.NS",
+      "target_1": 161.44039877319335,
+      "target_2": 162.04080120849608,
+      "target_half": 161.140197555542
+    },
+    "995bec270ee3fc3c": {
+      "alert_time": "2026-08-19T09:32:21.208323+05:30",
+      "entry": 318.3999938964844,
+      "entry_time": "2026-08-19T09:35:00+05:30",
+      "half_r_hit": false,
+      "rating": 8,
+      "risk": 2.9710438842773215,
+      "side": "short",
+      "stop": 321.3710377807617,
+      "symbol": "ETERNAL.NS",
+      "target_1": 315.42895001220705,
+      "target_2": 312.45790612792973,
+      "target_half": 316.9144719543457
+    },
+    "e9a327188312d6dd": {
+      "alert_time": "2026-08-19T09:32:17.604123+05:30",
+      "entry": 662.7999877929688,
+      "entry_time": "2026-08-19T09:35:00+05:30",
+      "half_r_hit": false,
+      "rating": 9,
+      "risk": 8.370512207031197,
+      "side": "short",
+      "stop": 671.1705,
+      "symbol": "ATGL.NS",
+      "target_1": 654.4294755859376,
+      "target_2": 646.0589633789064,
+      "target_half": 658.6147316894532
+    }
+  }
 }
