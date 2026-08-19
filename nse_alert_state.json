@@ -200,9 +200,9 @@
     "last_attempt_at": 0.0
   },
   "AMBUJACEM.NS|demand|405.0000|406.5000": {
-    "in_zone": false,
-    "last_alert_at": 1786947148.513345,
-    "last_attempt_at": 1786947148.513345
+    "in_zone": true,
+    "last_alert_at": 1787112734.575431,
+    "last_attempt_at": 1787112734.575431
   },
   "ANANDRATHI.NS|demand|2002.1000|2028.6000": {
     "in_zone": false,
@@ -285,7 +285,7 @@
     "last_attempt_at": 0.0
   },
   "ASTERDM.NS|demand|772.8500|782.0000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1787111557.9630692,
     "last_attempt_at": 1787111557.9630692
   },
@@ -2260,9 +2260,9 @@
     "last_attempt_at": 0.0
   },
   "RVNL.NS|demand|220.2500|221.2100": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1787112735.029623,
+    "last_attempt_at": 1787112735.029623
   },
   "RAILTEL.NS|supply|406.3500|412.5000": {
     "in_zone": false,
@@ -2556,12 +2556,14 @@
     "COROMANDEL.NS|4h|short|2115.3000488281|2128.5000000000": 1786942353.5655885,
     "FACT.NS|4h|long|789.4000244141|799.5000000000": 1786942353.8102632,
     "IOC.NS|4h|long|136.6000061035|137.7599945068": 1787111558.6438591,
-    "AMBUJACEM.NS|4h|long|405.0000000000|406.5000000000": 1786947148.513345,
+    "AMBUJACEM.NS|4h|long|405.0000000000|406.5000000000": 1787112734.575431,
     "IFCI.NS|4h|short|77.3199996948|79.1500015259": 1786948367.225799,
     "JSL.NS|4h|short|743.7500000000|752.9000244141": 1787025150.287721,
     "JYOTICNC.NS|4h|short|861.7500000000|874.7500000000": 1787025150.4979823,
     "ACE.NS|4h|short|1155.0000000000|1169.0000000000": 1787027570.2263749,
-    "ASTERDM.NS|4h|long|772.8499755859|782.0000000000": 1787111557.9630692
+    "ASTERDM.NS|4h|long|772.8499755859|782.0000000000": 1787111557.9630692,
+    "ICICIPRULI.NS|4h|long|491.2500000000|498.0000000000": 1787112734.8087308,
+    "RVNL.NS|4h|long|220.2500000000|221.2100067139": 1787112735.029623
   },
   "GESHIP.NS|demand|1057.1000|1070.5000": {
     "in_zone": false,
@@ -2874,9 +2876,9 @@
     "last_attempt_at": 0.0
   },
   "ICICIPRULI.NS|demand|491.2500|498.0000": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1787112734.8087308,
+    "last_attempt_at": 1787112734.8087308
   },
   "INDGN.NS|supply|571.3500|583.0000": {
     "in_zone": false,
@@ -2934,6 +2936,11 @@
     "last_attempt_at": 0.0
   },
   "BATAINDIA.NS|demand|697.4500|699.8500": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "HSCL.NS|demand|636.0000|639.8000": {
     "in_zone": false,
     "last_alert_at": 0.0,
     "last_attempt_at": 0.0
