@@ -229,6 +229,29 @@
       "target_2": 3523.377688476563,
       "target_half": 3544.1694953613282,
       "trade_id": "e2dd9c6197a6ed55"
+    },
+    {
+      "alert_time": "2026-08-19T09:32:20.101097+05:30",
+      "cost_r": 0.19579299103504616,
+      "date": "2026-08-19",
+      "entry": 5537.0,
+      "entry_time": "2026-08-19T09:40:00+05:30",
+      "exit_price": 5530.3556,
+      "exit_time": "2026-08-19T10:30:00+05:30",
+      "final_result": "BE",
+      "half_r_hit": true,
+      "net_realized_r": 0.025233903830485405,
+      "outcome": "BE",
+      "rating": 6,
+      "realized_r": 0.22102689486553156,
+      "risk": 30.061499999999796,
+      "side": "short",
+      "stop": 5567.0615,
+      "symbol": "BRITANNIA.NS",
+      "target_1": 5506.9385,
+      "target_2": 5476.877,
+      "target_half": 5521.96925,
+      "trade_id": "053cdd03b7104d64"
     }
   ],
   "handled": {
@@ -245,6 +268,7 @@
     "9924cdd0733952fe": "filled",
     "995bec270ee3fc3c": "filled",
     "a9a66799566d7408": "filled",
+    "db222c013313dd21": "filled",
     "e0104a53870d40fc": "filled",
     "e2dd9c6197a6ed55": "filled",
     "e9a327188312d6dd": "filled",
@@ -252,20 +276,6 @@
     "f551cf31fb063be6": "filled"
   },
   "open": {
-    "053cdd03b7104d64": {
-      "alert_time": "2026-08-19T09:32:20.101097+05:30",
-      "entry": 5537.0,
-      "entry_time": "2026-08-19T09:40:00+05:30",
-      "half_r_hit": false,
-      "rating": 6,
-      "risk": 30.061499999999796,
-      "side": "short",
-      "stop": 5567.0615,
-      "symbol": "BRITANNIA.NS",
-      "target_1": 5506.9385,
-      "target_2": 5476.877,
-      "target_half": 5521.96925
-    },
     "07842aadbbd492d2": {
       "alert_time": "2026-08-19T09:32:23.256348+05:30",
       "entry": 293.3999938964844,
@@ -298,7 +308,7 @@
       "alert_time": "2026-08-19T10:12:15.856273+05:30",
       "entry": 1054.5999755859375,
       "entry_time": "2026-08-19T10:15:00+05:30",
-      "half_r_hit": false,
+      "half_r_hit": true,
       "rating": 10,
       "risk": 8.462024414062398,
       "side": "short",
@@ -335,6 +345,20 @@
       "target_1": 315.42895001220705,
       "target_2": 312.45790612792973,
       "target_half": 316.9144719543457
+    },
+    "db222c013313dd21": {
+      "alert_time": "2026-08-19T10:12:16.148291+05:30",
+      "entry": 727.8499755859375,
+      "entry_time": "2026-08-19T10:25:00+05:30",
+      "half_r_hit": false,
+      "rating": 9,
+      "risk": 4.2243499755859375,
+      "side": "long",
+      "stop": 723.6256256103516,
+      "symbol": "GRAPHITE.NS",
+      "target_1": 732.0743255615234,
+      "target_2": 736.2986755371094,
+      "target_half": 729.9621505737305
     },
     "e9a327188312d6dd": {
       "alert_time": "2026-08-19T09:32:17.604123+05:30",
