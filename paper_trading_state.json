@@ -1425,6 +1425,29 @@
       "target_2": 5410.9098345997445,
       "target_half": 5389.767917299872,
       "trade_id": "39ff8b27c330332d"
+    },
+    {
+      "alert_time": "2026-08-19T13:12:20.472085+05:30",
+      "cost_r": 0.44383888800626425,
+      "date": "2026-08-19",
+      "entry": 1732.5192821781902,
+      "entry_time": "2026-08-19T13:30:00+05:30",
+      "exit_price": 1736.668688746029,
+      "exit_time": "2026-08-19T13:50:00+05:30",
+      "final_result": "+1R",
+      "half_r_hit": true,
+      "net_realized_r": 0.5561611119937357,
+      "outcome": "+1R",
+      "rating": 9,
+      "realized_r": 1.0,
+      "risk": 4.149406567838696,
+      "side": "long",
+      "stop": 1728.3698756103515,
+      "symbol": "INDIAMART.NS",
+      "target_1": 1736.668688746029,
+      "target_2": 1740.8180953138676,
+      "target_half": 1734.5939854621097,
+      "trade_id": "18e7954ec30a12e5"
     }
   ],
   "handled": {
@@ -1474,6 +1497,7 @@
     "bb4546b1fb2118ac": "filled",
     "be0156ccea7b15b3": "filled",
     "c323cbb9cf0a0c01": "filled",
+    "c526ab7fcb6de6e7": "filled",
     "c5948b554739c4ac": "filled",
     "cae4617f29e7728e": "filled",
     "ced0421f1fed146d": "filled",
@@ -1499,25 +1523,11 @@
     "fa95f6e0a4f0a901": "filled"
   },
   "open": {
-    "18e7954ec30a12e5": {
-      "alert_time": "2026-08-19T13:12:20.472085+05:30",
-      "entry": 1732.5192821781902,
-      "entry_time": "2026-08-19T13:30:00+05:30",
-      "half_r_hit": false,
-      "rating": 9,
-      "risk": 4.149406567838696,
-      "side": "long",
-      "stop": 1728.3698756103515,
-      "symbol": "INDIAMART.NS",
-      "target_1": 1736.668688746029,
-      "target_2": 1740.8180953138676,
-      "target_half": 1734.5939854621097
-    },
     "1901fd3741ee5386": {
       "alert_time": "2026-08-19T13:32:17.430488+05:30",
       "entry": 1351.018351750678,
       "entry_time": "2026-08-19T13:45:00+05:30",
-      "half_r_hit": false,
+      "half_r_hit": true,
       "rating": 10,
       "risk": 4.266476140326404,
       "side": "long",
@@ -1545,7 +1555,7 @@
       "alert_time": "2026-08-19T13:12:13.592020+05:30",
       "entry": 1351.0183498238084,
       "entry_time": "2026-08-19T13:45:00+05:30",
-      "half_r_hit": false,
+      "half_r_hit": true,
       "rating": 10,
       "risk": 4.266474213456831,
       "side": "long",
@@ -1554,6 +1564,20 @@
       "target_1": 1355.2848240372653,
       "target_2": 1359.551298250722,
       "target_half": 1353.1515869305367
+    },
+    "c526ab7fcb6de6e7": {
+      "alert_time": "2026-08-19T13:52:25.003117+05:30",
+      "entry": 4668.269013499939,
+      "entry_time": "2026-08-19T13:55:00+05:30",
+      "half_r_hit": false,
+      "rating": 7,
+      "risk": 17.82401594134535,
+      "side": "long",
+      "stop": 4650.444997558594,
+      "symbol": "FLUOROCHEM.NS",
+      "target_1": 4686.093029441285,
+      "target_2": 4703.91704538263,
+      "target_half": 4677.181021470612
     },
     "cae4617f29e7728e": {
       "alert_time": "2026-08-19T12:32:11.475076+05:30",
