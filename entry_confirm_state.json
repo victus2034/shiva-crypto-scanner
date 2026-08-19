@@ -10,10 +10,6 @@
   "ABBOTINDIA.NS|30m|long|26180.6303|26123.8500": {
     "reached_entry": false
   },
-  "ABCAPITAL.NS|30m|long|393.7000|391.7578": {
-    "reached_entry": false,
-    "stage": 1
-  },
   "ABREL.NS|30m|short|1403.7583|1408.0066": {
     "reached_entry": false
   },
@@ -65,11 +61,12 @@
     "reached_entry": false
   },
   "BDL.NS|30m|long|1351.0183|1346.7519": {
-    "reached_entry": false,
-    "stage": 1
+    "reached_entry": true,
+    "stage": 2
   },
   "BDL.NS|30m|long|1351.0184|1346.7519": {
-    "reached_entry": false
+    "reached_entry": true,
+    "stage": 2
   },
   "BELRISE.NS|30m|long|232.8806|232.0178": {
     "reached_entry": false
@@ -125,9 +122,6 @@
     "reached_entry": true,
     "stage": 3
   },
-  "DIVISLAB.NS|30m|long|8487.5000|8457.0345": {
-    "reached_entry": false
-  },
   "DIXON.NS|30m|short|14335.0000|14459.4450": {
     "reached_entry": true,
     "stage": 2
@@ -137,9 +131,6 @@
     "stage": 2
   },
   "ERIS.NS|30m|long|1332.8513|1329.6690": {
-    "reached_entry": false
-  },
-  "ETERNAL.NS|30m|short|323.2500|325.1749": {
     "reached_entry": false
   },
   "FIVESTAR.NS|30m|long|521.8894|520.2792": {
@@ -193,10 +184,6 @@
   },
   "HUDCO.NS|30m|short|191.1910|191.6114": {
     "reached_entry": false
-  },
-  "ICICIAMC.NS|30m|short|3153.3999|3163.1600": {
-    "reached_entry": true,
-    "stage": 1
   },
   "ICICIAMC.NS|30m|short|3182.8000|3205.2020": {
     "reached_entry": true,
@@ -252,10 +239,6 @@
   "ITCHOTELS.NS|30m|long|163.6628|163.2865": {
     "reached_entry": false
   },
-  "ITI.NS|30m|short|284.3000|286.3861": {
-    "reached_entry": true,
-    "stage": 2
-  },
   "JINDALSTEL.NS|30m|short|1125.7800|1128.4273": {
     "reached_entry": false
   },
@@ -283,10 +266,6 @@
   "LICHSGFIN.NS|30m|long|496.6500|495.5040": {
     "reached_entry": false
   },
-  "LT.NS|30m|long|4029.0000|4021.9740": {
-    "reached_entry": true,
-    "stage": 2
-  },
   "LTTS.NS|30m|short|3555.9408|3564.9613": {
     "reached_entry": false
   },
@@ -303,19 +282,11 @@
     "reached_entry": false,
     "stage": 1
   },
-  "MEESHO.NS|30m|short|193.5100|194.7546": {
-    "reached_entry": true,
-    "stage": 3
-  },
   "MEESHO.NS|30m|short|197.2969|197.7976": {
     "reached_entry": true
   },
   "MRF.NS|30m|long|132750.7179|132522.3450": {
     "reached_entry": false
-  },
-  "NAM-INDIA.NS|30m|short|1199.0000|1204.2030": {
-    "reached_entry": true,
-    "stage": 2
   },
   "NAVINFLUOR.NS|30m|short|8286.9089|8308.3000": {
     "reached_entry": true,
