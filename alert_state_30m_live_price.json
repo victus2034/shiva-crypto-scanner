@@ -1733,7 +1733,12 @@
     "XLM/USDT|30m|short|0.1551800000|0.1553900000": 1787113881.3758674,
     "FILUSD|30m|short|0.6350000000|0.6380000000": 1787109079.054215,
     "MRVL/USDT:USDT|30m|long|211.3600000000|212.8000000000": 1787109079.3253584,
-    "INJUSD|30m|short|4.1720000000|4.1800000000": 1787115083.2543204
+    "INJUSD|30m|short|4.1720000000|4.1800000000": 1787115083.2543204,
+    "LDO/USDT|30m|short|0.3045000000|0.3051000000": 1787116281.7650628,
+    "ATOM/USDT|30m|long|1.4050000000|1.4110000000": 1787116282.0856118,
+    "MUBUSD|30m|long|923.6000000000|929.8500000000": 1787116282.3635163,
+    "AVGO/USDT:USDT|30m|long|378.2700000000|379.7600000000": 1787116282.6728506,
+    "NVDL/USDT:USDT|30m|long|34.5200000000|34.6500000000": 1787116282.9139981
   },
   "METAXUSD|demand|577.00000000|579.20000000": {
     "in_zone": false,
@@ -5893,6 +5898,50 @@
     "last_alert_at": 0.0
   },
   "XPLUSD|supply|0.07589000|0.07632000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "LDO/USDT|supply|0.30450000|0.30510000": {
+    "in_zone": true,
+    "last_alert_at": 1787116281.7650628
+  },
+  "ATOM/USDT|demand|1.40500000|1.41100000": {
+    "in_zone": true,
+    "last_alert_at": 1787116282.0856118
+  },
+  "STRK/USDT|demand|0.02238000|0.02244000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "TSLAXUSD|demand|335.45000000|336.10000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "SNDKBUSD|demand|1564.81000000|1581.55000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "MUBUSD|demand|923.60000000|929.85000000": {
+    "in_zone": true,
+    "last_alert_at": 1787116282.3635163
+  },
+  "AVGO/USDT:USDT|demand|378.27000000|379.76000000": {
+    "in_zone": true,
+    "last_alert_at": 1787116282.6728506
+  },
+  "NBIS/USDT:USDT|demand|241.33000000|244.44000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "AXTI/USDT:USDT|demand|78.33000000|80.00000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "NVDL/USDT:USDT|demand|34.52000000|34.65000000": {
+    "in_zone": true,
+    "last_alert_at": 1787116282.9139981
+  },
+  "SOXX/USDT:USDT|demand|523.78000000|527.39000000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
