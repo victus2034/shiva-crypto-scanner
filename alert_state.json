@@ -1577,7 +1577,9 @@
     "PAXGUSD|4h|short|4431.6203000000|4439.3000000000": 1787143272.7763472,
     "WIF/USDT|4h|short|0.1386265000|0.1392000000": 1787144481.9688666,
     "SPYXUSD|4h|short|777.0781000000|777.5200000000": 1787144482.2096632,
-    "AVGO/USDT:USDT|4h|long|368.4000000000|369.5938500000": 1787144482.693007
+    "AVGO/USDT:USDT|4h|long|368.4000000000|369.5938500000": 1787144482.693007,
+    "BTCUSD|4h|short|65586.2100000000|65720.0000000000": 1787145680.4256241,
+    "TAIKO/USDT|4h|short|0.0728725000|0.0732000000": 1787145680.5849054
   },
   "ARBUSD|supply|0.08030000|0.08180000": {
     "in_zone": false,
@@ -2232,8 +2234,8 @@
     "last_alert_at": 0.0
   },
   "BTCUSD|supply|65586.21000000|65720.00000000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1787145680.4256241
   },
   "BTCUSD|demand|62505.00000000|62612.46500000": {
     "in_zone": false,
@@ -2768,8 +2770,8 @@
     "last_alert_at": 0.0
   },
   "TAIKO/USDT|supply|0.07287250|0.07320000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1787145680.5849054
   },
   "TAIKO/USDT|demand|0.06806000|0.06836470": {
     "in_zone": false,
@@ -2864,7 +2866,7 @@
     "last_alert_at": 0.0
   },
   "ALGO/USDT|supply|0.08036725|0.08071000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1787140885.4207575
   },
   "ALGO/USDT|demand|0.07557000|0.07589520": {
@@ -3268,6 +3270,14 @@
     "last_alert_at": 0.0
   },
   "EUL/USDT|supply|1.64988150|1.69800000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "DOGEUSD|supply|0.07303040|0.07321000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "FARTCOIN/USDT|supply|0.15538650|0.15670000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
