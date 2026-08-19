@@ -154,10 +154,16 @@ def open_new_positions(
         square_off = pd.Timestamp(
             datetime.combine(now.date(), backtest.NSE_BACKTEST_CLOSE_CUTOFF), tz=IST
         )
-        # A fill after the user has stopped trading is not a trade they
-        # could have taken, so it must not open a position.
+        # A fill outside the hours the user actually trades is not a trade
+        # they could have taken, so it must not open a position. The floor
+        # matters even on a later tick, which can still see opening bars.
+        trade_start = pd.Timestamp(
+            datetime.combine(now.date(), entry_confirm.TRADE_START), tz=IST
+        )
         after_alert = frame[
-            (frame.index > record["_delivered"]) & (frame.index < square_off)
+            (frame.index > record["_delivered"])
+            & (frame.index >= trade_start)
+            & (frame.index < square_off)
         ]
         if after_alert.empty:
             continue

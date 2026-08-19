@@ -266,6 +266,31 @@ class DailyBacktestSummaryTests(unittest.TestCase):
         self.assertEqual(result["final_result"], summary.BREAK_EVEN)
         self.assertEqual(result["exit_time"], index[2])
 
+    def test_no_entry_is_taken_before_0920(self):
+        # The opening five minutes are not traded, so a touch inside the
+        # 09:15 bar must not open a position - the 09:20 bar can.
+        index = pd.DatetimeIndex(
+            ["2026-08-04 09:10", "2026-08-04 09:15", "2026-08-04 09:20"],
+            tz=summary.IST,
+        )
+        frame = pd.DataFrame(
+            {
+                "open": [101.0, 99.0, 99.0],
+                "high": [101.2, 99.5, 99.5],
+                "low": [100.9, 98.5, 98.5],
+                "close": [101.0, 99.0, 99.0],
+                "volume": [1, 1, 1],
+            },
+            index=index,
+        )
+        self.assertEqual(
+            summary.find_entry(frame, 0, 100.0, 2, "TCS.NS", "30m", "long"), 2
+        )
+        # A non-NSE symbol has no such session floor.
+        self.assertEqual(
+            summary.find_entry(frame, 0, 100.0, 2, "BTCUSDT", "30m", "long"), 1
+        )
+
     def test_price_running_clean_past_entry_still_fills(self):
         # A resting buy limit at 100 fills when price trades down through
         # it, even if no single bar happens to straddle the level. The old

@@ -55,6 +55,22 @@ class FillTests(unittest.TestCase):
         )
         self.assertEqual(opened, [])
 
+    def test_opening_bars_before_0920_cannot_fill(self):
+        # Even on a later tick, which can see the opening bars, a touch
+        # before 09:20 must not open a position.
+        state = fresh_state()
+        frames = {
+            "TCS.NS": pd.DataFrame(
+                [[101.0, 99.0, 99.5]],
+                index=pd.DatetimeIndex(["2026-08-17 09:15"], tz=IST),
+                columns=["high", "low", "close"],
+            )
+        }
+        opened = paper_trading.open_new_positions(
+            state, [alert(delivered="2026-08-17 09:10")], frames, NOW
+        )
+        self.assertEqual(opened, [])
+
     def test_a_filled_alert_is_not_reopened(self):
         state = fresh_state()
         frames = {"TCS.NS": bars([[101.0, 99.5, 99.8]])}

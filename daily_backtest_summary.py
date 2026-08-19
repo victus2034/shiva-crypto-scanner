@@ -49,7 +49,9 @@ ALERT_BAR_DURATION = {"30m": pd.Timedelta(minutes=30), "4h": pd.Timedelta(hours=
 ENTRY_WAIT_BARS = 3
 MAX_HOLD_BARS = 24
 NSE_BACKTEST_CLOSE_CUTOFF = datetime_time(15, 10)
-NSE_TRADE_START = datetime_time(9, 15)
+# The user does not trade the opening print. The first five minutes are left
+# alone, so a fill stamped before this is not a trade they would have taken.
+NSE_TRADE_START = datetime_time(9, 20)
 CRYPTO_EVALUATION_HOURS = 6
 CRYPTO_REPORT_BOUNDARY = datetime_time(16, 30)
 FIXED_STOP_PCT = 0.5

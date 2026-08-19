@@ -51,7 +51,9 @@ NEAR_SL_FRACTION = 0.5
 # watched exactly when the backtest stops counting it as fillable.
 WATCH_BARS = 3
 
-TRADE_START = datetime_time(9, 15)
+# Matches daily_backtest_summary.NSE_TRADE_START: the opening five minutes
+# are not traded, so there is nothing to ping about before then.
+TRADE_START = datetime_time(9, 20)
 # The user stops trading at 15:10, so a ping after that is noise.
 TRADE_END = datetime_time(15, 10)
 
