@@ -20,7 +20,7 @@
   },
   "ALKEM.NS|30m|long|5382.7206|5368.6260": {
     "reached_entry": true,
-    "stage": 2
+    "stage": 3
   },
   "ANURAS.NS|30m|short|1232.2692|1234.7335": {
     "reached_entry": false
@@ -50,13 +50,16 @@
     "reached_entry": false
   },
   "ATHERENERG.NS|30m|long|1447.3609|1441.8567": {
-    "reached_entry": false
+    "reached_entry": false,
+    "stage": 1
   },
   "ATHERENERG.NS|30m|long|1447.3610|1441.8567": {
-    "reached_entry": false
+    "reached_entry": false,
+    "stage": 1
   },
   "ATHERENERG.NS|30m|long|1447.3695|1441.8567": {
-    "reached_entry": false
+    "reached_entry": false,
+    "stage": 1
   },
   "BAJAJFINSV.NS|30m|long|1991.0910|1986.0120": {
     "reached_entry": false
@@ -269,7 +272,8 @@
     "stage": 2
   },
   "HINDCOPPER.NS|30m|long|556.9583|554.9944": {
-    "reached_entry": false
+    "reached_entry": true,
+    "stage": 2
   },
   "HUDCO.NS|30m|short|191.1910|191.6114": {
     "reached_entry": false
@@ -403,7 +407,8 @@
     "reached_entry": false
   },
   "MSUMI.NS|30m|long|39.4145|39.3106": {
-    "reached_entry": false
+    "reached_entry": false,
+    "stage": 1
   },
   "MSUMI.NS|30m|long|39.4156|39.3106": {
     "reached_entry": false,
@@ -411,11 +416,11 @@
   },
   "NAM-INDIA.NS|30m|short|1213.0076|1216.2150": {
     "reached_entry": true,
-    "stage": 2
+    "stage": 3
   },
   "NAM-INDIA.NS|30m|short|1213.0116|1216.2150": {
     "reached_entry": true,
-    "stage": 2
+    "stage": 3
   },
   "NAVINFLUOR.NS|30m|short|8286.9089|8308.3000": {
     "reached_entry": true,
