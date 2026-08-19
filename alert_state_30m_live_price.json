@@ -1846,11 +1846,11 @@
     "COINXUSD|30m|short|152.2537500000|152.3500000000": 1787147485.8990793,
     "DOGEUSD|30m|short|0.0708045700|0.0708800000": 1787148671.6820686,
     "RE/USDT|30m|short|0.4311004500|0.4325500000": 1787148672.0185616,
-    "MUBUSD|30m|long|918.5000000000|920.2005500000": 1787148672.9471674,
+    "MUBUSD|30m|long|918.5000000000|920.2005500000": 1787163083.2555022,
     "BABA/USDT:USDT|30m|short|128.7961000000|128.9900000000": 1787153487.8091233,
     "STRK/USDT|30m|short|0.0229601500|0.0229900000": 1787149892.7527685,
     "TSLAXUSD|30m|short|345.7621500000|345.8500000000": 1787149892.989899,
-    "TQQQ/USDT:USDT|30m|long|71.5100000000|71.6100000000": 1787149893.408806,
+    "TQQQ/USDT:USDT|30m|long|71.5100000000|71.6100000000": 1787163083.4263709,
     "ENA/USDT|30m|short|0.0856625000|0.0857800000": 1787151082.381485,
     "ZIL/USDT|30m|short|0.0023043750|0.0023070000": 1787151082.5658348,
     "JUP/USDT|30m|short|0.1702715000|0.1705000000": 1787151082.748534,
@@ -1870,9 +1870,11 @@
     "ETHFI/USDT|30m|short|0.5219780000|0.5233000000": 1787153487.2915747,
     "TRUMP/USDT|30m|short|1.4548900000|1.4570000000": 1787155884.2003934,
     "AMZNXUSD|30m|short|267.1125500000|267.2500000000": 1787155884.4154332,
-    "MNT/USDT|30m|short|0.4555575000|0.4558000000": 1787157089.69302,
+    "MNT/USDT|30m|short|0.4555575000|0.4558000000": 1787163083.0851166,
     "HOOD/USDT:USDT|30m|short|99.6114500000|99.7300000000": 1787157090.1621192,
-    "MMT/USDT|30m|short|0.1835900000|0.1843000000": 1787161880.8451862
+    "MMT/USDT|30m|short|0.1835900000|0.1843000000": 1787161880.8451862,
+    "EUL/USDT|30m|short|1.2709280000|1.2749000000": 1787163082.4829836,
+    "TRX/USDT|30m|long|0.3304400000|0.3305560000": 1787163082.7599025
   },
   "METAXUSD|demand|577.00000000|579.20000000": {
     "in_zone": false,
@@ -6996,8 +6998,8 @@
     "last_alert_at": 1787124704.5025995
   },
   "TQQQ/USDT:USDT|demand|71.51000000|71.61000000": {
-    "in_zone": false,
-    "last_alert_at": 1787149893.408806
+    "in_zone": true,
+    "last_alert_at": 1787163083.4263709
   },
   "ZECUSD|supply|518.99545000|519.59000000": {
     "in_zone": false,
@@ -8072,8 +8074,8 @@
     "last_alert_at": 1787161881.2594466
   },
   "MUBUSD|demand|918.50000000|920.20055000": {
-    "in_zone": false,
-    "last_alert_at": 1787148672.9471674
+    "in_zone": true,
+    "last_alert_at": 1787163083.2555022
   },
   "INTCBUSD|demand|94.20000000|94.33880000": {
     "in_zone": false,
@@ -8128,8 +8130,8 @@
     "last_alert_at": 0.0
   },
   "EUL/USDT|supply|1.27092800|1.27490000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1787163082.4829836
   },
   "XPLUSD|supply|0.07745315|0.07761000": {
     "in_zone": false,
@@ -8156,7 +8158,7 @@
     "last_alert_at": 1787142687.7026322
   },
   "TRX/USDT|supply|0.33497600|0.33512000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1787161880.462832
   },
   "ICP/USDT|supply|2.21975500|2.22300000": {
@@ -8511,8 +8513,8 @@
     "last_alert_at": 0.0
   },
   "MNT/USDT|supply|0.45555750|0.45580000": {
-    "in_zone": false,
-    "last_alert_at": 1787157089.69302
+    "in_zone": true,
+    "last_alert_at": 1787163083.0851166
   },
   "ERA/USDT|supply|0.06214715|0.06225000": {
     "in_zone": false,
@@ -8623,6 +8625,34 @@
     "last_alert_at": 0.0
   },
   "TQQQ/USDT:USDT|supply|73.80915000|73.92000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "APTUSD|demand|0.52900000|0.52961650": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "TRX/USDT|demand|0.33044000|0.33055600": {
+    "in_zone": true,
+    "last_alert_at": 1787163082.7599025
+  },
+  "TAIKO/USDT|supply|0.07359510|0.07371000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "INTCBUSD|supply|97.83980000|98.00000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "SAMSUNG/USDT:USDT|supply|188.01735000|188.48000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "MRVL/USDT:USDT|supply|246.65400000|247.42000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "DELL/USDT:USDT|supply|473.67315000|474.79000000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
