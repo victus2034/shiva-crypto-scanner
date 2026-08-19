@@ -236,7 +236,8 @@ def evaluate_open_positions(state: dict, frames: dict[str, pd.DataFrame], now: p
             break_even_stop = (
                 entry + direction * entry * backtest.BREAK_EVEN_OFFSET_PCT / 100.0
             )
-            active_stop = break_even_stop if position["half_r_hit"] else stop
+            stop_moved = position["half_r_hit"] and backtest.BREAK_EVEN_ENABLED
+            active_stop = break_even_stop if stop_moved else stop
             stop_hit = low <= active_stop if side == "long" else high >= active_stop
             two_hit = high >= position["target_2"] if side == "long" else low <= position["target_2"]
             one_hit = high >= position["target_1"] if side == "long" else low <= position["target_1"]
@@ -250,7 +251,7 @@ def evaluate_open_positions(state: dict, frames: dict[str, pd.DataFrame], now: p
                 break
             if stop_hit:
                 if outcome is None:
-                    if position["half_r_hit"]:
+                    if stop_moved:
                         outcome, exit_price = backtest.BREAK_EVEN, break_even_stop
                     else:
                         outcome = "SL"

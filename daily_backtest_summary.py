@@ -66,6 +66,11 @@ ROUND_TRIP_COST_PCT = 0.1063
 # round trip has already been paid - so the stop sits far enough past entry
 # to clear costs with a little room to spare.
 BREAK_EVEN_OFFSET_PCT = 0.120
+# Set False to hold the original stop the whole way and never move it up.
+# Kept switchable so the rule can be measured against real outcomes rather
+# than argued about - paper_trading reads the same flag so the two cannot
+# drift apart.
+BREAK_EVEN_ENABLED = True
 # Below this stop distance the +0.5R trigger arrives while the trade is
 # still net negative (0.5 x SL% < BREAK_EVEN_OFFSET_PCT), so the rule cannot
 # protect capital at all.
@@ -795,7 +800,8 @@ def simulate_alert(
         # the size of the round trip. The move only applies from the next
         # bar, since the ordering inside the bar that reached +0.5R is
         # unknowable.
-        active_stop = break_even_stop if half_r_hit else stop
+        stop_moved = half_r_hit and BREAK_EVEN_ENABLED
+        active_stop = break_even_stop if stop_moved else stop
         stop_hit = low <= active_stop if side == "long" else high >= active_stop
         half_target_hit = high >= target_half if side == "long" else low <= target_half
         first_target_hit = high >= target_1 if side == "long" else low <= target_1
@@ -807,7 +813,7 @@ def simulate_alert(
         # whether the breakeven stop or a higher target came first.
         deciding_target_hit = (
             (half_target_hit or first_target_hit or second_target_hit)
-            if not half_r_hit
+            if not stop_moved
             else (first_target_hit or second_target_hit)
         )
         if outcome == "Neither" and stop_hit and deciding_target_hit:
@@ -830,7 +836,7 @@ def simulate_alert(
                 ambiguous_interval_end = frame.index[index] + bar_duration
                 break
             if resolution == "SL":
-                outcome = BREAK_EVEN if half_r_hit else "SL"
+                outcome = BREAK_EVEN if stop_moved else "SL"
                 exit_index = index
                 time_to_sl = frame.index[index]
                 break
@@ -860,7 +866,7 @@ def simulate_alert(
             # price action upgrade a trade that was already out - crediting,
             # say, +2R to a position flat well before the +2R print.
             if outcome == "Neither":
-                outcome = BREAK_EVEN if half_r_hit else "SL"
+                outcome = BREAK_EVEN if stop_moved else "SL"
             exit_index = index
             time_to_sl = frame.index[index]
             break
