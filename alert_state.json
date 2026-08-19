@@ -2395,7 +2395,7 @@
     "last_alert_at": 0.0
   },
   "EUL/USDT|supply|1.24781300|1.26170000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1787138472.3855703
   },
   "EUL/USDT|demand|1.05200000|1.06248550": {
@@ -2623,7 +2623,7 @@
     "last_alert_at": 0.0
   },
   "DOTUSD|supply|0.78226500|0.78500000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1787137281.4382803
   },
   "UB/USDT|supply|0.14906200|0.15323000": {
@@ -3279,6 +3279,18 @@
     "last_alert_at": 0.0
   },
   "FARTCOIN/USDT|supply|0.15538650|0.15670000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "AAPLXUSD|supply|344.35540000|345.00000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "CRCLXUSD|supply|86.88380000|87.60000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "SOXLBUSD|demand|102.35000000|104.24390000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
