@@ -236,7 +236,13 @@ def evaluate_open_positions(state: dict, frames: dict[str, pd.DataFrame], now: p
             break_even_stop = (
                 entry + direction * entry * backtest.BREAK_EVEN_OFFSET_PCT / 100.0
             )
-            stop_moved = position["half_r_hit"] and backtest.BREAK_EVEN_ENABLED
+            # A breakeven stop the wrong side of its own trigger would fill
+            # instantly, forcing the trade out at the offset rather than
+            # protecting it. Same guard as daily_backtest_summary.
+            reachable = direction * (position["target_half"] - break_even_stop) >= 0
+            stop_moved = (
+                position["half_r_hit"] and backtest.BREAK_EVEN_ENABLED and reachable
+            )
             active_stop = break_even_stop if stop_moved else stop
             stop_hit = low <= active_stop if side == "long" else high >= active_stop
             two_hit = high >= position["target_2"] if side == "long" else low <= position["target_2"]

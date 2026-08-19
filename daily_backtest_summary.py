@@ -771,6 +771,12 @@ def simulate_alert(
     # where those charges do; no equivalent has been measured for crypto.
     break_even_offset = BREAK_EVEN_OFFSET_PCT if market in (None, "nse") else 0.0
     break_even_stop = entry_price + direction * entry_price * break_even_offset / 100.0
+    # On a tight stop the offset can exceed the +0.5R move itself, putting
+    # the breakeven stop the wrong side of the price that triggers it. A
+    # stop above the market fills instantly, so moving it there would force
+    # the trade out at the offset instead of protecting it. Nobody would
+    # place that order, so the stop simply stays put.
+    break_even_reachable = direction * (target_half - break_even_stop) >= 0
 
     end_index = tracking_end_index
     half_r_hit = False
@@ -800,7 +806,7 @@ def simulate_alert(
         # the size of the round trip. The move only applies from the next
         # bar, since the ordering inside the bar that reached +0.5R is
         # unknowable.
-        stop_moved = half_r_hit and BREAK_EVEN_ENABLED
+        stop_moved = half_r_hit and BREAK_EVEN_ENABLED and break_even_reachable
         active_stop = break_even_stop if stop_moved else stop
         stop_hit = low <= active_stop if side == "long" else high >= active_stop
         half_target_hit = high >= target_half if side == "long" else low <= target_half

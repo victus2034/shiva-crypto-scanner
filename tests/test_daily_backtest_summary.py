@@ -266,6 +266,33 @@ class DailyBacktestSummaryTests(unittest.TestCase):
         self.assertEqual(result["final_result"], summary.BREAK_EVEN)
         self.assertEqual(result["exit_time"], index[2])
 
+    def test_a_stop_tighter_than_the_offset_leaves_the_stop_alone(self):
+        # entry 100.00, stop 99.78 -> +0.5R lands at 100.11, but the
+        # breakeven stop would sit at 100.12, above its own trigger. Placing
+        # it there fills instantly and forces the trade out at the offset,
+        # so the stop must stay put and let the trade run.
+        alert = base_alert(
+            zone_bottom=99.78, zone_top=100.0, body_entry=100.0,
+            planned_entry=100.0, stop_price=99.78,
+        )
+        index = pd.date_range("2026-08-04 10:00", periods=5, freq="5min", tz=summary.IST)
+        frame = pd.DataFrame(
+            {
+                "open": [100.5, 100.0, 100.2, 100.3, 100.4],
+                "high": [100.6, 100.12, 100.30, 100.45, 100.60],
+                "low": [100.4, 99.99, 100.15, 100.25, 100.35],
+                "close": [100.5, 100.10, 100.28, 100.40, 100.55],
+                "volume": [1] * 5,
+            },
+            index=index,
+        )
+
+        result = summary.simulate_alert(frame, alert, 0, 4)
+
+        # Price ran past +2R (100.44); a forced exit at 100.12 would have
+        # capped it at the offset instead.
+        self.assertEqual(result["final_result"], "+2R")
+
     def test_no_entry_is_taken_before_0920(self):
         # The opening five minutes are not traded, so a touch inside the
         # 09:15 bar must not open a position - the 09:20 bar can.
