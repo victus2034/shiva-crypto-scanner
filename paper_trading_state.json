@@ -1770,6 +1770,29 @@
       "target_2": 1836.4640500925484,
       "target_half": 1829.12021285145,
       "trade_id": "cfabab8ae61711e9"
+    },
+    {
+      "alert_time": "2026-08-19T13:52:21.791298+05:30",
+      "cost_r": 0.45553453451399983,
+      "date": "2026-08-19",
+      "entry": 512.7344150025175,
+      "entry_time": "2026-08-19T14:25:00+05:30",
+      "exit_price": null,
+      "exit_time": "2026-08-19T14:30:00+05:30",
+      "final_result": "data_quality_ambiguous",
+      "half_r_hit": true,
+      "net_realized_r": null,
+      "outcome": "data_quality_ambiguous",
+      "rating": 7,
+      "realized_r": null,
+      "risk": 1.1964771973417214,
+      "side": "long",
+      "stop": 511.5379378051758,
+      "symbol": "CONCOR.NS",
+      "target_1": 513.9308921998593,
+      "target_2": 515.1273693972009,
+      "target_half": 513.3326536011883,
+      "trade_id": "a51aeb8f2a2352d7"
     }
   ],
   "handled": {
@@ -1931,20 +1954,6 @@
       "target_1": 524.523111614543,
       "target_2": 526.4952296166388,
       "target_half": 523.5370526134952
-    },
-    "a51aeb8f2a2352d7": {
-      "alert_time": "2026-08-19T13:52:21.791298+05:30",
-      "entry": 512.7344150025175,
-      "entry_time": "2026-08-19T14:25:00+05:30",
-      "half_r_hit": false,
-      "rating": 7,
-      "risk": 1.1964771973417214,
-      "side": "long",
-      "stop": 511.5379378051758,
-      "symbol": "CONCOR.NS",
-      "target_1": 513.9308921998593,
-      "target_2": 515.1273693972009,
-      "target_half": 513.3326536011883
     },
     "cae4617f29e7728e": {
       "alert_time": "2026-08-19T12:32:11.475076+05:30",
