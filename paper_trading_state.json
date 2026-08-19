@@ -206,6 +206,29 @@
       "target_2": 1070.630644042969,
       "target_half": 1067.382697631836,
       "trade_id": "f46904ce713775e5"
+    },
+    {
+      "alert_time": "2026-08-19T09:52:10.831301+05:30",
+      "cost_r": 0.27232982381448356,
+      "date": "2026-08-19",
+      "entry": 3551.10009765625,
+      "entry_time": "2026-08-19T10:15:00+05:30",
+      "exit_price": null,
+      "exit_time": "2026-08-19T10:15:00+05:30",
+      "final_result": "data_quality_ambiguous",
+      "half_r_hit": true,
+      "net_realized_r": null,
+      "outcome": "data_quality_ambiguous",
+      "rating": 8,
+      "realized_r": null,
+      "risk": 13.86120458984351,
+      "side": "short",
+      "stop": 3564.9613022460935,
+      "symbol": "LTTS.NS",
+      "target_1": 3537.2388930664065,
+      "target_2": 3523.377688476563,
+      "target_half": 3544.1694953613282,
+      "trade_id": "e2dd9c6197a6ed55"
     }
   ],
   "handled": {
@@ -312,20 +335,6 @@
       "target_1": 315.42895001220705,
       "target_2": 312.45790612792973,
       "target_half": 316.9144719543457
-    },
-    "e2dd9c6197a6ed55": {
-      "alert_time": "2026-08-19T09:52:10.831301+05:30",
-      "entry": 3551.10009765625,
-      "entry_time": "2026-08-19T10:15:00+05:30",
-      "half_r_hit": true,
-      "rating": 8,
-      "risk": 13.86120458984351,
-      "side": "short",
-      "stop": 3564.9613022460935,
-      "symbol": "LTTS.NS",
-      "target_1": 3537.2388930664065,
-      "target_2": 3523.377688476563,
-      "target_half": 3544.1694953613282
     },
     "e9a327188312d6dd": {
       "alert_time": "2026-08-19T09:32:17.604123+05:30",
