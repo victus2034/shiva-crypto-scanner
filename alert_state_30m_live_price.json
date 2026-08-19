@@ -1738,7 +1738,9 @@
     "ATOM/USDT|30m|long|1.4050000000|1.4110000000": 1787116282.0856118,
     "MUBUSD|30m|long|923.6000000000|929.8500000000": 1787116282.3635163,
     "AVGO/USDT:USDT|30m|long|378.2700000000|379.7600000000": 1787116282.6728506,
-    "NVDL/USDT:USDT|30m|long|34.5200000000|34.6500000000": 1787116282.9139981
+    "NVDL/USDT:USDT|30m|long|34.5200000000|34.6500000000": 1787116282.9139981,
+    "UNIUSD|30m|short|3.3220000000|3.3420000000": 1787117482.9940176,
+    "SOXX/USDT:USDT|30m|long|523.7800000000|527.3900000000": 1787117483.229157
   },
   "METAXUSD|demand|577.00000000|579.20000000": {
     "in_zone": false,
@@ -4594,8 +4596,8 @@
     "last_alert_at": 0.0
   },
   "UNIUSD|supply|3.32200000|3.34200000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1787117482.9940176
   },
   "JUP/USDT|supply|0.16920000|0.16950000": {
     "in_zone": true,
@@ -5942,6 +5944,14 @@
     "last_alert_at": 1787116282.9139981
   },
   "SOXX/USDT:USDT|demand|523.78000000|527.39000000": {
+    "in_zone": true,
+    "last_alert_at": 1787117483.229157
+  },
+  "BEAT/USDT|supply|0.23750000|0.24640000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "CRV/USDT|supply|0.24150000|0.24240000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
