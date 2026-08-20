@@ -9680,7 +9680,7 @@
     "last_alert_at": 1787220683.977584
   },
   "METAXUSD|demand|546.67000000|547.60000000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1787225491.7959862
   },
   "AAPLXUSD|supply|317.75000000|318.35000000": {
@@ -9776,7 +9776,7 @@
     "last_alert_at": 0.0
   },
   "IBM/USDT:USDT|supply|237.44000000|237.61000000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1787224283.7426097
   },
   "ARBUSD|demand|0.08690000|0.08760000": {
@@ -9792,6 +9792,10 @@
     "last_alert_at": 0.0
   },
   "FLNC/USDT:USDT|supply|12.19000000|12.23000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "MNT/USDT|demand|0.45580000|0.48020000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
