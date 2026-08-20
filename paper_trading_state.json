@@ -6600,6 +6600,29 @@
       "target_2": 198.46005094653054,
       "target_half": 199.1548474184557,
       "trade_id": "d6c48c9af26142bd"
+    },
+    {
+      "alert_time": "2026-08-20T14:32:28.799176+05:30",
+      "cost_r": 0.36483880778732386,
+      "date": "2026-08-20",
+      "entry": 451.13755862320426,
+      "entry_time": "2026-08-20T14:35:00+05:30",
+      "exit_price": null,
+      "exit_time": "2026-08-20T14:35:00+05:30",
+      "final_result": "data_quality_ambiguous",
+      "half_r_hit": false,
+      "net_realized_r": null,
+      "outcome": "data_quality_ambiguous",
+      "rating": 10,
+      "realized_r": null,
+      "risk": 1.3144413767956848,
+      "side": "short",
+      "stop": 452.45199999999994,
+      "symbol": "ELECON.NS",
+      "target_1": 449.8231172464086,
+      "target_2": 448.5086758696129,
+      "target_half": 450.4803379348064,
+      "trade_id": "07b252ab34887c44"
     }
   ],
   "handled": {
@@ -6612,6 +6635,7 @@
     "0647ccdd87e5036d": "filled",
     "07842aadbbd492d2": "filled",
     "078d3696d7312a8b": "filled",
+    "07b252ab34887c44": "filled",
     "0939cf3b17660908": "filled",
     "09c7e9decb1e4297": "filled",
     "0a0e0a35cc29f479": "filled",
@@ -6725,6 +6749,7 @@
     "7d916765f767ac89": "filled",
     "7ffb7eb8e15e05cf": "filled",
     "80020603bf461dfa": "filled",
+    "809bae13d88e3ad5": "filled",
     "80c98c281079ae42": "filled",
     "815caf9ce18f26aa": "filled",
     "81a974135164de09": "filled",
@@ -6771,6 +6796,7 @@
     "a80d917c8ffabd72": "filled",
     "a828313425872dd4": "filled",
     "a9a66799566d7408": "filled",
+    "aa8730d7254319a0": "filled",
     "ab0e749f752ed696": "filled",
     "ab35f5255f69d0b3": "filled",
     "aca814c7fd968227": "filled",
@@ -6913,6 +6939,20 @@
       "target_2": 366.61730318536536,
       "target_half": 365.4513235439766
     },
+    "809bae13d88e3ad5": {
+      "alert_time": "2026-08-20T14:12:02.112621+05:30",
+      "entry": 6530.942802242021,
+      "entry_time": "2026-08-20T14:35:00+05:30",
+      "half_r_hit": true,
+      "rating": 9,
+      "risk": 15.464802242020596,
+      "side": "long",
+      "stop": 6515.478,
+      "symbol": "ATUL.NS",
+      "target_1": 6546.407604484041,
+      "target_2": 6561.872406726062,
+      "target_half": 6538.675203363031
+    },
     "a0f3e19e281052ee": {
       "alert_time": "2026-08-20T13:12:12.031474+05:30",
       "entry": 365.0631454560565,
@@ -6940,6 +6980,20 @@
       "target_1": 1944.6817729471925,
       "target_2": 1940.6472349823123,
       "target_half": 1946.6990419296326
+    },
+    "aa8730d7254319a0": {
+      "alert_time": "2026-08-20T13:32:35.566593+05:30",
+      "entry": 6530.940846603513,
+      "entry_time": "2026-08-20T14:35:00+05:30",
+      "half_r_hit": true,
+      "rating": 10,
+      "risk": 15.462846603512844,
+      "side": "long",
+      "stop": 6515.478,
+      "symbol": "ATUL.NS",
+      "target_1": 6546.403693207026,
+      "target_2": 6561.866539810539,
+      "target_half": 6538.67226990527
     },
     "bf898e606e27a1ef": {
       "alert_time": "2026-08-20T14:12:33.350718+05:30",
