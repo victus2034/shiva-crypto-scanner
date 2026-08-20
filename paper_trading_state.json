@@ -3909,6 +3909,52 @@
       "target_2": 1814.1948445871476,
       "target_half": 1820.3097100743353,
       "trade_id": "d0bae9e59f0758dd"
+    },
+    {
+      "alert_time": "2026-08-20T10:12:32.684383+05:30",
+      "cost_r": 0.425172628978604,
+      "date": "2026-08-20",
+      "entry": 302.4966718555924,
+      "entry_time": "2026-08-20T10:35:00+05:30",
+      "exit_price": null,
+      "exit_time": "2026-08-20T10:35:00+05:30",
+      "final_result": "data_quality_ambiguous",
+      "half_r_hit": true,
+      "net_realized_r": null,
+      "outcome": "data_quality_ambiguous",
+      "rating": 8,
+      "realized_r": null,
+      "risk": 0.75629036364586,
+      "side": "short",
+      "stop": 303.25296221923827,
+      "symbol": "EIHOTEL.NS",
+      "target_1": 301.74038149194655,
+      "target_2": 300.9840911283007,
+      "target_half": 302.11852667376945,
+      "trade_id": "b441c5d1733302fe"
+    },
+    {
+      "alert_time": "2026-08-20T10:13:14.410651+05:30",
+      "cost_r": 0.3478012261135515,
+      "date": "2026-08-20",
+      "entry": 390.6973945764063,
+      "entry_time": "2026-08-20T10:35:00+05:30",
+      "exit_price": 390.2285577029146,
+      "exit_time": "2026-08-20T10:40:00+05:30",
+      "final_result": "BE",
+      "half_r_hit": true,
+      "net_realized_r": 0.044824805246991284,
+      "outcome": "BE",
+      "rating": 4,
+      "realized_r": 0.3926260313605428,
+      "risk": 1.194105423593669,
+      "side": "short",
+      "stop": 391.89149999999995,
+      "symbol": "NATIONALUM.NS",
+      "target_1": 389.5032891528126,
+      "target_2": 388.30918372921894,
+      "target_half": 390.10034186460945,
+      "trade_id": "b8812d11040e2c55"
     }
   ],
   "handled": {
@@ -4014,6 +4060,7 @@
     "b5a1bf3dd8a44939": "filled",
     "b6fbaf8858831288": "filled",
     "b70d71896923937c": "filled",
+    "b8812d11040e2c55": "filled",
     "b8c5db0a49b6524e": "filled",
     "b918189032b3bc5a": "filled",
     "ba4d3526a660fe35": "filled",
@@ -4144,20 +4191,6 @@
       "target_1": 938.2382372545567,
       "target_2": 935.5860681010734,
       "target_half": 939.5643218312983
-    },
-    "b441c5d1733302fe": {
-      "alert_time": "2026-08-20T10:12:32.684383+05:30",
-      "entry": 302.4966718555924,
-      "entry_time": "2026-08-20T10:35:00+05:30",
-      "half_r_hit": true,
-      "rating": 8,
-      "risk": 0.75629036364586,
-      "side": "short",
-      "stop": 303.25296221923827,
-      "symbol": "EIHOTEL.NS",
-      "target_1": 301.74038149194655,
-      "target_2": 300.9840911283007,
-      "target_half": 302.11852667376945
     }
   }
 }
