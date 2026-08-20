@@ -1939,7 +1939,8 @@
     "ASTER/USDT|30m|short|0.6639000000|0.6798000000": 1787237476.14858,
     "LABUSD|30m|short|0.0827000000|0.0835000000": 1787238679.8736715,
     "US/USDT|30m|short|0.0181520000|0.0186640000": 1787243493.2717185,
-    "COAI/USDT|30m|short|0.3157000000|0.3182000000": 1787244676.112463
+    "COAI/USDT|30m|short|0.3157000000|0.3182000000": 1787244676.112463,
+    "SOLUSD|30m|short|87.2340000000|88.1550000000": 1787245875.0459194
   },
   "METAXUSD|demand|577.00000000|579.20000000": {
     "in_zone": false,
@@ -9912,8 +9913,8 @@
     "last_alert_at": 0.0
   },
   "SOLUSD|supply|87.23400000|88.15500000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1787245875.0459194
   },
   "AAVEUSD|supply|98.23000000|98.88000000": {
     "in_zone": false,
@@ -9932,6 +9933,18 @@
     "last_alert_at": 1787244676.112463
   },
   "GALA/USDT|supply|0.00169000|0.00169600": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "INJUSD|supply|4.86900000|4.87700000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "SLVONUSD|demand|59.58000000|59.99000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "AVGO/USDT:USDT|demand|361.58000000|362.86000000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
