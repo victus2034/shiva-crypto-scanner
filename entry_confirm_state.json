@@ -247,10 +247,10 @@
     "reached_entry": false
   },
   "DOMS.NS|30m|short|2221.4429|2225.8237": {
-    "reached_entry": false
+    "reached_entry": true
   },
   "DOMS.NS|30m|short|2221.4435|2225.8237": {
-    "reached_entry": false
+    "reached_entry": true
   },
   "EICHERMOT.NS|30m|short|8098.0661|8113.1050": {
     "reached_entry": false
@@ -293,7 +293,7 @@
   },
   "GODREJIND.NS|30m|short|1235.7909|1239.9387": {
     "reached_entry": true,
-    "stage": 2
+    "stage": 3
   },
   "GROWW.NS|30m|short|199.3868|199.8496": {
     "reached_entry": false
@@ -422,7 +422,7 @@
     "stage": 3
   },
   "KIRLOSENG.NS|30m|short|2142.3013|2150.3482": {
-    "reached_entry": false
+    "reached_entry": true
   },
   "LAURUSLABS.NS|30m|short|1822.3480|1826.4246": {
     "reached_entry": true,
@@ -456,16 +456,20 @@
     "reached_entry": false
   },
   "LTFOODS.NS|30m|short|431.3789|432.5321": {
-    "reached_entry": false
+    "reached_entry": true,
+    "stage": 2
   },
   "LTFOODS.NS|30m|short|431.3793|432.5321": {
-    "reached_entry": false
+    "reached_entry": true,
+    "stage": 2
   },
   "M&M.NS|30m|short|3435.3916|3442.9395": {
-    "reached_entry": false
+    "reached_entry": false,
+    "stage": 1
   },
   "M&M.NS|30m|short|3435.3932|3442.9395": {
-    "reached_entry": false
+    "reached_entry": false,
+    "stage": 1
   },
   "M&MFIN.NS|30m|long|385.4711|384.2154": {
     "reached_entry": false
@@ -554,7 +558,8 @@
     "reached_entry": false
   },
   "NTPC.NS|30m|short|338.9437|339.5892": {
-    "reached_entry": false
+    "reached_entry": false,
+    "stage": 1
   },
   "NTPCGREEN.NS|30m|long|91.4923|91.3186": {
     "reached_entry": false
