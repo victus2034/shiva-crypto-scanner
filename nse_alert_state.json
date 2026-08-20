@@ -2721,7 +2721,11 @@
     "MMTC.NS|4h|short|65.8742318641|66.1999969482": 1787201545.662743,
     "NTPC.NS|4h|long|333.7500000000|334.6346143729": 1787201545.9839756,
     "OFSS.NS|4h|short|11912.1713935443|11967.0000000000": 1787201546.854549,
-    "RBLBANK.NS|4h|short|390.9823065057|392.6499938965": 1787201547.0581238
+    "RBLBANK.NS|4h|short|390.9823065057|392.6499938965": 1787201547.0581238,
+    "MAHABANK.NS|4h|short|81.8324764943|82.2600021362": 1787202740.4457004,
+    "CUMMINSIND.NS|4h|long|5187.5000000000|5211.1534140847": 1787202740.7288136,
+    "MSUMI.NS|4h|long|38.7700004578|38.9725164949": 1787202740.9826536,
+    "PAGEIND.NS|4h|long|34785.0000000000|34932.8920668285": 1787202741.2114093
   },
   "GESHIP.NS|demand|1057.1000|1070.5000": {
     "in_zone": false,
@@ -3754,9 +3758,9 @@
     "last_attempt_at": 0.0
   },
   "MAHABANK.NS|supply|81.8325|82.2600": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1787202740.4457004,
+    "last_attempt_at": 1787202740.4457004
   },
   "MAHABANK.NS|demand|76.2400|76.6940": {
     "in_zone": false,
@@ -4365,8 +4369,8 @@
   },
   "CUMMINSIND.NS|demand|5187.5000|5211.1534": {
     "in_zone": true,
-    "last_alert_at": 1787124775.66454,
-    "last_attempt_at": 1787124775.66454
+    "last_alert_at": 1787202740.7288136,
+    "last_attempt_at": 1787202740.7288136
   },
   "CYIENT.NS|supply|927.2062|932.0000": {
     "in_zone": false,
@@ -6124,9 +6128,9 @@
     "last_attempt_at": 0.0
   },
   "MSUMI.NS|demand|38.7700|38.9725": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1787202740.9826536,
+    "last_attempt_at": 1787202740.9826536
   },
   "MOTILALOFS.NS|supply|1018.0596|1023.0000": {
     "in_zone": false,
@@ -15319,9 +15323,9 @@
     "last_attempt_at": 0.0
   },
   "PAGEIND.NS|demand|34785.0000|34932.8921": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1787202741.2114093,
+    "last_attempt_at": 1787202741.2114093
   },
   "PERSISTENT.NS|supply|6573.7501|6597.5000": {
     "in_zone": false,
@@ -15379,6 +15383,16 @@
     "last_attempt_at": 0.0
   },
   "RAILTEL.NS|demand|245.0000|246.8749": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "DIXON.NS|supply|15689.6112|15750.0000": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "JINDALSTEL.NS|supply|1253.0356|1258.8000": {
     "in_zone": false,
     "last_alert_at": 0.0,
     "last_attempt_at": 0.0
