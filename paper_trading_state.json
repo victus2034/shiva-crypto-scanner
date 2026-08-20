@@ -3922,12 +3922,14 @@
     "0b6bdd4d31c3b439": "filled",
     "0e2a3d2142c79531": "filled",
     "11a4b9d19fc0876c": "filled",
+    "12d79bf7b65efd9f": "filled",
     "133d97dd98be6691": "filled",
     "13a90f767ad3c04a": "filled",
     "159fcf4da798d3fa": "filled",
     "18e7954ec30a12e5": "filled",
     "1901fd3741ee5386": "filled",
     "1b0578d4e8a4bf0e": "filled",
+    "1b119ce4d192d12e": "filled",
     "1fd552555e7768b9": "filled",
     "20e446a00f29ed1b": "filled",
     "213cf6f3b5c83f2e": "filled",
@@ -4007,6 +4009,7 @@
     "afa83312ecf9a511": "filled",
     "b0dac76890349662": "filled",
     "b31cb34ab923b450": "filled",
+    "b441c5d1733302fe": "filled",
     "b4541828437674a4": "filled",
     "b5a1bf3dd8a44939": "filled",
     "b6fbaf8858831288": "filled",
@@ -4086,6 +4089,34 @@
     "ffb4661b7d04cd46": "filled"
   },
   "open": {
+    "12d79bf7b65efd9f": {
+      "alert_time": "2026-08-20T10:12:31.670146+05:30",
+      "entry": 1542.8605355298348,
+      "entry_time": "2026-08-20T10:30:00+05:30",
+      "half_r_hit": true,
+      "rating": 9,
+      "risk": 3.6844644701650395,
+      "side": "short",
+      "stop": 1546.5449999999998,
+      "symbol": "CREDITACC.NS",
+      "target_1": 1539.1760710596698,
+      "target_2": 1535.4916065895047,
+      "target_half": 1541.0183032947523
+    },
+    "1b119ce4d192d12e": {
+      "alert_time": "2026-08-20T09:52:05.696646+05:30",
+      "entry": 1542.8597848643533,
+      "entry_time": "2026-08-20T10:30:00+05:30",
+      "half_r_hit": true,
+      "rating": 8,
+      "risk": 3.6852151356465583,
+      "side": "short",
+      "stop": 1546.5449999999998,
+      "symbol": "CREDITACC.NS",
+      "target_1": 1539.1745697287067,
+      "target_2": 1535.4893545930602,
+      "target_half": 1541.01717729653
+    },
     "3c1b912b307495cc": {
       "alert_time": "2026-08-20T09:33:14.574649+05:30",
       "entry": 1651.1111069033313,
@@ -4113,6 +4144,20 @@
       "target_1": 938.2382372545567,
       "target_2": 935.5860681010734,
       "target_half": 939.5643218312983
+    },
+    "b441c5d1733302fe": {
+      "alert_time": "2026-08-20T10:12:32.684383+05:30",
+      "entry": 302.4966718555924,
+      "entry_time": "2026-08-20T10:35:00+05:30",
+      "half_r_hit": true,
+      "rating": 8,
+      "risk": 0.75629036364586,
+      "side": "short",
+      "stop": 303.25296221923827,
+      "symbol": "EIHOTEL.NS",
+      "target_1": 301.74038149194655,
+      "target_2": 300.9840911283007,
+      "target_half": 302.11852667376945
     }
   }
 }

@@ -1,4 +1,7 @@
 {
+  "AAVAS.NS|30m|long|1355.0920|1350.8478": {
+    "reached_entry": false
+  },
   "ABREL.NS|30m|short|1403.7580|1408.0066": {
     "reached_entry": false
   },
@@ -73,7 +76,13 @@
   "BANKBARODA.NS|30m|short|247.8231|248.3381": {
     "reached_entry": false
   },
+  "BATAINDIA.NS|30m|long|712.2401|710.0892": {
+    "reached_entry": false
+  },
   "BBTC.NS|30m|long|1436.2415|1433.1654": {
+    "reached_entry": false
+  },
+  "BBTC.NS|30m|long|1436.2419|1433.1654": {
     "reached_entry": false
   },
   "BBTC.NS|30m|long|1436.2585|1433.1654": {
@@ -128,7 +137,16 @@
   "CGCL.NS|30m|short|229.2574|229.8997": {
     "reached_entry": false
   },
+  "CGPOWER.NS|30m|long|861.4595|859.4397": {
+    "reached_entry": false
+  },
+  "CHAMBLFERT.NS|30m|long|433.2809|432.4671": {
+    "reached_entry": false
+  },
   "CHAMBLFERT.NS|30m|short|437.3047|438.1377": {
+    "reached_entry": false
+  },
+  "CHOICEIN.NS|30m|short|818.8039|820.6198": {
     "reached_entry": false
   },
   "CHOLAHLDNG.NS|30m|short|1583.8881|1588.8873": {
@@ -147,6 +165,9 @@
   "CONCOR.NS|30m|long|512.7344|511.5379": {
     "reached_entry": true,
     "stage": 2
+  },
+  "CONCORDBIO.NS|30m|short|1594.4752|1599.4979": {
+    "reached_entry": false
   },
   "COROMANDEL.NS|30m|long|2026.4838|2021.3766": {
     "reached_entry": true,
@@ -197,14 +218,15 @@
     "reached_entry": false
   },
   "EIHOTEL.NS|30m|short|302.4967|303.2530": {
-    "reached_entry": false
+    "reached_entry": false,
+    "stage": 1
   },
   "EMAMILTD.NS|30m|short|407.1209|408.1077": {
     "reached_entry": false
   },
   "EMMVEE.NS|30m|short|334.0267|335.0347": {
     "reached_entry": true,
-    "stage": 2
+    "stage": 3
   },
   "ERIS.NS|30m|long|1332.8513|1329.6690": {
     "reached_entry": false
@@ -237,6 +259,9 @@
   "GRASIM.NS|30m|short|3291.7944|3299.6963": {
     "reached_entry": false
   },
+  "GVT&D.NS|30m|long|4050.3766|4037.9580": {
+    "reached_entry": false
+  },
   "GVT&D.NS|30m|long|4050.3767|4037.9580": {
     "reached_entry": false,
     "stage": 1
@@ -252,10 +277,16 @@
   "HDFCBANK.NS|30m|short|731.5705|732.7820": {
     "reached_entry": false
   },
+  "HINDPETRO.NS|30m|long|365.0627|364.2853": {
+    "reached_entry": false
+  },
   "HINDPETRO.NS|30m|long|365.0631|364.2853": {
     "reached_entry": false
   },
   "HOMEFIRST.NS|30m|short|1197.7143|1200.7996": {
+    "reached_entry": false
+  },
+  "HYUNDAI.NS|30m|short|2217.9965|2223.1208": {
     "reached_entry": false
   },
   "ICICIBANK.NS|30m|short|1415.3617|1418.0166": {
@@ -288,6 +319,9 @@
   "INDIACEM.NS|30m|long|370.1570|369.2304": {
     "reached_entry": false
   },
+  "INDIACEM.NS|30m|long|370.1576|369.2304": {
+    "reached_entry": false
+  },
   "INDIANB.NS|30m|short|885.2012|887.3865": {
     "reached_entry": false
   },
@@ -316,11 +350,14 @@
   },
   "KARURVYSYA.NS|30m|short|339.5506|340.3400": {
     "reached_entry": true,
-    "stage": 2
+    "stage": 3
   },
   "KEC.NS|30m|short|432.4713|433.4330": {
     "reached_entry": true,
     "stage": 1
+  },
+  "KEI.NS|30m|long|5681.7181|5667.3270": {
+    "reached_entry": false
   },
   "LAURUSLABS.NS|30m|short|1822.3464|1826.4246": {
     "reached_entry": true,
@@ -390,8 +427,15 @@
   "MRF.NS|30m|long|132750.6861|132522.3450": {
     "reached_entry": false
   },
-  "NATIONALUM.NS|30m|short|390.6974|391.8915": {
+  "MRF.NS|30m|long|132750.6865|132522.3450": {
     "reached_entry": false
+  },
+  "MRF.NS|30m|short|133745.1225|133983.8500": {
+    "reached_entry": false
+  },
+  "NATIONALUM.NS|30m|short|390.6974|391.8915": {
+    "reached_entry": false,
+    "stage": 1
   },
   "NCC.NS|30m|short|141.6272|141.9418": {
     "reached_entry": true,
@@ -405,6 +449,12 @@
     "reached_entry": false
   },
   "NESTLEIND.NS|30m|short|1479.4450|1482.5811": {
+    "reached_entry": false
+  },
+  "NETWEB.NS|30m|short|5383.7153|5400.8955": {
+    "reached_entry": false
+  },
+  "NEULANDLAB.NS|30m|short|23798.8185|23868.8450": {
     "reached_entry": false
   },
   "NEULANDLAB.NS|30m|short|23798.8186|23868.8450": {
@@ -430,6 +480,9 @@
     "reached_entry": false
   },
   "NYKAA.NS|30m|short|329.0258|329.7795": {
+    "reached_entry": false
+  },
+  "OFSS.NS|30m|short|11932.2665|11967.9560": {
     "reached_entry": false
   },
   "PETRONET.NS|30m|short|290.9680|291.6414": {
