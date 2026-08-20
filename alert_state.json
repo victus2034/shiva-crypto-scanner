@@ -3565,7 +3565,7 @@
     "last_alert_at": 0.0
   },
   "LTCUSD|supply|47.98125000|48.15000000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1787216480.025694
   },
   "BNBUSD|supply|631.12859000|633.16000000": {
@@ -3725,6 +3725,10 @@
     "last_alert_at": 0.0
   },
   "TIAUSD|supply|0.35090950|0.35200000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "SUIUSD|supply|0.77990450|0.78340000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
