@@ -2794,7 +2794,13 @@
     "CDSL.NS|4h|short|1356.5516296986|1362.0000000000": 1787217163.011751,
     "DCMSHRIRAM.NS|4h|short|1078.0124453445|1084.5000000000": 1787217163.4246576,
     "DEEPAKFERT.NS|4h|long|1446.0999755859|1455.1670172923": 1787217163.650456,
-    "DIVISLAB.NS|4h|short|8644.6024122556|8673.5000000000": 1787217163.8847218
+    "DIVISLAB.NS|4h|short|8644.6024122556|8673.5000000000": 1787217163.8847218,
+    "ASTERDM.NS|4h|long|754.6500244141|758.7888845266": 1787218371.7197368,
+    "HAVELLS.NS|4h|long|1254.3000488281|1258.3708130407": 1787218372.2476816,
+    "INDIACEM.NS|4h|long|366.5000000000|368.5860181487": 1787218372.4547243,
+    "JSL.NS|4h|long|710.2999877930|713.4434579270": 1787218372.7000828,
+    "PPLPHARMA.NS|4h|short|217.2992173707|218.5000000000": 1787218372.9464283,
+    "RBLBANK.NS|4h|short|390.9867413593|392.6499938965": 1787218373.251866
   },
   "GESHIP.NS|demand|1057.1000|1070.5000": {
     "in_zone": false,
@@ -8567,9 +8573,9 @@
     "last_attempt_at": 0.0
   },
   "ASTERDM.NS|demand|754.6500|758.7889": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1787218371.7197368,
+    "last_attempt_at": 1787218371.7197368
   },
   "ASTRAL.NS|supply|1650.7217|1660.0000": {
     "in_zone": false,
@@ -10257,9 +10263,9 @@
     "last_attempt_at": 0.0
   },
   "INDIACEM.NS|demand|366.5000|368.5860": {
-    "in_zone": false,
-    "last_alert_at": 1787197945.8068762,
-    "last_attempt_at": 1787197945.8068762
+    "in_zone": true,
+    "last_alert_at": 1787218372.4547243,
+    "last_attempt_at": 1787218372.4547243
   },
   "INDIAMART.NS|supply|1816.4469|1824.7000": {
     "in_zone": false,
@@ -12272,9 +12278,9 @@
     "last_attempt_at": 0.0
   },
   "JSL.NS|demand|710.3000|713.4435": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1787218372.7000828,
+    "last_attempt_at": 1787218372.7000828
   },
   "JINDALSTEL.NS|supply|1122.9375|1127.3000": {
     "in_zone": true,
@@ -12902,9 +12908,9 @@
     "last_attempt_at": 0.0
   },
   "PPLPHARMA.NS|supply|217.2992|218.5000": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1787218372.9464283,
+    "last_attempt_at": 1787218372.9464283
   },
   "POONAWALLA.NS|demand|451.0000|453.4094": {
     "in_zone": false,
@@ -12928,8 +12934,8 @@
   },
   "RBLBANK.NS|supply|390.9867|392.6500": {
     "in_zone": true,
-    "last_alert_at": 1787203954.3567083,
-    "last_attempt_at": 1787203954.3567083
+    "last_alert_at": 1787218373.251866,
+    "last_attempt_at": 1787218373.251866
   },
   "RBLBANK.NS|demand|348.4000|350.0929": {
     "in_zone": false,
@@ -16182,9 +16188,9 @@
     "last_attempt_at": 0.0
   },
   "HAVELLS.NS|demand|1254.3000|1258.3708": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1787218372.2476816,
+    "last_attempt_at": 1787218372.2476816
   },
   "HEROMOTOCO.NS|supply|6030.1562|6049.0000": {
     "in_zone": false,
@@ -17587,6 +17593,41 @@
     "last_attempt_at": 0.0
   },
   "ELECON.NS|supply|570.9430|574.0000": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "BRIGADE.NS|supply|677.9270|681.0000": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "HEXT.NS|supply|580.7069|584.4000": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "IRCON.NS|demand|122.1200|122.6384": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "KPITTECH.NS|supply|658.6485|662.6500": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "OLECTRA.NS|demand|1175.3000|1183.7903": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "ONESOURCE.NS|supply|1634.4325|1646.1000": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "ONESOURCE.NS|demand|1506.7000|1518.7481": {
     "in_zone": false,
     "last_alert_at": 0.0,
     "last_attempt_at": 0.0
