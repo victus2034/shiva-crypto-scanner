@@ -3955,6 +3955,29 @@
       "target_2": 388.30918372921894,
       "target_half": 390.10034186460945,
       "trade_id": "b8812d11040e2c55"
+    },
+    {
+      "alert_time": "2026-08-20T10:32:19.118130+05:30",
+      "cost_r": 0.33311000626832254,
+      "date": "2026-08-20",
+      "entry": 5383.7153214433565,
+      "entry_time": "2026-08-20T10:40:00+05:30",
+      "exit_price": 5366.535142886713,
+      "exit_time": "2026-08-20T10:45:00+05:30",
+      "final_result": "+1R",
+      "half_r_hit": true,
+      "net_realized_r": 0.6668899937316775,
+      "outcome": "+1R",
+      "rating": 8,
+      "realized_r": 1.0,
+      "risk": 17.180178556643114,
+      "side": "short",
+      "stop": 5400.8955,
+      "symbol": "NETWEB.NS",
+      "target_1": 5366.535142886713,
+      "target_2": 5349.35496433007,
+      "target_half": 5375.125232165035,
+      "trade_id": "d7d06d7e5f681e30"
     }
   ],
   "handled": {
@@ -4092,6 +4115,7 @@
     "d507a063147ced25": "filled",
     "d50d0ccf25e23e76": "filled",
     "d6219945e9e6b026": "filled",
+    "d7d06d7e5f681e30": "filled",
     "d984cc83954830d8": "filled",
     "db222c013313dd21": "filled",
     "dbc3048db25d8a8e": "filled",
