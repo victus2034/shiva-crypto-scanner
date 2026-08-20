@@ -1635,7 +1635,9 @@
     "BNBUSD|4h|short|631.1285900000|633.1600000000": 1787198468.5700762,
     "XMRUSD|4h|short|424.3601000000|428.0100000000": 1787198468.8387072,
     "BOME/USDT|4h|short|0.0008946280|0.0009012000": 1787198469.4927003,
-    "1000PEPEUSD|4h|short|0.0029689555|0.0029829000": 1787199668.1718192
+    "1000PEPEUSD|4h|short|0.0029689555|0.0029829000": 1787199668.1718192,
+    "INJUSD|4h|short|4.6819800000|4.6990000000": 1787200875.4146662,
+    "AERO/USDT|4h|short|0.4603555000|0.4641000000": 1787200875.6459093
   },
   "ARBUSD|supply|0.08030000|0.08180000": {
     "in_zone": false,
@@ -2390,7 +2392,7 @@
     "last_alert_at": 0.0
   },
   "1000PEPEUSD|supply|0.00296896|0.00298290": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1787199668.1718192
   },
   "1000PEPEUSD|demand|0.00253020|0.00253856": {
@@ -2486,7 +2488,7 @@
     "last_alert_at": 1787140884.4813285
   },
   "AVAXUSD|supply|6.82864900|6.85400000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1787193674.4199104
   },
   "AVAXUSD|demand|6.05000000|6.07738650": {
@@ -2542,8 +2544,8 @@
     "last_alert_at": 0.0
   },
   "INJUSD|supply|4.68198000|4.69900000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1787200875.4146662
   },
   "FARTCOIN/USDT|supply|0.14571450|0.14660000": {
     "in_zone": true,
@@ -2598,7 +2600,7 @@
     "last_alert_at": 0.0
   },
   "XMRUSD|supply|424.36010000|428.01000000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1787198468.8387072
   },
   "XMRUSD|demand|376.00000000|377.44830000": {
@@ -3434,8 +3436,8 @@
     "last_alert_at": 0.0
   },
   "AERO/USDT|supply|0.46035550|0.46410000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1787200875.6459093
   },
   "TAIKO/USDT|supply|0.07798065|0.07862000": {
     "in_zone": false,
