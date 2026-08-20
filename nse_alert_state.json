@@ -2770,7 +2770,13 @@
     "BAJAJHLDNG.NS|4h|long|11233.0000000000|11275.8923531841": 1787213538.8549032,
     "DOMS.NS|4h|long|2192.0000000000|2202.2866178678": 1787213539.0611298,
     "MRF.NS|4h|short|135138.4107429492|135535.0000000000": 1787213539.293469,
-    "OLECTRA.NS|4h|long|1297.1999511719|1305.2841047631": 1787213540.1237237
+    "OLECTRA.NS|4h|long|1297.1999511719|1305.2841047631": 1787213540.1237237,
+    "360ONE.NS|4h|short|1214.9148147365|1220.0000000000": 1787214763.685112,
+    "CCL.NS|4h|long|1102.0999755859|1108.9639408084": 1787214764.0574157,
+    "DOMS.NS|4h|long|2192.0000000000|2202.2653874382": 1787214764.3081875,
+    "IRCTC.NS|4h|long|485.3500061035|486.7675113551": 1787214765.6412897,
+    "KOTAKBANK.NS|4h|short|398.7180702836|400.0000000000": 1787214766.2068422,
+    "LTFOODS.NS|4h|short|439.5112051250|441.8999938965": 1787214766.4775376
   },
   "GESHIP.NS|demand|1057.1000|1070.5000": {
     "in_zone": false,
@@ -8978,9 +8984,9 @@
     "last_attempt_at": 0.0
   },
   "CCL.NS|demand|1102.1000|1108.9639": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1787214764.0574157,
+    "last_attempt_at": 1787214764.0574157
   },
   "CESC.NS|supply|176.2143|177.0300": {
     "in_zone": false,
@@ -9213,7 +9219,7 @@
     "last_attempt_at": 0.0
   },
   "CLEAN.NS|supply|848.8531|853.5000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1787212361.3016403,
     "last_attempt_at": 1787212361.3016403
   },
@@ -10758,9 +10764,9 @@
     "last_attempt_at": 0.0
   },
   "LTFOODS.NS|supply|439.5112|441.9000": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1787214766.4775376,
+    "last_attempt_at": 1787214766.4775376
   },
   "LTFOODS.NS|demand|359.2000|362.0374": {
     "in_zone": false,
@@ -11838,7 +11844,7 @@
     "last_attempt_at": 0.0
   },
   "MAHABANK.NS|supply|81.8334|82.2600": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1787203953.5332954,
     "last_attempt_at": 1787203953.5332954
   },
@@ -12154,8 +12160,8 @@
   },
   "IRCTC.NS|demand|485.3500|486.7675": {
     "in_zone": true,
-    "last_alert_at": 1787199159.4518201,
-    "last_attempt_at": 1787199159.4518201
+    "last_alert_at": 1787214765.6412897,
+    "last_attempt_at": 1787214765.6412897
   },
   "INDUSTOWER.NS|supply|396.4456|398.2000": {
     "in_zone": false,
@@ -13079,8 +13085,8 @@
   },
   "KOTAKBANK.NS|supply|398.7181|400.0000": {
     "in_zone": true,
-    "last_alert_at": 1787197947.1491966,
-    "last_attempt_at": 1787197947.1491966
+    "last_alert_at": 1787214766.2068422,
+    "last_attempt_at": 1787214766.2068422
   },
   "KOTAKBANK.NS|demand|386.6000|387.8668": {
     "in_zone": false,
@@ -15643,9 +15649,9 @@
     "last_attempt_at": 0.0
   },
   "360ONE.NS|supply|1214.9148|1220.0000": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1787214763.685112,
+    "last_attempt_at": 1787214763.685112
   },
   "3MINDIA.NS|supply|37831.2693|38000.0000": {
     "in_zone": false,
@@ -15968,9 +15974,9 @@
     "last_attempt_at": 0.0
   },
   "DOMS.NS|demand|2192.0000|2202.2654": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1787214764.3081875,
+    "last_attempt_at": 1787214764.3081875
   },
   "DALBHARAT.NS|supply|1991.6105|2001.5000": {
     "in_zone": false,
