@@ -1934,7 +1934,8 @@
     "IBM/USDT:USDT|30m|short|237.4400000000|237.6100000000": 1787224283.7426097,
     "STORJ/USDT|30m|long|0.0361900000|0.0405400000": 1787227879.4410923,
     "LA/USDT|30m|long|0.0556300000|0.0559900000": 1787229082.6452382,
-    "AAPLXUSD|30m|short|318.9800000000|319.7000000000": 1787229082.9342966
+    "AAPLXUSD|30m|short|318.9800000000|319.7000000000": 1787229082.9342966,
+    "AKE/USDT|30m|long|0.0081610000|0.0083660000": 1787233882.5341425
   },
   "METAXUSD|demand|577.00000000|579.20000000": {
     "in_zone": false,
@@ -9763,8 +9764,8 @@
     "last_alert_at": 0.0
   },
   "AKE/USDT|demand|0.00816100|0.00836600": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1787233882.5341425
   },
   "ESPORTS/USDT|supply|0.01643000|0.01674000": {
     "in_zone": false,
@@ -9855,6 +9856,10 @@
     "last_alert_at": 0.0
   },
   "LDO/USDT|supply|0.34350000|0.34770000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "HOOD/USDT:USDT|demand|90.94000000|91.27000000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
