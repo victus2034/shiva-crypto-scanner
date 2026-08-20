@@ -2739,7 +2739,9 @@
     "CDSL.NS|4h|short|1356.5577332852|1362.0000000000": 1787206343.5171704,
     "DIVISLAB.NS|4h|short|8644.6147422853|8673.5000000000": 1787206343.6659322,
     "IRCTC.NS|4h|long|485.3500061035|486.7664470437": 1787206343.8722997,
-    "MRF.NS|4h|short|135138.4670281259|135535.0000000000": 1787207579.816293
+    "MRF.NS|4h|short|135138.4670281259|135535.0000000000": 1787207579.816293,
+    "MAHABANK.NS|4h|short|81.8327526397|82.2600021362": 1787208749.5669496,
+    "LLOYDSME.NS|4h|long|1878.0000000000|1887.9958409268": 1787208749.711643
   },
   "GESHIP.NS|demand|1057.1000|1070.5000": {
     "in_zone": false,
@@ -8707,9 +8709,9 @@
     "last_attempt_at": 0.0
   },
   "MAHABANK.NS|supply|81.8328|82.2600": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1787208749.5669496,
+    "last_attempt_at": 1787208749.5669496
   },
   "MAHABANK.NS|demand|76.2400|76.6921": {
     "in_zone": false,
@@ -10202,7 +10204,7 @@
     "last_attempt_at": 0.0
   },
   "INDIACEM.NS|demand|366.5000|368.5860": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1787197945.8068762,
     "last_attempt_at": 1787197945.8068762
   },
@@ -14052,9 +14054,9 @@
     "last_attempt_at": 0.0
   },
   "LLOYDSME.NS|demand|1878.0000|1887.9958": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1787208749.711643,
+    "last_attempt_at": 1787208749.711643
   },
   "LUPIN.NS|demand|2160.0000|2167.4474": {
     "in_zone": false,
@@ -15562,6 +15564,41 @@
     "last_attempt_at": 0.0
   },
   "PRESTIGE.NS|demand|1555.5000|1563.7818": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "BAJAJHLDNG.NS|demand|11233.0000|11275.8799": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "FORCEMOT.NS|demand|17002.0000|17108.8752": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "MEDANTA.NS|demand|1383.8000|1390.3435": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "FLUOROCHEM.NS|demand|4345.0000|4367.4444": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "NLCINDIA.NS|supply|306.2643|307.7000": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "RITES.NS|supply|233.7184|234.7800": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "RITES.NS|demand|210.2400|211.3368": {
     "in_zone": false,
     "last_alert_at": 0.0,
     "last_attempt_at": 0.0
