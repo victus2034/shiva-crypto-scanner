@@ -207,10 +207,12 @@
     "reached_entry": false
   },
   "DOMS.NS|30m|short|2221.4429|2225.8237": {
-    "reached_entry": true
+    "reached_entry": true,
+    "stage": 3
   },
   "DOMS.NS|30m|short|2221.4435|2225.8237": {
-    "reached_entry": true
+    "reached_entry": true,
+    "stage": 3
   },
   "EICHERMOT.NS|30m|short|8098.0661|8113.1050": {
     "reached_entry": false
@@ -233,7 +235,8 @@
     "reached_entry": false
   },
   "GALLANTT.NS|30m|short|585.9452|587.7372": {
-    "reached_entry": true
+    "reached_entry": true,
+    "stage": 3
   },
   "GMRAIRPORT.NS|30m|long|101.0049|100.7491": {
     "reached_entry": false
@@ -258,17 +261,19 @@
     "reached_entry": false
   },
   "HFCL.NS|30m|long|224.5418|223.7860": {
-    "reached_entry": false,
-    "stage": 1
+    "reached_entry": true,
+    "stage": 2
   },
   "HOMEFIRST.NS|30m|long|1173.1822|1170.4284": {
     "reached_entry": false
   },
   "HONAUT.NS|30m|short|36508.1915|36586.5500": {
-    "reached_entry": false
+    "reached_entry": false,
+    "stage": 1
   },
   "HONAUT.NS|30m|short|36508.1916|36586.5500": {
-    "reached_entry": false
+    "reached_entry": false,
+    "stage": 1
   },
   "HYUNDAI.NS|30m|short|2217.9964|2223.1208": {
     "reached_entry": false
@@ -377,11 +382,11 @@
   },
   "LLOYDSME.NS|30m|long|1899.0921|1894.1040": {
     "reached_entry": true,
-    "stage": 2
+    "stage": 3
   },
   "LLOYDSME.NS|30m|long|1899.0941|1894.1040": {
     "reached_entry": true,
-    "stage": 2
+    "stage": 3
   },
   "LT.NS|30m|long|4029.6261|4021.9740": {
     "reached_entry": false
@@ -401,12 +406,12 @@
     "reached_entry": false
   },
   "M&M.NS|30m|short|3435.3916|3442.9395": {
-    "reached_entry": false,
-    "stage": 1
+    "reached_entry": true,
+    "stage": 3
   },
   "M&MFIN.NS|30m|long|385.4711|384.2154": {
     "reached_entry": true,
-    "stage": 2
+    "stage": 3
   },
   "MAPMYINDIA.NS|30m|short|1017.0858|1019.8188": {
     "reached_entry": false
@@ -450,7 +455,8 @@
     "stage": 2
   },
   "NESTLEIND.NS|30m|long|1458.7952|1455.6429": {
-    "reached_entry": false
+    "reached_entry": false,
+    "stage": 1
   },
   "NEULANDLAB.NS|30m|short|23798.8108|23868.8450": {
     "reached_entry": false
