@@ -4,12 +4,14 @@ from unittest.mock import patch
 
 
 class CryptoConfigTests(unittest.TestCase):
-    def test_four_hour_default_distance_is_1_25_percent(self):
+    def test_default_distance_window_alerts_within_a_fifth_of_a_percent(self):
+        # Distance is measured to the entry edge, so this is how close price
+        # has to come to the level actually traded before an alert fires.
         with patch.dict(os.environ, {"SHIVA_TIMEFRAME": "4h"}, clear=True):
             import config
 
-            self.assertEqual(config.MIN_DISTANCE_PCT, 0.25)
-            self.assertEqual(config.MAX_DISTANCE_PCT, 1.25)
+            self.assertEqual(config.MIN_DISTANCE_PCT, 0.0)
+            self.assertEqual(config.MAX_DISTANCE_PCT, 0.20)
 
     def test_watchlist_groups_are_composed_without_duplicates(self):
         with patch.dict(os.environ, {}, clear=True):

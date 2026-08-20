@@ -67,7 +67,7 @@ class DistanceWindowTests(unittest.TestCase):
             "symbol": "BTCUSDT",
             "price": 100.0,
             "demand": {"bottom": 99.0, "top": 99.5},
-            "demand_dist": 0.5,
+            "demand_dist": 0.15,
             "supply": None,
             "supply_dist": 999.0,
             "buy_signal": True,
@@ -86,7 +86,7 @@ class DistanceWindowTests(unittest.TestCase):
             "symbol": "BTCUSDT",
             "price": 100.0,
             "demand": {"bottom": 99.0, "top": 99.5},
-            "demand_dist": 0.5,
+            "demand_dist": 0.15,
             "supply": None,
             "supply_dist": 999.0,
             "demand_rating": {"score": 5},
@@ -116,7 +116,7 @@ class DistanceWindowTests(unittest.TestCase):
             patch.object(scanner, "TIMEFRAME", "30m"),
             patch.object(scanner, "send_alert", return_value=True) as send,
         ):
-            sent = scanner.process_candidate(state, result, "demand", zone, 0.5, 1000)
+            sent = scanner.process_candidate(state, result, "demand", zone, 0.15, 1000)
 
         self.assertFalse(sent)
         send.assert_not_called()
@@ -134,7 +134,7 @@ class DistanceWindowTests(unittest.TestCase):
             patch.object(scanner, "TIMEFRAME", "30m"),
             patch.object(scanner, "send_alert", return_value=True) as send,
         ):
-            sent = scanner.process_candidate(state, result, "demand", zone, 0.5, 1000)
+            sent = scanner.process_candidate(state, result, "demand", zone, 0.15, 1000)
 
         self.assertTrue(sent)
         send.assert_called_once()
@@ -159,7 +159,7 @@ class DistanceWindowTests(unittest.TestCase):
                 result,
                 "demand",
                 zone,
-                0.5,
+                0.15,
                 1000,
             )
 
@@ -186,7 +186,7 @@ class DistanceWindowTests(unittest.TestCase):
                 result,
                 "demand",
                 zone,
-                0.5,
+                0.15,
                 1000,
             )
 
@@ -199,7 +199,7 @@ class DistanceWindowTests(unittest.TestCase):
             "symbol": "NVDAXUSD",
             "price": 190.0,
             "demand": {"bottom": 188.0, "top": 188.5},
-            "demand_dist": 0.5,
+            "demand_dist": 0.15,
             "supply": None,
             "supply_dist": 999.0,
             "demand_rating": {
@@ -265,7 +265,7 @@ class DistanceWindowTests(unittest.TestCase):
             "symbol": "RELIANCE.NS",
             "price": 100.0,
             "demand": {"bottom": 99.0, "top": 99.5},
-            "demand_dist": 0.5,
+            "demand_dist": 0.15,
             "supply": None,
             "supply_dist": 999.0,
             "buy_signal": True,
@@ -346,3 +346,25 @@ class DistanceWindowTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class DistanceIsMeasuredToTheEntryEdgeTests(unittest.TestCase):
+    """Distance must be measured to the edge price reaches first - the one
+    the trade is entered at. Measuring to the far edge put a whole zone
+    height between the trigger and the fill, so alerts could arrive with
+    price already through the entry.
+    """
+
+    def test_demand_distance_is_measured_to_the_zone_top(self):
+        # Price 100.30 approaching a demand zone from above. Entry is the
+        # top (100.00); the far edge (99.00) is a further 1% away.
+        zone = {"bottom": 99.0, "top": 100.0, "active": True}
+        _, distance = scanner.nearest_active_zone(100.30, [zone], "demand")
+        self.assertAlmostEqual(distance, 0.299, places=2)
+
+    def test_supply_distance_is_measured_to_the_zone_bottom(self):
+        # Price 99.70 approaching a supply zone from below. Entry is the
+        # bottom (100.00); the top (101.00) is further away.
+        zone = {"bottom": 100.0, "top": 101.0, "active": True}
+        _, distance = scanner.nearest_active_zone(99.70, [zone], "supply")
+        self.assertAlmostEqual(distance, 0.301, places=2)

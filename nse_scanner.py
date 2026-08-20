@@ -423,7 +423,11 @@ def nearest_active_zone(price, zones, zone_type):
         if not zone["active"] or zone.get("over_touched", False):
             continue
 
-        reference = zone["top"] if zone_type == "supply" else zone["bottom"]
+        # Measure to the edge price actually reaches first, which is the
+        # edge the trade is entered at. Measuring to the far edge put a
+        # whole zone height between the trigger and the fill, so alerts
+        # could arrive with price already through the entry.
+        reference = planned_entry_price(zone_type, zone)
         distance = abs(reference - price) / price * 100.0
         if distance < nearest_dist:
             nearest = zone

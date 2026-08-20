@@ -198,8 +198,11 @@ MIN_DEPARTURE_ATR = 0.75
 # reported Level away from the actual wick, especially on low-priced symbols.
 ZONE_PADDING_ATR = 0.0
 
-MIN_DISTANCE_PCT = env_float("SHIVA_MIN_DISTANCE_PCT", 0.25)
-MAX_DISTANCE_PCT = env_float("SHIVA_MAX_DISTANCE_PCT", 1.25)
+# Distance is measured to the entry edge - the one price reaches first -
+# so this is "how far is price from the level I would actually trade".
+# Alert as soon as a symbol comes within MAX_DISTANCE_PCT of it.
+MIN_DISTANCE_PCT = env_float("SHIVA_MIN_DISTANCE_PCT", 0.0)
+MAX_DISTANCE_PCT = env_float("SHIVA_MAX_DISTANCE_PCT", 0.20)
 REARM_FACTOR = 1.25
 MAX_CONSECUTIVE_ZONE_TOUCHES = 2
 SCAN_SLEEP = 300
