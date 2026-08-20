@@ -23,15 +23,8 @@
   "ABSLAMC.NS|30m|long|992.7696|990.1089": {
     "reached_entry": false
   },
-  "ABSLAMC.NS|30m|long|992.7752|990.1089": {
-    "reached_entry": false
-  },
   "ABSLAMC.NS|30m|long|992.7753|990.1089": {
     "reached_entry": false
-  },
-  "ADANIPORTS.NS|30m|short|1693.7998|1697.1955": {
-    "reached_entry": true,
-    "stage": 2
   },
   "AIIL.NS|30m|long|538.1746|536.4131": {
     "reached_entry": true
@@ -60,14 +53,15 @@
     "stage": 1
   },
   "APTUS.NS|30m|long|252.4030|251.7480": {
-    "reached_entry": false,
-    "stage": 1
+    "reached_entry": true,
+    "stage": 2
   },
   "ARE&M.NS|30m|long|927.3366|925.0241": {
     "reached_entry": false
   },
   "ASHOKLEY.NS|30m|long|173.3855|172.9269": {
-    "reached_entry": false
+    "reached_entry": false,
+    "stage": 1
   },
   "ATUL.NS|30m|long|6530.9408|6515.4780": {
     "reached_entry": true,
@@ -90,9 +84,6 @@
   "BALKRISIND.NS|30m|long|2354.7211|2347.9497": {
     "reached_entry": false
   },
-  "BALKRISIND.NS|30m|short|2384.7422|2390.9887": {
-    "reached_entry": false
-  },
   "BALKRISIND.NS|30m|short|2384.7427|2390.9887": {
     "reached_entry": false
   },
@@ -112,10 +103,6 @@
   },
   "BBTC.NS|30m|long|1436.2401|1433.1654": {
     "reached_entry": false
-  },
-  "BBTC.NS|30m|long|1436.2601|1433.1654": {
-    "reached_entry": false,
-    "stage": 1
   },
   "BERGEPAINT.NS|30m|long|526.0810|524.6748": {
     "reached_entry": false
@@ -205,14 +192,7 @@
   "DIVISLAB.NS|30m|long|8520.2713|8502.4890": {
     "reached_entry": false
   },
-  "DIVISLAB.NS|30m|long|8520.2729|8502.4890": {
-    "reached_entry": false
-  },
   "EICHERMOT.NS|30m|short|8098.0657|8113.1050": {
-    "reached_entry": false,
-    "stage": 1
-  },
-  "EICHERMOT.NS|30m|short|8098.0658|8113.1050": {
     "reached_entry": false,
     "stage": 1
   },
@@ -223,10 +203,6 @@
   "EIHOTEL.NS|30m|short|302.4967|303.2530": {
     "reached_entry": false
   },
-  "ELECON.NS|30m|short|444.3536|445.6452": {
-    "reached_entry": true,
-    "stage": 3
-  },
   "ELECON.NS|30m|short|444.3545|445.6452": {
     "reached_entry": true,
     "stage": 3
@@ -235,9 +211,6 @@
     "reached_entry": true
   },
   "ERIS.NS|30m|long|1332.8513|1329.6690": {
-    "reached_entry": true
-  },
-  "ERIS.NS|30m|long|1332.8518|1329.6690": {
     "reached_entry": true
   },
   "EXIDEIND.NS|30m|long|457.9717|456.7428": {
@@ -286,31 +259,21 @@
     "reached_entry": true,
     "stage": 2
   },
-  "GVT&D.NS|30m|long|4050.3784|4037.9580": {
-    "reached_entry": false
-  },
-  "HBLENGINE.NS|30m|short|701.4367|703.3026": {
-    "reached_entry": true,
-    "stage": 3
-  },
   "HBLENGINE.NS|30m|short|712.5094|714.5138": {
     "reached_entry": true,
     "stage": 1
   },
   "HINDPETRO.NS|30m|long|365.0627|364.2853": {
     "reached_entry": true,
-    "stage": 2
-  },
-  "HINDPETRO.NS|30m|long|365.0631|364.2853": {
-    "reached_entry": true,
-    "stage": 2
+    "stage": 3
   },
   "HONAUT.NS|30m|short|36508.1914|36586.5500": {
-    "reached_entry": true
+    "reached_entry": true,
+    "stage": 3
   },
   "HONAUT.NS|30m|short|36508.1916|36586.5500": {
     "reached_entry": true,
-    "stage": 2
+    "stage": 3
   },
   "HONAUT.NS|30m|short|36859.1577|36936.9000": {
     "reached_entry": false
@@ -340,9 +303,6 @@
   "IDBI.NS|30m|short|82.4326|82.5925": {
     "reached_entry": false
   },
-  "IDFCFIRSTB.NS|30m|short|86.6371|86.8668": {
-    "reached_entry": false
-  },
   "IDFCFIRSTB.NS|30m|short|86.6374|86.8668": {
     "reached_entry": false
   },
@@ -353,9 +313,6 @@
     "reached_entry": false
   },
   "INDIACEM.NS|30m|long|370.1576|369.2304": {
-    "reached_entry": false
-  },
-  "INDIANB.NS|30m|short|885.2007|887.3865": {
     "reached_entry": false
   },
   "INDIANB.NS|30m|short|885.2012|887.3865": {
@@ -411,10 +368,6 @@
     "reached_entry": false,
     "stage": 1
   },
-  "KPRMILL.NS|30m|short|1149.6787|1153.1520": {
-    "reached_entry": true,
-    "stage": 3
-  },
   "KPRMILL.NS|30m|short|1149.6824|1153.1520": {
     "reached_entry": true,
     "stage": 3
@@ -424,10 +377,6 @@
     "stage": 3
   },
   "LLOYDSME.NS|30m|long|1899.0921|1894.1040": {
-    "reached_entry": true,
-    "stage": 3
-  },
-  "LLOYDSME.NS|30m|long|1899.0941|1894.1040": {
     "reached_entry": true,
     "stage": 3
   },
@@ -467,9 +416,6 @@
     "reached_entry": true,
     "stage": 3
   },
-  "MFSL.NS|30m|short|1584.4550|1588.4869": {
-    "reached_entry": false
-  },
   "MFSL.NS|30m|short|1584.4555|1588.4869": {
     "reached_entry": false
   },
@@ -493,9 +439,6 @@
   "NTPCGREEN.NS|30m|long|91.4924|91.3186": {
     "reached_entry": false
   },
-  "NTPCGREEN.NS|30m|short|92.5435|92.7126": {
-    "reached_entry": false
-  },
   "NUVAMA.NS|30m|short|1746.7130|1751.7500": {
     "reached_entry": false
   },
@@ -512,7 +455,8 @@
     "reached_entry": false
   },
   "OLECTRA.NS|30m|long|1299.2813|1295.9028": {
-    "reached_entry": false
+    "reached_entry": false,
+    "stage": 1
   },
   "PERSISTENT.NS|30m|short|5687.9214|5703.6980": {
     "reached_entry": true,
