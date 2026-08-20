@@ -1645,7 +1645,9 @@
     "NEARUSD|4h|short|1.7639180000|1.7720000000": 1787214073.614892,
     "FARTCOIN/USDT|4h|short|0.1553865000|0.1567000000": 1787214074.1772823,
     "TIAUSD|4h|short|0.3312445000|0.3321000000": 1787214074.6396945,
-    "JUP/USDT|4h|short|0.1875250000|0.1883000000": 1787214074.8580728
+    "JUP/USDT|4h|short|0.1875250000|0.1883000000": 1787214074.8580728,
+    "SUIUSD|4h|short|0.7242000000|0.7265000000": 1787215272.845374,
+    "BCHUSD|4h|short|219.3096000000|220.0400000000": 1787215273.0472038
   },
   "ARBUSD|supply|0.08030000|0.08180000": {
     "in_zone": false,
@@ -2680,8 +2682,8 @@
     "last_alert_at": 0.0
   },
   "BCHUSD|supply|219.30960000|220.04000000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1787215273.0472038
   },
   "BCHUSD|demand|199.49000000|200.07195000": {
     "in_zone": false,
@@ -3628,7 +3630,7 @@
     "last_alert_at": 0.0
   },
   "XMRUSD|demand|409.80000000|411.28900000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1787202069.7380805
   },
   "TSLAXUSD|demand|331.95000000|332.72290000": {
@@ -3688,8 +3690,8 @@
     "last_alert_at": 0.0
   },
   "SUIUSD|supply|0.72420000|0.72650000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1787215272.845374
   },
   "AVAXUSD|supply|7.04374350|7.08000000": {
     "in_zone": false,
@@ -3704,6 +3706,18 @@
     "last_alert_at": 0.0
   },
   "HOOD/USDT:USDT|supply|107.76580000|108.26000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "INJUSD|supply|5.12824000|5.15100000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "SEIUSD|supply|0.04554930|0.04570000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "JUP/USDT|supply|0.20108100|0.20240000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
