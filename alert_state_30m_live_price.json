@@ -1878,7 +1878,7 @@
     "SOON/USDT|30m|long|0.1997000000|0.2001545000": 1787197881.396966,
     "GWEI/USDT|30m|long|0.0209200000|0.0209876500": 1787166684.1042583,
     "SLVONUSD|30m|short|60.3456500000|60.4000000000": 1787166684.3320432,
-    "PHAROS/USDT|30m|long|0.3947000000|0.3955585000": 1787197881.696933,
+    "PHAROS/USDT|30m|long|0.3947000000|0.3955585000": 1787205084.758794,
     "ERA/USDT|30m|long|0.0570300000|0.0571469000": 1787199080.2871578,
     "METAXUSD|30m|short|554.5491000000|554.9500000000": 1787197882.299641,
     "SPYXUSD|30m|short|770.2124500000|770.3500000000": 1787202682.803159,
@@ -1895,7 +1895,9 @@
     "FLNC/USDT:USDT|30m|short|12.1673000000|12.1900000000": 1787203886.2361135,
     "METAXUSD|30m|long|546.6700000000|547.0670500000": 1787202682.5338092,
     "ESP/USDT|30m|short|0.0813080000|0.0815500000": 1787203883.3503644,
-    "GWEI/USDT|30m|short|0.0217979000|0.0218700000": 1787203886.1021094
+    "GWEI/USDT|30m|short|0.0217979000|0.0218700000": 1787203886.1021094,
+    "ZRO/USDT|30m|short|0.8863190000|0.8891000000": 1787205084.6007137,
+    "HBAR/USDT|30m|short|0.0716517000|0.0717600000": 1787205085.0826054
   },
   "METAXUSD|demand|577.00000000|579.20000000": {
     "in_zone": false,
@@ -8918,8 +8920,8 @@
     "last_alert_at": 0.0
   },
   "PHAROS/USDT|demand|0.39470000|0.39555850": {
-    "in_zone": false,
-    "last_alert_at": 1787197881.696933
+    "in_zone": true,
+    "last_alert_at": 1787205084.758794
   },
   "US/USDT|supply|0.01763645|0.01769900": {
     "in_zone": false,
@@ -8930,8 +8932,8 @@
     "last_alert_at": 0.0
   },
   "HBAR/USDT|supply|0.07165170|0.07176000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1787205085.0826054
   },
   "ICP/USDT|demand|2.16000000|2.16322500": {
     "in_zone": false,
@@ -9161,14 +9163,26 @@
     "last_alert_at": 0.0
   },
   "ZRO/USDT|supply|0.88631900|0.88910000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1787205084.6007137
   },
   "RE/USDT|supply|0.55394990|0.55684000": {
     "in_zone": false,
     "last_alert_at": 0.0
   },
   "BABA/USDT:USDT|supply|132.97785000|133.10000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "1000SHIBUSD|supply|0.00481502|0.00482000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "ESPORTS/USDT|supply|0.01732680|0.01739000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "FILUSD|supply|0.69433050|0.69530000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
