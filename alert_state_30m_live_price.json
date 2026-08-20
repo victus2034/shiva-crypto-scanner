@@ -1922,7 +1922,9 @@
     "TRX/USDT|30m|long|0.3319300000|0.3320647000": 1787214684.0808976,
     "ARBUSD|30m|short|0.0905385000|0.0907000000": 1787215882.2176123,
     "MNT/USDT|30m|short|0.4894085000|0.4900000000": 1787215882.3674414,
-    "PEOPLE/USDT|30m|short|0.0082465650|0.0082670000": 1787215882.495021
+    "PEOPLE/USDT|30m|short|0.0082465650|0.0082670000": 1787215882.495021,
+    "NEARUSD|30m|short|1.7694420000|1.7720000000": 1787217081.4109678,
+    "PUMPUSD|30m|short|0.0033058450|0.0033190000": 1787217081.6557183
   },
   "METAXUSD|demand|577.00000000|579.20000000": {
     "in_zone": false,
@@ -9089,8 +9091,8 @@
     "last_alert_at": 0.0
   },
   "NEARUSD|supply|1.76944200|1.77200000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1787217081.4109678
   },
   "SUIUSD|supply|0.72463200|0.72570000": {
     "in_zone": false,
@@ -9136,7 +9138,7 @@
     "last_alert_at": 0.0
   },
   "ARBUSD|supply|0.09053850|0.09070000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1787215882.2176123
   },
   "PHAROS/USDT|supply|0.40765500|0.40850000": {
@@ -9272,8 +9274,8 @@
     "last_alert_at": 0.0
   },
   "PUMPUSD|supply|0.00330584|0.00331900": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1787217081.6557183
   },
   "UB/USDT|demand|0.11050000|0.11082765": {
     "in_zone": false,
@@ -9423,6 +9425,42 @@
     "last_alert_at": 1787214684.24619
   },
   "ONDOUSD|demand|0.34190000|0.34248250": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "ZECUSD|demand|551.00000000|552.36715000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "ADAUSD|demand|0.18200000|0.18244530": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "UNIUSD|supply|4.02522600|4.03050000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "BTW/USDT|supply|0.43050855|0.44228000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "OPUSD|demand|0.08793000|0.08812915": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "CAP/USDT|supply|0.07176515|0.07211000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "FILUSD|demand|0.66600000|0.66717500": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "SKHYNIX/USDT:USDT|supply|1228.48205000|1232.98000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "OPENAI/USDT:USDT|supply|126.15155000|126.42000000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
