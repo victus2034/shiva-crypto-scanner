@@ -245,7 +245,8 @@
     "reached_entry": true
   },
   "GLENMARK.NS|30m|short|2338.1388|2343.7413": {
-    "reached_entry": false
+    "reached_entry": false,
+    "stage": 1
   },
   "GMRAIRPORT.NS|30m|long|101.0049|100.7491": {
     "reached_entry": true,
@@ -296,7 +297,7 @@
     "stage": 3
   },
   "HBLENGINE.NS|30m|short|712.5094|714.5138": {
-    "reached_entry": false,
+    "reached_entry": true,
     "stage": 1
   },
   "HDFCLIFE.NS|30m|short|545.9643|547.1466": {
@@ -306,15 +307,15 @@
     "reached_entry": false
   },
   "HINDPETRO.NS|30m|long|365.0627|364.2853": {
-    "reached_entry": false,
-    "stage": 1
+    "reached_entry": true,
+    "stage": 2
   },
   "HINDPETRO.NS|30m|long|365.0631|364.2853": {
-    "reached_entry": false,
-    "stage": 1
+    "reached_entry": true,
+    "stage": 2
   },
   "HONAUT.NS|30m|short|36508.1914|36586.5500": {
-    "reached_entry": false
+    "reached_entry": true
   },
   "HONAUT.NS|30m|short|36508.1916|36586.5500": {
     "reached_entry": true,
@@ -325,7 +326,7 @@
   },
   "HYUNDAI.NS|30m|short|2217.9964|2223.1208": {
     "reached_entry": true,
-    "stage": 2
+    "stage": 3
   },
   "ICICIBANK.NS|30m|short|1415.3617|1418.0166": {
     "reached_entry": false
@@ -516,10 +517,12 @@
     "reached_entry": false
   },
   "PIRAMALFIN.NS|30m|short|2115.6275|2121.8197": {
-    "reached_entry": false
+    "reached_entry": true,
+    "stage": 2
   },
   "PIRAMALFIN.NS|30m|short|2115.6282|2121.8197": {
-    "reached_entry": false
+    "reached_entry": true,
+    "stage": 2
   },
   "PNB.NS|30m|short|119.3406|119.5895": {
     "reached_entry": false
