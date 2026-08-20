@@ -6830,6 +6830,29 @@
       "target_2": 1306.0383593096726,
       "target_half": 1300.9705552651878,
       "trade_id": "11c227f4a42d414b"
+    },
+    {
+      "alert_time": "2026-08-20T14:12:21.126046+05:30",
+      "cost_r": 0.49191784099802993,
+      "date": "2026-08-20",
+      "entry": 1458.7952299268084,
+      "entry_time": "2026-08-20T14:40:00+05:30",
+      "exit_price": 1454.9150541725464,
+      "exit_time": "2026-08-20T14:55:00+05:30",
+      "final_result": "SL",
+      "half_r_hit": true,
+      "net_realized_r": -1.7227997041203573,
+      "outcome": "SL",
+      "rating": 7,
+      "realized_r": -1.2308818631223275,
+      "risk": 3.1523543164566945,
+      "side": "long",
+      "stop": 1455.6428756103517,
+      "symbol": "NESTLEIND.NS",
+      "target_1": 1461.947584243265,
+      "target_2": 1465.0999385597217,
+      "target_half": 1460.3714070850367,
+      "trade_id": "12adaedcd8e98192"
     }
   ],
   "handled": {
@@ -6892,6 +6915,7 @@
     "39757c5de25f2767": "filled",
     "39ff8b27c330332d": "filled",
     "3a2f38ecc2d8509a": "filled",
+    "3ad37863e7b1d694": "filled",
     "3c1b912b307495cc": "filled",
     "3d19c90d133f7a19": "filled",
     "3eebc2f6cbc5a876": "filled",
@@ -6933,6 +6957,7 @@
     "6057d8a3b3a775ce": "filled",
     "60e4f6f9b270d7b8": "filled",
     "61bff8ef9aeac73b": "filled",
+    "62665b4761ee9b11": "filled",
     "658eb472a8fc0254": "filled",
     "6622d65505d82ce1": "filled",
     "67d7bbd9655ca698": "filled",
@@ -6959,6 +6984,7 @@
     "7c332175c734b096": "filled",
     "7ccc95a57a7539f1": "filled",
     "7d916765f767ac89": "filled",
+    "7ee0e7010d11e78e": "filled",
     "7ffb7eb8e15e05cf": "filled",
     "80020603bf461dfa": "filled",
     "809bae13d88e3ad5": "filled",
@@ -7086,6 +7112,7 @@
     "ddf054b8037fe633": "filled",
     "defedca65023be68": "filled",
     "df1c81c534188509": "filled",
+    "df465098fed0d6fb": "filled",
     "df748d926071592b": "filled",
     "dfbb835098338f4f": "filled",
     "e0104a53870d40fc": "filled",
@@ -7138,19 +7165,19 @@
     "ffb4661b7d04cd46": "filled"
   },
   "open": {
-    "12adaedcd8e98192": {
-      "alert_time": "2026-08-20T14:12:21.126046+05:30",
-      "entry": 1458.7952299268084,
-      "entry_time": "2026-08-20T14:40:00+05:30",
+    "3ad37863e7b1d694": {
+      "alert_time": "2026-08-20T13:32:35.338220+05:30",
+      "entry": 1232.269751011171,
+      "entry_time": "2026-08-20T14:55:00+05:30",
       "half_r_hit": true,
-      "rating": 7,
-      "risk": 3.1523543164566945,
-      "side": "long",
-      "stop": 1455.6428756103517,
-      "symbol": "NESTLEIND.NS",
-      "target_1": 1461.947584243265,
-      "target_2": 1465.0999385597217,
-      "target_half": 1460.3714070850367
+      "rating": 8,
+      "risk": 2.463748988828911,
+      "side": "short",
+      "stop": 1234.7334999999998,
+      "symbol": "ANURAS.NS",
+      "target_1": 1229.806002022342,
+      "target_2": 1227.342253033513,
+      "target_half": 1231.0378765167566
     },
     "3d19c90d133f7a19": {
       "alert_time": "2026-08-20T13:32:45.489159+05:30",
@@ -7165,6 +7192,34 @@
       "target_1": 365.83998342443954,
       "target_2": 366.61730318536536,
       "target_half": 365.4513235439766
+    },
+    "62665b4761ee9b11": {
+      "alert_time": "2026-08-20T14:32:23.718970+05:30",
+      "entry": 1232.2691567270651,
+      "entry_time": "2026-08-20T14:55:00+05:30",
+      "half_r_hit": true,
+      "rating": 8,
+      "risk": 2.464343272934684,
+      "side": "short",
+      "stop": 1234.7334999999998,
+      "symbol": "ANURAS.NS",
+      "target_1": 1229.8048134541305,
+      "target_2": 1227.3404701811958,
+      "target_half": 1231.0369850905977
+    },
+    "7ee0e7010d11e78e": {
+      "alert_time": "2026-08-20T14:32:24.582209+05:30",
+      "entry": 173.38550925861753,
+      "entry_time": "2026-08-20T14:50:00+05:30",
+      "half_r_hit": false,
+      "rating": 8,
+      "risk": 0.4586031612054171,
+      "side": "long",
+      "stop": 172.92690609741211,
+      "symbol": "ASHOKLEY.NS",
+      "target_1": 173.84411241982295,
+      "target_2": 174.30271558102837,
+      "target_half": 173.61481083922024
     },
     "a0f3e19e281052ee": {
       "alert_time": "2026-08-20T13:12:12.031474+05:30",
@@ -7221,6 +7276,20 @@
       "target_1": 391.0963015044801,
       "target_2": 390.12313031152974,
       "target_half": 391.5828871009553
+    },
+    "df465098fed0d6fb": {
+      "alert_time": "2026-08-20T14:12:01.698597+05:30",
+      "entry": 1232.2697493460291,
+      "entry_time": "2026-08-20T14:55:00+05:30",
+      "half_r_hit": true,
+      "rating": 8,
+      "risk": 2.463750653970692,
+      "side": "short",
+      "stop": 1234.7334999999998,
+      "symbol": "ANURAS.NS",
+      "target_1": 1229.8059986920584,
+      "target_2": 1227.3422480380877,
+      "target_half": 1231.0378740190438
     }
   }
 }
