@@ -5956,6 +5956,52 @@
       "target_2": 1142.732176064944,
       "target_half": 1147.942088032472,
       "trade_id": "078d3696d7312a8b"
+    },
+    {
+      "alert_time": "2026-08-20T13:33:02.599803+05:30",
+      "cost_r": 0.352231672809672,
+      "date": "2026-08-20",
+      "entry": 1149.682373452134,
+      "entry_time": "2026-08-20T13:35:00+05:30",
+      "exit_price": 1153.7285759999997,
+      "exit_time": "2026-08-20T13:35:00+05:30",
+      "final_result": "SL",
+      "half_r_hit": false,
+      "net_realized_r": -1.5184097879600154,
+      "outcome": "SL",
+      "rating": 9,
+      "realized_r": -1.1661781151503434,
+      "risk": 3.4696265478658006,
+      "side": "short",
+      "stop": 1153.1519999999998,
+      "symbol": "KPRMILL.NS",
+      "target_1": 1146.2127469042682,
+      "target_2": 1142.7431203564024,
+      "target_half": 1147.947560178201,
+      "trade_id": "eacbcac31b156102"
+    },
+    {
+      "alert_time": "2026-08-20T13:32:35.854842+05:30",
+      "cost_r": 0.3247583454923852,
+      "date": "2026-08-20",
+      "entry": 538.1746169809943,
+      "entry_time": "2026-08-20T13:35:00+05:30",
+      "exit_price": null,
+      "exit_time": "2026-08-20T13:35:00+05:30",
+      "final_result": "data_quality_ambiguous",
+      "half_r_hit": false,
+      "net_realized_r": null,
+      "outcome": "data_quality_ambiguous",
+      "rating": 9,
+      "realized_r": null,
+      "risk": 1.7615547861701089,
+      "side": "long",
+      "stop": 536.4130621948242,
+      "symbol": "AIIL.NS",
+      "target_1": 539.9361717671644,
+      "target_2": 541.6977265533345,
+      "target_half": 539.0553943740794,
+      "trade_id": "6ffbc29992a7bfa9"
     }
   ],
   "handled": {
@@ -6053,6 +6099,7 @@
     "6c9c3e5d5b072eb5": "filled",
     "6e71d7b35a1b551f": "filled",
     "6fb94f7961049ea8": "filled",
+    "6ffbc29992a7bfa9": "filled",
     "71d6d3ddd45851ac": "filled",
     "73afb0e83e8f7f71": "filled",
     "7402db7a8006aaf7": "filled",
@@ -6265,20 +6312,6 @@
       "target_1": 1904.0802005109133,
       "target_2": 1909.06830076637,
       "target_half": 1901.586150383185
-    },
-    "eacbcac31b156102": {
-      "alert_time": "2026-08-20T13:33:02.599803+05:30",
-      "entry": 1149.682373452134,
-      "entry_time": "2026-08-20T13:35:00+05:30",
-      "half_r_hit": false,
-      "rating": 9,
-      "risk": 3.4696265478658006,
-      "side": "short",
-      "stop": 1153.1519999999998,
-      "symbol": "KPRMILL.NS",
-      "target_1": 1146.2127469042682,
-      "target_2": 1142.7431203564024,
-      "target_half": 1147.947560178201
     }
   }
 }
