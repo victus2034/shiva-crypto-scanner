@@ -4944,6 +4944,29 @@
       "target_2": 429.0736722669237,
       "target_half": 430.80288918827137,
       "trade_id": "67d7bbd9655ca698"
+    },
+    {
+      "alert_time": "2026-08-20T10:32:20.269149+05:30",
+      "cost_r": 0.45933124007120324,
+      "date": "2026-08-20",
+      "entry": 290.96798808160776,
+      "entry_time": "2026-08-20T11:30:00+05:30",
+      "exit_price": 291.7871767876739,
+      "exit_time": "2026-08-20T11:50:00+05:30",
+      "final_result": "SL",
+      "half_r_hit": false,
+      "net_realized_r": -1.675885445184649,
+      "outcome": "SL",
+      "rating": 10,
+      "realized_r": -1.2165542051134457,
+      "risk": 0.673368028011339,
+      "side": "short",
+      "stop": 291.6413561096191,
+      "symbol": "PETRONET.NS",
+      "target_1": 290.2946200535964,
+      "target_2": 289.6212520255851,
+      "target_half": 290.63130406760206,
+      "trade_id": "0647ccdd87e5036d"
     }
   ],
   "handled": {
@@ -5046,6 +5069,7 @@
     "87f6d30c11691f01": "filled",
     "881039b779f8fdfb": "filled",
     "88dfb66ace4f597b": "filled",
+    "89b4a79121b8adec": "filled",
     "8a0642faf691436f": "filled",
     "8a5f23124123ac2b": "filled",
     "8a7073b0e3ec697a": "filled",
@@ -5117,6 +5141,7 @@
     "d50d0ccf25e23e76": "filled",
     "d6219945e9e6b026": "filled",
     "d7d06d7e5f681e30": "filled",
+    "d87a36e34cff2fb9": "filled",
     "d984cc83954830d8": "filled",
     "db222c013313dd21": "filled",
     "dbc3048db25d8a8e": "filled",
@@ -5167,20 +5192,6 @@
     "ffb4661b7d04cd46": "filled"
   },
   "open": {
-    "0647ccdd87e5036d": {
-      "alert_time": "2026-08-20T10:32:20.269149+05:30",
-      "entry": 290.96798808160776,
-      "entry_time": "2026-08-20T11:30:00+05:30",
-      "half_r_hit": false,
-      "rating": 10,
-      "risk": 0.673368028011339,
-      "side": "short",
-      "stop": 291.6413561096191,
-      "symbol": "PETRONET.NS",
-      "target_1": 290.2946200535964,
-      "target_2": 289.6212520255851,
-      "target_half": 290.63130406760206
-    },
     "253141da20fb96c6": {
       "alert_time": "2026-08-20T10:52:07.820798+05:30",
       "entry": 1413.5919729489897,
@@ -5208,6 +5219,34 @@
       "target_1": 386.7267608144991,
       "target_2": 387.98243817304257,
       "target_half": 386.0989221352273
+    },
+    "89b4a79121b8adec": {
+      "alert_time": "2026-08-20T10:32:18.170234+05:30",
+      "entry": 133745.122510559,
+      "entry_time": "2026-08-20T11:45:00+05:30",
+      "half_r_hit": false,
+      "rating": 6,
+      "risk": 238.72748944096384,
+      "side": "short",
+      "stop": 133983.84999999998,
+      "symbol": "MRF.NS",
+      "target_1": 133506.39502111805,
+      "target_2": 133267.66753167709,
+      "target_half": 133625.75876583852
+    },
+    "d87a36e34cff2fb9": {
+      "alert_time": "2026-08-20T11:32:36.121427+05:30",
+      "entry": 735.8515089528702,
+      "entry_time": "2026-08-20T11:45:00+05:30",
+      "half_r_hit": false,
+      "rating": 8,
+      "risk": 1.585203266368012,
+      "side": "short",
+      "stop": 737.4367122192382,
+      "symbol": "INDHOTEL.NS",
+      "target_1": 734.2663056865022,
+      "target_2": 732.6811024201342,
+      "target_half": 735.0589073196861
     }
   }
 }
