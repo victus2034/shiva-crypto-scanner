@@ -5396,6 +5396,7 @@
     "6978e25f0ffc374b": "filled",
     "6b2eedde1506bb32": "filled",
     "6bbc88f089134a90": "filled",
+    "6bd289a6b60fc9c3": "filled",
     "6c9c3e5d5b072eb5": "filled",
     "6e71d7b35a1b551f": "filled",
     "6fb94f7961049ea8": "filled",
@@ -5558,7 +5559,7 @@
       "alert_time": "2026-08-20T11:32:58.443892+05:30",
       "entry": 1458.7952175360595,
       "entry_time": "2026-08-20T12:10:00+05:30",
-      "half_r_hit": false,
+      "half_r_hit": true,
       "rating": 8,
       "risk": 3.1523419257077876,
       "side": "long",
@@ -5595,6 +5596,20 @@
       "target_1": 6724.214140488464,
       "target_2": 6742.168710732696,
       "target_half": 6715.236855366348
+    },
+    "6bd289a6b60fc9c3": {
+      "alert_time": "2026-08-20T12:32:20.545326+05:30",
+      "entry": 1899.0941319180106,
+      "entry_time": "2026-08-20T12:40:00+05:30",
+      "half_r_hit": false,
+      "rating": 7,
+      "risk": 4.9901319180105475,
+      "side": "long",
+      "stop": 1894.104,
+      "symbol": "LLOYDSME.NS",
+      "target_1": 1904.0842638360211,
+      "target_2": 1909.0743957540317,
+      "target_half": 1901.589197877016
     },
     "93a13e3202e9cf94": {
       "alert_time": "2026-08-20T12:12:08.379495+05:30",
