@@ -144,7 +144,7 @@
     "stage": 1
   },
   "CLEAN.NS|30m|short|842.4093|844.6938": {
-    "reached_entry": false
+    "reached_entry": true
   },
   "COCHINSHIP.NS|30m|long|1476.5491|1472.4261": {
     "reached_entry": false
@@ -248,12 +248,12 @@
     "reached_entry": false
   },
   "ICICIGI.NS|30m|short|1647.3773|1651.6500": {
-    "reached_entry": false,
-    "stage": 1
+    "reached_entry": true,
+    "stage": 2
   },
   "ICICIGI.NS|30m|short|1647.3834|1651.6500": {
-    "reached_entry": false,
-    "stage": 1
+    "reached_entry": true,
+    "stage": 2
   },
   "IDBI.NS|30m|short|82.4325|82.5925": {
     "reached_entry": false
@@ -295,10 +295,12 @@
     "reached_entry": false
   },
   "KOTAKBANK.NS|30m|short|399.5759|400.4000": {
-    "reached_entry": false
+    "reached_entry": false,
+    "stage": 1
   },
   "KOTAKBANK.NS|30m|short|399.5764|400.4000": {
-    "reached_entry": false
+    "reached_entry": false,
+    "stage": 1
   },
   "KPRMILL.NS|30m|short|1149.6822|1153.1520": {
     "reached_entry": false
