@@ -8,9 +8,6 @@
   "ABREL.NS|30m|short|1403.7580|1408.0066": {
     "reached_entry": false
   },
-  "ABREL.NS|30m|short|1403.7583|1408.0066": {
-    "reached_entry": false
-  },
   "ABSLAMC.NS|30m|long|992.7698|990.1089": {
     "reached_entry": false
   },
@@ -38,9 +35,6 @@
   "AFFLE.NS|30m|short|1716.9224|1721.8201": {
     "reached_entry": false
   },
-  "AIAENG.NS|30m|short|4470.0842|4483.4790": {
-    "reached_entry": false
-  },
   "ANANTRAJ.NS|30m|short|640.1947|642.1415": {
     "reached_entry": true,
     "stage": 3
@@ -50,10 +44,6 @@
     "stage": 1
   },
   "ANURAS.NS|30m|short|1232.2697|1234.7335": {
-    "reached_entry": true,
-    "stage": 2
-  },
-  "ASTERDM.NS|30m|long|774.1428|772.0771": {
     "reached_entry": true,
     "stage": 2
   },
@@ -94,8 +84,8 @@
     "stage": 2
   },
   "BALKRISIND.NS|30m|long|2354.7225|2347.9497": {
-    "reached_entry": false,
-    "stage": 1
+    "reached_entry": true,
+    "stage": 2
   },
   "BANKBARODA.NS|30m|short|247.8230|248.3381": {
     "reached_entry": false
@@ -161,14 +151,11 @@
   },
   "CDSL.NS|30m|short|1346.8214|1349.5482": {
     "reached_entry": true,
-    "stage": 2
+    "stage": 3
   },
   "CDSL.NS|30m|short|1346.8216|1349.5482": {
     "reached_entry": true,
-    "stage": 2
-  },
-  "CGCL.NS|30m|short|229.2574|229.8997": {
-    "reached_entry": false
+    "stage": 3
   },
   "CGPOWER.NS|30m|long|861.4595|859.4397": {
     "reached_entry": false
@@ -197,10 +184,6 @@
   "CIEINDIA.NS|30m|short|411.7096|412.6122": {
     "reached_entry": false
   },
-  "CIPLA.NS|30m|short|1435.9212|1438.5371": {
-    "reached_entry": true,
-    "stage": 2
-  },
   "COCHINSHIP.NS|30m|long|1476.5490|1472.4261": {
     "reached_entry": false
   },
@@ -221,9 +204,6 @@
     "reached_entry": true,
     "stage": 2
   },
-  "CPPLUS.NS|30m|short|3373.0216|3383.3800": {
-    "reached_entry": true
-  },
   "CREDITACC.NS|30m|short|1542.8598|1546.5450": {
     "reached_entry": false,
     "stage": 1
@@ -231,10 +211,6 @@
   "CREDITACC.NS|30m|short|1542.8605|1546.5450": {
     "reached_entry": false,
     "stage": 1
-  },
-  "CROMPTON.NS|30m|short|248.8288|249.4992": {
-    "reached_entry": true,
-    "stage": 3
   },
   "CUMMINSIND.NS|30m|long|5197.7762|5182.3125": {
     "reached_entry": true,
@@ -250,18 +226,7 @@
   "CYIENT.NS|30m|short|903.3513|905.7048": {
     "reached_entry": false
   },
-  "DCMSHRIRAM.NS|30m|short|1059.4055|1063.0620": {
-    "reached_entry": true,
-    "stage": 3
-  },
   "DIVISLAB.NS|30m|long|8520.2712|8502.4890": {
-    "reached_entry": false
-  },
-  "DIXON.NS|30m|short|14644.3049|14687.6730": {
-    "reached_entry": true,
-    "stage": 3
-  },
-  "DMART.NS|30m|short|4080.1529|4089.0850": {
     "reached_entry": false
   },
   "DOMS.NS|30m|short|2221.4429|2225.8237": {
@@ -270,15 +235,9 @@
   "DOMS.NS|30m|short|2221.4435|2225.8237": {
     "reached_entry": false
   },
-  "EICHERMOT.NS|30m|long|7951.8309|7935.0570": {
-    "reached_entry": false
-  },
   "EIHOTEL.NS|30m|short|302.4967|303.2530": {
     "reached_entry": true,
     "stage": 2
-  },
-  "EMAMILTD.NS|30m|short|407.1209|408.1077": {
-    "reached_entry": false
   },
   "EMMVEE.NS|30m|short|334.0267|335.0347": {
     "reached_entry": true,
@@ -295,10 +254,6 @@
   },
   "FORTIS.NS|30m|long|908.2552|905.7933": {
     "reached_entry": false
-  },
-  "FSL.NS|30m|short|275.0479|276.1259": {
-    "reached_entry": true,
-    "stage": 3
   },
   "GALLANTT.NS|30m|short|585.9459|587.7372": {
     "reached_entry": true,
@@ -338,10 +293,6 @@
     "reached_entry": true,
     "stage": 1
   },
-  "HDFCAMC.NS|30m|short|2568.9968|2574.5720": {
-    "reached_entry": true,
-    "stage": 1
-  },
   "HDFCBANK.NS|30m|short|731.5704|732.7820": {
     "reached_entry": false
   },
@@ -355,9 +306,6 @@
     "reached_entry": false
   },
   "HOMEFIRST.NS|30m|long|1173.1822|1170.4284": {
-    "reached_entry": false
-  },
-  "HOMEFIRST.NS|30m|short|1197.7143|1200.7996": {
     "reached_entry": false
   },
   "HYUNDAI.NS|30m|short|2217.9965|2223.1208": {
@@ -381,14 +329,9 @@
   "IEX.NS|30m|long|122.3217|122.0678": {
     "reached_entry": false
   },
-  "INDGN.NS|30m|short|572.9341|574.4739": {
-    "reached_entry": true
-  },
   "INDHOTEL.NS|30m|short|735.8515|737.4367": {
-    "reached_entry": false
-  },
-  "INDIACEM.NS|30m|long|370.1554|369.2304": {
-    "reached_entry": false
+    "reached_entry": true,
+    "stage": 2
   },
   "INDIACEM.NS|30m|long|370.1566|369.2304": {
     "reached_entry": false
@@ -414,9 +357,6 @@
   "INDUSINDBK.NS|30m|short|1017.0549|1019.2182": {
     "reached_entry": false
   },
-  "INDUSTOWER.NS|30m|long|365.9172|364.9847": {
-    "reached_entry": false
-  },
   "IRB.NS|30m|long|18.9255|18.8911": {
     "reached_entry": false
   },
@@ -432,16 +372,8 @@
   "JINDALSTEL.NS|30m|short|1125.7800|1128.4273": {
     "reached_entry": true
   },
-  "JMFINANCIL.NS|30m|short|128.1912|128.5284": {
-    "reached_entry": true,
-    "stage": 3
-  },
   "JPPOWER.NS|30m|short|17.3562|17.3974": {
     "reached_entry": false
-  },
-  "JSWDULUX.NS|30m|long|3086.1093|3077.1198": {
-    "reached_entry": true,
-    "stage": 3
   },
   "JSWSTEEL.NS|30m|short|1310.4533|1313.3120": {
     "reached_entry": false
@@ -477,10 +409,6 @@
   "LICHSGFIN.NS|30m|short|501.3812|502.3018": {
     "reached_entry": false
   },
-  "LICI.NS|30m|short|416.3828|417.4170": {
-    "reached_entry": true,
-    "stage": 3
-  },
   "LINDEINDIA.NS|30m|long|6706.2595|6688.3050": {
     "reached_entry": false,
     "stage": 1
@@ -501,21 +429,7 @@
   "LTFOODS.NS|30m|short|431.3789|432.5321": {
     "reached_entry": false
   },
-  "LTFOODS.NS|30m|short|431.3793|432.5321": {
-    "reached_entry": false,
-    "stage": 1
-  },
-  "LTTS.NS|30m|short|3633.5454|3643.5398": {
-    "reached_entry": true,
-    "stage": 3
-  },
-  "M&M.NS|30m|long|3390.4576|3381.4152": {
-    "reached_entry": false
-  },
   "M&M.NS|30m|short|3435.3932|3442.9395": {
-    "reached_entry": false
-  },
-  "MANAPPURAM.NS|30m|short|351.2050|352.3020": {
     "reached_entry": false
   },
   "MAPMYINDIA.NS|30m|short|1017.0858|1019.8188": {
@@ -524,17 +438,16 @@
   "MAPMYINDIA.NS|30m|short|1017.0866|1019.8188": {
     "reached_entry": false
   },
-  "MARUTI.NS|30m|long|13640.5623|13614.3720": {
-    "reached_entry": false
-  },
   "MARUTI.NS|30m|long|13640.5654|13614.3720": {
     "reached_entry": false
   },
   "MCX.NS|30m|short|3059.1745|3067.8648": {
-    "reached_entry": false
+    "reached_entry": true,
+    "stage": 3
   },
   "MEDANTA.NS|30m|long|1413.5920|1409.6889": {
-    "reached_entry": false
+    "reached_entry": false,
+    "stage": 1
   },
   "MGL.NS|30m|short|1159.4213|1162.1610": {
     "reached_entry": false
@@ -570,9 +483,6 @@
   "NESTLEIND.NS|30m|long|1458.7952|1455.6429": {
     "reached_entry": false
   },
-  "NESTLEIND.NS|30m|short|1479.4449|1482.5811": {
-    "reached_entry": false
-  },
   "NESTLEIND.NS|30m|short|1479.4450|1482.5811": {
     "reached_entry": false
   },
@@ -592,10 +502,6 @@
     "reached_entry": false,
     "stage": 1
   },
-  "NEWGEN.NS|30m|short|538.0528|539.5390": {
-    "reached_entry": true,
-    "stage": 3
-  },
   "NHPC.NS|30m|long|75.9301|75.7841": {
     "reached_entry": false
   },
@@ -607,10 +513,6 @@
   },
   "NTPCGREEN.NS|30m|long|91.4924|91.3186": {
     "reached_entry": false
-  },
-  "NUVAMA.NS|30m|short|1746.7138|1751.7500": {
-    "reached_entry": true,
-    "stage": 3
   },
   "NYKAA.NS|30m|short|329.0257|329.7795": {
     "reached_entry": false
@@ -631,16 +533,9 @@
     "reached_entry": false,
     "stage": 1
   },
-  "PIDILITIND.NS|30m|long|1651.1111|1647.1512": {
-    "reached_entry": true,
-    "stage": 3
-  },
   "PIRAMALFIN.NS|30m|short|2076.5219|2081.8798": {
     "reached_entry": true,
     "stage": 2
-  },
-  "POONAWALLA.NS|30m|short|502.4365|503.7532": {
-    "reached_entry": false
   },
   "PPLPHARMA.NS|30m|short|212.9535|213.6134": {
     "reached_entry": true
