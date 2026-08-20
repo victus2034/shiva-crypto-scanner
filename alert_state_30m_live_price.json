@@ -1941,7 +1941,8 @@
     "US/USDT|30m|short|0.0181520000|0.0186640000": 1787243493.2717185,
     "COAI/USDT|30m|short|0.3157000000|0.3182000000": 1787244676.112463,
     "SOLUSD|30m|short|87.2340000000|88.1550000000": 1787245875.0459194,
-    "GRAMUSD|30m|short|1.3990000000|1.4150000000": 1787247123.3292296
+    "GRAMUSD|30m|short|1.3990000000|1.4150000000": 1787247123.3292296,
+    "COTI/USDT|30m|long|0.0098020000|0.0098780000": 1787249480.9241993
   },
   "METAXUSD|demand|577.00000000|579.20000000": {
     "in_zone": false,
@@ -9518,8 +9519,8 @@
     "last_alert_at": 0.0
   },
   "COTI/USDT|demand|0.00980200|0.00987800": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1787249480.9241993
   },
   "ZECUSD|demand|551.00000000|553.32000000": {
     "in_zone": false,
@@ -10226,6 +10227,14 @@
     "last_alert_at": 0.0
   },
   "TAIKO/USDT|demand|0.07259000|0.07299000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "LABUSD|demand|0.08010000|0.08120000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "O/USDT|demand|0.46500000|0.46700000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
