@@ -22,12 +22,12 @@
     "reached_entry": false
   },
   "ADANIPORTS.NS|30m|short|1693.7998|1697.1955": {
-    "reached_entry": false,
-    "stage": 1
+    "reached_entry": true,
+    "stage": 2
   },
   "ADANIPORTS.NS|30m|short|1693.8003|1697.1955": {
-    "reached_entry": false,
-    "stage": 1
+    "reached_entry": true,
+    "stage": 2
   },
   "AIIL.NS|30m|long|538.1746|536.4131": {
     "reached_entry": true
@@ -257,10 +257,12 @@
     "reached_entry": false
   },
   "HINDPETRO.NS|30m|long|365.0627|364.2853": {
-    "reached_entry": false
+    "reached_entry": false,
+    "stage": 1
   },
   "HINDPETRO.NS|30m|long|365.0631|364.2853": {
-    "reached_entry": false
+    "reached_entry": false,
+    "stage": 1
   },
   "HONAUT.NS|30m|short|36508.1914|36586.5500": {
     "reached_entry": false
@@ -408,7 +410,8 @@
     "reached_entry": false
   },
   "NHPC.NS|30m|long|75.9301|75.7841": {
-    "reached_entry": false
+    "reached_entry": false,
+    "stage": 1
   },
   "NTPCGREEN.NS|30m|long|91.4923|91.3186": {
     "reached_entry": false
