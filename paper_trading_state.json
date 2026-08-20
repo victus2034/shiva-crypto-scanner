@@ -4093,6 +4093,29 @@
       "target_2": 125.47864990368394,
       "target_half": 125.92744995184196,
       "trade_id": "0b21c0ba04421dbc"
+    },
+    {
+      "alert_time": "2026-08-20T09:32:19.775169+05:30",
+      "cost_r": 0.3983785918893273,
+      "date": "2026-08-20",
+      "entry": 774.1427832419112,
+      "entry_time": "2026-08-20T10:55:00+05:30",
+      "exit_price": null,
+      "exit_time": "2026-08-20T10:55:00+05:30",
+      "final_result": "data_quality_ambiguous",
+      "half_r_hit": false,
+      "net_realized_r": null,
+      "outcome": "data_quality_ambiguous",
+      "rating": 7,
+      "realized_r": null,
+      "risk": 2.0656576315595885,
+      "side": "long",
+      "stop": 772.0771256103516,
+      "symbol": "ASTERDM.NS",
+      "target_1": 776.2084408734707,
+      "target_2": 778.2740985050303,
+      "target_half": 775.175612057691,
+      "trade_id": "7c332175c734b096"
     }
   ],
   "handled": {
@@ -4122,9 +4145,11 @@
     "238579aa08036efd": "filled",
     "23f33ffb15eed0cd": "filled",
     "2401a0a246a236d9": "filled",
+    "2b4756e787bca3f5": "filled",
     "2bbaa1b093badec7": "filled",
     "3098f1dbae6a9ea3": "filled",
     "3404495c49a06d71": "filled",
+    "349711af805f1ccb": "filled",
     "36d49413dba75e26": "filled",
     "39757c5de25f2767": "filled",
     "39ff8b27c330332d": "filled",
@@ -4154,6 +4179,7 @@
     "5da572373f9e8856": "filled",
     "6057d8a3b3a775ce": "filled",
     "6622d65505d82ce1": "filled",
+    "6978e25f0ffc374b": "filled",
     "6bbc88f089134a90": "filled",
     "6c9c3e5d5b072eb5": "filled",
     "6e71d7b35a1b551f": "filled",
@@ -4164,6 +4190,7 @@
     "7934b7ad46394722": "filled",
     "793d0e05bbce9a5e": "filled",
     "7b26b9700727ad6f": "filled",
+    "7c332175c734b096": "filled",
     "7ccc95a57a7539f1": "filled",
     "7d916765f767ac89": "filled",
     "80c98c281079ae42": "filled",
@@ -4279,6 +4306,34 @@
     "ffb4661b7d04cd46": "filled"
   },
   "open": {
+    "2b4756e787bca3f5": {
+      "alert_time": "2026-08-20T10:51:59.039238+05:30",
+      "entry": 2354.722475869168,
+      "entry_time": "2026-08-20T10:55:00+05:30",
+      "half_r_hit": false,
+      "rating": 6,
+      "risk": 6.772727089871296,
+      "side": "long",
+      "stop": 2347.949748779297,
+      "symbol": "BALKRISIND.NS",
+      "target_1": 2361.4952029590395,
+      "target_2": 2368.267930048911,
+      "target_half": 2358.108839414104
+    },
+    "349711af805f1ccb": {
+      "alert_time": "2026-08-20T10:12:26.520706+05:30",
+      "entry": 2354.721165909707,
+      "entry_time": "2026-08-20T10:55:00+05:30",
+      "half_r_hit": false,
+      "rating": 6,
+      "risk": 6.7714171304101,
+      "side": "long",
+      "stop": 2347.949748779297,
+      "symbol": "BALKRISIND.NS",
+      "target_1": 2361.492583040117,
+      "target_2": 2368.264000170527,
+      "target_half": 2358.106874474912
+    },
     "3c1b912b307495cc": {
       "alert_time": "2026-08-20T09:33:14.574649+05:30",
       "entry": 1651.1111069033313,
@@ -4320,6 +4375,20 @@
       "target_1": 938.2382372545567,
       "target_2": 935.5860681010734,
       "target_half": 939.5643218312983
+    },
+    "6978e25f0ffc374b": {
+      "alert_time": "2026-08-20T10:51:57.424486+05:30",
+      "entry": 295.9218429878289,
+      "entry_time": "2026-08-20T10:55:00+05:30",
+      "half_r_hit": false,
+      "rating": 9,
+      "risk": 0.7245131217902099,
+      "side": "short",
+      "stop": 296.6463561096191,
+      "symbol": "ANGELONE.NS",
+      "target_1": 295.1973298660387,
+      "target_2": 294.47281674424846,
+      "target_half": 295.5595864269338
     }
   }
 }
