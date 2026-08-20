@@ -4967,6 +4967,29 @@
       "target_2": 289.6212520255851,
       "target_half": 290.63130406760206,
       "trade_id": "0647ccdd87e5036d"
+    },
+    {
+      "alert_time": "2026-08-20T11:33:06.279012+05:30",
+      "cost_r": 0.4256497827902608,
+      "date": "2026-08-20",
+      "entry": 1037.2484678503329,
+      "entry_time": "2026-08-20T11:50:00+05:30",
+      "exit_price": 1036.0037696889124,
+      "exit_time": "2026-08-20T11:55:00+05:30",
+      "final_result": "BE",
+      "half_r_hit": true,
+      "net_realized_r": 0.054857968242998656,
+      "outcome": "BE",
+      "rating": 9,
+      "realized_r": 0.48050775103325943,
+      "risk": 2.590381026620207,
+      "side": "short",
+      "stop": 1039.838848876953,
+      "symbol": "PREMIERENE.NS",
+      "target_1": 1034.6580868237127,
+      "target_2": 1032.0677057970925,
+      "target_half": 1035.9532773370229,
+      "trade_id": "c17f1d44829e7f34"
     }
   ],
   "handled": {
@@ -5115,7 +5138,9 @@
     "bcaea109d5d9eb5d": "filled",
     "be0156ccea7b15b3": "filled",
     "be57674723914eb7": "filled",
+    "c17f1d44829e7f34": "filled",
     "c323cbb9cf0a0c01": "filled",
+    "c3e2b03ce7560c11": "filled",
     "c526ab7fcb6de6e7": "filled",
     "c573109c879addef": "filled",
     "c5948b554739c4ac": "filled",
@@ -5233,6 +5258,20 @@
       "target_1": 133506.39502111805,
       "target_2": 133267.66753167709,
       "target_half": 133625.75876583852
+    },
+    "c3e2b03ce7560c11": {
+      "alert_time": "2026-08-20T11:52:16.931010+05:30",
+      "entry": 392.069501344381,
+      "entry_time": "2026-08-20T11:55:00+05:30",
+      "half_r_hit": false,
+      "rating": 8,
+      "risk": 0.9731425459997922,
+      "side": "short",
+      "stop": 393.0426438903808,
+      "symbol": "RBLBANK.NS",
+      "target_1": 391.09635879838123,
+      "target_2": 390.12321625238144,
+      "target_half": 391.58293007138116
     },
     "d87a36e34cff2fb9": {
       "alert_time": "2026-08-20T11:32:36.121427+05:30",
