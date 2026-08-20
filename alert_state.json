@@ -1615,7 +1615,7 @@
     "AAPLXUSD|4h|short|316.0056500000|317.0000000000": 1787157669.9097257,
     "MRVL/USDT:USDT|4h|short|239.3552000000|240.3900000000": 1787157670.445013,
     "MMT/USDT|4h|short|0.1815540000|0.1847000000": 1787162484.3896074,
-    "HYPEUSD|4h|short|71.6430600000|72.0800000000": 1787167273.7775908,
+    "HYPEUSD|4h|short|71.6430600000|72.0800000000": 1787204471.002603,
     "ASTER/USDT|4h|short|0.6194215000|0.6205000000": 1787167274.4877398,
     "RE/USDT|4h|short|0.5227834000|0.5320600000": 1787167274.9476066,
     "SLVONUSD|4h|short|60.6657500000|60.8600000000": 1787167275.158404,
@@ -3155,7 +3155,7 @@
     "last_alert_at": 0.0
   },
   "BABA/USDT:USDT|supply|132.74050000|133.10000000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1787203282.4469957
   },
   "BABA/USDT:USDT|demand|123.72000000|124.02465000": {
@@ -3531,8 +3531,8 @@
     "last_alert_at": 0.0
   },
   "HYPEUSD|supply|71.64306000|72.08000000": {
-    "in_zone": false,
-    "last_alert_at": 1787167273.7775908
+    "in_zone": true,
+    "last_alert_at": 1787204471.002603
   },
   "DOGEUSD|supply|0.07913999|0.07947000": {
     "in_zone": false,
@@ -3635,6 +3635,10 @@
     "last_alert_at": 0.0
   },
   "AERO/USDT|supply|0.53900050|0.54380000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "VIRTUAL/USDT|supply|0.67655550|0.68100000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
