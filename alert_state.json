@@ -148,8 +148,8 @@
     "last_alert_at": 0.0
   },
   "LTCUSD|supply|47.85000000|48.26000000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1787238082.8420699
   },
   "LTCUSD|demand|43.62000000|44.04000000": {
     "in_zone": true,
@@ -272,8 +272,8 @@
     "last_alert_at": 1786836694.604395
   },
   "BCHUSD|supply|220.13000000|222.03000000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1787238083.198012
   },
   "BCHUSD|demand|188.86000000|190.90000000": {
     "in_zone": false,
@@ -1655,7 +1655,9 @@
     "GOOGLXUSD|4h|long|340.9500000000|343.4000000000": 1787233270.9132826,
     "1000PEPEUSD|4h|short|0.0030390000|0.0031297000": 1787221263.9150722,
     "XRPUSD|4h|short|1.1569000000|1.1646000000": 1787222472.0894103,
-    "PENGU/USDT|4h|short|0.0066240000|0.0069150000": 1787224874.9601166
+    "PENGU/USDT|4h|short|0.0066240000|0.0069150000": 1787224874.9601166,
+    "LTCUSD|4h|short|47.8500000000|48.2600000000": 1787238082.8420699,
+    "BCHUSD|4h|short|220.1300000000|222.0300000000": 1787238083.198012
   },
   "ARBUSD|supply|0.08030000|0.08180000": {
     "in_zone": false,
@@ -3778,7 +3780,7 @@
     "last_alert_at": 0.0
   },
   "GOOGLXUSD|demand|340.95000000|343.40000000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1787233270.9132826
   },
   "XRPUSD|supply|1.27480000|1.29320000": {
