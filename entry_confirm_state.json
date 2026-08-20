@@ -346,7 +346,7 @@
   },
   "IRCON.NS|30m|short|126.0770|126.3762": {
     "reached_entry": true,
-    "stage": 2
+    "stage": 3
   },
   "J&KBANK.NS|30m|short|151.9050|152.3222": {
     "reached_entry": false
@@ -519,8 +519,8 @@
     "reached_entry": false
   },
   "PETRONET.NS|30m|short|290.9680|291.6414": {
-    "reached_entry": false,
-    "stage": 1
+    "reached_entry": true,
+    "stage": 2
   },
   "PIRAMALFIN.NS|30m|short|2076.5219|2081.8798": {
     "reached_entry": true,
@@ -540,7 +540,8 @@
     "reached_entry": false
   },
   "RPOWER.NS|30m|short|22.5012|22.5525": {
-    "reached_entry": false
+    "reached_entry": false,
+    "stage": 1
   },
   "RVNL.NS|30m|short|226.2709|226.7665": {
     "reached_entry": true,
