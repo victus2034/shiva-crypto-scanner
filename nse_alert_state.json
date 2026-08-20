@@ -2790,7 +2790,11 @@
     "JINDALSTEL.NS|4h|short|1122.9361428750|1127.3000488281": 1787215951.123915,
     "LEMONTREE.NS|4h|long|107.6500015259|108.1591010291": 1787215951.379076,
     "NTPC.NS|4h|long|333.7500000000|334.6345100549": 1787215951.5761886,
-    "OFSS.NS|4h|short|11912.1713672539|11967.0000000000": 1787215952.2485363
+    "OFSS.NS|4h|short|11912.1713672539|11967.0000000000": 1787215952.2485363,
+    "CDSL.NS|4h|short|1356.5516296986|1362.0000000000": 1787217163.011751,
+    "DCMSHRIRAM.NS|4h|short|1078.0124453445|1084.5000000000": 1787217163.4246576,
+    "DEEPAKFERT.NS|4h|long|1446.0999755859|1455.1670172923": 1787217163.650456,
+    "DIVISLAB.NS|4h|short|8644.6024122556|8673.5000000000": 1787217163.8847218
   },
   "GESHIP.NS|demand|1057.1000|1070.5000": {
     "in_zone": false,
@@ -9149,8 +9153,8 @@
   },
   "CDSL.NS|supply|1356.5516|1362.0000": {
     "in_zone": true,
-    "last_alert_at": 1787200366.6861062,
-    "last_attempt_at": 1787200366.6861062
+    "last_alert_at": 1787217163.011751,
+    "last_attempt_at": 1787217163.011751
   },
   "CDSL.NS|demand|1296.0000|1301.5173": {
     "in_zone": false,
@@ -9378,9 +9382,9 @@
     "last_attempt_at": 0.0
   },
   "DCMSHRIRAM.NS|supply|1078.0124|1084.5000": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1787217163.4246576,
+    "last_attempt_at": 1787217163.4246576
   },
   "DCMSHRIRAM.NS|demand|945.1000|950.9945": {
     "in_zone": false,
@@ -9474,8 +9478,8 @@
   },
   "DIVISLAB.NS|supply|8644.6024|8673.5000": {
     "in_zone": true,
-    "last_alert_at": 1787200366.8532815,
-    "last_attempt_at": 1787200366.8532815
+    "last_alert_at": 1787217163.8847218,
+    "last_attempt_at": 1787217163.8847218
   },
   "DIVISLAB.NS|demand|7178.5000|7202.4774": {
     "in_zone": false,
@@ -10778,7 +10782,7 @@
     "last_attempt_at": 0.0
   },
   "LTFOODS.NS|supply|439.5112|441.9000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1787214766.4775376,
     "last_attempt_at": 1787214766.4775376
   },
@@ -15998,9 +16002,9 @@
     "last_attempt_at": 0.0
   },
   "DEEPAKFERT.NS|demand|1446.1000|1455.1670": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1787217163.650456,
+    "last_attempt_at": 1787217163.650456
   },
   "DEEPAKNTR.NS|supply|1897.9455|1904.0000": {
     "in_zone": false,
@@ -17573,6 +17577,16 @@
     "last_attempt_at": 0.0
   },
   "SJVN.NS|demand|63.1000|63.4943": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "CANFINHOME.NS|supply|966.0337|969.7000": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "ELECON.NS|supply|570.9430|574.0000": {
     "in_zone": false,
     "last_alert_at": 0.0,
     "last_attempt_at": 0.0
