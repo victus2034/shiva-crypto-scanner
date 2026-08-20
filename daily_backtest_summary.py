@@ -27,54 +27,24 @@ TIMEFRAME_SETTINGS = {
         "nse_records": Path(__file__).with_name("nse_alert_records_30m.jsonl"),
         "crypto_records": Path(__file__).with_name("crypto_alert_records_30m.jsonl"),
         "source_interval": "15m",
-        # Entry detection can only start on the bar after the alert, since
-        # within a bar there is no way to tell a touch before the alert from
-        # one after it. On 30m bars that blind spot swallowed most fills -
-        # real fills land a median 3 minutes after the alert - so evaluation
-        # runs on 5m candles, cutting the blind spot to ~5 minutes and
-        # matching the granularity paper_trading already uses.
-        "eval_interval": "5m",
         "source_period": "60d",
     },
     "4h": {
         "nse_records": Path(__file__).with_name("nse_alert_records.jsonl"),
         "crypto_records": Path(__file__).with_name("crypto_alert_records.jsonl"),
         "source_interval": "1h",
-        "eval_interval": "1h",
         "source_period": "700d",
     },
 }
-ALERT_BAR_DURATION = {"30m": pd.Timedelta(minutes=30), "4h": pd.Timedelta(hours=4)}
 
 ENTRY_WAIT_BARS = 3
 MAX_HOLD_BARS = 24
 NSE_BACKTEST_CLOSE_CUTOFF = datetime_time(15, 10)
-# The user does not trade the opening print. The first five minutes are left
-# alone, so a fill stamped before this is not a trade they would have taken.
-NSE_TRADE_START = datetime_time(9, 20)
+NSE_TRADE_START = datetime_time(9, 15)
 CRYPTO_EVALUATION_HOURS = 6
 CRYPTO_REPORT_BOUNDARY = datetime_time(16, 30)
 FIXED_STOP_PCT = 0.5
 SL_BUFFER_PCT = 0.10
-# Dhan NSE equity intraday, both legs, derived from a real contract note and
-# reconciled component by component: brokerage 0.03% x2, STT 0.025% on the
-# sell, exchange ~0.00307% x2, SEBI Rs10/cr x2, stamp 0.003% on the buy, and
-# 18% GST on brokerage + exchange + SEBI. Constant at any size below the
-# ~Rs66,667 where the Rs20 brokerage cap starts to bite and the rate falls.
-ROUND_TRIP_COST_PCT = 0.1063
-# Where the stop goes once +0.5R trades. Entry alone is not breakeven - the
-# round trip has already been paid - so the stop sits far enough past entry
-# to clear costs with a little room to spare.
-BREAK_EVEN_OFFSET_PCT = 0.120
-# Set False to hold the original stop the whole way and never move it up.
-# Kept switchable so the rule can be measured against real outcomes rather
-# than argued about - paper_trading reads the same flag so the two cannot
-# drift apart.
-BREAK_EVEN_ENABLED = True
-# Below this stop distance the +0.5R trigger arrives while the trade is
-# still net negative (0.5 x SL% < BREAK_EVEN_OFFSET_PCT), so the rule cannot
-# protect capital at all.
-MIN_SAFE_STOP_PCT = BREAK_EVEN_OFFSET_PCT * 2
 # A resting SL is a stop order, not a limit order - once triggered it fills
 # at whatever price is next available, not necessarily the exact trigger
 # price, especially since the same fast move that triggered it is often
@@ -87,20 +57,15 @@ TARGET_1_R = 1.0
 TARGET_2_R = 2.0
 HALF_R = 0.5
 DATA_QUALITY_AMBIGUOUS = "data_quality_ambiguous"
-# Reaching +0.5R moves the stop to entry rather than closing the trade, so
-# giving it back exits flat. This is a real outcome, distinct from both a
-# full stop and a win.
-BREAK_EVEN = "BE"
 FINAL_RESULT_R = {
     "SL": -1.0,
     DATA_QUALITY_AMBIGUOUS: float("nan"),
-    BREAK_EVEN: 0.0,
     "+0.5R": 0.5,
     "+1R": 1.0,
     "+2R": 2.0,
     "Neither": 0.0,
 }
-OUTCOME_ORDER = ["SL", DATA_QUALITY_AMBIGUOUS, BREAK_EVEN, "+0.5R", "+1R", "+2R", "Neither"]
+OUTCOME_ORDER = ["SL", DATA_QUALITY_AMBIGUOUS, "+0.5R", "+1R", "+2R", "Neither"]
 MARKET_NSE = "NSE"
 MARKET_CRYPTO = "CRYPTO"
 MARKET_XSTOCK = "XSTOCK"
@@ -135,16 +100,16 @@ def parse_args() -> argparse.Namespace:
 
 def configure_nse_data(timeframe: str) -> Path:
     settings = TIMEFRAME_SETTINGS[timeframe]
-    # Evaluation runs on finer candles than the alert timeframe rather than
-    # resampling up to it. Coarse candles hurt twice: a 4h bar spans well
-    # past the 15:10 cut-off and would smuggle in price action never traded
-    # on, and the bar containing the alert has to be skipped entirely for
-    # entry detection, which on 30m bars hid most real fills. Zone levels
-    # still come from the alert record itself, built live off the real
-    # timeframe; only touch/target/SL detection uses the finer candles.
-    interval = settings["eval_interval"]
-    nse_scanner.TIMEFRAME = interval
-    nse_scanner.SOURCE_INTERVAL = interval
+    # 4h backtest evaluation uses the raw source-interval candles (1h)
+    # instead of resampling up to 4h. The user trades intraday and stops
+    # by 15:10 - a coarse 4h candle (e.g. 13:15-17:15 nominal) spans well
+    # past that and would smuggle in price action they never actually
+    # traded on. Zone levels still come from the alert record itself
+    # (built live off real 4h structure); only touch/target/SL detection
+    # uses the finer candles, which lets the same 15:10 same-day cutoff
+    # used for 30m apply cleanly here too.
+    nse_scanner.TIMEFRAME = settings["source_interval"] if timeframe == "4h" else timeframe
+    nse_scanner.SOURCE_INTERVAL = settings["source_interval"]
     nse_scanner.SOURCE_PERIOD = settings["source_period"]
     return settings["nse_records"]
 
@@ -729,15 +694,12 @@ def simulate_alert(
         entry_price,
         tracking_end_index,
         alert.get("symbol", ""),
-        alert.get("timeframe"),
-        side,
     )
     if entry_index is None:
         if uses_six_hour_evaluation(alert.get("symbol", "")) and not entry_search_mature(
             frame,
             event_index,
             tracking_end_index,
-            alert.get("timeframe"),
         ):
             return unfilled(alert, "immature")
         return unfilled(alert, "zone_not_touched")
@@ -767,16 +729,6 @@ def simulate_alert(
     target_half = entry_price + direction * risk * HALF_R
     target_1 = entry_price + direction * risk * TARGET_1_R
     target_2 = entry_price + direction * risk * TARGET_2_R
-    # The offset exists to clear Dhan's NSE charges, so it only applies
-    # where those charges do; no equivalent has been measured for crypto.
-    break_even_offset = BREAK_EVEN_OFFSET_PCT if market in (None, "nse") else 0.0
-    break_even_stop = entry_price + direction * entry_price * break_even_offset / 100.0
-    # On a tight stop the offset can exceed the +0.5R move itself, putting
-    # the breakeven stop the wrong side of the price that triggers it. A
-    # stop above the market fills instantly, so moving it there would force
-    # the trade out at the offset instead of protecting it. Nobody would
-    # place that order, so the stop simply stays put.
-    break_even_reachable = direction * (target_half - break_even_stop) >= 0
 
     end_index = tracking_end_index
     half_r_hit = False
@@ -801,39 +753,29 @@ def simulate_alert(
         max_favorable_r = max(max_favorable_r, favorable / risk)
         max_adverse_r = max(max_adverse_r, adverse / risk)
 
-        # Once +0.5R has traded the stop moves up to clear costs, which is
-        # the point of the rule: leaving it at entry would still book a loss
-        # the size of the round trip. The move only applies from the next
-        # bar, since the ordering inside the bar that reached +0.5R is
-        # unknowable.
-        stop_moved = half_r_hit and BREAK_EVEN_ENABLED and break_even_reachable
-        active_stop = break_even_stop if stop_moved else stop
-        stop_hit = low <= active_stop if side == "long" else high >= active_stop
+        stop_hit = low <= stop if side == "long" else high >= stop
         half_target_hit = high >= target_half if side == "long" else low <= target_half
         first_target_hit = high >= target_1 if side == "long" else low <= target_1
         second_target_hit = high >= target_2 if side == "long" else low <= target_2
 
-        # Only levels that would still change the outcome make the bar
-        # ambiguous. Once +0.5R has traded the stop is already at entry, so
-        # touching +0.5R again decides nothing - the open question is
-        # whether the breakeven stop or a higher target came first.
-        deciding_target_hit = (
-            (half_target_hit or first_target_hit or second_target_hit)
-            if not stop_moved
-            else (first_target_hit or second_target_hit)
-        )
-        if outcome == "Neither" and stop_hit and deciding_target_hit:
+        target_hit_this_candle = half_target_hit or first_target_hit or second_target_hit
+        if outcome == "Neither" and stop_hit and target_hit_this_candle:
             resolution = resolve_same_candle_order(
                 resolution_frame,
                 frame,
                 index,
                 side,
-                active_stop,
+                stop,
                 target_half,
                 target_1,
                 target_2,
                 market=market,
             )
+            if resolution == "SL":
+                outcome = "SL"
+                exit_index = index
+                time_to_sl = frame.index[index]
+                break
             if resolution == DATA_QUALITY_AMBIGUOUS:
                 outcome = DATA_QUALITY_AMBIGUOUS
                 exit_index = index
@@ -841,47 +783,36 @@ def simulate_alert(
                 bar_duration = infer_bar_duration(frame)
                 ambiguous_interval_end = frame.index[index] + bar_duration
                 break
-            if resolution == "SL":
-                outcome = BREAK_EVEN if stop_moved else "SL"
-                exit_index = index
-                time_to_sl = frame.index[index]
-                break
-            # A target printed before the stop did. Bank the best level
-            # reached, then close - the stop trades inside this same bar.
             if resolution in {"+0.5R", "+1R", "+2R"}:
-                half_r_hit = True
-                if time_to_half_r is None:
-                    time_to_half_r = frame.index[index]
-                outcome = BREAK_EVEN
-            if resolution in {"+1R", "+2R"}:
-                target_1_hit = True
-                if time_to_1r is None:
-                    time_to_1r = frame.index[index]
-                outcome = "+1R"
-            if resolution == "+2R":
-                target_2_hit = True
-                if time_to_2r is None:
-                    time_to_2r = frame.index[index]
-                outcome = "+2R"
-            exit_index = index
-            time_to_sl = frame.index[index]
-            break
-        if stop_hit:
-            # Whichever stop was live has traded through, so the position is
-            # closed here. Without this the loop kept running and let later
-            # price action upgrade a trade that was already out - crediting,
-            # say, +2R to a position flat well before the +2R print.
-            if outcome == "Neither":
-                outcome = BREAK_EVEN if stop_moved else "SL"
+                if resolution in {"+0.5R", "+1R", "+2R"}:
+                    half_r_hit = True
+                    if time_to_half_r is None:
+                        time_to_half_r = frame.index[index]
+                    outcome = "+0.5R"
+                if resolution in {"+1R", "+2R"}:
+                    target_1_hit = True
+                    if time_to_1r is None:
+                        time_to_1r = frame.index[index]
+                    outcome = "+1R"
+                if resolution == "+2R":
+                    target_2_hit = True
+                    if time_to_2r is None:
+                        time_to_2r = frame.index[index]
+                    outcome = "+2R"
+                    exit_index = index
+                    break
+                continue
+        if outcome == "Neither" and stop_hit:
+            outcome = "SL"
             exit_index = index
             time_to_sl = frame.index[index]
             break
         if half_target_hit:
-            # +0.5R is where the stop moves, not where the trade is closed,
-            # so it never becomes an outcome on its own.
             half_r_hit = True
             if time_to_half_r is None:
                 time_to_half_r = frame.index[index]
+            if outcome == "Neither":
+                outcome = "+0.5R"
         if first_target_hit:
             half_r_hit = True
             target_1_hit = True
@@ -910,9 +841,6 @@ def simulate_alert(
         exit_price = stop - direction * stop * SL_FILL_SLIPPAGE_PCT / 100.0
     elif outcome == DATA_QUALITY_AMBIGUOUS:
         exit_price = float("nan")
-    elif outcome == BREAK_EVEN:
-        # The stop had already moved past entry to clear costs by then.
-        exit_price = break_even_stop
     elif outcome == "+0.5R":
         exit_price = target_half
     elif outcome == "+1R":
@@ -921,7 +849,7 @@ def simulate_alert(
         exit_price = target_2
     else:
         exit_price = float(frame["close"].iloc[exit_index])
-    if outcome in {"SL", "Neither", BREAK_EVEN}:
+    if outcome in {"SL", "Neither"}:
         # Price off the real exit level instead of crediting a flat number -
         # a "Neither" trade that quietly drifted against (or in favor of)
         # the position without confirming SL/target must not be scored as
@@ -929,11 +857,6 @@ def simulate_alert(
         realized_r = direction * (exit_price - entry_price) / risk
     else:
         realized_r = FINAL_RESULT_R[outcome]
-    # Brokerage and statutory charges are a fixed share of turnover, so on a
-    # tight stop they consume a large share of R - roughly a third at a 0.3%
-    # stop. Reporting gross would overstate every outcome by that amount.
-    cost_r = round_trip_cost_r(entry_price, risk, market)
-    net_realized_r = realized_r - cost_r if pd.notna(realized_r) else realized_r
     evaluation_end_time = candle_ends(frame)[exit_index]
     final_resolution_time = resolution_time_for_outcome(
         outcome,
@@ -965,8 +888,7 @@ def simulate_alert(
             "outcome": outcome,
             "final_result": outcome,
             "realized_r": realized_r,
-            "net_realized_r": net_realized_r,
-            "cost_r": cost_r,
+            "net_realized_r": realized_r,
             "mfe_r": max_favorable_r,
             "mae_r": max_adverse_r,
             "time_to_half_r": time_to_half_r,
@@ -1189,19 +1111,6 @@ def zones_match_alert(zone: dict, alert: dict) -> bool:
     return abs(top - alert_top) <= tolerance and abs(bottom - alert_bottom) <= tolerance
 
 
-def round_trip_cost_r(entry_price: float, risk: float, market: str | None) -> float:
-    """Round-trip charges expressed in R.
-
-    Costs are a fixed share of turnover while risk is set by the stop, so
-    the same charge is a much bigger fraction of R on a tight stop than a
-    wide one. NSE only - these are Dhan equity intraday rates, and no
-    equivalent has been measured for the crypto venues.
-    """
-    if market not in (None, "nse") or risk <= 0:
-        return 0.0
-    return (entry_price * ROUND_TRIP_COST_PCT / 100.0) / risk
-
-
 def original_stop_price(alert: dict) -> float:
     """Buffered far-side zone stop used by alerts and backtest."""
     recorded_stop = pd.to_numeric(alert.get("stop_price"), errors="coerce")
@@ -1213,45 +1122,19 @@ def original_stop_price(alert: dict) -> float:
     return float(alert["zone_top"]) * (1 + SL_BUFFER_PCT / 100.0)
 
 
-def entry_window_bars(frame: pd.DataFrame, timeframe: str | None) -> int:
-    """ENTRY_WAIT_BARS translated into the evaluation frame's own bars.
-
-    The wait is a duration - three bars of the alert's timeframe - but
-    evaluation runs on finer candles, so counting raw bars would silently
-    shrink a 90-minute window down to 15. Scale it instead.
-    """
-    alert_bar = ALERT_BAR_DURATION.get(str(timeframe))
-    if alert_bar is None:
-        return ENTRY_WAIT_BARS
-    eval_bar = infer_bar_duration(frame)
-    if eval_bar <= pd.Timedelta(0):
-        return ENTRY_WAIT_BARS
-    return max(ENTRY_WAIT_BARS, int(alert_bar * ENTRY_WAIT_BARS / eval_bar))
-
-
 def find_entry(
     frame: pd.DataFrame,
     event_index: int,
     entry_price: float,
     tracking_end_index: int,
     symbol: str = "",
-    timeframe: str | None = None,
-    side: str = "long",
 ) -> int | None:
-    end_index = min(event_index + entry_window_bars(frame, timeframe), tracking_end_index)
+    end_index = min(event_index + ENTRY_WAIT_BARS, tracking_end_index)
     for index in range(event_index + 1, end_index + 1):
         timestamp = pd.Timestamp(frame.index[index]).tz_convert(IST)
         if is_nse_symbol(symbol) and timestamp.time() < NSE_TRADE_START:
             continue
-        # A resting limit fills whenever price reaches it, so only the side
-        # price approaches from matters. Requiring the bar to straddle entry
-        # missed every fill where price ran clean past the level - which is
-        # most of them, since the alert already fires with price inside the
-        # zone roughly six times in ten.
-        if side == "long":
-            if float(frame["low"].iloc[index]) <= entry_price:
-                return index
-        elif float(frame["high"].iloc[index]) >= entry_price:
+        if float(frame["low"].iloc[index]) <= entry_price <= float(frame["high"].iloc[index]):
             return index
     return None
 
@@ -1260,12 +1143,9 @@ def entry_search_mature(
     frame: pd.DataFrame,
     event_index: int,
     tracking_end_index: int,
-    timeframe: str | None = None,
 ) -> bool:
     """A no-entry result is only final after the full entry window has closed."""
-    required_index = min(
-        event_index + entry_window_bars(frame, timeframe), len(frame.index) - 1
-    )
+    required_index = min(event_index + ENTRY_WAIT_BARS, len(frame.index) - 1)
     if tracking_end_index < required_index:
         return False
     ends = candle_ends(frame)

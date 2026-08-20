@@ -190,27 +190,18 @@ SWING_LENGTH = 10
 ATR_PERIOD = 50
 BOX_WIDTH = 2.5
 HISTORY_OF_ZONES_TO_KEEP = 20
-# Matches the Pine indicator's f_check_overlapping, which rejects a new zone
-# whose midpoint sits within atr * 2 of an existing one.
-OVERLAP_ATR = 2.0
-# The Pine indicator applies no wick, body-ratio or departure test - every
-# confirmed pivot becomes a zone. These are kept only as metadata on the zone
-# for the rating and for later analysis, never as filters, so the zone set
-# matches what the chart draws.
+OVERLAP_ATR = 1.0
 MIN_WICK_ATR = 0.15
 MIN_WICK_TO_BODY = 1.5
 MIN_DEPARTURE_ATR = 0.75
-# Zones are a fixed atr * (BOX_WIDTH / 10) band anchored on the pivot extreme,
-# exactly as the indicator draws them, so no separate padding applies.
+# Keep alert zones on the confirmed candle wick. ATR padding shifts the
+# reported Level away from the actual wick, especially on low-priced symbols.
 ZONE_PADDING_ATR = 0.0
 
 MIN_DISTANCE_PCT = env_float("SHIVA_MIN_DISTANCE_PCT", 0.25)
 MAX_DISTANCE_PCT = env_float("SHIVA_MAX_DISTANCE_PCT", 1.25)
 REARM_FACTOR = 1.25
-# 0 disables the over-touch veto. The Pine indicator counts no touches and
-# never retires a zone for being revisited - only a close through it kills the
-# zone - so any positive value here drops levels the chart still shows.
-MAX_CONSECUTIVE_ZONE_TOUCHES = 0
+MAX_CONSECUTIVE_ZONE_TOUCHES = 2
 SCAN_SLEEP = 300
 SCAN_WORKERS = 8
 ALERT_COOLDOWN_SECONDS = env_int("SHIVA_ALERT_COOLDOWN_SECONDS", 4 * 60 * 60)

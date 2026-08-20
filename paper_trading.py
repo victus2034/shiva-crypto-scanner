@@ -21,7 +21,7 @@ from __future__ import annotations
 import argparse
 import json
 import os
-from datetime import datetime, time as datetime_time
+from datetime import datetime
 from pathlib import Path
 
 import pandas as pd
@@ -44,13 +44,6 @@ FALLBACK_WEBHOOK_ENV = backtest.WEBHOOK_ENV
 # backtest's own refusal to invent an ordering it cannot see.
 BAR_INTERVAL = "5m"
 AMBIGUOUS = backtest.DATA_QUALITY_AMBIGUOUS
-# Ticks keep running past the 15:10 trading cut-off purely so open
-# positions get squared off. The cron fires at 15:10 but the runner needs a
-# minute or two to boot, so a guard that stopped at 15:10 would reject the
-# very tick that closes the day's remaining positions and leave them open
-# forever. Fills and level checks are still capped at 15:10 internally, so
-# nothing here lets a trade the user could not have taken into the results.
-SQUARE_OFF_GRACE_END = datetime_time(16, 0)
 
 
 def parse_args() -> argparse.Namespace:
@@ -132,12 +125,7 @@ def targets_for(entry: float, stop: float, side: str) -> dict[str, float]:
     }
 
 
-def open_new_positions(
-    state: dict,
-    watched: list[dict],
-    frames: dict[str, pd.DataFrame],
-    now: pd.Timestamp,
-) -> list[str]:
+def open_new_positions(state: dict, watched: list[dict], frames: dict[str, pd.DataFrame]) -> list[str]:
     """Fill a virtual limit order only if price genuinely reached entry."""
     opened = []
     for record in watched:
@@ -151,20 +139,7 @@ def open_new_positions(
         entry = record["_entry"]
         stop = record["_stop"]
         side = record.get("side", "long")
-        square_off = pd.Timestamp(
-            datetime.combine(now.date(), backtest.NSE_BACKTEST_CLOSE_CUTOFF), tz=IST
-        )
-        # A fill outside the hours the user actually trades is not a trade
-        # they could have taken, so it must not open a position. The floor
-        # matters even on a later tick, which can still see opening bars.
-        trade_start = pd.Timestamp(
-            datetime.combine(now.date(), entry_confirm.TRADE_START), tz=IST
-        )
-        after_alert = frame[
-            (frame.index > record["_delivered"])
-            & (frame.index >= trade_start)
-            & (frame.index < square_off)
-        ]
+        after_alert = frame[frame.index > record["_delivered"]]
         if after_alert.empty:
             continue
 
@@ -212,13 +187,7 @@ def evaluate_open_positions(state: dict, frames: dict[str, pd.DataFrame], now: p
         entry = position["entry"]
         stop = position["stop"]
         risk = position["risk"]
-        square_off = pd.Timestamp(
-            datetime.combine(now.date(), backtest.NSE_BACKTEST_CLOSE_CUTOFF), tz=IST
-        )
-        # Bars are stamped at their start, so a bar opening at 15:10 covers
-        # price action the user is already flat for. Anything from the
-        # cut-off onwards must not decide the trade.
-        window = frame[(frame.index >= entry_time) & (frame.index < square_off)]
+        window = frame[frame.index >= entry_time]
         if window.empty:
             continue
 
@@ -228,73 +197,56 @@ def evaluate_open_positions(state: dict, frames: dict[str, pd.DataFrame], now: p
         for timestamp, bar in window.iterrows():
             high = float(bar["high"])
             low = float(bar["low"])
-            # Same rule as daily_backtest_summary: +0.5R moves the stop to
-            # entry rather than closing the trade, so giving it back exits
-            # flat. Diverging here would compare two different strategies
-            # rather than test the same one against live prices.
-            direction = 1.0 if side == "long" else -1.0
-            break_even_stop = (
-                entry + direction * entry * backtest.BREAK_EVEN_OFFSET_PCT / 100.0
-            )
-            # A breakeven stop the wrong side of its own trigger would fill
-            # instantly, forcing the trade out at the offset rather than
-            # protecting it. Same guard as daily_backtest_summary.
-            reachable = direction * (position["target_half"] - break_even_stop) >= 0
-            stop_moved = (
-                position["half_r_hit"] and backtest.BREAK_EVEN_ENABLED and reachable
-            )
-            active_stop = break_even_stop if stop_moved else stop
-            stop_hit = low <= active_stop if side == "long" else high >= active_stop
+            stop_hit = low <= stop if side == "long" else high >= stop
             two_hit = high >= position["target_2"] if side == "long" else low <= position["target_2"]
             one_hit = high >= position["target_1"] if side == "long" else low <= position["target_1"]
             half_hit = high >= position["target_half"] if side == "long" else low <= position["target_half"]
 
-            if outcome is None and stop_hit and (two_hit or one_hit or half_hit):
-                # Both sides printed inside one bar; the real order is
-                # unknowable here, so report it rather than guess.
+            if stop_hit and (two_hit or one_hit or half_hit):
+                # Both sides of the trade printed inside one bar; the real
+                # order is unknowable here, so report it rather than guess.
                 outcome, exit_time = AMBIGUOUS, timestamp
                 exit_price = float("nan")
                 break
             if stop_hit:
-                if outcome is None:
-                    if stop_moved:
-                        outcome, exit_price = backtest.BREAK_EVEN, break_even_stop
-                    else:
-                        outcome = "SL"
-                        exit_price = stop - direction * stop * backtest.SL_FILL_SLIPPAGE_PCT / 100.0
-                exit_time = timestamp
+                direction = 1.0 if side == "long" else -1.0
+                exit_price = stop - direction * stop * backtest.SL_FILL_SLIPPAGE_PCT / 100.0
+                outcome, exit_time = "SL", timestamp
                 break
             if half_hit:
                 position["half_r_hit"] = True
-            if one_hit:
-                outcome, exit_price, exit_time = "+1R", position["target_1"], timestamp
             if two_hit:
                 outcome, exit_price, exit_time = "+2R", position["target_2"], timestamp
                 break
+            if one_hit:
+                outcome, exit_price, exit_time = "+1R", position["target_1"], timestamp
+                break
 
+        square_off = pd.Timestamp(
+            datetime.combine(now.date(), backtest.NSE_BACKTEST_CLOSE_CUTOFF), tz=IST
+        )
         if outcome is None and now >= square_off:
             # The user is flat by 15:10, so an unresolved position exits at
             # the last price before that, priced off the real close the same
             # way the backtest now prices its "Neither" trades.
-            exit_price = float(window["close"].iloc[-1])
-            exit_time = window.index[-1]
-            outcome = "Neither"
+            before_cutoff = window[window.index <= square_off]
+            last = before_cutoff if not before_cutoff.empty else window
+            exit_price = float(last["close"].iloc[-1])
+            exit_time = last.index[-1]
+            outcome = "+0.5R" if position["half_r_hit"] else "Neither"
+            if outcome == "+0.5R":
+                exit_price = position["target_half"]
 
         if outcome is None:
             continue
 
         if outcome == AMBIGUOUS:
             realized_r = float("nan")
-        elif outcome in {"+1R", "+2R"}:
+        elif outcome in {"+1R", "+2R", "+0.5R"}:
             realized_r = backtest.FINAL_RESULT_R[outcome]
         else:
             direction = 1.0 if side == "long" else -1.0
             realized_r = direction * (exit_price - entry) / risk
-
-        # Same charge model as the backtest, so the two totals stay
-        # comparable rather than one being gross and the other net.
-        cost_r = backtest.round_trip_cost_r(entry, risk, "nse")
-        net_r = realized_r - cost_r if pd.notna(realized_r) else realized_r
 
         record = dict(position)
         record.update(
@@ -305,8 +257,6 @@ def evaluate_open_positions(state: dict, frames: dict[str, pd.DataFrame], now: p
                 "exit_price": None if pd.isna(exit_price) else float(exit_price),
                 "exit_time": pd.Timestamp(exit_time).isoformat(),
                 "realized_r": None if pd.isna(realized_r) else float(realized_r),
-                "cost_r": float(cost_r),
-                "net_realized_r": None if pd.isna(net_r) else float(net_r),
                 "date": pd.Timestamp(position["entry_time"]).date().isoformat(),
             }
         )
@@ -316,17 +266,10 @@ def evaluate_open_positions(state: dict, frames: dict[str, pd.DataFrame], now: p
     return closed
 
 
-def in_paper_window(now: pd.Timestamp) -> bool:
-    """Trading hours plus a grace tail for squaring off open positions."""
-    if now.weekday() >= 5:
-        return False
-    return entry_confirm.TRADE_START <= now.time() <= SQUARE_OFF_GRACE_END
-
-
 def run_tick(args: argparse.Namespace) -> None:
     now = pd.Timestamp.now(tz=IST)
-    if not args.ignore_session and not in_paper_window(now):
-        print(f"Outside paper window ({now:%Y-%m-%d %H:%M} IST); nothing to do.")
+    if not args.ignore_session and not entry_confirm.in_trading_session(now):
+        print(f"Outside trading window ({now:%Y-%m-%d %H:%M} IST); nothing to do.")
         return
 
     state = load_state()
@@ -337,7 +280,7 @@ def run_tick(args: argparse.Namespace) -> None:
     )
     frames = fetch_bars(symbols)
 
-    opened = open_new_positions(state, watched, frames, now)
+    opened = open_new_positions(state, watched, frames)
     closed = evaluate_open_positions(state, frames, now)
 
     for trade_id in opened:
@@ -402,12 +345,7 @@ def build_report(date_iso: str, timeframe: str, state: dict) -> str:
     counts = pd.Series([row["outcome"] for row in paper]).value_counts()
     decided = [row for row in paper if row["outcome"] in {"SL", "+0.5R", "+1R", "+2R"}]
     wins = sum(1 for row in decided if row["outcome"] != "SL")
-    # Net of charges, matching what the backtest side of this report sums,
-    # and falling back to gross for rows written before costs were modelled.
-    paper_r = sum(
-        (row.get("net_realized_r") if row.get("net_realized_r") is not None else row.get("realized_r")) or 0.0
-        for row in paper
-    )
+    paper_r = sum(row["realized_r"] or 0.0 for row in paper if row["realized_r"] is not None)
 
     lines = [
         header,

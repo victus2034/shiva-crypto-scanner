@@ -57,12 +57,6 @@ from zone_scoring import score_wick_zone
 STATE_FILE = Path(__file__).with_name("nse_alert_state.json")
 ALERT_RECORD_FILE = Path(__file__).with_name("nse_alert_records.jsonl")
 SL_BUFFER_PCT = 0.10
-# Round-trip Dhan NSE equity intraday charges as a share of turnover, and
-# the stop distance below which the +0.5R capital-protection rule stops
-# working. Kept in step with daily_backtest_summary, which prices results
-# net of the same figures.
-ROUND_TRIP_COST_PCT = 0.1063
-MIN_SAFE_STOP_PCT = 0.240
 MARKET_DATA = {}
 ZONE_REPEAT_SUPPRESSION_SECONDS = 60 * 60
 NSE_SECTOR_MAP = {}
@@ -171,7 +165,6 @@ def record_delivered_zone_alert(result, zone_type, zone, distance_pct, message, 
         "planned_entry": planned_entry_price(zone_type, zone),
         "stop_price": planned_stop_price(zone_type, zone),
         "stop_distance_pct": planned_stop_distance_pct(zone_type, zone),
-        "stop_too_tight": stop_is_too_tight(planned_stop_distance_pct(zone_type, zone)),
         "score": score,
         # Raw score_wick_zone inputs, logged so a future validation pass can
         # tell which criterion actually predicts outcomes instead of only
@@ -326,9 +319,7 @@ def record_zone_touch(zone, candle_high, candle_low):
     if touches_zone:
         zone["touch_count"] = zone.get("touch_count", 0) + 1
     zone["max_touch_streak"] = max(zone.get("max_touch_streak", 0), zone["touch_streak"])
-    # 0 disables the veto entirely, matching the indicator. Without the guard
-    # a threshold of 0 would flag every zone the moment it is created.
-    if MAX_CONSECUTIVE_ZONE_TOUCHES > 0 and zone["max_touch_streak"] >= MAX_CONSECUTIVE_ZONE_TOUCHES:
+    if zone["max_touch_streak"] >= MAX_CONSECUTIVE_ZONE_TOUCHES:
         zone["over_touched"] = True
 
 
@@ -346,35 +337,32 @@ def qualify_wick_zone(df, pivot_index, confirmation_index, atr_series, zone_type
     if departure_closes.empty:
         return None
 
-    # Geometry follows the Pine indicator exactly: a fixed atr * (BOX_WIDTH/10)
-    # band anchored on the pivot extreme, not the pivot candle's own wick. The
-    # wick version produced the same far edge but a near edge far away from the
-    # level - and the near edge is the entry, so entries and stops came out
-    # several times wider than the chart implies.
-    band = float(pivot_atr) * (BOX_WIDTH / 10.0)
     if zone_type == "demand":
-        bottom = candle_low
-        top = bottom + band
         wick_top = min(candle_open, candle_close)
         wick_bottom = candle_low
         departure = float(departure_closes.max() - wick_top)
     else:
-        top = candle_high
-        bottom = top - band
         wick_bottom = max(candle_open, candle_close)
         wick_top = candle_high
         departure = float(wick_bottom - departure_closes.min())
 
-    # Recorded as metadata for the rating and later analysis. The indicator
-    # applies no such tests, so they must not gate zone creation.
     wick_size = wick_top - wick_bottom
+    strong_wick = wick_size >= max(body_size * MIN_WICK_TO_BODY, 0.0)
+    if (
+        wick_size < float(pivot_atr) * MIN_WICK_ATR
+        or not strong_wick
+        or departure < float(pivot_atr) * MIN_DEPARTURE_ATR
+    ):
+        return None
+
+    padding = float(pivot_atr) * ZONE_PADDING_ATR
     return {
         "type": zone_type,
         "created_idx": confirmation_index,
         "pivot_idx": pivot_index,
-        "top": top,
-        "bottom": bottom,
-        "body_entry": top if zone_type == "demand" else bottom,
+        "top": wick_top + padding,
+        "bottom": wick_bottom - padding,
+        "body_entry": wick_top if zone_type == "demand" else wick_bottom,
         "active": True,
         "touch_streak": 0,
         "touch_count": 0,
@@ -824,17 +812,6 @@ def delivered_alert_id(record):
     return hashlib.sha1("|".join(parts).encode("utf-8")).hexdigest()[:16]
 
 
-def stop_is_too_tight(stop_distance_pct):
-    """True when +0.5R arrives before the trade is even net positive.
-
-    Reaching +0.5R only moves price half the stop distance. If that is
-    less than the round-trip cost cushion, moving the stop up at +0.5R
-    still locks in a loss, so the capital-protection rule cannot work on
-    this setup at all.
-    """
-    return float(stop_distance_pct) < MIN_SAFE_STOP_PCT
-
-
 def format_alert(result, zone_type, zone, distance_pct):
     side = "SELL" if zone_type == "supply" else "BUY"
     score = result.get(f"{zone_type}_score")
@@ -851,12 +828,6 @@ def format_alert(result, zone_type, zone, distance_pct):
         f"Zone: {zone['bottom']:.2f} - {zone['top']:.2f}\n"
         f"SL: {stop:.2f} | {stop_distance:.2f}%"
     ]
-    if stop_is_too_tight(stop_distance):
-        lines.append(
-            f"WARNING SL under {MIN_SAFE_STOP_PCT:.2f}% - at +0.5R the move "
-            f"is only {stop_distance / 2:.3f}%, under the {ROUND_TRIP_COST_PCT:.4f}% "
-            f"round trip, so moving the stop up cannot protect capital here"
-        )
     bias = sector_bias_line(result, zone_type)
     if bias:
         lines.append(bias)

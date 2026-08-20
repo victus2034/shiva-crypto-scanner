@@ -43,32 +43,13 @@ class AlertFormatTests(unittest.TestCase):
         self.assertNotIn("Timeframe:", message)
         self.assertNotIn("\n\n", message)
         self.assertNotIn("Range Filter", message)
-        # This fixture's 0.20% stop is genuinely too tight for the +0.5R
-        # rule to clear costs, so the warning line belongs here.
         self.assertEqual(
             message,
             "PIDILITIND | SELL\n"
             "Price: 1610.90 | 0.97%\n"
             "Zone: 1624.95 - 1626.60\n"
-            "SL: 1628.23 | 0.20%\n"
-            "WARNING SL under 0.24% - at +0.5R the move is only 0.101%, "
-            "under the 0.1063% round trip, so moving the stop up cannot "
-            "protect capital here",
+            "SL: 1628.23 | 0.20%",
         )
-
-    def test_a_workable_stop_distance_carries_no_warning(self):
-        result = {
-            "symbol": "PIDILITIND.NS",
-            "price": 1610.9,
-            "buy_signal": False,
-            "sell_signal": False,
-        }
-        # A ~1% stop sits comfortably clear of the cost floor.
-        zone = {"bottom": 1624.95, "top": 1641.20}
-
-        message = nse_scanner.format_alert(result, "supply", zone, 0.97)
-
-        self.assertNotIn("WARNING", message)
 
     def test_nse_zone_alert_adds_sector_bias_when_available(self):
         result = {

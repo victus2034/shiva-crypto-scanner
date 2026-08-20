@@ -6,17 +6,9 @@ import nse_scanner
 import scanner
 
 
-class IndicatorBoundaryTests(unittest.TestCase):
-    """Zone geometry must match the Pine indicator, not the pivot's wick.
-
-    The indicator draws a fixed atr * (BOX_WIDTH / 10) band anchored on the
-    pivot extreme. The old wick-based version produced the same far edge but
-    a near edge far from the level - and the near edge is the entry, so it
-    inflated every stop distance.
-    """
-
-    def frame(self):
-        return pd.DataFrame(
+class RawWickBoundaryTests(unittest.TestCase):
+    def test_crypto_and_nse_use_raw_wick_boundaries_by_default(self):
+        data = pd.DataFrame(
             {
                 "open": [10.0, 10.0, 10.0, 11.0, 11.0],
                 "close": [9.8, 9.8, 9.8, 12.0, 12.0],
@@ -24,74 +16,13 @@ class IndicatorBoundaryTests(unittest.TestCase):
                 "low": [9.0, 9.0, 9.0, 10.5, 10.5],
             }
         )
+        atr_values = pd.Series([2.0] * len(data))
 
-    def test_demand_band_sits_above_the_pivot_low(self):
-        atr_values = pd.Series([2.0] * 5)
         for module in (scanner, nse_scanner):
-            band = 2.0 * (module.BOX_WIDTH / 10.0)
-            zone = module.qualify_wick_zone(self.frame(), 2, 3, atr_values, "demand")
-            self.assertEqual(zone["bottom"], 9.0)  # the pivot low itself
-            self.assertAlmostEqual(zone["top"], 9.0 + band)
-            # Price reaches a demand zone from above, so the top is the entry.
-            self.assertAlmostEqual(zone["body_entry"], zone["top"])
-
-    def test_supply_band_sits_below_the_pivot_high(self):
-        atr_values = pd.Series([2.0] * 5)
-        for module in (scanner, nse_scanner):
-            band = 2.0 * (module.BOX_WIDTH / 10.0)
-            zone = module.qualify_wick_zone(self.frame(), 2, 3, atr_values, "supply")
-            self.assertEqual(zone["top"], 10.1)  # the pivot high itself
-            self.assertAlmostEqual(zone["bottom"], 10.1 - band)
-            # Price reaches a supply zone from below, so the bottom is entry.
-            self.assertAlmostEqual(zone["body_entry"], zone["bottom"])
-
-    def test_band_scales_with_atr_not_with_the_candle(self):
-        for module in (scanner, nse_scanner):
-            wide = module.qualify_wick_zone(
-                self.frame(), 2, 3, pd.Series([4.0] * 5), "demand"
-            )
-            narrow = module.qualify_wick_zone(
-                self.frame(), 2, 3, pd.Series([1.0] * 5), "demand"
-            )
-            self.assertAlmostEqual(
-                wide["top"] - wide["bottom"], 4.0 * (module.BOX_WIDTH / 10.0)
-            )
-            self.assertAlmostEqual(
-                narrow["top"] - narrow["bottom"], 1.0 * (module.BOX_WIDTH / 10.0)
-            )
-
-
-class NoQualificationFilterTests(unittest.TestCase):
-    """The indicator draws a zone at every confirmed pivot, with no wick,
-    body-ratio or departure test. Re-adding such filters silently drops
-    levels the chart still shows.
-    """
-
-    def test_a_wick_free_marubozu_pivot_still_builds_a_zone(self):
-        # Body only, effectively no lower wick, and barely any departure -
-        # the old filters rejected all three of these.
-        data = pd.DataFrame(
-            {
-                "open": [10.0, 10.0, 9.0, 9.1, 9.1],
-                "close": [9.8, 9.8, 10.0, 9.15, 9.15],
-                "high": [10.1, 10.1, 10.0, 9.2, 9.2],
-                "low": [9.0, 9.0, 9.0, 9.05, 9.05],
-            }
-        )
-        atr_values = pd.Series([2.0] * 5)
-        for module in (scanner, nse_scanner):
+            self.assertEqual(module.ZONE_PADDING_ATR, 0.0)
             zone = module.qualify_wick_zone(data, 2, 3, atr_values, "demand")
-            self.assertIsNotNone(zone)
-
-    def test_touch_veto_is_disabled_so_revisits_do_not_retire_a_zone(self):
-        for module in (scanner, nse_scanner):
-            self.assertEqual(module.MAX_CONSECUTIVE_ZONE_TOUCHES, 0)
-            zone = {"top": 10.0, "bottom": 9.0, "touch_streak": 0,
-                    "touch_count": 0, "max_touch_streak": 0, "over_touched": False}
-            for _ in range(6):
-                module.record_zone_touch(zone, 9.9, 9.1)
-            self.assertEqual(zone["touch_count"], 6)
-            self.assertFalse(zone["over_touched"])
+            self.assertEqual(zone["bottom"], 9.0)
+            self.assertEqual(zone["top"], 9.8)
 
 
 if __name__ == "__main__":

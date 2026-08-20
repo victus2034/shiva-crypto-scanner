@@ -51,9 +51,7 @@ NEAR_SL_FRACTION = 0.5
 # watched exactly when the backtest stops counting it as fillable.
 WATCH_BARS = 3
 
-# Matches daily_backtest_summary.NSE_TRADE_START: the opening five minutes
-# are not traded, so there is nothing to ping about before then.
-TRADE_START = datetime_time(9, 20)
+TRADE_START = datetime_time(9, 15)
 # The user stops trading at 15:10, so a ping after that is noise.
 TRADE_END = datetime_time(15, 10)
 
@@ -209,8 +207,7 @@ def format_ping(stage: int, price: float, record: dict) -> str:
     score = record.get("score")
     score_text = f" | {int(score)}/10" if score is not None else ""
     stop_pct = abs(entry - stop) / entry * 100.0
-    # Price sitting exactly at entry yields -0.0, which formats as "-0%".
-    progress = risk_progress(price, entry, stop, record.get("side", "long")) or 0.0
+    progress = risk_progress(price, entry, stop, record.get("side", "long"))
     symbol = display_symbol(record.get("symbol", ""))
 
     if stage == STAGE_READY:
