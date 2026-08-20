@@ -41,7 +41,8 @@
     "reached_entry": false
   },
   "CDSL.NS|30m|short|1346.8216|1349.5482": {
-    "reached_entry": false
+    "reached_entry": false,
+    "stage": 1
   },
   "CGCL.NS|30m|short|229.2574|229.8997": {
     "reached_entry": false
@@ -61,7 +62,7 @@
   },
   "CROMPTON.NS|30m|short|248.8288|249.4992": {
     "reached_entry": true,
-    "stage": 2
+    "stage": 3
   },
   "CUMMINSIND.NS|30m|long|5197.7762|5182.3125": {
     "reached_entry": false,
@@ -88,7 +89,7 @@
   },
   "FSL.NS|30m|short|275.0479|276.1259": {
     "reached_entry": true,
-    "stage": 2
+    "stage": 3
   },
   "GALLANTT.NS|30m|short|585.9459|587.7372": {
     "reached_entry": true,
@@ -125,11 +126,12 @@
     "reached_entry": false
   },
   "JMFINANCIL.NS|30m|short|128.1912|128.5284": {
-    "reached_entry": false
+    "reached_entry": true,
+    "stage": 2
   },
   "JSWDULUX.NS|30m|long|3086.1093|3077.1198": {
     "reached_entry": true,
-    "stage": 2
+    "stage": 3
   },
   "KARURVYSYA.NS|30m|short|339.5506|340.3400": {
     "reached_entry": false
