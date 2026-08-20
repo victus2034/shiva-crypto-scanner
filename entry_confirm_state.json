@@ -122,10 +122,12 @@
     "reached_entry": false
   },
   "BHARTIARTL.NS|30m|short|1948.7163|1952.7508": {
-    "reached_entry": false
+    "reached_entry": false,
+    "stage": 1
   },
   "BHARTIARTL.NS|30m|short|1948.7167|1952.7508": {
-    "reached_entry": false
+    "reached_entry": false,
+    "stage": 1
   },
   "BIKAJI.NS|30m|long|607.0078|605.5439": {
     "reached_entry": false
@@ -308,12 +310,12 @@
     "reached_entry": false
   },
   "HONAUT.NS|30m|short|36508.1915|36586.5500": {
-    "reached_entry": false,
-    "stage": 1
+    "reached_entry": true,
+    "stage": 2
   },
   "HONAUT.NS|30m|short|36508.1916|36586.5500": {
-    "reached_entry": false,
-    "stage": 1
+    "reached_entry": true,
+    "stage": 2
   },
   "HYUNDAI.NS|30m|short|2217.9963|2223.1208": {
     "reached_entry": false,
@@ -388,7 +390,8 @@
     "reached_entry": false
   },
   "KIRLOSENG.NS|30m|short|2142.3013|2150.3482": {
-    "reached_entry": true
+    "reached_entry": true,
+    "stage": 3
   },
   "KOTAKBANK.NS|30m|short|399.5759|400.4000": {
     "reached_entry": false
