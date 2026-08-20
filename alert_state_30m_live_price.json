@@ -1904,7 +1904,10 @@
     "AXTI/USDT:USDT|30m|short|75.6803000000|76.1000000000": 1787206280.160566,
     "HYPEUSD|30m|short|72.4212150000|72.6000000000": 1787207486.5315053,
     "WIF/USDT|30m|short|0.1483415000|0.1486000000": 1787207486.8583853,
-    "ALLO/USDT|30m|long|0.2841700000|0.2856101000": 1787207487.7792902
+    "ALLO/USDT|30m|long|0.2841700000|0.2856101000": 1787207487.7792902,
+    "BEAT/USDT|30m|long|0.1414000000|0.1435460000": 1787208677.5611796,
+    "1000SHIBUSD|30m|short|0.0048150250|0.0048200000": 1787208677.8860965,
+    "DELL/USDT:USDT|30m|short|446.0353500000|447.1900000000": 1787208678.1173966
   },
   "METAXUSD|demand|577.00000000|579.20000000": {
     "in_zone": false,
@@ -8807,7 +8810,7 @@
     "last_alert_at": 1787207486.5315053
   },
   "AKE/USDT|demand|0.00831300|0.00836143": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1787206279.308484
   },
   "COTI/USDT|demand|0.00961900|0.00964173": {
@@ -9182,8 +9185,8 @@
     "last_alert_at": 0.0
   },
   "1000SHIBUSD|supply|0.00481502|0.00482000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1787208677.8860965
   },
   "ESPORTS/USDT|supply|0.01732680|0.01739000": {
     "in_zone": false,
@@ -9194,8 +9197,8 @@
     "last_alert_at": 0.0
   },
   "BEAT/USDT|demand|0.14140000|0.14354600": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1787208677.5611796
   },
   "1000BONKUSD|supply|0.00248805|0.00249000": {
     "in_zone": false,
@@ -9222,10 +9225,14 @@
     "last_alert_at": 1787206280.160566
   },
   "DELL/USDT:USDT|supply|446.03535000|447.19000000": {
+    "in_zone": true,
+    "last_alert_at": 1787208678.1173966
+  },
+  "CRV/USDT|demand|0.23570000|0.23624600": {
     "in_zone": false,
     "last_alert_at": 0.0
   },
-  "CRV/USDT|demand|0.23570000|0.23624600": {
+  "XMRUSD|supply|432.80140000|433.25000000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
