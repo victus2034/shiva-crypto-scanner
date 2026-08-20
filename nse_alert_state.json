@@ -2745,7 +2745,12 @@
     "INDIAMART.NS|4h|long|1730.0999755859|1738.3287446160": 1787209954.5618253,
     "LLOYDSME.NS|4h|long|1878.0000000000|1888.0663470437": 1787209955.067508,
     "MRF.NS|4h|short|135138.4105467599|135535.0000000000": 1787209955.2467222,
-    "PNB.NS|4h|short|119.1093410323|119.4700012207": 1787209955.4804926
+    "PNB.NS|4h|short|119.1093410323|119.4700012207": 1787209955.4804926,
+    "ACMESOLAR.NS|4h|short|395.1366957439|397.4500122070": 1787211168.0283747,
+    "BAJAJ-AUTO.NS|4h|short|11817.3300394088|11856.0000000000": 1787211168.3616583,
+    "BHARATFORG.NS|4h|long|2028.0999755859|2038.1484311346": 1787211168.7129877,
+    "CCL.NS|4h|long|1102.0999755859|1108.9642689838": 1787211168.9643748,
+    "OLECTRA.NS|4h|long|1297.1999511719|1305.2841535465": 1787211169.5461128
   },
   "GESHIP.NS|demand|1057.1000|1070.5000": {
     "in_zone": false,
@@ -3168,9 +3173,9 @@
     "last_attempt_at": 0.0
   },
   "ACMESOLAR.NS|supply|395.1367|397.4500": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1787211168.0283747,
+    "last_attempt_at": 1787211168.0283747
   },
   "ACMESOLAR.NS|demand|347.8000|350.1004": {
     "in_zone": false,
@@ -3848,9 +3853,9 @@
     "last_attempt_at": 0.0
   },
   "BHARATFORG.NS|demand|2028.1000|2038.1484": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1787211168.7129877,
+    "last_attempt_at": 1787211168.7129877
   },
   "BHEL.NS|supply|444.0900|446.5000": {
     "in_zone": false,
@@ -14568,9 +14573,9 @@
     "last_attempt_at": 0.0
   },
   "BAJAJ-AUTO.NS|supply|11817.3300|11856.0000": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1787211168.3616583,
+    "last_attempt_at": 1787211168.3616583
   },
   "BAJAJ-AUTO.NS|demand|9363.0000|9401.1188": {
     "in_zone": false,
@@ -14648,9 +14653,9 @@
     "last_attempt_at": 0.0
   },
   "CCL.NS|demand|1102.1000|1108.9643": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1787211168.9643748,
+    "last_attempt_at": 1787211168.9643748
   },
   "CIEINDIA.NS|demand|385.0000|386.6930": {
     "in_zone": false,
@@ -15263,7 +15268,7 @@
     "last_attempt_at": 0.0
   },
   "NTPC.NS|demand|333.7500|334.6346": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1787201545.9839756,
     "last_attempt_at": 1787201545.9839756
   },
@@ -15303,9 +15308,9 @@
     "last_attempt_at": 0.0
   },
   "OLECTRA.NS|demand|1297.2000|1305.2842": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1787211169.5461128,
+    "last_attempt_at": 1787211169.5461128
   },
   "PCBL.NS|supply|372.6940|374.2000": {
     "in_zone": false,
