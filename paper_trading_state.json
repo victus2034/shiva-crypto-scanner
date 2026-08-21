@@ -7743,6 +7743,27 @@
       "target_2": 3912.4721513671875,
       "target_half": 3897.3430744628904,
       "trade_id": "f09d4374d0249cf5"
+    },
+    {
+      "alert_time": "2026-08-21T12:12:01.179129+05:30",
+      "date": "2026-08-21",
+      "entry": 415.75,
+      "entry_time": "2026-08-21T12:15:00+05:30",
+      "exit_price": 417.8260208253479,
+      "exit_time": "2026-08-21T12:15:00+05:30",
+      "final_result": "SL",
+      "half_r_hit": false,
+      "outcome": "SL",
+      "rating": 10,
+      "realized_r": -1.1118290700747604,
+      "risk": 1.8672122192382403,
+      "side": "short",
+      "stop": 417.61721221923824,
+      "symbol": "AMBUJACEM.NS",
+      "target_1": 413.88278778076176,
+      "target_2": 412.0155755615235,
+      "target_half": 414.8163938903809,
+      "trade_id": "d5f9e37f8bd0403c"
     }
   ],
   "handled": {
@@ -7839,6 +7860,7 @@
     "4ef57221bfd5c70d": "filled",
     "5058ae607eb82deb": "filled",
     "5114ec54f957d1ab": "filled",
+    "514b6ac1eac63c81": "filled",
     "51e6f9e55a7accd9": "filled",
     "52650a2c0091b920": "filled",
     "53368ca9ad260b55": "filled",
@@ -8055,6 +8077,7 @@
     "e2dd9c6197a6ed55": "filled",
     "e358c532aa3fc8fc": "filled",
     "e38865d71893301d": "filled",
+    "e3b830780d43f9ff": "filled",
     "e4821c3bd09fadc3": "filled",
     "e4dde4faa2884c99": "filled",
     "e52a29111ffa0397": "filled",
@@ -8175,6 +8198,20 @@
       "target_1": 1811.0651243896486,
       "target_2": 1798.2302243652348,
       "target_half": 1817.4825744018556
+    },
+    "514b6ac1eac63c81": {
+      "alert_time": "2026-08-21T12:12:01.888114+05:30",
+      "entry": 1798.300048828125,
+      "entry_time": "2026-08-21T12:15:00+05:30",
+      "half_r_hit": false,
+      "rating": 10,
+      "risk": 9.190924438476486,
+      "side": "long",
+      "stop": 1789.1091243896485,
+      "symbol": "LAURUSLABS.NS",
+      "target_1": 1807.4909732666015,
+      "target_2": 1816.681897705078,
+      "target_half": 1802.8955110473632
     },
     "5d832eaae0e4c7b5": {
       "alert_time": "2026-08-21T10:51:53.695835+05:30",
@@ -8344,20 +8381,6 @@
       "target_2": 400.8960366210938,
       "target_half": 399.2490183105469
     },
-    "d5f9e37f8bd0403c": {
-      "alert_time": "2026-08-21T12:12:01.179129+05:30",
-      "entry": 415.75,
-      "entry_time": "2026-08-21T12:15:00+05:30",
-      "half_r_hit": false,
-      "rating": 10,
-      "risk": 1.8672122192382403,
-      "side": "short",
-      "stop": 417.61721221923824,
-      "symbol": "AMBUJACEM.NS",
-      "target_1": 413.88278778076176,
-      "target_2": 412.0155755615235,
-      "target_half": 414.8163938903809
-    },
     "ddeb17a8804f618b": {
       "alert_time": "2026-08-21T09:32:09.561508+05:30",
       "entry": 1650.0,
@@ -8371,6 +8394,20 @@
       "target_1": 1657.1445,
       "target_2": 1664.2890000000002,
       "target_half": 1653.5722500000002
+    },
+    "e3b830780d43f9ff": {
+      "alert_time": "2026-08-21T12:12:02.192522+05:30",
+      "entry": 1792.0,
+      "entry_time": "2026-08-21T12:15:00+05:30",
+      "half_r_hit": false,
+      "rating": 8,
+      "risk": 12.802999999999884,
+      "side": "short",
+      "stop": 1804.8029999999999,
+      "symbol": "POLICYBZR.NS",
+      "target_1": 1779.1970000000001,
+      "target_2": 1766.3940000000002,
+      "target_half": 1785.5985
     },
     "f1678084b3c01ffb": {
       "alert_time": "2026-08-21T11:52:07.413484+05:30",
