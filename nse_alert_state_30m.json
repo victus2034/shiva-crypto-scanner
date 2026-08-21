@@ -275,9 +275,9 @@
     "last_attempt_at": 1786508536.343782
   },
   "DMART.NS|demand|3886.1001|3892.3000": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1787287321.5426683,
+    "last_attempt_at": 1787287321.5426683
   },
   "AXISBANK.NS|supply|1329.4000|1332.9000": {
     "in_zone": false,
@@ -3223,7 +3223,7 @@
     "HDFCLIFE.NS|30m|short|539.0999755859|539.7000122070": 1786693329.2420187,
     "ALKEM.NS|30m|short|5440.0000000000|5460.0000000000": 1786941705.15875,
     "ATHERENERG.NS|30m|long|1500.0999755859|1509.9000244141": 1786695725.3810368,
-    "BAJAJFINSV.NS|30m|short|2028.0000000000|2037.6999511719": 1786952529.7656853,
+    "BAJAJFINSV.NS|30m|short|2028.0000000000|2037.6999511719": 1787287321.7515953,
     "DABUR.NS|30m|long|405.2000122070|406.1499938965": 1786698136.9106112,
     "HONAUT.NS|30m|short|37325.0000000000|37380.0000000000": 1786698138.0861645,
     "CARTRADE.NS|30m|short|2795.6999511719|2818.0000000000": 1786699334.6079252,
@@ -3331,7 +3331,7 @@
     "LTF.NS|30m|short|320.3500061035|322.1499938965": 1787040151.2316532,
     "MSUMI.NS|30m|long|40.0400009155|40.2400016785": 1787040153.7566917,
     "PNBHOUSING.NS|30m|short|1152.8000488281|1154.0000000000": 1787114537.154141,
-    "BANKBARODA.NS|30m|long|243.2500000000|243.6499938965": 1787122930.8999016,
+    "BANKBARODA.NS|30m|long|243.2500000000|243.6499938965": 1787287322.262,
     "INDHOTEL.NS|30m|short|721.0000000000|723.0499877930": 1787124118.9928737,
     "LTF.NS|30m|short|323.9500122070|325.7999877930": 1787041313.629029,
     "PNB.NS|30m|short|117.9100036621|118.0500030518": 1787120526.073337,
@@ -4393,7 +4393,8 @@
     "HYUNDAI.NS|30m|short|2242.5000000000|2255.0000000000": 1787286123.7763762,
     "IEX.NS|30m|short|124.0000000000|124.9800033569": 1787286123.974202,
     "MRF.NS|30m|long|132750.0000000000|133005.0000000000": 1787286124.1877437,
-    "SJVN.NS|30m|short|66.4000015259|66.6500015259": 1787286124.4991019
+    "SJVN.NS|30m|short|66.4000015259|66.6500015259": 1787286124.4991019,
+    "DMART.NS|30m|long|3886.1000976562|3892.3000488281": 1787287321.5426683
   },
   "ANANDRATHI.NS|supply|2187.5000|2221.0000": {
     "in_zone": true,
@@ -5286,9 +5287,9 @@
     "last_attempt_at": 0.0
   },
   "BAJAJFINSV.NS|supply|2028.0000|2037.7000": {
-    "in_zone": false,
-    "last_alert_at": 1786952529.7656853,
-    "last_attempt_at": 1786952529.7656853
+    "in_zone": true,
+    "last_alert_at": 1787287321.7515953,
+    "last_attempt_at": 1787287321.7515953
   },
   "BELRISE.NS|demand|250.9800|252.4800": {
     "in_zone": false,
@@ -6176,9 +6177,9 @@
     "last_attempt_at": 0.0
   },
   "BANKBARODA.NS|demand|243.2500|243.6500": {
-    "in_zone": false,
-    "last_alert_at": 1787122930.8999016,
-    "last_attempt_at": 1787122930.8999016
+    "in_zone": true,
+    "last_alert_at": 1787287322.262,
+    "last_attempt_at": 1787287322.262
   },
   "INDIACEM.NS|supply|377.0000|379.6500": {
     "in_zone": false,
@@ -30171,7 +30172,7 @@
     "last_attempt_at": 0.0
   },
   "BALKRISIND.NS|demand|2345.8999|2358.6001": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1787286123.0738533,
     "last_attempt_at": 1787286123.0738533
   },
@@ -30196,7 +30197,7 @@
     "last_attempt_at": 0.0
   },
   "BLUEJET.NS|demand|590.9000|592.3000": {
-    "in_zone": false,
+    "in_zone": true,
     "last_alert_at": 1787284926.3809147,
     "last_attempt_at": 1787284926.3809147
   },
@@ -30376,7 +30377,7 @@
     "last_attempt_at": 1787284927.105209
   },
   "ICICIGI.NS|demand|1611.2000|1619.6000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1787284927.359429,
     "last_attempt_at": 1787284927.359429
   },
@@ -30501,7 +30502,7 @@
     "last_attempt_at": 0.0
   },
   "M&M.NS|demand|3401.0000|3421.7000": {
-    "in_zone": false,
+    "in_zone": true,
     "last_alert_at": 1787284928.284218,
     "last_attempt_at": 1787284928.284218
   },
@@ -30561,7 +30562,7 @@
     "last_attempt_at": 0.0
   },
   "NAVINFLUOR.NS|supply|8313.5000|8384.0000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1787284929.0643344,
     "last_attempt_at": 1787284929.0643344
   },
@@ -30646,7 +30647,7 @@
     "last_attempt_at": 0.0
   },
   "RAILTEL.NS|supply|288.1500|292.5000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1787284929.9449606,
     "last_attempt_at": 1787284929.9449606
   },
