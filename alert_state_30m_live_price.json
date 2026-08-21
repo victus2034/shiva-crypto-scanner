@@ -1950,7 +1950,9 @@
     "ETHUSD|30m|short|2358.8000000000|2380.0000000000": 1787293885.7910933,
     "TAIKO/USDT|30m|short|0.0748700000|0.0755800000": 1787295082.5995052,
     "HYPEUSD|30m|short|74.6600000000|75.1600000000": 1787301086.5184927,
-    "NVDL/USDT:USDT|30m|short|34.4500000000|34.8300000000": 1787301086.7777555
+    "NVDL/USDT:USDT|30m|short|34.4500000000|34.8300000000": 1787301086.7777555,
+    "AVGO/USDT:USDT|30m|short|370.0400000000|371.6800000000": 1787308290.8196304,
+    "BABA/USDT:USDT|30m|long|124.4400000000|125.3800000000": 1787308291.0954797
   },
   "METAXUSD|demand|577.00000000|579.20000000": {
     "in_zone": false,
@@ -9807,8 +9809,8 @@
     "last_alert_at": 0.0
   },
   "AVGO/USDT:USDT|supply|370.04000000|371.68000000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1787308290.8196304
   },
   "FLNC/USDT:USDT|supply|12.19000000|12.23000000": {
     "in_zone": false,
@@ -10531,7 +10533,7 @@
     "last_alert_at": 0.0
   },
   "BABA/USDT:USDT|demand|124.44000000|125.38000000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1787308291.0954797
   }
 }
