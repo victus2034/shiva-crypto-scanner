@@ -2811,7 +2811,7 @@
     "LUPIN.NS|4h|long|2160.0000000000|2196.5000000000": 1787299945.7382734,
     "DMART.NS|4h|long|3886.1000976562|3900.0000000000": 1787289141.3199642,
     "DEEPAKFERT.NS|4h|long|1446.0999755859|1459.0000000000": 1787289141.6349056,
-    "REDINGTON.NS|4h|short|354.3500061035|364.1499938965": 1787292753.5795367
+    "REDINGTON.NS|4h|short|354.3500061035|364.1499938965": 1787302365.592215
   },
   "GESHIP.NS|demand|1057.1000|1070.5000": {
     "in_zone": false,
@@ -3179,9 +3179,9 @@
     "last_attempt_at": 0.0
   },
   "REDINGTON.NS|supply|354.3500|364.1500": {
-    "in_zone": false,
-    "last_alert_at": 1787292753.5795367,
-    "last_attempt_at": 1787292753.5795367
+    "in_zone": true,
+    "last_alert_at": 1787302365.592215,
+    "last_attempt_at": 1787302365.592215
   },
   "BATAINDIA.NS|demand|697.4500|699.8500": {
     "in_zone": false,
