@@ -7470,6 +7470,27 @@
       "target_2": 592.6731610107422,
       "target_half": 589.318299407959,
       "trade_id": "5d76d32a04c24326"
+    },
+    {
+      "alert_time": "2026-08-21T09:52:04.187744+05:30",
+      "date": "2026-08-21",
+      "entry": 133005.0,
+      "entry_time": "2026-08-21T09:55:00+05:30",
+      "exit_price": 132550.941375,
+      "exit_time": "2026-08-21T10:05:00+05:30",
+      "final_result": "SL",
+      "half_r_hit": false,
+      "outcome": "SL",
+      "rating": 9,
+      "realized_r": -1.1710087040619088,
+      "risk": 387.75,
+      "side": "long",
+      "stop": 132617.25,
+      "symbol": "MRF.NS",
+      "target_1": 133392.75,
+      "target_2": 133780.5,
+      "target_half": 133198.875,
+      "trade_id": "14303c6bf094c85d"
     }
   ],
   "handled": {
@@ -7811,20 +7832,6 @@
     "ffb4661b7d04cd46": "filled"
   },
   "open": {
-    "14303c6bf094c85d": {
-      "alert_time": "2026-08-21T09:52:04.187744+05:30",
-      "entry": 133005.0,
-      "entry_time": "2026-08-21T09:55:00+05:30",
-      "half_r_hit": false,
-      "rating": 9,
-      "risk": 387.75,
-      "side": "long",
-      "stop": 132617.25,
-      "symbol": "MRF.NS",
-      "target_1": 133392.75,
-      "target_2": 133780.5,
-      "target_half": 133198.875
-    },
     "5cc61cd4bfa8871d": {
       "alert_time": "2026-08-21T09:52:03.776376+05:30",
       "entry": 2242.5,
@@ -7927,7 +7934,7 @@
       "alert_time": "2026-08-21T09:32:09.561508+05:30",
       "entry": 1650.0,
       "entry_time": "2026-08-21T09:45:00+05:30",
-      "half_r_hit": false,
+      "half_r_hit": true,
       "rating": 9,
       "risk": 7.144500000000107,
       "side": "long",
