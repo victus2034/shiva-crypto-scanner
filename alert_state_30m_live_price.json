@@ -1955,7 +1955,8 @@
     "BABA/USDT:USDT|30m|long|124.4400000000|125.3800000000": 1787308291.0954797,
     "TSLAXUSD|30m|short|352.4500000000|352.7000000000": 1787320277.349304,
     "NVDL/USDT:USDT|30m|long|32.7300000000|33.7600000000": 1787321483.6583736,
-    "SKHYNIX/USDT:USDT|30m|long|1234.5600000000|1247.0600000000": 1787322686.0432901
+    "SKHYNIX/USDT:USDT|30m|long|1234.5600000000|1247.0600000000": 1787322686.0432901,
+    "LINKUSD|30m|short|11.5950000000|11.8270000000": 1787325081.982295
   },
   "METAXUSD|demand|577.00000000|579.20000000": {
     "in_zone": false,
@@ -10544,8 +10545,8 @@
     "last_alert_at": 0.0
   },
   "LINKUSD|supply|11.59500000|11.82700000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1787325081.982295
   },
   "VVV/USDT|supply|16.20900000|16.38600000": {
     "in_zone": false,
@@ -10582,5 +10583,13 @@
   "NVDL/USDT:USDT|demand|32.73000000|33.76000000": {
     "in_zone": false,
     "last_alert_at": 1787321483.6583736
+  },
+  "DOTUSD|supply|0.89400000|0.90700000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "SKHYNIX/USDT:USDT|supply|1269.65000000|1275.91000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
   }
 }
