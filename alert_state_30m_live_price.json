@@ -1946,7 +1946,8 @@
     "ERA/USDT|30m|long|0.0584900000|0.0587100000": 1787280676.8693535,
     "OPENAI/USDT:USDT|30m|short|128.5000000000|130.3700000000": 1787286682.3387501,
     "ETHFI/USDT|30m|short|0.5486000000|0.5530000000": 1787287879.4394157,
-    "TAIKO/USDT|30m|short|0.0748600000|0.0753100000": 1787292680.566738
+    "TAIKO/USDT|30m|short|0.0748600000|0.0753100000": 1787292680.566738,
+    "ETHUSD|30m|short|2358.8000000000|2380.0000000000": 1787293885.7910933
   },
   "METAXUSD|demand|577.00000000|579.20000000": {
     "in_zone": false,
@@ -10377,5 +10378,25 @@
   "TAIKO/USDT|supply|0.07486000|0.07531000": {
     "in_zone": true,
     "last_alert_at": 1787292680.566738
+  },
+  "BTCUSD|supply|75111.50000000|75775.50000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "ETHUSD|supply|2358.80000000|2380.00000000": {
+    "in_zone": true,
+    "last_alert_at": 1787293885.7910933
+  },
+  "HYPEUSD|supply|74.66000000|75.16000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "AERO/USDT|supply|0.48620000|0.48950000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "HOME/USDT|demand|0.00595500|0.00603700": {
+    "in_zone": false,
+    "last_alert_at": 0.0
   }
 }
