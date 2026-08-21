@@ -192,8 +192,8 @@
     "last_alert_at": 0.0
   },
   "XPLUSD|supply|0.09510000|0.09680000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1787298074.4874816
   },
   "ESPORTS/USDT|supply|0.01872000|0.02090000": {
     "in_zone": false,
@@ -1663,7 +1663,8 @@
     "ZECUSD|4h|short|576.1400000000|589.1600000000": 1787242872.6442914,
     "BCHUSD|4h|short|225.4900000000|226.7700000000": 1787281283.2886167,
     "NEARUSD|4h|short|1.8480000000|1.8597000000": 1787295680.9741666,
-    "OPUSD|4h|short|0.0985000000|0.0992000000": 1787292077.1525817
+    "OPUSD|4h|short|0.0985000000|0.0992000000": 1787292077.1525817,
+    "XPLUSD|4h|short|0.0951000000|0.0968000000": 1787298074.4874816
   },
   "ARBUSD|supply|0.08030000|0.08180000": {
     "in_zone": false,
@@ -4002,6 +4003,10 @@
     "last_alert_at": 0.0
   },
   "MUBUSD|demand|918.05000000|934.90000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "NEARUSD|supply|2.23100000|2.28400000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
