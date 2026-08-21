@@ -7537,6 +7537,7 @@
     "5bcb628ae14717e2": "filled",
     "5c2b4d2c7216cd9c": "filled",
     "5c8260fe4cb7b403": "filled",
+    "5d76d32a04c24326": "filled",
     "5da572373f9e8856": "filled",
     "6057d8a3b3a775ce": "filled",
     "60e4f6f9b270d7b8": "filled",
@@ -7552,6 +7553,7 @@
     "6c9c3e5d5b072eb5": "filled",
     "6dea013f691b90de": "filled",
     "6e71d7b35a1b551f": "filled",
+    "6f1c202d069f63fa": "filled",
     "6fb94f7961049ea8": "filled",
     "6ffbc29992a7bfa9": "filled",
     "718b38ca268f3cd0": "filled",
@@ -7712,6 +7714,7 @@
     "e358c532aa3fc8fc": "filled",
     "e38865d71893301d": "filled",
     "e4dde4faa2884c99": "filled",
+    "e52a29111ffa0397": "filled",
     "e804e0d0051120bb": "filled",
     "e95586cb8377daa4": "filled",
     "e9596625eeb826df": "filled",
@@ -7755,5 +7758,48 @@
     "fed8ed34d9b4adcd": "filled",
     "ffb4661b7d04cd46": "filled"
   },
-  "open": {}
+  "open": {
+    "5d76d32a04c24326": {
+      "alert_time": "2026-08-21T09:32:08.060525+05:30",
+      "entry": 588.2000122070312,
+      "entry_time": "2026-08-21T09:35:00+05:30",
+      "half_r_hit": false,
+      "rating": 9,
+      "risk": 2.236574401855478,
+      "side": "long",
+      "stop": 585.9634378051758,
+      "symbol": "KPITTECH.NS",
+      "target_1": 590.4365866088867,
+      "target_2": 592.6731610107422,
+      "target_half": 589.318299407959
+    },
+    "6f1c202d069f63fa": {
+      "alert_time": "2026-08-21T09:32:07.359429+05:30",
+      "entry": 1619.5999755859375,
+      "entry_time": "2026-08-21T09:35:00+05:30",
+      "half_r_hit": false,
+      "rating": 9,
+      "risk": 10.011224365234284,
+      "side": "long",
+      "stop": 1609.5887512207032,
+      "symbol": "ICICIGI.NS",
+      "target_1": 1629.6111999511718,
+      "target_2": 1639.622424316406,
+      "target_half": 1624.6055877685546
+    },
+    "e52a29111ffa0397": {
+      "alert_time": "2026-08-21T09:32:05.977365+05:30",
+      "entry": 33505.0,
+      "entry_time": "2026-08-21T09:35:00+05:30",
+      "half_r_hit": false,
+      "rating": 6,
+      "risk": 183.3550000000032,
+      "side": "long",
+      "stop": 33321.645,
+      "symbol": "3MINDIA.NS",
+      "target_1": 33688.355,
+      "target_2": 33871.71000000001,
+      "target_half": 33596.677500000005
+    }
+  }
 }
