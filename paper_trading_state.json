@@ -7449,6 +7449,27 @@
       "target_2": 596.2817145996094,
       "target_half": 593.295419494629,
       "trade_id": "f69e85db324bcc23"
+    },
+    {
+      "alert_time": "2026-08-21T09:32:08.060525+05:30",
+      "date": "2026-08-21",
+      "entry": 588.2000122070312,
+      "entry_time": "2026-08-21T09:35:00+05:30",
+      "exit_price": 590.4365866088867,
+      "exit_time": "2026-08-21T09:50:00+05:30",
+      "final_result": "+1R",
+      "half_r_hit": true,
+      "outcome": "+1R",
+      "rating": 9,
+      "realized_r": 1.0,
+      "risk": 2.236574401855478,
+      "side": "long",
+      "stop": 585.9634378051758,
+      "symbol": "KPITTECH.NS",
+      "target_1": 590.4365866088867,
+      "target_2": 592.6731610107422,
+      "target_half": 589.318299407959,
+      "trade_id": "5d76d32a04c24326"
     }
   ],
   "handled": {
@@ -7724,6 +7745,7 @@
     "dc5df7bc07b9652a": "filled",
     "dd66cb50258872e0": "filled",
     "ddea50c3c9dd4a5b": "filled",
+    "ddeb17a8804f618b": "filled",
     "ddf054b8037fe633": "filled",
     "defedca65023be68": "filled",
     "df1c81c534188509": "filled",
@@ -7783,20 +7805,6 @@
     "ffb4661b7d04cd46": "filled"
   },
   "open": {
-    "5d76d32a04c24326": {
-      "alert_time": "2026-08-21T09:32:08.060525+05:30",
-      "entry": 588.2000122070312,
-      "entry_time": "2026-08-21T09:35:00+05:30",
-      "half_r_hit": true,
-      "rating": 9,
-      "risk": 2.236574401855478,
-      "side": "long",
-      "stop": 585.9634378051758,
-      "symbol": "KPITTECH.NS",
-      "target_1": 590.4365866088867,
-      "target_2": 592.6731610107422,
-      "target_half": 589.318299407959
-    },
     "6d6a411f9c802ffd": {
       "alert_time": "2026-08-21T09:32:09.944961+05:30",
       "entry": 288.1499938964844,
@@ -7838,6 +7846,20 @@
       "target_1": 76.33317366027833,
       "target_2": 76.04634457397464,
       "target_half": 76.47658820343018
+    },
+    "ddeb17a8804f618b": {
+      "alert_time": "2026-08-21T09:32:09.561508+05:30",
+      "entry": 1650.0,
+      "entry_time": "2026-08-21T09:45:00+05:30",
+      "half_r_hit": false,
+      "rating": 9,
+      "risk": 7.144500000000107,
+      "side": "long",
+      "stop": 1642.8555,
+      "symbol": "PIDILITIND.NS",
+      "target_1": 1657.1445,
+      "target_2": 1664.2890000000002,
+      "target_half": 1653.5722500000002
     },
     "e52a29111ffa0397": {
       "alert_time": "2026-08-21T09:32:05.977365+05:30",
