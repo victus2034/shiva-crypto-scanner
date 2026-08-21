@@ -9742,7 +9742,7 @@
     "last_alert_at": 0.0
   },
   "OPENAI/USDT:USDT|supply|128.50000000|130.37000000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1787286682.3387501
   },
   "NBIS/USDT:USDT|supply|249.69000000|254.00000000": {
@@ -10358,7 +10358,11 @@
     "last_alert_at": 0.0
   },
   "ETHFI/USDT|supply|0.54860000|0.55300000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1787287879.4394157
+  },
+  "APTUSD|demand|0.55680000|0.56460000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
   }
 }
