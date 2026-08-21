@@ -256,8 +256,8 @@
     "last_alert_at": 0.0
   },
   "APTUSD|supply|0.59900000|0.62100000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1787300475.1760962
   },
   "APTUSD|demand|0.54300000|0.55200000": {
     "in_zone": true,
@@ -300,7 +300,7 @@
     "last_alert_at": 0.0
   },
   "ATOM/USDT|supply|1.57300000|1.59400000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1787299281.0282097
   },
   "AERO/USDT|supply|0.53420000|0.54380000": {
@@ -344,8 +344,8 @@
     "last_alert_at": 0.0
   },
   "VIRTUAL/USDT|supply|0.67210000|0.68100000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1787300475.3903196
   },
   "FILUSD|supply|0.79300000|0.80700000": {
     "in_zone": false,
@@ -1665,7 +1665,9 @@
     "NEARUSD|4h|short|1.8480000000|1.8597000000": 1787295680.9741666,
     "OPUSD|4h|short|0.0985000000|0.0992000000": 1787292077.1525817,
     "XPLUSD|4h|short|0.0951000000|0.0968000000": 1787298074.4874816,
-    "ATOM/USDT|4h|short|1.5730000000|1.5940000000": 1787299281.0282097
+    "ATOM/USDT|4h|short|1.5730000000|1.5940000000": 1787299281.0282097,
+    "APTUSD|4h|short|0.5990000000|0.6210000000": 1787300475.1760962,
+    "VIRTUAL/USDT|4h|short|0.6721000000|0.6810000000": 1787300475.3903196
   },
   "ARBUSD|supply|0.08030000|0.08180000": {
     "in_zone": false,
@@ -4012,6 +4014,14 @@
     "last_alert_at": 0.0
   },
   "GOOGLXUSD|supply|345.75000000|347.40000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "OPUSD|supply|0.10300000|0.10480000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "XPLUSD|supply|0.11930000|0.12350000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
