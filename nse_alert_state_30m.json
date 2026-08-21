@@ -480,9 +480,9 @@
     "last_attempt_at": 0.0
   },
   "BRITANNIA.NS|demand|5343.5000|5350.5000": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1787290919.596812,
+    "last_attempt_at": 1787290919.596812
   },
   "MAPMYINDIA.NS|supply|1066.5000|1074.9000": {
     "in_zone": false,
@@ -3336,7 +3336,7 @@
     "LTF.NS|30m|short|323.9500122070|325.7999877930": 1787041313.629029,
     "PNB.NS|30m|short|117.9100036621|118.0500030518": 1787120526.073337,
     "CLEAN.NS|30m|long|818.1500244141|821.2000122070": 1787120525.4449346,
-    "ICICIBANK.NS|30m|short|1421.0000000000|1423.4000244141": 1787042546.417085,
+    "ICICIBANK.NS|30m|short|1421.0000000000|1423.4000244141": 1787290919.8139675,
     "PARADEEP.NS|30m|short|147.9700012207|149.2799987793": 1787042547.7761352,
     "ACUTAAS.NS|30m|short|3355.0000000000|3390.0000000000": 1787043748.4540627,
     "BRITANNIA.NS|30m|short|5537.0000000000|5561.5000000000": 1787112140.101097,
@@ -4399,7 +4399,11 @@
     "DABUR.NS|30m|long|398.0000000000|398.7000122070": 1787289712.1568651,
     "ENGINERSIN.NS|30m|short|238.8899993896|240.5299987793": 1787289712.5850723,
     "GRSE.NS|30m|short|2649.0000000000|2654.0000000000": 1787289712.8384976,
-    "KEI.NS|30m|long|5572.8999023438|5595.7001953125": 1787289713.1695943
+    "KEI.NS|30m|long|5572.8999023438|5595.7001953125": 1787289713.1695943,
+    "BRITANNIA.NS|30m|long|5343.5000000000|5350.5000000000": 1787290919.596812,
+    "NH.NS|30m|short|1823.9000244141|1834.9000244141": 1787290920.0178647,
+    "NAM-INDIA.NS|30m|short|1259.0000000000|1266.0000000000": 1787290920.3190727,
+    "REDINGTON.NS|30m|short|351.9500122070|354.7000122070": 1787290920.6117644
   },
   "ANANDRATHI.NS|supply|2187.5000|2221.0000": {
     "in_zone": true,
@@ -6302,9 +6306,9 @@
     "last_attempt_at": 0.0
   },
   "ICICIBANK.NS|supply|1421.0000|1423.4000": {
-    "in_zone": false,
-    "last_alert_at": 1787042546.417085,
-    "last_attempt_at": 1787042546.417085
+    "in_zone": true,
+    "last_alert_at": 1787290919.8139675,
+    "last_attempt_at": 1787290919.8139675
   },
   "INDHOTEL.NS|supply|721.0000|723.0500": {
     "in_zone": true,
@@ -6547,9 +6551,9 @@
     "last_attempt_at": 0.0
   },
   "NH.NS|supply|1823.9000|1834.9000": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1787290920.0178647,
+    "last_attempt_at": 1787290920.0178647
   },
   "NEULANDLAB.NS|supply|23601.0000|23845.0000": {
     "in_zone": false,
@@ -30312,7 +30316,7 @@
     "last_attempt_at": 0.0
   },
   "GRSE.NS|supply|2649.0000|2654.0000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1787289712.8384976,
     "last_attempt_at": 1787289712.8384976
   },
@@ -30717,9 +30721,9 @@
     "last_attempt_at": 0.0
   },
   "NAM-INDIA.NS|supply|1259.0000|1266.0000": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1787290920.3190727,
+    "last_attempt_at": 1787290920.3190727
   },
   "SBILIFE.NS|supply|1787.7000|1792.2000": {
     "in_zone": false,
@@ -30742,7 +30746,7 @@
     "last_attempt_at": 0.0
   },
   "ENGINERSIN.NS|supply|238.8900|240.5300": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1787289712.5850723,
     "last_attempt_at": 1787289712.5850723
   },
@@ -30757,8 +30761,8 @@
     "last_attempt_at": 0.0
   },
   "REDINGTON.NS|supply|351.9500|354.7000": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1787290920.6117644,
+    "last_attempt_at": 1787290920.6117644
   }
 }
