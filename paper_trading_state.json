@@ -7932,6 +7932,48 @@
       "target_2": 1775.1155512695318,
       "target_half": 1784.553851196289,
       "trade_id": "bcfc077a6eddd6b6"
+    },
+    {
+      "alert_time": "2026-08-21T14:12:01.898421+05:30",
+      "date": "2026-08-21",
+      "entry": 5350.5,
+      "entry_time": "2026-08-21T14:15:00+05:30",
+      "exit_price": 5362.8435,
+      "exit_time": "2026-08-21T14:50:00+05:30",
+      "final_result": "+1R",
+      "half_r_hit": true,
+      "outcome": "+1R",
+      "rating": 8,
+      "realized_r": 1.0,
+      "risk": 12.343499999999949,
+      "side": "long",
+      "stop": 5338.1565,
+      "symbol": "BRITANNIA.NS",
+      "target_1": 5362.8435,
+      "target_2": 5375.187,
+      "target_half": 5356.6717499999995,
+      "trade_id": "d7f4e187fa098aca"
+    },
+    {
+      "alert_time": "2026-08-21T13:11:54.675877+05:30",
+      "date": "2026-08-21",
+      "entry": 5350.5,
+      "entry_time": "2026-08-21T13:15:00+05:30",
+      "exit_price": 5362.8435,
+      "exit_time": "2026-08-21T14:50:00+05:30",
+      "final_result": "+1R",
+      "half_r_hit": true,
+      "outcome": "+1R",
+      "rating": 8,
+      "realized_r": 1.0,
+      "risk": 12.343499999999949,
+      "side": "long",
+      "stop": 5338.1565,
+      "symbol": "BRITANNIA.NS",
+      "target_1": 5362.8435,
+      "target_2": 5375.187,
+      "target_half": 5356.6717499999995,
+      "trade_id": "fa8fa32d68c0a671"
     }
   ],
   "handled": {
@@ -8058,6 +8100,7 @@
     "5c2b4d2c7216cd9c": "filled",
     "5c8260fe4cb7b403": "filled",
     "5cc61cd4bfa8871d": "filled",
+    "5d3528e468ee05d7": "filled",
     "5d76d32a04c24326": "filled",
     "5d832eaae0e4c7b5": "filled",
     "5da572373f9e8856": "filled",
@@ -8114,6 +8157,7 @@
     "8386dab9c7d54674": "filled",
     "844c5d25bbb9935c": "filled",
     "8486e3b6784a877d": "filled",
+    "854e90ef2d3f3ead": "filled",
     "8631a43a93100707": "filled",
     "87f6d30c11691f01": "filled",
     "881039b779f8fdfb": "filled",
@@ -8142,6 +8186,7 @@
     "96a76303a33e2e62": "filled",
     "96b3404800f4c904": "filled",
     "96c999853e7a69dd": "filled",
+    "970834f003c88ea8": "filled",
     "9924cdd0733952fe": "filled",
     "995bec270ee3fc3c": "filled",
     "9ad927699c11cfea": "filled",
@@ -8162,6 +8207,7 @@
     "a828313425872dd4": "filled",
     "a8893517263fa269": "filled",
     "a9a66799566d7408": "filled",
+    "aa6d2b8ab1b70dc0": "filled",
     "aa8730d7254319a0": "filled",
     "ab0e749f752ed696": "filled",
     "ab35f5255f69d0b3": "filled",
@@ -8248,6 +8294,7 @@
     "d86181f482d733e4": "filled",
     "d87a36e34cff2fb9": "filled",
     "d984cc83954830d8": "filled",
+    "d9c538a5eae96cf1": "filled",
     "db222c013313dd21": "filled",
     "dbc3048db25d8a8e": "filled",
     "dc50766b563555de": "filled",
@@ -8264,6 +8311,7 @@
     "e0104a53870d40fc": "filled",
     "e023c90927d8da48": "filled",
     "e03138f572f0f54d": "filled",
+    "e09445db7102d067": "filled",
     "e0a3d1f6db2d049f": "filled",
     "e2dd9c6197a6ed55": "filled",
     "e358c532aa3fc8fc": "filled",
@@ -8286,6 +8334,7 @@
     "ee3f958090869047": "filled",
     "eed049602296f5cd": "filled",
     "ef6174e0161a8180": "filled",
+    "ef7ac569d75632b3": "filled",
     "ef827289eecfe86d": "filled",
     "f039a8a0eadb1c80": "filled",
     "f03f4f64c7c7ea9e": "filled",
@@ -8490,6 +8539,20 @@
       "target_2": 1816.681897705078,
       "target_half": 1802.8955110473632
     },
+    "5d3528e468ee05d7": {
+      "alert_time": "2026-08-21T14:52:18.499901+05:30",
+      "entry": 2138.0,
+      "entry_time": "2026-08-21T14:55:00+05:30",
+      "half_r_hit": false,
+      "rating": 8,
+      "risk": 13.826251220702943,
+      "side": "long",
+      "stop": 2124.173748779297,
+      "symbol": "APLAPOLLO.NS",
+      "target_1": 2151.826251220703,
+      "target_2": 2165.652502441406,
+      "target_half": 2144.9131256103515
+    },
     "5d832eaae0e4c7b5": {
       "alert_time": "2026-08-21T10:51:53.695835+05:30",
       "entry": 3421.699951171875,
@@ -8588,6 +8651,20 @@
       "target_2": 11763.288,
       "target_half": 11697.822
     },
+    "854e90ef2d3f3ead": {
+      "alert_time": "2026-08-21T14:52:21.100894+05:30",
+      "entry": 451.1499938964844,
+      "entry_time": "2026-08-21T14:55:00+05:30",
+      "half_r_hit": false,
+      "rating": 8,
+      "risk": 2.9985877990722543,
+      "side": "long",
+      "stop": 448.1514060974121,
+      "symbol": "DELHIVERY.NS",
+      "target_1": 454.14858169555663,
+      "target_2": 457.1471694946289,
+      "target_half": 452.64928779602053
+    },
     "8d504e7786b16238": {
       "alert_time": "2026-08-21T14:12:01.178638+05:30",
       "entry": 1532.800048828125,
@@ -8616,11 +8693,25 @@
       "target_2": 2004.5246977539068,
       "target_half": 2022.1311744384766
     },
+    "970834f003c88ea8": {
+      "alert_time": "2026-08-21T14:52:18.891065+05:30",
+      "entry": 54.470001220703125,
+      "entry_time": "2026-08-21T14:55:00+05:30",
+      "half_r_hit": false,
+      "rating": 9,
+      "risk": 0.3242004585266116,
+      "side": "long",
+      "stop": 54.14580076217651,
+      "symbol": "ABFRL.NS",
+      "target_1": 54.79420167922974,
+      "target_2": 55.11840213775635,
+      "target_half": 54.63210144996643
+    },
     "a8893517263fa269": {
       "alert_time": "2026-08-21T14:32:27.021904+05:30",
       "entry": 809.7000122070312,
       "entry_time": "2026-08-21T14:35:00+05:30",
-      "half_r_hit": false,
+      "half_r_hit": true,
       "rating": 7,
       "risk": 2.5080122070312427,
       "side": "long",
@@ -8629,6 +8720,20 @@
       "target_1": 812.2080244140625,
       "target_2": 814.7160366210937,
       "target_half": 810.9540183105469
+    },
+    "aa6d2b8ab1b70dc0": {
+      "alert_time": "2026-08-21T14:52:19.141790+05:30",
+      "entry": 3493.10009765625,
+      "entry_time": "2026-08-21T14:55:00+05:30",
+      "half_r_hit": false,
+      "rating": 8,
+      "risk": 74.4639023437494,
+      "side": "short",
+      "stop": 3567.5639999999994,
+      "symbol": "CPPLUS.NS",
+      "target_1": 3418.6361953125006,
+      "target_2": 3344.172292968751,
+      "target_half": 3455.8681464843753
     },
     "b0bb5f61d52b0880": {
       "alert_time": "2026-08-21T14:12:03.606176+05:30",
@@ -8756,19 +8861,19 @@
       "target_2": 2238.402,
       "target_half": 2218.6005
     },
-    "d7f4e187fa098aca": {
-      "alert_time": "2026-08-21T14:12:01.898421+05:30",
-      "entry": 5350.5,
-      "entry_time": "2026-08-21T14:15:00+05:30",
-      "half_r_hit": true,
-      "rating": 8,
-      "risk": 12.343499999999949,
-      "side": "long",
-      "stop": 5338.1565,
-      "symbol": "BRITANNIA.NS",
-      "target_1": 5362.8435,
-      "target_2": 5375.187,
-      "target_half": 5356.6717499999995
+    "d9c538a5eae96cf1": {
+      "alert_time": "2026-08-21T14:52:21.347568+05:30",
+      "entry": 1895.5,
+      "entry_time": "2026-08-21T14:55:00+05:30",
+      "half_r_hit": false,
+      "rating": 7,
+      "risk": 19.012575561523136,
+      "side": "short",
+      "stop": 1914.5125755615231,
+      "symbol": "LALPATHLAB.NS",
+      "target_1": 1876.4874244384769,
+      "target_2": 1857.4748488769537,
+      "target_half": 1885.9937122192384
     },
     "ddeb17a8804f618b": {
       "alert_time": "2026-08-21T09:32:09.561508+05:30",
@@ -8783,6 +8888,20 @@
       "target_1": 1657.1445,
       "target_2": 1664.2890000000002,
       "target_half": 1653.5722500000002
+    },
+    "e09445db7102d067": {
+      "alert_time": "2026-08-21T14:52:20.386293+05:30",
+      "entry": 403.1000061035156,
+      "entry_time": "2026-08-21T14:55:00+05:30",
+      "half_r_hit": false,
+      "rating": 7,
+      "risk": 1.6019122009277567,
+      "side": "long",
+      "stop": 401.49809390258787,
+      "symbol": "CIEINDIA.NS",
+      "target_1": 404.7019183044434,
+      "target_2": 406.30383050537114,
+      "target_half": 403.9009622039795
     },
     "e0a3d1f6db2d049f": {
       "alert_time": "2026-08-21T14:12:02.217195+05:30",
@@ -8812,6 +8931,20 @@
       "target_2": 1766.3940000000002,
       "target_half": 1785.5985
     },
+    "ef7ac569d75632b3": {
+      "alert_time": "2026-08-21T14:52:19.479770+05:30",
+      "entry": 962.75,
+      "entry_time": "2026-08-21T14:55:00+05:30",
+      "half_r_hit": false,
+      "rating": 9,
+      "risk": 9.070825561523293,
+      "side": "short",
+      "stop": 971.8208255615233,
+      "symbol": "ASAHIINDIA.NS",
+      "target_1": 953.6791744384767,
+      "target_2": 944.6083488769534,
+      "target_half": 958.2145872192384
+    },
     "f1678084b3c01ffb": {
       "alert_time": "2026-08-21T11:52:07.413484+05:30",
       "entry": 7530.5,
@@ -8839,20 +8972,6 @@
       "target_1": 273.6228938903809,
       "target_2": 271.7457877807618,
       "target_half": 274.5614469451905
-    },
-    "fa8fa32d68c0a671": {
-      "alert_time": "2026-08-21T13:11:54.675877+05:30",
-      "entry": 5350.5,
-      "entry_time": "2026-08-21T13:15:00+05:30",
-      "half_r_hit": true,
-      "rating": 8,
-      "risk": 12.343499999999949,
-      "side": "long",
-      "stop": 5338.1565,
-      "symbol": "BRITANNIA.NS",
-      "target_1": 5362.8435,
-      "target_2": 5375.187,
-      "target_half": 5356.6717499999995
     }
   }
 }
