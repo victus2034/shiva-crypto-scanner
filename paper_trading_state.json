@@ -7820,6 +7820,7 @@
     "5d76d32a04c24326": "filled",
     "5d832eaae0e4c7b5": "filled",
     "5da572373f9e8856": "filled",
+    "5ee8bc7cc0422392": "filled",
     "5f1069eb5a0ccea4": "filled",
     "6057d8a3b3a775ce": "filled",
     "60e4f6f9b270d7b8": "filled",
@@ -7923,6 +7924,7 @@
     "b0dac76890349662": "filled",
     "b1f8905a4d0e9d67": "filled",
     "b31cb34ab923b450": "filled",
+    "b39a88882190637d": "filled",
     "b422e91cfedca463": "filled",
     "b441c5d1733302fe": "filled",
     "b4541828437674a4": "filled",
@@ -8032,6 +8034,7 @@
     "f09d4374d0249cf5": "filled",
     "f0a2f9ecef99dec9": "filled",
     "f0e6c713612f0613": "filled",
+    "f1678084b3c01ffb": "filled",
     "f231b304df837939": "filled",
     "f2363f2c2ef3400d": "filled",
     "f301c483b8a2cfde": "filled",
@@ -8143,6 +8146,20 @@
       "target_2": 3469.9018535156247,
       "target_half": 3433.7504267578124
     },
+    "5ee8bc7cc0422392": {
+      "alert_time": "2026-08-21T11:52:06.706024+05:30",
+      "entry": 33815.0,
+      "entry_time": "2026-08-21T11:55:00+05:30",
+      "half_r_hit": false,
+      "rating": 8,
+      "risk": 424.20499999999447,
+      "side": "short",
+      "stop": 34239.204999999994,
+      "symbol": "3MINDIA.NS",
+      "target_1": 33390.795000000006,
+      "target_2": 32966.59000000001,
+      "target_half": 33602.89750000001
+    },
     "6d6a411f9c802ffd": {
       "alert_time": "2026-08-21T09:32:09.944961+05:30",
       "entry": 288.1499938964844,
@@ -8184,6 +8201,20 @@
       "target_1": 122.89501663970948,
       "target_2": 121.79003327941896,
       "target_half": 123.44750831985473
+    },
+    "b39a88882190637d": {
+      "alert_time": "2026-08-21T11:52:07.899633+05:30",
+      "entry": 871.4500122070312,
+      "entry_time": "2026-08-21T11:55:00+05:30",
+      "half_r_hit": false,
+      "rating": 7,
+      "risk": 4.567762207031251,
+      "side": "long",
+      "stop": 866.88225,
+      "symbol": "INDIANB.NS",
+      "target_1": 876.0177744140625,
+      "target_2": 880.5855366210938,
+      "target_half": 873.7338933105468
     },
     "b8471f3a092cc3e8": {
       "alert_time": "2026-08-21T09:52:04.499102+05:30",
@@ -8296,6 +8327,20 @@
       "target_1": 3902.3861000976563,
       "target_2": 3912.4721513671875,
       "target_half": 3897.3430744628904
+    },
+    "f1678084b3c01ffb": {
+      "alert_time": "2026-08-21T11:52:07.413484+05:30",
+      "entry": 7530.5,
+      "entry_time": "2026-08-21T11:55:00+05:30",
+      "half_r_hit": false,
+      "rating": 9,
+      "risk": 59.58249999999953,
+      "side": "short",
+      "stop": 7590.0824999999995,
+      "symbol": "GILLETTE.NS",
+      "target_1": 7470.9175000000005,
+      "target_2": 7411.335000000001,
+      "target_half": 7500.70875
     }
   }
 }
