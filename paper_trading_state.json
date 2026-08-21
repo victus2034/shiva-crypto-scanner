@@ -7491,6 +7491,27 @@
       "target_2": 133780.5,
       "target_half": 133198.875,
       "trade_id": "14303c6bf094c85d"
+    },
+    {
+      "alert_time": "2026-08-21T10:12:01.542668+05:30",
+      "date": "2026-08-21",
+      "entry": 3892.300048828125,
+      "entry_time": "2026-08-21T10:15:00+05:30",
+      "exit_price": null,
+      "exit_time": "2026-08-21T10:15:00+05:30",
+      "final_result": "data_quality_ambiguous",
+      "half_r_hit": false,
+      "outcome": "data_quality_ambiguous",
+      "rating": 8,
+      "realized_r": null,
+      "risk": 10.086051269531254,
+      "side": "long",
+      "stop": 3882.2139975585937,
+      "symbol": "DMART.NS",
+      "target_1": 3902.3861000976563,
+      "target_2": 3912.4721513671875,
+      "target_half": 3897.3430744628904,
+      "trade_id": "5f1069eb5a0ccea4"
     }
   ],
   "handled": {
@@ -7604,6 +7625,7 @@
     "5cc61cd4bfa8871d": "filled",
     "5d76d32a04c24326": "filled",
     "5da572373f9e8856": "filled",
+    "5f1069eb5a0ccea4": "filled",
     "6057d8a3b3a775ce": "filled",
     "60e4f6f9b270d7b8": "filled",
     "61bff8ef9aeac73b": "filled",
