@@ -7873,6 +7873,7 @@
   ],
   "handled": {
     "0069a4e12a9d2a3e": "filled",
+    "007977dcabca4da4": "filled",
     "011111b56257a54d": "filled",
     "018819f1ade27fff": "filled",
     "028c60aa0802530b": "filled",
@@ -7915,6 +7916,7 @@
     "203bcc14a645646a": "filled",
     "20e446a00f29ed1b": "filled",
     "213cf6f3b5c83f2e": "filled",
+    "22865f41a4552478": "filled",
     "22ab31e5be1f0497": "filled",
     "238579aa08036efd": "filled",
     "23f33ffb15eed0cd": "filled",
@@ -7992,6 +7994,7 @@
     "5da572373f9e8856": "filled",
     "5ee8bc7cc0422392": "filled",
     "5f1069eb5a0ccea4": "filled",
+    "604943ecced2ef44": "filled",
     "6057d8a3b3a775ce": "filled",
     "60e4f6f9b270d7b8": "filled",
     "61bff8ef9aeac73b": "filled",
@@ -8239,6 +8242,20 @@
     "ffb4661b7d04cd46": "filled"
   },
   "open": {
+    "007977dcabca4da4": {
+      "alert_time": "2026-08-21T13:11:54.517218+05:30",
+      "entry": 1532.800048828125,
+      "entry_time": "2026-08-21T13:15:00+05:30",
+      "half_r_hit": false,
+      "rating": 10,
+      "risk": 19.514800048828192,
+      "side": "long",
+      "stop": 1513.2852487792968,
+      "symbol": "ADANIENSOL.NS",
+      "target_1": 1552.3148488769532,
+      "target_2": 1571.8296489257814,
+      "target_half": 1542.557448852539
+    },
     "1bf178363c3e3aa5": {
       "alert_time": "2026-08-21T09:32:06.816231+05:30",
       "entry": 7530.5,
@@ -8252,6 +8269,20 @@
       "target_1": 7470.9175000000005,
       "target_2": 7411.335000000001,
       "target_half": 7500.70875
+    },
+    "22865f41a4552478": {
+      "alert_time": "2026-08-21T13:11:54.955226+05:30",
+      "entry": 1281.0999755859375,
+      "entry_time": "2026-08-21T13:15:00+05:30",
+      "half_r_hit": false,
+      "rating": 7,
+      "risk": 6.9868732910153994,
+      "side": "short",
+      "stop": 1288.086848876953,
+      "symbol": "CEMPRO.NS",
+      "target_1": 1274.113102294922,
+      "target_2": 1267.1262290039067,
+      "target_half": 1277.6065389404298
     },
     "386eef4ea3c175a1": {
       "alert_time": "2026-08-21T10:32:30.911549+05:30",
@@ -8323,6 +8354,20 @@
       "target_2": 32966.59000000001,
       "target_half": 33602.89750000001
     },
+    "604943ecced2ef44": {
+      "alert_time": "2026-08-21T13:11:55.165722+05:30",
+      "entry": 863.0999755859375,
+      "entry_time": "2026-08-21T13:15:00+05:30",
+      "half_r_hit": false,
+      "rating": 9,
+      "risk": 6.468736633300637,
+      "side": "short",
+      "stop": 869.5687122192381,
+      "symbol": "CHALET.NS",
+      "target_1": 856.6312389526369,
+      "target_2": 850.1625023193362,
+      "target_half": 859.8656072692872
+    },
     "6d6a411f9c802ffd": {
       "alert_time": "2026-08-21T09:32:09.944961+05:30",
       "entry": 288.1499938964844,
@@ -8369,7 +8414,7 @@
       "alert_time": "2026-08-21T11:52:07.899633+05:30",
       "entry": 871.4500122070312,
       "entry_time": "2026-08-21T11:55:00+05:30",
-      "half_r_hit": false,
+      "half_r_hit": true,
       "rating": 7,
       "risk": 4.567762207031251,
       "side": "long",
@@ -8523,7 +8568,7 @@
       "alert_time": "2026-08-21T13:11:54.675877+05:30",
       "entry": 5350.5,
       "entry_time": "2026-08-21T13:15:00+05:30",
-      "half_r_hit": false,
+      "half_r_hit": true,
       "rating": 8,
       "risk": 12.343499999999949,
       "side": "long",
