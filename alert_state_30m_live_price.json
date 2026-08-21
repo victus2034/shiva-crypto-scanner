@@ -1943,7 +1943,8 @@
     "SOLUSD|30m|short|87.2340000000|88.1550000000": 1787245875.0459194,
     "GRAMUSD|30m|short|1.3990000000|1.4150000000": 1787247123.3292296,
     "COTI/USDT|30m|long|0.0098020000|0.0098780000": 1787249480.9241993,
-    "ERA/USDT|30m|long|0.0584900000|0.0587100000": 1787280676.8693535
+    "ERA/USDT|30m|long|0.0584900000|0.0587100000": 1787280676.8693535,
+    "OPENAI/USDT:USDT|30m|short|128.5000000000|130.3700000000": 1787286682.3387501
   },
   "METAXUSD|demand|577.00000000|579.20000000": {
     "in_zone": false,
@@ -9740,8 +9741,8 @@
     "last_alert_at": 0.0
   },
   "OPENAI/USDT:USDT|supply|128.50000000|130.37000000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1787286682.3387501
   },
   "NBIS/USDT:USDT|supply|249.69000000|254.00000000": {
     "in_zone": false,
@@ -10352,6 +10353,10 @@
     "last_alert_at": 0.0
   },
   "BTW/USDT|demand|0.38881000|0.42297000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "ETHFI/USDT|supply|0.54860000|0.55300000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
