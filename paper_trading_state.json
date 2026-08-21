@@ -7862,6 +7862,7 @@
     "80c98c281079ae42": "filled",
     "815caf9ce18f26aa": "filled",
     "81a974135164de09": "filled",
+    "82abf5bf286ace1e": "filled",
     "82d73f7c4adbf11d": "filled",
     "82f9d2152057647a": "filled",
     "8386dab9c7d54674": "filled",
@@ -7956,11 +7957,13 @@
     "c5948b554739c4ac": "filled",
     "c5b0306e25128ed2": "filled",
     "c6a0c510d4e1f5db": "filled",
+    "c704785c0584f084": "filled",
     "c75eb24468bfcf5d": "filled",
     "c7fb2d3143f72dd6": "filled",
     "c842bcf23005f590": "filled",
     "cae4617f29e7728e": "filled",
     "cb19928e88ce4d3a": "filled",
+    "cb4086f95925ac4e": "filled",
     "cbba98a7f4a06e2c": "filled",
     "cc13557c68dd4179": "filled",
     "cc3ce078cf2264b2": "filled",
@@ -8026,6 +8029,7 @@
     "ef827289eecfe86d": "filled",
     "f039a8a0eadb1c80": "filled",
     "f03f4f64c7c7ea9e": "filled",
+    "f09d4374d0249cf5": "filled",
     "f0a2f9ecef99dec9": "filled",
     "f0e6c713612f0613": "filled",
     "f231b304df837939": "filled",
@@ -8115,7 +8119,7 @@
       "alert_time": "2026-08-21T11:12:00.017865+05:30",
       "entry": 1823.9000244140625,
       "entry_time": "2026-08-21T11:45:00+05:30",
-      "half_r_hit": false,
+      "half_r_hit": true,
       "rating": 9,
       "risk": 12.834900024413855,
       "side": "short",
@@ -8152,6 +8156,20 @@
       "target_1": 283.5074877929688,
       "target_2": 278.8649816894532,
       "target_half": 285.82874084472655
+    },
+    "82abf5bf286ace1e": {
+      "alert_time": "2026-08-21T11:52:07.681925+05:30",
+      "entry": 223.88999938964844,
+      "entry_time": "2026-08-21T11:55:00+05:30",
+      "half_r_hit": false,
+      "rating": 9,
+      "risk": 1.6025148773193223,
+      "side": "long",
+      "stop": 222.28748451232912,
+      "symbol": "HFCL.NS",
+      "target_1": 225.49251426696776,
+      "target_2": 227.09502914428708,
+      "target_half": 224.6912568283081
     },
     "b1f8905a4d0e9d67": {
       "alert_time": "2026-08-21T09:52:03.974202+05:30",
@@ -8195,6 +8213,34 @@
       "target_2": 256.52724884033205,
       "target_half": 259.09432136535645
     },
+    "c704785c0584f084": {
+      "alert_time": "2026-08-21T11:32:13.245812+05:30",
+      "entry": 1861.0,
+      "entry_time": "2026-08-21T11:50:00+05:30",
+      "half_r_hit": true,
+      "rating": 8,
+      "risk": 6.756124389648448,
+      "side": "long",
+      "stop": 1854.2438756103516,
+      "symbol": "EMCURE.NS",
+      "target_1": 1867.7561243896484,
+      "target_2": 1874.512248779297,
+      "target_half": 1864.3780621948242
+    },
+    "cb4086f95925ac4e": {
+      "alert_time": "2026-08-21T11:52:07.033462+05:30",
+      "entry": 398.70001220703125,
+      "entry_time": "2026-08-21T11:55:00+05:30",
+      "half_r_hit": false,
+      "rating": 8,
+      "risk": 1.0980122070312746,
+      "side": "long",
+      "stop": 397.602,
+      "symbol": "DABUR.NS",
+      "target_1": 399.7980244140625,
+      "target_2": 400.8960366210938,
+      "target_half": 399.2490183105469
+    },
     "cc99b91d4b6bee2c": {
       "alert_time": "2026-08-21T10:51:52.156865+05:30",
       "entry": 398.70001220703125,
@@ -8236,6 +8282,20 @@
       "target_1": 348.84531219482426,
       "target_2": 345.74061218261727,
       "target_half": 350.39766220092775
+    },
+    "f09d4374d0249cf5": {
+      "alert_time": "2026-08-21T11:32:13.075412+05:30",
+      "entry": 3892.300048828125,
+      "entry_time": "2026-08-21T11:50:00+05:30",
+      "half_r_hit": false,
+      "rating": 7,
+      "risk": 10.086051269531254,
+      "side": "long",
+      "stop": 3882.2139975585937,
+      "symbol": "DMART.NS",
+      "target_1": 3902.3861000976563,
+      "target_2": 3912.4721513671875,
+      "target_half": 3897.3430744628904
     }
   }
 }
