@@ -1958,7 +1958,9 @@
     "SKHYNIX/USDT:USDT|30m|long|1234.5600000000|1247.0600000000": 1787322686.0432901,
     "LINKUSD|30m|short|11.5950000000|11.8270000000": 1787331080.8175917,
     "GOOGLXUSD|30m|short|346.4000000000|347.4000000000": 1787331081.0751045,
-    "MSFT/USDT:USDT|30m|long|478.8700000000|481.5100000000": 1787337082.9990733
+    "MSFT/USDT:USDT|30m|long|478.8700000000|481.5100000000": 1787337082.9990733,
+    "BTCUSD|30m|long|76245.0000000000|77104.0000000000": 1787339478.3954666,
+    "MSTRBUSD|30m|long|116.4800000000|119.6500000000": 1787339478.9010606
   },
   "METAXUSD|demand|577.00000000|579.20000000": {
     "in_zone": false,
@@ -10635,8 +10637,8 @@
     "last_alert_at": 0.0
   },
   "BTCUSD|demand|76245.00000000|77104.00000000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1787339478.3954666
   },
   "SOLUSD|demand|89.81000000|90.80600000": {
     "in_zone": false,
@@ -10659,10 +10661,22 @@
     "last_alert_at": 0.0
   },
   "MSFT/USDT:USDT|demand|478.87000000|481.51000000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1787337082.9990733
   },
   "MSTRBUSD|demand|116.48000000|119.65000000": {
+    "in_zone": true,
+    "last_alert_at": 1787339478.9010606
+  },
+  "HOME/USDT|supply|0.00658000|0.00674100": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "DELL/USDT:USDT|demand|430.34000000|435.22000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "TQQQ/USDT:USDT|demand|70.01000000|70.48000000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
