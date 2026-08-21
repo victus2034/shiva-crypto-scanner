@@ -7785,6 +7785,48 @@
       "target_2": 427.2294061279298,
       "target_half": 431.48234695434576,
       "trade_id": "2ea9dfd64f9de48b"
+    },
+    {
+      "alert_time": "2026-08-21T11:12:00.319073+05:30",
+      "date": "2026-08-21",
+      "entry": 1259.0,
+      "entry_time": "2026-08-21T11:15:00+05:30",
+      "exit_price": 1250.7340000000002,
+      "exit_time": "2026-08-21T12:45:00+05:30",
+      "final_result": "+1R",
+      "half_r_hit": true,
+      "outcome": "+1R",
+      "rating": 10,
+      "realized_r": 1.0,
+      "risk": 8.265999999999849,
+      "side": "short",
+      "stop": 1267.2659999999998,
+      "symbol": "NAM-INDIA.NS",
+      "target_1": 1250.7340000000002,
+      "target_2": 1242.4680000000003,
+      "target_half": 1254.8670000000002,
+      "trade_id": "054ff7beaf0d67f0"
+    },
+    {
+      "alert_time": "2026-08-21T11:52:07.681925+05:30",
+      "date": "2026-08-21",
+      "entry": 223.88999938964844,
+      "entry_time": "2026-08-21T11:55:00+05:30",
+      "exit_price": 225.49251426696776,
+      "exit_time": "2026-08-21T12:50:00+05:30",
+      "final_result": "+1R",
+      "half_r_hit": true,
+      "outcome": "+1R",
+      "rating": 9,
+      "realized_r": 1.0,
+      "risk": 1.6025148773193223,
+      "side": "long",
+      "stop": 222.28748451232912,
+      "symbol": "HFCL.NS",
+      "target_1": 225.49251426696776,
+      "target_2": 227.09502914428708,
+      "target_half": 224.6912568283081,
+      "trade_id": "82abf5bf286ace1e"
     }
   ],
   "handled": {
@@ -8025,6 +8067,7 @@
     "b8812d11040e2c55": "filled",
     "b8c5db0a49b6524e": "filled",
     "b918189032b3bc5a": "filled",
+    "b95a01ae18922bb6": "filled",
     "ba4d3526a660fe35": "filled",
     "ba733b012fa053fa": "filled",
     "ba87ba8cbe5aa2df": "filled",
@@ -8151,20 +8194,6 @@
     "ffb4661b7d04cd46": "filled"
   },
   "open": {
-    "054ff7beaf0d67f0": {
-      "alert_time": "2026-08-21T11:12:00.319073+05:30",
-      "entry": 1259.0,
-      "entry_time": "2026-08-21T11:15:00+05:30",
-      "half_r_hit": true,
-      "rating": 10,
-      "risk": 8.265999999999849,
-      "side": "short",
-      "stop": 1267.2659999999998,
-      "symbol": "NAM-INDIA.NS",
-      "target_1": 1250.7340000000002,
-      "target_2": 1242.4680000000003,
-      "target_half": 1254.8670000000002
-    },
     "1bf178363c3e3aa5": {
       "alert_time": "2026-08-21T09:32:06.816231+05:30",
       "entry": 7530.5,
@@ -8277,20 +8306,6 @@
       "target_2": 278.8649816894532,
       "target_half": 285.82874084472655
     },
-    "82abf5bf286ace1e": {
-      "alert_time": "2026-08-21T11:52:07.681925+05:30",
-      "entry": 223.88999938964844,
-      "entry_time": "2026-08-21T11:55:00+05:30",
-      "half_r_hit": true,
-      "rating": 9,
-      "risk": 1.6025148773193223,
-      "side": "long",
-      "stop": 222.28748451232912,
-      "symbol": "HFCL.NS",
-      "target_1": 225.49251426696776,
-      "target_2": 227.09502914428708,
-      "target_half": 224.6912568283081
-    },
     "8ed0ad896bd16bbf": {
       "alert_time": "2026-08-21T11:52:08.634819+05:30",
       "entry": 422.75,
@@ -8346,6 +8361,20 @@
       "target_1": 66.08335152435303,
       "target_2": 65.76670152282716,
       "target_half": 66.24167652511596
+    },
+    "b95a01ae18922bb6": {
+      "alert_time": "2026-08-21T12:32:16.244346+05:30",
+      "entry": 2028.0,
+      "entry_time": "2026-08-21T12:45:00+05:30",
+      "half_r_hit": false,
+      "rating": 6,
+      "risk": 11.73765112304659,
+      "side": "short",
+      "stop": 2039.7376511230466,
+      "symbol": "BAJAJFINSV.NS",
+      "target_1": 2016.2623488769534,
+      "target_2": 2004.5246977539068,
+      "target_half": 2022.1311744384766
     },
     "bd14f7fffe04b841": {
       "alert_time": "2026-08-21T10:32:31.233568+05:30",
