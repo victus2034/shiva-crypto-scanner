@@ -1957,7 +1957,8 @@
     "NVDL/USDT:USDT|30m|long|32.7300000000|33.7600000000": 1787321483.6583736,
     "SKHYNIX/USDT:USDT|30m|long|1234.5600000000|1247.0600000000": 1787322686.0432901,
     "LINKUSD|30m|short|11.5950000000|11.8270000000": 1787331080.8175917,
-    "GOOGLXUSD|30m|short|346.4000000000|347.4000000000": 1787331081.0751045
+    "GOOGLXUSD|30m|short|346.4000000000|347.4000000000": 1787331081.0751045,
+    "MSFT/USDT:USDT|30m|long|478.8700000000|481.5100000000": 1787337082.9990733
   },
   "METAXUSD|demand|577.00000000|579.20000000": {
     "in_zone": false,
@@ -10632,5 +10633,33 @@
   "AAPLXUSD|supply|312.60000000|313.35000000": {
     "in_zone": false,
     "last_alert_at": 0.0
+  },
+  "BTCUSD|demand|76245.00000000|77104.00000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "SOLUSD|demand|89.81000000|90.80600000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "HYPEUSD|supply|77.01000000|77.87000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "HBAR/USDT|supply|0.07819000|0.07857000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "POL/USDT|demand|0.08732000|0.08829000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "NBIS/USDT:USDT|supply|227.16000000|231.01000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "MSFT/USDT:USDT|demand|478.87000000|481.51000000": {
+    "in_zone": true,
+    "last_alert_at": 1787337082.9990733
   }
 }
