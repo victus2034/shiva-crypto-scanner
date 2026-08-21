@@ -1671,7 +1671,8 @@
     "HYPEUSD|4h|short|75.4100000000|77.0200000000": 1787307664.1311224,
     "WLD/USDT|4h|short|0.3897000000|0.4030000000": 1787305273.000034,
     "OPUSD|4h|short|0.1030000000|0.1048000000": 1787322070.4992013,
-    "O/USDT|4h|short|0.5062000000|0.5233000000": 1787316068.7167687
+    "O/USDT|4h|short|0.5062000000|0.5233000000": 1787316068.7167687,
+    "GOOGLXUSD|4h|short|345.7500000000|347.4000000000": 1787324480.2247865
   },
   "ARBUSD|supply|0.08030000|0.08180000": {
     "in_zone": false,
@@ -4018,11 +4019,11 @@
     "last_alert_at": 0.0
   },
   "GOOGLXUSD|supply|345.75000000|347.40000000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1787324480.2247865
   },
   "OPUSD|supply|0.10300000|0.10480000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1787322070.4992013
   },
   "XPLUSD|supply|0.11930000|0.12350000": {
@@ -4042,6 +4043,10 @@
     "last_alert_at": 0.0
   },
   "EUL/USDT|supply|1.25680000|1.34000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "BANK/USDT|supply|0.41387000|0.66629000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
