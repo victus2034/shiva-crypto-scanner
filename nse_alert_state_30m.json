@@ -275,7 +275,7 @@
     "last_attempt_at": 1786508536.343782
   },
   "DMART.NS|demand|3886.1001|3892.3000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1787287321.5426683,
     "last_attempt_at": 1787287321.5426683
   },
@@ -2765,9 +2765,9 @@
     "last_attempt_at": 0.0
   },
   "KEI.NS|demand|5572.8999|5595.7002": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1787289713.1695943,
+    "last_attempt_at": 1787289713.1695943
   },
   "NUVAMA.NS|supply|1709.4000|1714.2000": {
     "in_zone": true,
@@ -4383,7 +4383,7 @@
     "ICICIGI.NS|30m|long|1611.1999511719|1619.5999755859": 1787284927.359429,
     "INDIANB.NS|30m|long|867.7500000000|871.4500122070": 1787284927.5967207,
     "KPITTECH.NS|30m|long|586.5499877930|588.2000122070": 1787288551.49389,
-    "M&M.NS|30m|long|3401.0000000000|3421.6999511719": 1787284928.284218,
+    "M&M.NS|30m|long|3401.0000000000|3421.6999511719": 1787289713.6958346,
     "NHPC.NS|30m|short|76.6200027466|76.8300018311": 1787284928.8645582,
     "NAVINFLUOR.NS|30m|short|8313.5000000000|8384.0000000000": 1787284929.0643344,
     "PIDILITIND.NS|30m|long|1644.5000000000|1650.0000000000": 1787284929.561508,
@@ -4395,7 +4395,11 @@
     "MRF.NS|30m|long|132750.0000000000|133005.0000000000": 1787286124.1877437,
     "SJVN.NS|30m|short|66.4000015259|66.6500015259": 1787286124.4991019,
     "DMART.NS|30m|long|3886.1000976562|3892.3000488281": 1787287321.5426683,
-    "GODIGIT.NS|30m|short|259.9500122070|261.3999938965": 1787288551.233568
+    "GODIGIT.NS|30m|short|259.9500122070|261.3999938965": 1787288551.233568,
+    "DABUR.NS|30m|long|398.0000000000|398.7000122070": 1787289712.1568651,
+    "ENGINERSIN.NS|30m|short|238.8899993896|240.5299987793": 1787289712.5850723,
+    "GRSE.NS|30m|short|2649.0000000000|2654.0000000000": 1787289712.8384976,
+    "KEI.NS|30m|long|5572.8999023438|5595.7001953125": 1787289713.1695943
   },
   "ANANDRATHI.NS|supply|2187.5000|2221.0000": {
     "in_zone": true,
@@ -5288,7 +5292,7 @@
     "last_attempt_at": 0.0
   },
   "BAJAJFINSV.NS|supply|2028.0000|2037.7000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1787287321.7515953,
     "last_attempt_at": 1787287321.7515953
   },
@@ -30263,9 +30267,9 @@
     "last_attempt_at": 0.0
   },
   "DABUR.NS|demand|398.0000|398.7000": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1787289712.1568651,
+    "last_attempt_at": 1787289712.1568651
   },
   "DIXON.NS|demand|14035.0000|14121.0000": {
     "in_zone": false,
@@ -30308,9 +30312,9 @@
     "last_attempt_at": 0.0
   },
   "GRSE.NS|supply|2649.0000|2654.0000": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1787289712.8384976,
+    "last_attempt_at": 1787289712.8384976
   },
   "GILLETTE.NS|supply|7530.5000|7582.5000": {
     "in_zone": true,
@@ -30504,8 +30508,8 @@
   },
   "M&M.NS|demand|3401.0000|3421.7000": {
     "in_zone": true,
-    "last_alert_at": 1787284928.284218,
-    "last_attempt_at": 1787284928.284218
+    "last_alert_at": 1787289713.6958346,
+    "last_attempt_at": 1787289713.6958346
   },
   "MFSL.NS|supply|1582.1000|1586.9000": {
     "in_zone": false,
@@ -30718,6 +30722,41 @@
     "last_attempt_at": 0.0
   },
   "SBILIFE.NS|supply|1787.7000|1792.2000": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "ADANIPOWER.NS|supply|204.5900|205.4600": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "AFFLE.NS|supply|1734.7000|1744.0000": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "CHOLAFIN.NS|supply|1904.5000|1906.7000": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "ENGINERSIN.NS|supply|238.8900|240.5300": {
+    "in_zone": true,
+    "last_alert_at": 1787289712.5850723,
+    "last_attempt_at": 1787289712.5850723
+  },
+  "KIRLOSENG.NS|supply|2153.8999|2176.0000": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "PGEL.NS|supply|610.5000|613.5000": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "REDINGTON.NS|supply|351.9500|354.7000": {
     "in_zone": false,
     "last_alert_at": 0.0,
     "last_attempt_at": 0.0
