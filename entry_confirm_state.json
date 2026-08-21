@@ -66,17 +66,19 @@
     "stage": 1
   },
   "KPIL.NS|30m|long|1393.2000|1376.8218": {
-    "reached_entry": false
-  },
-  "OFSS.NS|30m|long|11676.0000|11632.3560": {
     "reached_entry": false,
     "stage": 1
+  },
+  "OFSS.NS|30m|long|11676.0000|11632.3560": {
+    "reached_entry": true,
+    "stage": 2
   },
   "PRESTIGE.NS|30m|short|1624.6000|1641.6400": {
     "reached_entry": true,
     "stage": 2
   },
   "SBILIFE.NS|30m|short|1787.7000|1793.9922": {
-    "reached_entry": true
+    "reached_entry": true,
+    "stage": 3
   }
 }
