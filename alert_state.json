@@ -344,7 +344,7 @@
     "last_alert_at": 0.0
   },
   "VIRTUAL/USDT|supply|0.67210000|0.68100000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1787300475.3903196
   },
   "FILUSD|supply|0.79300000|0.80700000": {
@@ -1667,7 +1667,8 @@
     "XPLUSD|4h|short|0.0951000000|0.0968000000": 1787298074.4874816,
     "ATOM/USDT|4h|short|1.5730000000|1.5940000000": 1787299281.0282097,
     "APTUSD|4h|short|0.5990000000|0.6210000000": 1787300475.1760962,
-    "VIRTUAL/USDT|4h|short|0.6721000000|0.6810000000": 1787300475.3903196
+    "VIRTUAL/USDT|4h|short|0.6721000000|0.6810000000": 1787300475.3903196,
+    "HYPEUSD|4h|short|75.4100000000|77.0200000000": 1787302880.4529417
   },
   "ARBUSD|supply|0.08030000|0.08180000": {
     "in_zone": false,
@@ -3750,8 +3751,8 @@
     "last_alert_at": 0.0
   },
   "HYPEUSD|supply|75.41000000|77.02000000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1787302880.4529417
   },
   "ZECUSD|supply|576.14000000|589.16000000": {
     "in_zone": false,
