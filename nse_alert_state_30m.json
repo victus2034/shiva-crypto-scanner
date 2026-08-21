@@ -4414,7 +4414,10 @@
     "GRAVITA.NS|30m|long|1783.0999755859|1789.3000488281": 1787294521.3541782,
     "LAURUSLABS.NS|30m|long|1790.9000244141|1798.3000488281": 1787294521.8881142,
     "POLICYBZR.NS|30m|short|1792.0000000000|1803.0000000000": 1787294522.192522,
-    "KAJARIACER.NS|30m|long|1202.6999511719|1205.0999755859": 1787295736.3947608
+    "KAJARIACER.NS|30m|long|1202.6999511719|1205.0999755859": 1787295736.3947608,
+    "FSL.NS|30m|short|275.5000000000|277.1000061035": 1787296920.41621,
+    "ONESOURCE.NS|30m|short|1544.5000000000|1555.6999511719": 1787296920.6830196,
+    "PIIND.NS|30m|short|2512.8000488281|2521.6999511719": 1787296920.9115238
   },
   "ANANDRATHI.NS|supply|2187.5000|2221.0000": {
     "in_zone": true,
@@ -30482,7 +30485,7 @@
     "last_attempt_at": 1787288551.49389
   },
   "KAJARIACER.NS|demand|1202.7000|1205.1000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1787295736.3947608,
     "last_attempt_at": 1787295736.3947608
   },
@@ -30617,9 +30620,9 @@
     "last_attempt_at": 1787294522.192522
   },
   "PIIND.NS|supply|2512.8000|2521.7000": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1787296920.9115238,
+    "last_attempt_at": 1787296920.9115238
   },
   "PNBHOUSING.NS|supply|1194.7000|1207.0000": {
     "in_zone": false,
@@ -30822,9 +30825,9 @@
     "last_attempt_at": 0.0
   },
   "FSL.NS|supply|275.5000|277.1000": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1787296920.41621,
+    "last_attempt_at": 1787296920.41621
   },
   "IREDA.NS|supply|115.5200|115.7700": {
     "in_zone": false,
@@ -30840,5 +30843,15 @@
     "in_zone": false,
     "last_alert_at": 0.0,
     "last_attempt_at": 0.0
+  },
+  "AIIL.NS|demand|530.4000|534.9000": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "ONESOURCE.NS|supply|1544.5000|1555.7000": {
+    "in_zone": true,
+    "last_alert_at": 1787296920.6830196,
+    "last_attempt_at": 1787296920.6830196
   }
 }
