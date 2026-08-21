@@ -14,14 +14,16 @@
     "reached_entry": false
   },
   "DABUR.NS|30m|long|398.7000|397.6020": {
-    "reached_entry": false
+    "reached_entry": true,
+    "stage": 2
   },
   "DMART.NS|30m|long|3892.3000|3882.2140": {
     "reached_entry": true,
     "stage": 3
   },
   "EMCURE.NS|30m|long|1861.0000|1854.2439": {
-    "reached_entry": false
+    "reached_entry": false,
+    "stage": 1
   },
   "ENGINERSIN.NS|30m|short|238.8900|240.7705": {
     "reached_entry": true,
@@ -63,6 +65,6 @@
   },
   "REDINGTON.NS|30m|short|351.9500|355.0547": {
     "reached_entry": true,
-    "stage": 2
+    "stage": 3
   }
 }
