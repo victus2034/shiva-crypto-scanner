@@ -8078,6 +8078,7 @@
     "4d7018f01236dc4f": "filled",
     "4ef57221bfd5c70d": "filled",
     "5058ae607eb82deb": "filled",
+    "5102170705d13c5c": "filled",
     "5114ec54f957d1ab": "filled",
     "514b6ac1eac63c81": "filled",
     "51e6f9e55a7accd9": "filled",
@@ -8358,6 +8359,7 @@
     "f59014764bd6c58e": "filled",
     "f596705cbdb40b04": "filled",
     "f69e85db324bcc23": "filled",
+    "f7233df4ae24ef58": "filled",
     "f7ce0cfe46202d0e": "filled",
     "f7d327e1f943501d": "filled",
     "f8b38ec955b26288": "filled",
@@ -8431,7 +8433,7 @@
       "alert_time": "2026-08-21T14:12:01.627624+05:30",
       "entry": 204.58999633789062,
       "entry_time": "2026-08-21T14:15:00+05:30",
-      "half_r_hit": false,
+      "half_r_hit": true,
       "rating": 9,
       "risk": 1.075470382690412,
       "side": "short",
@@ -8525,6 +8527,20 @@
       "target_2": 144.72397769165042,
       "target_half": 143.28099671173095
     },
+    "5102170705d13c5c": {
+      "alert_time": "2026-08-21T14:52:19.955402+05:30",
+      "entry": 155.60000610351562,
+      "entry_time": "2026-08-21T14:55:00+05:30",
+      "half_r_hit": false,
+      "rating": 8,
+      "risk": 0.7550061035156261,
+      "side": "long",
+      "stop": 154.845,
+      "symbol": "CESC.NS",
+      "target_1": 156.35501220703125,
+      "target_2": 157.11001831054688,
+      "target_half": 155.97750915527342
+    },
     "514b6ac1eac63c81": {
       "alert_time": "2026-08-21T12:12:01.888114+05:30",
       "entry": 1798.300048828125,
@@ -8543,7 +8559,7 @@
       "alert_time": "2026-08-21T14:52:18.499901+05:30",
       "entry": 2138.0,
       "entry_time": "2026-08-21T14:55:00+05:30",
-      "half_r_hit": false,
+      "half_r_hit": true,
       "rating": 8,
       "risk": 13.826251220702943,
       "side": "long",
@@ -8823,7 +8839,7 @@
       "alert_time": "2026-08-21T11:52:07.033462+05:30",
       "entry": 398.70001220703125,
       "entry_time": "2026-08-21T11:55:00+05:30",
-      "half_r_hit": false,
+      "half_r_hit": true,
       "rating": 8,
       "risk": 1.0980122070312746,
       "side": "long",
@@ -8837,7 +8853,7 @@
       "alert_time": "2026-08-21T10:51:52.156865+05:30",
       "entry": 398.70001220703125,
       "entry_time": "2026-08-21T11:40:00+05:30",
-      "half_r_hit": false,
+      "half_r_hit": true,
       "rating": 8,
       "risk": 1.0980122070312746,
       "side": "long",
@@ -8972,6 +8988,20 @@
       "target_1": 273.6228938903809,
       "target_2": 271.7457877807618,
       "target_half": 274.5614469451905
+    },
+    "f7233df4ae24ef58": {
+      "alert_time": "2026-08-21T14:52:22.064699+05:30",
+      "entry": 23.399999618530273,
+      "entry_time": "2026-08-21T14:55:00+05:30",
+      "half_r_hit": false,
+      "rating": 8,
+      "risk": 0.19357007598876663,
+      "side": "short",
+      "stop": 23.59356969451904,
+      "symbol": "RPOWER.NS",
+      "target_1": 23.206429542541507,
+      "target_2": 23.01285946655274,
+      "target_half": 23.30321458053589
     }
   }
 }
