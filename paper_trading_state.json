@@ -7551,6 +7551,7 @@
     "6bbc88f089134a90": "filled",
     "6bd289a6b60fc9c3": "filled",
     "6c9c3e5d5b072eb5": "filled",
+    "6d6a411f9c802ffd": "filled",
     "6dea013f691b90de": "filled",
     "6e71d7b35a1b551f": "filled",
     "6f1c202d069f63fa": "filled",
@@ -7747,6 +7748,7 @@
     "f56ff58bc926f6f2": "filled",
     "f59014764bd6c58e": "filled",
     "f596705cbdb40b04": "filled",
+    "f69e85db324bcc23": "filled",
     "f7ce0cfe46202d0e": "filled",
     "f7d327e1f943501d": "filled",
     "f8b38ec955b26288": "filled",
@@ -7772,6 +7774,20 @@
       "target_1": 590.4365866088867,
       "target_2": 592.6731610107422,
       "target_half": 589.318299407959
+    },
+    "6d6a411f9c802ffd": {
+      "alert_time": "2026-08-21T09:32:09.944961+05:30",
+      "entry": 288.1499938964844,
+      "entry_time": "2026-08-21T09:35:00+05:30",
+      "half_r_hit": false,
+      "rating": 10,
+      "risk": 4.642506103515586,
+      "side": "short",
+      "stop": 292.79249999999996,
+      "symbol": "RAILTEL.NS",
+      "target_1": 283.5074877929688,
+      "target_2": 278.8649816894532,
+      "target_half": 285.82874084472655
     },
     "6f1c202d069f63fa": {
       "alert_time": "2026-08-21T09:32:07.359429+05:30",
@@ -7800,6 +7816,20 @@
       "target_1": 33688.355,
       "target_2": 33871.71000000001,
       "target_half": 33596.677500000005
+    },
+    "f69e85db324bcc23": {
+      "alert_time": "2026-08-21T09:32:06.380915+05:30",
+      "entry": 592.2999877929688,
+      "entry_time": "2026-08-21T09:35:00+05:30",
+      "half_r_hit": true,
+      "rating": 10,
+      "risk": 1.9908634033203043,
+      "side": "long",
+      "stop": 590.3091243896484,
+      "symbol": "BLUEJET.NS",
+      "target_1": 594.290851196289,
+      "target_2": 596.2817145996094,
+      "target_half": 593.295419494629
     }
   }
 }
