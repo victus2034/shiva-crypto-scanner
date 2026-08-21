@@ -8170,6 +8170,7 @@
     "f231b304df837939": "filled",
     "f2363f2c2ef3400d": "filled",
     "f301c483b8a2cfde": "filled",
+    "f3227d14f0972b14": "filled",
     "f3dab638b4211f9e": "filled",
     "f3fcc18739d6a5be": "filled",
     "f439cdebb9241872": "filled",
@@ -8310,7 +8311,7 @@
       "alert_time": "2026-08-21T11:52:08.634819+05:30",
       "entry": 422.75,
       "entry_time": "2026-08-21T12:00:00+05:30",
-      "half_r_hit": false,
+      "half_r_hit": true,
       "rating": 8,
       "risk": 2.0743938903808044,
       "side": "short",
@@ -8473,6 +8474,20 @@
       "target_1": 7470.9175000000005,
       "target_2": 7411.335000000001,
       "target_half": 7500.70875
+    },
+    "f3227d14f0972b14": {
+      "alert_time": "2026-08-21T12:52:00.416210+05:30",
+      "entry": 275.5,
+      "entry_time": "2026-08-21T12:55:00+05:30",
+      "half_r_hit": false,
+      "rating": 8,
+      "risk": 1.877106109619092,
+      "side": "short",
+      "stop": 277.3771061096191,
+      "symbol": "FSL.NS",
+      "target_1": 273.6228938903809,
+      "target_2": 271.7457877807618,
+      "target_half": 274.5614469451905
     }
   }
 }
