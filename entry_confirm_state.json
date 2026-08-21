@@ -12,10 +12,8 @@
     "stage": 1
   },
   "BAJAJFINSV.NS|30m|short|2028.0000|2039.7377": {
-    "reached_entry": false
-  },
-  "BRITANNIA.NS|30m|long|5350.5000|5338.1565": {
-    "reached_entry": false
+    "reached_entry": false,
+    "stage": 1
   },
   "DABUR.NS|30m|long|398.7000|397.6020": {
     "reached_entry": true,
@@ -40,9 +38,6 @@
     "reached_entry": true,
     "stage": 2
   },
-  "ICICIBANK.NS|30m|short|1421.0000|1424.8234": {
-    "reached_entry": false
-  },
   "INDIANB.NS|30m|long|871.4500|866.8822": {
     "reached_entry": true,
     "stage": 2
@@ -51,7 +46,8 @@
     "reached_entry": false
   },
   "KEC.NS|30m|short|432.9000|435.7353": {
-    "reached_entry": false
+    "reached_entry": true,
+    "stage": 3
   },
   "LAURUSLABS.NS|30m|long|1798.3000|1789.1091": {
     "reached_entry": true,
@@ -61,23 +57,11 @@
     "reached_entry": true,
     "stage": 2
   },
-  "NAM-INDIA.NS|30m|short|1259.0000|1267.2660": {
-    "reached_entry": true,
-    "stage": 2
-  },
   "NAVINFLUOR.NS|30m|long|8151.0000|8111.8800": {
     "reached_entry": false
-  },
-  "NH.NS|30m|short|1823.9000|1836.7349": {
-    "reached_entry": true,
-    "stage": 2
   },
   "POLICYBZR.NS|30m|short|1792.0000|1804.8030": {
     "reached_entry": true,
     "stage": 2
-  },
-  "REDINGTON.NS|30m|short|351.9500|355.0547": {
-    "reached_entry": true,
-    "stage": 3
   }
 }
