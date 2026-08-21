@@ -700,7 +700,7 @@
     "last_attempt_at": 0.0
   },
   "CHAMBLFERT.NS|demand|425.1000|429.5500": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1787285546.6332307,
     "last_attempt_at": 1787285546.6332307
   },
@@ -1345,9 +1345,9 @@
     "last_attempt_at": 1786593151.6628404
   },
   "HYUNDAI.NS|supply|2250.0000|2365.0000": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1787286772.6381927,
+    "last_attempt_at": 1787286772.6381927
   },
   "HYUNDAI.NS|demand|1895.4000|1913.9000": {
     "in_zone": false,
@@ -1505,7 +1505,7 @@
     "last_attempt_at": 0.0
   },
   "INDUSINDBK.NS|demand|984.5000|997.8500": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1787285547.1715405,
     "last_attempt_at": 1787285547.1715405
   },
@@ -1565,7 +1565,7 @@
     "last_attempt_at": 0.0
   },
   "JBMA.NS|supply|681.3000|688.9000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1787284350.1961472,
     "last_attempt_at": 1787284350.1961472
   },
@@ -2805,7 +2805,9 @@
     "CHAMBLFERT.NS|4h|long|425.1000061035|429.5499877930": 1787285546.6332307,
     "HAVELLS.NS|4h|long|1254.3000488281|1265.0000000000": 1787285547.0296922,
     "INDUSINDBK.NS|4h|long|984.5000000000|997.8499755859": 1787285547.1715405,
-    "MARICO.NS|4h|long|839.0499877930|848.1500244141": 1787285547.3057752
+    "MARICO.NS|4h|long|839.0499877930|848.1500244141": 1787285547.3057752,
+    "HYUNDAI.NS|4h|short|2250.0000000000|2365.0000000000": 1787286772.6381927,
+    "JMFINANCIL.NS|4h|short|130.0000000000|132.3000030518": 1787286773.1162002
   },
   "GESHIP.NS|demand|1057.1000|1070.5000": {
     "in_zone": false,
@@ -17768,9 +17770,9 @@
     "last_attempt_at": 0.0
   },
   "JMFINANCIL.NS|supply|130.0000|132.3000": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1787286773.1162002,
+    "last_attempt_at": 1787286773.1162002
   },
   "THELEELA.NS|demand|494.4000|500.2000": {
     "in_zone": false,
