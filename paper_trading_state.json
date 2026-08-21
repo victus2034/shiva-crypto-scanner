@@ -7920,6 +7920,7 @@
     "018819f1ade27fff": "filled",
     "028c60aa0802530b": "filled",
     "038e5cd978b341b1": "filled",
+    "03e2759194fdf780": "filled",
     "04a93781573dfff7": "filled",
     "053cdd03b7104d64": "filled",
     "054ff7beaf0d67f0": "filled",
@@ -7996,6 +7997,7 @@
     "4076b5163d5693eb": "filled",
     "40918603dc3eabc8": "filled",
     "435231228be44c0e": "filled",
+    "43cc2bfe2d3d58fd": "filled",
     "44e5ef4dd52a4bff": "filled",
     "463bf1a47c3f1970": "filled",
     "4683239f190224e7": "filled",
@@ -8132,6 +8134,7 @@
     "a51aeb8f2a2352d7": "filled",
     "a80d917c8ffabd72": "filled",
     "a828313425872dd4": "filled",
+    "a8893517263fa269": "filled",
     "a9a66799566d7408": "filled",
     "aa8730d7254319a0": "filled",
     "ab0e749f752ed696": "filled",
@@ -8166,6 +8169,7 @@
     "bb4546b1fb2118ac": "filled",
     "bc7137151fba3b02": "filled",
     "bcaea109d5d9eb5d": "filled",
+    "bcfc077a6eddd6b6": "filled",
     "bd14f7fffe04b841": "filled",
     "be0156ccea7b15b3": "filled",
     "be57674723914eb7": "filled",
@@ -8197,6 +8201,7 @@
     "cc99b91d4b6bee2c": "filled",
     "ccb278c6760650d0": "filled",
     "cd61c889b608e4e8": "filled",
+    "ceb6a3c45b6d47d1": "filled",
     "ced0421f1fed146d": "filled",
     "cfabab8ae61711e9": "filled",
     "cfc4c3af8166191a": "filled",
@@ -8305,6 +8310,20 @@
       "target_2": 1571.8296489257814,
       "target_half": 1542.557448852539
     },
+    "03e2759194fdf780": {
+      "alert_time": "2026-08-21T14:32:27.614202+05:30",
+      "entry": 566.7000122070312,
+      "entry_time": "2026-08-21T14:35:00+05:30",
+      "half_r_hit": false,
+      "rating": 10,
+      "risk": 4.870987792968663,
+      "side": "short",
+      "stop": 571.5709999999999,
+      "symbol": "INDGN.NS",
+      "target_1": 561.8290244140626,
+      "target_2": 556.9580366210939,
+      "target_half": 564.2645183105469
+    },
     "0bd1e6675f3729aa": {
       "alert_time": "2026-08-21T13:11:55.568218+05:30",
       "entry": 1624.5999755859375,
@@ -8388,6 +8407,20 @@
       "target_1": 3445.80090234375,
       "target_2": 3469.9018535156247,
       "target_half": 3433.7504267578124
+    },
+    "43cc2bfe2d3d58fd": {
+      "alert_time": "2026-08-21T14:32:26.315618+05:30",
+      "entry": 142.8000030517578,
+      "entry_time": "2026-08-21T14:35:00+05:30",
+      "half_r_hit": false,
+      "rating": 10,
+      "risk": 0.9619873199463029,
+      "side": "long",
+      "stop": 141.8380157318115,
+      "symbol": "BANKINDIA.NS",
+      "target_1": 143.76199037170412,
+      "target_2": 144.72397769165042,
+      "target_half": 143.28099671173095
     },
     "514b6ac1eac63c81": {
       "alert_time": "2026-08-21T12:12:01.888114+05:30",
@@ -8487,6 +8520,20 @@
       "target_2": 2004.5246977539068,
       "target_half": 2022.1311744384766
     },
+    "a8893517263fa269": {
+      "alert_time": "2026-08-21T14:32:27.021904+05:30",
+      "entry": 809.7000122070312,
+      "entry_time": "2026-08-21T14:35:00+05:30",
+      "half_r_hit": false,
+      "rating": 7,
+      "risk": 2.5080122070312427,
+      "side": "long",
+      "stop": 807.192,
+      "symbol": "CHOICEIN.NS",
+      "target_1": 812.2080244140625,
+      "target_2": 814.7160366210937,
+      "target_half": 810.9540183105469
+    },
     "b0bb5f61d52b0880": {
       "alert_time": "2026-08-21T14:12:03.606176+05:30",
       "entry": 1624.5999755859375,
@@ -8557,6 +8604,20 @@
       "target_2": 2004.5246977539068,
       "target_half": 2022.1311744384766
     },
+    "bcfc077a6eddd6b6": {
+      "alert_time": "2026-08-21T14:32:28.702774+05:30",
+      "entry": 1787.699951171875,
+      "entry_time": "2026-08-21T14:35:00+05:30",
+      "half_r_hit": false,
+      "rating": 8,
+      "risk": 6.292199951171597,
+      "side": "short",
+      "stop": 1793.9921511230466,
+      "symbol": "SBILIFE.NS",
+      "target_1": 1781.4077512207034,
+      "target_2": 1775.1155512695318,
+      "target_half": 1784.553851196289
+    },
     "c4eaf758dd516bb2": {
       "alert_time": "2026-08-21T12:52:00.683020+05:30",
       "entry": 1544.5,
@@ -8598,6 +8659,20 @@
       "target_1": 399.7980244140625,
       "target_2": 400.8960366210938,
       "target_half": 399.2490183105469
+    },
+    "ceb6a3c45b6d47d1": {
+      "alert_time": "2026-08-21T14:32:27.393129+05:30",
+      "entry": 2212.0,
+      "entry_time": "2026-08-21T14:35:00+05:30",
+      "half_r_hit": false,
+      "rating": 9,
+      "risk": 13.201000000000022,
+      "side": "long",
+      "stop": 2198.799,
+      "symbol": "DOMS.NS",
+      "target_1": 2225.201,
+      "target_2": 2238.402,
+      "target_half": 2218.6005
     },
     "d7f4e187fa098aca": {
       "alert_time": "2026-08-21T14:12:01.898421+05:30",
