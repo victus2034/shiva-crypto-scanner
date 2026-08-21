@@ -9695,7 +9695,7 @@
     "last_alert_at": 0.0
   },
   "METAXUSD|supply|553.50000000|554.95000000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1787304685.274052
   },
   "METAXUSD|demand|546.67000000|547.60000000": {
@@ -10523,6 +10523,14 @@
     "last_alert_at": 0.0
   },
   "COTI/USDT|demand|0.00974200|0.00979300": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "VANRY/USDT|supply|0.00090420|0.00093150": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "BABA/USDT:USDT|demand|124.44000000|125.38000000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
