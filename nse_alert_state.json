@@ -700,7 +700,7 @@
     "last_attempt_at": 0.0
   },
   "CHAMBLFERT.NS|demand|425.1000|429.5500": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1787285546.6332307,
     "last_attempt_at": 1787285546.6332307
   },
@@ -1345,7 +1345,7 @@
     "last_attempt_at": 1786593151.6628404
   },
   "HYUNDAI.NS|supply|2250.0000|2365.0000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1787286772.6381927,
     "last_attempt_at": 1787286772.6381927
   },
@@ -2808,7 +2808,9 @@
     "MARICO.NS|4h|long|839.0499877930|848.1500244141": 1787285547.3057752,
     "HYUNDAI.NS|4h|short|2250.0000000000|2365.0000000000": 1787286772.6381927,
     "JMFINANCIL.NS|4h|short|130.0000000000|132.3000030518": 1787286773.1162002,
-    "LUPIN.NS|4h|long|2160.0000000000|2196.5000000000": 1787287923.3420732
+    "LUPIN.NS|4h|long|2160.0000000000|2196.5000000000": 1787287923.3420732,
+    "DMART.NS|4h|long|3886.1000976562|3900.0000000000": 1787289141.3199642,
+    "DEEPAKFERT.NS|4h|long|1446.0999755859|1459.0000000000": 1787289141.6349056
   },
   "GESHIP.NS|demand|1057.1000|1070.5000": {
     "in_zone": false,
@@ -2976,9 +2978,9 @@
     "last_attempt_at": 0.0
   },
   "DMART.NS|demand|3886.1001|3900.0000": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1787289141.3199642,
+    "last_attempt_at": 1787289141.3199642
   },
   "BLS.NS|supply|298.0000|308.4500": {
     "in_zone": false,
@@ -3006,7 +3008,7 @@
     "last_attempt_at": 0.0
   },
   "LUPIN.NS|demand|2160.0000|2196.5000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1787287923.3420732,
     "last_attempt_at": 1787287923.3420732
   },
@@ -17721,9 +17723,9 @@
     "last_attempt_at": 0.0
   },
   "DEEPAKFERT.NS|demand|1446.1000|1459.0000": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1787289141.6349056,
+    "last_attempt_at": 1787289141.6349056
   },
   "LALPATHLAB.NS|supply|1959.0000|1986.8000": {
     "in_zone": false,
