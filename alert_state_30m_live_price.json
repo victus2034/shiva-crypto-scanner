@@ -1953,7 +1953,8 @@
     "NVDL/USDT:USDT|30m|short|34.4500000000|34.8300000000": 1787301086.7777555,
     "AVGO/USDT:USDT|30m|short|370.0400000000|371.6800000000": 1787314277.3444004,
     "BABA/USDT:USDT|30m|long|124.4400000000|125.3800000000": 1787308291.0954797,
-    "TSLAXUSD|30m|short|352.4500000000|352.7000000000": 1787320277.349304
+    "TSLAXUSD|30m|short|352.4500000000|352.7000000000": 1787320277.349304,
+    "NVDL/USDT:USDT|30m|long|32.7300000000|33.7600000000": 1787321483.6583736
   },
   "METAXUSD|demand|577.00000000|579.20000000": {
     "in_zone": false,
@@ -10568,5 +10569,17 @@
   "GRAMUSD|supply|1.48200000|1.49400000": {
     "in_zone": false,
     "last_alert_at": 0.0
+  },
+  "PUMPUSD|demand|0.00377400|0.00386800": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "LABUSD|demand|0.07810000|0.07970000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "NVDL/USDT:USDT|demand|32.73000000|33.76000000": {
+    "in_zone": true,
+    "last_alert_at": 1787321483.6583736
   }
 }
