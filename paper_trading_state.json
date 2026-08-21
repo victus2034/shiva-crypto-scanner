@@ -7956,6 +7956,7 @@
     "1bf178363c3e3aa5": "filled",
     "1cc6551c65582fda": "filled",
     "1fd552555e7768b9": "filled",
+    "1fe1f228da67f6c4": "filled",
     "203bcc14a645646a": "filled",
     "20e446a00f29ed1b": "filled",
     "213cf6f3b5c83f2e": "filled",
@@ -8139,6 +8140,7 @@
     "aeefd13c9ad591d7": "filled",
     "afa83312ecf9a511": "filled",
     "b09f21fa32198077": "filled",
+    "b0bb5f61d52b0880": "filled",
     "b0dac76890349662": "filled",
     "b1f8905a4d0e9d67": "filled",
     "b31cb34ab923b450": "filled",
@@ -8210,6 +8212,7 @@
     "d6219945e9e6b026": "filled",
     "d6c48c9af26142bd": "filled",
     "d7d06d7e5f681e30": "filled",
+    "d7f4e187fa098aca": "filled",
     "d86181f482d733e4": "filled",
     "d87a36e34cff2fb9": "filled",
     "d984cc83954830d8": "filled",
@@ -8229,6 +8232,7 @@
     "e0104a53870d40fc": "filled",
     "e023c90927d8da48": "filled",
     "e03138f572f0f54d": "filled",
+    "e0a3d1f6db2d049f": "filled",
     "e2dd9c6197a6ed55": "filled",
     "e358c532aa3fc8fc": "filled",
     "e38865d71893301d": "filled",
@@ -8327,6 +8331,20 @@
       "target_1": 7470.9175000000005,
       "target_2": 7411.335000000001,
       "target_half": 7500.70875
+    },
+    "1fe1f228da67f6c4": {
+      "alert_time": "2026-08-21T14:12:01.627624+05:30",
+      "entry": 204.58999633789062,
+      "entry_time": "2026-08-21T14:15:00+05:30",
+      "half_r_hit": false,
+      "rating": 9,
+      "risk": 1.075470382690412,
+      "side": "short",
+      "stop": 205.66546672058104,
+      "symbol": "ADANIPOWER.NS",
+      "target_1": 203.5145259552002,
+      "target_2": 202.4390555725098,
+      "target_half": 204.05226114654542
     },
     "22865f41a4552478": {
       "alert_time": "2026-08-21T13:11:54.955226+05:30",
@@ -8454,6 +8472,20 @@
       "target_2": 2004.5246977539068,
       "target_half": 2022.1311744384766
     },
+    "b0bb5f61d52b0880": {
+      "alert_time": "2026-08-21T14:12:03.606176+05:30",
+      "entry": 1624.5999755859375,
+      "entry_time": "2026-08-21T14:15:00+05:30",
+      "half_r_hit": false,
+      "rating": 9,
+      "risk": 17.040024414062373,
+      "side": "short",
+      "stop": 1641.6399999999999,
+      "symbol": "PRESTIGE.NS",
+      "target_1": 1607.5599511718751,
+      "target_2": 1590.5199267578128,
+      "target_half": 1616.0799633789063
+    },
     "b1f8905a4d0e9d67": {
       "alert_time": "2026-08-21T09:52:03.974202+05:30",
       "entry": 124.0,
@@ -8552,6 +8584,20 @@
       "target_2": 400.8960366210938,
       "target_half": 399.2490183105469
     },
+    "d7f4e187fa098aca": {
+      "alert_time": "2026-08-21T14:12:01.898421+05:30",
+      "entry": 5350.5,
+      "entry_time": "2026-08-21T14:15:00+05:30",
+      "half_r_hit": false,
+      "rating": 8,
+      "risk": 12.343499999999949,
+      "side": "long",
+      "stop": 5338.1565,
+      "symbol": "BRITANNIA.NS",
+      "target_1": 5362.8435,
+      "target_2": 5375.187,
+      "target_half": 5356.6717499999995
+    },
     "ddeb17a8804f618b": {
       "alert_time": "2026-08-21T09:32:09.561508+05:30",
       "entry": 1650.0,
@@ -8565,6 +8611,20 @@
       "target_1": 1657.1445,
       "target_2": 1664.2890000000002,
       "target_half": 1653.5722500000002
+    },
+    "e0a3d1f6db2d049f": {
+      "alert_time": "2026-08-21T14:12:02.217195+05:30",
+      "entry": 452.79998779296875,
+      "entry_time": "2026-08-21T14:15:00+05:30",
+      "half_r_hit": false,
+      "rating": 9,
+      "risk": 3.6560122070312104,
+      "side": "short",
+      "stop": 456.45599999999996,
+      "symbol": "ELECON.NS",
+      "target_1": 449.14397558593754,
+      "target_2": 445.48796337890633,
+      "target_half": 450.9719816894532
     },
     "e3b830780d43f9ff": {
       "alert_time": "2026-08-21T12:12:02.192522+05:30",
