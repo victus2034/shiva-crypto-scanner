@@ -10545,7 +10545,7 @@
     "last_alert_at": 0.0
   },
   "LINKUSD|supply|11.59500000|11.82700000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1787325081.982295
   },
   "VVV/USDT|supply|16.20900000|16.38600000": {
@@ -10589,6 +10589,10 @@
     "last_alert_at": 0.0
   },
   "SKHYNIX/USDT:USDT|supply|1269.65000000|1275.91000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "UB/USDT|demand|0.11133000|0.11431000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
