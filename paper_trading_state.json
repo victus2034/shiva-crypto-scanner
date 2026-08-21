@@ -7617,6 +7617,27 @@
       "target_2": 2388.6922880859374,
       "target_half": 2366.123145263672,
       "trade_id": "ef827289eecfe86d"
+    },
+    {
+      "alert_time": "2026-08-21T09:32:05.977365+05:30",
+      "date": "2026-08-21",
+      "entry": 33505.0,
+      "entry_time": "2026-08-21T09:35:00+05:30",
+      "exit_price": 33688.355,
+      "exit_time": "2026-08-21T11:10:00+05:30",
+      "final_result": "+1R",
+      "half_r_hit": true,
+      "outcome": "+1R",
+      "rating": 6,
+      "realized_r": 1.0,
+      "risk": 183.3550000000032,
+      "side": "long",
+      "stop": 33321.645,
+      "symbol": "3MINDIA.NS",
+      "target_1": 33688.355,
+      "target_2": 33871.71000000001,
+      "target_half": 33596.677500000005,
+      "trade_id": "e52a29111ffa0397"
     }
   ],
   "handled": {
@@ -7627,6 +7648,7 @@
     "038e5cd978b341b1": "filled",
     "04a93781573dfff7": "filled",
     "053cdd03b7104d64": "filled",
+    "054ff7beaf0d67f0": "filled",
     "0647ccdd87e5036d": "filled",
     "07842aadbbd492d2": "filled",
     "078d3696d7312a8b": "filled",
@@ -7966,6 +7988,20 @@
     "ffb4661b7d04cd46": "filled"
   },
   "open": {
+    "054ff7beaf0d67f0": {
+      "alert_time": "2026-08-21T11:12:00.319073+05:30",
+      "entry": 1259.0,
+      "entry_time": "2026-08-21T11:15:00+05:30",
+      "half_r_hit": false,
+      "rating": 10,
+      "risk": 8.265999999999849,
+      "side": "short",
+      "stop": 1267.2659999999998,
+      "symbol": "NAM-INDIA.NS",
+      "target_1": 1250.7340000000002,
+      "target_2": 1242.4680000000003,
+      "target_half": 1254.8670000000002
+    },
     "1bf178363c3e3aa5": {
       "alert_time": "2026-08-21T09:32:06.816231+05:30",
       "entry": 7530.5,
@@ -8040,7 +8076,7 @@
       "alert_time": "2026-08-21T10:32:31.493890+05:30",
       "entry": 588.2000122070312,
       "entry_time": "2026-08-21T10:35:00+05:30",
-      "half_r_hit": false,
+      "half_r_hit": true,
       "rating": 9,
       "risk": 2.236574401855478,
       "side": "long",
@@ -8119,20 +8155,6 @@
       "target_1": 1657.1445,
       "target_2": 1664.2890000000002,
       "target_half": 1653.5722500000002
-    },
-    "e52a29111ffa0397": {
-      "alert_time": "2026-08-21T09:32:05.977365+05:30",
-      "entry": 33505.0,
-      "entry_time": "2026-08-21T09:35:00+05:30",
-      "half_r_hit": true,
-      "rating": 6,
-      "risk": 183.3550000000032,
-      "side": "long",
-      "stop": 33321.645,
-      "symbol": "3MINDIA.NS",
-      "target_1": 33688.355,
-      "target_2": 33871.71000000001,
-      "target_half": 33596.677500000005
     }
   }
 }
