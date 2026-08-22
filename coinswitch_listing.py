@@ -27,6 +27,8 @@ TICKER_PATHS = (
     "/trade/api/v2/futures/ticker",
 )
 
+LAST_LISTING_PAYLOAD = []
+
 CANDIDATE_PATHS = (
     "/trade/api/v2/futures/instrument_info",
     "/trade/api/v2/futures/instruments",
@@ -67,6 +69,31 @@ def collect_symbols(payload):
     return found
 
 
+def describe_instrument_payload(payload, limit=2):
+    """Show what the instrument list carries, in case volume is already there."""
+    samples = []
+
+    def walk(node, key_hint=None):
+        if len(samples) >= limit:
+            return
+        if isinstance(node, dict):
+            if any(isinstance(node.get(k), str) for k in ("symbol", "s", "name")) or (
+                isinstance(key_hint, str) and looks_like_contract(key_hint)
+            ):
+                samples.append((key_hint, node))
+                return
+            for key, value in node.items():
+                walk(value, key)
+        elif isinstance(node, list):
+            for item in node:
+                walk(item, key_hint)
+
+    walk(payload)
+    for key, entry in samples:
+        fields = ", ".join(f"{k}={str(v)[:18]}" for k, v in list(entry.items())[:14])
+        print(f"  sample {key or ''}: {fields}")
+
+
 def fetch_listing():
     exchange = sc.get_env_or_config("COINSWITCH_EXCHANGE", sc.COINSWITCH_EXCHANGE)
     for path in CANDIDATE_PATHS:
@@ -79,9 +106,11 @@ def fetch_listing():
                 if response.status_code != 200:
                     print(f"  {path} {params or '{}'} -> HTTP {response.status_code}")
                     continue
-                symbols = collect_symbols(response.json())
+                payload = response.json()
+                symbols = collect_symbols(payload)
                 if symbols:
                     print(f"  {path} {params or '{}'} -> {len(symbols)} contracts")
+                    LAST_LISTING_PAYLOAD.append(payload)
                     return symbols
                 print(f"  {path} {params or '{}'} -> 200 but no contracts parsed")
             except Exception as error:
@@ -167,7 +196,20 @@ def report_candidates(listed, held_contracts):
     print("LOOKING FOR HIGH-VOLUME CONTRACTS NOT ON THE WATCHLIST", flush=True)
     volumes = discover(listed)
     if not volumes:
-        print("  no ticker endpoint answered - cannot rank the rest of the venue")
+        print("  no bulk ticker endpoint answered; showing what the instrument")
+        print("  list itself carries, so the next attempt can use the right field:")
+        if LAST_LISTING_PAYLOAD:
+            describe_instrument_payload(LAST_LISTING_PAYLOAD[0])
+        # The per-symbol ticker exists but rejects an empty query. Ask it for
+        # one contract so its shape is on record.
+        exchange = sc.get_env_or_config("COINSWITCH_EXCHANGE", sc.COINSWITCH_EXCHANGE)
+        try:
+            probe = coinswitch_get(
+                "/trade/api/v2/futures/ticker", {"exchange": exchange, "symbol": "BTCUSDT"}
+            )
+            print(f"  single-symbol ticker works: {str(probe)[:300]}")
+        except Exception as error:
+            print(f"  single-symbol ticker probe -> {str(error)[:90]}")
         return
 
     candidates = sorted(
