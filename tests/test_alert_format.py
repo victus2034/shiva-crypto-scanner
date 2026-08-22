@@ -264,8 +264,28 @@ class SymbolNamingTests(unittest.TestCase):
             # These really are quoted in BUSD.
             ("MSTRBUSD", "MSTR"),
             ("SOXLBUSD", "SOXL"),
+            ("AVAXUSD", "AVAX"),
+            ("SPCXXUSD", "SPCX"),
         ):
             self.assertEqual(scanner.alert_symbol(raw), expected)
+
+    def test_coinswitch_pairs_keep_crypto_and_stocks_apart(self):
+        # A wrong pair here is not a loud failure: CoinSwitch simply has no
+        # such contract, the symbol falls through to another exchange, and
+        # the zone is built from a book the chart never shows.
+        for raw, expected in (
+            ("BNBUSD", "BNBUSDT"),
+            ("ARBUSD", "ARBUSDT"),
+            ("LABUSD", "LABUSDT"),
+            ("AVAXUSD", "AVAXUSDT"),
+            ("BTCUSDT", "BTCUSDT"),
+            # Tokenised stocks are listed under the venue string itself.
+            ("SPYXUSD", "SPYXUSD"),
+            ("MSTRBUSD", "MSTRBUSD"),
+            ("INTCBUSD", "INTCBUSD"),
+            ("MSFT/USDT:USDT", "MSFTUSDT"),
+        ):
+            self.assertEqual(scanner.coinswitch_symbol(raw), expected)
 
     def test_alert_and_report_names_agree(self):
         # The Discord alert and the backtest report must not disagree about

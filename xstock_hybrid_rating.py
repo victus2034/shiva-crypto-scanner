@@ -59,6 +59,19 @@ BLOCKED_XSTOCK_SYMBOLS = {
 }
 
 
+# Every tokenised-stock symbol we know of, blocked ones included. Suffix
+# matching cannot tell MSTRBUSD (MSTR in BUSD) from BNBUSD (BNB in USD),
+# so callers that need to split a symbol ask this registry instead.
+ALL_XSTOCK_SYMBOLS = (
+    set(XSTOCK_UNDERLYINGS) | UNMAPPED_XSTOCK_SYMBOLS | BLOCKED_XSTOCK_SYMBOLS
+)
+
+
+def is_stock_symbol(symbol):
+    """True for tokenised stocks, whether or not they map to an underlying."""
+    return str(symbol).upper() in ALL_XSTOCK_SYMBOLS
+
+
 def is_hybrid_xstock(symbol):
     return has_underlying_mapping(symbol)
 

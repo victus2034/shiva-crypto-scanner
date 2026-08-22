@@ -62,6 +62,7 @@ from crypto_zone_rating import rate_crypto_zone
 from xstock_hybrid_rating import (
     BLOCKED_XSTOCK_SYMBOLS,
     XSTOCK_UNDERLYINGS,
+    is_stock_symbol,
     is_xstock,
     prepare_xstock_contexts,
     rate_xstock_zone,
@@ -448,7 +449,12 @@ def coinswitch_symbol(symbol):
         return symbol.replace("/", "").split(":", 1)[0].upper()
     if upper_symbol.endswith("USDT"):
         return upper_symbol
-    if upper_symbol.endswith("USD") and not upper_symbol.endswith(("XUSD", "BUSD")):
+    # Tokenised stocks keep their venue string (SPYXUSD, MSTRBUSD); plain
+    # crypto is quoted in USDT. The suffixes overlap - AVAXUSD ends "XUSD"
+    # and BNBUSD ends "BUSD" - so only the registry can tell them apart.
+    # Getting this wrong asked CoinSwitch for a contract it does not list,
+    # and the symbol silently fell through to another exchange's book.
+    if upper_symbol.endswith("USD") and not is_stock_symbol(upper_symbol):
         return f"{upper_symbol[:-3]}USDT"
     return upper_symbol
 
@@ -817,17 +823,13 @@ def display_symbol(symbol):
     for separator in (":", "/", "-", "."):
         if separator in text:
             text = text.split(separator, 1)[0]
-    for suffix in ("USDT", "BUSD", "USD", "INR"):
-        if not text.endswith(suffix) or len(text) <= len(suffix):
-            continue
-        base = text[: -len(suffix)]
-        # BNBUSD is BNB quoted in USD, not BN quoted in BUSD - both end
-        # "BUSD", so string matching alone cannot separate them. A base of
-        # one or two characters is the tell: real ones here (MSTR, SOXL,
-        # INTC) are longer, so fall through and let "USD" match instead.
-        if suffix == "BUSD" and len(base) < 3:
-            continue
-        return base
+    # Tokenised stocks carry an extra venue letter (MSTRBUSD is MSTR,
+    # SPCXXUSD is SPCX) that plain crypto does not, and BNBUSD is BNB in
+    # USD rather than BN in BUSD. The registry decides which is which.
+    suffixes = ("BUSD", "XUSD") if is_stock_symbol(text) else ("USDT", "USD", "INR")
+    for suffix in suffixes:
+        if text.endswith(suffix) and len(text) > len(suffix):
+            return text[: -len(suffix)]
     return text
 
 
