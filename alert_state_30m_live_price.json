@@ -1965,7 +1965,8 @@
     "O/USDT|30m|long|0.4896000000|0.4923000000": 1787368278.9963424,
     "SAMSUNG/USDT:USDT|30m|long|191.7300000000|193.3300000000": 1787375472.324839,
     "OPENAI/USDT:USDT|30m|long|124.3700000000|124.9000000000": 1787379079.443475,
-    "MSFT/USDT:USDT|30m|short|483.9200000000|484.3300000000": 1787383887.9307299
+    "MSFT/USDT:USDT|30m|short|483.9200000000|484.3300000000": 1787383887.9307299,
+    "AERO/USDT|30m|long|0.4661000000|0.4684000000": 1787388680.4962933
   },
   "METAXUSD|demand|577.00000000|579.20000000": {
     "in_zone": false,
@@ -10742,8 +10743,8 @@
     "last_alert_at": 0.0
   },
   "AERO/USDT|demand|0.46610000|0.46840000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1787388680.4962933
   },
   "PHAROS/USDT|demand|0.41160000|0.41330000": {
     "in_zone": false,
@@ -10854,6 +10855,10 @@
     "last_alert_at": 0.0
   },
   "ETHFI/USDT|supply|0.62950000|0.63700000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "HYPEUSD|supply|82.33000000|82.70000000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
