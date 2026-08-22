@@ -126,31 +126,57 @@ def ticker_quote_volume(symbol, exchange):
     return float(base) * float(price)
 
 
+def is_rate_limited(error):
+    response = getattr(error, "response", None)
+    return getattr(response, "status_code", None) == 429
+
+
 def discover(candidates, budget_seconds, delay):
     """Rank contracts by 24h volume, within a time budget.
 
     CoinSwitch has no bulk ticker - two paths 404 and the third rejects a
     query without a symbol - so this walks the list one contract at a time
     and stops when the budget runs out rather than risking the job timeout.
+
+    Pacing adapts to the venue. A fixed delay either wastes the budget by
+    being too slow or wastes it on rejections by being too fast, and the
+    first sweeps lost more time to 429s than to the requests themselves:
+    every rejection cost a pause and still returned nothing. So the delay
+    grows on a rejection and eases back down on a run of successes.
     """
     exchange = sc.get_env_or_config("COINSWITCH_EXCHANGE", sc.COINSWITCH_EXCHANGE)
     deadline = time.monotonic() + budget_seconds
-    volumes, failures = {}, 0
+    volumes = {}
+    failures = limited = 0
+    pace, streak = delay, 0
     for symbol in candidates:
         if time.monotonic() > deadline:
             break
         try:
             volume = ticker_quote_volume(symbol, exchange)
-            if volume is not None:
-                volumes[symbol] = volume
-        except Exception:
+        except Exception as error:
             failures += 1
-            time.sleep(delay * 3)
+            if is_rate_limited(error):
+                limited += 1
+                pace = min(pace * 1.5, 4.0)
+                streak = 0
+                time.sleep(pace)
+                continue
+            time.sleep(pace)
             continue
-        time.sleep(delay)
+
+        if volume is not None:
+            volumes[symbol] = volume
+        streak += 1
+        if streak >= 25 and pace > delay:
+            pace = max(pace * 0.8, delay)
+            streak = 0
+        time.sleep(pace)
+
     complete = time.monotonic() <= deadline
     print(f"  measured {len(volumes)} of {len(candidates)} contracts"
-          f" ({failures} failed, {'complete' if complete else 'budget reached'})")
+          f" ({failures} failed, {limited} rate limited,"
+          f" settled at {pace:.2f}s, {'complete' if complete else 'budget reached'})")
     if not complete or failures:
         print("  a partial sweep ranks only what it reached - treat the list as"
               " a sample, not the venue's top end")
