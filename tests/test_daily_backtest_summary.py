@@ -951,3 +951,29 @@ class DailyBacktestSummaryTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class EvaluationDataConfigTests(unittest.TestCase):
+    """Backtest evaluation runs on fine candles regardless of the alert's
+    timeframe, and keeps enough of them that a multi-day run is not
+    silently truncated to a few sessions.
+    """
+
+    def test_both_timeframes_evaluate_on_five_minute_candles(self):
+        for timeframe in ("30m", "4h"):
+            self.assertEqual(
+                summary.TIMEFRAME_SETTINGS[timeframe]["eval_interval"], "5m"
+            )
+
+    def test_evaluation_keeps_more_bars_than_the_live_scanner(self):
+        import nse_scanner
+
+        original = nse_scanner.OHLCV_LIMIT
+        try:
+            summary.configure_nse_data("30m")
+            self.assertEqual(nse_scanner.OHLCV_LIMIT, summary.EVALUATION_OHLCV_LIMIT)
+            # ~75 five-minute bars per NSE session, so this must clear a
+            # couple of weeks rather than the ~7 sessions 500 would give.
+            self.assertGreater(summary.EVALUATION_OHLCV_LIMIT / 75, 20)
+        finally:
+            nse_scanner.OHLCV_LIMIT = original

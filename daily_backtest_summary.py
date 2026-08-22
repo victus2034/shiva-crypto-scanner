@@ -40,11 +40,17 @@ TIMEFRAME_SETTINGS = {
         "nse_records": Path(__file__).with_name("nse_alert_records.jsonl"),
         "crypto_records": Path(__file__).with_name("crypto_alert_records.jsonl"),
         "source_interval": "1h",
-        "eval_interval": "1h",
+        # 5m here too: a 1h evaluation candle leaves an hour-wide blind
+        # spot after the alert, the same fault that hid most 30m fills.
+        "eval_interval": "5m",
         "source_period": "700d",
     },
 }
 ALERT_BAR_DURATION = {"30m": pd.Timedelta(minutes=30), "4h": pd.Timedelta(hours=4)}
+
+# ~33 NSE sessions of 5-minute candles, so a multi-day backtest is not
+# silently truncated. Evaluation only - see configure_nse_data.
+EVALUATION_OHLCV_LIMIT = 2500
 
 ENTRY_WAIT_BARS = 3
 MAX_HOLD_BARS = 24
@@ -120,6 +126,12 @@ def configure_nse_data(timeframe: str) -> Path:
     nse_scanner.TIMEFRAME = interval
     nse_scanner.SOURCE_INTERVAL = interval
     nse_scanner.SOURCE_PERIOD = settings["source_period"]
+    # The scanner keeps 500 bars, which is ~38 sessions of 30m candles but
+    # under 7 of 5m ones - short enough that a multi-day backtest silently
+    # loses its earliest sessions. Raise it for evaluation only; the live
+    # scanner keeps its own limit, since more bars there just slows the
+    # per-scan zone rebuild without adding anything.
+    nse_scanner.OHLCV_LIMIT = EVALUATION_OHLCV_LIMIT
     return settings["nse_records"]
 
 
