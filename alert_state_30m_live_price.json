@@ -1964,7 +1964,8 @@
     "EUL/USDT|30m|short|1.3698000000|1.3811000000": 1787365886.3377202,
     "O/USDT|30m|long|0.4896000000|0.4923000000": 1787368278.9963424,
     "SAMSUNG/USDT:USDT|30m|long|191.7300000000|193.3300000000": 1787375472.324839,
-    "OPENAI/USDT:USDT|30m|long|124.3700000000|124.9000000000": 1787379079.443475
+    "OPENAI/USDT:USDT|30m|long|124.3700000000|124.9000000000": 1787379079.443475,
+    "MSFT/USDT:USDT|30m|short|483.9200000000|484.3300000000": 1787383887.9307299
   },
   "METAXUSD|demand|577.00000000|579.20000000": {
     "in_zone": false,
@@ -10825,6 +10826,18 @@
     "last_alert_at": 0.0
   },
   "OPENAI/USDT:USDT|supply|126.70000000|127.43000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "GALA/USDT|supply|0.00222400|0.00228500": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "MSFT/USDT:USDT|supply|483.92000000|484.33000000": {
+    "in_zone": true,
+    "last_alert_at": 1787383887.9307299
+  },
+  "TQQQ/USDT:USDT|supply|71.49000000|71.59000000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
