@@ -119,6 +119,15 @@ CRYPTO_WATCHLIST = [
     "POL/USDT",
     "KGEN/USDT",
     "GWEI/USDT",
+    # Added from a CoinSwitch volume sweep, checked over a month rather than
+    # a day so a spike could not pass for a book. All four traded every one
+    # of the last thirty days. Per 30m candle, against a watchlist median
+    # near 203,000: CL about 1,090,000, KORU 978,000, ACE 739,000, and ETC
+    # 80,000 - the steadiest of them, and the only one here that is a major.
+    "CL/USDT",
+    "KORU/USDT",
+    "ACE/USDT",
+    "ETC/USDT",
 ]
 
 # Keep non-crypto contracts separate from the CoinSwitch crypto liquidity audit.

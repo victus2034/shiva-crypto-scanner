@@ -17,7 +17,7 @@ class CryptoConfigTests(unittest.TestCase):
         with patch.dict(os.environ, {}, clear=True):
             import config
 
-            self.assertEqual(len(config.CRYPTO_WATCHLIST), 94)
+            self.assertEqual(len(config.CRYPTO_WATCHLIST), 98)
             self.assertLessEqual(len(config.CRYPTO_WATCHLIST), 100)
             self.assertEqual(
                 config.WATCHLIST,
@@ -38,6 +38,16 @@ class CryptoConfigTests(unittest.TestCase):
                 "MRVL/USDT:USDT",
             ):
                 self.assertIn(symbol, config.XSTOCK_WATCHLIST)
+
+    def test_symbols_added_from_the_volume_sweep_are_present(self):
+        # ETC was culled once for thin volume and came back at 115M over
+        # thirty days, so the removal list is not a permanent verdict - it
+        # is only ever as good as the last measurement.
+        with patch.dict(os.environ, {}, clear=True):
+            import config
+
+            for symbol in ("CL/USDT", "KORU/USDT", "ACE/USDT", "ETC/USDT"):
+                self.assertIn(symbol, config.CRYPTO_WATCHLIST)
 
     def test_thin_volume_symbols_are_removed(self):
         # Measured on CoinSwitch over 96 30m candles: all ten traded under
@@ -81,7 +91,6 @@ class CryptoConfigTests(unittest.TestCase):
             import config
 
             removed_symbols = {
-                "ETCUSD",
                 "EVAAUSD",
                 "BILLUSD",
                 "RIVERUSD",
