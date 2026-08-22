@@ -186,9 +186,11 @@ PREFER_COINSWITCH = env_flag("SHIVA_PREFER_COINSWITCH", default=True)
 REQUIRE_COINSWITCH = env_flag("SHIVA_REQUIRE_COINSWITCH")
 USE_LIVE_TICKER = env_flag("SHIVA_USE_LIVE_TICKER")
 PRIMARY_EXCHANGE_ID = "binance"
-# CoinSwitch is tried first, then Binance. Nothing else: a third venue
-# only ever meant zones built from an order book the charts do not show.
-EXCHANGE_IDS = ["binance"]
+# CoinSwitch first, then Binance. The rest exist because Binance is
+# geo-blocked from GitHub Actions runners - without them a CI scan has no
+# source at all once CoinSwitch misses, which is exactly what happened when
+# this list was trimmed to Binance alone.
+EXCHANGE_IDS = ["binance", "kucoin", "okx", "bybit", "mexc", "bitget", "lbank", "coinex"]
 TIMEFRAME = os.getenv("SHIVA_TIMEFRAME", "4h").strip() or "4h"
 OHLCV_LIMIT = 500
 
