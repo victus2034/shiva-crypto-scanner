@@ -235,7 +235,7 @@ def main() -> None:
     parser.add_argument(
         "--discover-budget",
         type=float,
-        default=2100.0,
+        default=1800.0,
         help="Seconds to spend ranking before reporting what was measured.",
     )
     parser.add_argument(
