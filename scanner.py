@@ -449,12 +449,16 @@ def coinswitch_symbol(symbol):
         return symbol.replace("/", "").split(":", 1)[0].upper()
     if upper_symbol.endswith("USDT"):
         return upper_symbol
-    # Tokenised stocks keep their venue string (SPYXUSD, MSTRBUSD); plain
-    # crypto is quoted in USDT. The suffixes overlap - AVAXUSD ends "XUSD"
-    # and BNBUSD ends "BUSD" - so only the registry can tell them apart.
-    # Getting this wrong asked CoinSwitch for a contract it does not list,
-    # and the symbol silently fell through to another exchange's book.
-    if upper_symbol.endswith("USD") and not is_stock_symbol(upper_symbol):
+    # CoinSwitch quotes everything in USDT and names tokenised stocks after
+    # the ticker: AAPL is AAPLUSDT, not AAPLXUSD. AAPLXUSD is another
+    # venue's string, and asking for it returned nothing, so every xStock
+    # in that form silently fell through to an exchange the user does not
+    # chart. Which suffix means what cannot be read off the string -
+    # AVAXUSD ends "XUSD" and BNBUSD ends "BUSD" while both are ordinary
+    # crypto - so the registry decides.
+    if is_stock_symbol(upper_symbol):
+        return f"{display_symbol(upper_symbol)}USDT"
+    if upper_symbol.endswith("USD"):
         return f"{upper_symbol[:-3]}USDT"
     return upper_symbol
 

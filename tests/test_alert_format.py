@@ -279,10 +279,14 @@ class SymbolNamingTests(unittest.TestCase):
             ("LABUSD", "LABUSDT"),
             ("AVAXUSD", "AVAXUSDT"),
             ("BTCUSDT", "BTCUSDT"),
-            # Tokenised stocks are listed under the venue string itself.
-            ("SPYXUSD", "SPYXUSD"),
-            ("MSTRBUSD", "MSTRBUSD"),
-            ("INTCBUSD", "INTCBUSD"),
+            # CoinSwitch names tokenised stocks after the ticker. SPYXUSD
+            # is another venue's string and returns nothing there, which
+            # is why these zones came from a book the chart never showed.
+            ("SPYXUSD", "SPYUSDT"),
+            ("AAPLXUSD", "AAPLUSDT"),
+            ("MSTRBUSD", "MSTRUSDT"),
+            ("INTCBUSD", "INTCUSDT"),
+            ("SPCXXUSD", "SPCXUSDT"),
             ("MSFT/USDT:USDT", "MSFTUSDT"),
         ):
             self.assertEqual(scanner.coinswitch_symbol(raw), expected)
