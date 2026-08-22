@@ -1985,7 +1985,9 @@
     "GOOGLXUSD|30m|long|343.0500000000|343.2177000000": 1787411481.46192,
     "BABA/USDT:USDT|30m|long|118.9200000000|119.0747500000": 1787411481.6907911,
     "HOOD/USDT:USDT|30m|long|106.4400000000|106.6730500000": 1787411482.0071673,
-    "SPYXUSD|30m|long|761.9600000000|762.1006500000": 1787413884.048192
+    "SPYXUSD|30m|long|761.9600000000|762.1006500000": 1787413884.048192,
+    "SLVONUSD|30m|long|62.4300000000|62.4828000000": 1787415078.9878974,
+    "CRCLXUSD|30m|long|86.5500000000|86.7998000000": 1787415079.230464
   },
   "METAXUSD|demand|577.00000000|579.20000000": {
     "in_zone": false,
@@ -11794,8 +11796,8 @@
     "last_alert_at": 0.0
   },
   "CRCLXUSD|demand|86.55000000|86.79980000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1787415079.230464
   },
   "GOOGLXUSD|demand|343.05000000|343.21770000": {
     "in_zone": true,
@@ -12004,5 +12006,17 @@
   "SPYXUSD|demand|761.96000000|762.10065000": {
     "in_zone": true,
     "last_alert_at": 1787413884.048192
+  },
+  "TRX/USDT|demand|0.34177000|0.34207880": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "TIAUSD|demand|0.31970000|0.32047250": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "SLVONUSD|demand|62.43000000|62.48280000": {
+    "in_zone": true,
+    "last_alert_at": 1787415078.9878974
   }
 }
