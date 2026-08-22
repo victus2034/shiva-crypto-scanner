@@ -1,0 +1,55 @@
+name: Shiva Volume Audit
+
+on:
+  workflow_dispatch:
+    inputs:
+      timeframe:
+        description: "Candle timeframe to measure volume over"
+        required: false
+        default: "30m"
+        type: choice
+        options:
+          - "30m"
+          - "4h"
+      bars:
+        description: "How many recent candles to measure"
+        required: false
+        default: "96"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: shiva-volume-audit
+  cancel-in-progress: false
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      # Read-only: nothing is posted to Discord and no config changes. The
+      # report is read from these logs.
+      - name: Audit watchlist volume
+        env:
+          COINSWITCH_API_KEY: ${{ secrets.COINSWITCH_API_KEY }}
+          COINSWITCH_SECRET_KEY: ${{ secrets.COINSWITCH_SECRET_KEY }}
+          COINSWITCH_EXCHANGE: ${{ secrets.COINSWITCH_EXCHANGE }}
+          INPUT_TIMEFRAME: ${{ github.event.inputs.timeframe }}
+          INPUT_BARS: ${{ github.event.inputs.bars }}
+        run: |
+          python volume_audit.py \
+            --timeframe "${INPUT_TIMEFRAME:-30m}" \
+            --bars "${INPUT_BARS:-96}"
