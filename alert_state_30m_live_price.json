@@ -1969,7 +1969,11 @@
     "AERO/USDT|30m|long|0.4661000000|0.4684000000": 1787388680.4962933,
     "WLFI/USDT|30m|long|0.0577400000|0.0585200000": 1787393480.5859222,
     "CRCLXUSD|30m|long|86.5500000000|87.1000000000": 1787393480.919263,
-    "INTCBUSD|30m|long|86.1800000000|88.5100000000": 1787393481.13276
+    "INTCBUSD|30m|long|86.1800000000|88.5100000000": 1787393481.13276,
+    "EUL/USDT|30m|long|1.1572000000|1.3215000000": 1787394673.9159293,
+    "ESP/USDT|30m|long|0.0812900000|0.0879000000": 1787394674.1279464,
+    "METAXUSD|30m|long|548.2500000000|550.7000000000": 1787394674.3218167,
+    "AAPLXUSD|30m|long|307.6000000000|309.2000000000": 1787394674.5896838
   },
   "METAXUSD|demand|577.00000000|579.20000000": {
     "in_zone": false,
@@ -9882,7 +9886,7 @@
     "last_alert_at": 1787237476.14858
   },
   "WLFI/USDT|demand|0.05774000|0.05852000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1787393480.5859222
   },
   "PAXGUSD|supply|4476.10000000|4485.30000000": {
@@ -10946,8 +10950,8 @@
     "last_alert_at": 0.0
   },
   "EUL/USDT|demand|1.15720000|1.32150000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1787394673.9159293
   },
   "ZAMA/USDT|demand|0.04815000|0.05654000": {
     "in_zone": false,
@@ -10958,8 +10962,8 @@
     "last_alert_at": 0.0
   },
   "ESP/USDT|demand|0.08129000|0.08790000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1787394674.1279464
   },
   "UB/USDT|demand|0.11017000|0.12085000": {
     "in_zone": false,
@@ -10988,5 +10992,17 @@
   "MRVL/USDT:USDT|demand|230.01000000|234.10000000": {
     "in_zone": false,
     "last_alert_at": 0.0
+  },
+  "ESP/USDT|supply|0.08935000|0.09355000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "METAXUSD|demand|548.25000000|550.70000000": {
+    "in_zone": true,
+    "last_alert_at": 1787394674.3218167
+  },
+  "AAPLXUSD|demand|307.60000000|309.20000000": {
+    "in_zone": true,
+    "last_alert_at": 1787394674.5896838
   }
 }
