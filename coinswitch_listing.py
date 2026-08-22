@@ -9,6 +9,8 @@ names every watchlist symbol that is missing from it.
 """
 from __future__ import annotations
 
+import argparse
+
 import requests
 
 import scanner as sc
@@ -17,6 +19,14 @@ from config import COINSWITCH_API_BASE_URL
 
 # The futures instrument list has moved between paths; try each and use the
 # first that answers, so a rename does not silently report everything absent.
+# 24h volume for every contract at once, so discovery does not need 1400
+# candle requests.
+TICKER_PATHS = (
+    "/trade/api/v2/futures/ticker24hr",
+    "/trade/api/v2/futures/tickers",
+    "/trade/api/v2/futures/ticker",
+)
+
 CANDIDATE_PATHS = (
     "/trade/api/v2/futures/instrument_info",
     "/trade/api/v2/futures/instruments",
@@ -93,7 +103,94 @@ def nearby_contracts(base, listed, limit=4):
     return matches[:limit]
 
 
+def coinswitch_get(path, params):
+    path_query, headers = sc.sign_coinswitch_request("GET", path, params)
+    response = requests.get(
+        f"{COINSWITCH_API_BASE_URL}{path_query}", headers=headers, timeout=25
+    )
+    response.raise_for_status()
+    return response.json()
+
+
+def collect_volumes(payload):
+    """Map contract name to 24h quote volume, however the venue spells it."""
+    volumes = {}
+    volume_keys = ("quote_volume", "quoteVolume", "volume_24h", "turnover", "volume", "v")
+
+    def walk(node, key_hint=None):
+        if isinstance(node, dict):
+            name = None
+            for key in ("symbol", "s", "name"):
+                if isinstance(node.get(key), str):
+                    name = node[key].upper()
+                    break
+            if name is None and isinstance(key_hint, str) and looks_like_contract(key_hint):
+                name = key_hint.upper()
+            if name:
+                for key in volume_keys:
+                    if key in node:
+                        try:
+                            volumes[name] = float(node[key])
+                        except (TypeError, ValueError):
+                            continue
+                        break
+            for key, value in node.items():
+                walk(value, key)
+        elif isinstance(node, list):
+            for item in node:
+                walk(item, key_hint)
+
+    walk(payload)
+    return volumes
+
+
+def discover(listed):
+    """Contracts CoinSwitch trades heavily that the watchlist does not hold."""
+    exchange = sc.get_env_or_config("COINSWITCH_EXCHANGE", sc.COINSWITCH_EXCHANGE)
+    volumes = {}
+    for path in TICKER_PATHS:
+        for params in ({"exchange": exchange}, {}):
+            try:
+                volumes = collect_volumes(coinswitch_get(path, params))
+            except Exception as error:
+                print(f"  {path} {params or '{}'} -> {str(error)[:60]}")
+                continue
+            if volumes:
+                print(f"  {path} {params or '{}'} -> volume for {len(volumes)} contracts")
+                return volumes
+            print(f"  {path} {params or '{}'} -> 200 but no volumes parsed")
+    return {}
+
+
+def report_candidates(listed, held_contracts):
+    print()
+    print("LOOKING FOR HIGH-VOLUME CONTRACTS NOT ON THE WATCHLIST", flush=True)
+    volumes = discover(listed)
+    if not volumes:
+        print("  no ticker endpoint answered - cannot rank the rest of the venue")
+        return
+
+    candidates = sorted(
+        ((name, vol) for name, vol in volumes.items() if name not in held_contracts),
+        key=lambda item: item[1],
+        reverse=True,
+    )
+    print()
+    print(f"TOP 25 BY 24H VOLUME, NOT CURRENTLY SCANNED ({len(candidates)} candidates)")
+    print(f"  {'contract':<20}{'24h volume':>20}")
+    for name, vol in candidates[:25]:
+        print(f"  {name:<20}{vol:>20,.0f}")
+
+
 def main() -> None:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument(
+        "--discover",
+        action="store_true",
+        help="Also rank contracts the watchlist does not hold.",
+    )
+    args = parser.parse_args()
+
     print(f"CoinSwitch configured: {sc.is_coinswitch_configured()}", flush=True)
     if not sc.is_coinswitch_configured():
         print("No credentials visible - cannot check the listing.")
@@ -129,6 +226,9 @@ def main() -> None:
                   f"{', '.join(near) if near else '-'}")
     else:
         print("Every watchlist symbol is listed on CoinSwitch.")
+
+    if args.discover:
+        report_candidates(listed, {contract for _, contract in present + absent})
 
 
 if __name__ == "__main__":

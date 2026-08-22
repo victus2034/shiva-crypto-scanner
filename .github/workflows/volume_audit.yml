@@ -47,7 +47,7 @@ jobs:
           COINSWITCH_API_KEY: ${{ secrets.COINSWITCH_API_KEY }}
           COINSWITCH_SECRET_KEY: ${{ secrets.COINSWITCH_SECRET_KEY }}
           COINSWITCH_EXCHANGE: ${{ secrets.COINSWITCH_EXCHANGE }}
-        run: python coinswitch_listing.py
+        run: python coinswitch_listing.py --discover
 
       - name: Audit watchlist volume
         env:

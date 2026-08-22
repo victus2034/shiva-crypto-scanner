@@ -130,7 +130,6 @@ OTHER_WATCHLIST = [
 XSTOCK_WATCHLIST = [
     "TSLAXUSD",
     "METAXUSD",
-    "SPYXUSD",
     "AAPLXUSD",
     "CRCLXUSD",
     "GOOGLXUSD",
@@ -162,6 +161,8 @@ XSTOCK_WATCHLIST = [
     # xStocks were being fetched under the names CoinSwitch uses.
     # VANRY went with them: not listed on CoinSwitch, and its last candle
     # was ten days old, so it was never a thin feed but a dead one.
+    # SPY too, at 6,366: the token is thin even though the ETF behind it
+    # is not. SPY stays in the rating registry as its own sector marker.
     # Additional CoinSwitch US-stock futures approved for the liquidity pilot.
     "SLX/USDT:USDT",
     "MSFT/USDT:USDT",

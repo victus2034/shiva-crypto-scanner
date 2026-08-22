@@ -63,6 +63,8 @@ class CryptoConfigTests(unittest.TestCase):
                 "AMZNXUSD",
                 # Not thin but dead: unlisted, last candle ten days old.
                 "VANRY/USDT",
+                # The token is thin even where the ETF behind it is not.
+                "SPYXUSD",
             ):
                 self.assertNotIn(symbol, config.WATCHLIST)
 
