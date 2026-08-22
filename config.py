@@ -90,7 +90,6 @@ CRYPTO_WATCHLIST = [
     "SEIUSD",
     "CAP/USDT",
     "RE/USDT",
-    "PHAROS/USDT",
     "VIRTUAL/USDT",
     "FILUSD",
     "US/USDT",
@@ -99,7 +98,6 @@ CRYPTO_WATCHLIST = [
     "BOME/USDT",
     "ORDI/USDT",
     "COAI/USDT",
-    "TAIKO/USDT",
     "TIAUSD",
     "WLFI/USDT",
     "LABUSD",
@@ -149,9 +147,6 @@ XSTOCK_WATCHLIST = [
     # via a two-round audit 30s apart, all 5 failed both times):
     # QQQXUSD, NVDAXUSD, EWYBUSD, DRAMBUSD, CBRSBUSD
     "SKHYNIX/USDT:USDT",
-    "AVGO/USDT:USDT",
-    "IBM/USDT:USDT",
-    "BABA/USDT:USDT",
     "OPENAI/USDT:USDT",
     "NBIS/USDT:USDT",
     "BZ/USDT:USDT",
@@ -159,14 +154,15 @@ XSTOCK_WATCHLIST = [
     "AXTI/USDT:USDT",
     "HOOD/USDT:USDT",
     "MRVL/USDT:USDT",
-    "FLNC/USDT:USDT",
-    "DELL/USDT:USDT",
+    # Removed for thin volume, measured on CoinSwitch over 96 30m candles.
+    # The watchlist median is about 200,000 in traded value per candle;
+    # every symbol below sat under 11,000, and FLNC went a full 30 minutes
+    # with no trades at all seven times in two days. A zone price drifts
+    # into on no volume is a zone nobody can be filled in:
+    # FLNC, IBM, PHAROS, SOXX, NVDL, BABA, DELL, AVGO, TAIKO, TQQQ
     # Additional CoinSwitch US-stock futures approved for the liquidity pilot.
-    "NVDL/USDT:USDT",
     "SLX/USDT:USDT",
-    "SOXX/USDT:USDT",
     "MSFT/USDT:USDT",
-    "TQQQ/USDT:USDT",
 ]
 
 WATCHLIST = CRYPTO_WATCHLIST + OTHER_WATCHLIST + XSTOCK_WATCHLIST

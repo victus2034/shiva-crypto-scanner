@@ -17,7 +17,7 @@ class CryptoConfigTests(unittest.TestCase):
         with patch.dict(os.environ, {}, clear=True):
             import config
 
-            self.assertEqual(len(config.CRYPTO_WATCHLIST), 97)
+            self.assertEqual(len(config.CRYPTO_WATCHLIST), 95)
             self.assertLessEqual(len(config.CRYPTO_WATCHLIST), 100)
             self.assertEqual(
                 config.WATCHLIST,
@@ -32,13 +32,41 @@ class CryptoConfigTests(unittest.TestCase):
             import config
 
             for symbol in (
-                "NVDL/USDT:USDT",
                 "SLX/USDT:USDT",
-                "SOXX/USDT:USDT",
                 "MSFT/USDT:USDT",
-                "TQQQ/USDT:USDT",
+                "HOOD/USDT:USDT",
+                "MRVL/USDT:USDT",
             ):
                 self.assertIn(symbol, config.XSTOCK_WATCHLIST)
+
+    def test_thin_volume_symbols_are_removed(self):
+        # Measured on CoinSwitch over 96 30m candles: all ten traded under
+        # 11,000 per candle against a watchlist median near 200,000, and
+        # several had candles with no trades at all.
+        with patch.dict(os.environ, {}, clear=True):
+            import config
+
+            for symbol in (
+                "FLNC/USDT:USDT",
+                "IBM/USDT:USDT",
+                "PHAROS/USDT",
+                "SOXX/USDT:USDT",
+                "NVDL/USDT:USDT",
+                "BABA/USDT:USDT",
+                "DELL/USDT:USDT",
+                "AVGO/USDT:USDT",
+                "TAIKO/USDT",
+                "TQQQ/USDT:USDT",
+            ):
+                self.assertNotIn(symbol, config.WATCHLIST)
+
+    def test_sector_context_survives_dropping_a_watchlist_symbol(self):
+        # SOXX is both a scanned symbol and the sector reference for the
+        # semiconductor names. Dropping it from the watchlist must not take
+        # the sector context with it - that comes from the listed ETF.
+        import xstock_hybrid_rating as rating
+
+        self.assertEqual(rating.XSTOCK_UNDERLYINGS["INTCBUSD"]["sector"], "SOXX")
 
     def test_low_volume_and_unlisted_crypto_symbols_are_removed(self):
         with patch.dict(os.environ, {}, clear=True):
