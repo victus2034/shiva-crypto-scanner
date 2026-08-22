@@ -10665,7 +10665,7 @@
     "last_alert_at": 0.0
   },
   "MSFT/USDT:USDT|demand|478.87000000|481.51000000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1787379079.7772255
   },
   "MSTRBUSD|demand|116.48000000|119.65000000": {
@@ -10817,6 +10817,10 @@
     "last_alert_at": 0.0
   },
   "BANK/USDT|supply|0.03885000|0.03940000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "SEIUSD|demand|0.04612000|0.04651000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
