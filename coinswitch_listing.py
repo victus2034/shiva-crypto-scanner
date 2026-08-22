@@ -79,6 +79,20 @@ def fetch_listing():
     return set()
 
 
+def nearby_contracts(base, listed, limit=4):
+    """Contracts that look like the same instrument under another name.
+
+    A symbol can be absent because the venue does not trade it at all, or
+    because it trades it under a different string. Only the second is worth
+    fixing in code, and the two look identical without this.
+    """
+    base = str(base).upper()
+    if len(base) < 3:
+        return []
+    matches = sorted(c for c in listed if c.startswith(base))
+    return matches[:limit]
+
+
 def main() -> None:
     print(f"CoinSwitch configured: {sc.is_coinswitch_configured()}", flush=True)
     if not sc.is_coinswitch_configured():
@@ -108,9 +122,11 @@ def main() -> None:
     if absent:
         print(f"NOT LISTED ({len(absent)}) - these fall through to another exchange,")
         print("so their zones come from a book you are not charting:")
-        print(f"  {'alert name':<14}{'watchlist symbol':<22}{'asked CoinSwitch for':<24}")
+        print(f"  {'alert name':<12}{'watchlist symbol':<20}{'asked for':<20}{'listed instead as'}")
         for symbol, contract in absent:
-            print(f"  {sc.display_symbol(symbol):<14}{symbol:<22}{contract:<24}")
+            near = nearby_contracts(sc.display_symbol(symbol), listed)
+            print(f"  {sc.display_symbol(symbol):<12}{symbol:<20}{contract:<20}"
+                  f"{', '.join(near) if near else '-'}")
     else:
         print("Every watchlist symbol is listed on CoinSwitch.")
 
