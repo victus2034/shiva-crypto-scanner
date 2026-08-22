@@ -157,6 +157,53 @@ def discover(candidates, budget_seconds, delay):
     return volumes
 
 
+def daily_quote_volumes(symbol, exchange, days=30):
+    """Quote volume per day for the last `days` sessions."""
+    payload = coinswitch_get(
+        "/trade/api/v2/futures/klines",
+        {"exchange": exchange, "symbol": symbol, "interval": "1440", "limit": days + 2},
+    )
+    candles = payload.get("data") or []
+    candles = sorted(candles, key=lambda candle: candle["start_time"])[-days:]
+    return [float(candle.get("volume") or 0) * float(candle["c"]) for candle in candles]
+
+
+def verify_candidates(names, delay):
+    """A day's volume can be one day of noise. A month cannot.
+
+    For each candidate this reports the week and the month behind the 24h
+    figure, the quietest single day, and whether the recent week is running
+    ahead of or behind the month - a spike and a steady book look identical
+    until you look past one day.
+    """
+    exchange = sc.get_env_or_config("COINSWITCH_EXCHANGE", sc.COINSWITCH_EXCHANGE)
+    print()
+    print(f"WEEK AND MONTH BEHIND THE TOP {len(names)} CANDIDATES", flush=True)
+    print(f"  {'contract':<20}{'7d volume':>16}{'30d volume':>16}"
+          f"{'quietest day':>16}{'dead days':>11}{'week vs month':>15}")
+    for name in names:
+        try:
+            daily = daily_quote_volumes(name, exchange)
+        except Exception as error:
+            print(f"  {name:<20}{str(error)[:60]}")
+            time.sleep(delay * 3)
+            continue
+        if not daily:
+            print(f"  {name:<20}no daily candles")
+            time.sleep(delay)
+            continue
+
+        week, month = sum(daily[-7:]), sum(daily)
+        dead = sum(1 for value in daily if value <= 0)
+        quietest = min(daily) if daily else 0.0
+        week_rate = (week / min(7, len(daily))) if daily else 0.0
+        month_rate = (month / len(daily)) if daily else 0.0
+        ratio = (week_rate / month_rate) if month_rate else 0.0
+        print(f"  {name:<20}{week:>16,.0f}{month:>16,.0f}{quietest:>16,.0f}"
+              f"{dead:>6}/{len(daily):<4}{ratio:>14.2f}x")
+        time.sleep(delay)
+
+
 def report_candidates(listed, held_contracts, budget_seconds, delay):
     # Alphabetical, so a partial sweep is a partial alphabet rather than an
     # arbitrary slice - the report says how far it got either way.
@@ -174,6 +221,8 @@ def report_candidates(listed, held_contracts, budget_seconds, delay):
     print(f"  {'contract':<20}{'24h quote volume':>22}")
     for name, volume in ranked[:30]:
         print(f"  {name:<20}{volume:>22,.0f}")
+
+    verify_candidates([name for name, _ in ranked[:30]], delay)
 
 
 def main() -> None:
