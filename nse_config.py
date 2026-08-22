@@ -141,7 +141,12 @@ REARM_FACTOR = 1.25
 # 0 disables the over-touch veto. The Pine indicator counts no touches and
 # never retires a zone for being revisited - only a close through it kills the
 # zone - so any positive value here drops levels the chart still shows.
-MAX_CONSECUTIVE_ZONE_TOUCHES = 0
+# Back-to-back candles sitting on a zone mean price is grinding through it
+# rather than reacting to it - thin volume, no rejection. Two consecutive
+# touching candles retire the zone. This is deliberately stricter than the
+# Pine indicator, which has no touch veto at all: the indicator draws every
+# level, this decides which are worth an alert.
+MAX_CONSECUTIVE_ZONE_TOUCHES = 2
 SCAN_SLEEP = 300
 SCAN_WORKERS = 8
 ALERT_COOLDOWN_SECONDS = 4 * 60 * 60

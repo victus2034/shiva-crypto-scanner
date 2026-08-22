@@ -680,24 +680,10 @@ def scan_symbol(symbol):
         except Exception as error:
             last_error = error
 
-    if ohlcv is None:
-        try:
-            ohlcv = require_fresh_ohlcv(fetch_delta_ohlcv(symbol), "delta_india")
-            exchange_name = "delta_india" if ohlcv is not None else exchange_name
-        except Exception as error:
-            last_error = error
-
-    if ohlcv is None:
-        for exchange in EXCHANGES:
-            if exchange.id == PRIMARY_EXCHANGE_ID:
-                continue
-
-            try:
-                ohlcv = require_fresh_ohlcv(fetch_exchange_ohlcv(exchange, symbol_for_fallback), exchange.id)
-                exchange_name = exchange.id
-                break
-            except Exception as error:
-                last_error = error
+    # CoinSwitch first, Binance second, and nothing else. Falling through to
+    # a third venue meant the same symbol could build its zones from a
+    # different order book on different days, so the levels alerted on were
+    # not the levels being charted.
 
     if ohlcv is None:
         try:

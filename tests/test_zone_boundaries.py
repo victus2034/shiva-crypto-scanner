@@ -83,14 +83,29 @@ class NoQualificationFilterTests(unittest.TestCase):
             zone = module.qualify_wick_zone(data, 2, 3, atr_values, "demand")
             self.assertIsNotNone(zone)
 
-    def test_touch_veto_is_disabled_so_revisits_do_not_retire_a_zone(self):
+    def test_back_to_back_touches_retire_the_zone(self):
+        # Consecutive candles sitting on a level mean price is grinding
+        # through it rather than reacting to it - thin volume, no rejection.
+        # Deliberately stricter than the indicator, which has no touch veto.
         for module in (scanner, nse_scanner):
-            self.assertEqual(module.MAX_CONSECUTIVE_ZONE_TOUCHES, 0)
+            self.assertEqual(module.MAX_CONSECUTIVE_ZONE_TOUCHES, 2)
             zone = {"top": 10.0, "bottom": 9.0, "touch_streak": 0,
                     "touch_count": 0, "max_touch_streak": 0, "over_touched": False}
-            for _ in range(6):
-                module.record_zone_touch(zone, 9.9, 9.1)
-            self.assertEqual(zone["touch_count"], 6)
+            module.record_zone_touch(zone, 9.9, 9.1)
+            self.assertFalse(zone["over_touched"], "one touch is a normal test")
+            module.record_zone_touch(zone, 9.9, 9.1)
+            self.assertTrue(zone["over_touched"], "back-to-back retires it")
+
+    def test_a_single_touch_with_a_gap_does_not_retire_the_zone(self):
+        # Touch, move away, touch again later: that is a level being
+        # respected, not ground through, so the streak resets.
+        for module in (scanner, nse_scanner):
+            zone = {"top": 10.0, "bottom": 9.0, "touch_streak": 0,
+                    "touch_count": 0, "max_touch_streak": 0, "over_touched": False}
+            module.record_zone_touch(zone, 9.9, 9.1)   # touch
+            module.record_zone_touch(zone, 12.0, 11.0)  # away, streak resets
+            module.record_zone_touch(zone, 9.9, 9.1)   # touch again
+            self.assertEqual(zone["touch_count"], 2)
             self.assertFalse(zone["over_touched"])
 
 

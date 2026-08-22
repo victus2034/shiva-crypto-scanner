@@ -182,7 +182,9 @@ PREFER_COINSWITCH = env_flag("SHIVA_PREFER_COINSWITCH")
 REQUIRE_COINSWITCH = env_flag("SHIVA_REQUIRE_COINSWITCH")
 USE_LIVE_TICKER = env_flag("SHIVA_USE_LIVE_TICKER")
 PRIMARY_EXCHANGE_ID = "binance"
-EXCHANGE_IDS = ["binance", "kucoin", "okx", "bybit", "mexc", "bitget", "lbank", "coinex"]
+# CoinSwitch is tried first, then Binance. Nothing else: a third venue
+# only ever meant zones built from an order book the charts do not show.
+EXCHANGE_IDS = ["binance"]
 TIMEFRAME = os.getenv("SHIVA_TIMEFRAME", "4h").strip() or "4h"
 OHLCV_LIMIT = 500
 
@@ -213,7 +215,12 @@ REARM_FACTOR = 1.25
 # 0 disables the over-touch veto. The Pine indicator counts no touches and
 # never retires a zone for being revisited - only a close through it kills the
 # zone - so any positive value here drops levels the chart still shows.
-MAX_CONSECUTIVE_ZONE_TOUCHES = 0
+# Back-to-back candles sitting on a zone mean price is grinding through it
+# rather than reacting to it - thin volume, no rejection. Two consecutive
+# touching candles retire the zone. This is deliberately stricter than the
+# Pine indicator, which has no touch veto at all: the indicator draws every
+# level, this decides which are worth an alert.
+MAX_CONSECUTIVE_ZONE_TOUCHES = 2
 SCAN_SLEEP = 300
 SCAN_WORKERS = 8
 ALERT_COOLDOWN_SECONDS = env_int("SHIVA_ALERT_COOLDOWN_SECONDS", 4 * 60 * 60)
