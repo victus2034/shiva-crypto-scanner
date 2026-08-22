@@ -5,11 +5,15 @@ scanner falls through to the next exchange and builds the zone from a book
 you are not charting. This asks CoinSwitch for its instrument list once and
 names every watchlist symbol that is missing from it.
 
-    python coinswitch_listing.py
+With --discover it also ranks the contracts the watchlist does not hold by
+24h volume, so symbols worth adding surface the same way thin ones do.
+
+    python coinswitch_listing.py --discover
 """
 from __future__ import annotations
 
 import argparse
+import time
 
 import requests
 
@@ -19,16 +23,6 @@ from config import COINSWITCH_API_BASE_URL
 
 # The futures instrument list has moved between paths; try each and use the
 # first that answers, so a rename does not silently report everything absent.
-# 24h volume for every contract at once, so discovery does not need 1400
-# candle requests.
-TICKER_PATHS = (
-    "/trade/api/v2/futures/ticker24hr",
-    "/trade/api/v2/futures/tickers",
-    "/trade/api/v2/futures/ticker",
-)
-
-LAST_LISTING_PAYLOAD = []
-
 CANDIDATE_PATHS = (
     "/trade/api/v2/futures/instrument_info",
     "/trade/api/v2/futures/instruments",
@@ -69,31 +63,6 @@ def collect_symbols(payload):
     return found
 
 
-def describe_instrument_payload(payload, limit=2):
-    """Show what the instrument list carries, in case volume is already there."""
-    samples = []
-
-    def walk(node, key_hint=None):
-        if len(samples) >= limit:
-            return
-        if isinstance(node, dict):
-            if any(isinstance(node.get(k), str) for k in ("symbol", "s", "name")) or (
-                isinstance(key_hint, str) and looks_like_contract(key_hint)
-            ):
-                samples.append((key_hint, node))
-                return
-            for key, value in node.items():
-                walk(value, key)
-        elif isinstance(node, list):
-            for item in node:
-                walk(item, key_hint)
-
-    walk(payload)
-    for key, entry in samples:
-        fields = ", ".join(f"{k}={str(v)[:18]}" for k, v in list(entry.items())[:14])
-        print(f"  sample {key or ''}: {fields}")
-
-
 def fetch_listing():
     exchange = sc.get_env_or_config("COINSWITCH_EXCHANGE", sc.COINSWITCH_EXCHANGE)
     for path in CANDIDATE_PATHS:
@@ -106,11 +75,9 @@ def fetch_listing():
                 if response.status_code != 200:
                     print(f"  {path} {params or '{}'} -> HTTP {response.status_code}")
                     continue
-                payload = response.json()
-                symbols = collect_symbols(payload)
+                symbols = collect_symbols(response.json())
                 if symbols:
                     print(f"  {path} {params or '{}'} -> {len(symbols)} contracts")
-                    LAST_LISTING_PAYLOAD.append(payload)
                     return symbols
                 print(f"  {path} {params or '{}'} -> 200 but no contracts parsed")
             except Exception as error:
@@ -141,87 +108,66 @@ def coinswitch_get(path, params):
     return response.json()
 
 
-def collect_volumes(payload):
-    """Map contract name to 24h quote volume, however the venue spells it."""
-    volumes = {}
-    volume_keys = ("quote_volume", "quoteVolume", "volume_24h", "turnover", "volume", "v")
+def ticker_quote_volume(symbol, exchange):
+    """24h volume in quote currency for one contract, or None."""
+    payload = coinswitch_get(
+        "/trade/api/v2/futures/ticker", {"exchange": exchange, "symbol": symbol}
+    )
+    entry = (payload.get("data") or {}).get(exchange) or {}
+    if not entry:
+        return None
+    for key in ("quote_asset_volume_24h", "quote_volume_24h"):
+        if entry.get(key) is not None:
+            return float(entry[key])
+    base = entry.get("base_asset_volume_24h")
+    price = entry.get("last_price")
+    if base is None or price is None:
+        return None
+    return float(base) * float(price)
 
-    def walk(node, key_hint=None):
-        if isinstance(node, dict):
-            name = None
-            for key in ("symbol", "s", "name"):
-                if isinstance(node.get(key), str):
-                    name = node[key].upper()
-                    break
-            if name is None and isinstance(key_hint, str) and looks_like_contract(key_hint):
-                name = key_hint.upper()
-            if name:
-                for key in volume_keys:
-                    if key in node:
-                        try:
-                            volumes[name] = float(node[key])
-                        except (TypeError, ValueError):
-                            continue
-                        break
-            for key, value in node.items():
-                walk(value, key)
-        elif isinstance(node, list):
-            for item in node:
-                walk(item, key_hint)
 
-    walk(payload)
+def discover(candidates, budget_seconds, delay):
+    """Rank contracts by 24h volume, within a time budget.
+
+    CoinSwitch has no bulk ticker - two paths 404 and the third rejects a
+    query without a symbol - so this walks the list one contract at a time
+    and stops when the budget runs out rather than risking the job timeout.
+    """
+    exchange = sc.get_env_or_config("COINSWITCH_EXCHANGE", sc.COINSWITCH_EXCHANGE)
+    deadline = time.monotonic() + budget_seconds
+    volumes, failures = {}, 0
+    for symbol in candidates:
+        if time.monotonic() > deadline:
+            break
+        try:
+            volume = ticker_quote_volume(symbol, exchange)
+            if volume is not None:
+                volumes[symbol] = volume
+        except Exception:
+            failures += 1
+            time.sleep(delay * 3)
+            continue
+        time.sleep(delay)
+    print(f"  measured {len(volumes)} of {len(candidates)} contracts"
+          f" ({failures} failed, {'budget reached' if time.monotonic() > deadline else 'complete'})")
     return volumes
 
 
-def discover(listed):
-    """Contracts CoinSwitch trades heavily that the watchlist does not hold."""
-    exchange = sc.get_env_or_config("COINSWITCH_EXCHANGE", sc.COINSWITCH_EXCHANGE)
-    volumes = {}
-    for path in TICKER_PATHS:
-        for params in ({"exchange": exchange}, {}):
-            try:
-                volumes = collect_volumes(coinswitch_get(path, params))
-            except Exception as error:
-                print(f"  {path} {params or '{}'} -> {str(error)[:60]}")
-                continue
-            if volumes:
-                print(f"  {path} {params or '{}'} -> volume for {len(volumes)} contracts")
-                return volumes
-            print(f"  {path} {params or '{}'} -> 200 but no volumes parsed")
-    return {}
-
-
-def report_candidates(listed, held_contracts):
+def report_candidates(listed, held_contracts, budget_seconds, delay):
+    candidates = sorted(c for c in listed if c not in held_contracts)
     print()
-    print("LOOKING FOR HIGH-VOLUME CONTRACTS NOT ON THE WATCHLIST", flush=True)
-    volumes = discover(listed)
+    print(f"RANKING {len(candidates)} CONTRACTS THE WATCHLIST DOES NOT HOLD", flush=True)
+    volumes = discover(candidates, budget_seconds, delay)
     if not volumes:
-        print("  no bulk ticker endpoint answered; showing what the instrument")
-        print("  list itself carries, so the next attempt can use the right field:")
-        if LAST_LISTING_PAYLOAD:
-            describe_instrument_payload(LAST_LISTING_PAYLOAD[0])
-        # The per-symbol ticker exists but rejects an empty query. Ask it for
-        # one contract so its shape is on record.
-        exchange = sc.get_env_or_config("COINSWITCH_EXCHANGE", sc.COINSWITCH_EXCHANGE)
-        try:
-            probe = coinswitch_get(
-                "/trade/api/v2/futures/ticker", {"exchange": exchange, "symbol": "BTCUSDT"}
-            )
-            print(f"  single-symbol ticker works: {str(probe)[:300]}")
-        except Exception as error:
-            print(f"  single-symbol ticker probe -> {str(error)[:90]}")
+        print("  no volumes returned")
         return
 
-    candidates = sorted(
-        ((name, vol) for name, vol in volumes.items() if name not in held_contracts),
-        key=lambda item: item[1],
-        reverse=True,
-    )
+    ranked = sorted(volumes.items(), key=lambda item: item[1], reverse=True)
     print()
-    print(f"TOP 25 BY 24H VOLUME, NOT CURRENTLY SCANNED ({len(candidates)} candidates)")
-    print(f"  {'contract':<20}{'24h volume':>20}")
-    for name, vol in candidates[:25]:
-        print(f"  {name:<20}{vol:>20,.0f}")
+    print("TOP 30 BY 24H QUOTE VOLUME, NOT CURRENTLY SCANNED")
+    print(f"  {'contract':<20}{'24h quote volume':>22}")
+    for name, volume in ranked[:30]:
+        print(f"  {name:<20}{volume:>22,.0f}")
 
 
 def main() -> None:
@@ -230,6 +176,18 @@ def main() -> None:
         "--discover",
         action="store_true",
         help="Also rank contracts the watchlist does not hold.",
+    )
+    parser.add_argument(
+        "--discover-budget",
+        type=float,
+        default=900.0,
+        help="Seconds to spend ranking before reporting what was measured.",
+    )
+    parser.add_argument(
+        "--discover-delay",
+        type=float,
+        default=0.35,
+        help="Pause between ticker requests.",
     )
     args = parser.parse_args()
 
@@ -270,7 +228,12 @@ def main() -> None:
         print("Every watchlist symbol is listed on CoinSwitch.")
 
     if args.discover:
-        report_candidates(listed, {contract for _, contract in present + absent})
+        report_candidates(
+            listed,
+            {contract for _, contract in present + absent},
+            args.discover_budget,
+            args.discover_delay,
+        )
 
 
 if __name__ == "__main__":
