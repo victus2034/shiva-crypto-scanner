@@ -1961,7 +1961,8 @@
     "MSFT/USDT:USDT|30m|long|478.8700000000|481.5100000000": 1787337082.9990733,
     "BTCUSD|30m|long|76245.0000000000|77104.0000000000": 1787339478.3954666,
     "MSTRBUSD|30m|long|116.4800000000|119.6500000000": 1787339478.9010606,
-    "EUL/USDT|30m|short|1.3698000000|1.3811000000": 1787365886.3377202
+    "EUL/USDT|30m|short|1.3698000000|1.3811000000": 1787365886.3377202,
+    "O/USDT|30m|long|0.4896000000|0.4923000000": 1787368278.9963424
   },
   "METAXUSD|demand|577.00000000|579.20000000": {
     "in_zone": false,
@@ -10702,7 +10703,7 @@
     "last_alert_at": 0.0
   },
   "EUL/USDT|supply|1.36980000|1.38110000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1787365886.3377202
   },
   "ZIL/USDT|demand|0.00269200|0.00271200": {
@@ -10758,8 +10759,8 @@
     "last_alert_at": 0.0
   },
   "O/USDT|demand|0.48960000|0.49230000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1787368278.9963424
   },
   "MNT/USDT|demand|0.49900000|0.50560000": {
     "in_zone": false,
@@ -10798,6 +10799,14 @@
     "last_alert_at": 0.0
   },
   "MRVL/USDT:USDT|demand|233.62000000|234.84000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "LINKUSD|supply|12.19600000|12.36300000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "MSTRBUSD|supply|122.31000000|123.00000000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
