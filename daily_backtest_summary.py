@@ -60,6 +60,25 @@ CRYPTO_EVALUATION_HOURS = 6
 CRYPTO_REPORT_BOUNDARY = datetime_time(16, 30)
 FIXED_STOP_PCT = 0.5
 SL_BUFFER_PCT = 0.10
+# Dhan NSE equity intraday, both legs, derived from a real contract note and
+# reconciled component by component: brokerage 0.03% x2, STT 0.025% on the
+# sell, exchange ~0.00307% x2, SEBI Rs10/cr x2, stamp 0.003% on the buy, and
+# 18% GST on brokerage + exchange + SEBI. Constant at any size below the
+# ~Rs66,667 where the Rs20 brokerage cap starts to bite and the rate falls.
+ROUND_TRIP_COST_PCT = 0.1063
+# Where the stop goes once +0.5R trades. Entry alone is not breakeven - the
+# round trip has already been paid - so the stop sits far enough past entry
+# to clear costs with a little room to spare.
+BREAK_EVEN_OFFSET_PCT = 0.120
+# Set False to hold the original stop the whole way and never move it up.
+# Kept switchable so the rule can be measured against real outcomes rather
+# than argued about - paper_trading reads the same flag so the two cannot
+# drift apart.
+BREAK_EVEN_ENABLED = True
+# Below this stop distance the +0.5R trigger arrives while the trade is
+# still net negative (0.5 x SL% < BREAK_EVEN_OFFSET_PCT), so the rule cannot
+# protect capital at all.
+MIN_SAFE_STOP_PCT = BREAK_EVEN_OFFSET_PCT * 2
 # A resting SL is a stop order, not a limit order - once triggered it fills
 # at whatever price is next available, not necessarily the exact trigger
 # price, especially since the same fast move that triggered it is often
@@ -72,15 +91,20 @@ TARGET_1_R = 1.0
 TARGET_2_R = 2.0
 HALF_R = 0.5
 DATA_QUALITY_AMBIGUOUS = "data_quality_ambiguous"
+# Reaching +0.5R moves the stop to entry rather than closing the trade, so
+# giving it back exits flat. This is a real outcome, distinct from both a
+# full stop and a win.
+BREAK_EVEN = "BE"
 FINAL_RESULT_R = {
     "SL": -1.0,
     DATA_QUALITY_AMBIGUOUS: float("nan"),
+    BREAK_EVEN: 0.0,
     "+0.5R": 0.5,
     "+1R": 1.0,
     "+2R": 2.0,
     "Neither": 0.0,
 }
-OUTCOME_ORDER = ["SL", DATA_QUALITY_AMBIGUOUS, "+0.5R", "+1R", "+2R", "Neither"]
+OUTCOME_ORDER = ["SL", DATA_QUALITY_AMBIGUOUS, BREAK_EVEN, "+0.5R", "+1R", "+2R", "Neither"]
 MARKET_NSE = "NSE"
 MARKET_CRYPTO = "CRYPTO"
 MARKET_XSTOCK = "XSTOCK"
@@ -753,6 +777,16 @@ def simulate_alert(
     target_half = entry_price + direction * risk * HALF_R
     target_1 = entry_price + direction * risk * TARGET_1_R
     target_2 = entry_price + direction * risk * TARGET_2_R
+    # The offset exists to clear Dhan's NSE charges, so it only applies
+    # where those charges do; no equivalent has been measured for crypto.
+    break_even_offset = BREAK_EVEN_OFFSET_PCT if market in (None, "nse") else 0.0
+    break_even_stop = entry_price + direction * entry_price * break_even_offset / 100.0
+    # On a tight stop the offset can exceed the +0.5R move itself, putting
+    # the breakeven stop the wrong side of the price that triggers it. A
+    # stop above the market fills instantly, so moving it there would force
+    # the trade out at the offset instead of protecting it. Nobody would
+    # place that order, so the stop simply stays put.
+    break_even_reachable = direction * (target_half - break_even_stop) >= 0
 
     end_index = tracking_end_index
     half_r_hit = False
@@ -777,29 +811,39 @@ def simulate_alert(
         max_favorable_r = max(max_favorable_r, favorable / risk)
         max_adverse_r = max(max_adverse_r, adverse / risk)
 
-        stop_hit = low <= stop if side == "long" else high >= stop
+        # Once +0.5R has traded the stop moves up to clear costs, which is
+        # the point of the rule: leaving it at entry would still book a loss
+        # the size of the round trip. The move only applies from the next
+        # bar, since the ordering inside the bar that reached +0.5R is
+        # unknowable.
+        stop_moved = half_r_hit and BREAK_EVEN_ENABLED and break_even_reachable
+        active_stop = break_even_stop if stop_moved else stop
+        stop_hit = low <= active_stop if side == "long" else high >= active_stop
         half_target_hit = high >= target_half if side == "long" else low <= target_half
         first_target_hit = high >= target_1 if side == "long" else low <= target_1
         second_target_hit = high >= target_2 if side == "long" else low <= target_2
 
-        target_hit_this_candle = half_target_hit or first_target_hit or second_target_hit
-        if outcome == "Neither" and stop_hit and target_hit_this_candle:
+        # Only levels that would still change the outcome make the bar
+        # ambiguous. Once +0.5R has traded the stop is already at entry, so
+        # touching +0.5R again decides nothing - the open question is
+        # whether the breakeven stop or a higher target came first.
+        deciding_target_hit = (
+            (half_target_hit or first_target_hit or second_target_hit)
+            if not stop_moved
+            else (first_target_hit or second_target_hit)
+        )
+        if outcome == "Neither" and stop_hit and deciding_target_hit:
             resolution = resolve_same_candle_order(
                 resolution_frame,
                 frame,
                 index,
                 side,
-                stop,
+                active_stop,
                 target_half,
                 target_1,
                 target_2,
                 market=market,
             )
-            if resolution == "SL":
-                outcome = "SL"
-                exit_index = index
-                time_to_sl = frame.index[index]
-                break
             if resolution == DATA_QUALITY_AMBIGUOUS:
                 outcome = DATA_QUALITY_AMBIGUOUS
                 exit_index = index
@@ -807,36 +851,47 @@ def simulate_alert(
                 bar_duration = infer_bar_duration(frame)
                 ambiguous_interval_end = frame.index[index] + bar_duration
                 break
+            if resolution == "SL":
+                outcome = BREAK_EVEN if stop_moved else "SL"
+                exit_index = index
+                time_to_sl = frame.index[index]
+                break
+            # A target printed before the stop did. Bank the best level
+            # reached, then close - the stop trades inside this same bar.
             if resolution in {"+0.5R", "+1R", "+2R"}:
-                if resolution in {"+0.5R", "+1R", "+2R"}:
-                    half_r_hit = True
-                    if time_to_half_r is None:
-                        time_to_half_r = frame.index[index]
-                    outcome = "+0.5R"
-                if resolution in {"+1R", "+2R"}:
-                    target_1_hit = True
-                    if time_to_1r is None:
-                        time_to_1r = frame.index[index]
-                    outcome = "+1R"
-                if resolution == "+2R":
-                    target_2_hit = True
-                    if time_to_2r is None:
-                        time_to_2r = frame.index[index]
-                    outcome = "+2R"
-                    exit_index = index
-                    break
-                continue
-        if outcome == "Neither" and stop_hit:
-            outcome = "SL"
+                half_r_hit = True
+                if time_to_half_r is None:
+                    time_to_half_r = frame.index[index]
+                outcome = BREAK_EVEN
+            if resolution in {"+1R", "+2R"}:
+                target_1_hit = True
+                if time_to_1r is None:
+                    time_to_1r = frame.index[index]
+                outcome = "+1R"
+            if resolution == "+2R":
+                target_2_hit = True
+                if time_to_2r is None:
+                    time_to_2r = frame.index[index]
+                outcome = "+2R"
+            exit_index = index
+            time_to_sl = frame.index[index]
+            break
+        if stop_hit:
+            # Whichever stop was live has traded through, so the position is
+            # closed here. Without this the loop kept running and let later
+            # price action upgrade a trade that was already out - crediting,
+            # say, +2R to a position flat well before the +2R print.
+            if outcome == "Neither":
+                outcome = BREAK_EVEN if stop_moved else "SL"
             exit_index = index
             time_to_sl = frame.index[index]
             break
         if half_target_hit:
+            # +0.5R is where the stop moves, not where the trade is closed,
+            # so it never becomes an outcome on its own.
             half_r_hit = True
             if time_to_half_r is None:
                 time_to_half_r = frame.index[index]
-            if outcome == "Neither":
-                outcome = "+0.5R"
         if first_target_hit:
             half_r_hit = True
             target_1_hit = True
@@ -865,6 +920,9 @@ def simulate_alert(
         exit_price = stop - direction * stop * SL_FILL_SLIPPAGE_PCT / 100.0
     elif outcome == DATA_QUALITY_AMBIGUOUS:
         exit_price = float("nan")
+    elif outcome == BREAK_EVEN:
+        # The stop had already moved past entry to clear costs by then.
+        exit_price = break_even_stop
     elif outcome == "+0.5R":
         exit_price = target_half
     elif outcome == "+1R":
@@ -873,7 +931,7 @@ def simulate_alert(
         exit_price = target_2
     else:
         exit_price = float(frame["close"].iloc[exit_index])
-    if outcome in {"SL", "Neither"}:
+    if outcome in {"SL", "Neither", BREAK_EVEN}:
         # Price off the real exit level instead of crediting a flat number -
         # a "Neither" trade that quietly drifted against (or in favor of)
         # the position without confirming SL/target must not be scored as
@@ -881,6 +939,11 @@ def simulate_alert(
         realized_r = direction * (exit_price - entry_price) / risk
     else:
         realized_r = FINAL_RESULT_R[outcome]
+    # Brokerage and statutory charges are a fixed share of turnover, so on a
+    # tight stop they consume a large share of R - roughly a third at a 0.3%
+    # stop. Reporting gross would overstate every outcome by that amount.
+    cost_r = round_trip_cost_r(entry_price, risk, market)
+    net_realized_r = realized_r - cost_r if pd.notna(realized_r) else realized_r
     evaluation_end_time = candle_ends(frame)[exit_index]
     final_resolution_time = resolution_time_for_outcome(
         outcome,
@@ -912,7 +975,8 @@ def simulate_alert(
             "outcome": outcome,
             "final_result": outcome,
             "realized_r": realized_r,
-            "net_realized_r": realized_r,
+            "net_realized_r": net_realized_r,
+            "cost_r": cost_r,
             "mfe_r": max_favorable_r,
             "mae_r": max_adverse_r,
             "time_to_half_r": time_to_half_r,
@@ -1133,6 +1197,19 @@ def zones_match_alert(zone: dict, alert: dict) -> bool:
     alert_bottom = float(alert["zone_bottom"])
     tolerance = max(abs(alert_top - alert_bottom) * 0.05, abs(alert_top) * 0.00005, 0.01)
     return abs(top - alert_top) <= tolerance and abs(bottom - alert_bottom) <= tolerance
+
+
+def round_trip_cost_r(entry_price: float, risk: float, market: str | None) -> float:
+    """Round-trip charges expressed in R.
+
+    Costs are a fixed share of turnover while risk is set by the stop, so
+    the same charge is a much bigger fraction of R on a tight stop than a
+    wide one. NSE only - these are Dhan equity intraday rates, and no
+    equivalent has been measured for the crypto venues.
+    """
+    if market not in (None, "nse") or risk <= 0:
+        return 0.0
+    return (entry_price * ROUND_TRIP_COST_PCT / 100.0) / risk
 
 
 def original_stop_price(alert: dict) -> float:

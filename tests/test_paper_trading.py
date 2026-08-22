@@ -7,6 +7,8 @@ import paper_trading
 
 
 IST = paper_trading.IST
+# Mid-session: before the 15:10 cut-off, so fills are allowed.
+NOW = pd.Timestamp("2026-08-17 11:00", tz=paper_trading.IST)
 
 
 def bars(rows, start="2026-08-17 10:00"):
@@ -36,11 +38,11 @@ class FillTests(unittest.TestCase):
         state = fresh_state()
         # Never trades down to 100, so a resting buy limit never fills.
         frames = {"TCS.NS": bars([[101.5, 100.8, 101.0], [101.2, 100.5, 100.9]])}
-        self.assertEqual(paper_trading.open_new_positions(state, [alert()], frames), [])
+        self.assertEqual(paper_trading.open_new_positions(state, [alert()], frames, NOW), [])
         self.assertEqual(state["open"], {})
 
         frames = {"TCS.NS": bars([[101.5, 100.8, 101.0], [101.0, 99.5, 99.8]])}
-        opened = paper_trading.open_new_positions(state, [alert()], frames)
+        opened = paper_trading.open_new_positions(state, [alert()], frames, NOW)
         self.assertEqual(len(opened), 1)
         self.assertAlmostEqual(state["open"]["t1"]["entry"], 100.0)
 
@@ -49,23 +51,25 @@ class FillTests(unittest.TestCase):
         # The touch happens at 10:00, but the alert only landed at 10:30.
         frames = {"TCS.NS": bars([[101.0, 99.0, 99.5]])}
         opened = paper_trading.open_new_positions(
-            state, [alert(delivered="2026-08-17 10:30")], frames
+            state, [alert(delivered="2026-08-17 10:30")], frames, NOW
         )
         self.assertEqual(opened, [])
 
     def test_a_filled_alert_is_not_reopened(self):
         state = fresh_state()
         frames = {"TCS.NS": bars([[101.0, 99.5, 99.8]])}
-        paper_trading.open_new_positions(state, [alert()], frames)
+        paper_trading.open_new_positions(state, [alert()], frames, NOW)
         state["open"].clear()  # simulate it having closed
-        self.assertEqual(paper_trading.open_new_positions(state, [alert()], frames), [])
+        self.assertEqual(paper_trading.open_new_positions(state, [alert()], frames, NOW), [])
 
 
 class OutcomeTests(unittest.TestCase):
     def _open(self, side="long", entry=100.0, stop=98.0):
         state = fresh_state()
         frames = {"TCS.NS": bars([[100.5, 99.9, 100.0]])}
-        paper_trading.open_new_positions(state, [alert(side=side, entry=entry, stop=stop)], frames)
+        paper_trading.open_new_positions(
+            state, [alert(side=side, entry=entry, stop=stop)], frames, NOW
+        )
         return state
 
     def test_stop_closes_with_slippage_worse_than_minus_one_r(self):
@@ -113,14 +117,59 @@ class OutcomeTests(unittest.TestCase):
         # small loss rather than a free breakeven.
         self.assertLess(closed[0]["realized_r"], 0.0)
 
-    def test_half_r_is_banked_when_squaring_off_after_touching_it(self):
+    def test_still_open_at_square_off_is_priced_off_the_real_close(self):
+        # Touched +0.5R but never came back to entry and never reached +1R,
+        # so it is still open at 15:10 and exits at whatever it is actually
+        # worth - not a flat +0.5R credit.
         state = self._open()
         frames = {"TCS.NS": bars([[101.2, 99.9, 100.1]])}
         closed = paper_trading.evaluate_open_positions(
             state, frames, pd.Timestamp("2026-08-17 15:10", tz=IST)
         )
-        self.assertEqual(closed[0]["outcome"], "+0.5R")
-        self.assertAlmostEqual(closed[0]["realized_r"], 0.5)
+        self.assertEqual(closed[0]["outcome"], "Neither")
+        self.assertAlmostEqual(closed[0]["realized_r"], 0.05)
+
+    def test_half_r_moves_the_stop_past_entry_to_clear_costs(self):
+        # Reaching +0.5R moves the stop above entry rather than closing the
+        # trade, far enough to cover the round trip - so giving it back
+        # scratches a hair positive instead of losing the charges. Paper
+        # must match daily_backtest_summary or the two measure different
+        # strategies.
+        state = self._open()
+        frames = {"TCS.NS": bars([[101.2, 99.9, 100.1], [100.0, 97.0, 97.2]])}
+        closed = paper_trading.evaluate_open_positions(
+            state, frames, pd.Timestamp("2026-08-17 11:00", tz=IST)
+        )
+        self.assertEqual(closed[0]["outcome"], backtest.BREAK_EVEN)
+        self.assertGreater(closed[0]["net_realized_r"], 0.0)
+        self.assertLess(closed[0]["net_realized_r"], 0.05)
+
+    def test_a_stop_before_any_milestone_still_closes_as_sl(self):
+        state = self._open()
+        frames = {"TCS.NS": bars([[100.2, 97.0, 97.2], [101.5, 100.0, 101.2]])}
+        closed = paper_trading.evaluate_open_positions(
+            state, frames, pd.Timestamp("2026-08-17 11:00", tz=IST)
+        )
+        self.assertEqual(closed[0]["outcome"], "SL")
+
+    def test_price_action_after_1510_cannot_decide_the_trade(self):
+        # yfinance keeps printing to 15:25, but the user is flat by 15:10 -
+        # a stop that only trades after the cut-off never happened to them.
+        state = self._open()
+        frames = {
+            "TCS.NS": pd.DataFrame(
+                [[100.4, 99.8, 100.0], [100.2, 97.0, 97.5]],
+                index=pd.DatetimeIndex(
+                    ["2026-08-17 15:05", "2026-08-17 15:15"], tz=IST
+                ),
+                columns=["high", "low", "close"],
+            )
+        }
+        state["open"]["t1"]["entry_time"] = "2026-08-17 15:05:00+05:30"
+        closed = paper_trading.evaluate_open_positions(
+            state, frames, pd.Timestamp("2026-08-17 15:30", tz=IST)
+        )
+        self.assertEqual(closed[0]["outcome"], "Neither")
 
     def test_short_side_stop_and_target_mirror_the_long_side(self):
         state = self._open(side="short", entry=100.0, stop=102.0)
@@ -136,6 +185,40 @@ class OutcomeTests(unittest.TestCase):
             state, frames, pd.Timestamp("2026-08-17 11:00", tz=IST)
         )
         self.assertEqual(closed[0]["outcome"], "+2R")
+
+
+class PaperWindowTests(unittest.TestCase):
+    def test_window_stays_open_past_1510_so_square_off_can_run(self):
+        # The cron fires at 15:10 but the runner needs a minute or two to
+        # boot. A guard that closed at 15:10 would reject the tick that
+        # squares off the day's open positions, orphaning them.
+        monday = "2026-08-17"
+        self.assertTrue(
+            paper_trading.in_paper_window(pd.Timestamp(f"{monday} 15:12", tz=IST))
+        )
+        self.assertTrue(
+            paper_trading.in_paper_window(pd.Timestamp(f"{monday} 10:00", tz=IST))
+        )
+        self.assertFalse(
+            paper_trading.in_paper_window(pd.Timestamp(f"{monday} 09:00", tz=IST))
+        )
+        self.assertFalse(
+            paper_trading.in_paper_window(pd.Timestamp(f"{monday} 16:30", tz=IST))
+        )
+
+    def test_no_fill_after_1510_even_inside_the_grace_tail(self):
+        state = fresh_state()
+        frames = {
+            "TCS.NS": pd.DataFrame(
+                [[101.0, 99.0, 99.5]],
+                index=pd.DatetimeIndex(["2026-08-17 15:15"], tz=IST),
+                columns=["high", "low", "close"],
+            )
+        }
+        opened = paper_trading.open_new_positions(
+            state, [alert()], frames, pd.Timestamp("2026-08-17 15:20", tz=IST)
+        )
+        self.assertEqual(opened, [])
 
 
 class ReportTests(unittest.TestCase):

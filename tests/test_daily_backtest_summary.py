@@ -205,7 +205,7 @@ class DailyBacktestSummaryTests(unittest.TestCase):
         self.assertTrue(bool(results.iloc[0]["filled"]))
         self.assertEqual(results.iloc[0]["entry_time"], index[1])
 
-    def test_half_r_is_kept_if_price_reverses_later(self):
+    def test_reaching_half_r_then_reversing_exits_at_breakeven(self):
         index = pd.DatetimeIndex(
             ["2026-08-04 10:00", "2026-08-04 10:30", "2026-08-04 11:00"],
             tz=summary.IST,
@@ -221,10 +221,77 @@ class DailyBacktestSummaryTests(unittest.TestCase):
             index=index,
         )
 
+        # +0.5R moves the stop to entry rather than closing the trade, so
+        # giving it back exits flat instead of banking half a risk unit
+        # that was never taken off the table.
         result = summary.simulate_alert(frame, base_alert(), 0, 2)
 
-        self.assertEqual(result["final_result"], "+0.5R")
-        self.assertEqual(result["net_realized_r"], 0.5)
+        self.assertEqual(result["final_result"], summary.BREAK_EVEN)
+        # The stop sits far enough past entry to clear the round trip, so
+        # this scratches a hair positive rather than losing the charges.
+        self.assertGreater(result["net_realized_r"], 0.0)
+        self.assertLess(result["net_realized_r"], 0.05)
+
+    def test_a_stopped_out_trade_cannot_be_upgraded_by_a_later_recovery(self):
+        # Touches +0.5R, then trades through the stop, then recovers to
+        # +2R. The position was flat well before that +2R print, so it must
+        # close at the milestone it actually secured. Previously the loop
+        # skipped the stop once an outcome was set and let the recovery
+        # upgrade the trade all the way to +2R.
+        index = pd.DatetimeIndex(
+            [
+                "2026-08-04 10:00",
+                "2026-08-04 10:30",
+                "2026-08-04 11:00",
+                "2026-08-04 11:30",
+            ],
+            tz=summary.IST,
+        )
+        # entry 100.00, stop 98.901 -> +0.5R at 100.55, +2R at 102.20.
+        # Bar 1 fills and secures +0.5R, bar 2 trades through the stop,
+        # bar 3 recovers past +2R.
+        frame = pd.DataFrame(
+            {
+                "open": [101.0, 100.8, 99.5, 100.0],
+                "high": [101.2, 100.8, 99.5, 103.0],
+                "low": [100.9, 99.8, 98.5, 99.5],
+                "close": [101.0, 100.2, 98.8, 102.5],
+                "volume": [1, 1, 1, 1],
+            },
+            index=index,
+        )
+
+        result = summary.simulate_alert(frame, base_alert(), 0, 3)
+
+        self.assertEqual(result["final_result"], summary.BREAK_EVEN)
+        self.assertEqual(result["exit_time"], index[2])
+
+    def test_a_stop_tighter_than_the_offset_leaves_the_stop_alone(self):
+        # entry 100.00, stop 99.78 -> +0.5R lands at 100.11, but the
+        # breakeven stop would sit at 100.12, above its own trigger. Placing
+        # it there fills instantly and forces the trade out at the offset,
+        # so the stop must stay put and let the trade run.
+        alert = base_alert(
+            zone_bottom=99.78, zone_top=100.0, body_entry=100.0,
+            planned_entry=100.0, stop_price=99.78,
+        )
+        index = pd.date_range("2026-08-04 10:00", periods=5, freq="5min", tz=summary.IST)
+        frame = pd.DataFrame(
+            {
+                "open": [100.5, 100.0, 100.2, 100.3, 100.4],
+                "high": [100.6, 100.12, 100.30, 100.45, 100.60],
+                "low": [100.4, 99.99, 100.15, 100.25, 100.35],
+                "close": [100.5, 100.10, 100.28, 100.40, 100.55],
+                "volume": [1] * 5,
+            },
+            index=index,
+        )
+
+        result = summary.simulate_alert(frame, alert, 0, 4)
+
+        # Price ran past +2R (100.44); a forced exit at 100.12 would have
+        # capped it at the offset instead.
+        self.assertEqual(result["final_result"], "+2R")
 
     def test_price_running_clean_past_entry_still_fills(self):
         # A resting buy limit at 100 fills when price trades down through
@@ -297,6 +364,39 @@ class DailyBacktestSummaryTests(unittest.TestCase):
         )
         # Without the timeframe the old three-bar count applies and misses it.
         self.assertIsNone(summary.find_entry(frame, 0, 100.0, 11, "TCS.NS", None))
+    def test_a_stopped_out_trade_cannot_be_upgraded_by_a_later_recovery(self):
+        # Touches +0.5R, then trades through the stop, then recovers to
+        # +2R. The position was flat well before that +2R print, so it must
+        # close at the milestone it actually secured. Previously the loop
+        # skipped the stop once an outcome was set and let the recovery
+        # upgrade the trade all the way to +2R.
+        index = pd.DatetimeIndex(
+            [
+                "2026-08-04 10:00",
+                "2026-08-04 10:30",
+                "2026-08-04 11:00",
+                "2026-08-04 11:30",
+            ],
+            tz=summary.IST,
+        )
+        # entry 100.00, stop 98.901 -> +0.5R at 100.55, +2R at 102.20.
+        # Bar 1 fills and secures +0.5R, bar 2 trades through the stop,
+        # bar 3 recovers past +2R.
+        frame = pd.DataFrame(
+            {
+                "open": [101.0, 100.8, 99.5, 100.0],
+                "high": [101.2, 100.8, 99.5, 103.0],
+                "low": [100.9, 99.8, 98.5, 99.5],
+                "close": [101.0, 100.2, 98.8, 102.5],
+                "volume": [1, 1, 1, 1],
+            },
+            index=index,
+        )
+
+        result = summary.simulate_alert(frame, base_alert(), 0, 3)
+
+        self.assertEqual(result["final_result"], summary.BREAK_EVEN)
+        self.assertEqual(result["exit_time"], index[2])
 
     def test_stop_before_half_r_is_sl(self):
         index = pd.DatetimeIndex(["2026-08-04 10:00", "2026-08-04 10:30"], tz=summary.IST)
@@ -316,8 +416,10 @@ class DailyBacktestSummaryTests(unittest.TestCase):
         self.assertEqual(result["final_result"], "SL")
         # Slightly worse than a flat -1.0R: SL fills assume a small adverse
         # slip beyond the stop trigger (see SL_FILL_SLIPPAGE_PCT).
-        self.assertLess(result["net_realized_r"], -1.0)
-        self.assertAlmostEqual(result["net_realized_r"], -1.0449959053685223)
+        # Worse than -1R on two counts: the stop slips past its trigger,
+        # and the round-trip charges land on top.
+        self.assertLess(result["net_realized_r"], -1.1)
+        self.assertAlmostEqual(result["realized_r"], -1.0449959053685223)
         self.assertAlmostEqual(result["stop_price"], 98.901)
 
     def test_same_candle_stop_and_target_is_ambiguous_without_resolution_data(self):
@@ -397,10 +499,12 @@ class DailyBacktestSummaryTests(unittest.TestCase):
             index=resolution_index,
         )
 
+        # The fine data shows +0.5R printing before the stop, so the stop
+        # had already moved to entry - the trade exits flat, not at -1R.
         result = summary.simulate_alert(frame, base_alert(), 0, 1, resolution_frame)
 
-        self.assertEqual(result["final_result"], "+0.5R")
-        self.assertEqual(result["net_realized_r"], 0.5)
+        self.assertEqual(result["final_result"], summary.BREAK_EVEN)
+        self.assertGreater(result["net_realized_r"], 0.0)
 
     def test_same_candle_resolution_accepts_timezone_naive_fine_data(self):
         index = pd.DatetimeIndex(["2026-08-04 10:00", "2026-08-04 10:30"], tz=summary.IST)
@@ -426,9 +530,11 @@ class DailyBacktestSummaryTests(unittest.TestCase):
             index=resolution_index,
         )
 
+        # The fine data shows +0.5R printing before the stop, so the stop
+        # had already moved to entry - the trade exits flat, not at -1R.
         result = summary.simulate_alert(frame, base_alert(), 0, 1, resolution_frame)
 
-        self.assertEqual(result["final_result"], "+0.5R")
+        self.assertEqual(result["final_result"], summary.BREAK_EVEN)
 
     def test_mobile_summary_removes_tradable_be_and_verdict(self):
         records = pd.DataFrame(
@@ -668,7 +774,7 @@ class DailyBacktestSummaryTests(unittest.TestCase):
 
         self.assertEqual(result["final_result"], "SL")
 
-    def test_crypto_half_r_is_kept_after_reversal(self):
+    def test_crypto_half_r_then_reversal_exits_at_breakeven(self):
         frame = crypto_frame(
             rows=[
                 (101.0, 101.2, 100.8, 101.0),
@@ -677,10 +783,11 @@ class DailyBacktestSummaryTests(unittest.TestCase):
             ]
         )
 
-        result = summary.simulate_alert(frame, crypto_alert(), 0, 2)
+        result = summary.simulate_alert(frame, crypto_alert(), 0, 2, market="crypto")
 
-        self.assertEqual(result["final_result"], "+0.5R")
-        self.assertEqual(result["net_realized_r"], 0.5)
+        self.assertEqual(result["final_result"], summary.BREAK_EVEN)
+        # No Dhan charges apply off NSE, so this is a true flat scratch.
+        self.assertEqual(result["net_realized_r"], 0.0)
 
     def test_crypto_one_r_supersedes_half_r_after_reversal(self):
         frame = crypto_frame(
