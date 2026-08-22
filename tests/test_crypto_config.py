@@ -17,7 +17,7 @@ class CryptoConfigTests(unittest.TestCase):
         with patch.dict(os.environ, {}, clear=True):
             import config
 
-            self.assertEqual(len(config.CRYPTO_WATCHLIST), 95)
+            self.assertEqual(len(config.CRYPTO_WATCHLIST), 94)
             self.assertLessEqual(len(config.CRYPTO_WATCHLIST), 100)
             self.assertEqual(
                 config.WATCHLIST,
@@ -57,6 +57,12 @@ class CryptoConfigTests(unittest.TestCase):
                 "AVGO/USDT:USDT",
                 "TAIKO/USDT",
                 "TQQQ/USDT:USDT",
+                # Measurable only once the xStocks were fetched under the
+                # names CoinSwitch actually uses.
+                "OPENAI/USDT:USDT",
+                "AMZNXUSD",
+                # Not thin but dead: unlisted, last candle ten days old.
+                "VANRY/USDT",
             ):
                 self.assertNotIn(symbol, config.WATCHLIST)
 

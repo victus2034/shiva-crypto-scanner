@@ -57,7 +57,6 @@ CRYPTO_WATCHLIST = [
     "1000SHIBUSD",
     "LTCUSD",
     "BTW/USDT",
-    "VANRY/USDT",
     "LA/USDT",
     "BNBUSD",
     "OPUSD",
@@ -132,7 +131,6 @@ XSTOCK_WATCHLIST = [
     "TSLAXUSD",
     "METAXUSD",
     "SPYXUSD",
-    "AMZNXUSD",
     "AAPLXUSD",
     "CRCLXUSD",
     "GOOGLXUSD",
@@ -147,7 +145,6 @@ XSTOCK_WATCHLIST = [
     # via a two-round audit 30s apart, all 5 failed both times):
     # QQQXUSD, NVDAXUSD, EWYBUSD, DRAMBUSD, CBRSBUSD
     "SKHYNIX/USDT:USDT",
-    "OPENAI/USDT:USDT",
     "NBIS/USDT:USDT",
     "BZ/USDT:USDT",
     "SAMSUNG/USDT:USDT",
@@ -160,6 +157,11 @@ XSTOCK_WATCHLIST = [
     # with no trades at all seven times in two days. A zone price drifts
     # into on no volume is a zone nobody can be filled in:
     # FLNC, IBM, PHAROS, SOXX, NVDL, BABA, DELL, AVGO, TAIKO, TQQQ
+    # Then OPENAI (2,914 per candle, 3 of 96 bars with no trades at all)
+    # and AMZN (5,279), both of which only became measurable once the
+    # xStocks were being fetched under the names CoinSwitch uses.
+    # VANRY went with them: not listed on CoinSwitch, and its last candle
+    # was ten days old, so it was never a thin feed but a dead one.
     # Additional CoinSwitch US-stock futures approved for the liquidity pilot.
     "SLX/USDT:USDT",
     "MSFT/USDT:USDT",
