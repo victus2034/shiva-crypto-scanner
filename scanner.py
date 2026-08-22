@@ -806,8 +806,13 @@ def display_symbol(symbol):
 
 
 def alert_symbol(symbol):
-    """Keep exchange symbols clear in Discord alerts while dropping TradingView suffixes."""
-    return str(symbol).strip().upper().split(":", 1)[0]
+    """Name shown in Discord alerts.
+
+    Matches how NSE alerts read - RELIANCE.NS is shown as RELIANCE - so a
+    crypto or xStock alert names the underlying rather than the venue's
+    contract string. SPYXUSD reads as SPY, MSFT/USDT as MSFT.
+    """
+    return display_symbol(symbol)
 
 
 def planned_entry_price(zone_type, zone):

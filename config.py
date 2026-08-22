@@ -178,7 +178,11 @@ COINSWITCH_API_BASE_URL = "https://coinswitch.co"
 COINSWITCH_EXCHANGE = "EXCHANGE_2"
 COINSWITCH_API_KEY = ""
 COINSWITCH_SECRET_KEY = ""
-PREFER_COINSWITCH = env_flag("SHIVA_PREFER_COINSWITCH")
+# CoinSwitch is the venue actually charted and traded, so zones must be
+# built from its candles. Binance is only a fallback for symbols it does
+# not carry. Defaulting this off meant Binance was always primary and the
+# alerted levels never matched the chart.
+PREFER_COINSWITCH = env_flag("SHIVA_PREFER_COINSWITCH", default=True)
 REQUIRE_COINSWITCH = env_flag("SHIVA_REQUIRE_COINSWITCH")
 USE_LIVE_TICKER = env_flag("SHIVA_USE_LIVE_TICKER")
 PRIMARY_EXCHANGE_ID = "binance"

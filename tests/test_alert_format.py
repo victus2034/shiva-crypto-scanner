@@ -22,7 +22,7 @@ class AlertFormatTests(unittest.TestCase):
 
         self.assertEqual(
             message,
-            "MSTRBUSD | BUY\n"
+            "MSTR | BUY\n"
             "Price: 100.600000 | 0.40%\n"
             "Zone: 100.200000 - 100.336450\n"
             "SL: 100.099800 | 0.24%",
@@ -136,7 +136,7 @@ class AlertFormatTests(unittest.TestCase):
 
         message = scanner.format_alert(result, "demand", zone, 0.4)
 
-        self.assertTrue(message.startswith("BTCUSD | BUY | 9/10"))
+        self.assertTrue(message.startswith("BTC | BUY | 9/10"))
         self.assertNotIn("\n\n", message)
 
     def test_xstock_hybrid_score_overrides_base_display_score(self):
@@ -153,7 +153,7 @@ class AlertFormatTests(unittest.TestCase):
 
         message = scanner.format_alert(result, "demand", zone, 0.5)
 
-        self.assertTrue(message.startswith("NVDAXUSD | BUY | 8/10"))
+        self.assertTrue(message.startswith("NVDA | BUY | 8/10"))
         self.assertNotIn("5/10", message)
         self.assertEqual(message.count("/10"), 1)
 
@@ -241,3 +241,26 @@ class AlertFormatTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class SymbolNamingTests(unittest.TestCase):
+    """Crypto and xStock alerts name the underlying, the way NSE alerts show
+    RELIANCE rather than RELIANCE.NS, so the same instrument reads the same
+    everywhere it appears.
+    """
+
+    def test_alert_names_match_the_nse_convention(self):
+        for raw, expected in (
+            ("SPYXUSD", "SPY"),
+            ("AMZNXUSD", "AMZN"),
+            ("MSFT/USDT", "MSFT"),
+            ("TQQQUSDT", "TQQQ"),
+            ("BTCUSDT", "BTC"),
+        ):
+            self.assertEqual(scanner.alert_symbol(raw), expected)
+
+    def test_alert_and_report_names_agree(self):
+        # The Discord alert and the backtest report must not disagree about
+        # what a symbol is called, or trades cannot be matched between them.
+        for raw in ("SPYXUSD", "MSFT/USDT", "SLVONUSD", "BTCUSDT"):
+            self.assertEqual(scanner.alert_symbol(raw), scanner.display_symbol(raw))
