@@ -41,7 +41,14 @@ jobs:
         run: pip install -r requirements.txt
 
       # Read-only: nothing is posted to Discord and no config changes. The
-      # report is read from these logs.
+      # reports are read from these logs.
+      - name: Check which symbols CoinSwitch lists
+        env:
+          COINSWITCH_API_KEY: ${{ secrets.COINSWITCH_API_KEY }}
+          COINSWITCH_SECRET_KEY: ${{ secrets.COINSWITCH_SECRET_KEY }}
+          COINSWITCH_EXCHANGE: ${{ secrets.COINSWITCH_EXCHANGE }}
+        run: python coinswitch_listing.py
+
       - name: Audit watchlist volume
         env:
           COINSWITCH_API_KEY: ${{ secrets.COINSWITCH_API_KEY }}
