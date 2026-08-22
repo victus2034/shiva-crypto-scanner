@@ -1681,7 +1681,8 @@
     "MSFT/USDT:USDT|4h|long|477.7200000000|479.8200000000": 1787397676.0774853,
     "ESPORTS/USDT|4h|long|0.0147500000|0.0149322500": 1787410880.2324498,
     "AMZNXUSD|4h|long|258.3000000000|258.7190500000": 1787410880.6122737,
-    "TQQQ/USDT:USDT|4h|long|70.2400000000|70.6223500000": 1787410881.1504476
+    "TQQQ/USDT:USDT|4h|long|70.2400000000|70.6223500000": 1787410881.1504476,
+    "ALLO/USDT|4h|long|0.2835600000|0.2867336000": 1787413273.1476898
   },
   "ARBUSD|supply|0.08030000|0.08180000": {
     "in_zone": false,
@@ -4176,8 +4177,8 @@
     "last_alert_at": 0.0
   },
   "ALLO/USDT|demand|0.28356000|0.28673360": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1787413273.1476898
   },
   "SEIUSD|supply|0.05142970|0.05170000": {
     "in_zone": false,
@@ -4344,6 +4345,10 @@
     "last_alert_at": 0.0
   },
   "MSFT/USDT:USDT|demand|477.72000000|478.44695000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "ESPORTS/USDT|demand|0.01318000|0.01349210": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
