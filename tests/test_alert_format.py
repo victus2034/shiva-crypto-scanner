@@ -256,6 +256,14 @@ class SymbolNamingTests(unittest.TestCase):
             ("MSFT/USDT", "MSFT"),
             ("TQQQUSDT", "TQQQ"),
             ("BTCUSDT", "BTC"),
+            # Both end "BUSD", but these are BNB/ARB/LAB quoted in USD -
+            # not BN/AR/LA quoted in BUSD.
+            ("BNBUSD", "BNB"),
+            ("ARBUSD", "ARB"),
+            ("LABUSD", "LAB"),
+            # These really are quoted in BUSD.
+            ("MSTRBUSD", "MSTR"),
+            ("SOXLBUSD", "SOXL"),
         ):
             self.assertEqual(scanner.alert_symbol(raw), expected)
 

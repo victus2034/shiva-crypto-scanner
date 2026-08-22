@@ -27,7 +27,9 @@ def parse_args() -> argparse.Namespace:
         default=96,
         help="How many recent candles to measure volume over.",
     )
-    parser.add_argument("--delay", type=float, default=0.15, help="Pause between symbols.")
+    # CoinSwitch rate-limits: at 0.15s the audit drew 429s across a third of
+    # the list and reported them as missing coverage, which they were not.
+    parser.add_argument("--delay", type=float, default=0.8, help="Pause between symbols.")
     return parser.parse_args()
 
 

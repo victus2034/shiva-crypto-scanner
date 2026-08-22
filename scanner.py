@@ -818,8 +818,16 @@ def display_symbol(symbol):
         if separator in text:
             text = text.split(separator, 1)[0]
     for suffix in ("USDT", "BUSD", "USD", "INR"):
-        if text.endswith(suffix) and len(text) > len(suffix):
-            return text[: -len(suffix)]
+        if not text.endswith(suffix) or len(text) <= len(suffix):
+            continue
+        base = text[: -len(suffix)]
+        # BNBUSD is BNB quoted in USD, not BN quoted in BUSD - both end
+        # "BUSD", so string matching alone cannot separate them. A base of
+        # one or two characters is the tell: real ones here (MSTR, SOXL,
+        # INTC) are longer, so fall through and let "USD" match instead.
+        if suffix == "BUSD" and len(base) < 3:
+            continue
+        return base
     return text
 
 
