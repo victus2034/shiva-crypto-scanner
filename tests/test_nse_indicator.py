@@ -23,7 +23,10 @@ class NseIndicatorParityTests(unittest.TestCase):
         self.assertAlmostEqual(result.iloc[2], 8.0 / 3.0)
         self.assertAlmostEqual(result.iloc[3], 31.0 / 9.0)
 
-    def test_demand_zone_uses_raw_wick_without_atr_shift(self):
+    def test_demand_zone_is_an_atr_band_on_the_pivot_low(self):
+        # Parity with the Pine indicator: box_bottom = the swing low, and
+        # box_top = bottom + atr * (box_width / 10). The pivot candle's own
+        # wick does not set the height.
         data = pd.DataFrame(
             {
                 "open": [10.0, 10.0, 10.0, 11.0, 11.0],
@@ -34,13 +37,10 @@ class NseIndicatorParityTests(unittest.TestCase):
         )
         atr_values = pd.Series([2.0] * len(data))
 
-        with patch.object(nse_scanner, "ZONE_PADDING_ATR", 0.0):
-            zone = nse_scanner.qualify_wick_zone(
-                data, 2, 3, atr_values, "demand"
-            )
+        zone = nse_scanner.qualify_wick_zone(data, 2, 3, atr_values, "demand")
 
         self.assertEqual(zone["bottom"], 9.0)
-        self.assertEqual(zone["top"], 9.8)
+        self.assertAlmostEqual(zone["top"], 9.0 + 2.0 * (nse_scanner.BOX_WIDTH / 10.0))
 
     def test_broken_zone_does_not_block_later_replacement(self):
         data = pd.DataFrame(

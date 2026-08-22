@@ -229,7 +229,9 @@ def record_zone_touch(zone, candle_high, candle_low):
     if touches_zone:
         zone["touch_count"] = zone.get("touch_count", 0) + 1
     zone["max_touch_streak"] = max(zone.get("max_touch_streak", 0), zone["touch_streak"])
-    if zone["max_touch_streak"] >= MAX_CONSECUTIVE_ZONE_TOUCHES:
+    # 0 disables the veto entirely, matching the indicator. Without the guard
+    # a threshold of 0 would flag every zone the moment it is created.
+    if MAX_CONSECUTIVE_ZONE_TOUCHES > 0 and zone["max_touch_streak"] >= MAX_CONSECUTIVE_ZONE_TOUCHES:
         zone["over_touched"] = True
 
 
@@ -248,31 +250,35 @@ def qualify_wick_zone(df, pivot_index, confirmation_index, atr_series, zone_type
     if departure_closes.empty:
         return None
 
+    # Geometry follows the Pine indicator exactly: a fixed atr * (BOX_WIDTH/10)
+    # band anchored on the pivot extreme, not the pivot candle's own wick. The
+    # wick version produced the same far edge but a near edge far away from the
+    # level - and the near edge is the entry, so entries and stops came out
+    # several times wider than the chart implies.
+    band = float(pivot_atr) * (BOX_WIDTH / 10.0)
     if zone_type == "demand":
+        bottom = candle_low
+        top = bottom + band
         wick_top = min(candle_open, candle_close)
         wick_bottom = candle_low
         departure = float(departure_closes.max() - wick_top)
     else:
+        top = candle_high
+        bottom = top - band
         wick_bottom = max(candle_open, candle_close)
         wick_top = candle_high
         departure = float(wick_bottom - departure_closes.min())
 
+    # Recorded as metadata for the rating and later analysis. The indicator
+    # applies no such tests, so they must not gate zone creation.
     wick_size = wick_top - wick_bottom
-    strong_wick = wick_size >= max(body_size * MIN_WICK_TO_BODY, 0.0)
-    if (
-        wick_size < float(pivot_atr) * MIN_WICK_ATR
-        or not strong_wick
-        or departure < float(pivot_atr) * MIN_DEPARTURE_ATR
-    ):
-        return None
-
-    padding = float(pivot_atr) * ZONE_PADDING_ATR
     return {
         "type": zone_type,
         "created_idx": confirmation_index,
         "pivot_idx": pivot_index,
-        "top": wick_top + padding,
-        "bottom": wick_bottom - padding,
+        "top": top,
+        "bottom": bottom,
+        "body_entry": top if zone_type == "demand" else bottom,
         "active": True,
         "broken": False,
         "touch_streak": 0,
