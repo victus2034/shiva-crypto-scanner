@@ -148,12 +148,18 @@ def discover(candidates, budget_seconds, delay):
             time.sleep(delay * 3)
             continue
         time.sleep(delay)
+    complete = time.monotonic() <= deadline
     print(f"  measured {len(volumes)} of {len(candidates)} contracts"
-          f" ({failures} failed, {'budget reached' if time.monotonic() > deadline else 'complete'})")
+          f" ({failures} failed, {'complete' if complete else 'budget reached'})")
+    if not complete or failures:
+        print("  a partial sweep ranks only what it reached - treat the list as"
+              " a sample, not the venue's top end")
     return volumes
 
 
 def report_candidates(listed, held_contracts, budget_seconds, delay):
+    # Alphabetical, so a partial sweep is a partial alphabet rather than an
+    # arbitrary slice - the report says how far it got either way.
     candidates = sorted(c for c in listed if c not in held_contracts)
     print()
     print(f"RANKING {len(candidates)} CONTRACTS THE WATCHLIST DOES NOT HOLD", flush=True)
@@ -180,13 +186,13 @@ def main() -> None:
     parser.add_argument(
         "--discover-budget",
         type=float,
-        default=900.0,
+        default=2100.0,
         help="Seconds to spend ranking before reporting what was measured.",
     )
     parser.add_argument(
         "--discover-delay",
         type=float,
-        default=0.35,
+        default=0.75,
         help="Pause between ticker requests.",
     )
     args = parser.parse_args()
