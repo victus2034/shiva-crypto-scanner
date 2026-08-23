@@ -3,6 +3,15 @@ name: Shiva Entry Confirm
 on:
   workflow_dispatch:
     inputs:
+      market:
+        description: "Which alert records to watch"
+        required: false
+        default: "all"
+        type: choice
+        options:
+          - "all"
+          - "nse"
+          - "crypto"
       timeframe:
         description: "Alert timeframe to watch"
         required: false
@@ -61,13 +70,21 @@ jobs:
           bash .github/scripts/restore_runtime_state.sh \
             nse_alert_records_30m.jsonl \
             nse_alert_records.jsonl \
+            crypto_alert_records_30m.jsonl \
+            crypto_alert_records.jsonl \
             entry_confirm_state.json \
             paper_trading_state.json
 
       - name: Send entry confirmation pings
         env:
           DISCORD_ENTRY_CONFIRM_WEBHOOK_URL: ${{ secrets.DISCORD_ENTRY_CONFIRM_WEBHOOK_URL }}
+          # Crypto pings take their price from the same venue chain as
+          # the scan, so the level watched is the one on the chart.
+          COINSWITCH_API_KEY: ${{ secrets.COINSWITCH_API_KEY }}
+          COINSWITCH_SECRET_KEY: ${{ secrets.COINSWITCH_SECRET_KEY }}
+          COINSWITCH_EXCHANGE: ${{ secrets.COINSWITCH_EXCHANGE }}
           INPUT_TIMEFRAME: ${{ github.event.inputs.timeframe }}
+          INPUT_MARKET: ${{ github.event.inputs.market }}
           INPUT_DRY_RUN: ${{ github.event.inputs.dry_run }}
           INPUT_IGNORE_SESSION: ${{ github.event.inputs.ignore_session }}
         run: |
@@ -78,7 +95,10 @@ jobs:
           if [ "$INPUT_IGNORE_SESSION" = "true" ]; then
             EXTRA_ARGS+=(--ignore-session)
           fi
-          python entry_confirm.py --timeframe "${INPUT_TIMEFRAME:-30m}" "${EXTRA_ARGS[@]}"
+          python entry_confirm.py \
+            --timeframe "${INPUT_TIMEFRAME:-30m}" \
+            --market "${INPUT_MARKET:-all}" \
+            "${EXTRA_ARGS[@]}"
 
       # Runs in the same job as the pings: identical cadence, same symbols,
       # and one shared runner boot instead of two. Placed after the pings so

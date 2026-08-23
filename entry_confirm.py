@@ -15,6 +15,10 @@ Stages (one ping each, forward-only):
 Deliberately silent when the trade is no longer worth taking: price has
 bounced back past entry into profit (entering now would sit far from the
 locked stop), or the stop is already hit.
+
+Every ping from one run goes out as a single digest. Posted one message
+per symbol, a busy run buried the channel under dozens of separate blocks
+and the few that mattered were impossible to pick out.
 """
 from __future__ import annotations
 
@@ -34,10 +38,18 @@ IST = ZoneInfo("Asia/Kolkata")
 WEBHOOK_ENV = "DISCORD_ENTRY_CONFIRM_WEBHOOK_URL"
 STATE_PATH = Path(__file__).with_name("entry_confirm_state.json")
 ALERT_RECORDS = {
-    "30m": Path(__file__).with_name("nse_alert_records_30m.jsonl"),
-    "4h": Path(__file__).with_name("nse_alert_records.jsonl"),
+    "nse": {
+        "30m": Path(__file__).with_name("nse_alert_records_30m.jsonl"),
+        "4h": Path(__file__).with_name("nse_alert_records.jsonl"),
+    },
+    "crypto": {
+        "30m": Path(__file__).with_name("crypto_alert_records_30m.jsonl"),
+        "4h": Path(__file__).with_name("crypto_alert_records.jsonl"),
+    },
 }
 BAR_MINUTES = {"30m": 30, "4h": 240}
+# Discord rejects anything longer; the digest is split rather than dropped.
+MAX_MESSAGE_CHARS = 1900
 
 # Fire the approach ping while price is still this close to - but has not
 # yet reached - the recorded entry. Wide enough to survive the gap between
@@ -62,7 +74,13 @@ STAGE_LATE = 3
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--timeframe", choices=sorted(ALERT_RECORDS), default="30m")
+    parser.add_argument("--timeframe", choices=["30m", "4h"], default="30m")
+    parser.add_argument(
+        "--market",
+        choices=["nse", "crypto", "all"],
+        default="all",
+        help="Which alert records to watch.",
+    )
     parser.add_argument("--dry-run", action="store_true")
     parser.add_argument(
         "--ignore-session",
@@ -91,9 +109,9 @@ def save_state(state: dict) -> None:
     STATE_PATH.write_text(json.dumps(state, indent=2, sort_keys=True), encoding="utf-8")
 
 
-def load_watched_alerts(timeframe: str, now: pd.Timestamp) -> list[dict]:
+def load_watched_alerts(market: str, timeframe: str, now: pd.Timestamp) -> list[dict]:
     """Alerts still inside their fillable window, newest occurrence wins."""
-    path = ALERT_RECORDS[timeframe]
+    path = ALERT_RECORDS[market][timeframe]
     if not path.exists():
         return []
 
@@ -121,6 +139,7 @@ def load_watched_alerts(timeframe: str, now: pd.Timestamp) -> list[dict]:
         record["_entry"] = float(entry)
         record["_stop"] = float(stop)
         record["_delivered"] = delivered
+        record["_market"] = market
         watched[watch_key(record)] = record
     return list(watched.values())
 
@@ -130,6 +149,51 @@ def watch_key(record: dict) -> str:
         f"{str(record.get('symbol', '')).upper()}|{record.get('timeframe')}|"
         f"{record.get('side')}|{float(record['_entry']):.4f}|{float(record['_stop']):.4f}"
     )
+
+
+def price_decimals(value: float, market: str = "crypto") -> int:
+    """Crypto runs from 77,000 to 0.00002; two decimals suits neither.
+
+    NSE stays at two throughout - that is how the exchange quotes and how
+    the alerts have always read, and varying it by price would make one
+    channel print the same kind of instrument three different ways.
+    """
+    if market == "nse":
+        return 2
+    value = abs(float(value))
+    if value >= 100:
+        return 2
+    if value >= 1:
+        return 3
+    if value >= 0.01:
+        return 5
+    return 8
+
+
+def fetch_crypto_prices(symbols: list[str]) -> dict[str, float]:
+    """Latest crypto price per symbol, from the same venue chain as the scan.
+
+    Imported lazily: the NSE-only path must not pay for ccxt's exchange
+    loading, and a crypto venue being unreachable must not stop NSE pings.
+    """
+    if not symbols:
+        return {}
+    try:
+        import scanner
+    except Exception as error:
+        print(f"crypto price fetch unavailable: {error}")
+        return {}
+
+    prices: dict[str, float] = {}
+    for symbol in symbols:
+        try:
+            ohlcv, exchange_name = scanner.fetch_symbol_ohlcv(symbol)
+            candle_close = float(ohlcv[-1][4])
+            price, _ = scanner.live_ticker_price(exchange_name, symbol, candle_close)
+            prices[symbol] = float(price)
+        except Exception as error:
+            print(f"{symbol} price unavailable: {str(error)[:80]}")
+    return prices
 
 
 def fetch_prices(symbols: list[str]) -> dict[str, float]:
@@ -200,35 +264,83 @@ def classify(price: float, record: dict, reached_entry: bool) -> tuple[int | Non
     return None, False
 
 
-def format_ping(stage: int, price: float, record: dict) -> str:
+STAGE_HEADINGS = {
+    STAGE_ENTRY: "🎯 ENTRY NOW",
+    STAGE_LATE: "⚠️ LATE · NEAR SL",
+    STAGE_READY: "👀 GET READY",
+}
+# Entry first: it is the only stage that asks for an action right now.
+STAGE_ORDER = [STAGE_ENTRY, STAGE_LATE, STAGE_READY]
+
+
+def format_line(stage: int, price: float, record: dict) -> str:
+    """One line per alert. Three lines each turned a busy run into a wall."""
     entry = record["_entry"]
     stop = record["_stop"]
     side = "BUY" if record.get("side") == "long" else "SELL"
     score = record.get("score")
-    score_text = f" | {int(score)}/10" if score is not None else ""
+    score_text = f" {int(score)}/10" if score is not None else ""
     stop_pct = abs(entry - stop) / entry * 100.0
     progress = risk_progress(price, entry, stop, record.get("side", "long"))
     symbol = display_symbol(record.get("symbol", ""))
+    places = price_decimals(entry, record.get("_market", "crypto"))
+
+    head = f"`{symbol}` {side}{score_text}"
+    levels = f"{entry:.{places}f} → {price:.{places}f}"
+    stop_text = f"SL {stop:.{places}f} ({stop_pct:.2f}%)"
 
     if stage == STAGE_READY:
         away = abs(price - entry) / entry * 100.0
-        head = f"👀 GET READY | {symbol} | {side}{score_text}"
-        detail = f"Entry {entry:.2f}  ·  now {price:.2f} ({away:.2f}% away)"
-        tail = f"SL {stop:.2f} | {stop_pct:.2f}%"
-    elif stage == STAGE_ENTRY:
-        head = f"🎯 ENTRY NOW | {symbol} | {side}{score_text}"
-        detail = f"Entry {entry:.2f}  ·  now {price:.2f}"
-        tail = f"SL {stop:.2f} | {stop_pct:.2f}%  ·  {progress * 100:.0f}% of risk used"
-    else:
-        head = f"⚠️ LATE · NEAR SL | {symbol} | {side}{score_text}"
-        detail = f"Entry {entry:.2f}  ·  now {price:.2f}"
-        tail = f"SL {stop:.2f} | {stop_pct:.2f}%  ·  {progress * 100:.0f}% of risk used"
-    return "\n".join([head, detail, tail])
+        return f"{head} · {levels} · {away:.2f}% away · {stop_text}"
+    return f"{head} · {levels} · {stop_text} · {progress * 100:.0f}% risk used"
+
+
+def build_digest(pings: list[tuple[int, str]], now: pd.Timestamp) -> list[str]:
+    """Group a run's pings into as few messages as Discord allows."""
+    if not pings:
+        return []
+
+    sections = []
+    for stage in STAGE_ORDER:
+        lines = [line for stage_id, line in pings if stage_id == stage]
+        if lines:
+            heading = f"**{STAGE_HEADINGS[stage]}**"
+            sections.append(heading + "\n" + "\n".join(lines))
+
+    header = f"__Entry watch · {now:%H:%M} IST__"
+    messages, current = [], header
+    for section in sections:
+        candidate = current + "\n\n" + section
+        if len(candidate) > MAX_MESSAGE_CHARS and current != header:
+            messages.append(current)
+            current = section
+        else:
+            current = candidate
+    messages.append(current)
+
+    # A single section can still outgrow one message on a busy day.
+    split: list[str] = []
+    for message in messages:
+        while len(message) > MAX_MESSAGE_CHARS:
+            cut = message.rfind("\n", 0, MAX_MESSAGE_CHARS)
+            cut = cut if cut > 0 else MAX_MESSAGE_CHARS
+            split.append(message[:cut])
+            message = message[cut:].lstrip("\n")
+        if message:
+            split.append(message)
+    return split
 
 
 def display_symbol(symbol: str) -> str:
     text = str(symbol).strip().upper()
-    return text[:-3] if text.endswith(".NS") else text
+    if text.endswith(".NS"):
+        return text[:-3]
+    try:
+        import scanner
+
+        return scanner.display_symbol(text)
+    except Exception:
+        return text
 
 
 def send_ping(message: str) -> bool:
@@ -249,21 +361,38 @@ def prune_state(state: dict, active_keys: set[str]) -> dict:
     return {key: value for key, value in state.items() if key in active_keys}
 
 
+def markets_for(choice: str) -> list[str]:
+    return ["nse", "crypto"] if choice == "all" else [choice]
+
+
 def main() -> None:
     args = parse_args()
     now = pd.Timestamp.now(tz=IST)
-    if not args.ignore_session and not in_trading_session(now):
-        print(f"Outside trading window ({now:%Y-%m-%d %H:%M} IST); nothing to do.")
-        return
 
-    watched = load_watched_alerts(args.timeframe, now)
+    watched: list[dict] = []
+    for market in markets_for(args.market):
+        # Crypto never closes, so the 09:15-15:10 guard is an NSE rule and
+        # applying it everywhere would silence crypto for most of the day.
+        if market == "nse" and not args.ignore_session and not in_trading_session(now):
+            print(f"NSE outside trading window ({now:%Y-%m-%d %H:%M} IST); skipping.")
+            continue
+        watched.extend(load_watched_alerts(market, args.timeframe, now))
+
     if not watched:
         print("No alerts inside their entry window.")
         return
 
     state = load_state()
-    prices = fetch_prices(sorted({record["symbol"] for record in watched}))
+    prices = fetch_prices(
+        sorted({r["symbol"] for r in watched if r["_market"] == "nse"})
+    )
+    prices.update(
+        fetch_crypto_prices(
+            sorted({r["symbol"] for r in watched if r["_market"] == "crypto"})
+        )
+    )
 
+    pings: list[tuple[int, str]] = []
     for record in watched:
         key = watch_key(record)
         price = prices.get(record["symbol"])
@@ -277,14 +406,24 @@ def main() -> None:
         stage, reached_entry = classify(price, record, reached_entry)
         entry_state["reached_entry"] = reached_entry
 
+        # Forward-only: a symbol reports each stage once, never on every
+        # run, which is what turned a handful of trades into a wall of
+        # near-identical messages.
         if stage is not None and stage > last_stage:
-            message = format_ping(stage, price, record)
-            if args.dry_run:
-                print(message + "\n")
-                entry_state["stage"] = stage
-            elif send_ping(message):
-                entry_state["stage"] = stage
+            pings.append((stage, format_line(stage, price, record)))
+            entry_state["stage"] = stage
         state[key] = entry_state
+
+    messages = build_digest(pings, now)
+    if not messages:
+        print("Nothing new to report.")
+    for message in messages:
+        if args.dry_run:
+            print(message + "\n")
+        elif not send_ping(message):
+            # The digest did not land, so nothing in it may be marked sent.
+            print("digest not delivered; stages left unmarked for the next run.")
+            return
 
     state = prune_state(state, {watch_key(record) for record in watched})
     if not args.dry_run:

@@ -133,8 +133,8 @@ class WatchWindowTests(unittest.TestCase):
         ]
         with tempfile.TemporaryDirectory() as tmp:
             path = self._write(pd.io.common.Path(tmp), rows)
-            with patch.dict(entry_confirm.ALERT_RECORDS, {"30m": path}):
-                result = entry_confirm.load_watched_alerts("30m", now)
+            with patch.dict(entry_confirm.ALERT_RECORDS, {"nse": {"30m": path}}):
+                result = entry_confirm.load_watched_alerts("nse", "30m", now)
 
         self.assertEqual([record["symbol"] for record in result], ["TCS.NS"])
 
@@ -142,13 +142,65 @@ class WatchWindowTests(unittest.TestCase):
 class FormattingTests(unittest.TestCase):
     def test_ping_reports_the_recorded_entry_and_stop_verbatim(self):
         record = watched(entry=4117.10, stop=4131.63, side="short", symbol="BAYERCROP.NS", score=9)
-        message = entry_confirm.format_ping(entry_confirm.STAGE_ENTRY, 4120.0, record)
+        line = entry_confirm.format_line(entry_confirm.STAGE_ENTRY, 4120.0, record)
 
-        self.assertIn("BAYERCROP", message)
-        self.assertIn("SELL", message)
-        self.assertIn("Entry 4117.10", message)
-        self.assertIn("SL 4131.63", message)
-        self.assertNotIn(".NS", message)
+        self.assertIn("BAYERCROP", line)
+        self.assertIn("SELL", line)
+        self.assertIn("4117.10", line)
+        self.assertIn("SL 4131.63", line)
+        self.assertNotIn(".NS", line)
+
+    def test_each_alert_takes_one_line(self):
+        record = watched(entry=100.0, stop=99.0, side="long", symbol="TCS.NS", score=8)
+        line = entry_confirm.format_line(entry_confirm.STAGE_ENTRY, 100.2, record)
+
+        self.assertNotIn(chr(10), line)
+
+    def test_a_cheap_coin_keeps_its_precision(self):
+        # Two decimals would print this as 0.00 and lose the level entirely.
+        record = watched(entry=0.002765, stop=0.002810, side="short", symbol="ZILUSDT")
+        line = entry_confirm.format_line(entry_confirm.STAGE_ENTRY, 0.002770, record)
+
+        self.assertIn("0.00276500", line)
+
+
+class DigestTests(unittest.TestCase):
+    def test_a_run_posts_one_message_not_one_per_symbol(self):
+        now = pd.Timestamp("2026-08-23 11:00", tz=entry_confirm.IST)
+        pings = [
+            (entry_confirm.STAGE_ENTRY, "`TCS` BUY 8/10 · a"),
+            (entry_confirm.STAGE_LATE, "`INFY` SELL 9/10 · b"),
+            (entry_confirm.STAGE_READY, "`WIPRO` BUY 6/10 · c"),
+            (entry_confirm.STAGE_ENTRY, "`SBIN` BUY 7/10 · d"),
+        ]
+
+        messages = entry_confirm.build_digest(pings, now)
+
+        self.assertEqual(len(messages), 1)
+        digest = messages[0]
+        for symbol in ("TCS", "INFY", "WIPRO", "SBIN"):
+            self.assertIn(symbol, digest)
+        # Entry first - it is the only stage asking for action right now.
+        self.assertLess(digest.index("ENTRY NOW"), digest.index("LATE"))
+        self.assertLess(digest.index("LATE"), digest.index("GET READY"))
+
+    def test_nothing_to_report_sends_nothing(self):
+        now = pd.Timestamp("2026-08-23 11:00", tz=entry_confirm.IST)
+
+        self.assertEqual(entry_confirm.build_digest([], now), [])
+
+    def test_a_flood_is_split_rather_than_truncated(self):
+        now = pd.Timestamp("2026-08-23 11:00", tz=entry_confirm.IST)
+        pings = [(entry_confirm.STAGE_ENTRY, f"`SYM{n:03d}` BUY 8/10 · line") for n in range(200)]
+
+        messages = entry_confirm.build_digest(pings, now)
+
+        self.assertGreater(len(messages), 1)
+        for message in messages:
+            self.assertLessEqual(len(message), entry_confirm.MAX_MESSAGE_CHARS)
+        joined = "".join(messages)
+        for n in (0, 99, 199):
+            self.assertIn(f"SYM{n:03d}", joined)
 
 
 if __name__ == "__main__":

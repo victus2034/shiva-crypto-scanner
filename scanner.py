@@ -680,7 +680,15 @@ def live_ticker_price(exchange_name, symbol, candle_close):
     return candle_close, "candle_close"
 
 
-def scan_symbol(symbol):
+def fetch_symbol_ohlcv(symbol):
+    """Candles for one symbol and the venue they came from.
+
+    CoinSwitch first because that is the book being charted; the rest of
+    the chain is a fallback whose levels can drift from the chart. Split
+    out of scan_symbol so anything else needing a price - the entry-confirm
+    pings, for one - goes through the same venue order instead of picking
+    its own exchange.
+    """
     last_error = None
     ohlcv = None
     exchange_name = None
@@ -738,6 +746,13 @@ def scan_symbol(symbol):
 
     if ohlcv is None:
         raise RuntimeError(f"all exchanges failed for {symbol}: {last_error}")
+
+    return ohlcv, exchange_name
+
+
+
+def scan_symbol(symbol):
+    ohlcv, exchange_name = fetch_symbol_ohlcv(symbol)
 
     df = pd.DataFrame(ohlcv, columns=["time", "open", "high", "low", "close", "volume"])
 
