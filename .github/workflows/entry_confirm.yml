@@ -1,6 +1,12 @@
 name: Shiva Entry Confirm
 
 on:
+  # Both markets: the NSE session, and the crypto alert window.
+  schedule:
+    # NSE session, every five minutes
+    - cron: "*/5 3-10 * * 1-5"
+    # crypto window, every ten minutes
+    - cron: "*/10 2-19 * * *"
   workflow_dispatch:
     inputs:
       market:

@@ -1,6 +1,10 @@
 name: Shiva NSE Scanner 30m
 
 on:
+  # NSE hours only.
+  schedule:
+    # 08:30-16:20 IST on weekdays; the script's own guard trims the edges
+    - cron: "*/20 3-10 * * 1-5"
   workflow_dispatch:
 
 permissions:

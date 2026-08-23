@@ -4,8 +4,10 @@ import hashlib
 import json
 import os
 import time
+from datetime import datetime
 from pathlib import Path
 from urllib.parse import unquote, urlencode
+from zoneinfo import ZoneInfo
 
 import ccxt
 from cryptography.hazmat.primitives.asymmetric.ed25519 import Ed25519PrivateKey
@@ -46,6 +48,8 @@ from config import (
     REARM_FACTOR,
     SHOW_4H_ZONE_SCORES,
     REQUIRE_COINSWITCH,
+    CRYPTO_ALERT_END,
+    CRYPTO_ALERT_START,
     SCAN_SLEEP,
     SCAN_WORKERS,
     SIGNAL_ALERT_COOLDOWN_SECONDS,
@@ -1046,7 +1050,28 @@ def send_discord_message(message, webhook_env_name="DISCORD_WEBHOOK_URL", webhoo
     return False
 
 
+IST = ZoneInfo("Asia/Kolkata")
+
+
+def in_alert_window(now=None):
+    """True while the user is awake to act on an alert.
+
+    The window wraps midnight - 08:00 to 01:00 - so it is two ranges on
+    the clock, not one. Enforced here rather than only in the schedule
+    so a manual run at 04:00 cannot post either.
+    """
+    now = now or datetime.now(IST)
+    current = now.time()
+    if CRYPTO_ALERT_START <= CRYPTO_ALERT_END:
+        return CRYPTO_ALERT_START <= current <= CRYPTO_ALERT_END
+    return current >= CRYPTO_ALERT_START or current <= CRYPTO_ALERT_END
+
+
 def send_alert(message):
+    if not in_alert_window():
+        print(f"Outside the {CRYPTO_ALERT_START:%H:%M}-{CRYPTO_ALERT_END:%H:%M} IST alert window; holding.")
+        return False
+
     if PRINT_ALERTS_TO_CONSOLE:
         print("\n" + "=" * 80)
         print(message)

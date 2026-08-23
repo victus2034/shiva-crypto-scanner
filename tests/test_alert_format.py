@@ -1,3 +1,4 @@
+from datetime import datetime
 import json
 import tempfile
 import unittest
@@ -296,3 +297,30 @@ class SymbolNamingTests(unittest.TestCase):
         # what a symbol is called, or trades cannot be matched between them.
         for raw in ("SPYXUSD", "MSFT/USDT", "SLVONUSD", "BTCUSDT"):
             self.assertEqual(scanner.alert_symbol(raw), scanner.display_symbol(raw))
+
+
+class CryptoAlertWindowTests(unittest.TestCase):
+    def test_alerts_are_held_while_nobody_is_awake(self):
+        # The window wraps midnight, so it is two clock ranges, not one.
+        for hour, expected in (
+            (7, False),
+            (8, True),
+            (13, True),
+            (23, True),
+            (0, True),
+            (1, True),
+            (2, False),
+            (4, False),
+        ):
+            moment = datetime(2026, 8, 23, hour, 0, tzinfo=scanner.IST)
+            with self.subTest(hour=hour):
+                self.assertEqual(scanner.in_alert_window(moment), expected)
+
+    def test_a_held_alert_is_not_sent(self):
+        with patch.object(scanner, "in_alert_window", return_value=False):
+            with patch.object(scanner, "send_discord_message") as discord:
+                self.assertFalse(scanner.send_alert("BTC | BUY"))
+
+        discord.assert_not_called()
+
+

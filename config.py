@@ -1,4 +1,5 @@
 import os
+from datetime import time as datetime_time
 
 
 def env_int(name, default):
@@ -246,6 +247,14 @@ MAX_CONSECUTIVE_ZONE_TOUCHES = 2
 # candles, the alerts this blocks earned 0.054R on NSE and 0.389R on
 # crypto, against 0.122R and 0.564R for the ones that survive it.
 MIN_ZONE_AGE_CANDLES = env_int("SHIVA_MIN_ZONE_AGE_CANDLES", 20)
+# Crypto trades around the clock, but the user does not. Alerts are held
+# outside 08:00-01:00 IST so nothing fires while nobody is awake to take
+# it - an alert at 04:00 is not an opportunity, it is a missed trade in
+# the morning's scrollback. The window wraps midnight, so the end hour is
+# earlier than the start hour on the clock.
+CRYPTO_ALERT_START = datetime_time(8, 0)
+CRYPTO_ALERT_END = datetime_time(1, 0)
+
 SCAN_SLEEP = 300
 SCAN_WORKERS = 8
 ALERT_COOLDOWN_SECONDS = env_int("SHIVA_ALERT_COOLDOWN_SECONDS", 4 * 60 * 60)

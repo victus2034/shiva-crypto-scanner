@@ -361,6 +361,20 @@ def prune_state(state: dict, active_keys: set[str]) -> dict:
     return {key: value for key, value in state.items() if key in active_keys}
 
 
+def crypto_alert_window_open(now: pd.Timestamp) -> bool:
+    """Same 08:00-01:00 IST window the crypto scanner alerts in.
+
+    A ping is only useful if the alert behind it could have been
+    posted, and following the scanner keeps one rule in one place.
+    """
+    try:
+        import scanner
+
+        return scanner.in_alert_window(now.to_pydatetime())
+    except Exception:
+        return True
+
+
 def markets_for(choice: str) -> list[str]:
     return ["nse", "crypto"] if choice == "all" else [choice]
 
@@ -375,6 +389,13 @@ def main() -> None:
         # applying it everywhere would silence crypto for most of the day.
         if market == "nse" and not args.ignore_session and not in_trading_session(now):
             print(f"NSE outside trading window ({now:%Y-%m-%d %H:%M} IST); skipping.")
+            continue
+        if (
+            market == "crypto"
+            and not args.ignore_session
+            and not crypto_alert_window_open(now)
+        ):
+            print("Crypto outside the 08:00-01:00 IST window; skipping.")
             continue
         watched.extend(load_watched_alerts(market, args.timeframe, now))
 
