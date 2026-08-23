@@ -86,6 +86,23 @@ def describe(symbol, exchange):
     print()
 
 
+def show_top_up(symbol):
+    """What the scanner actually ends up with, after the rebuild."""
+    try:
+        candles = sc.fetch_coinswitch_ohlcv(symbol)
+    except Exception as error:
+        print(f"    scanner sees: {str(error)[:70]}")
+        return
+    if not candles:
+        print("    scanner sees: nothing")
+        return
+    newest = int(candles[-1][0])
+    age = (time.time() * 1000 - newest) / 60000
+    tail = " ".join(as_ist(int(c[0])).strftime("%H:%M") for c in candles[-4:])
+    print(f"    scanner sees: {len(candles)} candles, newest "
+          f"{as_ist(newest):%H:%M} IST ({age:.1f} min ago) [{tail}]")
+
+
 def main() -> None:
     if not sc.is_coinswitch_configured():
         print("No CoinSwitch credentials visible.")
@@ -102,12 +119,16 @@ def main() -> None:
     print()
     for symbol in SUSPECT:
         describe(symbol, exchange)
+        show_top_up(symbol)
+        print()
         time.sleep(0.8)
 
     print("CONTROL - these do not")
     print()
     for symbol in CONTROL:
         describe(symbol, exchange)
+        show_top_up(symbol)
+        print()
         time.sleep(0.8)
 
 
