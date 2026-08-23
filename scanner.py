@@ -650,7 +650,10 @@ def _fetch_coinswitch_ohlcv_once(symbol, interval):
     if not candles:
         raise RuntimeError(f"CoinSwitch returned no candles for {symbol}")
 
-    candles = sorted(candles, key=lambda candle: candle["start_time"])
+    # CoinSwitch sends start_time as a string. Today every value is the
+    # same width so a text sort happens to match a numeric one, but that
+    # is a coincidence of the epoch, not a guarantee.
+    candles = sorted(candles, key=lambda candle: int(candle["start_time"]))
     return [
         [
             int(candle["start_time"]),

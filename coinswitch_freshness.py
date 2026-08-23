@@ -49,7 +49,11 @@ def describe(symbol, exchange):
                 {"exchange": exchange, "symbol": contract,
                  "interval": interval, "limit": 5},
             )
-            candles = sorted(payload.get("data") or [], key=lambda c: c["start_time"])
+            # The venue sends start_time as a string, so coerce before
+            # sorting or comparing - "9" sorts after "10" otherwise.
+            candles = sorted(
+                payload.get("data") or [], key=lambda c: int(c["start_time"])
+            )
         except Exception as error:
             print(f"    {label} klines: {str(error)[:70]}")
             continue
@@ -59,11 +63,12 @@ def describe(symbol, exchange):
             continue
 
         newest = candles[-1]
-        age = (time.time() * 1000 - newest["start_time"]) / 60000
+        newest_ms = int(newest["start_time"])
+        age = (time.time() * 1000 - newest_ms) / 60000
         print(f"    {label} klines: {len(candles)} candles, newest starts "
-              f"{as_ist(newest['start_time']):%H:%M:%S} IST ({age:.1f} min ago), "
+              f"{as_ist(newest_ms):%H:%M:%S} IST ({age:.1f} min ago), "
               f"volume {newest.get('volume')}")
-        starts = [as_ist(c["start_time"]).strftime("%H:%M") for c in candles]
+        starts = [as_ist(int(c["start_time"])).strftime("%H:%M") for c in candles]
         print(f"    {label} starts: {' '.join(starts)}")
 
     try:
@@ -72,6 +77,7 @@ def describe(symbol, exchange):
         )
         entry = (payload.get("data") or {}).get(exchange) or {}
         stamp = entry.get("timestamp")
+        stamp = int(stamp) if stamp is not None else None
         when = f"{as_ist(stamp):%H:%M:%S} IST" if stamp else "no timestamp"
         lag = f"{(time.time() * 1000 - stamp) / 60000:.1f} min" if stamp else "?"
         print(f"    ticker: last {entry.get('last_price')} at {when} (lag {lag})")
