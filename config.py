@@ -240,9 +240,12 @@ MAX_CONSECUTIVE_ZONE_TOUCHES = 2
 # or two ago that price is already sitting on was never defended - it is
 # just the recent high or low, and alerting on it produces the small, risky
 # levels that are not worth a trade. Age is counted from confirmation, so a
-# 30m zone must survive fifteen candles - about seven hours - before it can
-# raise an alert, and a 4h zone about two and a half days.
-MIN_ZONE_AGE_CANDLES = env_int("SHIVA_MIN_ZONE_AGE_CANDLES", 15)
+# 30m zone must survive twenty candles - about ten hours - before it can
+# raise an alert, and a 4h zone a little over three days.
+# Twenty rather than fifteen because both markets said so: replayed on 5m
+# candles, the alerts this blocks earned 0.054R on NSE and 0.389R on
+# crypto, against 0.122R and 0.564R for the ones that survive it.
+MIN_ZONE_AGE_CANDLES = env_int("SHIVA_MIN_ZONE_AGE_CANDLES", 20)
 SCAN_SLEEP = 300
 SCAN_WORKERS = 8
 ALERT_COOLDOWN_SECONDS = env_int("SHIVA_ALERT_COOLDOWN_SECONDS", 4 * 60 * 60)

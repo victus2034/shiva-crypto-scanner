@@ -786,8 +786,11 @@ class DailyBacktestSummaryTests(unittest.TestCase):
         result = summary.simulate_alert(frame, crypto_alert(), 0, 2, market="crypto")
 
         self.assertEqual(result["final_result"], summary.BREAK_EVEN)
-        # No Dhan charges apply off NSE, so this is a true flat scratch.
-        self.assertEqual(result["net_realized_r"], 0.0)
+        # Crypto pays charges too, so the stop moves past entry far enough
+        # to cover them and the exit is a true scratch rather than a loss
+        # the size of the round trip.
+        self.assertGreaterEqual(result["net_realized_r"], 0.0)
+        self.assertAlmostEqual(result["net_realized_r"], 0.0, places=1)
 
     def test_crypto_one_r_supersedes_half_r_after_reversal(self):
         frame = crypto_frame(

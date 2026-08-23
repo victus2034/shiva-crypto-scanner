@@ -66,10 +66,24 @@ SL_BUFFER_PCT = 0.10
 # 18% GST on brokerage + exchange + SEBI. Constant at any size below the
 # ~Rs66,667 where the Rs20 brokerage cap starts to bite and the rate falls.
 ROUND_TRIP_COST_PCT = 0.1063
+# CoinSwitch futures, both legs. Unlike the NSE figure this is not reconciled
+# against a contract note yet, so it is a placeholder the moment a real one
+# exists: set SHIVA_CRYPTO_ROUND_TRIP_COST_PCT to the measured rate. Leaving
+# it at zero was worse than an approximation - it made crypto look six times
+# better than NSE when the difference was almost entirely unpriced charges.
+CRYPTO_ROUND_TRIP_COST_PCT = float(
+    os.getenv("SHIVA_CRYPTO_ROUND_TRIP_COST_PCT", "0.10")
+)
 # Where the stop goes once +0.5R trades. Entry alone is not breakeven - the
 # round trip has already been paid - so the stop sits far enough past entry
 # to clear costs with a little room to spare.
 BREAK_EVEN_OFFSET_PCT = 0.120
+# The same rule off NSE. Entry is not breakeven anywhere charges are paid,
+# so once crypto carries a cost the stop has to clear it too - otherwise
+# every "breakeven" exit books a loss the size of the round trip, which on
+# these stops is close to half of R. Sized at the ratio chosen for NSE,
+# 0.120 against a 0.1063 cost, so it tracks whatever rate is configured.
+CRYPTO_BREAK_EVEN_OFFSET_PCT = round(CRYPTO_ROUND_TRIP_COST_PCT * 1.129, 4)
 # Set False to hold the original stop the whole way and never move it up.
 # Kept switchable so the rule can be measured against real outcomes rather
 # than argued about - paper_trading reads the same flag so the two cannot
@@ -777,9 +791,11 @@ def simulate_alert(
     target_half = entry_price + direction * risk * HALF_R
     target_1 = entry_price + direction * risk * TARGET_1_R
     target_2 = entry_price + direction * risk * TARGET_2_R
-    # The offset exists to clear Dhan's NSE charges, so it only applies
-    # where those charges do; no equivalent has been measured for crypto.
-    break_even_offset = BREAK_EVEN_OFFSET_PCT if market in (None, "nse") else 0.0
+    # The offset exists to clear charges, so it follows whichever rate this
+    # market pays rather than being an NSE-only rule.
+    break_even_offset = (
+        BREAK_EVEN_OFFSET_PCT if market in (None, "nse") else CRYPTO_BREAK_EVEN_OFFSET_PCT
+    )
     break_even_stop = entry_price + direction * entry_price * break_even_offset / 100.0
     # On a tight stop the offset can exceed the +0.5R move itself, putting
     # the breakeven stop the wrong side of the price that triggers it. A
@@ -1204,12 +1220,16 @@ def round_trip_cost_r(entry_price: float, risk: float, market: str | None) -> fl
 
     Costs are a fixed share of turnover while risk is set by the stop, so
     the same charge is a much bigger fraction of R on a tight stop than a
-    wide one. NSE only - these are Dhan equity intraday rates, and no
-    equivalent has been measured for the crypto venues.
+    wide one - on these stops it runs near half of R, which is most of the
+    gross edge. NSE uses the Dhan rate reconciled against a contract note;
+    everything else uses the crypto rate, which is still an estimate.
     """
-    if market not in (None, "nse") or risk <= 0:
+    if risk <= 0:
         return 0.0
-    return (entry_price * ROUND_TRIP_COST_PCT / 100.0) / risk
+    rate = ROUND_TRIP_COST_PCT if market in (None, "nse") else CRYPTO_ROUND_TRIP_COST_PCT
+    if rate <= 0:
+        return 0.0
+    return (entry_price * rate / 100.0) / risk
 
 
 def original_stop_price(alert: dict) -> float:
