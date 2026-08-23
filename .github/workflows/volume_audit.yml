@@ -42,6 +42,13 @@ jobs:
 
       # Read-only: nothing is posted to Discord and no config changes. The
       # reports are read from these logs.
+      - name: Diagnose stale candles
+        env:
+          COINSWITCH_API_KEY: ${{ secrets.COINSWITCH_API_KEY }}
+          COINSWITCH_SECRET_KEY: ${{ secrets.COINSWITCH_SECRET_KEY }}
+          COINSWITCH_EXCHANGE: ${{ secrets.COINSWITCH_EXCHANGE }}
+        run: python coinswitch_freshness.py
+
       - name: Check which symbols CoinSwitch lists
         env:
           COINSWITCH_API_KEY: ${{ secrets.COINSWITCH_API_KEY }}
