@@ -623,12 +623,78 @@ def fetch_coinswitch_ohlcv(symbol, attempts=3, retry_delay=1.5):
     last_error = None
     for attempt in range(attempts):
         try:
-            return _fetch_coinswitch_ohlcv_once(symbol, interval)
+            return top_up_recent_candles(
+                symbol, _fetch_coinswitch_ohlcv_once(symbol, interval)
+            )
         except Exception as error:
             last_error = error
             if attempt < attempts - 1:
                 time.sleep(retry_delay)
     raise last_error
+
+
+# The interval used to rebuild the buckets CoinSwitch has not published
+# yet. One step down is enough: the lag runs to two or three buckets, and
+# a step down costs one extra request rather than thirty.
+TOP_UP_INTERVAL = {"30m": "1m", "4h": "30m"}
+
+
+def bucket_candles(candles, bucket_seconds):
+    """Aggregate finer candles into whole buckets, oldest first."""
+    bucket_ms = bucket_seconds * 1000
+    buckets = {}
+    for stamp, open_, high, low, close, volume in candles:
+        start = int(stamp) // bucket_ms * bucket_ms
+        current = buckets.get(start)
+        if current is None:
+            buckets[start] = [start, open_, high, low, close, volume]
+            continue
+        current[2] = max(current[2], high)
+        current[3] = min(current[3], low)
+        current[4] = close
+        current[5] = current[5] + volume
+    return [buckets[start] for start in sorted(buckets)]
+
+
+def top_up_recent_candles(symbol, candles):
+    """Rebuild the buckets CoinSwitch has not caught up on yet.
+
+    Its 30m series trails the live market by one to three buckets while
+    its 1m series is current to the minute, so a zone price has already
+    closed through can still look alive for over an hour. The chart the
+    user trades from shows those candles; this makes the scan see them
+    too. Only buckets newer than the published series are added - nothing
+    already returned is rewritten.
+    """
+    source = TOP_UP_INTERVAL.get(TIMEFRAME)
+    bucket_seconds = TIMEFRAME_SECONDS.get(TIMEFRAME)
+    if not candles or source is None or bucket_seconds is None:
+        return candles
+
+    interval = COINSWITCH_INTERVALS.get(source)
+    if interval is None:
+        return candles
+
+    last_start = int(candles[-1][0])
+    try:
+        finer = _fetch_coinswitch_ohlcv_once(symbol, interval)
+    except Exception as error:
+        # A missing top-up is not worth failing a scan over; the published
+        # series is still usable, just behind.
+        print(f"{symbol} top-up unavailable: {str(error)[:70]}")
+        return candles
+
+    # Completed buckets only. The published series carries closed
+    # candles, and letting a half-formed one in would let price dip
+    # through a zone mid-bucket and retire a level that the close
+    # never broke.
+    now_ms = time.time() * 1000
+    bucket_ms = bucket_seconds * 1000
+    fresh = [
+        bucket for bucket in bucket_candles(finer, bucket_seconds)
+        if bucket[0] > last_start and bucket[0] + bucket_ms <= now_ms
+    ]
+    return candles + fresh if fresh else candles
 
 
 def _fetch_coinswitch_ohlcv_once(symbol, interval):
