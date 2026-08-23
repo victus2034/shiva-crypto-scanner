@@ -86,13 +86,21 @@ def describe(symbol, exchange):
     print()
 
 
-def show_top_up(symbol):
-    """What the scanner actually ends up with, after the rebuild."""
+def show_top_up(symbol, timeframe="30m"):
+    """What the scanner actually ends up with, after the rebuild.
+
+    Pins the timeframe: scanner.TIMEFRAME defaults to 4h, so without
+    this the line reported a 4h series while everything above it was
+    30m, which made the comparison meaningless.
+    """
+    previous, sc.TIMEFRAME = sc.TIMEFRAME, timeframe
     try:
         candles = sc.fetch_coinswitch_ohlcv(symbol)
     except Exception as error:
         print(f"    scanner sees: {str(error)[:70]}")
         return
+    finally:
+        sc.TIMEFRAME = previous
     if not candles:
         print("    scanner sees: nothing")
         return
