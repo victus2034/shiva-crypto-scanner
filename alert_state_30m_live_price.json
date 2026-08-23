@@ -2000,7 +2000,8 @@
     "VVV/USDT|30m|long|16.4250000000|16.5253600000": 1787455923.739768,
     "ICP/USDT|30m|long|2.2720000000|2.2771700000": 1787455923.868711,
     "MNT/USDT|30m|long|0.4739000000|0.4759620000": 1787455924.05783,
-    "AAPLXUSD|30m|short|310.2218500000|310.3900000000": 1787455924.5057933
+    "AAPLXUSD|30m|short|310.2218500000|310.3900000000": 1787455924.5057933,
+    "KORU/USDT|30m|short|20.4494000000|20.5100000000": 1787459519.5524404
   },
   "METAXUSD|demand|577.00000000|579.20000000": {
     "in_zone": false,
@@ -12537,8 +12538,8 @@
     "last_alert_at": 0.0
   },
   "KORU/USDT|supply|20.44940000|20.51000000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1787459519.5524404
   },
   "KORU/USDT|demand|18.64000000|18.75775000": {
     "in_zone": false,
@@ -13109,6 +13110,18 @@
     "last_alert_at": 0.0
   },
   "MSTRBUSD|demand|119.34000000|119.54040000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "COTI/USDT|demand|0.01120300|0.01130889": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "BNBUSD|demand|671.40000000|672.56150000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "GRAMUSD|supply|1.55498800|1.56000000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
