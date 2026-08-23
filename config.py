@@ -247,6 +247,13 @@ MAX_CONSECUTIVE_ZONE_TOUCHES = 2
 # candles, the alerts this blocks earned 0.054R on NSE and 0.389R on
 # crypto, against 0.122R and 0.564R for the ones that survive it.
 MIN_ZONE_AGE_CANDLES = env_int("SHIVA_MIN_ZONE_AGE_CANDLES", 20)
+# Shortest gap between two scans of the same timeframe. Every workflow is
+# also dispatched by an external scheduler, so adding cron meant each scan
+# ran twice - once on each trigger, minutes apart. Rather than depend on
+# that scheduler being found and switched off, a scan that starts too soon
+# after the last one steps aside. Zero disables the guard.
+MIN_SCAN_INTERVAL_SECONDS = env_int("SHIVA_MIN_SCAN_INTERVAL_SECONDS", 8 * 60)
+
 # How many candles a feed may be behind before it counts as dead.
 # CoinSwitch omits any bucket with no trades and its higher-timeframe
 # series trails the live market, so at 14:55 the newest 30m candle was

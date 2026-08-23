@@ -35,6 +35,7 @@ from config import (
     MAX_DISTANCE_PCT,
     MIN_CRYPTO_ZONE_SCORE,
     MIN_DISTANCE_PCT,
+    MIN_SCAN_INTERVAL_SECONDS,
     HISTORY_OF_ZONES_TO_KEEP,
     MIN_DEPARTURE_ATR,
     MIN_WICK_ATR,
@@ -1314,8 +1315,43 @@ def print_summary(results):
         print(f"Sell Signal: {result['sell_signal']}")
 
 
+LAST_SCAN_KEY = "__last_scan_started__"
+
+
+def scan_too_soon(state, now=None):
+    """True when the previous scan of this timeframe is still recent.
+
+    Two triggers fire every workflow - the cron in this repo and an
+    external scheduler - so without this each scan runs twice. Keyed by
+    timeframe, since 30m and 4h are separate schedules that should not
+    block each other.
+    """
+    if MIN_SCAN_INTERVAL_SECONDS <= 0:
+        return False
+    previous = (state.get(LAST_SCAN_KEY) or {}).get(TIMEFRAME)
+    if previous is None:
+        return False
+    elapsed = (now if now is not None else time.time()) - float(previous)
+    return 0 <= elapsed < MIN_SCAN_INTERVAL_SECONDS
+
+
+def mark_scan_started(state, now=None):
+    stamps = state.setdefault(LAST_SCAN_KEY, {})
+    stamps[TIMEFRAME] = now if now is not None else time.time()
+
+
 def run_scan_once(state):
     global XSTOCK_CONTEXTS
+
+    if scan_too_soon(state):
+        print(
+            f"A {TIMEFRAME} scan already ran within the last "
+            f"{MIN_SCAN_INTERVAL_SECONDS // 60} minutes; standing down."
+        )
+        return
+
+    mark_scan_started(state)
+    save_state(state)
 
     results = []
     failures = []

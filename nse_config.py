@@ -158,6 +158,10 @@ MAX_CONSECUTIVE_ZONE_TOUCHES = 2
 # candles, the alerts this blocks earned 0.054R on NSE and 0.389R on
 # crypto, against 0.122R and 0.564R for the ones that survive it.
 MIN_ZONE_AGE_CANDLES = 20
+# Shortest gap between two scans of the same timeframe. Every workflow is
+# also dispatched by an external scheduler, so cron in this repo means each
+# scan would otherwise run twice, minutes apart.
+MIN_SCAN_INTERVAL_SECONDS = 8 * 60
 SCAN_SLEEP = 300
 SCAN_WORKERS = 8
 ALERT_COOLDOWN_SECONDS = 4 * 60 * 60
