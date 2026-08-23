@@ -686,7 +686,10 @@ class DailyBacktestSummaryTests(unittest.TestCase):
         self.assertEqual(summary.crypto_report_date(evening), pd.Timestamp("2026-08-05").date())
 
     def test_crypto_default_report_date_uses_completed_bucket(self):
-        today = pd.Timestamp.now(tz=summary.IST).date()
+        # Pinned past the 16:30 IST boundary. Reading the real clock
+        # made this pass or fail depending on the time of day.
+        now = pd.Timestamp("2026-08-23 18:00", tz=summary.IST)
+        today = now.date()
         yesterday = today - pd.Timedelta(days=1)
         tomorrow = today + pd.Timedelta(days=1)
         records = pd.DataFrame(
@@ -697,13 +700,28 @@ class DailyBacktestSummaryTests(unittest.TestCase):
             ]
         )
 
-        self.assertEqual(summary.select_target_date(records, None, "crypto", "30m"), today)
+        self.assertEqual(
+            summary.select_target_date(records, None, "crypto", "30m", now), today
+        )
 
     def test_crypto_default_report_date_skips_when_no_bucket_is_complete(self):
-        today = pd.Timestamp.now(tz=summary.IST).date()
-        records = pd.DataFrame([{"report_date": today}])
+        # Before the boundary the day is still running, so there is
+        # nothing complete to report and the answer is None.
+        now = pd.Timestamp("2026-08-23 09:00", tz=summary.IST)
+        records = pd.DataFrame([{"report_date": now.date()}])
 
-        self.assertEqual(summary.select_target_date(records, None, "crypto", "4h"), today)
+        self.assertIsNone(
+            summary.select_target_date(records, None, "crypto", "4h", now)
+        )
+
+    def test_crypto_reports_the_day_once_its_bucket_closes(self):
+        now = pd.Timestamp("2026-08-23 18:00", tz=summary.IST)
+        records = pd.DataFrame([{"report_date": now.date()}])
+
+        self.assertEqual(
+            summary.select_target_date(records, None, "crypto", "4h", now),
+            now.date(),
+        )
 
     def test_nse_cutoff_uses_only_bars_ending_before_cutoff(self):
         index = pd.DatetimeIndex(

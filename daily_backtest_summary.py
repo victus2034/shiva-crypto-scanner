@@ -346,16 +346,17 @@ def select_target_date(
     requested: str | None,
     market: str = "nse",
     timeframe: str = "30m",
+    now=None,
 ):
     if requested:
         return pd.Timestamp(requested).date()
     if records.empty:
-        return pd.Timestamp.now(tz=IST).date()
+        return (now if now is not None else pd.Timestamp.now(tz=IST)).date()
     if "report_date" in records:
         if market in {"crypto", "xstock", "other"}:
             completed_dates = [
                 date for date in records["report_date"].dropna().unique()
-                if crypto_report_bucket_ready(date, timeframe)
+                if crypto_report_bucket_ready(date, timeframe, now)
             ]
             if completed_dates:
                 return max(completed_dates)
@@ -364,13 +365,20 @@ def select_target_date(
     return records["event_time_ist"].dt.date.max()
 
 
-def crypto_report_bucket_ready(report_date, timeframe: str) -> bool:
+def crypto_report_bucket_ready(report_date, timeframe: str, now=None) -> bool:
+    """Whether a crypto day is closed enough to report on.
+
+    Takes the current time as an argument so a caller - a test, in
+    practice - can ask about a fixed moment. Reading the clock
+    directly made the answer depend on when the suite happened to run.
+    """
     report_day = pd.Timestamp(report_date).date()
     report_time = pd.Timestamp(
         datetime.combine(report_day, CRYPTO_REPORT_BOUNDARY),
         tz=IST,
     )
-    return pd.Timestamp.now(tz=IST) >= report_time
+    now = now if now is not None else pd.Timestamp.now(tz=IST)
+    return now >= report_time
 
 
 def fetch_frames(symbols: list[str]) -> tuple[dict[str, pd.DataFrame], dict[str, str]]:
