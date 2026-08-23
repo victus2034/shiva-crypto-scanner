@@ -51,6 +51,7 @@ from config import (
     CRYPTO_ALERT_END,
     CRYPTO_ALERT_START,
     SCAN_SLEEP,
+    STALE_BARS_ALLOWED,
     SCAN_WORKERS,
     SIGNAL_ALERT_COOLDOWN_SECONDS,
     SWING_LENGTH,
@@ -523,7 +524,7 @@ def require_fresh_ohlcv(ohlcv, source_name):
         return ohlcv
 
     last_candle_seconds = ohlcv[-1][0] / 1000
-    max_age_seconds = timeframe_seconds * 2 + 5 * 60
+    max_age_seconds = timeframe_seconds * STALE_BARS_ALLOWED + 5 * 60
     age_seconds = time.time() - last_candle_seconds
     if age_seconds > max_age_seconds:
         raise RuntimeError(

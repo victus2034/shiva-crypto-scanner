@@ -1,3 +1,4 @@
+import time
 from datetime import datetime
 import json
 import tempfile
@@ -323,4 +324,27 @@ class CryptoAlertWindowTests(unittest.TestCase):
 
         discord.assert_not_called()
 
+class FeedFreshnessTests(unittest.TestCase):
+    def _candle(self, minutes_old):
+        stamp = int((time.time() - minutes_old * 60) * 1000)
+        return [[stamp, 1.0, 1.0, 1.0, 1.0, 1.0]]
 
+    def test_a_venue_that_skips_empty_buckets_is_not_dead(self):
+        # CoinSwitch omits 30m buckets with no trades, so the newest
+        # candle routinely sits two buckets back while the ticker is
+        # current. Rejecting that sent the symbol to an exchange the
+        # user does not chart.
+        with patch.object(scanner, "TIMEFRAME", "30m"):
+            for minutes in (55, 85, 115):
+                with self.subTest(minutes=minutes):
+                    self.assertTrue(
+                        scanner.require_fresh_ohlcv(
+                            self._candle(minutes), "CoinSwitch"
+                        )
+                    )
+
+    def test_a_genuinely_dead_feed_is_still_rejected(self):
+        with patch.object(scanner, "TIMEFRAME", "30m"):
+            with self.assertRaises(RuntimeError):
+                # VANRY was ten days behind when it was dropped.
+                scanner.require_fresh_ohlcv(self._candle(10 * 24 * 60), "CoinSwitch")

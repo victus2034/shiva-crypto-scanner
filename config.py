@@ -247,6 +247,16 @@ MAX_CONSECUTIVE_ZONE_TOUCHES = 2
 # candles, the alerts this blocks earned 0.054R on NSE and 0.389R on
 # crypto, against 0.122R and 0.564R for the ones that survive it.
 MIN_ZONE_AGE_CANDLES = env_int("SHIVA_MIN_ZONE_AGE_CANDLES", 20)
+# How many candles a feed may be behind before it counts as dead.
+# CoinSwitch omits any bucket with no trades and its higher-timeframe
+# series trails the live market, so at 14:55 the newest 30m candle was
+# 13:30 for BTC and 13:00 for XRP - while their 1m candles and tickers
+# were current to the second. Two bars plus five minutes rejected that
+# as stale and sent the symbol to an exchange the user does not chart,
+# which is the opposite of what the check is for. Four bars still
+# catches a genuinely dead feed - VANRY was ten days behind.
+STALE_BARS_ALLOWED = env_int("SHIVA_STALE_BARS_ALLOWED", 4)
+
 # Crypto trades around the clock, but the user does not. Alerts are held
 # outside 08:00-01:00 IST so nothing fires while nobody is awake to take
 # it - an alert at 04:00 is not an opportunity, it is a missed trade in
