@@ -29,6 +29,7 @@ from config import (
     ENABLE_XSTOCK_HYBRID_RATINGS,
     EXCHANGE_IDS,
     MAX_CONSECUTIVE_ZONE_TOUCHES,
+    MIN_ZONE_AGE_CANDLES,
     MAX_DISTANCE_PCT,
     MIN_CRYPTO_ZONE_SCORE,
     MIN_DISTANCE_PCT,
@@ -336,12 +337,27 @@ def build_zones(df):
     return supply_zones, demand_zones
 
 
-def nearest_active_zone(price, zones, zone_type):
+def too_young_to_alert(zone, current_index):
+    """A level price reaches within a candle or two of confirmation.
+
+    Nothing has been defended yet - it is simply the recent high or low, and
+    the zone is drawn tight around it, so the alert carries a small stop and
+    no evidence that anyone is selling there. Waiting a set number of candles
+    is what separates a level that held from a level that just happened.
+    """
+    if current_index is None or MIN_ZONE_AGE_CANDLES <= 0:
+        return False
+    return (current_index - zone["created_idx"]) < MIN_ZONE_AGE_CANDLES
+
+
+def nearest_active_zone(price, zones, zone_type, current_index=None):
     nearest = None
     nearest_dist = 999.0
 
     for zone in zones:
         if not zone["active"] or zone.get("over_touched", False):
+            continue
+        if too_young_to_alert(zone, current_index):
             continue
 
         # Measure to the edge price actually reaches first, which is the
@@ -728,8 +744,9 @@ def scan_symbol(symbol):
     candle_close = float(df["close"].iloc[-1])
     price, price_source = live_ticker_price(exchange_name, symbol, candle_close)
     supply_zones, demand_zones = build_zones(df)
-    nearest_supply, supply_dist = nearest_active_zone(price, supply_zones, "supply")
-    nearest_demand, demand_dist = nearest_active_zone(price, demand_zones, "demand")
+    latest_index = len(df) - 1
+    nearest_supply, supply_dist = nearest_active_zone(price, supply_zones, "supply", latest_index)
+    nearest_demand, demand_dist = nearest_active_zone(price, demand_zones, "demand", latest_index)
     buy_signal, sell_signal = get_range_filter_signals(df)
     supply_rating = None
     demand_rating = None

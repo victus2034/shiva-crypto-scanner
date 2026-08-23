@@ -235,6 +235,14 @@ REARM_FACTOR = 1.25
 # Pine indicator, which has no touch veto at all: the indicator draws every
 # level, this decides which are worth an alert.
 MAX_CONSECUTIVE_ZONE_TOUCHES = 2
+
+# A zone has to stand before it means anything. A level confirmed a candle
+# or two ago that price is already sitting on was never defended - it is
+# just the recent high or low, and alerting on it produces the small, risky
+# levels that are not worth a trade. Age is counted from confirmation, so a
+# 30m zone must survive fifteen candles - about seven hours - before it can
+# raise an alert, and a 4h zone about two and a half days.
+MIN_ZONE_AGE_CANDLES = env_int("SHIVA_MIN_ZONE_AGE_CANDLES", 15)
 SCAN_SLEEP = 300
 SCAN_WORKERS = 8
 ALERT_COOLDOWN_SECONDS = env_int("SHIVA_ALERT_COOLDOWN_SECONDS", 4 * 60 * 60)
