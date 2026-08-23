@@ -244,3 +244,18 @@ class ReportTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+class CommandLineTests(unittest.TestCase):
+    def test_the_scheduled_invocation_parses(self):
+        # The workflow runs exactly this. The choices used to be derived
+        # from entry_confirm.ALERT_RECORDS, so adding a market layer to
+        # that dict turned them into {crypto, nse} and every scheduled
+        # tick died on its own default.
+        for timeframe in ("30m", "4h"):
+            with self.subTest(timeframe=timeframe):
+                args = paper_trading.parse_args(
+                    ["--tick", "--timeframe", timeframe]
+                )
+                self.assertEqual(args.timeframe, timeframe)
+                self.assertTrue(args.tick)
+

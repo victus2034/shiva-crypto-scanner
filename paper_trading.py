@@ -53,15 +53,19 @@ AMBIGUOUS = backtest.DATA_QUALITY_AMBIGUOUS
 SQUARE_OFF_GRACE_END = datetime_time(16, 0)
 
 
-def parse_args() -> argparse.Namespace:
+def parse_args(argv=None) -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--timeframe", choices=sorted(entry_confirm.ALERT_RECORDS), default="30m")
+    # Named here rather than borrowed from entry_confirm.ALERT_RECORDS:
+    # that dict grew a market layer and silently turned these choices
+    # into {crypto, nse}, so every scheduled tick died on its own
+    # default. Paper trading follows NSE alerts, hence NSE timeframes.
+    parser.add_argument("--timeframe", choices=["30m", "4h"], default="30m")
     parser.add_argument("--tick", action="store_true", help="Advance the simulation.")
     parser.add_argument("--report", action="store_true", help="Post the daily comparison.")
     parser.add_argument("--date", help="IST date for --report, YYYY-MM-DD.")
     parser.add_argument("--dry-run", action="store_true")
     parser.add_argument("--ignore-session", action="store_true")
-    return parser.parse_args()
+    return parser.parse_args(argv)
 
 
 def load_state() -> dict:
@@ -324,7 +328,7 @@ def run_tick(args: argparse.Namespace) -> None:
         return
 
     state = load_state()
-    watched = entry_confirm.load_watched_alerts(args.timeframe, now)
+    watched = entry_confirm.load_watched_alerts("nse", args.timeframe, now)
     symbols = sorted(
         {record["symbol"] for record in watched}
         | {position["symbol"] for position in state["open"].values()}
