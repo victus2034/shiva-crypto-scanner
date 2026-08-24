@@ -9010,6 +9010,7 @@
     "007977dcabca4da4": "filled",
     "011111b56257a54d": "filled",
     "018819f1ade27fff": "filled",
+    "02541a64b158ad82": "filled",
     "028c60aa0802530b": "filled",
     "038e5cd978b341b1": "filled",
     "03e2759194fdf780": "filled",
@@ -9043,6 +9044,7 @@
     "14303c6bf094c85d": "filled",
     "149f1dc3eca72802": "filled",
     "159fcf4da798d3fa": "filled",
+    "16262523aa2494a7": "filled",
     "18e7954ec30a12e5": "filled",
     "1901fd3741ee5386": "filled",
     "1b0578d4e8a4bf0e": "filled",
@@ -9331,6 +9333,7 @@
     "d9c538a5eae96cf1": "filled",
     "db222c013313dd21": "filled",
     "dbc3048db25d8a8e": "filled",
+    "dbe0d15542a47166": "filled",
     "dc50766b563555de": "filled",
     "dc5df7bc07b9652a": "filled",
     "dd66cb50258872e0": "filled",
@@ -9408,6 +9411,34 @@
     "ffb4661b7d04cd46": "filled"
   },
   "open": {
+    "02541a64b158ad82": {
+      "alert_time": "2026-08-24T09:52:05.982515+05:30",
+      "entry": 1330.1668203637912,
+      "entry_time": "2026-08-24T09:55:00+05:30",
+      "half_r_hit": false,
+      "rating": 8,
+      "risk": 3.6656796362085515,
+      "side": "short",
+      "stop": 1333.8324999999998,
+      "symbol": "GESHIP.NS",
+      "target_1": 1326.5011407275827,
+      "target_2": 1322.835461091374,
+      "target_half": 1328.333980545687
+    },
+    "16262523aa2494a7": {
+      "alert_time": "2026-08-24T09:52:06.503346+05:30",
+      "entry": 4931.733657115552,
+      "entry_time": "2026-08-24T09:55:00+05:30",
+      "half_r_hit": false,
+      "rating": 7,
+      "risk": 12.457661998364529,
+      "side": "long",
+      "stop": 4919.275995117187,
+      "symbol": "HAL.NS",
+      "target_1": 4944.1913191139165,
+      "target_2": 4956.648981112281,
+      "target_half": 4937.962488114734
+    },
     "5a58198166354e64": {
       "alert_time": "2026-08-24T09:32:31.822822+05:30",
       "entry": 1637.4755335814905,
@@ -9491,6 +9522,20 @@
       "target_1": 2225.201,
       "target_2": 2238.402,
       "target_half": 2218.6005
+    },
+    "dbe0d15542a47166": {
+      "alert_time": "2026-08-24T09:52:05.540681+05:30",
+      "entry": 7384.185874329915,
+      "entry_time": "2026-08-24T09:55:00+05:30",
+      "half_r_hit": false,
+      "rating": 9,
+      "risk": 20.211125670083675,
+      "side": "short",
+      "stop": 7404.396999999999,
+      "symbol": "AMBER.NS",
+      "target_1": 7363.974748659832,
+      "target_2": 7343.763622989748,
+      "target_half": 7374.080311494874
     }
   }
 }
