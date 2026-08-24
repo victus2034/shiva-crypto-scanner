@@ -5,8 +5,10 @@ on:
   schedule:
     # NSE session, every five minutes
     - cron: "*/5 3-10 * * 1-5"
-    # crypto window, every ten minutes
-    - cron: "*/10 2-19 * * *"
+    # crypto window, every five minutes - the same cadence as NSE.
+    # At ten, price stepped over the approach band between polls and
+    # the alert was never pinged at all.
+    - cron: "*/5 2-19 * * *"
   workflow_dispatch:
     inputs:
       market:

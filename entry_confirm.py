@@ -33,6 +33,8 @@ import pandas as pd
 import requests
 import yfinance as yf
 
+from config import MAX_DISTANCE_PCT
+
 
 IST = ZoneInfo("Asia/Kolkata")
 WEBHOOK_ENV = "DISCORD_ENTRY_CONFIRM_WEBHOOK_URL"
@@ -52,10 +54,18 @@ BAR_MINUTES = {"30m": 30, "4h": 240}
 MAX_MESSAGE_CHARS = 1900
 
 # Fire the approach ping while price is still this close to - but has not
-# yet reached - the recorded entry. Wide enough to survive the gap between
-# scans; the ping is only a cue to place the order at the recorded entry,
-# so it never shifts where the trade is actually taken.
-APPROACH_THRESHOLD_PCT = 0.10
+# yet reached - the recorded entry. The ping is only a cue to place the
+# order at the recorded entry, so it never shifts where the trade is taken.
+#
+# Matched to the distance that fires an alert in the first place. At 0.10
+# against an alert window of 0.20 there was a dead band: an alert would be
+# delivered at, say, 0.15% away and then never ping at all unless price
+# happened to close to within 0.10%. Crypto lives in that band - it moves
+# far enough between polls to step over it - which is why the channel
+# carried NSE pings and no crypto ones.
+APPROACH_THRESHOLD_PCT = float(
+    os.getenv("SHIVA_APPROACH_THRESHOLD_PCT", MAX_DISTANCE_PCT)
+)
 # Past this share of the planned entry-to-stop distance, the trade is
 # reported as late rather than as a clean entry.
 NEAR_SL_FRACTION = 0.5
@@ -145,10 +155,20 @@ def load_watched_alerts(market: str, timeframe: str, now: pd.Timestamp) -> list[
 
 
 def watch_key(record: dict) -> str:
-    return (
-        f"{str(record.get('symbol', '')).upper()}|{record.get('timeframe')}|"
-        f"{record.get('side')}|{float(record['_entry']):.4f}|{float(record['_stop']):.4f}"
-    )
+    """Identify a zone, not a particular delivery of it.
+
+    The same zone is re-alerted every scan, and its edges drift in the
+    far decimals as ATR moves with each new candle: one BANKINDIA level
+    came through as 141.17203103 and then 141.17210107. Four fixed
+    decimals split those into two keys, so the same trade was watched -
+    and pinged - twice in one digest. Six significant figures is a
+    thousand times finer than any real zone is wide, so distinct levels
+    still get distinct keys.
+    """
+    symbol = str(record.get("symbol", "")).upper()
+    entry = f"{float(record['_entry']):.6g}"
+    stop = f"{float(record['_stop']):.6g}"
+    return f"{symbol}|{record.get('timeframe')}|{record.get('side')}|{entry}|{stop}"
 
 
 def price_decimals(value: float, market: str = "crypto") -> int:

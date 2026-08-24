@@ -4,6 +4,7 @@ from unittest.mock import patch
 
 import pandas as pd
 
+import config
 import entry_confirm
 
 
@@ -205,3 +206,44 @@ class DigestTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+class WatchKeyTests(unittest.TestCase):
+    def test_the_same_zone_re_alerted_gets_one_key(self):
+        # A zone's edges drift in the far decimals as ATR moves with each
+        # new candle. Fixed decimals split those into separate keys and the
+        # same trade was pinged twice in one digest.
+        first = watched(entry=141.17203103477016, stop=140.859, symbol="BANKINDIA.NS")
+        second = watched(entry=141.17210107412592, stop=140.859, symbol="BANKINDIA.NS")
+
+        self.assertEqual(entry_confirm.watch_key(first), entry_confirm.watch_key(second))
+
+    def test_genuinely_different_levels_stay_apart(self):
+        first = watched(entry=141.17, stop=140.859, symbol="BANKINDIA.NS")
+        second = watched(entry=141.52, stop=140.859, symbol="BANKINDIA.NS")
+
+        self.assertNotEqual(entry_confirm.watch_key(first), entry_confirm.watch_key(second))
+
+    def test_a_cheap_coin_keeps_its_resolution(self):
+        first = watched(entry=0.00276512, stop=0.00281, symbol="ZILUSDT")
+        second = watched(entry=0.00276587, stop=0.00281, symbol="ZILUSDT")
+
+        self.assertNotEqual(entry_confirm.watch_key(first), entry_confirm.watch_key(second))
+
+
+class ApproachBandTests(unittest.TestCase):
+    def test_every_delivered_alert_starts_inside_the_approach_band(self):
+        # An alert fires within MAX_DISTANCE_PCT of entry. A narrower
+        # approach band leaves a dead zone where an alert exists but can
+        # never ping - which is where the crypto alerts were going.
+        self.assertGreaterEqual(
+            entry_confirm.APPROACH_THRESHOLD_PCT, config.MAX_DISTANCE_PCT
+        )
+
+    def test_an_alert_at_the_far_edge_of_the_window_still_pings(self):
+        record = watched(entry=100.0, stop=99.0, side="long")
+        # 0.18% away: inside the alert window, outside the old 0.10 band.
+        stage, reached = entry_confirm.classify(100.18, record, False)
+
+        self.assertEqual(stage, entry_confirm.STAGE_READY)
+        self.assertFalse(reached)
+
