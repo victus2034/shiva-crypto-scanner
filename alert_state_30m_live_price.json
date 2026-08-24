@@ -2059,7 +2059,9 @@
     "CRV/USDT|30m|short|0.333834|0.3351": 1787583130.199873,
     "GOOGLXUSD|30m|short|350.017|350.06": 1787584330.4649732,
     "MSFT/USDT:USDT|30m|short|489.29|489.59": 1787584330.6201482,
-    "SLVONUSD|30m|long|62.14|62.1621": 1787586732.3801007
+    "SLVONUSD|30m|long|62.14|62.1621": 1787586732.3801007,
+    "BEAT/USDT|30m|long|0.1256|0.126758": 1787587925.619121,
+    "MSFT/USDT:USDT|30m|short|490.188|490.49": 1787587925.963784
   },
   "METAXUSD|demand|577.00000000|579.20000000": {
     "in_zone": false,
@@ -13608,7 +13610,7 @@
     "last_alert_at": 1787580724.510809
   },
   "__last_scan_started__": {
-    "30m": 1787586655.482944
+    "30m": 1787587854.8463225
   },
   "TAO/USDT|supply|227.92800000|229.00000000": {
     "in_zone": false,
@@ -14807,8 +14809,8 @@
     "last_alert_at": 0.0
   },
   "MSFT/USDT:USDT|supply|490.18810000|490.49000000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1787587925.963784
   },
   "MSFT/USDT:USDT|demand|481.35000000|481.45585000": {
     "in_zone": false,
@@ -15151,8 +15153,8 @@
     "last_alert_at": 0.0
   },
   "BEAT/USDT|demand|0.12560000|0.12675785": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1787587925.619121
   },
   "APTUSD|supply|0.66194450|0.66420000": {
     "in_zone": false,
@@ -15459,6 +15461,34 @@
     "last_alert_at": 0.0
   },
   "TSLAXUSD|supply|368.65405000|368.80000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "BANK/USDT|supply|0.03641755|0.03649000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "ZECUSD|demand|821.03000000|825.04050000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "NEARUSD|supply|2.06653000|2.07400000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "SPCXXUSD|supply|139.75640000|140.00000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "INTCBUSD|supply|90.66695000|90.72000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "SKHYNIX/USDT:USDT|supply|1292.45965000|1293.92000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "MRVL/USDT:USDT|supply|239.57450000|239.73000000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
