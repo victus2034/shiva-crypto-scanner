@@ -2816,7 +2816,8 @@
     "AIAENG.NS|4h|long|4298.7001953125|4320.2004057442": 1787543551.7644181,
     "IDFCFIRSTB.NS|4h|short|86.6712145837|86.9300003052": 1787543552.1526377,
     "APLAPOLLO.NS|4h|short|2156.4355459336|2167.3000488281": 1787544744.2829053,
-    "CYIENT.NS|4h|short|927.2117844713|932.0000000000": 1787544744.4970038
+    "CYIENT.NS|4h|short|927.2117844713|932.0000000000": 1787544744.4970038,
+    "APLAPOLLO.NS|4h|short|2156.4626565396|2167.3000488281": 1787545977.176713
   },
   "GESHIP.NS|demand|1057.1000|1070.5000": {
     "in_zone": false,
@@ -17869,7 +17870,7 @@
     "last_attempt_at": 0.0
   },
   "__last_scan_started__": {
-    "4h": 1787544682.1728568
+    "4h": 1787545899.8321524
   },
   "360ONE.NS|supply|1214.8851|1220.0000": {
     "in_zone": false,
@@ -17907,9 +17908,9 @@
     "last_attempt_at": 1787543551.7644181
   },
   "APLAPOLLO.NS|supply|2156.4627|2167.3000": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1787545977.176713,
+    "last_attempt_at": 1787545977.176713
   },
   "AUBANK.NS|demand|831.6500|836.5437": {
     "in_zone": false,
@@ -21792,6 +21793,11 @@
     "last_attempt_at": 0.0
   },
   "SJVN.NS|demand|63.1000|63.4898": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "LTFOODS.NS|supply|467.0818|470.0000": {
     "in_zone": false,
     "last_alert_at": 0.0,
     "last_attempt_at": 0.0
