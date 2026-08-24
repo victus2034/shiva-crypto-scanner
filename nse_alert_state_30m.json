@@ -4482,7 +4482,11 @@
     "DELHIVERY.NS|30m|long|446.4500122070|447.1124164535": 1787548928.2681437,
     "NMDC.NS|30m|short|85.9538861817|86.0599975586": 1787548928.529979,
     "POONAWALLA.NS|30m|long|482.2999877930|483.1098270458": 1787548928.7621233,
-    "RADICO.NS|30m|long|4578.0000000000|4584.5908217811": 1787548929.0131044
+    "RADICO.NS|30m|long|4578.0000000000|4584.5908217811": 1787548929.0131044,
+    "HINDALCO.NS|30m|short|1053.9641796576|1055.4000244141": 1787550125.884177,
+    "JSWSTEEL.NS|30m|short|1310.4519163459|1312.0000000000": 1787550126.1702015,
+    "J&KBANK.NS|30m|long|147.1100006104|147.7132034292": 1787550126.4606993,
+    "PNB.NS|30m|long|115.3700027466|115.5060664137": 1787550126.9941163
   },
   "ANANDRATHI.NS|supply|2187.5000|2221.0000": {
     "in_zone": true,
@@ -8790,9 +8794,9 @@
     "last_attempt_at": 0.0
   },
   "HINDALCO.NS|supply|1053.9642|1055.4000": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1787550125.884177,
+    "last_attempt_at": 1787550125.884177
   },
   "HINDALCO.NS|demand|972.6500|973.7150": {
     "in_zone": false,
@@ -9905,7 +9909,7 @@
     "last_attempt_at": 0.0
   },
   "NMDC.NS|supply|85.9539|86.0600": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1787548928.529979,
     "last_attempt_at": 1787548928.529979
   },
@@ -10380,9 +10384,9 @@
     "last_attempt_at": 1787131332.5269315
   },
   "PNB.NS|demand|115.3700|115.5061": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1787550126.9941163,
+    "last_attempt_at": 1787550126.9941163
   },
   "RRKABEL.NS|demand|2709.0000|2713.5482": {
     "in_zone": false,
@@ -31195,7 +31199,7 @@
     "last_attempt_at": 0.0
   },
   "__last_scan_started__": {
-    "30m": 1787548857.7900443
+    "30m": 1787550055.631517
   },
   "3MINDIA.NS|supply|35230.9249|35290.0000": {
     "in_zone": false,
@@ -32378,14 +32382,14 @@
     "last_attempt_at": 0.0
   },
   "JSWSTEEL.NS|supply|1310.4519|1312.0000": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1787550126.1702015,
+    "last_attempt_at": 1787550126.1702015
   },
   "J&KBANK.NS|demand|147.1100|147.7132": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1787550126.4606993,
+    "last_attempt_at": 1787550126.4606993
   },
   "JINDALSAW.NS|demand|261.6500|262.1188": {
     "in_zone": false,
@@ -37493,6 +37497,26 @@
     "last_attempt_at": 0.0
   },
   "SBICARD.NS|demand|580.0000|580.7792": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "BLS.NS|demand|247.1500|247.5473": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "BRITANNIA.NS|demand|5255.0000|5260.9145": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "CANBK.NS|demand|126.3200|126.4697": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "POONAWALLA.NS|demand|474.1000|474.9570": {
     "in_zone": false,
     "last_alert_at": 0.0,
     "last_attempt_at": 0.0
