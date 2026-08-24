@@ -9670,6 +9670,29 @@
       "target_2": 449.3301249709422,
       "target_half": 447.6668435828832,
       "trade_id": "bbc8f3ed790d1407"
+    },
+    {
+      "alert_time": "2026-08-24T11:12:06.994116+05:30",
+      "cost_r": 0.4883313704977038,
+      "date": "2026-08-24",
+      "entry": 115.50606641370726,
+      "entry_time": "2026-08-24T11:15:00+05:30",
+      "exit_price": 115.19700542746352,
+      "exit_time": "2026-08-24T11:20:00+05:30",
+      "final_result": "SL",
+      "half_r_hit": false,
+      "net_realized_r": -1.7175262766584418,
+      "outcome": "SL",
+      "rating": 8,
+      "realized_r": -1.2291949061607381,
+      "risk": 0.25143366987181537,
+      "side": "long",
+      "stop": 115.25463274383544,
+      "symbol": "PNB.NS",
+      "target_1": 115.75750008357907,
+      "target_2": 116.00893375345089,
+      "target_half": 115.63178324864316,
+      "trade_id": "6e83a4f4ef8379b0"
     }
   ],
   "handled": {
@@ -9894,6 +9917,7 @@
     "8ff7e062a6a00b1e": "filled",
     "906d548c2c2d0fe4": "filled",
     "91585a8412cd26a1": "filled",
+    "916ddc3b66f02110": "filled",
     "91c7a66ddc923b4b": "filled",
     "92240d209318f6ba": "filled",
     "92ec3edc9fc0ecf8": "filled",
@@ -10103,19 +10127,19 @@
     "ffb4661b7d04cd46": "filled"
   },
   "open": {
-    "6e83a4f4ef8379b0": {
-      "alert_time": "2026-08-24T11:12:06.994116+05:30",
-      "entry": 115.50606641370726,
-      "entry_time": "2026-08-24T11:15:00+05:30",
-      "half_r_hit": false,
-      "rating": 8,
-      "risk": 0.25143366987181537,
-      "side": "long",
-      "stop": 115.25463274383544,
-      "symbol": "PNB.NS",
-      "target_1": 115.75750008357907,
-      "target_2": 116.00893375345089,
-      "target_half": 115.63178324864316
+    "916ddc3b66f02110": {
+      "alert_time": "2026-08-24T11:12:06.170202+05:30",
+      "entry": 1310.4519163458533,
+      "entry_time": "2026-08-24T11:20:00+05:30",
+      "half_r_hit": true,
+      "rating": 6,
+      "risk": 2.8600836541465924,
+      "side": "short",
+      "stop": 1313.312,
+      "symbol": "JSWSTEEL.NS",
+      "target_1": 1307.5918326917067,
+      "target_2": 1304.7317490375601,
+      "target_half": 1309.02187451878
     },
     "b0bb5f61d52b0880": {
       "alert_time": "2026-08-21T14:12:03.606176+05:30",
