@@ -8934,6 +8934,29 @@
       "target_2": 287.24946617170025,
       "target_half": 288.3943580858501,
       "trade_id": "e91af8d139dc352b"
+    },
+    {
+      "alert_time": "2026-08-24T09:32:30.148559+05:30",
+      "cost_r": 0.4208790426801556,
+      "date": "2026-08-24",
+      "entry": 4931.731904018205,
+      "entry_time": "2026-08-24T09:35:00+05:30",
+      "exit_price": null,
+      "exit_time": "2026-08-24T09:40:00+05:30",
+      "final_result": "data_quality_ambiguous",
+      "half_r_hit": true,
+      "net_realized_r": null,
+      "outcome": "data_quality_ambiguous",
+      "rating": 8,
+      "realized_r": null,
+      "risk": 12.45590890101721,
+      "side": "long",
+      "stop": 4919.275995117187,
+      "symbol": "HAL.NS",
+      "target_1": 4944.187812919222,
+      "target_2": 4956.643721820239,
+      "target_half": 4937.959858468714,
+      "trade_id": "7d14e73588ff7ed0"
     }
   ],
   "handled": {
@@ -9046,6 +9069,7 @@
     "52650a2c0091b920": "filled",
     "53368ca9ad260b55": "filled",
     "5337714ad035d0cb": "filled",
+    "543e12a07a81cc6b": "filled",
     "5462252c0995acca": "filled",
     "5464670cbd09d7d6": "filled",
     "560f2d4f10f6ecda": "filled",
@@ -9106,6 +9130,7 @@
     "7b26b9700727ad6f": "filled",
     "7c332175c734b096": "filled",
     "7ccc95a57a7539f1": "filled",
+    "7d14e73588ff7ed0": "filled",
     "7d916765f767ac89": "filled",
     "7ee0e7010d11e78e": "filled",
     "7ffb7eb8e15e05cf": "filled",
@@ -9337,6 +9362,20 @@
     "ffb4661b7d04cd46": "filled"
   },
   "open": {
+    "543e12a07a81cc6b": {
+      "alert_time": "2026-08-24T09:32:29.631048+05:30",
+      "entry": 31.446066161710352,
+      "entry_time": "2026-08-24T09:40:00+05:30",
+      "half_r_hit": true,
+      "rating": 6,
+      "risk": 0.05540315095749193,
+      "side": "short",
+      "stop": 31.501469312667844,
+      "symbol": "CENTRALBK.NS",
+      "target_1": 31.39066301075286,
+      "target_2": 31.335259859795368,
+      "target_half": 31.418364586231604
+    },
     "5a58198166354e64": {
       "alert_time": "2026-08-24T09:32:31.822822+05:30",
       "entry": 1637.4755335814905,
