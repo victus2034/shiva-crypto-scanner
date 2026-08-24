@@ -2813,12 +2813,14 @@
     "DEEPAKFERT.NS|4h|long|1446.0999755859|1459.0000000000": 1787289141.6349056,
     "REDINGTON.NS|4h|short|354.3500061035|364.1499938965": 1787302365.592215,
     "INOXWIND.NS|4h|long|72.7799987793|73.5000000000": 1787304766.4882143,
-    "AIAENG.NS|4h|long|4298.7001953125|4320.2004057442": 1787543551.7644181,
+    "AIAENG.NS|4h|long|4298.7001953125|4320.2004057442": 1787549566.4513302,
     "IDFCFIRSTB.NS|4h|short|86.6712145837|86.9300003052": 1787543552.1526377,
     "APLAPOLLO.NS|4h|short|2156.4355459336|2167.3000488281": 1787544744.2829053,
     "CYIENT.NS|4h|short|927.2117844713|932.0000000000": 1787544744.4970038,
     "APLAPOLLO.NS|4h|short|2156.4626565396|2167.3000488281": 1787545977.176713,
-    "MRF.NS|4h|short|135138.4076658756|135535.0000000000": 1787548349.5132117
+    "MRF.NS|4h|short|135138.4076658756|135535.0000000000": 1787548349.5132117,
+    "360ONE.NS|4h|short|1214.8851023304|1220.0000000000": 1787549566.1585252,
+    "CREDITACC.NS|4h|long|1456.5000000000|1464.4036251916": 1787549566.6832354
   },
   "GESHIP.NS|demand|1057.1000|1070.5000": {
     "in_zone": false,
@@ -17871,12 +17873,12 @@
     "last_attempt_at": 0.0
   },
   "__last_scan_started__": {
-    "4h": 1787548277.2910106
+    "4h": 1787549491.2789173
   },
   "360ONE.NS|supply|1214.8851|1220.0000": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1787549566.1585252,
+    "last_attempt_at": 1787549566.1585252
   },
   "3MINDIA.NS|supply|37827.6608|38000.0000": {
     "in_zone": false,
@@ -17904,9 +17906,9 @@
     "last_attempt_at": 0.0
   },
   "AIAENG.NS|demand|4298.7002|4320.2004": {
-    "in_zone": false,
-    "last_alert_at": 1787543551.7644181,
-    "last_attempt_at": 1787543551.7644181
+    "in_zone": true,
+    "last_alert_at": 1787549566.4513302,
+    "last_attempt_at": 1787549566.4513302
   },
   "APLAPOLLO.NS|supply|2156.4627|2167.3000": {
     "in_zone": true,
@@ -18579,9 +18581,9 @@
     "last_attempt_at": 0.0
   },
   "CREDITACC.NS|demand|1456.5000|1464.4036": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1787549566.6832354,
+    "last_attempt_at": 1787549566.6832354
   },
   "CROMPTON.NS|supply|280.0828|281.5000": {
     "in_zone": false,
@@ -19364,7 +19366,7 @@
     "last_attempt_at": 0.0
   },
   "MRF.NS|supply|135138.4077|135535.0000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1787548349.5132117,
     "last_attempt_at": 1787548349.5132117
   },
