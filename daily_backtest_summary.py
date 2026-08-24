@@ -43,7 +43,11 @@ TIMEFRAME_SETTINGS = {
         # 5m here too: a 1h evaluation candle leaves an hour-wide blind
         # spot after the alert, the same fault that hid most 30m fills.
         "eval_interval": "5m",
-        "source_period": "700d",
+        # 60d, not the 700d left over from evaluating on 1h candles.
+        # Yahoo serves 5m for 60 days only and fails the whole request
+        # beyond that, so every 4h symbol came back empty and the report
+        # counted all of them as data issues.
+        "source_period": "60d",
     },
 }
 ALERT_BAR_DURATION = {"30m": pd.Timedelta(minutes=30), "4h": pd.Timedelta(hours=4)}
@@ -624,9 +628,10 @@ def run_backtest(
         if market == "crypto":
             tracking_end_index, window_mature = crypto_tracking_end(frame, event_time)
         elif market == "xstock":
-            # xStocks have no approved fixed evaluation horizon yet.  Do not
-            # silently apply crypto's six-hour provisional window to them.
-            tracking_end_index, window_mature = all_available_tracking_end(frame)
+            # Same six-hour horizon as crypto: same venues, same clock,
+            # same alert cadence. Tracking every available bar instead
+            # let a trade run for days before it resolved.
+            tracking_end_index, window_mature = crypto_tracking_end(frame, event_time)
         elif market == "other":
             tracking_end_index, window_mature = crypto_tracking_end(frame, event_time)
         else:
@@ -773,15 +778,6 @@ def simulate_alert(
         ):
             return unfilled(alert, "immature")
         return unfilled(alert, "zone_not_touched")
-
-    if market_class(alert.get("symbol", "")) == MARKET_XSTOCK:
-        return pending_trade(
-            alert,
-            frame,
-            entry_index,
-            entry_price,
-            timing_status="xstock_timing_tbd",
-        )
 
     if uses_six_hour_evaluation(alert.get("symbol", "")):
         six_hour_end_index, six_hour_window_mature = six_hour_entry_tracking_end(frame, entry_index)
@@ -1126,7 +1122,15 @@ def six_hour_entry_tracking_end(
 
 
 def uses_six_hour_evaluation(symbol: str) -> bool:
-    return market_class(symbol) == MARKET_CRYPTO
+    """Which markets are judged over a fixed window after entry.
+
+    xStocks are included. They were held as Pending indefinitely while
+    a horizon was decided, which meant every xStock trade reported as
+    Waiting and the market totalled 0.00R no matter what it did. They
+    trade on the same venues as crypto, around the clock, and are
+    alerted on the same cadence, so they are judged the same way.
+    """
+    return market_class(symbol) in {MARKET_CRYPTO, MARKET_XSTOCK}
 
 
 def pending_trade(
@@ -1684,7 +1688,15 @@ def hourly_breakdown_lines(results: pd.DataFrame) -> list[str]:
         return []
 
     frame = results.copy()
-    frame["hour"] = pd.to_datetime(frame["event_time_ist"]).dt.floor("h")
+    # Records come from several scanners and some carry a UTC offset
+    # while others carry IST, so pandas refuses to build one column
+    # out of them. Parse through UTC, then put the whole column back
+    # into IST - the hours in this report are IST by definition.
+    frame["hour"] = (
+        pd.to_datetime(frame["event_time_ist"], utc=True, errors="coerce")
+        .dt.tz_convert(IST)
+        .dt.floor("h")
+    )
 
     lines = []
     for hour in sorted(frame["hour"].dropna().unique()):

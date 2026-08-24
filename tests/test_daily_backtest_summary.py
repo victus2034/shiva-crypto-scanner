@@ -74,15 +74,21 @@ def crypto_frame(start="2026-08-04 10:00", rows=None):
 
 class DailyBacktestSummaryTests(unittest.TestCase):
 
-    def test_xstock_backtest_does_not_use_crypto_six_hour_window(self):
+    def test_xstock_backtest_uses_the_same_window_as_crypto(self):
+        # They trade on the same venues, around the clock, and are alerted
+        # on the same cadence. Tracking every available bar instead let a
+        # trade run for days before it resolved.
         alerts = pd.DataFrame([xstock_alert()])
         frame = crypto_frame()
-        with patch.object(summary, "crypto_tracking_end", side_effect=AssertionError):
+        with patch.object(
+            summary, "crypto_tracking_end", wraps=summary.crypto_tracking_end
+        ) as window:
             results, _ = summary.run_backtest(
                 alerts,
                 {"AAPLXUSD": frame},
                 market="xstock",
             )
+        window.assert_called()
         self.assertEqual(len(results), 1)
 
     def test_nse_tracking_stops_on_same_trading_day(self):
@@ -928,7 +934,9 @@ class DailyBacktestSummaryTests(unittest.TestCase):
         self.assertEqual(result["final_result"], "Neither")
         self.assertLess(result["exit_time"], frame.index[-1])
 
-    def test_xstock_timing_remains_pending_until_policy_is_approved(self):
+    def test_xstock_trades_resolve_instead_of_waiting_forever(self):
+        # Every xStock used to come back Pending, so the market totalled
+        # 0.00R however it actually traded.
         frame = crypto_frame(
             rows=[
                 (101.0, 101.2, 100.8, 101.0),
@@ -938,8 +946,8 @@ class DailyBacktestSummaryTests(unittest.TestCase):
 
         result = summary.simulate_alert(frame, xstock_alert(), 0, 1)
 
-        self.assertEqual(result["final_result"], "Pending")
-        self.assertEqual(result["timing_status"], "xstock_timing_tbd")
+        self.assertNotEqual(result["final_result"], "Pending")
+        self.assertNotEqual(result.get("timing_status"), "xstock_timing_tbd")
 
     def test_xstock_open_trade_inside_six_hours_is_pending(self):
         future_start = (pd.Timestamp.now(tz=summary.IST) + pd.Timedelta(hours=1)).floor("30min")
@@ -964,8 +972,9 @@ class DailyBacktestSummaryTests(unittest.TestCase):
 
         result = summary.simulate_alert(frame, xstock_alert(), 0, len(frame) - 1)
 
-        self.assertEqual(result["final_result"], "Pending")
-        self.assertEqual(result["timing_status"], "xstock_timing_tbd")
+        # The rally arrives twelve hours after entry, well past the six-hour
+        # horizon, so it must not be credited.
+        self.assertNotIn(result["final_result"], {"+1R", "+2R"})
 
     def test_finalized_records_include_stable_id_and_timing_fields(self):
         with tempfile.TemporaryDirectory() as tmp:
@@ -1105,3 +1114,24 @@ class EvaluationDataConfigTests(unittest.TestCase):
             self.assertGreater(summary.EVALUATION_OHLCV_LIMIT / 75, 20)
         finally:
             nse_scanner.OHLCV_LIMIT = original
+
+class DataWindowTests(unittest.TestCase):
+    # Yahoo serves intraday history for a limited window per interval and
+    # fails the whole request past it, rather than returning what it has.
+    MAX_DAYS = {"1m": 7, "5m": 60, "15m": 60, "30m": 60, "1h": 730}
+
+    def test_every_timeframe_asks_for_a_window_its_interval_can_serve(self):
+        # 4h asked for 700 days of 5m candles - a leftover from when it
+        # evaluated on 1h - so every symbol came back empty and the whole
+        # report read as data issues.
+        for timeframe, settings in summary.TIMEFRAME_SETTINGS.items():
+            with self.subTest(timeframe=timeframe):
+                interval = settings["eval_interval"]
+                period = settings["source_period"]
+                self.assertTrue(period.endswith("d"), period)
+                self.assertLessEqual(
+                    int(period[:-1]),
+                    self.MAX_DAYS[interval],
+                    f"{timeframe} asks for {period} of {interval} candles",
+                )
+
