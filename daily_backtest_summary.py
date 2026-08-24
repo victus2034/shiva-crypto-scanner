@@ -1869,6 +1869,30 @@ def split_discord_embed_descriptions(message: str, limit: int = 4096) -> list[st
     return chunks
 
 
+def quiet_day_line(target_date, timeframe: str, market: str) -> str:
+    """One line for a timeframe that produced nothing new today.
+
+    The 4h timeframes fire a handful of alerts a week, so most days the
+    duplicate guard holds their report back and the channel simply goes
+    quiet - which reads the same as the job being broken. It has been
+    broken and looked exactly like this, so silence is worth breaking.
+    """
+    reported = pd.Timestamp(target_date).date().strftime("%d %b %Y").upper()
+    return (
+        f"{market.upper()} {timeframe} - no new alerts since {reported}"
+    )
+
+
+def quiet_day_key(timeframe: str, market: str, today=None) -> str:
+    """Keyed by today, not by the reported date.
+
+    The reported date can sit still for days while the timeframe stays
+    quiet; keying on it would post the note once and never again.
+    """
+    today = today or datetime.now(tz=IST).date()
+    return f"{market.upper()}|{timeframe}|{today.isoformat()}|quiet"
+
+
 def report_key(target_date, timeframe: str, market: str = "nse") -> str:
     return f"{market.upper()}|{timeframe}|{pd.Timestamp(target_date).date().isoformat()}"
 
@@ -2258,6 +2282,12 @@ def main() -> None:
         key = report_key(target_date, args.timeframe, args.market)
         if not args.force and key in load_sent_reports():
             print(f"Skipped duplicate report: {key}")
+            quiet_key = quiet_day_key(args.timeframe, args.market)
+            if quiet_key not in load_sent_reports():
+                send_discord_message(
+                    quiet_day_line(target_date, args.timeframe, args.market)
+                )
+                mark_sent_report(quiet_key)
             return
         send_discord_message(message)
         mark_sent_report(key)

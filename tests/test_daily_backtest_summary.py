@@ -1,4 +1,5 @@
-﻿import tempfile
+import datetime
+import tempfile
 import unittest
 from unittest.mock import patch
 from pathlib import Path
@@ -1134,4 +1135,34 @@ class DataWindowTests(unittest.TestCase):
                     self.MAX_DAYS[interval],
                     f"{timeframe} asks for {period} of {interval} candles",
                 )
+
+class QuietDayTests(unittest.TestCase):
+    def test_the_note_names_the_market_timeframe_and_last_report(self):
+        line = summary.quiet_day_line("2026-08-23", "4h", "xstock")
+
+        self.assertIn("XSTOCK", line)
+        self.assertIn("4h", line)
+        self.assertIn("23 AUG 2026", line)
+        self.assertNotIn(chr(10), line)
+
+    def test_the_key_moves_with_today_not_the_reported_date(self):
+        # A quiet timeframe keeps reporting the same old date for days.
+        # Keying on that would post the note once and then go silent
+        # again, which is the problem it exists to solve.
+        first = summary.quiet_day_key(
+            "4h", "xstock", datetime.date(2026, 8, 24)
+        )
+        second = summary.quiet_day_key(
+            "4h", "xstock", datetime.date(2026, 8, 25)
+        )
+
+        self.assertNotEqual(first, second)
+
+    def test_it_cannot_collide_with_a_real_report_key(self):
+        real = summary.report_key("2026-08-24", "4h", "xstock")
+        quiet = summary.quiet_day_key(
+            "4h", "xstock", datetime.date(2026, 8, 24)
+        )
+
+        self.assertNotEqual(real, quiet)
 
