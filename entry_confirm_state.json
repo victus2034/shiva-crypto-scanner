@@ -11,10 +11,6 @@
     "reached_entry": true,
     "stage": 2
   },
-  "BANKBARODA.NS|30m|long|242.4222|241.9078": {
-    "reached_entry": true,
-    "stage": 3
-  },
   "BLS.NS|30m|long|251.6684|250.9388": {
     "reached_entry": true,
     "stage": 3
@@ -23,15 +19,7 @@
     "reached_entry": true,
     "stage": 3
   },
-  "BRITANNIA.NS|30m|long|5323.0298|5311.1835": {
-    "reached_entry": true,
-    "stage": 3
-  },
   "CANBK.NS|30m|long|128.0512|127.7721": {
-    "reached_entry": true,
-    "stage": 3
-  },
-  "CANBK.NS|30m|long|128.0513|127.7721": {
     "reached_entry": true,
     "stage": 3
   },
@@ -40,7 +28,8 @@
     "stage": 3
   },
   "DEEPAKFERT.NS|30m|short|1483.4203|1487.2858": {
-    "reached_entry": false
+    "reached_entry": false,
+    "stage": 1
   },
   "DELHIVERY.NS|30m|long|447.1123|446.0036": {
     "reached_entry": true,
@@ -51,23 +40,16 @@
     "stage": 3
   },
   "GABRIEL.NS|30m|long|1387.6305|1383.1155": {
-    "reached_entry": true
-  },
-  "GABRIEL.NS|30m|long|1387.6306|1383.1155": {
     "reached_entry": true,
     "stage": 3
   },
-  "GODREJIND.NS|30m|short|1235.7906|1239.9387": {
+  "GABRIEL.NS|30m|long|1387.6306|1383.1155": {
     "reached_entry": true,
     "stage": 3
   },
   "GOOGLXUSD|30m|long|343.2177|342.7070": {
     "reached_entry": false,
     "stage": 1
-  },
-  "HINDALCO.NS|30m|short|1053.9639|1056.4554": {
-    "reached_entry": true,
-    "stage": 3
   },
   "HINDALCO.NS|30m|short|1053.9642|1056.4554": {
     "reached_entry": true,
@@ -85,13 +67,9 @@
     "reached_entry": true,
     "stage": 3
   },
-  "JSWCEMENT.NS|30m|short|127.6701|127.9278": {
-    "reached_entry": true,
-    "stage": 3
-  },
   "JSWSTEEL.NS|30m|short|1310.4519|1313.3120": {
     "reached_entry": true,
-    "stage": 1
+    "stage": 2
   },
   "KAITO/USDT|30m|long|0.3356|0.3339": {
     "reached_entry": true,
@@ -106,29 +84,22 @@
     "stage": 3
   },
   "NMDC.NS|30m|short|85.9539|86.1461": {
-    "reached_entry": false,
-    "stage": 1
+    "reached_entry": true,
+    "stage": 2
   },
   "PNB.NS|30m|long|115.5061|115.2546": {
     "reached_entry": true,
     "stage": 3
-  },
-  "POONAWALLA.NS|30m|long|483.1095|481.8177": {
-    "reached_entry": true,
-    "stage": 2
   },
   "POONAWALLA.NS|30m|long|483.1098|481.8177": {
     "reached_entry": true,
     "stage": 2
   },
   "RADICO.NS|30m|long|4584.5908|4573.4220": {
-    "reached_entry": false,
-    "stage": 1
+    "reached_entry": true,
+    "stage": 2
   },
   "RADICO.NS|30m|long|4584.5946|4573.4220": {
-    "reached_entry": false
-  },
-  "REDINGTON.NS|30m|short|363.2757|364.5141": {
     "reached_entry": true,
     "stage": 2
   }
