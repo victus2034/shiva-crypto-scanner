@@ -2045,7 +2045,8 @@
     "HYPEUSD|30m|long|76.9800000000|77.2837000000": 1787560265.0434432,
     "ICP/USDT|30m|long|2.3520000000|2.3597900000": 1787560265.2196338,
     "HYPEUSD|30m|long|76.9600000000|77.3065000000": 1787561524.12499,
-    "MNT/USDT|30m|short|0.5249400000|0.5257000000": 1787563607.7109964
+    "MNT/USDT|30m|short|0.5249400000|0.5257000000": 1787563607.7109964,
+    "AERO/USDT|30m|short|0.5070620000|0.5085000000": 1787566297.5019217
   },
   "METAXUSD|demand|577.00000000|579.20000000": {
     "in_zone": false,
@@ -11522,8 +11523,8 @@
     "last_alert_at": 0.0
   },
   "AERO/USDT|supply|0.50706200|0.50850000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1787566297.5019217
   },
   "AERO/USDT|demand|0.44660000|0.44832450": {
     "in_zone": false,
@@ -13594,7 +13595,7 @@
     "last_alert_at": 0.0
   },
   "__last_scan_started__": {
-    "30m": 1787565055.9736621
+    "30m": 1787566206.894432
   },
   "TAO/USDT|supply|227.92800000|229.00000000": {
     "in_zone": false,
@@ -14385,7 +14386,7 @@
     "last_alert_at": 0.0
   },
   "HYPEUSD|demand|76.98000000|77.28370000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1787560265.0434432
   },
   "ASTER/USDT|demand|0.62170000|0.62474750": {
@@ -15081,6 +15082,34 @@
     "last_alert_at": 0.0
   },
   "ZECUSD|supply|885.86560000|889.96000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "ZECUSD|supply|884.67135000|888.50000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "ONDOUSD|supply|0.38978800|0.39070000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "ZAMA/USDT|supply|0.06012940|0.06039000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "HBAR/USDT|supply|0.08079755|0.08098000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "ICP/USDT|demand|2.34400000|2.35170500": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "JTO/USDT|supply|0.61007650|0.61220000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "MUBUSD|supply|973.84730000|974.05000000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
