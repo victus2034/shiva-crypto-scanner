@@ -9647,6 +9647,29 @@
       "target_2": 5346.402634916766,
       "target_half": 5328.793067458383,
       "trade_id": "f9d519f2114282ff"
+    },
+    {
+      "alert_time": "2026-08-24T10:52:08.268144+05:30",
+      "cost_r": 0.4286230538941515,
+      "date": "2026-08-24",
+      "entry": 447.1124164535302,
+      "entry_time": "2026-08-24T11:05:00+05:30",
+      "exit_price": 448.2212707122362,
+      "exit_time": "2026-08-24T11:10:00+05:30",
+      "final_result": "+1R",
+      "half_r_hit": true,
+      "net_realized_r": 0.5713769461058484,
+      "outcome": "+1R",
+      "rating": 7,
+      "realized_r": 1.0,
+      "risk": 1.1088542587060033,
+      "side": "long",
+      "stop": 446.0035621948242,
+      "symbol": "DELHIVERY.NS",
+      "target_1": 448.2212707122362,
+      "target_2": 449.3301249709422,
+      "target_half": 447.6668435828832,
+      "trade_id": "bbc8f3ed790d1407"
     }
   ],
   "handled": {
@@ -9936,6 +9959,7 @@
     "ba733b012fa053fa": "filled",
     "ba87ba8cbe5aa2df": "filled",
     "bb4546b1fb2118ac": "filled",
+    "bbc8f3ed790d1407": "filled",
     "bc7137151fba3b02": "filled",
     "bcaea109d5d9eb5d": "filled",
     "bcfc077a6eddd6b6": "filled",
