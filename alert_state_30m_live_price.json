@@ -2062,7 +2062,8 @@
     "SLVONUSD|30m|long|62.14|62.1621": 1787586732.3801007,
     "BEAT/USDT|30m|long|0.1256|0.126758": 1787587925.619121,
     "MSFT/USDT:USDT|30m|short|490.188|490.49": 1787587925.963784,
-    "XMRUSD|30m|short|429.016|429.89": 1787591536.1879363
+    "XMRUSD|30m|short|429.016|429.89": 1787591536.1879363,
+    "1000SHIBUSD|30m|long|0.005348|0.00535808": 1787592733.9271033
   },
   "METAXUSD|demand|577.00000000|579.20000000": {
     "in_zone": false,
@@ -13611,7 +13612,7 @@
     "last_alert_at": 1787580724.510809
   },
   "__last_scan_started__": {
-    "30m": 1787591458.2950513
+    "30m": 1787592656.7538867
   },
   "TAO/USDT|supply|227.92800000|229.00000000": {
     "in_zone": false,
@@ -15250,7 +15251,7 @@
     "last_alert_at": 1787575929.469428
   },
   "XMRUSD|supply|429.01645000|429.89000000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1787591536.1879363
   },
   "PENGU/USDT|supply|0.01030513|0.01035400": {
@@ -15530,8 +15531,8 @@
     "last_alert_at": 0.0
   },
   "1000SHIBUSD|demand|0.00534800|0.00535808": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1787592733.9271033
   },
   "LTCUSD|demand|51.42000000|51.51435000": {
     "in_zone": false,
@@ -15566,6 +15567,18 @@
     "last_alert_at": 0.0
   },
   "HOME/USDT|demand|0.00607200|0.00609337": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "ETHUSD|demand|2422.20000000|2426.82350000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "WLD/USDT|demand|0.38610000|0.38777150": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "HOME/USDT|demand|0.00605400|0.00607705": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
