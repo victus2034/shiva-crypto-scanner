@@ -9836,6 +9836,7 @@
     "6d6a411f9c802ffd": "filled",
     "6dea013f691b90de": "filled",
     "6e71d7b35a1b551f": "filled",
+    "6e83a4f4ef8379b0": "filled",
     "6f1c202d069f63fa": "filled",
     "6fb94f7961049ea8": "filled",
     "6ffbc29992a7bfa9": "filled",
@@ -9994,6 +9995,7 @@
     "cc99b91d4b6bee2c": "filled",
     "ccb278c6760650d0": "filled",
     "cd61c889b608e4e8": "filled",
+    "ce9c1d18024047ff": "filled",
     "ceb6a3c45b6d47d1": "filled",
     "ced0421f1fed146d": "filled",
     "cfabab8ae61711e9": "filled",
@@ -10094,12 +10096,27 @@
     "fa4af38477be4a04": "filled",
     "fa8fa32d68c0a671": "filled",
     "fa95f6e0a4f0a901": "filled",
+    "fac8f2d6f5615041": "filled",
     "fb95e54188969b6b": "filled",
     "fe009afb11dbe6ca": "filled",
     "fed8ed34d9b4adcd": "filled",
     "ffb4661b7d04cd46": "filled"
   },
   "open": {
+    "6e83a4f4ef8379b0": {
+      "alert_time": "2026-08-24T11:12:06.994116+05:30",
+      "entry": 115.50606641370726,
+      "entry_time": "2026-08-24T11:15:00+05:30",
+      "half_r_hit": false,
+      "rating": 8,
+      "risk": 0.25143366987181537,
+      "side": "long",
+      "stop": 115.25463274383544,
+      "symbol": "PNB.NS",
+      "target_1": 115.75750008357907,
+      "target_2": 116.00893375345089,
+      "target_half": 115.63178324864316
+    },
     "b0bb5f61d52b0880": {
       "alert_time": "2026-08-21T14:12:03.606176+05:30",
       "entry": 1624.5999755859375,
@@ -10114,6 +10131,20 @@
       "target_2": 1590.5199267578128,
       "target_half": 1616.0799633789063
     },
+    "ce9c1d18024047ff": {
+      "alert_time": "2026-08-24T11:12:05.884177+05:30",
+      "entry": 1053.9641796575931,
+      "entry_time": "2026-08-24T11:15:00+05:30",
+      "half_r_hit": false,
+      "rating": 8,
+      "risk": 2.491244780883335,
+      "side": "short",
+      "stop": 1056.4554244384765,
+      "symbol": "HINDALCO.NS",
+      "target_1": 1051.4729348767098,
+      "target_2": 1048.9816900958265,
+      "target_half": 1052.7185572671515
+    },
     "ceb6a3c45b6d47d1": {
       "alert_time": "2026-08-21T14:32:27.393129+05:30",
       "entry": 2212.0,
@@ -10127,6 +10158,20 @@
       "target_1": 2225.201,
       "target_2": 2238.402,
       "target_half": 2218.6005
+    },
+    "fac8f2d6f5615041": {
+      "alert_time": "2026-08-24T11:12:06.460699+05:30",
+      "entry": 147.7132034292152,
+      "entry_time": "2026-08-24T11:15:00+05:30",
+      "half_r_hit": false,
+      "rating": 6,
+      "risk": 0.7503128194740043,
+      "side": "long",
+      "stop": 146.9628906097412,
+      "symbol": "J&KBANK.NS",
+      "target_1": 148.46351624868922,
+      "target_2": 149.21382906816322,
+      "target_half": 148.08835983895221
     }
   }
 }
