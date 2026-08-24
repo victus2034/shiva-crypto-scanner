@@ -4539,7 +4539,11 @@
     "JKTYRE.NS|30m|short|384.1881111242|384.7000122070": 1787559741.8425496,
     "LINDEINDIA.NS|30m|long|6575.0000000000|6585.2088394670": 1787559742.0671341,
     "MINDACORP.NS|30m|long|718.2500000000|720.1994345315": 1787559742.376805,
-    "PFOCUS.NS|30m|short|310.0063518464|310.8900146484": 1787559742.6511488
+    "PFOCUS.NS|30m|short|310.0063518464|310.8900146484": 1787559742.6511488,
+    "ADANIENT.NS|30m|long|2970.3999023438|2973.9567554612": 1787560930.9078572,
+    "GODFRYPHLP.NS|30m|long|2094.3999023438|2097.1905894701": 1787560931.0836308,
+    "INDIANB.NS|30m|long|867.7000122070|868.9070131765": 1787560931.3932095,
+    "RKFORGE.NS|30m|long|728.4500122070|729.8759066612": 1787560931.6171598
   },
   "ANANDRATHI.NS|supply|2187.5000|2221.0000": {
     "in_zone": true,
@@ -12732,9 +12736,9 @@
     "last_attempt_at": 0.0
   },
   "RKFORGE.NS|demand|728.4500|729.8759": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1787560931.6171598,
+    "last_attempt_at": 1787560931.6171598
   },
   "REDINGTON.NS|supply|335.7463|336.4500": {
     "in_zone": false,
@@ -18777,9 +18781,9 @@
     "last_attempt_at": 0.0
   },
   "GODFRYPHLP.NS|demand|2094.3999|2097.1906": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1787560931.0836308,
+    "last_attempt_at": 1787560931.0836308
   },
   "GODREJCP.NS|supply|940.8901|942.6000": {
     "in_zone": true,
@@ -19007,9 +19011,9 @@
     "last_attempt_at": 0.0
   },
   "INDIANB.NS|demand|867.7000|868.9070": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1787560931.3932095,
+    "last_attempt_at": 1787560931.3932095
   },
   "INDHOTEL.NS|supply|735.8507|736.7000": {
     "in_zone": true,
@@ -28282,7 +28286,7 @@
     "last_attempt_at": 0.0
   },
   "JKTYRE.NS|supply|384.1881|384.7000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1787559741.8425496,
     "last_attempt_at": 1787559741.8425496
   },
@@ -31252,7 +31256,7 @@
     "last_attempt_at": 0.0
   },
   "__last_scan_started__": {
-    "30m": 1787559661.400501
+    "30m": 1787560855.0264916
   },
   "3MINDIA.NS|supply|35230.9249|35290.0000": {
     "in_zone": false,
@@ -44270,9 +44274,9 @@
     "last_attempt_at": 0.0
   },
   "ADANIENT.NS|demand|2970.3999|2973.9568": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1787560930.9078572,
+    "last_attempt_at": 1787560930.9078572
   },
   "ADANIGREEN.NS|supply|1334.5695|1336.4000": {
     "in_zone": false,
@@ -45025,7 +45029,7 @@
     "last_attempt_at": 0.0
   },
   "PFOCUS.NS|supply|310.0064|310.8900": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1787559742.6511488,
     "last_attempt_at": 1787559742.6511488
   },
@@ -45060,6 +45064,16 @@
     "last_attempt_at": 0.0
   },
   "SBILIFE.NS|demand|1746.4000|1748.3293": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "AWL.NS|supply|201.1293|201.4700": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "JUBLINGREA.NS|demand|669.2500|670.7531": {
     "in_zone": false,
     "last_alert_at": 0.0,
     "last_attempt_at": 0.0
