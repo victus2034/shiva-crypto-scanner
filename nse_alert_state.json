@@ -2820,7 +2820,8 @@
     "APLAPOLLO.NS|4h|short|2156.4626565396|2167.3000488281": 1787545977.176713,
     "MRF.NS|4h|short|135138.4076658756|135535.0000000000": 1787548349.5132117,
     "360ONE.NS|4h|short|1214.8851023304|1220.0000000000": 1787549566.1585252,
-    "CREDITACC.NS|4h|long|1456.5000000000|1464.4036251916": 1787549566.6832354
+    "CREDITACC.NS|4h|long|1456.5000000000|1464.4036251916": 1787549566.6832354,
+    "AIAENG.NS|4h|long|4298.7001953125|4320.1872012777": 1787550743.2987914
   },
   "GESHIP.NS|demand|1057.1000|1070.5000": {
     "in_zone": false,
@@ -17873,7 +17874,7 @@
     "last_attempt_at": 0.0
   },
   "__last_scan_started__": {
-    "4h": 1787550151.131147
+    "4h": 1787550676.9499955
   },
   "360ONE.NS|supply|1214.8851|1220.0000": {
     "in_zone": false,
@@ -19816,12 +19817,12 @@
     "last_attempt_at": 0.0
   },
   "AIAENG.NS|demand|4298.7002|4320.1872": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1787550743.2987914,
+    "last_attempt_at": 1787550743.2987914
   },
   "APLAPOLLO.NS|supply|2156.4355|2167.3000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1787544744.2829053,
     "last_attempt_at": 1787544744.2829053
   },
@@ -20521,7 +20522,7 @@
     "last_attempt_at": 0.0
   },
   "CYIENT.NS|supply|927.2118|932.0000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1787544744.4970038,
     "last_attempt_at": 1787544744.4970038
   },
@@ -21801,6 +21802,11 @@
     "last_attempt_at": 0.0
   },
   "LTFOODS.NS|supply|467.0818|470.0000": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "CREDITACC.NS|demand|1360.0000|1367.3541": {
     "in_zone": false,
     "last_alert_at": 0.0,
     "last_attempt_at": 0.0
