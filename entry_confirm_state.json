@@ -1,7 +1,4 @@
 {
-  "ABREL.NS|30m|short|1462.0282|1466.4650": {
-    "reached_entry": true
-  },
   "AMBER.NS|30m|short|7384.1859|7404.3970": {
     "reached_entry": true,
     "stage": 3
@@ -12,15 +9,15 @@
   },
   "BRITANNIA.NS|30m|long|5322.9229|5311.1835": {
     "reached_entry": true,
-    "stage": 2
+    "stage": 3
   },
   "BRITANNIA.NS|30m|long|5322.9232|5311.1835": {
     "reached_entry": true,
-    "stage": 2
+    "stage": 3
   },
   "BRITANNIA.NS|30m|long|5323.0298|5311.1835": {
     "reached_entry": true,
-    "stage": 2
+    "stage": 3
   },
   "CANBK.NS|30m|long|128.0512|127.7721": {
     "reached_entry": true,
@@ -38,12 +35,9 @@
     "reached_entry": true,
     "stage": 2
   },
-  "CRCLXUSD|30m|long|86.1248|85.9140": {
-    "reached_entry": true,
-    "stage": 2
-  },
   "DELHIVERY.NS|30m|long|447.1124|446.0036": {
-    "reached_entry": false
+    "reached_entry": false,
+    "stage": 1
   },
   "GESHIP.NS|30m|short|1330.1668|1333.8325": {
     "reached_entry": true,
@@ -57,6 +51,10 @@
     "reached_entry": true,
     "stage": 3
   },
+  "GOOGLXUSD|30m|long|343.2177|342.7070": {
+    "reached_entry": false,
+    "stage": 1
+  },
   "HAL.NS|30m|long|4931.7319|4919.2760": {
     "reached_entry": true,
     "stage": 3
@@ -68,9 +66,6 @@
   "HINDALCO.NS|30m|short|1053.9639|1056.4554": {
     "reached_entry": true,
     "stage": 3
-  },
-  "INDGN.NS|30m|short|572.9341|574.4739": {
-    "reached_entry": false
   },
   "JSWCEMENT.NS|30m|short|127.6701|127.9278": {
     "reached_entry": true,
@@ -86,10 +81,6 @@
   "KAYNES.NS|30m|short|3954.6095|3967.0632": {
     "reached_entry": false
   },
-  "LATENTVIEW.NS|30m|short|288.7760|289.5392": {
-    "reached_entry": true,
-    "stage": 3
-  },
   "METAXUSD|30m|long|551.2841|550.6488": {
     "reached_entry": true,
     "stage": 3
@@ -97,9 +88,6 @@
   "MUTHOOTFIN.NS|30m|short|3163.4175|3172.1690": {
     "reached_entry": true,
     "stage": 2
-  },
-  "NEWGEN.NS|30m|short|545.6553|547.2467": {
-    "reached_entry": false
   },
   "NMDC.NS|30m|short|85.9539|86.1461": {
     "reached_entry": false,
@@ -121,10 +109,6 @@
     "reached_entry": false,
     "stage": 1
   },
-  "PRESTIGE.NS|30m|short|1637.4755|1642.4408": {
-    "reached_entry": true,
-    "stage": 2
-  },
   "RADICO.NS|30m|long|4584.5908|4573.4220": {
     "reached_entry": false,
     "stage": 1
@@ -136,9 +120,5 @@
   "RHIM.NS|30m|short|380.1969|381.3310": {
     "reached_entry": true,
     "stage": 3
-  },
-  "TSLAXUSD|30m|long|361.1050|360.3393": {
-    "reached_entry": false,
-    "stage": 1
   }
 }
