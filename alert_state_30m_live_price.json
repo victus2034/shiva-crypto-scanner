@@ -2048,7 +2048,10 @@
     "MNT/USDT|30m|short|0.5249400000|0.5257000000": 1787563607.7109964,
     "AERO/USDT|30m|short|0.5070620000|0.5085000000": 1787566297.5019217,
     "BTW/USDT|30m|long|0.3877300000|0.3943355500": 1787568719.2719722,
-    "CRCLXUSD|30m|short|89.2662500000|89.3500000000": 1787571665.7067425
+    "CRCLXUSD|30m|short|89.2662500000|89.3500000000": 1787571665.7067425,
+    "BNBUSD|30m|short|706.14|707": 1787575929.469428,
+    "BCHUSD|30m|short|281.592|282.99": 1787575929.7371185,
+    "HBAR/USDT|30m|short|0.0808273|0.08101": 1787575929.9425564
   },
   "METAXUSD|demand|577.00000000|579.20000000": {
     "in_zone": false,
@@ -12481,8 +12484,8 @@
     "last_alert_at": 0.0
   },
   "BCHUSD|supply|281.59180000|282.99000000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1787575929.7371185
   },
   "DOTUSD|supply|0.93793500|0.94200000": {
     "in_zone": false,
@@ -13597,7 +13600,7 @@
     "last_alert_at": 0.0
   },
   "__last_scan_started__": {
-    "30m": 1787574656.3234563
+    "30m": 1787575856.3759115
   },
   "TAO/USDT|supply|227.92800000|229.00000000": {
     "in_zone": false,
@@ -14896,8 +14899,8 @@
     "last_alert_at": 0.0
   },
   "HBAR/USDT|supply|0.08082725|0.08101000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1787575929.9425564
   },
   "METAXUSD|supply|555.80445000|555.90000000": {
     "in_zone": false,
@@ -15232,8 +15235,8 @@
     "last_alert_at": 0.0
   },
   "BNBUSD|supply|706.13963000|707.00000000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1787575929.469428
   },
   "XMRUSD|supply|429.01645000|429.89000000": {
     "in_zone": false,
@@ -15256,6 +15259,14 @@
     "last_alert_at": 0.0
   },
   "0G/USDT|supply|0.17219850|0.17270000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "1000SHIBUSD|supply|0.00558216|0.00559200": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "SEIUSD|supply|0.04863510|0.04870000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
