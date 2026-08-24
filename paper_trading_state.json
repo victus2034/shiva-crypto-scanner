@@ -10682,6 +10682,29 @@
       "target_2": 518.8350807477382,
       "target_half": 516.8598525686933,
       "trade_id": "ededb8d01ae030d5"
+    },
+    {
+      "alert_time": "2026-08-24T11:12:06.460699+05:30",
+      "cost_r": 0.20927156136733974,
+      "date": "2026-08-24",
+      "entry": 147.7132034292152,
+      "entry_time": "2026-08-24T11:15:00+05:30",
+      "exit_price": 146.88940916443633,
+      "exit_time": "2026-08-24T14:10:00+05:30",
+      "final_result": "SL",
+      "half_r_hit": false,
+      "net_realized_r": -1.3072059740518938,
+      "outcome": "SL",
+      "rating": 6,
+      "realized_r": -1.097934412684554,
+      "risk": 0.7503128194740043,
+      "side": "long",
+      "stop": 146.9628906097412,
+      "symbol": "J&KBANK.NS",
+      "target_1": 148.46351624868922,
+      "target_2": 149.21382906816322,
+      "target_half": 148.08835983895221,
+      "trade_id": "fac8f2d6f5615041"
     }
   ],
   "handled": {
@@ -10858,6 +10881,7 @@
     "62665b4761ee9b11": "filled",
     "658eb472a8fc0254": "filled",
     "6622d65505d82ce1": "filled",
+    "66351dab9f338276": "filled",
     "67d7bbd9655ca698": "filled",
     "69390fab24efb07c": "filled",
     "6978e25f0ffc374b": "filled",
@@ -11039,6 +11063,7 @@
     "cae4617f29e7728e": "filled",
     "cb19928e88ce4d3a": "filled",
     "cb4086f95925ac4e": "filled",
+    "cb59cbde86ad10ba": "filled",
     "cbba98a7f4a06e2c": "filled",
     "cc13557c68dd4179": "filled",
     "cc3ce078cf2264b2": "filled",
@@ -11070,6 +11095,7 @@
     "d7f4e187fa098aca": "filled",
     "d86181f482d733e4": "filled",
     "d87a36e34cff2fb9": "filled",
+    "d95739ff7d52fb60": "filled",
     "d984cc83954830d8": "filled",
     "d9c538a5eae96cf1": "filled",
     "db222c013313dd21": "filled",
@@ -11159,6 +11185,20 @@
     "ffb4661b7d04cd46": "filled"
   },
   "open": {
+    "66351dab9f338276": {
+      "alert_time": "2026-08-24T14:12:11.393209+05:30",
+      "entry": 868.9070131764543,
+      "entry_time": "2026-08-24T14:15:00+05:30",
+      "half_r_hit": false,
+      "rating": 6,
+      "risk": 2.0747009816300306,
+      "side": "long",
+      "stop": 866.8323121948242,
+      "symbol": "INDIANB.NS",
+      "target_1": 870.9817141580843,
+      "target_2": 873.0564151397143,
+      "target_half": 869.9443636672693
+    },
     "8a9565f00d55729f": {
       "alert_time": "2026-08-24T13:32:20.649171+05:30",
       "entry": 141.17203142238878,
@@ -11201,6 +11241,20 @@
       "target_2": 1590.5199267578128,
       "target_half": 1616.0799633789063
     },
+    "cb59cbde86ad10ba": {
+      "alert_time": "2026-08-24T12:52:23.704202+05:30",
+      "entry": 720.1993044647792,
+      "entry_time": "2026-08-24T14:10:00+05:30",
+      "half_r_hit": false,
+      "rating": 7,
+      "risk": 2.6675544647791867,
+      "side": "long",
+      "stop": 717.53175,
+      "symbol": "MINDACORP.NS",
+      "target_1": 722.8668589295584,
+      "target_2": 725.5344133943375,
+      "target_half": 721.5330816971688
+    },
     "ceb6a3c45b6d47d1": {
       "alert_time": "2026-08-21T14:32:27.393129+05:30",
       "entry": 2212.0,
@@ -11215,19 +11269,19 @@
       "target_2": 2238.402,
       "target_half": 2218.6005
     },
-    "fac8f2d6f5615041": {
-      "alert_time": "2026-08-24T11:12:06.460699+05:30",
-      "entry": 147.7132034292152,
-      "entry_time": "2026-08-24T11:15:00+05:30",
+    "d95739ff7d52fb60": {
+      "alert_time": "2026-08-24T13:52:22.376805+05:30",
+      "entry": 720.1994345314652,
+      "entry_time": "2026-08-24T14:10:00+05:30",
       "half_r_hit": false,
-      "rating": 6,
-      "risk": 0.7503128194740043,
+      "rating": 5,
+      "risk": 2.66768453146517,
       "side": "long",
-      "stop": 146.9628906097412,
-      "symbol": "J&KBANK.NS",
-      "target_1": 148.46351624868922,
-      "target_2": 149.21382906816322,
-      "target_half": 148.08835983895221
+      "stop": 717.53175,
+      "symbol": "MINDACORP.NS",
+      "target_1": 722.8671190629303,
+      "target_2": 725.5348035943955,
+      "target_half": 721.5332767971977
     }
   }
 }
