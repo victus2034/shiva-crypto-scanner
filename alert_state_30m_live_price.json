@@ -2044,7 +2044,8 @@
     "CAP/USDT|30m|long|0.0668700000|0.0671868500": 1787556739.4855816,
     "HYPEUSD|30m|long|76.9800000000|77.2837000000": 1787560265.0434432,
     "ICP/USDT|30m|long|2.3520000000|2.3597900000": 1787560265.2196338,
-    "HYPEUSD|30m|long|76.9600000000|77.3065000000": 1787561524.12499
+    "HYPEUSD|30m|long|76.9600000000|77.3065000000": 1787561524.12499,
+    "MNT/USDT|30m|short|0.5249400000|0.5257000000": 1787563607.7109964
   },
   "METAXUSD|demand|577.00000000|579.20000000": {
     "in_zone": false,
@@ -13593,7 +13594,7 @@
     "last_alert_at": 0.0
   },
   "__last_scan_started__": {
-    "30m": 1787562651.4392257
+    "30m": 1787563531.6979914
   },
   "TAO/USDT|supply|227.92800000|229.00000000": {
     "in_zone": false,
@@ -15020,6 +15021,62 @@
     "last_alert_at": 0.0
   },
   "MNT/USDT|supply|0.52494000|0.52570000": {
+    "in_zone": true,
+    "last_alert_at": 1787563607.7109964
+  },
+  "ZAMA/USDT|demand|0.04950000|0.04999760": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "TRUMP/USDT|supply|2.91250500|2.93700000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "ARBUSD|supply|0.10345780|0.10377000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "LDO/USDT|demand|0.34610000|0.34778450": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "APTUSD|supply|0.66204400|0.66430000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "APTUSD|demand|0.59560000|0.59884450": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "PENGU/USDT|demand|0.00802700|0.00807910": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "1000BONKUSD|supply|0.00335742|0.00337400": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "1000BONKUSD|demand|0.00302200|0.00304106": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "DOTUSD|demand|0.87600000|0.87948300": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "ZRO/USDT|supply|1.29297300|1.30190000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "ZRO/USDT|demand|1.11450000|1.12289450": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "VVV/USDT|demand|16.10100000|16.19920000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "ATOM/USDT|demand|1.51500000|1.52022100": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
