@@ -9992,6 +9992,29 @@
       "target_2": 83.00691916318729,
       "target_half": 83.25516866515076,
       "trade_id": "edb87a20b3443dbf"
+    },
+    {
+      "alert_time": "2026-08-24T12:32:20.999473+05:30",
+      "cost_r": 0.44084607356693944,
+      "date": "2026-08-24",
+      "entry": 607.493493226566,
+      "entry_time": "2026-08-24T12:35:00+05:30",
+      "exit_price": null,
+      "exit_time": "2026-08-24T12:35:00+05:30",
+      "final_result": "data_quality_ambiguous",
+      "half_r_hit": false,
+      "net_realized_r": null,
+      "outcome": "data_quality_ambiguous",
+      "rating": 9,
+      "realized_r": null,
+      "risk": 1.4648323349573502,
+      "side": "short",
+      "stop": 608.9583255615233,
+      "symbol": "HINDZINC.NS",
+      "target_1": 606.0286608916086,
+      "target_2": 604.5638285566513,
+      "target_half": 606.7610770590873,
+      "trade_id": "4cefffd16c85252c"
     }
   ],
   "handled": {
@@ -10109,6 +10132,7 @@
     "4c6628bfe00e68f7": "filled",
     "4c966fc744995e9b": "filled",
     "4ced8bf29240dece": "filled",
+    "4cefffd16c85252c": "filled",
     "4d7018f01236dc4f": "filled",
     "4ee0cbd08ca5cefe": "filled",
     "4ef57221bfd5c70d": "filled",
@@ -10195,6 +10219,7 @@
     "7d916765f767ac89": "filled",
     "7e4113a42dc8ba81": "filled",
     "7ee0e7010d11e78e": "filled",
+    "7ef804c3fa468afc": "filled",
     "7ffb7eb8e15e05cf": "filled",
     "80020603bf461dfa": "filled",
     "80176f36c7f39a5a": "filled",
@@ -10531,6 +10556,20 @@
       "target_1": 2013.6598661850373,
       "target_2": 2017.2939870827317,
       "target_half": 2011.8428057361903
+    },
+    "7ef804c3fa468afc": {
+      "alert_time": "2026-08-24T12:32:22.058891+05:30",
+      "entry": 85.95379579669277,
+      "entry_time": "2026-08-24T12:35:00+05:30",
+      "half_r_hit": false,
+      "rating": 7,
+      "risk": 0.19226175945955504,
+      "side": "short",
+      "stop": 86.14605755615233,
+      "symbol": "NMDC.NS",
+      "target_1": 85.76153403723322,
+      "target_2": 85.56927227777366,
+      "target_half": 85.85766491696299
     },
     "80176f36c7f39a5a": {
       "alert_time": "2026-08-24T12:32:20.181470+05:30",
