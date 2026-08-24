@@ -2055,7 +2055,8 @@
     "GOOGLXUSD|30m|long|343.05|343.218": 1787577055.5118089,
     "MSTRBUSD|30m|short|123.666|124": 1787577055.701885,
     "AAPLXUSD|30m|short|313.166|313.35": 1787580724.510809,
-    "BTCUSD|30m|short|79407.4|79559.2": 1787581938.2553778
+    "BTCUSD|30m|short|79407.4|79559.2": 1787581938.2553778,
+    "CRV/USDT|30m|short|0.333834|0.3351": 1787583130.199873
   },
   "METAXUSD|demand|577.00000000|579.20000000": {
     "in_zone": false,
@@ -13604,7 +13605,7 @@
     "last_alert_at": 1787580724.510809
   },
   "__last_scan_started__": {
-    "30m": 1787581857.7701461
+    "30m": 1787583054.7265627
   },
   "TAO/USDT|supply|227.92800000|229.00000000": {
     "in_zone": false,
@@ -15355,8 +15356,8 @@
     "last_alert_at": 0.0
   },
   "CRV/USDT|supply|0.33383350|0.33510000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1787583130.199873
   },
   "STORJ/USDT|demand|0.04139000|0.04158385": {
     "in_zone": false,
@@ -15407,6 +15408,10 @@
     "last_alert_at": 0.0
   },
   "MSTRBUSD|supply|127.46680000|127.85000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "MSTRBUSD|supply|127.34645000|127.76000000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
