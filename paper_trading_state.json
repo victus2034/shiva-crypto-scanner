@@ -10705,6 +10705,29 @@
       "target_2": 149.21382906816322,
       "target_half": 148.08835983895221,
       "trade_id": "fac8f2d6f5615041"
+    },
+    {
+      "alert_time": "2026-08-24T14:12:10.907857+05:30",
+      "cost_r": 0.484325645328438,
+      "date": "2026-08-24",
+      "entry": 2973.956755461245,
+      "entry_time": "2026-08-24T14:15:00+05:30",
+      "exit_price": 2980.4840084810835,
+      "exit_time": "2026-08-24T14:20:00+05:30",
+      "final_result": "+1R",
+      "half_r_hit": true,
+      "net_realized_r": 0.515674354671562,
+      "outcome": "+1R",
+      "rating": 7,
+      "realized_r": 1.0,
+      "risk": 6.527253019838554,
+      "side": "long",
+      "stop": 2967.4295024414064,
+      "symbol": "ADANIENT.NS",
+      "target_1": 2980.4840084810835,
+      "target_2": 2987.011261500922,
+      "target_half": 2977.220381971164,
+      "trade_id": "90485c8db513fe0d"
     }
   ],
   "handled": {
@@ -10957,6 +10980,7 @@
     "8f8148ee6cd44268": "filled",
     "8fbfb5444e163963": "filled",
     "8ff7e062a6a00b1e": "filled",
+    "90485c8db513fe0d": "filled",
     "906d548c2c2d0fe4": "filled",
     "91585a8412cd26a1": "filled",
     "916ddc3b66f02110": "filled",
