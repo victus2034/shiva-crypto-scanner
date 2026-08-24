@@ -1015,10 +1015,20 @@ def process_candidate(state, result, zone_type, zone, distance_pct, now_ts):
 
 
 def exact_zone_identity(symbol, zone_type, zone):
+    """Identify a zone across scans, so a repeat can be recognised.
+
+    Ten decimals made this unique per scan rather than per zone. A zone's
+    edges drift in the far decimals as ATR moves with each new candle -
+    one BANKINDIA level came through as 141.1720310348 and then
+    141.1721010741 - so every delivery minted a fresh key, the repeat
+    suppression below never matched, and the same zone alerted every
+    twenty minutes for hours. Six significant figures is far finer than
+    any real zone is wide and far coarser than the drift.
+    """
     side = "long" if zone_type == "demand" else "short"
     return (
         f"{str(symbol).upper()}|{TIMEFRAME}|{side}|"
-        f"{float(zone['bottom']):.10f}|{float(zone['top']):.10f}"
+        f"{float(zone['bottom']):.6g}|{float(zone['top']):.6g}"
     )
 
 
