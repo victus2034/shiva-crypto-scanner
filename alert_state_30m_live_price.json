@@ -2058,7 +2058,8 @@
     "BTCUSD|30m|short|79407.4|79559.2": 1787581938.2553778,
     "CRV/USDT|30m|short|0.333834|0.3351": 1787583130.199873,
     "GOOGLXUSD|30m|short|350.017|350.06": 1787584330.4649732,
-    "MSFT/USDT:USDT|30m|short|489.29|489.59": 1787584330.6201482
+    "MSFT/USDT:USDT|30m|short|489.29|489.59": 1787584330.6201482,
+    "SLVONUSD|30m|long|62.14|62.1621": 1787586732.3801007
   },
   "METAXUSD|demand|577.00000000|579.20000000": {
     "in_zone": false,
@@ -13607,7 +13608,7 @@
     "last_alert_at": 1787580724.510809
   },
   "__last_scan_started__": {
-    "30m": 1787585459.5907052
+    "30m": 1787586655.482944
   },
   "TAO/USDT|supply|227.92800000|229.00000000": {
     "in_zone": false,
@@ -14350,8 +14351,8 @@
     "last_alert_at": 0.0
   },
   "SLVONUSD|demand|62.14000000|62.16205000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1787586732.3801007
   },
   "SKHYNIX/USDT:USDT|demand|1173.88000000|1177.91860000": {
     "in_zone": false,
@@ -15446,6 +15447,18 @@
     "last_alert_at": 0.0
   },
   "INTCBUSD|supply|90.61270000|90.65000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "SUIUSD|supply|0.85398400|0.85700000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "EUL/USDT|demand|1.30770000|1.31406700": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "TSLAXUSD|supply|368.65405000|368.80000000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
