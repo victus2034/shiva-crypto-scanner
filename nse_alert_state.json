@@ -2821,7 +2821,9 @@
     "MRF.NS|4h|short|135138.4076658756|135535.0000000000": 1787548349.5132117,
     "360ONE.NS|4h|short|1214.8851023304|1220.0000000000": 1787549566.1585252,
     "CREDITACC.NS|4h|long|1456.5000000000|1464.4036251916": 1787549566.6832354,
-    "AIAENG.NS|4h|long|4298.7001953125|4320.1872012777": 1787550743.2987914
+    "AIAENG.NS|4h|long|4298.7001953125|4320.1872012777": 1787550743.2987914,
+    "EIDPARRY.NS|4h|short|860.8270372432|865.3499755859": 1787551963.127673,
+    "PVRINOX.NS|4h|short|1244.4008486235|1249.5999755859": 1787551963.3387632
   },
   "GESHIP.NS|demand|1057.1000|1070.5000": {
     "in_zone": false,
@@ -17874,7 +17876,7 @@
     "last_attempt_at": 0.0
   },
   "__last_scan_started__": {
-    "4h": 1787550676.9499955
+    "4h": 1787551884.5200167
   },
   "360ONE.NS|supply|1214.8851|1220.0000": {
     "in_zone": false,
@@ -18692,9 +18694,9 @@
     "last_attempt_at": 0.0
   },
   "EIDPARRY.NS|supply|860.8270|865.3500": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1787551963.127673,
+    "last_attempt_at": 1787551963.127673
   },
   "EIHOTEL.NS|supply|369.7823|371.0500": {
     "in_zone": false,
@@ -19637,9 +19639,9 @@
     "last_attempt_at": 0.0
   },
   "PVRINOX.NS|supply|1244.4008|1249.6000": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1787551963.3387632,
+    "last_attempt_at": 1787551963.3387632
   },
   "PAGEIND.NS|supply|41430.5450|41590.0000": {
     "in_zone": false,
@@ -21807,6 +21809,11 @@
     "last_attempt_at": 0.0
   },
   "CREDITACC.NS|demand|1360.0000|1367.3541": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "CREDITACC.NS|demand|1360.0000|1367.3494": {
     "in_zone": false,
     "last_alert_at": 0.0,
     "last_attempt_at": 0.0
