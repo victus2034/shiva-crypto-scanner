@@ -9969,6 +9969,29 @@
       "target_2": 926.4505008000883,
       "target_half": 922.81518820522,
       "trade_id": "0ae0f0d5476b3c1a"
+    },
+    {
+      "alert_time": "2026-08-24T11:52:07.654072+05:30",
+      "cost_r": 0.535277251297067,
+      "date": "2026-08-24",
+      "entry": 83.3379184991386,
+      "entry_time": "2026-08-24T11:55:00+05:30",
+      "exit_price": 83.17241883116294,
+      "exit_time": "2026-08-24T12:35:00+05:30",
+      "final_result": "+1R",
+      "half_r_hit": true,
+      "net_realized_r": 0.46472274870293295,
+      "outcome": "+1R",
+      "rating": 9,
+      "realized_r": 1.0,
+      "risk": 0.1654996679756522,
+      "side": "short",
+      "stop": 83.50341816711425,
+      "symbol": "IDBI.NS",
+      "target_1": 83.17241883116294,
+      "target_2": 83.00691916318729,
+      "target_half": 83.25516866515076,
+      "trade_id": "edb87a20b3443dbf"
     }
   ],
   "handled": {
@@ -10152,6 +10175,7 @@
     "718b38ca268f3cd0": "filled",
     "71d6d3ddd45851ac": "filled",
     "71f2a6a29b09e10c": "filled",
+    "726bf0dd99710b7a": "filled",
     "73afb0e83e8f7f71": "filled",
     "73b22c5a9b6c1e3e": "filled",
     "7402db7a8006aaf7": "filled",
@@ -10173,10 +10197,12 @@
     "7ee0e7010d11e78e": "filled",
     "7ffb7eb8e15e05cf": "filled",
     "80020603bf461dfa": "filled",
+    "80176f36c7f39a5a": "filled",
     "809bae13d88e3ad5": "filled",
     "80c98c281079ae42": "filled",
     "815caf9ce18f26aa": "filled",
     "81a974135164de09": "filled",
+    "822e67795ce79234": "filled",
     "82abf5bf286ace1e": "filled",
     "82d73f7c4adbf11d": "filled",
     "82f9d2152057647a": "filled",
@@ -10279,6 +10305,7 @@
     "bcaea109d5d9eb5d": "filled",
     "bcfc077a6eddd6b6": "filled",
     "bd14f7fffe04b841": "filled",
+    "bd48e0007d9f5ee9": "filled",
     "be0156ccea7b15b3": "filled",
     "be57674723914eb7": "filled",
     "beccd1b438bc4da3": "filled",
@@ -10477,6 +10504,20 @@
       "target_2": 411.1085140463343,
       "target_half": 409.67492897446107
     },
+    "726bf0dd99710b7a": {
+      "alert_time": "2026-08-24T12:32:20.700123+05:30",
+      "entry": 2010.0257328283444,
+      "entry_time": "2026-08-24T12:35:00+05:30",
+      "half_r_hit": false,
+      "rating": 8,
+      "risk": 3.6341084386958755,
+      "side": "long",
+      "stop": 2006.3916243896485,
+      "symbol": "HINDUNILVR.NS",
+      "target_1": 2013.6598412670403,
+      "target_2": 2017.2939497057362,
+      "target_half": 2011.8427870476924
+    },
     "7e4113a42dc8ba81": {
       "alert_time": "2026-08-24T11:32:19.128737+05:30",
       "entry": 2010.025745287343,
@@ -10491,6 +10532,34 @@
       "target_2": 2017.2939870827317,
       "target_half": 2011.8428057361903
     },
+    "80176f36c7f39a5a": {
+      "alert_time": "2026-08-24T12:32:20.181470+05:30",
+      "entry": 409.19732279761865,
+      "entry_time": "2026-08-24T12:35:00+05:30",
+      "half_r_hit": false,
+      "rating": 8,
+      "risk": 0.9559788950307393,
+      "side": "long",
+      "stop": 408.2413439025879,
+      "symbol": "BIOCON.NS",
+      "target_1": 410.1533016926494,
+      "target_2": 411.10928058768013,
+      "target_half": 409.675312245134
+    },
+    "822e67795ce79234": {
+      "alert_time": "2026-08-24T12:32:22.581415+05:30",
+      "entry": 92.03101028509354,
+      "entry_time": "2026-08-24T12:35:00+05:30",
+      "half_r_hit": false,
+      "rating": 7,
+      "risk": 0.21291662664627609,
+      "side": "long",
+      "stop": 91.81809365844727,
+      "symbol": "SBFC.NS",
+      "target_1": 92.24392691173982,
+      "target_2": 92.4568435383861,
+      "target_half": 92.13746859841669
+    },
     "b0bb5f61d52b0880": {
       "alert_time": "2026-08-21T14:12:03.606176+05:30",
       "entry": 1624.5999755859375,
@@ -10504,6 +10573,20 @@
       "target_1": 1607.5599511718751,
       "target_2": 1590.5199267578128,
       "target_half": 1616.0799633789063
+    },
+    "bd48e0007d9f5ee9": {
+      "alert_time": "2026-08-24T12:32:20.452709+05:30",
+      "entry": 921.6035585761514,
+      "entry_time": "2026-08-24T12:35:00+05:30",
+      "half_r_hit": false,
+      "rating": 7,
+      "risk": 2.4236829657997987,
+      "side": "long",
+      "stop": 919.1798756103516,
+      "symbol": "GODREJCP.NS",
+      "target_1": 924.0272415419512,
+      "target_2": 926.450924507751,
+      "target_half": 922.8154000590513
     },
     "c4761d10457edcb9": {
       "alert_time": "2026-08-24T11:52:06.996462+05:30",
@@ -10546,20 +10629,6 @@
       "target_1": 2225.201,
       "target_2": 2238.402,
       "target_half": 2218.6005
-    },
-    "edb87a20b3443dbf": {
-      "alert_time": "2026-08-24T11:52:07.654072+05:30",
-      "entry": 83.3379184991386,
-      "entry_time": "2026-08-24T11:55:00+05:30",
-      "half_r_hit": true,
-      "rating": 9,
-      "risk": 0.1654996679756522,
-      "side": "short",
-      "stop": 83.50341816711425,
-      "symbol": "IDBI.NS",
-      "target_1": 83.17241883116294,
-      "target_2": 83.00691916318729,
-      "target_half": 83.25516866515076
     },
     "fac8f2d6f5615041": {
       "alert_time": "2026-08-24T11:12:06.460699+05:30",
