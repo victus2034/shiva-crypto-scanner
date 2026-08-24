@@ -10935,6 +10935,52 @@
       "target_2": 725.5348035943955,
       "target_half": 721.5332767971977,
       "trade_id": "d95739ff7d52fb60"
+    },
+    {
+      "alert_time": "2026-08-21T14:12:03.606176+05:30",
+      "cost_r": 0.10134667252135372,
+      "date": "2026-08-21",
+      "entry": 1624.5999755859375,
+      "entry_time": "2026-08-21T14:15:00+05:30",
+      "exit_price": 1628.0,
+      "exit_time": "2026-08-24T15:05:00+05:30",
+      "final_result": "Neither",
+      "half_r_hit": false,
+      "net_realized_r": -0.30087833582440693,
+      "outcome": "Neither",
+      "rating": 9,
+      "realized_r": -0.19953166330305322,
+      "risk": 17.040024414062373,
+      "side": "short",
+      "stop": 1641.6399999999999,
+      "symbol": "PRESTIGE.NS",
+      "target_1": 1607.5599511718751,
+      "target_2": 1590.5199267578128,
+      "target_half": 1616.0799633789063,
+      "trade_id": "b0bb5f61d52b0880"
+    },
+    {
+      "alert_time": "2026-08-21T14:32:27.393129+05:30",
+      "cost_r": 0.17811953639875738,
+      "date": "2026-08-21",
+      "entry": 2212.0,
+      "entry_time": "2026-08-21T14:35:00+05:30",
+      "exit_price": 2205.0,
+      "exit_time": "2026-08-24T15:05:00+05:30",
+      "final_result": "Neither",
+      "half_r_hit": false,
+      "net_realized_r": -0.7083823952730841,
+      "outcome": "Neither",
+      "rating": 9,
+      "realized_r": -0.5302628588743268,
+      "risk": 13.201000000000022,
+      "side": "long",
+      "stop": 2198.799,
+      "symbol": "DOMS.NS",
+      "target_1": 2225.201,
+      "target_2": 2238.402,
+      "target_half": 2218.6005,
+      "trade_id": "ceb6a3c45b6d47d1"
     }
   ],
   "handled": {
@@ -11419,34 +11465,5 @@
     "fed8ed34d9b4adcd": "filled",
     "ffb4661b7d04cd46": "filled"
   },
-  "open": {
-    "b0bb5f61d52b0880": {
-      "alert_time": "2026-08-21T14:12:03.606176+05:30",
-      "entry": 1624.5999755859375,
-      "entry_time": "2026-08-21T14:15:00+05:30",
-      "half_r_hit": false,
-      "rating": 9,
-      "risk": 17.040024414062373,
-      "side": "short",
-      "stop": 1641.6399999999999,
-      "symbol": "PRESTIGE.NS",
-      "target_1": 1607.5599511718751,
-      "target_2": 1590.5199267578128,
-      "target_half": 1616.0799633789063
-    },
-    "ceb6a3c45b6d47d1": {
-      "alert_time": "2026-08-21T14:32:27.393129+05:30",
-      "entry": 2212.0,
-      "entry_time": "2026-08-21T14:35:00+05:30",
-      "half_r_hit": false,
-      "rating": 9,
-      "risk": 13.201000000000022,
-      "side": "long",
-      "stop": 2198.799,
-      "symbol": "DOMS.NS",
-      "target_1": 2225.201,
-      "target_2": 2238.402,
-      "target_half": 2218.6005
-    }
-  }
+  "open": {}
 }
