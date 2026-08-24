@@ -9716,6 +9716,29 @@
       "target_2": 1304.7317490375601,
       "target_half": 1309.02187451878,
       "trade_id": "916ddc3b66f02110"
+    },
+    {
+      "alert_time": "2026-08-24T11:32:18.628525+05:30",
+      "cost_r": 0.36668420893840414,
+      "date": "2026-08-24",
+      "entry": 251.66838706729982,
+      "entry_time": "2026-08-24T11:35:00+05:30",
+      "exit_price": 250.81334303274537,
+      "exit_time": "2026-08-24T11:35:00+05:30",
+      "final_result": "SL",
+      "half_r_hit": false,
+      "net_realized_r": -1.5386603185049128,
+      "outcome": "SL",
+      "rating": 7,
+      "realized_r": -1.1719761095665087,
+      "risk": 0.7295746283349729,
+      "side": "long",
+      "stop": 250.93881243896485,
+      "symbol": "BLS.NS",
+      "target_1": 252.3979616956348,
+      "target_2": 253.12753632396976,
+      "target_half": 252.0331743814673,
+      "trade_id": "b8e9dd49960bb07c"
     }
   ],
   "handled": {
@@ -9813,6 +9836,7 @@
     "40918603dc3eabc8": "filled",
     "435231228be44c0e": "filled",
     "43cc2bfe2d3d58fd": "filled",
+    "43ec392e9973b18f": "filled",
     "44e5ef4dd52a4bff": "filled",
     "463bf1a47c3f1970": "filled",
     "4683239f190224e7": "filled",
@@ -9861,6 +9885,7 @@
     "5d76d32a04c24326": "filled",
     "5d832eaae0e4c7b5": "filled",
     "5da572373f9e8856": "filled",
+    "5db4979d2bdb9663": "filled",
     "5ee8bc7cc0422392": "filled",
     "5f1069eb5a0ccea4": "filled",
     "604943ecced2ef44": "filled",
@@ -10001,6 +10026,7 @@
     "b8471f3a092cc3e8": "filled",
     "b8812d11040e2c55": "filled",
     "b8c5db0a49b6524e": "filled",
+    "b8e9dd49960bb07c": "filled",
     "b918189032b3bc5a": "filled",
     "b95a01ae18922bb6": "filled",
     "ba4d3526a660fe35": "filled",
@@ -10051,6 +10077,7 @@
     "d0ac2a39e36b58f3": "filled",
     "d0bae9e59f0758dd": "filled",
     "d1d97825779b5744": "filled",
+    "d21e4ed87a2eb007": "filled",
     "d3651c08d902b599": "filled",
     "d4c6f54d3e4b13f4": "filled",
     "d503bd5a02c65b72": "filled",
@@ -10150,6 +10177,34 @@
     "ffb4661b7d04cd46": "filled"
   },
   "open": {
+    "43ec392e9973b18f": {
+      "alert_time": "2026-08-24T11:32:18.973409+05:30",
+      "entry": 1387.6306340574693,
+      "entry_time": "2026-08-24T11:35:00+05:30",
+      "half_r_hit": false,
+      "rating": 10,
+      "risk": 4.51513405746914,
+      "side": "long",
+      "stop": 1383.1155,
+      "symbol": "GABRIEL.NS",
+      "target_1": 1392.1457681149384,
+      "target_2": 1396.6609021724075,
+      "target_half": 1389.888201086204
+    },
+    "5db4979d2bdb9663": {
+      "alert_time": "2026-08-24T11:32:18.772865+05:30",
+      "entry": 447.112270691856,
+      "entry_time": "2026-08-24T11:35:00+05:30",
+      "half_r_hit": false,
+      "rating": 7,
+      "risk": 1.1087084970317846,
+      "side": "long",
+      "stop": 446.0035621948242,
+      "symbol": "DELHIVERY.NS",
+      "target_1": 448.2209791888878,
+      "target_2": 449.32968768591957,
+      "target_half": 447.6666249403719
+    },
     "b0bb5f61d52b0880": {
       "alert_time": "2026-08-21T14:12:03.606176+05:30",
       "entry": 1624.5999755859375,
@@ -10191,6 +10246,20 @@
       "target_1": 2225.201,
       "target_2": 2238.402,
       "target_half": 2218.6005
+    },
+    "d21e4ed87a2eb007": {
+      "alert_time": "2026-08-24T11:32:18.438528+05:30",
+      "entry": 622.2033070342022,
+      "entry_time": "2026-08-24T11:35:00+05:30",
+      "half_r_hit": false,
+      "rating": 7,
+      "risk": 1.6244948393780305,
+      "side": "long",
+      "stop": 620.5788121948242,
+      "symbol": "ANANTRAJ.NS",
+      "target_1": 623.8278018735803,
+      "target_2": 625.4522967129583,
+      "target_half": 623.0155544538912
     },
     "fac8f2d6f5615041": {
       "alert_time": "2026-08-24T11:12:06.460699+05:30",
