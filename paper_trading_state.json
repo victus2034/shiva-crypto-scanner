@@ -11832,6 +11832,29 @@
       "target_2": 407.65037552028514,
       "target_half": 406.3974066627304,
       "trade_id": "7142816624ee5bdd"
+    },
+    {
+      "alert_time": "2026-08-25T13:11:59.330531+05:30",
+      "cost_r": 0.32897600324772525,
+      "date": "2026-08-25",
+      "entry": 163.32594731871444,
+      "entry_time": "2026-08-25T13:15:00+05:30",
+      "exit_price": null,
+      "exit_time": "2026-08-25T13:15:00+05:30",
+      "final_result": "data_quality_ambiguous",
+      "half_r_hit": false,
+      "net_realized_r": null,
+      "outcome": "data_quality_ambiguous",
+      "rating": 8,
+      "realized_r": null,
+      "risk": 0.5277451251332081,
+      "side": "short",
+      "stop": 163.85369244384765,
+      "symbol": "PINELABS.NS",
+      "target_1": 162.79820219358123,
+      "target_2": 162.27045706844802,
+      "target_half": 163.06207475614784,
+      "trade_id": "29dd56dd408baa73"
     }
   ],
   "handled": {
@@ -11918,6 +11941,7 @@
     "26c36fba4dd70e81": "filled",
     "27871fcb05990662": "filled",
     "2994c8d8b45110c8": "filled",
+    "29dd56dd408baa73": "filled",
     "2b4756e787bca3f5": "filled",
     "2b8fce520e17dd00": "filled",
     "2ba8548eb1b4d1c9": "filled",
