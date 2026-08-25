@@ -11119,6 +11119,29 @@
       "target_2": 279.36145507209034,
       "target_half": 278.2170555847512,
       "trade_id": "f3de4cbbd1d2e746"
+    },
+    {
+      "alert_time": "2026-08-25T09:52:26.549084+05:30",
+      "cost_r": 0.4679340103887015,
+      "date": "2026-08-25",
+      "entry": 17.02166791597313,
+      "entry_time": "2026-08-25T09:55:00+05:30",
+      "exit_price": 16.9745085,
+      "exit_time": "2026-08-25T09:55:00+05:30",
+      "final_result": "SL",
+      "half_r_hit": false,
+      "net_realized_r": -1.687534673788886,
+      "outcome": "SL",
+      "rating": 8,
+      "realized_r": -1.2196006634001846,
+      "risk": 0.038667915973128686,
+      "side": "long",
+      "stop": 16.983,
+      "symbol": "JPPOWER.NS",
+      "target_1": 17.060335831946258,
+      "target_2": 17.099003747919387,
+      "target_half": 17.041001873959694,
+      "trade_id": "49453363c7a70917"
     }
   ],
   "handled": {
@@ -11243,9 +11266,11 @@
     "47b52148e89ab9cf": "filled",
     "491c6f72f332ccfd": "filled",
     "491f88391acd1f2f": "filled",
+    "49453363c7a70917": "filled",
     "4add6fb748ddb0a5": "filled",
     "4af41df8fa36c4a3": "filled",
     "4b36487410c75d5b": "filled",
+    "4c1e353cbf55b12c": "filled",
     "4c5f51a1a2c52296": "filled",
     "4c6628bfe00e68f7": "filled",
     "4c966fc744995e9b": "filled",
@@ -11376,6 +11401,7 @@
     "8d504e7786b16238": "filled",
     "8e5e947ae780076d": "filled",
     "8ed0ad896bd16bbf": "filled",
+    "8f1b3ac7b0c55b5f": "filled",
     "8f8148ee6cd44268": "filled",
     "8fbfb5444e163963": "filled",
     "8ff7e062a6a00b1e": "filled",
@@ -11609,5 +11635,34 @@
     "fed8ed34d9b4adcd": "filled",
     "ffb4661b7d04cd46": "filled"
   },
-  "open": {}
+  "open": {
+    "4c1e353cbf55b12c": {
+      "alert_time": "2026-08-25T09:52:25.780202+05:30",
+      "entry": 4039.1371671039205,
+      "entry_time": "2026-08-25T09:55:00+05:30",
+      "half_r_hit": false,
+      "rating": 9,
+      "risk": 8.172167103920401,
+      "side": "long",
+      "stop": 4030.965,
+      "symbol": "BAYERCROP.NS",
+      "target_1": 4047.309334207841,
+      "target_2": 4055.4815013117613,
+      "target_half": 4043.2232506558807
+    },
+    "8f1b3ac7b0c55b5f": {
+      "alert_time": "2026-08-25T09:52:25.167218+05:30",
+      "entry": 2973.956811077619,
+      "entry_time": "2026-08-25T09:55:00+05:30",
+      "half_r_hit": false,
+      "rating": 5,
+      "risk": 6.527308636212638,
+      "side": "long",
+      "stop": 2967.4295024414064,
+      "symbol": "ADANIENT.NS",
+      "target_1": 2980.4841197138317,
+      "target_2": 2987.0114283500443,
+      "target_half": 2977.220465395725
+    }
+  }
 }
