@@ -11165,6 +11165,52 @@
       "target_2": 2987.0114283500443,
       "target_half": 2977.220465395725,
       "trade_id": "8f1b3ac7b0c55b5f"
+    },
+    {
+      "alert_time": "2026-08-25T10:12:09.412555+05:30",
+      "cost_r": 0.35327654575514816,
+      "date": "2026-08-25",
+      "entry": 208.11852020226613,
+      "entry_time": "2026-08-25T10:15:00+05:30",
+      "exit_price": 207.38855080281832,
+      "exit_time": "2026-08-25T10:15:00+05:30",
+      "final_result": "SL",
+      "half_r_hit": false,
+      "net_realized_r": -1.5189461345393025,
+      "outcome": "SL",
+      "rating": 8,
+      "realized_r": -1.1656695887841544,
+      "risk": 0.6262232509721741,
+      "side": "long",
+      "stop": 207.49229695129395,
+      "symbol": "PPLPHARMA.NS",
+      "target_1": 208.7447434532383,
+      "target_2": 209.37096670421047,
+      "target_half": 208.4316318277522,
+      "trade_id": "13a771741bf77e6b"
+    },
+    {
+      "alert_time": "2026-08-25T10:12:08.104942+05:30",
+      "cost_r": 0.4185732681701032,
+      "date": "2026-08-25",
+      "entry": 235.61310816815939,
+      "entry_time": "2026-08-25T10:15:00+05:30",
+      "exit_price": 236.21146633631878,
+      "exit_time": "2026-08-25T10:20:00+05:30",
+      "final_result": "+1R",
+      "half_r_hit": true,
+      "net_realized_r": 0.5814267318298968,
+      "outcome": "+1R",
+      "rating": 8,
+      "realized_r": 1.0,
+      "risk": 0.5983581681593932,
+      "side": "long",
+      "stop": 235.01475,
+      "symbol": "BLS.NS",
+      "target_1": 236.21146633631878,
+      "target_2": 236.80982450447817,
+      "target_half": 235.91228725223908,
+      "trade_id": "bb1dbbdaf12dc912"
     }
   ],
   "handled": {
@@ -11484,6 +11530,7 @@
     "b09f21fa32198077": "filled",
     "b0bb5f61d52b0880": "filled",
     "b0dac76890349662": "filled",
+    "b110e1ca1b03c4f0": "filled",
     "b1f8905a4d0e9d67": "filled",
     "b22556c6164ae486": "filled",
     "b31cb34ab923b450": "filled",
@@ -11507,6 +11554,7 @@
     "ba4d3526a660fe35": "filled",
     "ba733b012fa053fa": "filled",
     "ba87ba8cbe5aa2df": "filled",
+    "bb1dbbdaf12dc912": "filled",
     "bb4546b1fb2118ac": "filled",
     "bbc8f3ed790d1407": "filled",
     "bc6679c82d58b19e": "filled",
@@ -11588,6 +11636,7 @@
     "df748d926071592b": "filled",
     "dfbb835098338f4f": "filled",
     "e0104a53870d40fc": "filled",
+    "e017ddb560a0f33e": "filled",
     "e023c90927d8da48": "filled",
     "e03138f572f0f54d": "filled",
     "e09445db7102d067": "filled",
@@ -11661,20 +11710,6 @@
     "ffb4661b7d04cd46": "filled"
   },
   "open": {
-    "13a771741bf77e6b": {
-      "alert_time": "2026-08-25T10:12:09.412555+05:30",
-      "entry": 208.11852020226613,
-      "entry_time": "2026-08-25T10:15:00+05:30",
-      "half_r_hit": false,
-      "rating": 8,
-      "risk": 0.6262232509721741,
-      "side": "long",
-      "stop": 207.49229695129395,
-      "symbol": "PPLPHARMA.NS",
-      "target_1": 208.7447434532383,
-      "target_2": 209.37096670421047,
-      "target_half": 208.4316318277522
-    },
     "4c1e353cbf55b12c": {
       "alert_time": "2026-08-25T09:52:25.780202+05:30",
       "entry": 4039.1371671039205,
@@ -11702,6 +11737,34 @@
       "target_1": 3537.8576179741895,
       "target_2": 3545.9490513509327,
       "target_half": 3533.811901285818
+    },
+    "b110e1ca1b03c4f0": {
+      "alert_time": "2026-08-25T10:12:09.222322+05:30",
+      "entry": 37.0571614091482,
+      "entry_time": "2026-08-25T10:15:00+05:30",
+      "half_r_hit": false,
+      "rating": 9,
+      "risk": 0.11414186645411206,
+      "side": "long",
+      "stop": 36.94301954269409,
+      "symbol": "OLAELEC.NS",
+      "target_1": 37.17130327560231,
+      "target_2": 37.285445142056425,
+      "target_half": 37.11423234237526
+    },
+    "e017ddb560a0f33e": {
+      "alert_time": "2026-08-25T10:12:08.482322+05:30",
+      "entry": 705.8833128169887,
+      "entry_time": "2026-08-25T10:15:00+05:30",
+      "half_r_hit": false,
+      "rating": 7,
+      "risk": 2.3875006221644526,
+      "side": "long",
+      "stop": 703.4958121948242,
+      "symbol": "GRAPHITE.NS",
+      "target_1": 708.2708134391531,
+      "target_2": 710.6583140613176,
+      "target_half": 707.0770631280709
     }
   }
 }
