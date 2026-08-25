@@ -2831,15 +2831,16 @@
     "CHALET.NS|4h|short|870.6429208957|874.5999755859": 1787560376.5170953,
     "PFOCUS.NS|4h|short|308.6664327142|310.8900146484": 1787560376.6539953,
     "RVNL.NS|4h|long|220.2500000000|221.2245364167": 1787560376.8489325,
-    "COROMANDEL.NS|4h|long|1900.4|1911.01": 1787629968.5574574,
-    "HDFCAMC.NS|4h|short|2633.14|2644.8": 1787629968.758194,
+    "COROMANDEL.NS|4h|long|1900.4|1911.01": 1787635981.6167238,
+    "HDFCAMC.NS|4h|short|2633.14|2644.8": 1787635981.8638747,
     "LINDEINDIA.NS|4h|long|6525|6556.26": 1787632392.8318453,
     "LUPIN.NS|4h|long|2160|2167.44": 1787632393.2433362,
     "MANKIND.NS|4h|long|2341|2351.58": 1787632393.5031998,
     "RVNL.NS|4h|long|220.25|221.225": 1787632393.7202523,
     "CHALET.NS|4h|short|870.643|874.6": 1787633108.276761,
     "CHOICEIN.NS|4h|long|788.5|791.67": 1787633108.6360452,
-    "IPCALAB.NS|4h|short|1936.08|1944.8": 1787634757.2443829
+    "IPCALAB.NS|4h|short|1936.08|1944.8": 1787634757.2443829,
+    "PARADEEP.NS|4h|short|158.572|159.4": 1787635982.2188587
   },
   "GESHIP.NS|demand|1057.1000|1070.5000": {
     "in_zone": false,
@@ -10027,9 +10028,9 @@
     "last_attempt_at": 0.0
   },
   "HDFCAMC.NS|supply|2633.1364|2644.8000": {
-    "in_zone": false,
-    "last_alert_at": 1787629968.758194,
-    "last_attempt_at": 1787629968.758194
+    "in_zone": true,
+    "last_alert_at": 1787635981.8638747,
+    "last_attempt_at": 1787635981.8638747
   },
   "HDFCAMC.NS|demand|2380.8000|2393.5508": {
     "in_zone": false,
@@ -12492,9 +12493,9 @@
     "last_attempt_at": 0.0
   },
   "PARADEEP.NS|supply|158.5722|159.4000": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1787635982.2188587,
+    "last_attempt_at": 1787635982.2188587
   },
   "PATANJALI.NS|supply|363.6570|365.5000": {
     "in_zone": false,
@@ -17892,7 +17893,7 @@
     "last_attempt_at": 0.0
   },
   "__last_scan_started__": {
-    "4h": 1787634675.7617698
+    "4h": 1787635895.3420925
   },
   "360ONE.NS|supply|1214.8851|1220.0000": {
     "in_zone": false,
@@ -20515,9 +20516,9 @@
     "last_attempt_at": 0.0
   },
   "COROMANDEL.NS|demand|1900.4000|1911.0066": {
-    "in_zone": false,
-    "last_alert_at": 1787629968.5574574,
-    "last_attempt_at": 1787629968.5574574
+    "in_zone": true,
+    "last_alert_at": 1787635981.6167238,
+    "last_attempt_at": 1787635981.6167238
   },
   "CRAFTSMAN.NS|demand|9070.5000|9115.4073": {
     "in_zone": false,
