@@ -11541,6 +11541,7 @@
     "0b21c0ba04421dbc": "filled",
     "0b6bdd4d31c3b439": "filled",
     "0bd1e6675f3729aa": "filled",
+    "0c42616fac99c96f": "filled",
     "0e2a3d2142c79531": "filled",
     "0e378aac19e80ff2": "filled",
     "0e3c1e869f7eb044": "filled",
@@ -11564,6 +11565,7 @@
     "149f1dc3eca72802": "filled",
     "159fcf4da798d3fa": "filled",
     "16262523aa2494a7": "filled",
+    "163a9b7767e6857e": "filled",
     "1878208040f75ae1": "filled",
     "18e7954ec30a12e5": "filled",
     "1901fd3741ee5386": "filled",
@@ -11769,6 +11771,7 @@
     "87f6d30c11691f01": "filled",
     "881039b779f8fdfb": "filled",
     "883d5433a1b7f0bb": "filled",
+    "88557f7b3d79e395": "filled",
     "88dfb66ace4f597b": "filled",
     "89b4a79121b8adec": "filled",
     "8a0642faf691436f": "filled",
@@ -12019,11 +12022,40 @@
     "fa95f6e0a4f0a901": "filled",
     "fac8f2d6f5615041": "filled",
     "fb95e54188969b6b": "filled",
+    "fc84f16387f1493f": "filled",
     "fe009afb11dbe6ca": "filled",
     "fed8ed34d9b4adcd": "filled",
     "ffb4661b7d04cd46": "filled"
   },
   "open": {
+    "0c42616fac99c96f": {
+      "alert_time": "2026-08-25T12:12:34.708375+05:30",
+      "entry": 698.9470930153581,
+      "entry_time": "2026-08-25T12:15:00+05:30",
+      "half_r_hit": false,
+      "rating": 8,
+      "risk": 1.8948430153581057,
+      "side": "long",
+      "stop": 697.05225,
+      "symbol": "MINDACORP.NS",
+      "target_1": 700.8419360307162,
+      "target_2": 702.7367790460743,
+      "target_half": 699.8945145230371
+    },
+    "163a9b7767e6857e": {
+      "alert_time": "2026-08-25T12:12:34.218532+05:30",
+      "entry": 1941.320946210232,
+      "entry_time": "2026-08-25T12:15:00+05:30",
+      "half_r_hit": false,
+      "rating": 8,
+      "risk": 5.423902666720778,
+      "side": "short",
+      "stop": 1946.7448488769528,
+      "symbol": "IPCALAB.NS",
+      "target_1": 1935.8970435435112,
+      "target_2": 1930.4731408767905,
+      "target_half": 1938.6089948768717
+    },
     "391da90b5934f97e": {
       "alert_time": "2026-08-25T11:51:58.632156+05:30",
       "entry": 72.94066015456234,
@@ -12094,6 +12126,20 @@
       "target_2": 3545.9490513509327,
       "target_half": 3533.811901285818
     },
+    "88557f7b3d79e395": {
+      "alert_time": "2026-08-25T12:12:33.319436+05:30",
+      "entry": 3228.165453506215,
+      "entry_time": "2026-08-25T12:15:00+05:30",
+      "half_r_hit": false,
+      "rating": 8,
+      "risk": 7.788955947621162,
+      "side": "long",
+      "stop": 3220.3764975585937,
+      "symbol": "GRASIM.NS",
+      "target_1": 3235.954409453836,
+      "target_2": 3243.743365401457,
+      "target_half": 3232.0599314800256
+    },
     "c04d9240664aaa0e": {
       "alert_time": "2026-08-25T11:20:14.742622+05:30",
       "entry": 540.3888317570079,
@@ -12107,6 +12153,20 @@
       "target_1": 541.76722570884,
       "target_2": 543.1456196606721,
       "target_half": 541.0780287329239
+    },
+    "fc84f16387f1493f": {
+      "alert_time": "2026-08-25T12:12:34.979845+05:30",
+      "entry": 1289.9550655783505,
+      "entry_time": "2026-08-25T12:15:00+05:30",
+      "half_r_hit": false,
+      "rating": 9,
+      "risk": 3.1431899679989783,
+      "side": "long",
+      "stop": 1286.8118756103515,
+      "symbol": "OLECTRA.NS",
+      "target_1": 1293.0982555463495,
+      "target_2": 1296.2414455143485,
+      "target_half": 1291.5266605623501
     }
   }
 }
