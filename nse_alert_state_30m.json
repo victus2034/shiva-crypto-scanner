@@ -4578,7 +4578,9 @@
     "DALBHARAT.NS|30m|long|1813.1|1815.65": 1787635319.676789,
     "GABRIEL.NS|30m|long|1335.3|1339.62": 1787635319.858538,
     "ICICIAMC.NS|30m|long|3211.1|3215.99": 1787635320.0712368,
-    "JSWENERGY.NS|30m|long|539.55|540.388": 1787635320.3507667
+    "JSWENERGY.NS|30m|long|539.55|540.388": 1787635320.3507667,
+    "CASTROLIND.NS|30m|long|186.16|186.31": 1787636517.6747684,
+    "LAURUSLABS.NS|30m|short|1828.8|1831.1": 1787636518.0168781
   },
   "ANANDRATHI.NS|supply|2187.5000|2221.0000": {
     "in_zone": true,
@@ -14231,9 +14233,9 @@
     "last_attempt_at": 0.0
   },
   "CASTROLIND.NS|demand|186.1600|186.3100": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1787636517.6747684,
+    "last_attempt_at": 1787636517.6747684
   },
   "CEMPRO.NS|supply|1381.0790|1383.9000": {
     "in_zone": false,
@@ -22331,7 +22333,7 @@
     "last_attempt_at": 0.0
   },
   "DALBHARAT.NS|demand|1813.1000|1815.6526": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1787635319.676789,
     "last_attempt_at": 1787635319.676789
   },
@@ -30041,9 +30043,9 @@
     "last_attempt_at": 1787217748.2994375
   },
   "LAURUSLABS.NS|supply|1828.7965|1831.1000": {
-    "in_zone": false,
-    "last_alert_at": 1787217750.330892,
-    "last_attempt_at": 1787217750.330892
+    "in_zone": true,
+    "last_alert_at": 1787636518.0168781,
+    "last_attempt_at": 1787636518.0168781
   },
   "LAURUSLABS.NS|demand|1774.1000|1776.8168": {
     "in_zone": false,
@@ -31291,7 +31293,7 @@
     "last_attempt_at": 0.0
   },
   "__last_scan_started__": {
-    "30m": 1787635252.4565728
+    "30m": 1787636454.437934
   },
   "3MINDIA.NS|supply|35230.9249|35290.0000": {
     "in_zone": false,
@@ -46639,7 +46641,7 @@
     "last_attempt_at": 0.0
   },
   "AMBUJACEM.NS|demand|405.5500|405.9798": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1787634143.4791934,
     "last_attempt_at": 1787634143.4791934
   },
@@ -49499,7 +49501,7 @@
     "last_attempt_at": 0.0
   },
   "JSWENERGY.NS|demand|539.5500|540.3884": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1787635320.3507667,
     "last_attempt_at": 1787635320.3507667
   },
@@ -49754,6 +49756,11 @@
     "last_attempt_at": 0.0
   },
   "RELIANCE.NS|supply|1327.8029|1329.0000": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "BAJAJFINSV.NS|demand|1892.3000|1894.6423": {
     "in_zone": false,
     "last_alert_at": 0.0,
     "last_attempt_at": 0.0
