@@ -11211,6 +11211,52 @@
       "target_2": 236.80982450447817,
       "target_half": 235.91228725223908,
       "trade_id": "bb1dbbdaf12dc912"
+    },
+    {
+      "alert_time": "2026-08-25T10:12:08.741052+05:30",
+      "cost_r": 0.35043362279384,
+      "date": "2026-08-25",
+      "entry": 1332.8128096340497,
+      "entry_time": "2026-08-25T10:20:00+05:30",
+      "exit_price": null,
+      "exit_time": "2026-08-25T10:30:00+05:30",
+      "final_result": "data_quality_ambiguous",
+      "half_r_hit": true,
+      "net_realized_r": null,
+      "outcome": "data_quality_ambiguous",
+      "rating": 10,
+      "realized_r": null,
+      "risk": 4.042934023698081,
+      "side": "long",
+      "stop": 1328.7698756103516,
+      "symbol": "NAUKRI.NS",
+      "target_1": 1336.8557436577478,
+      "target_2": 1340.8986776814459,
+      "target_half": 1334.8342766458986,
+      "trade_id": "eda37f2f23cb28cf"
+    },
+    {
+      "alert_time": "2026-08-25T09:52:25.544323+05:30",
+      "cost_r": 0.3950082756862573,
+      "date": "2026-08-25",
+      "entry": 1072.9161819571339,
+      "entry_time": "2026-08-25T10:25:00+05:30",
+      "exit_price": 1074.2036813754823,
+      "exit_time": "2026-08-25T10:30:00+05:30",
+      "final_result": "BE",
+      "half_r_hit": true,
+      "net_realized_r": 0.05090887466509003,
+      "outcome": "BE",
+      "rating": 9,
+      "realized_r": 0.4459171503513473,
+      "risk": 2.887306346782225,
+      "side": "long",
+      "stop": 1070.0288756103516,
+      "symbol": "BAJFINANCE.NS",
+      "target_1": 1075.803488303916,
+      "target_2": 1078.6907946506983,
+      "target_half": 1074.359835130525,
+      "trade_id": "37a9a6d51aded4d1"
     }
   ],
   "handled": {
@@ -11270,6 +11316,7 @@
     "1b0578d4e8a4bf0e": "filled",
     "1b119ce4d192d12e": "filled",
     "1bf178363c3e3aa5": "filled",
+    "1c7282b72f97d0c6": "filled",
     "1cc6551c65582fda": "filled",
     "1f0277c3ec7ad9cb": "filled",
     "1fd552555e7768b9": "filled",
@@ -11305,6 +11352,7 @@
     "3598df8373ced83b": "filled",
     "36d49413dba75e26": "filled",
     "3709be40047f76da": "filled",
+    "37a9a6d51aded4d1": "filled",
     "386eef4ea3c175a1": "filled",
     "38b4ae004e2d443b": "filled",
     "390af72580d39441": "filled",
@@ -11711,6 +11759,20 @@
     "ffb4661b7d04cd46": "filled"
   },
   "open": {
+    "1c7282b72f97d0c6": {
+      "alert_time": "2026-08-25T10:12:09.617343+05:30",
+      "entry": 220.5141667857257,
+      "entry_time": "2026-08-25T10:30:00+05:30",
+      "half_r_hit": false,
+      "rating": 8,
+      "risk": 0.48441678572569913,
+      "side": "long",
+      "stop": 220.02975,
+      "symbol": "RVNL.NS",
+      "target_1": 220.9985835714514,
+      "target_2": 221.4830003571771,
+      "target_half": 220.75637517858854
+    },
     "4c1e353cbf55b12c": {
       "alert_time": "2026-08-25T09:52:25.780202+05:30",
       "entry": 4039.1371671039205,
@@ -11766,20 +11828,6 @@
       "target_1": 708.2708134391531,
       "target_2": 710.6583140613176,
       "target_half": 707.0770631280709
-    },
-    "eda37f2f23cb28cf": {
-      "alert_time": "2026-08-25T10:12:08.741052+05:30",
-      "entry": 1332.8128096340497,
-      "entry_time": "2026-08-25T10:20:00+05:30",
-      "half_r_hit": false,
-      "rating": 10,
-      "risk": 4.042934023698081,
-      "side": "long",
-      "stop": 1328.7698756103516,
-      "symbol": "NAUKRI.NS",
-      "target_1": 1336.8557436577478,
-      "target_2": 1340.8986776814459,
-      "target_half": 1334.8342766458986
     }
   }
 }
