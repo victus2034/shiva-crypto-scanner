@@ -11441,6 +11441,29 @@
       "target_2": 37.285299302685615,
       "target_half": 37.11415942268985,
       "trade_id": "dd5b0779584ce300"
+    },
+    {
+      "alert_time": "2026-08-25T11:11:58.016878+05:30",
+      "cost_r": 0.4701832023335502,
+      "date": "2026-08-25",
+      "entry": 1828.7964942669182,
+      "entry_time": "2026-08-25T11:15:00+05:30",
+      "exit_price": 1833.847541099304,
+      "exit_time": "2026-08-25T11:15:00+05:30",
+      "final_result": "SL",
+      "half_r_hit": false,
+      "net_realized_r": -1.6918418111452067,
+      "outcome": "SL",
+      "rating": 7,
+      "realized_r": -1.2216586088116566,
+      "risk": 4.134581294604914,
+      "side": "short",
+      "stop": 1832.9310755615231,
+      "symbol": "LAURUSLABS.NS",
+      "target_1": 1824.6619129723133,
+      "target_2": 1820.5273316777084,
+      "target_half": 1826.7292036196159,
+      "trade_id": "3ad92f3317850002"
     }
   ],
   "handled": {
@@ -11549,6 +11572,7 @@
     "3a2f38ecc2d8509a": "filled",
     "3a9c1c5f4c0673d4": "filled",
     "3ad37863e7b1d694": "filled",
+    "3ad92f3317850002": "filled",
     "3b90b2fa3aa22900": "filled",
     "3c1b912b307495cc": "filled",
     "3c71bb9795c2bf6c": "filled",
