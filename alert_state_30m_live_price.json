@@ -2075,7 +2075,8 @@
     "FARTCOIN/USDT|30m|short|0.190131|0.1915": 1787637124.1493683,
     "INTCBUSD|30m|short|89.2009|89.28": 1787637124.3290613,
     "SKHYNIX/USDT:USDT|30m|short|1213.31|1215.96": 1787638341.2286754,
-    "GRAMUSD|30m|short|1.496|1.497": 1787640739.6524632
+    "GRAMUSD|30m|short|1.496|1.497": 1787640739.6524632,
+    "KORU/USDT|30m|short|20.2404|20.3": 1787641555.319851
   },
   "METAXUSD|demand|577.00000000|579.20000000": {
     "in_zone": false,
@@ -13624,7 +13625,7 @@
     "last_alert_at": 1787580724.510809
   },
   "__last_scan_started__": {
-    "30m": 1787640657.504034
+    "30m": 1787641474.9896865
   },
   "TAO/USDT|supply|227.92800000|229.00000000": {
     "in_zone": false,
@@ -15799,8 +15800,8 @@
     "last_alert_at": 0.0
   },
   "KORU/USDT|supply|20.24045000|20.30000000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1787641555.319851
   },
   "SLVONUSD|demand|59.58000000|59.66125000": {
     "in_zone": false,
@@ -16107,6 +16108,50 @@
     "last_alert_at": 0.0
   },
   "GOOGLXUSD|supply|351.89970000|352.10000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "OPUSD|supply|0.11064060|0.11100000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "INJUSD|demand|5.19400000|5.21356000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "XPLUSD|supply|0.10206880|0.10276000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "ZAMA/USDT|supply|0.06297480|0.06327000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "XMRUSD|demand|404.02000000|405.10100000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "TRUMP/USDT|supply|2.54847000|2.56900000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "ARBUSD|supply|0.10040260|0.10071000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "WIF/USDT|demand|0.19400000|0.19470600": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "ESP/USDT|demand|0.08534000|0.08559565": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "LDO/USDT|supply|0.39869450|0.40030000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "APTUSD|supply|0.62314450|0.62530000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
