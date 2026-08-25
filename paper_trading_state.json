@@ -11694,6 +11694,52 @@
       "target_2": 632.9428331567276,
       "target_half": 635.7904165783638,
       "trade_id": "d3414ddb8692e8ba"
+    },
+    {
+      "alert_time": "2026-08-25T11:51:58.632156+05:30",
+      "cost_r": 0.33214301475724467,
+      "date": "2026-08-25",
+      "entry": 72.94066015456234,
+      "entry_time": "2026-08-25T12:00:00+05:30",
+      "exit_price": 73.1741015286071,
+      "exit_time": "2026-08-25T12:35:00+05:30",
+      "final_result": "+1R",
+      "half_r_hit": true,
+      "net_realized_r": 0.6678569852427554,
+      "outcome": "+1R",
+      "rating": 8,
+      "realized_r": 1.0,
+      "risk": 0.23344137404475873,
+      "side": "long",
+      "stop": 72.70721878051758,
+      "symbol": "INOXWIND.NS",
+      "target_1": 73.1741015286071,
+      "target_2": 73.40754290265185,
+      "target_half": 73.05738084158472,
+      "trade_id": "391da90b5934f97e"
+    },
+    {
+      "alert_time": "2026-08-25T12:12:33.319436+05:30",
+      "cost_r": 0.44056480742135135,
+      "date": "2026-08-25",
+      "entry": 3228.165453506215,
+      "entry_time": "2026-08-25T12:15:00+05:30",
+      "exit_price": null,
+      "exit_time": "2026-08-25T12:35:00+05:30",
+      "final_result": "data_quality_ambiguous",
+      "half_r_hit": true,
+      "net_realized_r": null,
+      "outcome": "data_quality_ambiguous",
+      "rating": 8,
+      "realized_r": null,
+      "risk": 7.788955947621162,
+      "side": "long",
+      "stop": 3220.3764975585937,
+      "symbol": "GRASIM.NS",
+      "target_1": 3235.954409453836,
+      "target_2": 3243.743365401457,
+      "target_half": 3232.0599314800256,
+      "trade_id": "88557f7b3d79e395"
     }
   ],
   "handled": {
@@ -12152,6 +12198,7 @@
     "e52a29111ffa0397": "filled",
     "e804e0d0051120bb": "filled",
     "e85228ea99366141": "filled",
+    "e8c23b8e5b37a8f3": "filled",
     "e91af8d139dc352b": "filled",
     "e95586cb8377daa4": "filled",
     "e9596625eeb826df": "filled",
@@ -12214,20 +12261,6 @@
     "ffb4661b7d04cd46": "filled"
   },
   "open": {
-    "391da90b5934f97e": {
-      "alert_time": "2026-08-25T11:51:58.632156+05:30",
-      "entry": 72.94066015456234,
-      "entry_time": "2026-08-25T12:00:00+05:30",
-      "half_r_hit": false,
-      "rating": 8,
-      "risk": 0.23344137404475873,
-      "side": "long",
-      "stop": 72.70721878051758,
-      "symbol": "INOXWIND.NS",
-      "target_1": 73.1741015286071,
-      "target_2": 73.40754290265185,
-      "target_half": 73.05738084158472
-    },
     "5123414b44442cc4": {
       "alert_time": "2026-08-25T11:51:58.363887+05:30",
       "entry": 1611.810549011564,
@@ -12246,7 +12279,7 @@
       "alert_time": "2026-08-25T11:32:26.624990+05:30",
       "entry": 405.9797503768789,
       "entry_time": "2026-08-25T12:00:00+05:30",
-      "half_r_hit": false,
+      "half_r_hit": true,
       "rating": 8,
       "risk": 0.8353125717031276,
       "side": "long",
@@ -12256,19 +12289,19 @@
       "target_2": 407.65037552028514,
       "target_half": 406.3974066627304
     },
-    "88557f7b3d79e395": {
-      "alert_time": "2026-08-25T12:12:33.319436+05:30",
-      "entry": 3228.165453506215,
-      "entry_time": "2026-08-25T12:15:00+05:30",
+    "e8c23b8e5b37a8f3": {
+      "alert_time": "2026-08-25T12:32:20.383940+05:30",
+      "entry": 233.94322575644267,
+      "entry_time": "2026-08-25T12:35:00+05:30",
       "half_r_hit": false,
-      "rating": 8,
-      "risk": 7.788955947621162,
+      "rating": 10,
+      "risk": 0.4769288051487308,
       "side": "long",
-      "stop": 3220.3764975585937,
-      "symbol": "GRASIM.NS",
-      "target_1": 3235.954409453836,
-      "target_2": 3243.743365401457,
-      "target_half": 3232.0599314800256
+      "stop": 233.46629695129394,
+      "symbol": "ONGC.NS",
+      "target_1": 234.4201545615914,
+      "target_2": 234.89708336674013,
+      "target_half": 234.18169015901702
     }
   }
 }
