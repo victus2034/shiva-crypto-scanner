@@ -4572,7 +4572,7 @@
     "PPLPHARMA.NS|30m|long|207.7|208.119": 1787632929.4125552,
     "RVNL.NS|30m|long|220.25|220.514": 1787632929.6173432,
     "RELIANCE.NS|30m|long|1298.5|1299.63": 1787637015.9941897,
-    "AMBUJACEM.NS|30m|long|405.55|405.98": 1787634143.4791934,
+    "AMBUJACEM.NS|30m|long|405.55|405.98": 1787637746.6249895,
     "BAJAJFINSV.NS|30m|long|1988|1991.09": 1787634143.8464727,
     "OLAELEC.NS|30m|long|36.98|37.0571": 1787634144.125774,
     "DALBHARAT.NS|30m|long|1813.1|1815.65": 1787635319.676789,
@@ -31296,7 +31296,7 @@
     "last_attempt_at": 0.0
   },
   "__last_scan_started__": {
-    "30m": 1787636939.0609372
+    "30m": 1787637673.0044403
   },
   "3MINDIA.NS|supply|35230.9249|35290.0000": {
     "in_zone": false,
@@ -46644,9 +46644,9 @@
     "last_attempt_at": 0.0
   },
   "AMBUJACEM.NS|demand|405.5500|405.9798": {
-    "in_zone": false,
-    "last_alert_at": 1787634143.4791934,
-    "last_attempt_at": 1787634143.4791934
+    "in_zone": true,
+    "last_alert_at": 1787637746.6249895,
+    "last_attempt_at": 1787637746.6249895
   },
   "ANURAS.NS|supply|1272.2609|1273.8000": {
     "in_zone": false,
@@ -50109,7 +50109,7 @@
     "last_attempt_at": 0.0
   },
   "GABRIEL.NS|demand|1335.3000|1339.6190": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 0.0,
     "last_attempt_at": 0.0
   },
@@ -50519,7 +50519,7 @@
     "last_attempt_at": 0.0
   },
   "PAGEIND.NS|demand|35150.0000|35212.7538": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1787637015.7212293,
     "last_attempt_at": 1787637015.7212293
   },
@@ -50579,6 +50579,16 @@
     "last_attempt_at": 0.0
   },
   "SBICARD.NS|demand|580.0000|580.7787": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "HONAUT.NS|supply|37342.6092|37380.0000": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "HONAUT.NS|demand|35870.0000|35911.8988": {
     "in_zone": false,
     "last_alert_at": 0.0,
     "last_attempt_at": 0.0
