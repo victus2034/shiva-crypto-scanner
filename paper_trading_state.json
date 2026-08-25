@@ -11763,6 +11763,29 @@
       "target_2": 1620.4498958139889,
       "target_half": 1613.9703857121704,
       "trade_id": "5123414b44442cc4"
+    },
+    {
+      "alert_time": "2026-08-25T12:12:34.419981+05:30",
+      "cost_r": 0.41692536894804827,
+      "date": "2026-08-25",
+      "entry": 540.3882207886091,
+      "entry_time": "2026-08-25T13:00:00+05:30",
+      "exit_price": null,
+      "exit_time": "2026-08-25T13:00:00+05:30",
+      "final_result": "data_quality_ambiguous",
+      "half_r_hit": true,
+      "net_realized_r": null,
+      "outcome": "data_quality_ambiguous",
+      "rating": 7,
+      "realized_r": null,
+      "risk": 1.3777829834333488,
+      "side": "long",
+      "stop": 539.0104378051758,
+      "symbol": "JSWENERGY.NS",
+      "target_1": 541.7660037720425,
+      "target_2": 543.1437867554758,
+      "target_half": 541.0771122803258,
+      "trade_id": "00934d79954b53b6"
     }
   ],
   "handled": {
@@ -12289,20 +12312,6 @@
     "ffb4661b7d04cd46": "filled"
   },
   "open": {
-    "00934d79954b53b6": {
-      "alert_time": "2026-08-25T12:12:34.419981+05:30",
-      "entry": 540.3882207886091,
-      "entry_time": "2026-08-25T13:00:00+05:30",
-      "half_r_hit": true,
-      "rating": 7,
-      "risk": 1.3777829834333488,
-      "side": "long",
-      "stop": 539.0104378051758,
-      "symbol": "JSWENERGY.NS",
-      "target_1": 541.7660037720425,
-      "target_2": 543.1437867554758,
-      "target_half": 541.0771122803258
-    },
     "07d3a65fd140a063": {
       "alert_time": "2026-08-25T12:52:18.497914+05:30",
       "entry": 35212.75378027077,
