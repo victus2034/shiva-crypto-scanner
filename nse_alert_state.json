@@ -2838,7 +2838,8 @@
     "MANKIND.NS|4h|long|2341|2351.58": 1787632393.5031998,
     "RVNL.NS|4h|long|220.25|221.225": 1787632393.7202523,
     "CHALET.NS|4h|short|870.643|874.6": 1787633108.276761,
-    "CHOICEIN.NS|4h|long|788.5|791.67": 1787633108.6360452
+    "CHOICEIN.NS|4h|long|788.5|791.67": 1787633108.6360452,
+    "IPCALAB.NS|4h|short|1936.08|1944.8": 1787634757.2443829
   },
   "GESHIP.NS|demand|1057.1000|1070.5000": {
     "in_zone": false,
@@ -17891,7 +17892,7 @@
     "last_attempt_at": 0.0
   },
   "__last_scan_started__": {
-    "4h": 1787633034.5232093
+    "4h": 1787634675.7617698
   },
   "360ONE.NS|supply|1214.8851|1220.0000": {
     "in_zone": false,
@@ -20514,7 +20515,7 @@
     "last_attempt_at": 0.0
   },
   "COROMANDEL.NS|demand|1900.4000|1911.0066": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1787629968.5574574,
     "last_attempt_at": 1787629968.5574574
   },
@@ -21139,9 +21140,9 @@
     "last_attempt_at": 0.0
   },
   "IPCALAB.NS|supply|1936.0803|1944.8000": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1787634757.2443829,
+    "last_attempt_at": 1787634757.2443829
   },
   "IPCALAB.NS|demand|1471.0000|1479.6431": {
     "in_zone": false,
@@ -25534,6 +25535,21 @@
     "last_attempt_at": 0.0
   },
   "SBILIFE.NS|demand|1700.4000|1706.9671": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "CHALET.NS|supply|914.9704|919.0000": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "LINDEINDIA.NS|demand|5673.0000|5690.5051": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "MANKIND.NS|demand|2217.1001|2226.5724": {
     "in_zone": false,
     "last_alert_at": 0.0,
     "last_attempt_at": 0.0
