@@ -10981,6 +10981,52 @@
       "target_2": 2238.402,
       "target_half": 2218.6005,
       "trade_id": "ceb6a3c45b6d47d1"
+    },
+    {
+      "alert_time": "2026-08-25T09:32:51.967759+05:30",
+      "cost_r": 0.5540038460469618,
+      "date": "2026-08-25",
+      "entry": 33.369373733136875,
+      "entry_time": "2026-08-25T09:35:00+05:30",
+      "exit_price": 33.30534593886897,
+      "exit_time": "2026-08-25T09:40:00+05:30",
+      "final_result": "+1R",
+      "half_r_hit": true,
+      "net_realized_r": 0.44599615395303815,
+      "outcome": "+1R",
+      "rating": 6,
+      "realized_r": 1.0,
+      "risk": 0.06402779426790772,
+      "side": "short",
+      "stop": 33.43340152740478,
+      "symbol": "IOB.NS",
+      "target_1": 33.30534593886897,
+      "target_2": 33.24131814460106,
+      "target_half": 33.33735983600292,
+      "trade_id": "11923c0a0802f34e"
+    },
+    {
+      "alert_time": "2026-08-25T09:32:50.976682+05:30",
+      "cost_r": 0.4512977023811209,
+      "date": "2026-08-25",
+      "entry": 877.8113770343516,
+      "entry_time": "2026-08-25T09:35:00+05:30",
+      "exit_price": null,
+      "exit_time": "2026-08-25T09:35:00+05:30",
+      "final_result": "data_quality_ambiguous",
+      "half_r_hit": false,
+      "net_realized_r": null,
+      "outcome": "data_quality_ambiguous",
+      "rating": 9,
+      "realized_r": null,
+      "risk": 2.0676229656482974,
+      "side": "short",
+      "stop": 879.8789999999999,
+      "symbol": "FACT.NS",
+      "target_1": 875.7437540687033,
+      "target_2": 873.676131103055,
+      "target_half": 876.7775655515275,
+      "trade_id": "883d5433a1b7f0bb"
     }
   ],
   "handled": {
@@ -11167,6 +11213,7 @@
     "6978e25f0ffc374b": "filled",
     "6b2eedde1506bb32": "filled",
     "6b55c055a99849d9": "filled",
+    "6bbb737854d6066b": "filled",
     "6bbc88f089134a90": "filled",
     "6bd289a6b60fc9c3": "filled",
     "6c9c3e5d5b072eb5": "filled",
@@ -11221,6 +11268,7 @@
     "8631a43a93100707": "filled",
     "87f6d30c11691f01": "filled",
     "881039b779f8fdfb": "filled",
+    "883d5433a1b7f0bb": "filled",
     "88dfb66ace4f597b": "filled",
     "89b4a79121b8adec": "filled",
     "8a0642faf691436f": "filled",
@@ -11467,19 +11515,19 @@
     "ffb4661b7d04cd46": "filled"
   },
   "open": {
-    "11923c0a0802f34e": {
-      "alert_time": "2026-08-25T09:32:51.967759+05:30",
-      "entry": 33.369373733136875,
+    "6bbb737854d6066b": {
+      "alert_time": "2026-08-25T09:32:53.832112+05:30",
+      "entry": 242.0188165351381,
       "entry_time": "2026-08-25T09:35:00+05:30",
-      "half_r_hit": false,
-      "rating": 6,
-      "risk": 0.06402779426790772,
-      "side": "short",
-      "stop": 33.43340152740478,
-      "symbol": "IOB.NS",
-      "target_1": 33.30534593886897,
-      "target_2": 33.24131814460106,
-      "target_half": 33.33735983600292
+      "half_r_hit": true,
+      "rating": 8,
+      "risk": 0.5105665351380821,
+      "side": "long",
+      "stop": 241.50825,
+      "symbol": "JIOFIN.NS",
+      "target_1": 242.52938307027617,
+      "target_2": 243.03994960541425,
+      "target_half": 242.27409980270713
     }
   }
 }
