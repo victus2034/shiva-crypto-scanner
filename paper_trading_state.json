@@ -12085,6 +12085,29 @@
       "target_2": 1219.804912743062,
       "target_half": 1224.2161685907693,
       "trade_id": "847fa955a6ed3804"
+    },
+    {
+      "alert_time": "2026-08-25T13:52:17.571127+05:30",
+      "cost_r": 0.4341194223282647,
+      "date": "2026-08-25",
+      "entry": 295.92175175897125,
+      "entry_time": "2026-08-25T14:00:00+05:30",
+      "exit_price": null,
+      "exit_time": "2026-08-25T14:00:00+05:30",
+      "final_result": "data_quality_ambiguous",
+      "half_r_hit": true,
+      "net_realized_r": null,
+      "outcome": "data_quality_ambiguous",
+      "rating": 8,
+      "realized_r": null,
+      "risk": 0.7246043506478372,
+      "side": "short",
+      "stop": 296.6463561096191,
+      "symbol": "ANGELONE.NS",
+      "target_1": 295.1971474083234,
+      "target_2": 294.4725430576756,
+      "target_half": 295.55944958364734,
+      "trade_id": "d61904d755ac9153"
     }
   ],
   "handled": {
@@ -12635,20 +12658,6 @@
       "target_1": 245.99116493610555,
       "target_2": 246.53432545286438,
       "target_half": 245.71958467772612
-    },
-    "d61904d755ac9153": {
-      "alert_time": "2026-08-25T13:52:17.571127+05:30",
-      "entry": 295.92175175897125,
-      "entry_time": "2026-08-25T14:00:00+05:30",
-      "half_r_hit": true,
-      "rating": 8,
-      "risk": 0.7246043506478372,
-      "side": "short",
-      "stop": 296.6463561096191,
-      "symbol": "ANGELONE.NS",
-      "target_1": 295.1971474083234,
-      "target_2": 294.4725430576756,
-      "target_half": 295.55944958364734
     },
     "e8c23b8e5b37a8f3": {
       "alert_time": "2026-08-25T12:32:20.383940+05:30",
