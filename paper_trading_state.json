@@ -11096,6 +11096,29 @@
       "target_2": 83.37415611201722,
       "target_half": 83.76911897245148,
       "trade_id": "2643d71d5a9ad22a"
+    },
+    {
+      "alert_time": "2026-08-25T09:32:51.659589+05:30",
+      "cost_r": 0.38711031567518545,
+      "date": "2026-08-25",
+      "entry": 277.8355890889715,
+      "entry_time": "2026-08-25T09:45:00+05:30",
+      "exit_price": 278.5985220805309,
+      "exit_time": "2026-08-25T09:50:00+05:30",
+      "final_result": "+1R",
+      "half_r_hit": true,
+      "net_realized_r": 0.6128896843248146,
+      "outcome": "+1R",
+      "rating": 8,
+      "realized_r": 1.0,
+      "risk": 0.7629329915594099,
+      "side": "long",
+      "stop": 277.0726560974121,
+      "symbol": "ITI.NS",
+      "target_1": 278.5985220805309,
+      "target_2": 279.36145507209034,
+      "target_half": 278.2170555847512,
+      "trade_id": "f3de4cbbd1d2e746"
     }
   ],
   "handled": {
@@ -11558,6 +11581,7 @@
     "f3227d14f0972b14": "filled",
     "f37c8a597bc0bf35": "filled",
     "f3dab638b4211f9e": "filled",
+    "f3de4cbbd1d2e746": "filled",
     "f3fcc18739d6a5be": "filled",
     "f439cdebb9241872": "filled",
     "f46904ce713775e5": "filled",
