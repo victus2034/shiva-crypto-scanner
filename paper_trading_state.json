@@ -11648,6 +11648,52 @@
       "target_2": 31.156798515001757,
       "target_half": 31.07788460048031,
       "trade_id": "d3252373a270f34f"
+    },
+    {
+      "alert_time": "2026-08-25T09:52:26.251064+05:30",
+      "cost_r": 0.46371777156463595,
+      "date": "2026-08-25",
+      "entry": 3529.766184597446,
+      "entry_time": "2026-08-25T10:00:00+05:30",
+      "exit_price": 3519.913913845093,
+      "exit_time": "2026-08-25T12:25:00+05:30",
+      "final_result": "SL",
+      "half_r_hit": true,
+      "net_realized_r": -1.6813352558377301,
+      "outcome": "SL",
+      "rating": 8,
+      "realized_r": -1.2176174842730942,
+      "risk": 8.091433376743225,
+      "side": "long",
+      "stop": 3521.674751220703,
+      "symbol": "CEATLTD.NS",
+      "target_1": 3537.8576179741895,
+      "target_2": 3545.9490513509327,
+      "target_half": 3533.811901285818,
+      "trade_id": "80af0cba20724686"
+    },
+    {
+      "alert_time": "2026-08-25T12:12:32.629851+05:30",
+      "cost_r": 0.35654137543736725,
+      "date": "2026-08-25",
+      "entry": 636.7396110522425,
+      "entry_time": "2026-08-25T12:20:00+05:30",
+      "exit_price": null,
+      "exit_time": "2026-08-25T12:25:00+05:30",
+      "final_result": "data_quality_ambiguous",
+      "half_r_hit": false,
+      "net_realized_r": null,
+      "outcome": "data_quality_ambiguous",
+      "rating": 8,
+      "realized_r": null,
+      "risk": 1.8983889477574394,
+      "side": "short",
+      "stop": 638.6379999999999,
+      "symbol": "ABDL.NS",
+      "target_1": 634.841222104485,
+      "target_2": 632.9428331567276,
+      "target_half": 635.7904165783638,
+      "trade_id": "d3414ddb8692e8ba"
     }
   ],
   "handled": {
@@ -12210,20 +12256,6 @@
       "target_2": 407.65037552028514,
       "target_half": 406.3974066627304
     },
-    "80af0cba20724686": {
-      "alert_time": "2026-08-25T09:52:26.251064+05:30",
-      "entry": 3529.766184597446,
-      "entry_time": "2026-08-25T10:00:00+05:30",
-      "half_r_hit": true,
-      "rating": 8,
-      "risk": 8.091433376743225,
-      "side": "long",
-      "stop": 3521.674751220703,
-      "symbol": "CEATLTD.NS",
-      "target_1": 3537.8576179741895,
-      "target_2": 3545.9490513509327,
-      "target_half": 3533.811901285818
-    },
     "88557f7b3d79e395": {
       "alert_time": "2026-08-25T12:12:33.319436+05:30",
       "entry": 3228.165453506215,
@@ -12237,20 +12269,6 @@
       "target_1": 3235.954409453836,
       "target_2": 3243.743365401457,
       "target_half": 3232.0599314800256
-    },
-    "d3414ddb8692e8ba": {
-      "alert_time": "2026-08-25T12:12:32.629851+05:30",
-      "entry": 636.7396110522425,
-      "entry_time": "2026-08-25T12:20:00+05:30",
-      "half_r_hit": false,
-      "rating": 8,
-      "risk": 1.8983889477574394,
-      "side": "short",
-      "stop": 638.6379999999999,
-      "symbol": "ABDL.NS",
-      "target_1": 634.841222104485,
-      "target_2": 632.9428331567276,
-      "target_half": 635.7904165783638
     }
   }
 }
