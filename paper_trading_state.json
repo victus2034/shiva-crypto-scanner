@@ -11303,6 +11303,29 @@
       "target_2": 710.6583140613176,
       "target_half": 707.0770631280709,
       "trade_id": "e017ddb560a0f33e"
+    },
+    {
+      "alert_time": "2026-08-25T10:32:23.846473+05:30",
+      "cost_r": 0.4165859123072723,
+      "date": "2026-08-25",
+      "entry": 1991.0926602800253,
+      "entry_time": "2026-08-25T10:35:00+05:30",
+      "exit_price": 1985.018994,
+      "exit_time": "2026-08-25T10:35:00+05:30",
+      "final_result": "SL",
+      "half_r_hit": false,
+      "net_realized_r": -1.6120341307020232,
+      "outcome": "SL",
+      "rating": 8,
+      "realized_r": -1.1954482183947508,
+      "risk": 5.080660280025313,
+      "side": "long",
+      "stop": 1986.012,
+      "symbol": "BAJAJFINSV.NS",
+      "target_1": 1996.1733205600506,
+      "target_2": 2001.2539808400759,
+      "target_half": 1993.632990420038,
+      "trade_id": "0f91a9b3e1b14b66"
     }
   ],
   "handled": {
@@ -11721,6 +11744,7 @@
     "dbe0d15542a47166": "filled",
     "dc50766b563555de": "filled",
     "dc5df7bc07b9652a": "filled",
+    "dd5b0779584ce300": "filled",
     "dd66cb50258872e0": "filled",
     "ddea50c3c9dd4a5b": "filled",
     "ddeb17a8804f618b": "filled",
@@ -11806,20 +11830,6 @@
     "ffb4661b7d04cd46": "filled"
   },
   "open": {
-    "0f91a9b3e1b14b66": {
-      "alert_time": "2026-08-25T10:32:23.846473+05:30",
-      "entry": 1991.0926602800253,
-      "entry_time": "2026-08-25T10:35:00+05:30",
-      "half_r_hit": false,
-      "rating": 8,
-      "risk": 5.080660280025313,
-      "side": "long",
-      "stop": 1986.012,
-      "symbol": "BAJAJFINSV.NS",
-      "target_1": 1996.1733205600506,
-      "target_2": 2001.2539808400759,
-      "target_half": 1993.632990420038
-    },
     "1c7282b72f97d0c6": {
       "alert_time": "2026-08-25T10:12:09.617343+05:30",
       "entry": 220.5141667857257,
@@ -11861,6 +11871,20 @@
       "target_1": 37.17130327560231,
       "target_2": 37.285445142056425,
       "target_half": 37.11423234237526
+    },
+    "dd5b0779584ce300": {
+      "alert_time": "2026-08-25T10:32:24.125774+05:30",
+      "entry": 37.0571127960246,
+      "entry_time": "2026-08-25T10:35:00+05:30",
+      "half_r_hit": false,
+      "rating": 7,
+      "risk": 0.11409325333050901,
+      "side": "long",
+      "stop": 36.94301954269409,
+      "symbol": "OLAELEC.NS",
+      "target_1": 37.171206049355106,
+      "target_2": 37.285299302685615,
+      "target_half": 37.11415942268985
     }
   }
 }
