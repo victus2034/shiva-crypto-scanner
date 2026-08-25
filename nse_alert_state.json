@@ -2840,7 +2840,8 @@
     "CHALET.NS|4h|short|870.643|874.6": 1787633108.276761,
     "CHOICEIN.NS|4h|long|788.5|791.67": 1787633108.6360452,
     "IPCALAB.NS|4h|short|1936.08|1944.8": 1787634757.2443829,
-    "PARADEEP.NS|4h|short|158.572|159.4": 1787635982.2188587
+    "PARADEEP.NS|4h|short|158.572|159.4": 1787635982.2188587,
+    "CYIENT.NS|4h|short|927.212|932": 1787639580.2079365
   },
   "GESHIP.NS|demand|1057.1000|1070.5000": {
     "in_zone": false,
@@ -12018,7 +12019,7 @@
     "last_attempt_at": 0.0
   },
   "CHOICEIN.NS|demand|788.5000|791.6702": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1787633108.6360452,
     "last_attempt_at": 1787633108.6360452
   },
@@ -17893,7 +17894,7 @@
     "last_attempt_at": 0.0
   },
   "__last_scan_started__": {
-    "4h": 1787637828.7657092
+    "4h": 1787639494.1152124
   },
   "360ONE.NS|supply|1214.8851|1220.0000": {
     "in_zone": false,
@@ -21141,7 +21142,7 @@
     "last_attempt_at": 0.0
   },
   "IPCALAB.NS|supply|1936.0803|1944.8000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1787634757.2443829,
     "last_attempt_at": 1787634757.2443829
   },
@@ -23746,9 +23747,9 @@
     "last_attempt_at": 0.0
   },
   "CYIENT.NS|supply|927.2117|932.0000": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1787639580.2079365,
+    "last_attempt_at": 1787639580.2079365
   },
   "CYIENT.NS|demand|750.4500|755.8347": {
     "in_zone": false,
@@ -25551,6 +25552,11 @@
     "last_attempt_at": 0.0
   },
   "MANKIND.NS|demand|2217.1001|2226.5724": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "HDFCAMC.NS|supply|2942.8079|2951.7500": {
     "in_zone": false,
     "last_alert_at": 0.0,
     "last_attempt_at": 0.0
