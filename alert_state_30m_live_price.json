@@ -2084,7 +2084,8 @@
     "0G/USDT|30m|long|0.1589|0.159375": 1787661138.9868035,
     "ESP/USDT|30m|short|0.0931761|0.09355": 1787662335.7258048,
     "CRCLXUSD|30m|long|86.02|86.1458": 1787662335.939885,
-    "DOTUSD|30m|long|0.876|0.87941": 1787663517.8038237
+    "DOTUSD|30m|long|0.876|0.87941": 1787663517.8038237,
+    "KAITO/USDT|30m|long|0.3332|0.33422": 1787664505.5002666
   },
   "METAXUSD|demand|577.00000000|579.20000000": {
     "in_zone": false,
@@ -13633,7 +13634,7 @@
     "last_alert_at": 1787580724.510809
   },
   "__last_scan_started__": {
-    "30m": 1787663443.8784983
+    "30m": 1787664429.3237593
   },
   "TAO/USDT|supply|227.92800000|229.00000000": {
     "in_zone": false,
@@ -14568,7 +14569,7 @@
     "last_alert_at": 0.0
   },
   "DOTUSD|demand|0.87600000|0.87941000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1787663517.8038237
   },
   "VVV/USDT|demand|16.11200000|16.21038500": {
@@ -15676,8 +15677,8 @@
     "last_alert_at": 0.0
   },
   "KAITO/USDT|demand|0.33320000|0.33422050": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1787664505.5002666
   },
   "EUL/USDT|supply|1.46365050|1.46930000": {
     "in_zone": false,
@@ -16284,6 +16285,10 @@
     "last_alert_at": 0.0
   },
   "ACE/USDT|demand|0.18571000|0.18785855": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "JUP/USDT|demand|0.20110000|0.20184000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
