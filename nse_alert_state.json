@@ -2836,7 +2836,9 @@
     "LINDEINDIA.NS|4h|long|6525|6556.26": 1787632392.8318453,
     "LUPIN.NS|4h|long|2160|2167.44": 1787632393.2433362,
     "MANKIND.NS|4h|long|2341|2351.58": 1787632393.5031998,
-    "RVNL.NS|4h|long|220.25|221.225": 1787632393.7202523
+    "RVNL.NS|4h|long|220.25|221.225": 1787632393.7202523,
+    "CHALET.NS|4h|short|870.643|874.6": 1787633108.276761,
+    "CHOICEIN.NS|4h|long|788.5|791.67": 1787633108.6360452
   },
   "GESHIP.NS|demand|1057.1000|1070.5000": {
     "in_zone": false,
@@ -12014,9 +12016,9 @@
     "last_attempt_at": 0.0
   },
   "CHOICEIN.NS|demand|788.5000|791.6702": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1787633108.6360452,
+    "last_attempt_at": 1787633108.6360452
   },
   "CUB.NS|supply|243.5559|244.7800": {
     "in_zone": false,
@@ -15979,9 +15981,9 @@
     "last_attempt_at": 0.0
   },
   "CHALET.NS|supply|870.6429|874.6000": {
-    "in_zone": false,
-    "last_alert_at": 1787560376.5170953,
-    "last_attempt_at": 1787560376.5170953
+    "in_zone": true,
+    "last_alert_at": 1787633108.276761,
+    "last_attempt_at": 1787633108.276761
   },
   "CHOICEIN.NS|supply|857.3596|860.5000": {
     "in_zone": false,
@@ -17889,7 +17891,7 @@
     "last_attempt_at": 0.0
   },
   "__last_scan_started__": {
-    "4h": 1787632302.6962485
+    "4h": 1787633034.5232093
   },
   "360ONE.NS|supply|1214.8851|1220.0000": {
     "in_zone": false,
@@ -20512,7 +20514,7 @@
     "last_attempt_at": 0.0
   },
   "COROMANDEL.NS|demand|1900.4000|1911.0066": {
-    "in_zone": false,
+    "in_zone": true,
     "last_alert_at": 1787629968.5574574,
     "last_attempt_at": 1787629968.5574574
   },
