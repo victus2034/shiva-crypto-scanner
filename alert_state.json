@@ -1688,7 +1688,8 @@
     "INJUSD|4h|short|5.4517400000|5.4820000000": 1787574120.1838682,
     "MNT/USDT|4h|short|0.539009|0.541": 1787577725.962227,
     "GOOGLXUSD|4h|short|350.604|351.2": 1787582523.6798315,
-    "INTCBUSD|4h|long|85.99|86.6364": 1787583359.69744
+    "INTCBUSD|4h|long|85.99|86.6364": 1787583359.69744,
+    "CL/USDT|4h|long|83.49|83.7439": 1787647325.7042964
   },
   "ARBUSD|supply|0.08030000|0.08180000": {
     "in_zone": false,
@@ -4859,8 +4860,8 @@
     "last_alert_at": 0.0
   },
   "CL/USDT|demand|83.49000000|83.74395000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1787647325.7042964
   },
   "KORU/USDT|supply|21.58860000|21.84000000": {
     "in_zone": false,
@@ -5267,7 +5268,7 @@
     "last_alert_at": 0.0
   },
   "__last_scan_started__": {
-    "4h": 1787646048.4248853
+    "4h": 1787647251.6511426
   },
   "HOOD/USDT:USDT|demand|83.83000000|84.37120000": {
     "in_zone": false,
