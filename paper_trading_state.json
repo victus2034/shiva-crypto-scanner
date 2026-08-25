@@ -11768,6 +11768,7 @@
   "handled": {
     "0069a4e12a9d2a3e": "filled",
     "007977dcabca4da4": "filled",
+    "00934d79954b53b6": "filled",
     "011111b56257a54d": "filled",
     "018819f1ade27fff": "filled",
     "02541a64b158ad82": "filled",
@@ -11784,6 +11785,7 @@
     "07842aadbbd492d2": "filled",
     "078d3696d7312a8b": "filled",
     "07b252ab34887c44": "filled",
+    "07d3a65fd140a063": "filled",
     "08d435fe07fc13ff": "filled",
     "0939cf3b17660908": "filled",
     "09a1588df5d7163b": "filled",
@@ -12067,6 +12069,7 @@
     "9be5b1983f48168a": "filled",
     "9ea2cbb871fa9d3a": "filled",
     "9ed935e8cb4daca4": "filled",
+    "9eff4526b892ff4d": "filled",
     "9fce92d29d7588e3": "filled",
     "a0f3e19e281052ee": "filled",
     "a27606f505039553": "filled",
@@ -12225,6 +12228,7 @@
     "e91af8d139dc352b": "filled",
     "e95586cb8377daa4": "filled",
     "e9596625eeb826df": "filled",
+    "e994df5793dd6540": "filled",
     "e9a327188312d6dd": "filled",
     "e9c4d6976e911a2f": "filled",
     "eacbcac31b156102": "filled",
@@ -12274,6 +12278,7 @@
     "f936cb29666d3645": "filled",
     "f9d519f2114282ff": "filled",
     "fa4af38477be4a04": "filled",
+    "fa8f9b0d69285c0d": "filled",
     "fa8fa32d68c0a671": "filled",
     "fa95f6e0a4f0a901": "filled",
     "fac8f2d6f5615041": "filled",
@@ -12284,6 +12289,34 @@
     "ffb4661b7d04cd46": "filled"
   },
   "open": {
+    "00934d79954b53b6": {
+      "alert_time": "2026-08-25T12:12:34.419981+05:30",
+      "entry": 540.3882207886091,
+      "entry_time": "2026-08-25T13:00:00+05:30",
+      "half_r_hit": true,
+      "rating": 7,
+      "risk": 1.3777829834333488,
+      "side": "long",
+      "stop": 539.0104378051758,
+      "symbol": "JSWENERGY.NS",
+      "target_1": 541.7660037720425,
+      "target_2": 543.1437867554758,
+      "target_half": 541.0771122803258
+    },
+    "07d3a65fd140a063": {
+      "alert_time": "2026-08-25T12:52:18.497914+05:30",
+      "entry": 35212.75378027077,
+      "entry_time": "2026-08-25T13:00:00+05:30",
+      "half_r_hit": false,
+      "rating": 6,
+      "risk": 97.90378027076804,
+      "side": "long",
+      "stop": 35114.85,
+      "symbol": "PAGEIND.NS",
+      "target_1": 35310.657560541535,
+      "target_2": 35408.5613408123,
+      "target_half": 35261.705670406154
+    },
     "7142816624ee5bdd": {
       "alert_time": "2026-08-25T11:32:26.624990+05:30",
       "entry": 405.9797503768789,
@@ -12298,6 +12331,20 @@
       "target_2": 407.65037552028514,
       "target_half": 406.3974066627304
     },
+    "9eff4526b892ff4d": {
+      "alert_time": "2026-08-25T12:52:17.581421+05:30",
+      "entry": 30.883847620731206,
+      "entry_time": "2026-08-25T12:55:00+05:30",
+      "half_r_hit": false,
+      "rating": 7,
+      "risk": 0.06469723964294971,
+      "side": "long",
+      "stop": 30.819150381088257,
+      "symbol": "CENTRALBK.NS",
+      "target_1": 30.948544860374156,
+      "target_2": 31.013242100017106,
+      "target_half": 30.91619624055268
+    },
     "e8c23b8e5b37a8f3": {
       "alert_time": "2026-08-25T12:32:20.383940+05:30",
       "entry": 233.94322575644267,
@@ -12311,6 +12358,34 @@
       "target_1": 234.4201545615914,
       "target_2": 234.89708336674013,
       "target_half": 234.18169015901702
+    },
+    "e994df5793dd6540": {
+      "alert_time": "2026-08-25T12:52:17.921499+05:30",
+      "entry": 2663.029501156011,
+      "entry_time": "2026-08-25T12:55:00+05:30",
+      "half_r_hit": false,
+      "rating": 8,
+      "risk": 7.6384988439886,
+      "side": "short",
+      "stop": 2670.6679999999997,
+      "symbol": "HDFCAMC.NS",
+      "target_1": 2655.3910023120225,
+      "target_2": 2647.752503468034,
+      "target_half": 2659.2102517340168
+    },
+    "fa8f9b0d69285c0d": {
+      "alert_time": "2026-08-25T12:52:18.207019+05:30",
+      "entry": 839.9989971634255,
+      "entry_time": "2026-08-25T13:00:00+05:30",
+      "half_r_hit": false,
+      "rating": 9,
+      "risk": 1.7880593582497113,
+      "side": "long",
+      "stop": 838.2109378051758,
+      "symbol": "MARICO.NS",
+      "target_1": 841.7870565216753,
+      "target_2": 843.575115879925,
+      "target_half": 840.8930268425504
     }
   }
 }
