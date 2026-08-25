@@ -4,7 +4,8 @@
     "stage": 3
   },
   "ABSLAMC.NS|30m|long|992.773|990.109": {
-    "reached_entry": false
+    "reached_entry": false,
+    "stage": 1
   },
   "ASTRAL.NS|30m|long|1518.51|1514.88": {
     "reached_entry": false,
@@ -19,8 +20,8 @@
     "stage": 1
   },
   "COLPAL.NS|30m|long|1865.98|1862.14": {
-    "reached_entry": false,
-    "stage": 1
+    "reached_entry": true,
+    "stage": 2
   },
   "DALBHARAT.NS|30m|long|1782.91|1778.22": {
     "reached_entry": false
@@ -37,15 +38,7 @@
     "reached_entry": true,
     "stage": 3
   },
-  "ICICIGI.NS|30m|long|1611.81|1607.49": {
-    "reached_entry": true,
-    "stage": 3
-  },
   "INDIAMART.NS|30m|short|1759.82|1763.66": {
-    "reached_entry": true,
-    "stage": 2
-  },
-  "INOXWIND.NS|30m|long|72.9407|72.7072": {
     "reached_entry": true,
     "stage": 2
   },
@@ -76,6 +69,9 @@
     "reached_entry": false,
     "stage": 1
   },
+  "LTCUSD|30m|long|51.5144|51.3686": {
+    "reached_entry": false
+  },
   "MARICO.NS|30m|long|839.999|838.211": {
     "reached_entry": true,
     "stage": 3
@@ -89,7 +85,8 @@
     "stage": 1
   },
   "NEWGEN.NS|30m|long|519.529|518.181": {
-    "reached_entry": false
+    "reached_entry": false,
+    "stage": 1
   },
   "NYKAA.NS|30m|short|334.98|335.936": {
     "reached_entry": false
