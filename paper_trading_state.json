@@ -11487,6 +11487,29 @@
       "target_2": 1350.9253647939713,
       "target_half": 1342.445056786634,
       "trade_id": "c53bfea424b10673"
+    },
+    {
+      "alert_time": "2026-08-25T11:20:14.467412+05:30",
+      "cost_r": 0.36676217785513515,
+      "date": "2026-08-25",
+      "entry": 609.6584951250368,
+      "entry_time": "2026-08-25T11:25:00+05:30",
+      "exit_price": null,
+      "exit_time": "2026-08-25T11:40:00+05:30",
+      "final_result": "data_quality_ambiguous",
+      "half_r_hit": true,
+      "net_realized_r": null,
+      "outcome": "data_quality_ambiguous",
+      "rating": 10,
+      "realized_r": null,
+      "risk": 1.7669951250368285,
+      "side": "long",
+      "stop": 607.8915,
+      "symbol": "ELGIEQUIP.NS",
+      "target_1": 611.4254902500736,
+      "target_2": 613.1924853751104,
+      "target_half": 610.5419926875552,
+      "trade_id": "710fd33dddecf467"
     }
   ],
   "handled": {
@@ -11705,6 +11728,7 @@
     "7402db7a8006aaf7": "filled",
     "74d7da3a193d1794": "filled",
     "75d156aabc0a605b": "filled",
+    "7611bc3492e0615d": "filled",
     "770c9a3c2fb53cb8": "filled",
     "77ceba079ea0a88c": "filled",
     "7892ad2c594bbe45": "filled",
@@ -11850,6 +11874,7 @@
     "be57674723914eb7": "filled",
     "beccd1b438bc4da3": "filled",
     "bf898e606e27a1ef": "filled",
+    "c04d9240664aaa0e": "filled",
     "c0fb5b7e94e7e437": "filled",
     "c17f1d44829e7f34": "filled",
     "c216a8ac784fa1c7": "filled",
@@ -11996,19 +12021,19 @@
     "ffb4661b7d04cd46": "filled"
   },
   "open": {
-    "710fd33dddecf467": {
-      "alert_time": "2026-08-25T11:20:14.467412+05:30",
-      "entry": 609.6584951250368,
-      "entry_time": "2026-08-25T11:25:00+05:30",
+    "7611bc3492e0615d": {
+      "alert_time": "2026-08-25T10:52:00.350767+05:30",
+      "entry": 540.3883706808011,
+      "entry_time": "2026-08-25T11:40:00+05:30",
       "half_r_hit": false,
-      "rating": 10,
-      "risk": 1.7669951250368285,
+      "rating": 8,
+      "risk": 1.3779328756253335,
       "side": "long",
-      "stop": 607.8915,
-      "symbol": "ELGIEQUIP.NS",
-      "target_1": 611.4254902500736,
-      "target_2": 613.1924853751104,
-      "target_half": 610.5419926875552
+      "stop": 539.0104378051758,
+      "symbol": "JSWENERGY.NS",
+      "target_1": 541.7663035564265,
+      "target_2": 543.1442364320518,
+      "target_half": 541.0773371186137
     },
     "80af0cba20724686": {
       "alert_time": "2026-08-25T09:52:26.251064+05:30",
@@ -12023,6 +12048,20 @@
       "target_1": 3537.8576179741895,
       "target_2": 3545.9490513509327,
       "target_half": 3533.811901285818
+    },
+    "c04d9240664aaa0e": {
+      "alert_time": "2026-08-25T11:20:14.742622+05:30",
+      "entry": 540.3888317570079,
+      "entry_time": "2026-08-25T11:40:00+05:30",
+      "half_r_hit": false,
+      "rating": 7,
+      "risk": 1.378393951832095,
+      "side": "long",
+      "stop": 539.0104378051758,
+      "symbol": "JSWENERGY.NS",
+      "target_1": 541.76722570884,
+      "target_2": 543.1456196606721,
+      "target_half": 541.0780287329239
     }
   }
 }
