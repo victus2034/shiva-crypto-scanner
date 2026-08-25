@@ -2841,7 +2841,8 @@
     "CHOICEIN.NS|4h|long|788.5|791.67": 1787633108.6360452,
     "IPCALAB.NS|4h|short|1936.08|1944.8": 1787634757.2443829,
     "PARADEEP.NS|4h|short|158.572|159.4": 1787635982.2188587,
-    "CYIENT.NS|4h|short|927.212|932": 1787639580.2079365
+    "CYIENT.NS|4h|short|927.212|932": 1787639580.2079365,
+    "MUTHOOTFIN.NS|4h|short|3209.9|3226.7": 1787640759.124467
   },
   "GESHIP.NS|demand|1057.1000|1070.5000": {
     "in_zone": false,
@@ -17894,7 +17895,7 @@
     "last_attempt_at": 0.0
   },
   "__last_scan_started__": {
-    "4h": 1787639494.1152124
+    "4h": 1787640683.9450517
   },
   "360ONE.NS|supply|1214.8851|1220.0000": {
     "in_zone": false,
@@ -20517,7 +20518,7 @@
     "last_attempt_at": 0.0
   },
   "COROMANDEL.NS|demand|1900.4000|1911.0066": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1787635981.6167238,
     "last_attempt_at": 1787635981.6167238
   },
@@ -21437,9 +21438,9 @@
     "last_attempt_at": 0.0
   },
   "MUTHOOTFIN.NS|supply|3209.9025|3226.7000": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1787640759.124467,
+    "last_attempt_at": 1787640759.124467
   },
   "MUTHOOTFIN.NS|demand|2824.5000|2841.9359": {
     "in_zone": false,
@@ -24182,7 +24183,7 @@
     "last_attempt_at": 0.0
   },
   "MANKIND.NS|demand|2341.0000|2351.5756": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1787632393.5031998,
     "last_attempt_at": 1787632393.5031998
   },
