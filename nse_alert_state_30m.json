@@ -4566,7 +4566,7 @@
     "JPPOWER.NS|30m|long|17|17.0217": 1787631746.5490837,
     "BLS.NS|30m|long|235.25|235.613": 1787632928.104942,
     "GRAPHITE.NS|30m|long|704.2|705.883": 1787632928.4823225,
-    "NAUKRI.NS|30m|long|1330.1|1332.81": 1787640153.7814045,
+    "NAUKRI.NS|30m|long|1330.1|1332.81": 1787647346.4834995,
     "KPITTECH.NS|30m|long|575.6|577.425": 1787632928.9166772,
     "OLAELEC.NS|30m|long|36.98|37.0572": 1787632929.2223215,
     "PPLPHARMA.NS|30m|long|207.7|208.119": 1787632929.4125552,
@@ -4605,7 +4605,7 @@
     "DALBHARAT.NS|30m|long|1780|1782.91": 1787643718.1199875,
     "LALPATHLAB.NS|30m|short|1909.04|1911.9": 1787643718.3431983,
     "INDIAMART.NS|30m|short|1759.82|1761.9": 1787643718.5523226,
-    "JWL.NS|30m|long|245.15|245.448": 1787643718.7160487,
+    "JWL.NS|30m|long|245.15|245.448": 1787647346.7207317,
     "NEWGEN.NS|30m|long|518.7|519.529": 1787643719.0126896,
     "PHOENIXLTD.NS|30m|short|1939.65|1942.4": 1787643719.1687365,
     "PINELABS.NS|30m|short|163.326|163.69": 1787643719.330531,
@@ -4614,7 +4614,10 @@
     "IRFC.NS|30m|long|85.01|85.0825": 1787644919.3250325,
     "OLAELEC.NS|30m|long|36.18|36.265": 1787644919.6965578,
     "ANGELONE.NS|30m|short|295.922|296.35": 1787646137.5711274,
-    "JAINREC.NS|30m|long|287.5|287.97": 1787646137.8057497
+    "JAINREC.NS|30m|long|287.5|287.97": 1787646137.8057497,
+    "ADANIENT.NS|30m|short|3052.93|3056.9": 1787647345.787134,
+    "KFINTECH.NS|30m|long|953.75|955.447": 1787647347.0472105,
+    "MAXHEALTH.NS|30m|short|1000.77|1002.3": 1787647347.2782638
   },
   "ANANDRATHI.NS|supply|2187.5000|2221.0000": {
     "in_zone": true,
@@ -29317,7 +29320,7 @@
     "last_attempt_at": 0.0
   },
   "NEWGEN.NS|demand|518.7000|519.5290": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1787643719.0126896,
     "last_attempt_at": 1787643719.0126896
   },
@@ -30027,7 +30030,7 @@
     "last_attempt_at": 0.0
   },
   "KAJARIACER.NS|supply|1225.6866|1227.4000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1787646138.139789,
     "last_attempt_at": 1787646138.139789
   },
@@ -31327,7 +31330,7 @@
     "last_attempt_at": 0.0
   },
   "__last_scan_started__": {
-    "30m": 1787646065.4193573
+    "30m": 1787647261.1341183
   },
   "3MINDIA.NS|supply|35230.9249|35290.0000": {
     "in_zone": false,
@@ -43155,9 +43158,9 @@
     "last_attempt_at": 0.0
   },
   "NAUKRI.NS|demand|1330.1000|1332.8128": {
-    "in_zone": false,
-    "last_alert_at": 1787640153.7814045,
-    "last_attempt_at": 1787640153.7814045
+    "in_zone": true,
+    "last_alert_at": 1787647346.4834995,
+    "last_attempt_at": 1787647346.4834995
   },
   "INFY.NS|supply|1141.4404|1142.9000": {
     "in_zone": false,
@@ -44340,9 +44343,9 @@
     "last_attempt_at": 0.0
   },
   "ADANIENT.NS|supply|3052.9295|3056.8999": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1787647345.787134,
+    "last_attempt_at": 1787647345.787134
   },
   "ADANIENT.NS|demand|2970.3999|2973.9568": {
     "in_zone": true,
@@ -50376,8 +50379,8 @@
   },
   "JWL.NS|demand|245.1500|245.4481": {
     "in_zone": true,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "last_alert_at": 1787647346.7207317,
+    "last_attempt_at": 1787647346.7207317
   },
   "KPRMILL.NS|supply|1170.5187|1173.0000": {
     "in_zone": false,
@@ -51260,9 +51263,9 @@
     "last_attempt_at": 0.0
   },
   "KFINTECH.NS|demand|953.7500|955.4468": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1787647347.0472105,
+    "last_attempt_at": 1787647347.0472105
   },
   "KIMS.NS|supply|793.3817|794.3500": {
     "in_zone": false,
@@ -51340,9 +51343,9 @@
     "last_attempt_at": 0.0
   },
   "MAXHEALTH.NS|supply|1000.7655|1002.3000": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1787647347.2782638,
+    "last_attempt_at": 1787647347.2782638
   },
   "MEESHO.NS|supply|210.4778|210.8700": {
     "in_zone": false,
@@ -54540,6 +54543,11 @@
     "last_attempt_at": 0.0
   },
   "SBILIFE.NS|supply|1865.9932|1868.2000": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "ANGELONE.NS|supply|300.4642|300.9000": {
     "in_zone": false,
     "last_alert_at": 0.0,
     "last_attempt_at": 0.0
