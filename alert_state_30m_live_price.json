@@ -2106,9 +2106,11 @@
     "MNT/USDT|30m|long|0.4989|0.499987": 1787751144.3683605,
     "MSFT/USDT:USDT|30m|short|492.313|492.56": 1787751144.8308027,
     "1000SHIBUSD|30m|long|0.005191|0.00521698": 1787752323.4070833,
-    "TRX/USDT|30m|long|0.33368|0.333976": 1787752323.7915914,
+    "TRX/USDT|30m|long|0.33368|0.333976": 1787755935.1251442,
     "AAPLXUSD|30m|short|313.838|313.95": 1787753523.1344995,
-    "MSFT/USDT:USDT|30m|short|494.629|495": 1787753523.4508328
+    "MSFT/USDT:USDT|30m|short|494.629|495": 1787753523.4508328,
+    "DOTUSD|30m|long|0.832|0.8337": 1787755934.911858,
+    "POL/USDT|30m|long|0.11206|0.112559": 1787755935.335848
   },
   "METAXUSD|demand|577.00000000|579.20000000": {
     "in_zone": false,
@@ -13237,8 +13239,8 @@
     "last_alert_at": 0.0
   },
   "DOTUSD|demand|0.83200000|0.83370000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1787755934.911858
   },
   "SEIUSD|demand|0.04130000|0.04135305": {
     "in_zone": false,
@@ -13657,7 +13659,7 @@
     "last_alert_at": 1787580724.510809
   },
   "__last_scan_started__": {
-    "30m": 1787754664.2831495
+    "30m": 1787755856.021093
   },
   "TAO/USDT|supply|227.92800000|229.00000000": {
     "in_zone": false,
@@ -16404,8 +16406,8 @@
     "last_alert_at": 0.0
   },
   "POL/USDT|demand|0.11206000|0.11255850": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1787755935.335848
   },
   "ACE/USDT|demand|0.20480000|0.20599315": {
     "in_zone": false,
@@ -16673,7 +16675,7 @@
   },
   "TRX/USDT|demand|0.33368000|0.33397570": {
     "in_zone": true,
-    "last_alert_at": 1787752323.7915914
+    "last_alert_at": 1787755935.1251442
   },
   "SEIUSD|supply|0.04913425|0.04920000": {
     "in_zone": false,
@@ -17728,6 +17730,18 @@
     "last_alert_at": 0.0
   },
   "GOOGLXUSD|demand|341.20000000|341.38070000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "ICP/USDT|demand|2.26700000|2.27824500": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "ETHFI/USDT|demand|0.51690000|0.52066750": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "TSLAXUSD|demand|339.60000000|339.98325000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
