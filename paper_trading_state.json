@@ -13373,6 +13373,29 @@
       "target_2": 40.326563363193834,
       "target_half": 40.508607445299305,
       "trade_id": "8f36ca91636b4e98"
+    },
+    {
+      "alert_time": "2026-08-26T13:12:28.731120+05:30",
+      "cost_r": 0.49913629290471084,
+      "date": "2026-08-26",
+      "entry": 1451.6415302465225,
+      "entry_time": "2026-08-26T13:30:00+05:30",
+      "exit_price": 1454.733060493045,
+      "exit_time": "2026-08-26T13:30:00+05:30",
+      "final_result": "+1R",
+      "half_r_hit": true,
+      "net_realized_r": 0.5008637070952892,
+      "outcome": "+1R",
+      "rating": 7,
+      "realized_r": 1.0,
+      "risk": 3.0915302465225523,
+      "side": "long",
+      "stop": 1448.55,
+      "symbol": "NESTLEIND.NS",
+      "target_1": 1454.733060493045,
+      "target_2": 1457.8245907395676,
+      "target_half": 1453.187295369784,
+      "trade_id": "0703a70a867f0a89"
     }
   ],
   "handled": {
@@ -13392,6 +13415,7 @@
     "0647ccdd87e5036d": "filled",
     "064e3cca01e4f873": "filled",
     "06ee0f0a7fc5f15d": "filled",
+    "0703a70a867f0a89": "filled",
     "075d609a0f88b8ac": "filled",
     "07842aadbbd492d2": "filled",
     "078d3696d7312a8b": "filled",
@@ -13611,6 +13635,7 @@
     "6e71d7b35a1b551f": "filled",
     "6e83a4f4ef8379b0": "filled",
     "6f1c202d069f63fa": "filled",
+    "6f89b626fc448d2a": "filled",
     "6fb94f7961049ea8": "filled",
     "6ffbc29992a7bfa9": "filled",
     "7053320ce72cb518": "filled",
@@ -13961,5 +13986,20 @@
     "fed8ed34d9b4adcd": "filled",
     "ffb4661b7d04cd46": "filled"
   },
-  "open": {}
+  "open": {
+    "6f89b626fc448d2a": {
+      "alert_time": "2026-08-26T13:32:01.823077+05:30",
+      "entry": 2874.9272151675577,
+      "entry_time": "2026-08-26T13:35:00+05:30",
+      "half_r_hit": false,
+      "rating": 8,
+      "risk": 7.952784832441921,
+      "side": "short",
+      "stop": 2882.8799999999997,
+      "symbol": "GLAND.NS",
+      "target_1": 2866.974430335116,
+      "target_2": 2859.021645502674,
+      "target_half": 2870.950822751337
+    }
+  }
 }
