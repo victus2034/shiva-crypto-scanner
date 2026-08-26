@@ -2,22 +2,28 @@
   "1000SHIBUSD|30m|long|0.00521698|0.00518581": {
     "reached_entry": false
   },
+  "AAPLXUSD|30m|short|313.838|314.264": {
+    "reached_entry": false
+  },
+  "DOTUSD|30m|long|0.8337|0.831168": {
+    "reached_entry": false
+  },
   "MNT/USDT|30m|long|0.499987|0.498401": {
-    "reached_entry": false
-  },
-  "MSFT/USDT:USDT|30m|short|492.313|493.053": {
-    "reached_entry": false
-  },
-  "MUBUSD|30m|long|920.26|917.731": {
-    "reached_entry": false
-  },
-  "SOON/USDT|30m|short|0.19799|0.198799": {
     "reached_entry": true
   },
-  "SPCXXUSD|30m|long|136.578|136.264": {
-    "reached_entry": false
+  "MSFT/USDT:USDT|30m|short|492.313|493.053": {
+    "reached_entry": true
+  },
+  "MSFT/USDT:USDT|30m|short|494.629|495.495": {
+    "reached_entry": true,
+    "stage": 3
+  },
+  "POL/USDT|30m|long|0.112559|0.111948": {
+    "reached_entry": true,
+    "stage": 2
   },
   "TRX/USDT|30m|long|0.333976|0.333346": {
-    "reached_entry": false
+    "reached_entry": false,
+    "stage": 1
   }
 }
