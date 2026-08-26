@@ -1690,7 +1690,8 @@
     "GOOGLXUSD|4h|short|350.604|351.2": 1787582523.6798315,
     "INTCBUSD|4h|long|85.99|86.6364": 1787583359.69744,
     "CL/USDT|4h|long|83.49|83.7439": 1787647325.7042964,
-    "MMT/USDT|4h|long|0.1598|0.162315": 1787672531.4375262
+    "MMT/USDT|4h|long|0.1598|0.162315": 1787672531.4375262,
+    "CL/USDT|4h|long|79.48|79.7738": 1787731335.7600667
   },
   "ARBUSD|supply|0.08030000|0.08180000": {
     "in_zone": false,
@@ -5269,7 +5270,7 @@
     "last_alert_at": 0.0
   },
   "__last_scan_started__": {
-    "4h": 1787730045.7932389
+    "4h": 1787731252.7063692
   },
   "HOOD/USDT:USDT|demand|83.83000000|84.37120000": {
     "in_zone": false,
@@ -5724,8 +5725,8 @@
     "last_alert_at": 0.0
   },
   "CL/USDT|demand|79.48000000|79.77375000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1787731335.7600667
   },
   "KORU/USDT|supply|25.16785000|25.34000000": {
     "in_zone": false,
@@ -6052,6 +6053,14 @@
     "last_alert_at": 0.0
   },
   "STORJ/USDT|supply|0.06472150|0.06500000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "POL/USDT|demand|0.07810000|0.07841945": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "KORU/USDT|supply|21.57790000|21.83000000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
