@@ -12982,6 +12982,29 @@
       "target_2": 569.8547246836105,
       "target_half": 572.1643245610435,
       "trade_id": "6476fbf6020397ea"
+    },
+    {
+      "alert_time": "2026-08-26T11:22:16.437220+05:30",
+      "cost_r": 0.4364759055574467,
+      "date": "2026-08-26",
+      "entry": 2614.3511675108166,
+      "entry_time": "2026-08-26T11:25:00+05:30",
+      "exit_price": 2622.028556852783,
+      "exit_time": "2026-08-26T11:25:00+05:30",
+      "final_result": "SL",
+      "half_r_hit": false,
+      "net_realized_r": -1.6422797181432935,
+      "outcome": "SL",
+      "rating": 8,
+      "realized_r": -1.2058038125858468,
+      "risk": 6.367030243089175,
+      "side": "short",
+      "stop": 2620.7181977539058,
+      "symbol": "MAZDOCK.NS",
+      "target_1": 2607.9841372677274,
+      "target_2": 2601.6171070246382,
+      "target_half": 2611.167652389272,
+      "trade_id": "56adb6437b4354dc"
     }
   ],
   "handled": {
@@ -13161,6 +13184,7 @@
     "554309941c49af8e": "filled",
     "560f2d4f10f6ecda": "filled",
     "569ef807e52ec2ae": "filled",
+    "56adb6437b4354dc": "filled",
     "57950f2991bcfc94": "filled",
     "57c56121fd961755": "filled",
     "58fc98f65e9dc47e": "filled",
