@@ -13442,6 +13442,29 @@
       "target_2": 178.28948946127122,
       "target_half": 178.98449473063562,
       "trade_id": "e861c21280ce24ef"
+    },
+    {
+      "alert_time": "2026-08-26T14:12:26.185005+05:30",
+      "cost_r": 0.35170828736905557,
+      "date": "2026-08-26",
+      "entry": 800.6207891532105,
+      "entry_time": "2026-08-26T14:15:00+05:30",
+      "exit_price": null,
+      "exit_time": "2026-08-26T14:15:00+05:30",
+      "final_result": "data_quality_ambiguous",
+      "half_r_hit": false,
+      "net_realized_r": null,
+      "outcome": "data_quality_ambiguous",
+      "rating": 8,
+      "realized_r": null,
+      "risk": 2.419789153210445,
+      "side": "long",
+      "stop": 798.201,
+      "symbol": "CANFINHOME.NS",
+      "target_1": 803.0405783064209,
+      "target_2": 805.4603674596314,
+      "target_half": 801.8306837298157,
+      "trade_id": "1cbab4a85d13ee36"
     }
   ],
   "handled": {
@@ -13484,6 +13507,7 @@
     "0f91a9b3e1b14b66": "filled",
     "0fcbdc77793f511d": "filled",
     "109fee51811637b4": "filled",
+    "11261f6a706a77c9": "filled",
     "11923c0a0802f34e": "filled",
     "11a4b9d19fc0876c": "filled",
     "11c227f4a42d414b": "filled",
@@ -13513,6 +13537,7 @@
     "1bf178363c3e3aa5": "filled",
     "1c7282b72f97d0c6": "filled",
     "1cb1b52e1599689e": "filled",
+    "1cbab4a85d13ee36": "filled",
     "1cc6551c65582fda": "filled",
     "1f0277c3ec7ad9cb": "filled",
     "1fd552555e7768b9": "filled",
@@ -14036,6 +14061,20 @@
     "ffb4661b7d04cd46": "filled"
   },
   "open": {
+    "11261f6a706a77c9": {
+      "alert_time": "2026-08-26T14:12:26.760317+05:30",
+      "entry": 832.3279921082204,
+      "entry_time": "2026-08-26T14:20:00+05:30",
+      "half_r_hit": false,
+      "rating": 9,
+      "risk": 1.6594921082204337,
+      "side": "long",
+      "stop": 830.6685,
+      "symbol": "MARICO.NS",
+      "target_1": 833.9874842164409,
+      "target_2": 835.6469763246613,
+      "target_half": 833.1577381623306
+    },
     "36250901c058f916": {
       "alert_time": "2026-08-26T12:52:22.065457+05:30",
       "entry": 345.9151770678451,
