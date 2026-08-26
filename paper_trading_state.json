@@ -13350,6 +13350,29 @@
       "target_2": 1007.6885217630129,
       "target_half": 1004.3432608815065,
       "trade_id": "740436205cb26cc1"
+    },
+    {
+      "alert_time": "2026-08-26T13:01:07.618583+05:30",
+      "cost_r": 0.3553410264865936,
+      "date": "2026-08-26",
+      "entry": 40.56928880600113,
+      "entry_time": "2026-08-26T13:15:00+05:30",
+      "exit_price": 40.44792608459748,
+      "exit_time": "2026-08-26T13:15:00+05:30",
+      "final_result": "+1R",
+      "half_r_hit": true,
+      "net_realized_r": 0.6446589735134064,
+      "outcome": "+1R",
+      "rating": 7,
+      "realized_r": 1.0,
+      "risk": 0.12136272140364923,
+      "side": "short",
+      "stop": 40.69065152740478,
+      "symbol": "NSLNISP.NS",
+      "target_1": 40.44792608459748,
+      "target_2": 40.326563363193834,
+      "target_half": 40.508607445299305,
+      "trade_id": "8f36ca91636b4e98"
     }
   ],
   "handled": {
@@ -13663,6 +13686,7 @@
     "8e5e947ae780076d": "filled",
     "8ed0ad896bd16bbf": "filled",
     "8f1b3ac7b0c55b5f": "filled",
+    "8f36ca91636b4e98": "filled",
     "8f7b79595fce03bf": "filled",
     "8f8148ee6cd44268": "filled",
     "8fbfb5444e163963": "filled",
