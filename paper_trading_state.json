@@ -12430,6 +12430,52 @@
       "target_2": 468.0946571224634,
       "target_half": 466.3647816099377,
       "trade_id": "94cca35b3a3f2085"
+    },
+    {
+      "alert_time": "2026-08-26T09:32:25.474414+05:30",
+      "cost_r": 0.5322375728394525,
+      "date": "2026-08-26",
+      "entry": 1923.920508693685,
+      "entry_time": "2026-08-26T09:35:00+05:30",
+      "exit_price": 1927.76301738737,
+      "exit_time": "2026-08-26T09:40:00+05:30",
+      "final_result": "+1R",
+      "half_r_hit": true,
+      "net_realized_r": 0.4677624271605475,
+      "outcome": "+1R",
+      "rating": 9,
+      "realized_r": 1.0,
+      "risk": 3.8425086936849766,
+      "side": "long",
+      "stop": 1920.078,
+      "symbol": "BHARTIARTL.NS",
+      "target_1": 1927.76301738737,
+      "target_2": 1931.605526081055,
+      "target_half": 1925.8417630405274,
+      "trade_id": "6da3d9f01f8fa769"
+    },
+    {
+      "alert_time": "2026-08-26T09:32:26.935096+05:30",
+      "cost_r": 0.4683468428145102,
+      "date": "2026-08-26",
+      "entry": 90.13567038323224,
+      "entry_time": "2026-08-26T09:40:00+05:30",
+      "exit_price": 89.9310907664645,
+      "exit_time": "2026-08-26T09:40:00+05:30",
+      "final_result": "+1R",
+      "half_r_hit": true,
+      "net_realized_r": 0.5316531571854898,
+      "outcome": "+1R",
+      "rating": 8,
+      "realized_r": 1.0,
+      "risk": 0.20457961676774516,
+      "side": "short",
+      "stop": 90.34024999999998,
+      "symbol": "NBCC.NS",
+      "target_1": 89.9310907664645,
+      "target_2": 89.72651114969675,
+      "target_half": 90.03338057484837,
+      "trade_id": "fa6b7d8fafee7b4e"
     }
   ],
   "handled": {
@@ -12528,6 +12574,7 @@
     "2cd8f80531beb4f8": "filled",
     "2ea9dfd64f9de48b": "filled",
     "2f1038c5b013a018": "filled",
+    "2ffb7d230b26e96f": "filled",
     "3098f1dbae6a9ea3": "filled",
     "316d15073a67bcd7": "filled",
     "3293781b91495810": "filled",
@@ -12967,6 +13014,7 @@
     "f936cb29666d3645": "filled",
     "f9d519f2114282ff": "filled",
     "fa4af38477be4a04": "filled",
+    "fa6b7d8fafee7b4e": "filled",
     "fa8f9b0d69285c0d": "filled",
     "fa8fa32d68c0a671": "filled",
     "fa95f6e0a4f0a901": "filled",
@@ -12979,19 +13027,19 @@
     "ffb4661b7d04cd46": "filled"
   },
   "open": {
-    "6da3d9f01f8fa769": {
-      "alert_time": "2026-08-26T09:32:25.474414+05:30",
-      "entry": 1923.920508693685,
-      "entry_time": "2026-08-26T09:35:00+05:30",
+    "2ffb7d230b26e96f": {
+      "alert_time": "2026-08-26T09:32:26.462971+05:30",
+      "entry": 384.18812814014626,
+      "entry_time": "2026-08-26T09:40:00+05:30",
       "half_r_hit": true,
-      "rating": 9,
-      "risk": 3.8425086936849766,
-      "side": "long",
-      "stop": 1920.078,
-      "symbol": "BHARTIARTL.NS",
-      "target_1": 1927.76301738737,
-      "target_2": 1931.605526081055,
-      "target_half": 1925.8417630405274
+      "rating": 7,
+      "risk": 0.8965840790919515,
+      "side": "short",
+      "stop": 385.0847122192382,
+      "symbol": "JKTYRE.NS",
+      "target_1": 383.2915440610543,
+      "target_2": 382.39495998196236,
+      "target_half": 383.7398361006003
     }
   }
 }
