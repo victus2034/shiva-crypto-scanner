@@ -4666,16 +4666,19 @@
     "NESTLEIND.NS|30m|long|1450|1451.64": 1787730148.7311199,
     "MAPMYINDIA.NS|30m|short|1017.09|1018.8": 1787727738.2989554,
     "CHAMBLFERT.NS|30m|long|425.1|425.592": 1787727738.4668417,
-    "ANURAS.NS|30m|short|1272.28|1273.8": 1787728941.1531851,
+    "ANURAS.NS|30m|short|1272.28|1273.8": 1787733745.894139,
     "LTF.NS|30m|short|326.16|326.7": 1787728941.5616214,
     "NAVINFLUOR.NS|30m|short|8427.18|8444": 1787728941.8020327,
     "PATANJALI.NS|30m|long|345.45|345.915": 1787732547.808222,
-    "FSL.NS|30m|long|270|270.492": 1787729467.2064114,
+    "FSL.NS|30m|long|270|270.492": 1787733746.472475,
     "NSLNISP.NS|30m|short|40.5693|40.65": 1787729467.618583,
     "AXISBANK.NS|30m|short|1258.1|1259.4": 1787730148.4306757,
     "ASHOKLEY.NS|30m|short|179.216|179.5": 1787731321.5987875,
     "GLAND.NS|30m|short|2874.93|2880": 1787731321.823077,
-    "IKS.NS|30m|long|1725.1|1729.19": 1787731322.2962134
+    "IKS.NS|30m|long|1725.1|1729.19": 1787731322.2962134,
+    "CANFINHOME.NS|30m|long|799|800.621": 1787733746.185005,
+    "MARICO.NS|30m|long|831.5|832.328": 1787733746.7603168,
+    "PGEL.NS|30m|long|585.05|586.213": 1787733747.0224783
   },
   "ANANDRATHI.NS|supply|2187.5000|2221.0000": {
     "in_zone": true,
@@ -7443,7 +7446,7 @@
     "last_attempt_at": 0.0
   },
   "ASHOKLEY.NS|supply|179.2162|179.5000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1787731321.5987875,
     "last_attempt_at": 1787731321.5987875
   },
@@ -19653,9 +19656,9 @@
     "last_attempt_at": 0.0
   },
   "PGEL.NS|demand|585.0500|586.2134": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1787733747.0224783,
+    "last_attempt_at": 1787733747.0224783
   },
   "PIIND.NS|supply|2537.9304|2542.0000": {
     "in_zone": false,
@@ -31388,7 +31391,7 @@
     "last_attempt_at": 0.0
   },
   "__last_scan_started__": {
-    "30m": 1787732460.470934
+    "30m": 1787733663.5167289
   },
   "3MINDIA.NS|supply|35230.9249|35290.0000": {
     "in_zone": false,
@@ -51077,8 +51080,8 @@
   },
   "FSL.NS|demand|270.0000|270.4916": {
     "in_zone": true,
-    "last_alert_at": 1787729467.2064114,
-    "last_attempt_at": 1787729467.2064114
+    "last_alert_at": 1787733746.472475,
+    "last_attempt_at": 1787733746.472475
   },
   "GVT&D.NS|supply|4726.5600|4738.7998": {
     "in_zone": false,
@@ -52326,7 +52329,7 @@
     "last_attempt_at": 0.0
   },
   "PHOENIXLTD.NS|supply|1939.6459|1942.4000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1787732548.0567527,
     "last_attempt_at": 1787732548.0567527
   },
@@ -53016,7 +53019,7 @@
     "last_attempt_at": 0.0
   },
   "NESTLEIND.NS|demand|1450.0000|1451.6415": {
-    "in_zone": false,
+    "in_zone": true,
     "last_alert_at": 1787730148.7311199,
     "last_attempt_at": 1787730148.7311199
   },
@@ -63156,9 +63159,9 @@
     "last_attempt_at": 0.0
   },
   "ANURAS.NS|supply|1272.2843|1273.8000": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1787733745.894139,
+    "last_attempt_at": 1787733745.894139
   },
   "ASIANPAINT.NS|demand|2588.0000|2591.5611": {
     "in_zone": false,
@@ -63256,9 +63259,9 @@
     "last_attempt_at": 0.0
   },
   "CANFINHOME.NS|demand|799.0000|800.6208": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1787733746.185005,
+    "last_attempt_at": 1787733746.185005
   },
   "CAPLIPOINT.NS|demand|2442.3999|2447.6800": {
     "in_zone": false,
@@ -63676,9 +63679,9 @@
     "last_attempt_at": 0.0
   },
   "MARICO.NS|demand|831.5000|832.3280": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1787733746.7603168,
+    "last_attempt_at": 1787733746.7603168
   },
   "MARUTI.NS|demand|13200.0000|13215.9994": {
     "in_zone": false,
@@ -63791,6 +63794,16 @@
     "last_attempt_at": 0.0
   },
   "RAINBOW.NS|demand|1405.6000|1407.6647": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "DMART.NS|demand|3755.3000|3762.1707": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "BHARTIHEXA.NS|demand|1555.0000|1557.9959": {
     "in_zone": false,
     "last_alert_at": 0.0,
     "last_attempt_at": 0.0
