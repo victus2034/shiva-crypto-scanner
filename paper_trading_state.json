@@ -13327,6 +13327,29 @@
       "target_2": 1457.8246270115571,
       "target_half": 1453.1873135057785,
       "trade_id": "a1b2de668a12a3eb"
+    },
+    {
+      "alert_time": "2026-08-26T11:52:15.533011+05:30",
+      "cost_r": 0.4781831312948893,
+      "date": "2026-08-26",
+      "entry": 1003.2281739210043,
+      "entry_time": "2026-08-26T13:05:00+05:30",
+      "exit_price": 1005.4583478420086,
+      "exit_time": "2026-08-26T13:05:00+05:30",
+      "final_result": "+1R",
+      "half_r_hit": true,
+      "net_realized_r": 0.5218168687051107,
+      "outcome": "+1R",
+      "rating": 6,
+      "realized_r": 1.0,
+      "risk": 2.2301739210042797,
+      "side": "long",
+      "stop": 1000.998,
+      "symbol": "PREMIERENE.NS",
+      "target_1": 1005.4583478420086,
+      "target_2": 1007.6885217630129,
+      "target_half": 1004.3432608815065,
+      "trade_id": "740436205cb26cc1"
     }
   ],
   "handled": {
@@ -13577,6 +13600,7 @@
     "73afb0e83e8f7f71": "filled",
     "73b22c5a9b6c1e3e": "filled",
     "7402db7a8006aaf7": "filled",
+    "740436205cb26cc1": "filled",
     "74ad927e65b74552": "filled",
     "74d7da3a193d1794": "filled",
     "75d156aabc0a605b": "filled",
