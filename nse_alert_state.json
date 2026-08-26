@@ -2850,7 +2850,9 @@
     "CHALET.NS|4h|short|914.973|919": 1787721170.1148293,
     "KOTAKBANK.NS|4h|short|412.177|413.55": 1787721170.7225223,
     "IDBI.NS|4h|short|91.7047|92.2": 1787722352.906092,
-    "OFSS.NS|4h|short|11911.7|11967": 1787722353.1095898
+    "OFSS.NS|4h|short|11911.7|11967": 1787722353.1095898,
+    "COCHINSHIP.NS|4h|short|1546.69|1556.2": 1787725963.1416361,
+    "MARICO.NS|4h|long|831.5|834.123": 1787725963.3130896
   },
   "GESHIP.NS|demand|1057.1000|1070.5000": {
     "in_zone": false,
@@ -11023,9 +11025,9 @@
     "last_attempt_at": 0.0
   },
   "MARICO.NS|demand|831.5000|834.1229": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1787725963.3130896,
+    "last_attempt_at": 1787725963.3130896
   },
   "MARUTI.NS|supply|14544.9810|14598.0000": {
     "in_zone": false,
@@ -17903,7 +17905,7 @@
     "last_attempt_at": 0.0
   },
   "__last_scan_started__": {
-    "4h": 1787724392.7203205
+    "4h": 1787725897.4569209
   },
   "360ONE.NS|supply|1214.8851|1220.0000": {
     "in_zone": false,
@@ -27066,9 +27068,9 @@
     "last_attempt_at": 0.0
   },
   "COCHINSHIP.NS|supply|1546.6910|1556.2000": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1787725963.1416361,
+    "last_attempt_at": 1787725963.1416361
   },
   "COCHINSHIP.NS|demand|1187.5000|1196.1464": {
     "in_zone": false,
