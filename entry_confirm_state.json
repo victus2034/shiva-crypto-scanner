@@ -11,6 +11,10 @@
     "reached_entry": false,
     "stage": 1
   },
+  "AXISBANK.NS|30m|short|1258.1|1260.66": {
+    "reached_entry": false,
+    "stage": 1
+  },
   "CHAMBLFERT.NS|30m|long|425.592|424.675": {
     "reached_entry": false,
     "stage": 1
@@ -22,9 +26,6 @@
   "FSL.NS|30m|long|270.492|269.73": {
     "reached_entry": false,
     "stage": 1
-  },
-  "GWEI/USDT|30m|short|0.022912|0.023003": {
-    "reached_entry": false
   },
   "IRCTC.NS|30m|short|490.543|491.491": {
     "reached_entry": false,
@@ -59,14 +60,15 @@
     "stage": 1
   },
   "PATANJALI.NS|30m|long|345.915|345.105": {
-    "reached_entry": false
+    "reached_entry": false,
+    "stage": 1
   },
   "PFIZER.NS|30m|long|4738.18|4726.37": {
     "reached_entry": false,
     "stage": 1
   },
   "PREMIERENE.NS|30m|long|1003.23|1001": {
-    "reached_entry": false,
-    "stage": 1
+    "reached_entry": true,
+    "stage": 2
   }
 }
