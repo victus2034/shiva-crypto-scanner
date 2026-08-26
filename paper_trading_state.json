@@ -12338,6 +12338,29 @@
       "target_2": 298.99073560618314,
       "target_half": 300.095814748282,
       "trade_id": "9ff6aef8d9311da3"
+    },
+    {
+      "alert_time": "2026-08-26T09:32:27.364243+05:30",
+      "cost_r": 0.41981959609825786,
+      "date": "2026-08-26",
+      "entry": 1205.1554981015936,
+      "entry_time": "2026-08-26T09:35:00+05:30",
+      "exit_price": 1208.8111035,
+      "exit_time": "2026-08-26T09:35:00+05:30",
+      "final_result": "SL",
+      "half_r_hit": false,
+      "net_realized_r": -1.617788832268673,
+      "outcome": "SL",
+      "rating": 9,
+      "realized_r": -1.1979692361704153,
+      "risk": 3.0515018984062863,
+      "side": "short",
+      "stop": 1208.2069999999999,
+      "symbol": "PNBHOUSING.NS",
+      "target_1": 1202.1039962031873,
+      "target_2": 1199.052494304781,
+      "target_half": 1203.6297471523903,
+      "trade_id": "4fb24c079447d50d"
     }
   ],
   "handled": {
@@ -12345,6 +12368,7 @@
     "007977dcabca4da4": "filled",
     "00934d79954b53b6": "filled",
     "011111b56257a54d": "filled",
+    "016659d9b487ea7e": "filled",
     "018819f1ade27fff": "filled",
     "02541a64b158ad82": "filled",
     "028c60aa0802530b": "filled",
@@ -12492,6 +12516,7 @@
     "4ee0cbd08ca5cefe": "filled",
     "4ef1500bb86ca860": "filled",
     "4ef57221bfd5c70d": "filled",
+    "4fb24c079447d50d": "filled",
     "5058ae607eb82deb": "filled",
     "5102170705d13c5c": "filled",
     "5114ec54f957d1ab": "filled",
@@ -12678,6 +12703,7 @@
     "a9a66799566d7408": "filled",
     "aa6d2b8ab1b70dc0": "filled",
     "aa8730d7254319a0": "filled",
+    "aaeae90abf2e6904": "filled",
     "ab0e749f752ed696": "filled",
     "ab35f5255f69d0b3": "filled",
     "aca814c7fd968227": "filled",
@@ -12881,5 +12907,34 @@
     "fed8ed34d9b4adcd": "filled",
     "ffb4661b7d04cd46": "filled"
   },
-  "open": {}
+  "open": {
+    "016659d9b487ea7e": {
+      "alert_time": "2026-08-26T09:32:26.326830+05:30",
+      "entry": 33.369374179697594,
+      "entry_time": "2026-08-26T09:35:00+05:30",
+      "half_r_hit": false,
+      "rating": 6,
+      "risk": 0.06402734770718865,
+      "side": "short",
+      "stop": 33.43340152740478,
+      "symbol": "IOB.NS",
+      "target_1": 33.305346831990406,
+      "target_2": 33.24131948428322,
+      "target_half": 33.337360505844
+    },
+    "aaeae90abf2e6904": {
+      "alert_time": "2026-08-26T09:32:25.287266+05:30",
+      "entry": 1334.569524577853,
+      "entry_time": "2026-08-26T09:35:00+05:30",
+      "half_r_hit": false,
+      "rating": 10,
+      "risk": 3.1668998606235164,
+      "side": "short",
+      "stop": 1337.7364244384764,
+      "symbol": "ADANIGREEN.NS",
+      "target_1": 1331.4026247172294,
+      "target_2": 1328.2357248566059,
+      "target_half": 1332.986074647541
+    }
+  }
 }
