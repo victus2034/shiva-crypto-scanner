@@ -2856,7 +2856,9 @@
     "JYOTICNC.NS|4h|short|1000.7|1006.4": 1787727140.1435921,
     "RECLTD.NS|4h|long|321|322.511": 1787730757.1328475,
     "DMART.NS|4h|long|3755.3|3771.97": 1787734355.1003292,
-    "APLAPOLLO.NS|4h|short|2156.44|2167.3": 1787735280.5581553
+    "APLAPOLLO.NS|4h|short|2156.44|2167.3": 1787735280.5581553,
+    "AEGISVOPAK.NS|4h|long|262.56|264.716": 1787736769.8733425,
+    "CHALET.NS|4h|short|914.972|919": 1787736770.0966866
   },
   "GESHIP.NS|demand|1057.1000|1070.5000": {
     "in_zone": false,
@@ -8444,9 +8446,9 @@
     "last_attempt_at": 0.0
   },
   "AEGISVOPAK.NS|demand|262.5600|264.7162": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1787736769.8733425,
+    "last_attempt_at": 1787736769.8733425
   },
   "AFCONS.NS|supply|286.1719|287.7000": {
     "in_zone": false,
@@ -11664,7 +11666,7 @@
     "last_attempt_at": 0.0
   },
   "RECLTD.NS|demand|321.0000|322.5114": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1787730757.1328475,
     "last_attempt_at": 1787730757.1328475
   },
@@ -17909,7 +17911,7 @@
     "last_attempt_at": 0.0
   },
   "__last_scan_started__": {
-    "4h": 1787735206.708277
+    "4h": 1787736693.1320267
   },
   "360ONE.NS|supply|1214.8851|1220.0000": {
     "in_zone": false,
@@ -25757,7 +25759,7 @@
     "last_attempt_at": 0.0
   },
   "DMART.NS|demand|3755.3000|3771.9686": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1787734355.1003292,
     "last_attempt_at": 1787734355.1003292
   },
@@ -28877,6 +28879,11 @@
     "last_attempt_at": 0.0
   },
   "CHALET.NS|supply|914.9724|919.0000": {
+    "in_zone": true,
+    "last_alert_at": 1787736770.0966866,
+    "last_attempt_at": 1787736770.0966866
+  },
+  "MARICO.NS|demand|740.5000|743.3572": {
     "in_zone": false,
     "last_alert_at": 0.0,
     "last_attempt_at": 0.0
