@@ -2854,7 +2854,8 @@
     "COCHINSHIP.NS|4h|short|1546.69|1556.2": 1787730756.7886057,
     "MARICO.NS|4h|long|831.5|834.123": 1787730756.988557,
     "JYOTICNC.NS|4h|short|1000.7|1006.4": 1787727140.1435921,
-    "RECLTD.NS|4h|long|321|322.511": 1787730757.1328475
+    "RECLTD.NS|4h|long|321|322.511": 1787730757.1328475,
+    "DMART.NS|4h|long|3755.3|3771.97": 1787734355.1003292
   },
   "GESHIP.NS|demand|1057.1000|1070.5000": {
     "in_zone": false,
@@ -17907,7 +17908,7 @@
     "last_attempt_at": 0.0
   },
   "__last_scan_started__": {
-    "4h": 1787733100.0548954
+    "4h": 1787734282.2227318
   },
   "360ONE.NS|supply|1214.8851|1220.0000": {
     "in_zone": false,
@@ -25755,9 +25756,9 @@
     "last_attempt_at": 0.0
   },
   "DMART.NS|demand|3755.3000|3771.9686": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1787734355.1003292,
+    "last_attempt_at": 1787734355.1003292
   },
   "AXISBANK.NS|demand|1125.4000|1128.1815": {
     "in_zone": false,
