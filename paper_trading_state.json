@@ -13074,6 +13074,29 @@
       "target_2": 224.21085048102753,
       "target_half": 225.14335329532332,
       "trade_id": "78b7b58dcdec1ec8"
+    },
+    {
+      "alert_time": "2026-08-26T11:12:02.538537+05:30",
+      "cost_r": 0.5724150036374125,
+      "date": "2026-08-26",
+      "entry": 8098.066531985011,
+      "entry_time": "2026-08-26T11:30:00+05:30",
+      "exit_price": 8083.028063970024,
+      "exit_time": "2026-08-26T11:55:00+05:30",
+      "final_result": "+1R",
+      "half_r_hit": true,
+      "net_realized_r": 0.4275849963625875,
+      "outcome": "+1R",
+      "rating": 8,
+      "realized_r": 1.0,
+      "risk": 15.038468014987302,
+      "side": "short",
+      "stop": 8113.104999999999,
+      "symbol": "EICHERMOT.NS",
+      "target_1": 8083.028063970024,
+      "target_2": 8067.989595955037,
+      "target_half": 8090.547297977518,
+      "trade_id": "1bae341aedc8b91e"
     }
   ],
   "handled": {
@@ -13652,20 +13675,6 @@
     "ffb4661b7d04cd46": "filled"
   },
   "open": {
-    "1bae341aedc8b91e": {
-      "alert_time": "2026-08-26T11:12:02.538537+05:30",
-      "entry": 8098.066531985011,
-      "entry_time": "2026-08-26T11:30:00+05:30",
-      "half_r_hit": true,
-      "rating": 8,
-      "risk": 15.038468014987302,
-      "side": "short",
-      "stop": 8113.104999999999,
-      "symbol": "EICHERMOT.NS",
-      "target_1": 8083.028063970024,
-      "target_2": 8067.989595955037,
-      "target_half": 8090.547297977518
-    },
     "ab2b94bce147e928": {
       "alert_time": "2026-08-26T10:32:37.515670+05:30",
       "entry": 186.30995805141058,
