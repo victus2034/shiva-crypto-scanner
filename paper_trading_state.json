@@ -13534,6 +13534,29 @@
       "target_2": 1325.5279907680533,
       "target_half": 1329.9304953840265,
       "trade_id": "356e78c727647e6b"
+    },
+    {
+      "alert_time": "2026-08-26T14:32:35.063819+05:30",
+      "cost_r": 0.4991364089009896,
+      "date": "2026-08-26",
+      "entry": 1451.6415295265363,
+      "entry_time": "2026-08-26T14:35:00+05:30",
+      "exit_price": 1454.7330590530726,
+      "exit_time": "2026-08-26T14:40:00+05:30",
+      "final_result": "+1R",
+      "half_r_hit": true,
+      "net_realized_r": 0.5008635910990105,
+      "outcome": "+1R",
+      "rating": 7,
+      "realized_r": 1.0,
+      "risk": 3.0915295265363056,
+      "side": "long",
+      "stop": 1448.55,
+      "symbol": "NESTLEIND.NS",
+      "target_1": 1454.7330590530726,
+      "target_2": 1457.8245885796089,
+      "target_half": 1453.1872942898044,
+      "trade_id": "1d5f88f8d6973064"
     }
   ],
   "handled": {
@@ -13608,6 +13631,7 @@
     "1cb1b52e1599689e": "filled",
     "1cbab4a85d13ee36": "filled",
     "1cc6551c65582fda": "filled",
+    "1d5f88f8d6973064": "filled",
     "1f0277c3ec7ad9cb": "filled",
     "1fd552555e7768b9": "filled",
     "1fe1f228da67f6c4": "filled",
