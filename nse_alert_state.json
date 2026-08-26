@@ -2846,7 +2846,9 @@
     "DALBHARAT.NS|4h|long|1778.5|1786.12": 1787643168.2992013,
     "CROMPTON.NS|4h|long|240.2|241.447": 1787717539.6503496,
     "CENTRALBK.NS|4h|long|30.53|30.6626": 1787648743.4559243,
-    "NMDC.NS|4h|short|86.4382|86.83": 1787719862.2249393
+    "NMDC.NS|4h|short|86.4382|86.83": 1787719862.2249393,
+    "CHALET.NS|4h|short|914.973|919": 1787721170.1148293,
+    "KOTAKBANK.NS|4h|short|412.177|413.55": 1787721170.7225223
   },
   "GESHIP.NS|demand|1057.1000|1070.5000": {
     "in_zone": false,
@@ -17899,7 +17901,7 @@
     "last_attempt_at": 0.0
   },
   "__last_scan_started__": {
-    "4h": 1787719793.1681538
+    "4h": 1787721079.7933116
   },
   "360ONE.NS|supply|1214.8851|1220.0000": {
     "in_zone": false,
@@ -21282,9 +21284,9 @@
     "last_attempt_at": 0.0
   },
   "KOTAKBANK.NS|supply|412.1768|413.5500": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1787721170.7225223,
+    "last_attempt_at": 1787721170.7225223
   },
   "KOTAKBANK.NS|demand|363.3500|364.9464": {
     "in_zone": false,
@@ -27032,9 +27034,9 @@
     "last_attempt_at": 0.0
   },
   "CHALET.NS|supply|914.9727|919.0000": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1787721170.1148293,
+    "last_attempt_at": 1787721170.1148293
   },
   "CHAMBLFERT.NS|demand|422.7500|424.7578": {
     "in_zone": false,
