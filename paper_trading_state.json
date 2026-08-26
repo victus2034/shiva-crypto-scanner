@@ -12798,6 +12798,29 @@
       "target_2": 95.19115863522008,
       "target_half": 95.51845431761004,
       "trade_id": "4acaf4de7d215736"
+    },
+    {
+      "alert_time": "2026-08-26T10:32:38.304868+05:30",
+      "cost_r": 0.45943010730223355,
+      "date": "2026-08-26",
+      "entry": 2270.6200822223177,
+      "entry_time": "2026-08-26T10:40:00+05:30",
+      "exit_price": null,
+      "exit_time": "2026-08-26T10:40:00+05:30",
+      "final_result": "data_quality_ambiguous",
+      "half_r_hit": false,
+      "net_realized_r": null,
+      "outcome": "data_quality_ambiguous",
+      "rating": 9,
+      "realized_r": null,
+      "risk": 5.253615531588366,
+      "side": "short",
+      "stop": 2275.873697753906,
+      "symbol": "HYUNDAI.NS",
+      "target_1": 2265.3664666907293,
+      "target_2": 2260.112851159141,
+      "target_half": 2267.9932744565235,
+      "trade_id": "9ca2d0ea56ee5695"
     }
   ],
   "handled": {
@@ -13379,20 +13402,6 @@
       "target_1": 924.9665621164697,
       "target_2": 922.4853431747047,
       "target_half": 926.2071715873523
-    },
-    "9ca2d0ea56ee5695": {
-      "alert_time": "2026-08-26T10:32:38.304868+05:30",
-      "entry": 2270.6200822223177,
-      "entry_time": "2026-08-26T10:40:00+05:30",
-      "half_r_hit": false,
-      "rating": 9,
-      "risk": 5.253615531588366,
-      "side": "short",
-      "stop": 2275.873697753906,
-      "symbol": "HYUNDAI.NS",
-      "target_1": 2265.3664666907293,
-      "target_2": 2260.112851159141,
-      "target_half": 2267.9932744565235
     },
     "ab2b94bce147e928": {
       "alert_time": "2026-08-26T10:32:37.515670+05:30",
