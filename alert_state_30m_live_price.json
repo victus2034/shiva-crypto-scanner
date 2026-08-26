@@ -2110,7 +2110,9 @@
     "AAPLXUSD|30m|short|313.838|313.95": 1787753523.1344995,
     "MSFT/USDT:USDT|30m|short|494.629|495": 1787753523.4508328,
     "DOTUSD|30m|long|0.832|0.8337": 1787755934.911858,
-    "POL/USDT|30m|long|0.11206|0.112559": 1787755935.335848
+    "POL/USDT|30m|long|0.11206|0.112559": 1787755935.335848,
+    "ATOM/USDT|30m|long|1.502|1.50553": 1787760725.0260487,
+    "GOOGLXUSD|30m|long|341.2|341.381": 1787760725.455539
   },
   "METAXUSD|demand|577.00000000|579.20000000": {
     "in_zone": false,
@@ -13659,7 +13661,7 @@
     "last_alert_at": 1787580724.510809
   },
   "__last_scan_started__": {
-    "30m": 1787759498.218963
+    "30m": 1787760652.6077926
   },
   "TAO/USDT|supply|227.92800000|229.00000000": {
     "in_zone": false,
@@ -16354,8 +16356,8 @@
     "last_alert_at": 0.0
   },
   "ATOM/USDT|demand|1.50200000|1.50553000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1787760725.0260487
   },
   "CAP/USDT|supply|0.07316255|0.07356000": {
     "in_zone": false,
@@ -17730,8 +17732,8 @@
     "last_alert_at": 0.0
   },
   "GOOGLXUSD|demand|341.20000000|341.38070000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1787760725.455539
   },
   "ICP/USDT|demand|2.26700000|2.27824500": {
     "in_zone": false,
@@ -17758,6 +17760,34 @@
     "last_alert_at": 0.0
   },
   "XMRUSD|demand|427.85000000|429.05615000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "GRAMUSD|demand|1.34900000|1.34961500": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "ESPORTS/USDT|supply|0.01490835|0.01496000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "UB/USDT|demand|0.11017000|0.11073765": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "FILUSD|supply|0.72578500|0.72700000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "ERA/USDT|supply|0.05751545|0.05766000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "AAPLXUSD|demand|309.10000000|309.25940000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "SOXLBUSD|demand|112.50000000|112.82790000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
