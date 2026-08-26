@@ -4650,7 +4650,10 @@
     "LEMONTREE.NS|30m|short|110.055|110.2": 1787720558.5654123,
     "SBFC.NS|30m|short|95.6276|95.75": 1787720558.8614,
     "ICICIPRULI.NS|30m|short|521.769|522.35": 1787721732.1351492,
-    "NH.NS|30m|short|1897.44|1900": 1787721732.3479836
+    "NH.NS|30m|short|1897.44|1900": 1787721732.3479836,
+    "ANURAS.NS|30m|short|1272.27|1273.8": 1787722922.3821282,
+    "EICHERMOT.NS|30m|short|8098.07|8105": 1787722922.5385368,
+    "INDGN.NS|30m|short|572.934|573.9": 1787722922.8129072
   },
   "ANANDRATHI.NS|supply|2187.5000|2221.0000": {
     "in_zone": true,
@@ -19098,9 +19101,9 @@
     "last_attempt_at": 0.0
   },
   "INDGN.NS|supply|572.9342|573.9000": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1787722922.8129072,
+    "last_attempt_at": 1787722922.8129072
   },
   "INDIACEM.NS|demand|369.6000|370.1570": {
     "in_zone": true,
@@ -31363,7 +31366,7 @@
     "last_attempt_at": 0.0
   },
   "__last_scan_started__": {
-    "30m": 1787721655.7355447
+    "30m": 1787722856.7422082
   },
   "3MINDIA.NS|supply|35230.9249|35290.0000": {
     "in_zone": false,
@@ -39171,9 +39174,9 @@
     "last_attempt_at": 0.0
   },
   "EICHERMOT.NS|supply|8098.0665|8105.0000": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1787722922.5385368,
+    "last_attempt_at": 1787722922.5385368
   },
   "EICHERMOT.NS|demand|7867.5000|7877.5447": {
     "in_zone": false,
@@ -55886,7 +55889,7 @@
     "last_attempt_at": 0.0
   },
   "NH.NS|supply|1897.4442|1900.0000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1787721732.3479836,
     "last_attempt_at": 1787721732.3479836
   },
@@ -58511,9 +58514,9 @@
     "last_attempt_at": 0.0
   },
   "ANURAS.NS|supply|1272.2719|1273.8000": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1787722922.3821282,
+    "last_attempt_at": 1787722922.3821282
   },
   "APARINDS.NS|supply|17374.3859|17416.0000": {
     "in_zone": false,
