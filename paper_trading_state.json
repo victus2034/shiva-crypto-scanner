@@ -12723,6 +12723,7 @@
     "1878208040f75ae1": "filled",
     "18e7954ec30a12e5": "filled",
     "1901fd3741ee5386": "filled",
+    "1995ab8e0f1787b1": "filled",
     "1b0578d4e8a4bf0e": "filled",
     "1b119ce4d192d12e": "filled",
     "1bf178363c3e3aa5": "filled",
@@ -13216,10 +13217,25 @@
     "fc7ad14c0e4990d8": "filled",
     "fc84f16387f1493f": "filled",
     "fe009afb11dbe6ca": "filled",
+    "fec9c12192dbcf63": "filled",
     "fed8ed34d9b4adcd": "filled",
     "ffb4661b7d04cd46": "filled"
   },
   "open": {
+    "1995ab8e0f1787b1": {
+      "alert_time": "2026-08-26T10:12:22.036973+05:30",
+      "entry": 11409.216087731493,
+      "entry_time": "2026-08-26T10:15:00+05:30",
+      "half_r_hit": false,
+      "rating": 7,
+      "risk": 25.20691226850613,
+      "side": "short",
+      "stop": 11434.422999999999,
+      "symbol": "BAJAJHLDNG.NS",
+      "target_1": 11384.009175462987,
+      "target_2": 11358.80226319448,
+      "target_half": 11396.61263159724
+    },
     "86f2de6d7ea4ed74": {
       "alert_time": "2026-08-26T10:01:30.359098+05:30",
       "entry": 151.90487926169018,
@@ -13247,6 +13263,20 @@
       "target_1": 334.0252129394547,
       "target_2": 333.0700163543725,
       "target_half": 334.5028112319958
+    },
+    "fec9c12192dbcf63": {
+      "alert_time": "2026-08-26T10:12:21.659344+05:30",
+      "entry": 416.7501606316961,
+      "entry_time": "2026-08-26T10:15:00+05:30",
+      "half_r_hit": false,
+      "rating": 10,
+      "risk": 0.8670515875421643,
+      "side": "short",
+      "stop": 417.61721221923824,
+      "symbol": "AMBUJACEM.NS",
+      "target_1": 415.8831090441539,
+      "target_2": 415.01605745661175,
+      "target_half": 416.316634837925
     }
   }
 }
