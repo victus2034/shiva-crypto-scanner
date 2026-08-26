@@ -4663,7 +4663,7 @@
     "AMBER.NS|30m|short|7543.98|7556": 1787725872.8527157,
     "IRCTC.NS|30m|short|490.543|491": 1787725872.977286,
     "PFIZER.NS|30m|long|4731.1|4738.18": 1787725873.279907,
-    "NESTLEIND.NS|30m|long|1450|1451.64": 1787726534.8007956,
+    "NESTLEIND.NS|30m|long|1450|1451.64": 1787730148.7311199,
     "MAPMYINDIA.NS|30m|short|1017.09|1018.8": 1787727738.2989554,
     "CHAMBLFERT.NS|30m|long|425.1|425.592": 1787727738.4668417,
     "ANURAS.NS|30m|short|1272.28|1273.8": 1787728941.1531851,
@@ -4671,7 +4671,8 @@
     "NAVINFLUOR.NS|30m|short|8427.18|8444": 1787728941.8020327,
     "PATANJALI.NS|30m|long|345.45|345.915": 1787728942.0654569,
     "FSL.NS|30m|long|270|270.492": 1787729467.2064114,
-    "NSLNISP.NS|30m|short|40.5693|40.65": 1787729467.618583
+    "NSLNISP.NS|30m|short|40.5693|40.65": 1787729467.618583,
+    "AXISBANK.NS|30m|short|1258.1|1259.4": 1787730148.4306757
   },
   "ANANDRATHI.NS|supply|2187.5000|2221.0000": {
     "in_zone": true,
@@ -22904,9 +22905,9 @@
     "last_attempt_at": 0.0
   },
   "AXISBANK.NS|supply|1258.0969|1259.4000": {
-    "in_zone": false,
-    "last_alert_at": 1787205744.0845964,
-    "last_attempt_at": 1787205744.0845964
+    "in_zone": true,
+    "last_alert_at": 1787730148.4306757,
+    "last_attempt_at": 1787730148.4306757
   },
   "AXISBANK.NS|demand|1224.1000|1225.2805": {
     "in_zone": false,
@@ -30214,7 +30215,7 @@
     "last_attempt_at": 0.0
   },
   "NSLNISP.NS|supply|40.5693|40.6500": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1787729467.618583,
     "last_attempt_at": 1787729467.618583
   },
@@ -31384,7 +31385,7 @@
     "last_attempt_at": 0.0
   },
   "__last_scan_started__": {
-    "30m": 1787729384.5147583
+    "30m": 1787730059.3746057
   },
   "3MINDIA.NS|supply|35230.9249|35290.0000": {
     "in_zone": false,
@@ -38057,7 +38058,7 @@
     "last_attempt_at": 0.0
   },
   "CHAMBLFERT.NS|demand|425.1000|425.5922": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 0.0,
     "last_attempt_at": 0.0
   },
@@ -53013,8 +53014,8 @@
   },
   "NESTLEIND.NS|demand|1450.0000|1451.6415": {
     "in_zone": true,
-    "last_alert_at": 1787726534.8007956,
-    "last_attempt_at": 1787726534.8007956
+    "last_alert_at": 1787730148.7311199,
+    "last_attempt_at": 1787730148.7311199
   },
   "NEULANDLAB.NS|demand|22157.0000|22212.3892": {
     "in_zone": false,
@@ -61717,7 +61718,7 @@
     "last_attempt_at": 0.0
   },
   "ANURAS.NS|supply|1272.2793|1273.8000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1787728941.1531851,
     "last_attempt_at": 1787728941.1531851
   },
@@ -62342,6 +62343,16 @@
     "last_attempt_at": 0.0
   },
   "NAVINFLUOR.NS|supply|8732.8151|8752.0000": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "3MINDIA.NS|supply|34145.4620|34205.0000": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "3MINDIA.NS|demand|33355.0000|33412.1816": {
     "in_zone": false,
     "last_alert_at": 0.0,
     "last_attempt_at": 0.0
