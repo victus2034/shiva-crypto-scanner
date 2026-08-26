@@ -13143,6 +13143,52 @@
       "target_2": 37.92468453273782,
       "target_half": 38.081442648220104,
       "trade_id": "8f7b79595fce03bf"
+    },
+    {
+      "alert_time": "2026-08-26T10:32:37.515670+05:30",
+      "cost_r": 0.5892264346747809,
+      "date": "2026-08-26",
+      "entry": 186.30995805141058,
+      "entry_time": "2026-08-26T10:35:00+05:30",
+      "exit_price": 185.88085673661803,
+      "exit_time": "2026-08-26T12:00:00+05:30",
+      "final_result": "SL",
+      "half_r_hit": false,
+      "net_realized_r": -1.8658790380025625,
+      "outcome": "SL",
+      "rating": 9,
+      "realized_r": -1.2766526033277816,
+      "risk": 0.33611439296331014,
+      "side": "long",
+      "stop": 185.97384365844727,
+      "symbol": "CASTROLIND.NS",
+      "target_1": 186.64607244437389,
+      "target_2": 186.9821868373372,
+      "target_half": 186.47801524789224,
+      "trade_id": "ab2b94bce147e928"
+    },
+    {
+      "alert_time": "2026-08-26T12:01:12.852716+05:30",
+      "cost_r": 0.409678713729038,
+      "date": "2026-08-26",
+      "entry": 7543.981508880006,
+      "entry_time": "2026-08-26T12:05:00+05:30",
+      "exit_price": 7567.337777999999,
+      "exit_time": "2026-08-26T12:05:00+05:30",
+      "final_result": "SL",
+      "half_r_hit": false,
+      "net_realized_r": -1.6028780146363721,
+      "outcome": "SL",
+      "rating": 8,
+      "realized_r": -1.193199300907334,
+      "risk": 19.57449111999358,
+      "side": "short",
+      "stop": 7563.556,
+      "symbol": "AMBER.NS",
+      "target_1": 7524.407017760012,
+      "target_2": 7504.832526640019,
+      "target_half": 7534.194263320009,
+      "trade_id": "6760b5829c037859"
     }
   ],
   "handled": {
@@ -13362,6 +13408,7 @@
     "65a2e3995f1a7aba": "filled",
     "6622d65505d82ce1": "filled",
     "66351dab9f338276": "filled",
+    "6760b5829c037859": "filled",
     "67d7bbd9655ca698": "filled",
     "69390fab24efb07c": "filled",
     "6978e25f0ffc374b": "filled",
@@ -13722,20 +13769,5 @@
     "fed8ed34d9b4adcd": "filled",
     "ffb4661b7d04cd46": "filled"
   },
-  "open": {
-    "ab2b94bce147e928": {
-      "alert_time": "2026-08-26T10:32:37.515670+05:30",
-      "entry": 186.30995805141058,
-      "entry_time": "2026-08-26T10:35:00+05:30",
-      "half_r_hit": false,
-      "rating": 9,
-      "risk": 0.33611439296331014,
-      "side": "long",
-      "stop": 185.97384365844727,
-      "symbol": "CASTROLIND.NS",
-      "target_1": 186.64607244437389,
-      "target_2": 186.9821868373372,
-      "target_half": 186.47801524789224
-    }
-  }
+  "open": {}
 }
