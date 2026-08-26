@@ -12959,6 +12959,29 @@
       "target_2": 922.4853431747047,
       "target_half": 926.2071715873523,
       "trade_id": "4d9ed75a0a8b96fd"
+    },
+    {
+      "alert_time": "2026-08-26T11:12:02.812907+05:30",
+      "cost_r": 0.3955419190889417,
+      "date": "2026-08-26",
+      "entry": 572.9341911868545,
+      "entry_time": "2026-08-26T11:15:00+05:30",
+      "exit_price": 572.2466701574302,
+      "exit_time": "2026-08-26T11:20:00+05:30",
+      "final_result": "BE",
+      "half_r_hit": true,
+      "net_realized_r": 0.05097765090800499,
+      "outcome": "BE",
+      "rating": 7,
+      "realized_r": 0.4465195699969467,
+      "risk": 1.5397332516220104,
+      "side": "short",
+      "stop": 574.4739244384765,
+      "symbol": "INDGN.NS",
+      "target_1": 571.3944579352325,
+      "target_2": 569.8547246836105,
+      "target_half": 572.1643245610435,
+      "trade_id": "6476fbf6020397ea"
     }
   ],
   "handled": {
@@ -13171,6 +13194,7 @@
     "633cc7d35e6cb0b6": "filled",
     "634256391012c7ca": "filled",
     "635fb7c4c39b102f": "filled",
+    "6476fbf6020397ea": "filled",
     "658eb472a8fc0254": "filled",
     "65a2e3995f1a7aba": "filled",
     "6622d65505d82ce1": "filled",
