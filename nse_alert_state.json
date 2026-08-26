@@ -2845,7 +2845,8 @@
     "MUTHOOTFIN.NS|4h|short|3209.9|3226.7": 1787644361.9460044,
     "DALBHARAT.NS|4h|long|1778.5|1786.12": 1787643168.2992013,
     "CROMPTON.NS|4h|long|240.2|241.447": 1787717539.6503496,
-    "CENTRALBK.NS|4h|long|30.53|30.6626": 1787648743.4559243
+    "CENTRALBK.NS|4h|long|30.53|30.6626": 1787648743.4559243,
+    "NMDC.NS|4h|short|86.4382|86.83": 1787719862.2249393
   },
   "GESHIP.NS|demand|1057.1000|1070.5000": {
     "in_zone": false,
@@ -11173,9 +11174,9 @@
     "last_attempt_at": 0.0
   },
   "NMDC.NS|supply|86.4382|86.8300": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1787719862.2249393,
+    "last_attempt_at": 1787719862.2249393
   },
   "NMDC.NS|demand|81.8000|82.1362": {
     "in_zone": false,
@@ -12718,7 +12719,7 @@
     "last_attempt_at": 0.0
   },
   "CROMPTON.NS|demand|240.2000|241.4468": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1787717539.6503496,
     "last_attempt_at": 1787717539.6503496
   },
@@ -17898,7 +17899,7 @@
     "last_attempt_at": 0.0
   },
   "__last_scan_started__": {
-    "4h": 1787718697.1807234
+    "4h": 1787719793.1681538
   },
   "360ONE.NS|supply|1214.8851|1220.0000": {
     "in_zone": false,
@@ -27731,6 +27732,11 @@
     "last_attempt_at": 0.0
   },
   "POLICYBZR.NS|supply|1955.4864|1964.1000": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "MOTILALOFS.NS|supply|1092.5899|1097.1000": {
     "in_zone": false,
     "last_alert_at": 0.0,
     "last_attempt_at": 0.0
