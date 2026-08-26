@@ -2113,7 +2113,7 @@
     "POL/USDT|30m|long|0.11206|0.112559": 1787755935.335848,
     "ATOM/USDT|30m|long|1.502|1.50553": 1787760725.0260487,
     "GOOGLXUSD|30m|long|341.2|341.381": 1787760725.455539,
-    "GOOGLXUSD|30m|long|341.02|341.231": 1787761930.8439178,
+    "GOOGLXUSD|30m|long|341.02|341.231": 1787765537.5240328,
     "SEIUSD|30m|long|0.0446|0.044712": 1787763136.1406171,
     "CL/USDT|30m|short|83.1858|83.29": 1787763136.436915
   },
@@ -13664,7 +13664,7 @@
     "last_alert_at": 1787580724.510809
   },
   "__last_scan_started__": {
-    "30m": 1787764263.496873
+    "30m": 1787765459.6876578
   },
   "TAO/USDT|supply|227.92800000|229.00000000": {
     "in_zone": false,
@@ -14615,7 +14615,7 @@
     "last_alert_at": 0.0
   },
   "SEIUSD|demand|0.04460000|0.04471200": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1787763136.1406171
   },
   "RE/USDT|supply|0.54733825|0.55000000": {
@@ -14992,7 +14992,7 @@
   },
   "GOOGLXUSD|demand|341.02000000|341.23110000": {
     "in_zone": true,
-    "last_alert_at": 1787761930.8439178
+    "last_alert_at": 1787765537.5240328
   },
   "MUBUSD|demand|917.91000000|919.92790000": {
     "in_zone": false,
@@ -17827,6 +17827,54 @@
     "last_alert_at": 0.0
   },
   "ETHFI/USDT|demand|0.55080000|0.55308300": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "BANK/USDT|supply|0.03621095|0.03630000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "ADAUSD|supply|0.21238350|0.21300000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "NEARUSD|supply|1.89710500|1.90300000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "1000PEPEUSD|supply|0.00386682|0.00388100": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "INJUSD|supply|5.64683000|5.66800000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "LDO/USDT|supply|0.36692450|0.36820000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "VIRTUAL/USDT|supply|0.77185850|0.77470000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "JTO/USDT|supply|0.53136550|0.53350000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "CRV/USDT|supply|0.32242900|0.32340000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "ALGO/USDT|supply|0.09077610|0.09101000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "GWEI/USDT|supply|0.02688470|0.02700000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "SKHYNIX/USDT:USDT|supply|1249.27420000|1252.08000000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
