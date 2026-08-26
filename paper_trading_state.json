@@ -13212,6 +13212,29 @@
       "target_2": 4761.7962288301815,
       "target_half": 4744.082613194388,
       "trade_id": "65f4934435e81c73"
+    },
+    {
+      "alert_time": "2026-08-26T11:52:14.974351+05:30",
+      "cost_r": 0.3801150830250656,
+      "date": "2026-08-26",
+      "entry": 1769.3245458770027,
+      "entry_time": "2026-08-26T12:20:00+05:30",
+      "exit_price": 1764.3765917540056,
+      "exit_time": "2026-08-26T12:25:00+05:30",
+      "final_result": "+1R",
+      "half_r_hit": true,
+      "net_realized_r": 0.6198849169749344,
+      "outcome": "+1R",
+      "rating": 6,
+      "realized_r": 1.0,
+      "risk": 4.947954122997089,
+      "side": "short",
+      "stop": 1774.2724999999998,
+      "symbol": "NUVAMA.NS",
+      "target_1": 1764.3765917540056,
+      "target_2": 1759.4286376310085,
+      "target_half": 1766.8505688155042,
+      "trade_id": "215c2a99e10f1a3c"
     }
   ],
   "handled": {
@@ -13289,6 +13312,7 @@
     "203bcc14a645646a": "filled",
     "20e446a00f29ed1b": "filled",
     "213cf6f3b5c83f2e": "filled",
+    "215c2a99e10f1a3c": "filled",
     "21707d8bc3f0de79": "filled",
     "22230f292b0c5eb1": "filled",
     "22865f41a4552478": "filled",
