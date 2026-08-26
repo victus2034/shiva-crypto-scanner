@@ -4659,7 +4659,10 @@
     "COCHINSHIP.NS|30m|short|1534.66|1536.9": 1787725334.6783905,
     "NUVAMA.NS|30m|short|1769.32|1772.5": 1787725334.974351,
     "OLAELEC.NS|30m|short|38.1337|38.2": 1787725335.2043207,
-    "PREMIERENE.NS|30m|long|1002|1003.23": 1787725335.5330114
+    "PREMIERENE.NS|30m|long|1002|1003.23": 1787725335.5330114,
+    "AMBER.NS|30m|short|7543.98|7556": 1787725872.8527157,
+    "IRCTC.NS|30m|short|490.543|491": 1787725872.977286,
+    "PFIZER.NS|30m|long|4731.1|4738.18": 1787725873.279907
   },
   "ANANDRATHI.NS|supply|2187.5000|2221.0000": {
     "in_zone": true,
@@ -31372,7 +31375,7 @@
     "last_attempt_at": 0.0
   },
   "__last_scan_started__": {
-    "30m": 1787725267.6155467
+    "30m": 1787725799.1079097
   },
   "3MINDIA.NS|supply|35230.9249|35290.0000": {
     "in_zone": false,
@@ -49905,9 +49908,9 @@
     "last_attempt_at": 0.0
   },
   "AMBER.NS|supply|7543.9815|7556.0000": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1787725872.8527157,
+    "last_attempt_at": 1787725872.8527157
   },
   "ANURAS.NS|supply|1272.2591|1273.8000": {
     "in_zone": false,
@@ -52070,9 +52073,9 @@
     "last_attempt_at": 0.0
   },
   "IRCTC.NS|supply|490.5428|491.0000": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1787725872.977286,
+    "last_attempt_at": 1787725872.977286
   },
   "IGL.NS|supply|156.7059|156.9000": {
     "in_zone": false,
@@ -60075,7 +60078,7 @@
     "last_attempt_at": 0.0
   },
   "ANURAS.NS|supply|1272.2686|1273.8000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 0.0,
     "last_attempt_at": 0.0
   },
@@ -60810,9 +60813,9 @@
     "last_attempt_at": 0.0
   },
   "PFIZER.NS|demand|4731.1001|4738.1781": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1787725873.279907,
+    "last_attempt_at": 1787725873.279907
   },
   "PIDILITIND.NS|demand|1601.0000|1602.9951": {
     "in_zone": false,
