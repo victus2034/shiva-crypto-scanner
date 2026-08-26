@@ -2096,7 +2096,8 @@
     "CRCLXUSD|30m|short|92.7471|93.02": 1787684955.009499,
     "GRAMUSD|30m|long|1.418|1.42257": 1787713929.49732,
     "GWEI/USDT|30m|short|0.0228795|0.02294": 1787723245.7930465,
-    "GWEI/USDT|30m|short|0.022912|0.02298": 1787724736.9298284
+    "GWEI/USDT|30m|short|0.022912|0.02298": 1787724736.9298284,
+    "AVAXUSD|30m|long|7.27|7.29788": 1787739124.2634711
   },
   "METAXUSD|demand|577.00000000|579.20000000": {
     "in_zone": false,
@@ -13645,7 +13646,7 @@
     "last_alert_at": 1787580724.510809
   },
   "__last_scan_started__": {
-    "30m": 1787737854.5968904
+    "30m": 1787739050.2387464
   },
   "TAO/USDT|supply|227.92800000|229.00000000": {
     "in_zone": false,
@@ -14828,8 +14829,8 @@
     "last_alert_at": 0.0
   },
   "AVAXUSD|demand|7.27000000|7.29788500": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1787739124.2634711
   },
   "1000SHIBUSD|demand|0.00519100|0.00521698": {
     "in_zone": false,
@@ -17440,6 +17441,26 @@
     "last_alert_at": 0.0
   },
   "ORDI/USDT|supply|4.28285500|4.29800000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "PENGU/USDT|supply|0.00994675|0.00999100": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "ICP/USDT|supply|2.42393500|2.43000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "KGEN/USDT|supply|0.18522450|0.18570000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "CRCLXUSD|supply|93.24525000|93.45000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "COINXUSD|supply|189.10595000|189.45000000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
