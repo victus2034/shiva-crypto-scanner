@@ -13557,6 +13557,29 @@
       "target_2": 1457.8245885796089,
       "target_half": 1453.1872942898044,
       "trade_id": "1d5f88f8d6973064"
+    },
+    {
+      "alert_time": "2026-08-26T14:52:08.891325+05:30",
+      "cost_r": 0.421708486309846,
+      "date": "2026-08-26",
+      "entry": 580.0188716683776,
+      "entry_time": "2026-08-26T14:55:00+05:30",
+      "exit_price": 581.7716649006957,
+      "exit_time": "2026-08-26T14:55:00+05:30",
+      "final_result": "SL",
+      "half_r_hit": false,
+      "net_realized_r": -1.6205661938873708,
+      "outcome": "SL",
+      "rating": 8,
+      "realized_r": -1.1988577075775249,
+      "risk": 1.4620527700988077,
+      "side": "short",
+      "stop": 581.4809244384764,
+      "symbol": "GMDCLTD.NS",
+      "target_1": 578.5568188982788,
+      "target_2": 577.09476612818,
+      "target_half": 579.2878452833282,
+      "trade_id": "3de4bc43ff5bc0b6"
     }
   ],
   "handled": {
@@ -13586,6 +13609,7 @@
     "0939cf3b17660908": "filled",
     "09a1588df5d7163b": "filled",
     "09c7e9decb1e4297": "filled",
+    "09edb7efc42a29c8": "filled",
     "0a0e0a35cc29f479": "filled",
     "0ac82908ba863524": "filled",
     "0ae0f0d5476b3c1a": "filled",
@@ -13694,6 +13718,7 @@
     "3c71bb9795c2bf6c": "filled",
     "3ccca2f7d165b757": "filled",
     "3d19c90d133f7a19": "filled",
+    "3de4bc43ff5bc0b6": "filled",
     "3e7ae097a4a79d31": "filled",
     "3eebc2f6cbc5a876": "filled",
     "3f950c4aa2f31ead": "filled",
@@ -14158,6 +14183,20 @@
     "ffb4661b7d04cd46": "filled"
   },
   "open": {
+    "09edb7efc42a29c8": {
+      "alert_time": "2026-08-26T14:52:08.575811+05:30",
+      "entry": 179.2161610158913,
+      "entry_time": "2026-08-26T14:55:00+05:30",
+      "half_r_hit": false,
+      "rating": 8,
+      "risk": 0.46333898410870233,
+      "side": "short",
+      "stop": 179.6795,
+      "symbol": "ASHOKLEY.NS",
+      "target_1": 178.75282203178259,
+      "target_2": 178.28948304767388,
+      "target_half": 178.98449152383694
+    },
     "11261f6a706a77c9": {
       "alert_time": "2026-08-26T14:12:26.760317+05:30",
       "entry": 832.3279921082204,
