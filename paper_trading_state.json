@@ -13281,6 +13281,29 @@
       "target_2": 1011.6195958775671,
       "target_half": 1015.7191918291644,
       "trade_id": "917397be85173017"
+    },
+    {
+      "alert_time": "2026-08-26T12:52:21.802033+05:30",
+      "cost_r": 0.35457405583257134,
+      "date": "2026-08-26",
+      "entry": 8427.17962491691,
+      "entry_time": "2026-08-26T12:55:00+05:30",
+      "exit_price": 8456.670221999999,
+      "exit_time": "2026-08-26T13:00:00+05:30",
+      "final_result": "SL",
+      "half_r_hit": false,
+      "net_realized_r": -1.5218539503916093,
+      "outcome": "SL",
+      "rating": 8,
+      "realized_r": -1.167279894559038,
+      "risk": 25.264375083090272,
+      "side": "short",
+      "stop": 8452.444,
+      "symbol": "NAVINFLUOR.NS",
+      "target_1": 8401.915249833819,
+      "target_2": 8376.650874750729,
+      "target_half": 8414.547437375364,
+      "trade_id": "51179ef9d874081c"
     }
   ],
   "handled": {
@@ -13449,6 +13472,7 @@
     "5058ae607eb82deb": "filled",
     "5102170705d13c5c": "filled",
     "5114ec54f957d1ab": "filled",
+    "51179ef9d874081c": "filled",
     "5123414b44442cc4": "filled",
     "514b6ac1eac63c81": "filled",
     "51e6f9e55a7accd9": "filled",
