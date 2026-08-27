@@ -14201,6 +14201,29 @@
       "target_2": 185.72954010586864,
       "target_half": 185.1074341383225,
       "trade_id": "716bb8a8cc6f8f69"
+    },
+    {
+      "alert_time": "2026-08-27T10:52:33.912651+05:30",
+      "cost_r": 0.5390899841687735,
+      "date": "2026-08-27",
+      "entry": 83.9316483826213,
+      "entry_time": "2026-08-27T11:15:00+05:30",
+      "exit_price": 84.09714828959564,
+      "exit_time": "2026-08-27T11:20:00+05:30",
+      "final_result": "+1R",
+      "half_r_hit": true,
+      "net_realized_r": 0.4609100158312265,
+      "outcome": "+1R",
+      "rating": 8,
+      "realized_r": 1.0,
+      "risk": 0.1654999069743326,
+      "side": "long",
+      "stop": 83.76614847564697,
+      "symbol": "IDFCFIRSTB.NS",
+      "target_1": 84.09714828959564,
+      "target_2": 84.26264819656997,
+      "target_half": 84.01439833610847,
+      "trade_id": "d331d920f7d8b612"
     }
   ],
   "handled": {
@@ -14660,6 +14683,7 @@
     "c0fb5b7e94e7e437": "filled",
     "c17f1d44829e7f34": "filled",
     "c216a8ac784fa1c7": "filled",
+    "c2cba1d7ca41c2e5": "filled",
     "c323cbb9cf0a0c01": "filled",
     "c349013161831255": "filled",
     "c3e2b03ce7560c11": "filled",
@@ -14843,19 +14867,19 @@
       "target_2": 8998.533705447933,
       "target_half": 8970.291352723967
     },
-    "d331d920f7d8b612": {
-      "alert_time": "2026-08-27T10:52:33.912651+05:30",
-      "entry": 83.9316483826213,
+    "c2cba1d7ca41c2e5": {
+      "alert_time": "2026-08-27T10:52:34.141445+05:30",
+      "entry": 713.3284440383086,
       "entry_time": "2026-08-27T11:15:00+05:30",
       "half_r_hit": false,
-      "rating": 8,
-      "risk": 0.1654999069743326,
+      "rating": 7,
+      "risk": 1.4410684279570205,
       "side": "long",
-      "stop": 83.76614847564697,
-      "symbol": "IDFCFIRSTB.NS",
-      "target_1": 84.09714828959564,
-      "target_2": 84.26264819656997,
-      "target_half": 84.01439833610847
+      "stop": 711.8873756103516,
+      "symbol": "INDHOTEL.NS",
+      "target_1": 714.7695124662656,
+      "target_2": 716.2105808942226,
+      "target_half": 714.048978252287
     },
     "eb49098a9f09cfad": {
       "alert_time": "2026-08-27T10:52:33.394850+05:30",
