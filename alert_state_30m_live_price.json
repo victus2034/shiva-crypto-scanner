@@ -2117,7 +2117,8 @@
     "SEIUSD|30m|long|0.0446|0.044712": 1787763136.1406171,
     "CL/USDT|30m|short|83.1858|83.29": 1787763136.436915,
     "RE/USDT|30m|long|0.50888|0.511596": 1787767937.8948567,
-    "AKE/USDT|30m|long|0.008084|0.00812876": 1787771536.8207765
+    "AKE/USDT|30m|long|0.008084|0.00812876": 1787771536.8207765,
+    "COAI/USDT|30m|short|0.293212|0.294": 1787806329.128364
   },
   "METAXUSD|demand|577.00000000|579.20000000": {
     "in_zone": false,
@@ -13666,7 +13667,7 @@
     "last_alert_at": 1787580724.510809
   },
   "__last_scan_started__": {
-    "30m": 1787805060.9694283
+    "30m": 1787806254.0139232
   },
   "TAO/USDT|supply|227.92800000|229.00000000": {
     "in_zone": false,
@@ -18217,8 +18218,8 @@
     "last_alert_at": 0.0
   },
   "COAI/USDT|supply|0.29321200|0.29400000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1787806329.128364
   },
   "ALGO/USDT|supply|0.09080460|0.09104000": {
     "in_zone": false,
@@ -18493,6 +18494,14 @@
     "last_alert_at": 0.0
   },
   "METAXUSD|supply|598.25710000|598.83000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "TSLAXUSD|supply|352.19885000|352.55000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "GOOGLXUSD|supply|348.08205000|348.23000000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
