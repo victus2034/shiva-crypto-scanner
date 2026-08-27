@@ -14431,6 +14431,29 @@
       "target_2": 172.45522735378086,
       "target_half": 171.95680111585528,
       "trade_id": "ccaac872ebe665e2"
+    },
+    {
+      "alert_time": "2026-08-27T12:32:25.863009+05:30",
+      "cost_r": 0.3694631390510702,
+      "date": "2026-08-27",
+      "entry": 170.42023026136826,
+      "entry_time": "2026-08-27T12:50:00+05:30",
+      "exit_price": 170.6247345376819,
+      "exit_time": "2026-08-27T12:55:00+05:30",
+      "final_result": "BE",
+      "half_r_hit": true,
+      "net_realized_r": 0.047616603998086926,
+      "outcome": "BE",
+      "rating": 8,
+      "realized_r": 0.4170797430491571,
+      "risk": 0.49032416395615996,
+      "side": "long",
+      "stop": 169.9299060974121,
+      "symbol": "MRPL.NS",
+      "target_1": 170.91055442532442,
+      "target_2": 171.40087858928058,
+      "target_half": 170.66539234334635,
+      "trade_id": "0934b5dfdccf40c1"
     }
   ],
   "handled": {
@@ -14458,6 +14481,7 @@
     "07b252ab34887c44": "filled",
     "07d3a65fd140a063": "filled",
     "08d435fe07fc13ff": "filled",
+    "0934b5dfdccf40c1": "filled",
     "0939cf3b17660908": "filled",
     "09a1588df5d7163b": "filled",
     "09c7e9decb1e4297": "filled",
