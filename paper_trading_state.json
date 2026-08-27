@@ -14155,6 +14155,29 @@
       "target_2": 454.24307253410245,
       "target_half": 455.8500362670512,
       "trade_id": "a0c738f41781e7e2"
+    },
+    {
+      "alert_time": "2026-08-27T10:32:22.968854+05:30",
+      "cost_r": 0.30577268327476986,
+      "date": "2026-08-27",
+      "entry": 441.3440555698969,
+      "entry_time": "2026-08-27T10:35:00+05:30",
+      "exit_price": 441.8736684365808,
+      "exit_time": "2026-08-27T11:05:00+05:30",
+      "final_result": "BE",
+      "half_r_hit": true,
+      "net_realized_r": 0.03940814450482977,
+      "outcome": "BE",
+      "rating": 8,
+      "realized_r": 0.34518082777959963,
+      "risk": 1.534305569896901,
+      "side": "long",
+      "stop": 439.80975,
+      "symbol": "EXIDEIND.NS",
+      "target_1": 442.8783611397938,
+      "target_2": 444.4126667096907,
+      "target_half": 442.11120835484536,
+      "trade_id": "51fa67c92bb967d3"
     }
   ],
   "handled": {
@@ -14782,25 +14805,11 @@
     "ffb4661b7d04cd46": "filled"
   },
   "open": {
-    "51fa67c92bb967d3": {
-      "alert_time": "2026-08-27T10:32:22.968854+05:30",
-      "entry": 441.3440555698969,
-      "entry_time": "2026-08-27T10:35:00+05:30",
-      "half_r_hit": false,
-      "rating": 8,
-      "risk": 1.534305569896901,
-      "side": "long",
-      "stop": 439.80975,
-      "symbol": "EXIDEIND.NS",
-      "target_1": 442.8783611397938,
-      "target_2": 444.4126667096907,
-      "target_half": 442.11120835484536
-    },
     "716bb8a8cc6f8f69": {
       "alert_time": "2026-08-27T10:52:33.668909+05:30",
       "entry": 184.9000654824738,
       "entry_time": "2026-08-27T10:55:00+05:30",
-      "half_r_hit": false,
+      "half_r_hit": true,
       "rating": 9,
       "risk": 0.41473731169742223,
       "side": "long",
@@ -14814,7 +14823,7 @@
       "alert_time": "2026-08-27T10:52:35.055379+05:30",
       "entry": 8960.877235149312,
       "entry_time": "2026-08-27T10:55:00+05:30",
-      "half_r_hit": false,
+      "half_r_hit": true,
       "rating": 8,
       "risk": 18.828235149310785,
       "side": "long",
