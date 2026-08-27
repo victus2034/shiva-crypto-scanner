@@ -2845,7 +2845,7 @@
     "MUTHOOTFIN.NS|4h|short|3209.9|3226.7": 1787644361.9460044,
     "DALBHARAT.NS|4h|long|1778.5|1786.12": 1787643168.2992013,
     "CROMPTON.NS|4h|long|240.2|241.447": 1787717539.6503496,
-    "CENTRALBK.NS|4h|long|30.53|30.6626": 1787648743.4559243,
+    "CENTRALBK.NS|4h|long|30.53|30.6626": 1787803957.6563947,
     "NMDC.NS|4h|short|86.4382|86.83": 1787719862.2249393,
     "CHALET.NS|4h|short|914.973|919": 1787721170.1148293,
     "KOTAKBANK.NS|4h|short|412.177|413.55": 1787721170.7225223,
@@ -2857,8 +2857,9 @@
     "RECLTD.NS|4h|long|321|322.511": 1787802755.7457225,
     "DMART.NS|4h|long|3755.3|3771.97": 1787734355.1003292,
     "APLAPOLLO.NS|4h|short|2156.44|2167.3": 1787735280.5581553,
-    "AEGISVOPAK.NS|4h|long|262.56|264.716": 1787736769.8733425,
-    "CHALET.NS|4h|short|914.972|919": 1787736770.0966866
+    "AEGISVOPAK.NS|4h|long|262.56|264.716": 1787803957.3619761,
+    "CHALET.NS|4h|short|914.972|919": 1787736770.0966866,
+    "LUPIN.NS|4h|long|2160|2167.45": 1787803958.4968302
   },
   "GESHIP.NS|demand|1057.1000|1070.5000": {
     "in_zone": false,
@@ -8446,9 +8447,9 @@
     "last_attempt_at": 0.0
   },
   "AEGISVOPAK.NS|demand|262.5600|264.7162": {
-    "in_zone": false,
-    "last_alert_at": 1787736769.8733425,
-    "last_attempt_at": 1787736769.8733425
+    "in_zone": true,
+    "last_alert_at": 1787803957.3619761,
+    "last_attempt_at": 1787803957.3619761
   },
   "AFCONS.NS|supply|286.1719|287.7000": {
     "in_zone": false,
@@ -9211,9 +9212,9 @@
     "last_attempt_at": 0.0
   },
   "CENTRALBK.NS|demand|30.5300|30.6626": {
-    "in_zone": false,
-    "last_alert_at": 1787648743.4559243,
-    "last_attempt_at": 1787648743.4559243
+    "in_zone": true,
+    "last_alert_at": 1787803957.6563947,
+    "last_attempt_at": 1787803957.6563947
   },
   "CDSL.NS|supply|1356.5516|1362.0000": {
     "in_zone": true,
@@ -11666,7 +11667,7 @@
     "last_attempt_at": 0.0
   },
   "RECLTD.NS|demand|321.0000|322.5114": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1787802755.7457225,
     "last_attempt_at": 1787802755.7457225
   },
@@ -17911,7 +17912,7 @@
     "last_attempt_at": 0.0
   },
   "__last_scan_started__": {
-    "4h": 1787802676.5937235
+    "4h": 1787803880.1565645
   },
   "360ONE.NS|supply|1214.8851|1220.0000": {
     "in_zone": false,
@@ -29842,5 +29843,10 @@
     "in_zone": false,
     "last_alert_at": 0.0,
     "last_attempt_at": 0.0
+  },
+  "LUPIN.NS|demand|2160.0000|2167.4470": {
+    "in_zone": true,
+    "last_alert_at": 1787803958.4968302,
+    "last_attempt_at": 1787803958.4968302
   }
 }
