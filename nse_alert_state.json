@@ -2860,7 +2860,7 @@
     "AEGISVOPAK.NS|4h|long|262.56|264.716": 1787803957.3619761,
     "CHALET.NS|4h|short|914.972|919": 1787736770.0966866,
     "LUPIN.NS|4h|long|2160|2167.45": 1787819575.8833647,
-    "GLENMARK.NS|4h|short|2460.01|2471.2": 1787813581.4993973,
+    "GLENMARK.NS|4h|short|2460.01|2471.2": 1787823219.0608487,
     "CHAMBLFERT.NS|4h|long|422.75|424.758": 1787808790.1924424,
     "BBTC.NS|4h|short|1603.1|1610.8": 1787815971.0514808,
     "AXISBANK.NS|4h|short|1267.62|1272": 1787817169.6061077,
@@ -17917,7 +17917,7 @@
     "last_attempt_at": 0.0
   },
   "__last_scan_started__": {
-    "4h": 1787821880.6421137
+    "4h": 1787823106.9291058
   },
   "360ONE.NS|supply|1214.8851|1220.0000": {
     "in_zone": false,
@@ -30595,9 +30595,9 @@
     "last_attempt_at": 0.0
   },
   "GLENMARK.NS|supply|2460.0118|2471.2000": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1787823219.0608487,
+    "last_attempt_at": 1787823219.0608487
   },
   "MEDANTA.NS|demand|1296.1000|1301.8531": {
     "in_zone": false,
