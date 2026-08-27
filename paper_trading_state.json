@@ -14362,6 +14362,29 @@
       "target_2": 700.0552291498939,
       "target_half": 696.9303645749469,
       "trade_id": "59b708356f233d2c"
+    },
+    {
+      "alert_time": "2026-08-27T12:32:25.550585+05:30",
+      "cost_r": 0.4009712497121174,
+      "date": "2026-08-27",
+      "entry": 157.24064516084135,
+      "entry_time": "2026-08-27T12:35:00+05:30",
+      "exit_price": 157.73632874999998,
+      "exit_time": "2026-08-27T12:35:00+05:30",
+      "final_result": "SL",
+      "half_r_hit": false,
+      "net_realized_r": -1.5900748478834192,
+      "outcome": "SL",
+      "rating": 9,
+      "realized_r": -1.1891035981713018,
+      "risk": 0.4168548391586171,
+      "side": "short",
+      "stop": 157.65749999999997,
+      "symbol": "CANHLIFE.NS",
+      "target_1": 156.82379032168274,
+      "target_2": 156.40693548252412,
+      "target_half": 157.03221774126206,
+      "trade_id": "4818cd07925cac7d"
     }
   ],
   "handled": {
@@ -14524,6 +14547,7 @@
     "4683239f190224e7": "filled",
     "4698d1ed2ed5ae21": "filled",
     "47b52148e89ab9cf": "filled",
+    "4818cd07925cac7d": "filled",
     "491c6f72f332ccfd": "filled",
     "491f88391acd1f2f": "filled",
     "49453363c7a70917": "filled",
@@ -14855,6 +14879,7 @@
     "cc49b6a46e95e400": "filled",
     "cc7739eeb9c767ee": "filled",
     "cc99b91d4b6bee2c": "filled",
+    "ccaac872ebe665e2": "filled",
     "ccb278c6760650d0": "filled",
     "cd61c889b608e4e8": "filled",
     "cdea15ba108bdf2d": "filled",
@@ -15024,6 +15049,20 @@
       "target_1": 85.24007878520955,
       "target_2": 85.3976221107672,
       "target_half": 85.16130712243071
+    },
+    "ccaac872ebe665e2": {
+      "alert_time": "2026-08-27T12:12:22.854629+05:30",
+      "entry": 171.79065903654674,
+      "entry_time": "2026-08-27T12:30:00+05:30",
+      "half_r_hit": false,
+      "rating": 9,
+      "risk": 0.33228415861705685,
+      "side": "long",
+      "stop": 171.45837487792969,
+      "symbol": "GAIL.NS",
+      "target_1": 172.1229431951638,
+      "target_2": 172.45522735378086,
+      "target_half": 171.95680111585528
     },
     "eb49098a9f09cfad": {
       "alert_time": "2026-08-27T10:52:33.394850+05:30",
