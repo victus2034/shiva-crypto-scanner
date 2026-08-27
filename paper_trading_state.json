@@ -13856,6 +13856,52 @@
       "target_2": 75.9149679936377,
       "target_half": 75.69471052117188,
       "trade_id": "a62dfe5720716b44"
+    },
+    {
+      "alert_time": "2026-08-27T09:32:38.492837+05:30",
+      "cost_r": 0.5418731181079498,
+      "date": "2026-08-27",
+      "entry": 1894.3236208808946,
+      "entry_time": "2026-08-27T09:35:00+05:30",
+      "exit_price": 1901.7558626426837,
+      "exit_time": "2026-08-27T09:45:00+05:30",
+      "final_result": "+2R",
+      "half_r_hit": true,
+      "net_realized_r": 1.45812688189205,
+      "outcome": "+2R",
+      "rating": 7,
+      "realized_r": 2.0,
+      "risk": 3.7161208808945503,
+      "side": "long",
+      "stop": 1890.6075,
+      "symbol": "BHARTIARTL.NS",
+      "target_1": 1898.0397417617892,
+      "target_2": 1901.7558626426837,
+      "target_half": 1896.1816813213418,
+      "trade_id": "2286678ae2e1cd4a"
+    },
+    {
+      "alert_time": "2026-08-27T09:32:38.170379+05:30",
+      "cost_r": 0.4605440351060785,
+      "date": "2026-08-27",
+      "entry": 6556.4318389696555,
+      "entry_time": "2026-08-27T09:50:00+05:30",
+      "exit_price": 6574.8507825,
+      "exit_time": "2026-08-27T09:50:00+05:30",
+      "final_result": "SL",
+      "half_r_hit": false,
+      "net_realized_r": -1.677668698843657,
+      "outcome": "SL",
+      "rating": 10,
+      "realized_r": -1.2171246637375785,
+      "risk": 15.133161030344127,
+      "side": "short",
+      "stop": 6571.565,
+      "symbol": "ATUL.NS",
+      "target_1": 6541.298677939311,
+      "target_2": 6526.165516908967,
+      "target_half": 6548.865258454483,
+      "trade_id": "1649be33bd52079b"
     }
   ],
   "handled": {
@@ -13919,6 +13965,7 @@
     "159fcf4da798d3fa": "filled",
     "16262523aa2494a7": "filled",
     "163a9b7767e6857e": "filled",
+    "1649be33bd52079b": "filled",
     "17ab7e3a16b17493": "filled",
     "1878208040f75ae1": "filled",
     "18e7954ec30a12e5": "filled",
@@ -14466,20 +14513,5 @@
     "fed8ed34d9b4adcd": "filled",
     "ffb4661b7d04cd46": "filled"
   },
-  "open": {
-    "2286678ae2e1cd4a": {
-      "alert_time": "2026-08-27T09:32:38.492837+05:30",
-      "entry": 1894.3236208808946,
-      "entry_time": "2026-08-27T09:35:00+05:30",
-      "half_r_hit": true,
-      "rating": 7,
-      "risk": 3.7161208808945503,
-      "side": "long",
-      "stop": 1890.6075,
-      "symbol": "BHARTIARTL.NS",
-      "target_1": 1898.0397417617892,
-      "target_2": 1901.7558626426837,
-      "target_half": 1896.1816813213418
-    }
-  }
+  "open": {}
 }
