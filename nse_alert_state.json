@@ -2859,11 +2859,12 @@
     "APLAPOLLO.NS|4h|short|2156.44|2167.3": 1787735280.5581553,
     "AEGISVOPAK.NS|4h|long|262.56|264.716": 1787803957.3619761,
     "CHALET.NS|4h|short|914.972|919": 1787736770.0966866,
-    "LUPIN.NS|4h|long|2160|2167.45": 1787815971.2394352,
+    "LUPIN.NS|4h|long|2160|2167.45": 1787819575.8833647,
     "GLENMARK.NS|4h|short|2460.01|2471.2": 1787813581.4993973,
     "CHAMBLFERT.NS|4h|long|422.75|424.758": 1787808790.1924424,
     "BBTC.NS|4h|short|1603.1|1610.8": 1787815971.0514808,
-    "AXISBANK.NS|4h|short|1267.62|1272": 1787817169.6061077
+    "AXISBANK.NS|4h|short|1267.62|1272": 1787817169.6061077,
+    "CHAMBLFERT.NS|4h|long|422.75|424.757": 1787819575.7067354
   },
   "GESHIP.NS|demand|1057.1000|1070.5000": {
     "in_zone": false,
@@ -17916,7 +17917,7 @@
     "last_attempt_at": 0.0
   },
   "__last_scan_started__": {
-    "4h": 1787818284.8229647
+    "4h": 1787819505.3152444
   },
   "360ONE.NS|supply|1214.8851|1220.0000": {
     "in_zone": false,
@@ -30409,9 +30410,9 @@
     "last_attempt_at": 0.0
   },
   "CHAMBLFERT.NS|demand|422.7500|424.7575": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1787819575.7067354,
+    "last_attempt_at": 1787819575.7067354
   },
   "CHOICEIN.NS|supply|857.3588|860.5000": {
     "in_zone": false,
@@ -30845,8 +30846,8 @@
   },
   "LUPIN.NS|demand|2160.0000|2167.4457": {
     "in_zone": true,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "last_alert_at": 1787819575.8833647,
+    "last_attempt_at": 1787819575.8833647
   },
   "MRF.NS|supply|135138.4724|135535.0000": {
     "in_zone": false,
