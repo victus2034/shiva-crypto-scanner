@@ -2128,7 +2128,8 @@
     "COINXUSD|30m|short|187.394|187.79": 1787824336.7682164,
     "INTCBUSD|30m|short|91.4053|91.55": 1787825525.5242164,
     "XMRUSD|30m|short|452.911|453.8": 1787827924.5556607,
-    "XMRUSD|30m|short|464.225|465.19": 1787831529.9942448
+    "XMRUSD|30m|short|464.225|465.19": 1787831529.9942448,
+    "ZAMA/USDT|30m|short|0.0550937|0.05529": 1787832736.6181436
   },
   "METAXUSD|demand|577.00000000|579.20000000": {
     "in_zone": false,
@@ -13677,7 +13678,7 @@
     "last_alert_at": 1787580724.510809
   },
   "__last_scan_started__": {
-    "30m": 1787831455.8049836
+    "30m": 1787832657.8371902
   },
   "TAO/USDT|supply|227.92800000|229.00000000": {
     "in_zone": false,
@@ -18216,8 +18217,8 @@
     "last_alert_at": 0.0
   },
   "ZAMA/USDT|supply|0.05509375|0.05529000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1787832736.6181436
   },
   "ZRO/USDT|supply|1.23333000|1.24210000": {
     "in_zone": false,
@@ -18876,6 +18877,14 @@
     "last_alert_at": 0.0
   },
   "HOOD/USDT:USDT|demand|107.55000000|107.70340000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "CAP/USDT|supply|0.07209635|0.07243000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "HOME/USDT|supply|0.00671612|0.00674200": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
