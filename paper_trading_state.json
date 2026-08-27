@@ -14039,6 +14039,7 @@
     "0fcbdc77793f511d": "filled",
     "109fee51811637b4": "filled",
     "11261f6a706a77c9": "filled",
+    "1150916a05a4f6d4": "filled",
     "11923c0a0802f34e": "filled",
     "11a4b9d19fc0876c": "filled",
     "11c227f4a42d414b": "filled",
@@ -14364,6 +14365,7 @@
     "9eff4526b892ff4d": "filled",
     "9fce92d29d7588e3": "filled",
     "9ff6aef8d9311da3": "filled",
+    "a0c738f41781e7e2": "filled",
     "a0f3e19e281052ee": "filled",
     "a1b2de668a12a3eb": "filled",
     "a27606f505039553": "filled",
@@ -14461,6 +14463,7 @@
     "c75eb24468bfcf5d": "filled",
     "c7fb2d3143f72dd6": "filled",
     "c842bcf23005f590": "filled",
+    "c8c894cac7032598": "filled",
     "ca694d4e2943e3d7": "filled",
     "cae4617f29e7728e": "filled",
     "cb19928e88ce4d3a": "filled",
@@ -14534,6 +14537,7 @@
     "e4821c3bd09fadc3": "filled",
     "e4dde4faa2884c99": "filled",
     "e52a29111ffa0397": "filled",
+    "e59397e8adbe8776": "filled",
     "e68e797e2b3e48c4": "filled",
     "e804e0d0051120bb": "filled",
     "e85228ea99366141": "filled",
@@ -14611,6 +14615,20 @@
     "ffb4661b7d04cd46": "filled"
   },
   "open": {
+    "1150916a05a4f6d4": {
+      "alert_time": "2026-08-27T10:12:26.728523+05:30",
+      "entry": 35775.09314430535,
+      "entry_time": "2026-08-27T10:15:00+05:30",
+      "half_r_hit": false,
+      "rating": 8,
+      "risk": 95.74185569465044,
+      "side": "short",
+      "stop": 35870.835,
+      "symbol": "PAGEIND.NS",
+      "target_1": 35679.3512886107,
+      "target_2": 35583.60943291605,
+      "target_half": 35727.22221645802
+    },
     "7b0d90e9017b9d0f": {
       "alert_time": "2026-08-27T09:32:39.564394+05:30",
       "entry": 269.4753734299038,
@@ -14624,6 +14642,48 @@
       "target_1": 270.11984076239554,
       "target_2": 270.76430809488727,
       "target_half": 269.7976070961497
+    },
+    "a0c738f41781e7e2": {
+      "alert_time": "2026-08-27T10:12:25.568733+05:30",
+      "entry": 456.3856908447008,
+      "entry_time": "2026-08-27T10:15:00+05:30",
+      "half_r_hit": false,
+      "rating": 8,
+      "risk": 1.0713091552991614,
+      "side": "short",
+      "stop": 457.45699999999994,
+      "symbol": "DELHIVERY.NS",
+      "target_1": 455.3143816894016,
+      "target_2": 454.24307253410245,
+      "target_half": 455.8500362670512
+    },
+    "c8c894cac7032598": {
+      "alert_time": "2026-08-27T10:12:25.935187+05:30",
+      "entry": 955.4467882187498,
+      "entry_time": "2026-08-27T10:15:00+05:30",
+      "half_r_hit": false,
+      "rating": 9,
+      "risk": 2.65053821874983,
+      "side": "long",
+      "stop": 952.79625,
+      "symbol": "KFINTECH.NS",
+      "target_1": 958.0973264374996,
+      "target_2": 960.7478646562495,
+      "target_half": 956.7720573281247
+    },
+    "e59397e8adbe8776": {
+      "alert_time": "2026-08-27T10:12:25.362909+05:30",
+      "entry": 263.6091935958447,
+      "entry_time": "2026-08-27T10:15:00+05:30",
+      "half_r_hit": false,
+      "rating": 9,
+      "risk": 1.311756034809548,
+      "side": "long",
+      "stop": 262.29743756103517,
+      "symbol": "AEGISVOPAK.NS",
+      "target_1": 264.92094963065426,
+      "target_2": 266.2327056654638,
+      "target_half": 264.26507161324946
     }
   }
 }
