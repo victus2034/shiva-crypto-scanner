@@ -4686,7 +4686,7 @@
     "GMDCLTD.NS|30m|short|580.019|580.9": 1787736128.8913248,
     "CPPLUS.NS|30m|short|3556.87|3564": 1787803357.6230636,
     "ATUL.NS|30m|short|6556.43|6565": 1787803358.170379,
-    "BHARTIARTL.NS|30m|long|1892.5|1894.32": 1787803358.492837,
+    "BHARTIARTL.NS|30m|long|1892.5|1894.32": 1787809329.5579042,
     "EMAMILTD.NS|30m|long|395.5|396.1": 1787803358.7358801,
     "NHPC.NS|30m|long|75.55|75.6213": 1787803359.2126832,
     "NLCINDIA.NS|30m|long|269.1|269.475": 1787803359.5643935,
@@ -27762,7 +27762,7 @@
     "last_attempt_at": 0.0
   },
   "IRFC.NS|demand|85.0100|85.0825": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1787808154.3782969,
     "last_attempt_at": 1787808154.3782969
   },
@@ -31422,7 +31422,7 @@
     "last_attempt_at": 0.0
   },
   "__last_scan_started__": {
-    "30m": 1787808060.530013
+    "30m": 1787809259.5097091
   },
   "3MINDIA.NS|supply|35230.9249|35290.0000": {
     "in_zone": false,
@@ -34260,7 +34260,7 @@
     "last_attempt_at": 0.0
   },
   "INDHOTEL.NS|demand|712.6000|713.3284": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1787808154.1414447,
     "last_attempt_at": 1787808154.1414447
   },
@@ -67620,9 +67620,9 @@
     "last_attempt_at": 0.0
   },
   "BHARTIARTL.NS|demand|1892.5000|1894.3240": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1787809329.5579042,
+    "last_attempt_at": 1787809329.5579042
   },
   "BHARTIHEXA.NS|supply|1651.2948|1653.9000": {
     "in_zone": false,
@@ -68005,7 +68005,7 @@
     "last_attempt_at": 0.0
   },
   "MRF.NS|demand|132420.0000|132504.1343": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1787808154.6286087,
     "last_attempt_at": 1787808154.6286087
   },
@@ -68140,6 +68140,11 @@
     "last_attempt_at": 0.0
   },
   "RELIANCE.NS|demand|1266.1000|1267.1998": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "ADANIPOWER.NS|supply|222.0118|222.4000": {
     "in_zone": false,
     "last_alert_at": 0.0,
     "last_attempt_at": 0.0
