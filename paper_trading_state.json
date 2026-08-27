@@ -13902,6 +13902,29 @@
       "target_2": 6526.165516908967,
       "target_half": 6548.865258454483,
       "trade_id": "1649be33bd52079b"
+    },
+    {
+      "alert_time": "2026-08-27T09:52:26.414302+05:30",
+      "cost_r": 0.5472187664130722,
+      "date": "2026-08-27",
+      "entry": 11671.011527394687,
+      "entry_time": "2026-08-27T09:55:00+05:30",
+      "exit_price": 11642.51583,
+      "exit_time": "2026-08-27T09:55:00+05:30",
+      "final_result": "SL",
+      "half_r_hit": false,
+      "net_realized_r": -1.8041123536252357,
+      "outcome": "SL",
+      "rating": 8,
+      "realized_r": -1.2568935872121636,
+      "risk": 22.671527394686564,
+      "side": "long",
+      "stop": 11648.34,
+      "symbol": "BAJAJ-AUTO.NS",
+      "target_1": 11693.683054789373,
+      "target_2": 11716.35458218406,
+      "target_half": 11682.34729109203,
+      "trade_id": "437aa4c0dd7e2f73"
     }
   ],
   "handled": {
@@ -14053,6 +14076,7 @@
     "4076b5163d5693eb": "filled",
     "40918603dc3eabc8": "filled",
     "435231228be44c0e": "filled",
+    "437aa4c0dd7e2f73": "filled",
     "43cc2bfe2d3d58fd": "filled",
     "43d2493fa463d059": "filled",
     "43ec392e9973b18f": "filled",
@@ -14273,7 +14297,9 @@
     "a0f3e19e281052ee": "filled",
     "a1b2de668a12a3eb": "filled",
     "a27606f505039553": "filled",
+    "a29fe5a892eeb50b": "filled",
     "a3395cbfb27d7633": "filled",
+    "a33d0114408280ac": "filled",
     "a3bf366d1b9a9a43": "filled",
     "a3c2756da2b1f770": "filled",
     "a3ea6488ce0b9673": "filled",
@@ -14447,6 +14473,7 @@
     "e94cf7243dbf0a3e": "filled",
     "e95586cb8377daa4": "filled",
     "e9596625eeb826df": "filled",
+    "e95bced292661327": "filled",
     "e994df5793dd6540": "filled",
     "e9a327188312d6dd": "filled",
     "e9c4d6976e911a2f": "filled",
@@ -14513,5 +14540,48 @@
     "fed8ed34d9b4adcd": "filled",
     "ffb4661b7d04cd46": "filled"
   },
-  "open": {}
+  "open": {
+    "a29fe5a892eeb50b": {
+      "alert_time": "2026-08-27T09:52:26.984528+05:30",
+      "entry": 3090.637301118619,
+      "entry_time": "2026-08-27T09:55:00+05:30",
+      "half_r_hit": false,
+      "rating": 8,
+      "risk": 6.724301118618769,
+      "side": "long",
+      "stop": 3083.913,
+      "symbol": "ICICIAMC.NS",
+      "target_1": 3097.3616022372375,
+      "target_2": 3104.0859033558563,
+      "target_half": 3093.999451677928
+    },
+    "a33d0114408280ac": {
+      "alert_time": "2026-08-27T09:52:26.736739+05:30",
+      "entry": 628.3385063974692,
+      "entry_time": "2026-08-27T09:55:00+05:30",
+      "half_r_hit": false,
+      "rating": 5,
+      "risk": 1.5907813832924376,
+      "side": "short",
+      "stop": 629.9292877807617,
+      "symbol": "BIKAJI.NS",
+      "target_1": 626.7477250141768,
+      "target_2": 625.1569436308844,
+      "target_half": 627.5431157058231
+    },
+    "e95bced292661327": {
+      "alert_time": "2026-08-27T09:52:27.192006+05:30",
+      "entry": 83.9316481805724,
+      "entry_time": "2026-08-27T09:55:00+05:30",
+      "half_r_hit": false,
+      "rating": 9,
+      "risk": 0.16549970492542343,
+      "side": "long",
+      "stop": 83.76614847564697,
+      "symbol": "IDFCFIRSTB.NS",
+      "target_1": 84.09714788549782,
+      "target_2": 84.26264759042324,
+      "target_half": 84.0143980330351
+    }
+  }
 }
