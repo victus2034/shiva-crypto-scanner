@@ -15145,6 +15145,7 @@
     "bc83e2253ae476ee": "filled",
     "bcaea109d5d9eb5d": "filled",
     "bcfc077a6eddd6b6": "filled",
+    "bcfd241977049d7d": "filled",
     "bd14f7fffe04b841": "filled",
     "bd48e0007d9f5ee9": "filled",
     "be0156ccea7b15b3": "filled",
@@ -15286,6 +15287,7 @@
     "f09d4374d0249cf5": "filled",
     "f0a2f9ecef99dec9": "filled",
     "f0e6c713612f0613": "filled",
+    "f0eebd4090582021": "filled",
     "f1678084b3c01ffb": "filled",
     "f1bc7c080cf65fe1": "filled",
     "f231b304df837939": "filled",
@@ -15331,6 +15333,20 @@
     "ffb4661b7d04cd46": "filled"
   },
   "open": {
+    "bcfd241977049d7d": {
+      "alert_time": "2026-08-27T13:52:14.528292+05:30",
+      "entry": 115.12008966618222,
+      "entry_time": "2026-08-27T13:55:00+05:30",
+      "half_r_hit": true,
+      "rating": 8,
+      "risk": 0.23508966618221905,
+      "side": "long",
+      "stop": 114.885,
+      "symbol": "PNB.NS",
+      "target_1": 115.35517933236444,
+      "target_2": 115.59026899854666,
+      "target_half": 115.23763449927333
+    },
     "ea91862fa478c366": {
       "alert_time": "2026-08-27T12:52:09.355108+05:30",
       "entry": 83.9316528327152,
@@ -15344,6 +15360,20 @@
       "target_1": 84.09715718978343,
       "target_2": 84.26266154685166,
       "target_half": 84.01440501124932
+    },
+    "f0eebd4090582021": {
+      "alert_time": "2026-08-27T13:52:13.984458+05:30",
+      "entry": 147.487070104248,
+      "entry_time": "2026-08-27T13:55:00+05:30",
+      "half_r_hit": false,
+      "rating": 7,
+      "risk": 0.33436705554194646,
+      "side": "long",
+      "stop": 147.15270304870606,
+      "symbol": "IGL.NS",
+      "target_1": 147.82143715978995,
+      "target_2": 148.1558042153319,
+      "target_half": 147.654253632019
     }
   }
 }
