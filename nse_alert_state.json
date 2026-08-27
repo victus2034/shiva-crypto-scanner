@@ -2854,14 +2854,15 @@
     "COCHINSHIP.NS|4h|short|1546.69|1556.2": 1787735280.6780336,
     "MARICO.NS|4h|long|831.5|834.123": 1787730756.988557,
     "JYOTICNC.NS|4h|short|1000.7|1006.4": 1787727140.1435921,
-    "RECLTD.NS|4h|long|321|322.511": 1787802755.7457225,
+    "RECLTD.NS|4h|long|321|322.511": 1787815971.394815,
     "DMART.NS|4h|long|3755.3|3771.97": 1787734355.1003292,
     "APLAPOLLO.NS|4h|short|2156.44|2167.3": 1787735280.5581553,
     "AEGISVOPAK.NS|4h|long|262.56|264.716": 1787803957.3619761,
     "CHALET.NS|4h|short|914.972|919": 1787736770.0966866,
-    "LUPIN.NS|4h|long|2160|2167.45": 1787809974.9937198,
+    "LUPIN.NS|4h|long|2160|2167.45": 1787815971.2394352,
     "GLENMARK.NS|4h|short|2460.01|2471.2": 1787813581.4993973,
-    "CHAMBLFERT.NS|4h|long|422.75|424.758": 1787808790.1924424
+    "CHAMBLFERT.NS|4h|long|422.75|424.758": 1787808790.1924424,
+    "BBTC.NS|4h|short|1603.1|1610.8": 1787815971.0514808
   },
   "GESHIP.NS|demand|1057.1000|1070.5000": {
     "in_zone": false,
@@ -11669,9 +11670,9 @@
     "last_attempt_at": 0.0
   },
   "RECLTD.NS|demand|321.0000|322.5114": {
-    "in_zone": false,
-    "last_alert_at": 1787802755.7457225,
-    "last_attempt_at": 1787802755.7457225
+    "in_zone": true,
+    "last_alert_at": 1787815971.394815,
+    "last_attempt_at": 1787815971.394815
   },
   "RHIM.NS|supply|430.3940|433.0000": {
     "in_zone": false,
@@ -17914,7 +17915,7 @@
     "last_attempt_at": 0.0
   },
   "__last_scan_started__": {
-    "4h": 1787814679.5852854
+    "4h": 1787815900.8293242
   },
   "360ONE.NS|supply|1214.8851|1220.0000": {
     "in_zone": false,
@@ -28142,7 +28143,7 @@
     "last_attempt_at": 0.0
   },
   "CHAMBLFERT.NS|demand|422.7500|424.7576": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1787808790.1924424,
     "last_attempt_at": 1787808790.1924424
   },
@@ -29107,9 +29108,9 @@
     "last_attempt_at": 0.0
   },
   "BBTC.NS|supply|1603.0964|1610.8000": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1787815971.0514808,
+    "last_attempt_at": 1787815971.0514808
   },
   "BBTC.NS|demand|1318.3000|1326.7809": {
     "in_zone": false,
@@ -29847,9 +29848,9 @@
     "last_attempt_at": 0.0
   },
   "LUPIN.NS|demand|2160.0000|2167.4470": {
-    "in_zone": false,
-    "last_alert_at": 1787809974.9937198,
-    "last_attempt_at": 1787809974.9937198
+    "in_zone": true,
+    "last_alert_at": 1787815971.2394352,
+    "last_attempt_at": 1787815971.2394352
   },
   "BBTC.NS|supply|1930.5516|1939.9000": {
     "in_zone": false,
