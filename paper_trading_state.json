@@ -13752,6 +13752,7 @@
     "018819f1ade27fff": "filled",
     "02541a64b158ad82": "filled",
     "028c60aa0802530b": "filled",
+    "036ee811a412069f": "filled",
     "038e5cd978b341b1": "filled",
     "03e2759194fdf780": "filled",
     "04a93781573dfff7": "filled",
@@ -13833,6 +13834,7 @@
     "238579aa08036efd": "filled",
     "23f33ffb15eed0cd": "filled",
     "2401a0a246a236d9": "filled",
+    "245af8c624369f7d": "filled",
     "25085f22e8b45351": "filled",
     "253141da20fb96c6": "filled",
     "2643d71d5a9ad22a": "filled",
@@ -13997,6 +13999,7 @@
     "7142816624ee5bdd": "filled",
     "716e54e79baa13ac": "filled",
     "718b38ca268f3cd0": "filled",
+    "71ce0249ca2fa15e": "filled",
     "71d6d3ddd45851ac": "filled",
     "71f2a6a29b09e10c": "filled",
     "726bf0dd99710b7a": "filled",
@@ -14115,6 +14118,7 @@
     "a49f3f316f3eb374": "filled",
     "a51aeb8f2a2352d7": "filled",
     "a6237b14f123a4ca": "filled",
+    "a62dfe5720716b44": "filled",
     "a6907dbb547ff55a": "filled",
     "a6b0f1fda14ee3e5": "filled",
     "a80d917c8ffabd72": "filled",
@@ -14345,5 +14349,62 @@
     "fed8ed34d9b4adcd": "filled",
     "ffb4661b7d04cd46": "filled"
   },
-  "open": {}
+  "open": {
+    "036ee811a412069f": {
+      "alert_time": "2026-08-27T09:32:38.735880+05:30",
+      "entry": 396.0997672575791,
+      "entry_time": "2026-08-27T09:35:00+05:30",
+      "half_r_hit": false,
+      "rating": 10,
+      "risk": 0.9952672575791439,
+      "side": "long",
+      "stop": 395.1045,
+      "symbol": "EMAMILTD.NS",
+      "target_1": 397.09503451515826,
+      "target_2": 398.0903017727374,
+      "target_half": 396.5974008863687
+    },
+    "245af8c624369f7d": {
+      "alert_time": "2026-08-27T09:32:37.623064+05:30",
+      "entry": 3556.873146835176,
+      "entry_time": "2026-08-27T09:35:00+05:30",
+      "half_r_hit": false,
+      "rating": 9,
+      "risk": 10.690853164823238,
+      "side": "short",
+      "stop": 3567.5639999999994,
+      "symbol": "CPPLUS.NS",
+      "target_1": 3546.182293670353,
+      "target_2": 3535.4914405055297,
+      "target_half": 3551.5277202527645
+    },
+    "71ce0249ca2fa15e": {
+      "alert_time": "2026-08-27T09:32:40.184072+05:30",
+      "entry": 171.29043479265692,
+      "entry_time": "2026-08-27T09:35:00+05:30",
+      "half_r_hit": false,
+      "rating": 7,
+      "risk": 0.6413197086858418,
+      "side": "short",
+      "stop": 171.93175450134277,
+      "symbol": "PINELABS.NS",
+      "target_1": 170.64911508397108,
+      "target_2": 170.00779537528524,
+      "target_half": 170.969774938314
+    },
+    "a62dfe5720716b44": {
+      "alert_time": "2026-08-27T09:32:39.212683+05:30",
+      "entry": 75.62129136368327,
+      "entry_time": "2026-08-27T09:35:00+05:30",
+      "half_r_hit": false,
+      "rating": 10,
+      "risk": 0.14683831497721656,
+      "side": "long",
+      "stop": 75.47445304870605,
+      "symbol": "NHPC.NS",
+      "target_1": 75.76812967866049,
+      "target_2": 75.9149679936377,
+      "target_half": 75.69471052117188
+    }
+  }
 }
