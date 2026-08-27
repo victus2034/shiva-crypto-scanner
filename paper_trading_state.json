@@ -14707,6 +14707,29 @@
       "target_2": 115.59026899854666,
       "target_half": 115.23763449927333,
       "trade_id": "bcfd241977049d7d"
+    },
+    {
+      "alert_time": "2026-08-27T14:12:16.803556+05:30",
+      "cost_r": 0.4126036761177958,
+      "date": "2026-08-27",
+      "entry": 635.0019696551776,
+      "entry_time": "2026-08-27T14:25:00+05:30",
+      "exit_price": null,
+      "exit_time": "2026-08-27T14:30:00+05:30",
+      "final_result": "data_quality_ambiguous",
+      "half_r_hit": true,
+      "net_realized_r": null,
+      "outcome": "data_quality_ambiguous",
+      "rating": 10,
+      "realized_r": null,
+      "risk": 1.6359696551776324,
+      "side": "long",
+      "stop": 633.366,
+      "symbol": "IIFL.NS",
+      "target_1": 636.6379393103553,
+      "target_2": 638.2739089655329,
+      "target_half": 635.8199544827664,
+      "trade_id": "c298129df951caa3"
     }
   ],
   "handled": {
@@ -14743,6 +14766,7 @@
     "0ac82908ba863524": "filled",
     "0ae0f0d5476b3c1a": "filled",
     "0b21c0ba04421dbc": "filled",
+    "0b2cca95532c3c85": "filled",
     "0b6bdd4d31c3b439": "filled",
     "0bd1e6675f3729aa": "filled",
     "0c42616fac99c96f": "filled",
@@ -15183,6 +15207,7 @@
     "c0fb5b7e94e7e437": "filled",
     "c17f1d44829e7f34": "filled",
     "c216a8ac784fa1c7": "filled",
+    "c298129df951caa3": "filled",
     "c2cba1d7ca41c2e5": "filled",
     "c323cbb9cf0a0c01": "filled",
     "c349013161831255": "filled",
@@ -15358,6 +15383,20 @@
     "ffb4661b7d04cd46": "filled"
   },
   "open": {
+    "0b2cca95532c3c85": {
+      "alert_time": "2026-08-27T13:52:14.273080+05:30",
+      "entry": 4738.1689997567655,
+      "entry_time": "2026-08-27T14:30:00+05:30",
+      "half_r_hit": false,
+      "rating": 6,
+      "risk": 11.800002198171569,
+      "side": "long",
+      "stop": 4726.368997558594,
+      "symbol": "PFIZER.NS",
+      "target_1": 4749.969001954937,
+      "target_2": 4761.769004153109,
+      "target_half": 4744.069000855851
+    },
     "695696b204a49c3c": {
       "alert_time": "2026-08-27T13:52:13.722249+05:30",
       "entry": 164.33726682405356,
