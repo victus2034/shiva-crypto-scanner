@@ -1,8 +1,4 @@
 {
-  "ABCAPITAL.NS|30m|long|405.866|404.945": {
-    "reached_entry": false,
-    "stage": 1
-  },
   "ANURAS.NS|30m|long|1252.77|1250.05": {
     "reached_entry": false,
     "stage": 1
@@ -51,14 +47,6 @@
     "reached_entry": true,
     "stage": 3
   },
-  "HDFCLIFE.NS|30m|long|546.445|545.354": {
-    "reached_entry": true,
-    "stage": 3
-  },
-  "ICICIGI.NS|30m|long|1549.5|1543.95": {
-    "reached_entry": false,
-    "stage": 1
-  },
   "INDUSINDBK.NS|30m|long|986.464|983.515": {
     "reached_entry": false,
     "stage": 1
@@ -68,8 +56,8 @@
     "stage": 1
   },
   "ITC.NS|30m|long|265.214|264.735": {
-    "reached_entry": false,
-    "stage": 1
+    "reached_entry": true,
+    "stage": 2
   },
   "LENSKART.NS|30m|long|636.211|634.415": {
     "reached_entry": true,
@@ -83,12 +71,14 @@
     "reached_entry": false,
     "stage": 1
   },
-  "ONGC.NS|30m|long|231.139|230.709": {
-    "reached_entry": false,
-    "stage": 1
+  "MUBUSD|30m|long|911.381|909.09": {
+    "reached_entry": false
   },
   "PGEL.NS|30m|long|586.214|584.465": {
     "reached_entry": true,
     "stage": 3
+  },
+  "TSLAXUSD|30m|short|356.782|357.497": {
+    "reached_entry": false
   }
 }

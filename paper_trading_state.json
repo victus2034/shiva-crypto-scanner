@@ -16018,6 +16018,52 @@
       "target_2": 3050.5319343395327,
       "target_half": 3035.6040927801178,
       "trade_id": "673e17275daaa80d"
+    },
+    {
+      "alert_time": "2026-08-28T13:52:15.544606+05:30",
+      "cost_r": 0.3563685908062578,
+      "date": "2026-08-28",
+      "entry": 586.2135346327041,
+      "entry_time": "2026-08-28T13:55:00+05:30",
+      "exit_price": null,
+      "exit_time": "2026-08-28T14:00:00+05:30",
+      "final_result": "data_quality_ambiguous",
+      "half_r_hit": false,
+      "net_realized_r": null,
+      "outcome": "data_quality_ambiguous",
+      "rating": 10,
+      "realized_r": null,
+      "risk": 1.7485968275283312,
+      "side": "long",
+      "stop": 584.4649378051757,
+      "symbol": "PGEL.NS",
+      "target_1": 587.9621314602324,
+      "target_2": 589.7107282877607,
+      "target_half": 587.0878330464682,
+      "trade_id": "047b9fa781936cb5"
+    },
+    {
+      "alert_time": "2026-08-28T13:12:05.776440+05:30",
+      "cost_r": 0.40267473437995416,
+      "date": "2026-08-28",
+      "entry": 1439.3626984110936,
+      "entry_time": "2026-08-28T13:15:00+05:30",
+      "exit_price": 1434.8452185,
+      "exit_time": "2026-08-28T14:00:00+05:30",
+      "final_result": "SL",
+      "half_r_hit": false,
+      "net_realized_r": -1.591579595330074,
+      "outcome": "SL",
+      "rating": 10,
+      "realized_r": -1.1889048609501198,
+      "risk": 3.799698411093459,
+      "side": "long",
+      "stop": 1435.563,
+      "symbol": "DEEPAKFERT.NS",
+      "target_1": 1443.162396822187,
+      "target_2": 1446.9620952332805,
+      "target_half": 1441.2625476166404,
+      "trade_id": "a3f525aed3f47c62"
     }
   ],
   "handled": {
@@ -16132,6 +16178,7 @@
     "245af8c624369f7d": "filled",
     "25085f22e8b45351": "filled",
     "253141da20fb96c6": "filled",
+    "25a9161673ebae30": "filled",
     "2643d71d5a9ad22a": "filled",
     "26609843a63b37d7": "filled",
     "26bb0fcdefe50091": "filled",
@@ -16726,20 +16773,6 @@
     "ffb4661b7d04cd46": "filled"
   },
   "open": {
-    "047b9fa781936cb5": {
-      "alert_time": "2026-08-28T13:52:15.544606+05:30",
-      "entry": 586.2135346327041,
-      "entry_time": "2026-08-28T13:55:00+05:30",
-      "half_r_hit": false,
-      "rating": 10,
-      "risk": 1.7485968275283312,
-      "side": "long",
-      "stop": 584.4649378051757,
-      "symbol": "PGEL.NS",
-      "target_1": 587.9621314602324,
-      "target_2": 589.7107282877607,
-      "target_half": 587.0878330464682
-    },
     "0fa20e4b07303318": {
       "alert_time": "2026-08-28T13:32:28.497386+05:30",
       "entry": 2591.7846879879767,
@@ -16754,19 +16787,19 @@
       "target_2": 2604.5300639639304,
       "target_half": 2594.971031981965
     },
-    "a3f525aed3f47c62": {
-      "alert_time": "2026-08-28T13:12:05.776440+05:30",
-      "entry": 1439.3626984110936,
-      "entry_time": "2026-08-28T13:15:00+05:30",
+    "25a9161673ebae30": {
+      "alert_time": "2026-08-28T13:52:13.005603+05:30",
+      "entry": 265.21363382224945,
+      "entry_time": "2026-08-28T14:05:00+05:30",
       "half_r_hit": false,
-      "rating": 10,
-      "risk": 3.799698411093459,
+      "rating": 9,
+      "risk": 0.47863382224943507,
       "side": "long",
-      "stop": 1435.563,
-      "symbol": "DEEPAKFERT.NS",
-      "target_1": 1443.162396822187,
-      "target_2": 1446.9620952332805,
-      "target_half": 1441.2625476166404
+      "stop": 264.735,
+      "symbol": "ITC.NS",
+      "target_1": 265.6922676444989,
+      "target_2": 266.1709014667483,
+      "target_half": 265.45295073337417
     },
     "dc6023ba0a9f4cd7": {
       "alert_time": "2026-08-28T13:52:12.480365+05:30",
