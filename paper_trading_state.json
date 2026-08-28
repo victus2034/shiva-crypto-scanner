@@ -15144,6 +15144,52 @@
       "target_2": 144.6772700971199,
       "target_half": 144.06183821933632,
       "trade_id": "c2546c8399b16f63"
+    },
+    {
+      "alert_time": "2026-08-28T09:32:31.655432+05:30",
+      "cost_r": 0.5205464368827624,
+      "date": "2026-08-28",
+      "entry": 115.1200849831379,
+      "entry_time": "2026-08-28T09:35:00+05:30",
+      "exit_price": 114.82755750000001,
+      "exit_time": "2026-08-28T09:50:00+05:30",
+      "final_result": "SL",
+      "half_r_hit": true,
+      "net_realized_r": -1.7648942435067994,
+      "outcome": "SL",
+      "rating": 7,
+      "realized_r": -1.244347806624037,
+      "risk": 0.23508498313789516,
+      "side": "long",
+      "stop": 114.885,
+      "symbol": "PNB.NS",
+      "target_1": 115.3551699662758,
+      "target_2": 115.59025494941369,
+      "target_half": 115.23762747470684,
+      "trade_id": "889e02c9c5080de2"
+    },
+    {
+      "alert_time": "2026-08-28T09:32:31.441550+05:30",
+      "cost_r": 0.37189505881750057,
+      "date": "2026-08-28",
+      "entry": 979.2215659186952,
+      "entry_time": "2026-08-28T09:50:00+05:30",
+      "exit_price": 982.0205074477419,
+      "exit_time": "2026-08-28T09:55:00+05:30",
+      "final_result": "+1R",
+      "half_r_hit": true,
+      "net_realized_r": 0.6281049411824995,
+      "outcome": "+1R",
+      "rating": 8,
+      "realized_r": 1.0,
+      "risk": 2.798941529046715,
+      "side": "long",
+      "stop": 976.4226243896485,
+      "symbol": "PREMIERENE.NS",
+      "target_1": 982.0205074477419,
+      "target_2": 984.8194489767886,
+      "target_half": 980.6210366832186,
+      "trade_id": "48f07c14f02f5cf7"
     }
   ],
   "handled": {
@@ -15318,6 +15364,7 @@
     "4698d1ed2ed5ae21": "filled",
     "47b52148e89ab9cf": "filled",
     "4818cd07925cac7d": "filled",
+    "48f07c14f02f5cf7": "filled",
     "491c6f72f332ccfd": "filled",
     "491f88391acd1f2f": "filled",
     "49453363c7a70917": "filled",
@@ -15810,20 +15857,5 @@
     "fed8ed34d9b4adcd": "filled",
     "ffb4661b7d04cd46": "filled"
   },
-  "open": {
-    "889e02c9c5080de2": {
-      "alert_time": "2026-08-28T09:32:31.655432+05:30",
-      "entry": 115.1200849831379,
-      "entry_time": "2026-08-28T09:35:00+05:30",
-      "half_r_hit": true,
-      "rating": 7,
-      "risk": 0.23508498313789516,
-      "side": "long",
-      "stop": 114.885,
-      "symbol": "PNB.NS",
-      "target_1": 115.3551699662758,
-      "target_2": 115.59025494941369,
-      "target_half": 115.23762747470684
-    }
-  }
+  "open": {}
 }

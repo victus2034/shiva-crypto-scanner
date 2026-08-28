@@ -2,15 +2,23 @@
   "1000SHIBUSD|30m|long|0.00528444|0.00527272": {
     "reached_entry": false
   },
+  "ABLBL.NS|30m|long|85.0475|84.865": {
+    "reached_entry": false,
+    "stage": 1
+  },
+  "ARE&M.NS|30m|short|936.409|938.738": {
+    "reached_entry": false
+  },
+  "BERGEPAINT.NS|30m|long|498.269|497.152": {
+    "reached_entry": false,
+    "stage": 1
+  },
   "CUB.NS|30m|short|229.751|230.53": {
     "reached_entry": false
   },
   "DEVYANI.NS|30m|long|143.857|143.446": {
     "reached_entry": true,
-    "stage": 2
-  },
-  "DOTUSD|30m|long|0.867905|0.865134": {
-    "reached_entry": false
+    "stage": 3
   },
   "ETERNAL.NS|30m|long|324.668|323.926": {
     "reached_entry": true,
@@ -27,6 +35,10 @@
   "GROWW.NS|30m|long|193.784|193.326": {
     "reached_entry": true
   },
+  "JKCEMENT.NS|30m|long|5171.35|5159.84": {
+    "reached_entry": false,
+    "stage": 1
+  },
   "KIMS.NS|30m|short|781.441|783.232": {
     "reached_entry": false,
     "stage": 1
@@ -35,7 +47,8 @@
     "reached_entry": true
   },
   "NAUKRI.NS|30m|short|1357.99|1361.36": {
-    "reached_entry": true
+    "reached_entry": true,
+    "stage": 2
   },
   "NH.NS|30m|short|1923.15|1928.13": {
     "reached_entry": true,
@@ -46,11 +59,12 @@
     "stage": 1
   },
   "PNB.NS|30m|long|115.12|114.885": {
-    "reached_entry": false,
-    "stage": 1
+    "reached_entry": true,
+    "stage": 3
   },
   "PREMIERENE.NS|30m|long|979.222|976.423": {
-    "reached_entry": false
+    "reached_entry": true,
+    "stage": 2
   },
   "STORJ/USDT|30m|long|0.0394325|0.0391608": {
     "reached_entry": true,
