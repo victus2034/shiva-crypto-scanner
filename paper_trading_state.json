@@ -15190,6 +15190,52 @@
       "target_2": 984.8194489767886,
       "target_half": 980.6210366832186,
       "trade_id": "48f07c14f02f5cf7"
+    },
+    {
+      "alert_time": "2026-08-28T09:52:28.944861+05:30",
+      "cost_r": 0.47735771192005,
+      "date": "2026-08-28",
+      "entry": 5171.350778923703,
+      "entry_time": "2026-08-28T09:55:00+05:30",
+      "exit_price": 5182.866557847406,
+      "exit_time": "2026-08-28T10:15:00+05:30",
+      "final_result": "+1R",
+      "half_r_hit": true,
+      "net_realized_r": 0.52264228807995,
+      "outcome": "+1R",
+      "rating": 8,
+      "realized_r": 1.0,
+      "risk": 11.515778923702783,
+      "side": "long",
+      "stop": 5159.835,
+      "symbol": "JKCEMENT.NS",
+      "target_1": 5182.866557847406,
+      "target_2": 5194.382336771108,
+      "target_half": 5177.108668385554,
+      "trade_id": "d712fb145dd4bb40"
+    },
+    {
+      "alert_time": "2026-08-28T10:12:15.282992+05:30",
+      "cost_r": 0.4171934108414688,
+      "date": "2026-08-28",
+      "entry": 679.0522106917495,
+      "entry_time": "2026-08-28T10:15:00+05:30",
+      "exit_price": 679.8670733445796,
+      "exit_time": "2026-08-28T10:20:00+05:30",
+      "final_result": "BE",
+      "half_r_hit": true,
+      "net_realized_r": 0.05376810657130732,
+      "outcome": "BE",
+      "rating": 6,
+      "realized_r": 0.47096151741277614,
+      "risk": 1.7302106917494484,
+      "side": "long",
+      "stop": 677.322,
+      "symbol": "INTELLECT.NS",
+      "target_1": 680.7824213834989,
+      "target_2": 682.5126320752483,
+      "target_half": 679.9173160376242,
+      "trade_id": "f8d9e037fd490378"
     }
   ],
   "handled": {
@@ -15842,6 +15888,7 @@
     "f7ce0cfe46202d0e": "filled",
     "f7d327e1f943501d": "filled",
     "f8b38ec955b26288": "filled",
+    "f8d9e037fd490378": "filled",
     "f936cb29666d3645": "filled",
     "f9d519f2114282ff": "filled",
     "fa4af38477be4a04": "filled",
@@ -15888,20 +15935,6 @@
       "target_1": 85.22988150293338,
       "target_2": 85.4122987787531,
       "target_half": 85.13867286502352
-    },
-    "d712fb145dd4bb40": {
-      "alert_time": "2026-08-28T09:52:28.944861+05:30",
-      "entry": 5171.350778923703,
-      "entry_time": "2026-08-28T09:55:00+05:30",
-      "half_r_hit": true,
-      "rating": 8,
-      "risk": 11.515778923702783,
-      "side": "long",
-      "stop": 5159.835,
-      "symbol": "JKCEMENT.NS",
-      "target_1": 5182.866557847406,
-      "target_2": 5194.382336771108,
-      "target_half": 5177.108668385554
     }
   }
 }
