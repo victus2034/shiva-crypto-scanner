@@ -59,7 +59,7 @@
     "stage": 1
   },
   "MRF.NS|30m|long|132504|132288": {
-    "reached_entry": false,
+    "reached_entry": true,
     "stage": 1
   },
   "MUBUSD|30m|long|911.381|909.09": {
@@ -70,8 +70,8 @@
     "stage": 3
   },
   "PGEL.NS|30m|long|586.213|584.465": {
-    "reached_entry": false,
-    "stage": 1
+    "reached_entry": true,
+    "stage": 2
   },
   "PGEL.NS|30m|long|586.214|584.465": {
     "reached_entry": true,
@@ -85,6 +85,7 @@
     "stage": 1
   },
   "TSLAXUSD|30m|short|356.782|357.497": {
-    "reached_entry": true
+    "reached_entry": true,
+    "stage": 3
   }
 }

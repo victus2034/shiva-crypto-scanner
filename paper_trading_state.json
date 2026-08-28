@@ -16202,6 +16202,29 @@
       "target_2": 98.72823273093368,
       "target_half": 98.40003045085503,
       "trade_id": "4e1786233b5681e6"
+    },
+    {
+      "alert_time": "2026-08-28T14:52:14.206912+05:30",
+      "cost_r": 0.6504218832820209,
+      "date": "2026-08-28",
+      "entry": 132504.13466824332,
+      "entry_time": "2026-08-28T14:55:00+05:30",
+      "exit_price": null,
+      "exit_time": "2026-08-28T14:55:00+05:30",
+      "final_result": "data_quality_ambiguous",
+      "half_r_hit": false,
+      "net_realized_r": null,
+      "outcome": "data_quality_ambiguous",
+      "rating": 6,
+      "realized_r": null,
+      "risk": 216.55466824333416,
+      "side": "long",
+      "stop": 132287.58,
+      "symbol": "MRF.NS",
+      "target_1": 132720.68933648666,
+      "target_2": 132937.24400473,
+      "target_half": 132612.412002365,
+      "trade_id": "75aa515dbc8e1748"
     }
   ],
   "handled": {
@@ -16518,6 +16541,7 @@
     "740436205cb26cc1": "filled",
     "74ad927e65b74552": "filled",
     "74d7da3a193d1794": "filled",
+    "75aa515dbc8e1748": "filled",
     "75d156aabc0a605b": "filled",
     "7611bc3492e0615d": "filled",
     "7699f8dac6b6fcac": "filled",
@@ -16675,6 +16699,7 @@
     "b0bb5f61d52b0880": "filled",
     "b0dac76890349662": "filled",
     "b110e1ca1b03c4f0": "filled",
+    "b1948546daef1cf3": "filled",
     "b1f8905a4d0e9d67": "filled",
     "b22556c6164ae486": "filled",
     "b2f6a76a1a0676e6": "filled",
@@ -16944,6 +16969,20 @@
       "target_1": 265.6922676444989,
       "target_2": 266.1709014667483,
       "target_half": 265.45295073337417
+    },
+    "b1948546daef1cf3": {
+      "alert_time": "2026-08-28T14:32:23.007967+05:30",
+      "entry": 586.2131698021792,
+      "entry_time": "2026-08-28T14:55:00+05:30",
+      "half_r_hit": false,
+      "rating": 8,
+      "risk": 1.7482319970034723,
+      "side": "long",
+      "stop": 584.4649378051757,
+      "symbol": "PGEL.NS",
+      "target_1": 587.9614017991827,
+      "target_2": 589.7096337961862,
+      "target_half": 587.087285800681
     },
     "dc6023ba0a9f4cd7": {
       "alert_time": "2026-08-28T13:52:12.480365+05:30",
