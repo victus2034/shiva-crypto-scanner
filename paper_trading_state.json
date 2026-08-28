@@ -16110,6 +16110,29 @@
       "target_2": 3388.2047464009465,
       "target_half": 3401.608222077426,
       "trade_id": "5b70c673e671042e"
+    },
+    {
+      "alert_time": "2026-08-28T13:52:13.228760+05:30",
+      "cost_r": 0.37661243958154517,
+      "date": "2026-08-28",
+      "entry": 636.2106616375381,
+      "entry_time": "2026-08-28T14:30:00+05:30",
+      "exit_price": 636.9741144315032,
+      "exit_time": "2026-08-28T14:35:00+05:30",
+      "final_result": "BE",
+      "half_r_hit": true,
+      "net_realized_r": 0.048538009616803546,
+      "outcome": "BE",
+      "rating": 9,
+      "realized_r": 0.4251504491983487,
+      "risk": 1.7957238323623415,
+      "side": "long",
+      "stop": 634.4149378051758,
+      "symbol": "LENSKART.NS",
+      "target_1": 638.0063854699005,
+      "target_2": 639.8021093022628,
+      "target_half": 637.1085235537194,
+      "trade_id": "111018ba53b467eb"
     }
   ],
   "handled": {
@@ -16161,6 +16184,7 @@
     "0fcbdc77793f511d": "filled",
     "109d8825d8588a32": "filled",
     "109fee51811637b4": "filled",
+    "111018ba53b467eb": "filled",
     "11261f6a706a77c9": "filled",
     "1150916a05a4f6d4": "filled",
     "11923c0a0802f34e": "filled",
@@ -16651,6 +16675,7 @@
     "c842bcf23005f590": "filled",
     "c8c894cac7032598": "filled",
     "ca694d4e2943e3d7": "filled",
+    "cab2b04f5da69815": "filled",
     "cae4617f29e7728e": "filled",
     "cb19928e88ce4d3a": "filled",
     "cb4086f95925ac4e": "filled",
@@ -16863,6 +16888,20 @@
       "target_1": 98.50943121088125,
       "target_2": 98.72823273093368,
       "target_half": 98.40003045085503
+    },
+    "cab2b04f5da69815": {
+      "alert_time": "2026-08-28T14:32:22.752675+05:30",
+      "entry": 1649.6114316486035,
+      "entry_time": "2026-08-28T14:35:00+05:30",
+      "half_r_hit": false,
+      "rating": 8,
+      "risk": 4.0405683513963595,
+      "side": "short",
+      "stop": 1653.6519999999998,
+      "symbol": "AUROPHARMA.NS",
+      "target_1": 1645.570863297207,
+      "target_2": 1641.5302949458107,
+      "target_half": 1647.5911474729053
     },
     "dc6023ba0a9f4cd7": {
       "alert_time": "2026-08-28T13:52:12.480365+05:30",
