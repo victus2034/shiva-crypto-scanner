@@ -15972,6 +15972,52 @@
       "target_2": 1319.309909085695,
       "target_half": 1313.2507045428474,
       "trade_id": "6d286465ec624a01"
+    },
+    {
+      "alert_time": "2026-08-28T12:52:06.957199+05:30",
+      "cost_r": 0.37661416358380456,
+      "date": "2026-08-28",
+      "entry": 636.2106533941022,
+      "entry_time": "2026-08-28T13:50:00+05:30",
+      "exit_price": 636.9741061781751,
+      "exit_time": "2026-08-28T14:00:00+05:30",
+      "final_result": "BE",
+      "half_r_hit": true,
+      "net_realized_r": 0.04853823180712519,
+      "outcome": "BE",
+      "rating": 8,
+      "realized_r": 0.42515239539092975,
+      "risk": 1.7957155889264413,
+      "side": "long",
+      "stop": 634.4149378051758,
+      "symbol": "LENSKART.NS",
+      "target_1": 638.0063689830287,
+      "target_2": 639.8020845719551,
+      "target_half": 637.1085111885654,
+      "trade_id": "26609843a63b37d7"
+    },
+    {
+      "alert_time": "2026-08-28T13:32:28.833002+05:30",
+      "cost_r": 0.32371301362730615,
+      "date": "2026-08-28",
+      "entry": 3030.6281455936464,
+      "entry_time": "2026-08-28T14:00:00+05:30",
+      "exit_price": null,
+      "exit_time": "2026-08-28T14:00:00+05:30",
+      "final_result": "data_quality_ambiguous",
+      "half_r_hit": false,
+      "net_realized_r": null,
+      "outcome": "data_quality_ambiguous",
+      "rating": 10,
+      "realized_r": null,
+      "risk": 9.951894372943116,
+      "side": "long",
+      "stop": 3020.6762512207033,
+      "symbol": "CARTRADE.NS",
+      "target_1": 3040.5800399665895,
+      "target_2": 3050.5319343395327,
+      "target_half": 3035.6040927801178,
+      "trade_id": "673e17275daaa80d"
     }
   ],
   "handled": {
@@ -16019,6 +16065,7 @@
     "0e378aac19e80ff2": "filled",
     "0e3c1e869f7eb044": "filled",
     "0f91a9b3e1b14b66": "filled",
+    "0fa20e4b07303318": "filled",
     "0fcbdc77793f511d": "filled",
     "109d8825d8588a32": "filled",
     "109fee51811637b4": "filled",
@@ -16243,6 +16290,7 @@
     "65f4934435e81c73": "filled",
     "6622d65505d82ce1": "filled",
     "66351dab9f338276": "filled",
+    "673e17275daaa80d": "filled",
     "6760b5829c037859": "filled",
     "67d7bbd9655ca698": "filled",
     "69390fab24efb07c": "filled",
@@ -16566,6 +16614,7 @@
     "dbe0d15542a47166": "filled",
     "dc50766b563555de": "filled",
     "dc5df7bc07b9652a": "filled",
+    "dc6023ba0a9f4cd7": "filled",
     "dd5b0779584ce300": "filled",
     "dd66cb50258872e0": "filled",
     "ddea50c3c9dd4a5b": "filled",
@@ -16691,19 +16740,19 @@
       "target_2": 589.7107282877607,
       "target_half": 587.0878330464682
     },
-    "26609843a63b37d7": {
-      "alert_time": "2026-08-28T12:52:06.957199+05:30",
-      "entry": 636.2106533941022,
-      "entry_time": "2026-08-28T13:50:00+05:30",
+    "0fa20e4b07303318": {
+      "alert_time": "2026-08-28T13:32:28.497386+05:30",
+      "entry": 2591.7846879879767,
+      "entry_time": "2026-08-28T14:00:00+05:30",
       "half_r_hit": false,
       "rating": 8,
-      "risk": 1.7957155889264413,
+      "risk": 6.37268798797686,
       "side": "long",
-      "stop": 634.4149378051758,
-      "symbol": "LENSKART.NS",
-      "target_1": 638.0063689830287,
-      "target_2": 639.8020845719551,
-      "target_half": 637.1085111885654
+      "stop": 2585.412,
+      "symbol": "ASIANPAINT.NS",
+      "target_1": 2598.1573759759535,
+      "target_2": 2604.5300639639304,
+      "target_half": 2594.971031981965
     },
     "a3f525aed3f47c62": {
       "alert_time": "2026-08-28T13:12:05.776440+05:30",
@@ -16718,6 +16767,20 @@
       "target_1": 1443.162396822187,
       "target_2": 1446.9620952332805,
       "target_half": 1441.2625476166404
+    },
+    "dc6023ba0a9f4cd7": {
+      "alert_time": "2026-08-28T13:52:12.480365+05:30",
+      "entry": 2591.6986629314465,
+      "entry_time": "2026-08-28T14:00:00+05:30",
+      "half_r_hit": false,
+      "rating": 8,
+      "risk": 6.286662931446699,
+      "side": "long",
+      "stop": 2585.412,
+      "symbol": "ASIANPAINT.NS",
+      "target_1": 2597.985325862893,
+      "target_2": 2604.27198879434,
+      "target_half": 2594.84199439717
     }
   }
 }
