@@ -2148,7 +2148,7 @@
     "ETHUSD|30m|long|2480.36|2483.86": 1787890335.8927352,
     "STORJ/USDT|30m|long|0.0392|0.0394325": 1787890336.181775,
     "POL/USDT|30m|long|0.10551|0.105908": 1787892725.2197044,
-    "DASH/USDT|30m|long|38.06|38.1649": 1787893925.905931,
+    "DASH/USDT|30m|long|38.06|38.1649": 1787911931.740944,
     "POL/USDT|30m|long|0.10535|0.105742": 1787895140.6303365,
     "MRVL/USDT:USDT|30m|long|220.6|220.966": 1787896322.5900838,
     "TSLAXUSD|30m|short|356.782|357.14": 1787905935.0582657,
@@ -2156,7 +2156,8 @@
     "ATOM/USDT|30m|long|1.48|1.48365": 1787907129.4864492,
     "GOOGLXUSD|30m|short|343.428|343.6": 1787909547.5652556,
     "STRK/USDT|30m|long|0.02552|0.0255835": 1787910729.4188795,
-    "HOME/USDT|30m|short|0.00622328|0.006239": 1787910729.8276663
+    "HOME/USDT|30m|short|0.00622328|0.006239": 1787910729.8276663,
+    "DOGEUSD|30m|long|0.08609|0.0862621": 1787911931.302382
   },
   "METAXUSD|demand|577.00000000|579.20000000": {
     "in_zone": false,
@@ -13705,7 +13706,7 @@
     "last_alert_at": 1787580724.510809
   },
   "__last_scan_started__": {
-    "30m": 1787910655.464951
+    "30m": 1787911856.9986882
   },
   "TAO/USDT|supply|227.92800000|229.00000000": {
     "in_zone": false,
@@ -19040,7 +19041,7 @@
     "last_alert_at": 0.0
   },
   "HOME/USDT|supply|0.00622328|0.00623900": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1787910729.8276663
   },
   "HOME/USDT|supply|0.00624432|0.00626000": {
@@ -19156,8 +19157,8 @@
     "last_alert_at": 0.0
   },
   "DOGEUSD|demand|0.08609000|0.08626215": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1787911931.302382
   },
   "ADAUSD|demand|0.20730000|0.20779970": {
     "in_zone": false,
@@ -19332,8 +19333,8 @@
     "last_alert_at": 0.0
   },
   "DASH/USDT|demand|38.06000000|38.16485000": {
-    "in_zone": false,
-    "last_alert_at": 1787893925.905931
+    "in_zone": true,
+    "last_alert_at": 1787911931.740944
   },
   "0G/USDT|demand|0.15710000|0.15747800": {
     "in_zone": false,
@@ -19768,6 +19769,10 @@
     "last_alert_at": 0.0
   },
   "DASH/USDT|supply|40.52050000|40.63000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "FARTCOIN/USDT|supply|0.21989500|0.22090000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
