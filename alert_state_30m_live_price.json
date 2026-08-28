@@ -2148,7 +2148,8 @@
     "ETHUSD|30m|long|2480.36|2483.86": 1787890335.8927352,
     "STORJ/USDT|30m|long|0.0392|0.0394325": 1787890336.181775,
     "POL/USDT|30m|long|0.10551|0.105908": 1787892725.2197044,
-    "DASH/USDT|30m|long|38.06|38.1649": 1787893925.905931
+    "DASH/USDT|30m|long|38.06|38.1649": 1787893925.905931,
+    "POL/USDT|30m|long|0.10535|0.105742": 1787895140.6303365
   },
   "METAXUSD|demand|577.00000000|579.20000000": {
     "in_zone": false,
@@ -13697,7 +13698,7 @@
     "last_alert_at": 1787580724.510809
   },
   "__last_scan_started__": {
-    "30m": 1787893854.1609974
+    "30m": 1787895059.0860744
   },
   "TAO/USDT|supply|227.92800000|229.00000000": {
     "in_zone": false,
@@ -19536,8 +19537,8 @@
     "last_alert_at": 0.0
   },
   "POL/USDT|demand|0.10535000|0.10574215": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1787895140.6303365
   },
   "ENA/USDT|demand|0.14408000|0.14479605": {
     "in_zone": false,
@@ -19572,6 +19573,42 @@
     "last_alert_at": 0.0
   },
   "INTCBUSD|demand|88.52000000|88.69490000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "ALGO/USDT|supply|0.09243320|0.09264000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "ETHFI/USDT|supply|0.59088900|0.59260000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "DASH/USDT|demand|38.03000000|38.13105000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "PAXGUSD|demand|4557.50000000|4560.28600000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "METAXUSD|supply|587.98065000|588.75000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "SOXLBUSD|demand|118.01000000|118.37940000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "SPCXXUSD|demand|138.80000000|138.98560000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "INTCBUSD|demand|88.56000000|88.70165000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "MSFT/USDT:USDT|demand|490.67000000|491.03275000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
