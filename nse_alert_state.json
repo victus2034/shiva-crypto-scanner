@@ -2869,7 +2869,8 @@
     "IEX.NS|4h|long|120.82|121.332": 1787889152.3294103,
     "CHOLAHLDNG.NS|4h|long|1490.1|1497.98": 1787892749.9394965,
     "IEX.NS|4h|long|120.82|121.336": 1787893961.5107484,
-    "INDHOTEL.NS|4h|long|701.8|704.514": 1787893961.9050088
+    "INDHOTEL.NS|4h|long|701.8|704.514": 1787893961.9050088,
+    "INDHOTEL.NS|4h|long|701.8|704.513": 1787896362.6294923
   },
   "GESHIP.NS|demand|1057.1000|1070.5000": {
     "in_zone": false,
@@ -10372,9 +10373,9 @@
     "last_attempt_at": 0.0
   },
   "INDHOTEL.NS|demand|701.8000|704.5130": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1787896362.6294923,
+    "last_attempt_at": 1787896362.6294923
   },
   "IOB.NS|demand|32.2600|32.3803": {
     "in_zone": false,
@@ -17922,7 +17923,7 @@
     "last_attempt_at": 0.0
   },
   "__last_scan_started__": {
-    "4h": 1787895095.735841
+    "4h": 1787896279.7897031
   },
   "360ONE.NS|supply|1214.8851|1220.0000": {
     "in_zone": false,
