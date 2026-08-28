@@ -15381,6 +15381,7 @@
     "4cefffd16c85252c": "filled",
     "4d7018f01236dc4f": "filled",
     "4d9ed75a0a8b96fd": "filled",
+    "4ebc3f171fe27955": "filled",
     "4ee0cbd08ca5cefe": "filled",
     "4ef1500bb86ca860": "filled",
     "4ef57221bfd5c70d": "filled",
@@ -15738,6 +15739,7 @@
     "d61904d755ac9153": "filled",
     "d6219945e9e6b026": "filled",
     "d6c48c9af26142bd": "filled",
+    "d712fb145dd4bb40": "filled",
     "d7d06d7e5f681e30": "filled",
     "d7f4e187fa098aca": "filled",
     "d86181f482d733e4": "filled",
@@ -15857,5 +15859,34 @@
     "fed8ed34d9b4adcd": "filled",
     "ffb4661b7d04cd46": "filled"
   },
-  "open": {}
+  "open": {
+    "4ebc3f171fe27955": {
+      "alert_time": "2026-08-28T09:52:27.547393+05:30",
+      "entry": 85.04746422711366,
+      "entry_time": "2026-08-28T10:00:00+05:30",
+      "half_r_hit": true,
+      "rating": 5,
+      "risk": 0.18241727581971645,
+      "side": "long",
+      "stop": 84.86504695129395,
+      "symbol": "ABLBL.NS",
+      "target_1": 85.22988150293338,
+      "target_2": 85.4122987787531,
+      "target_half": 85.13867286502352
+    },
+    "d712fb145dd4bb40": {
+      "alert_time": "2026-08-28T09:52:28.944861+05:30",
+      "entry": 5171.350778923703,
+      "entry_time": "2026-08-28T09:55:00+05:30",
+      "half_r_hit": false,
+      "rating": 8,
+      "risk": 11.515778923702783,
+      "side": "long",
+      "stop": 5159.835,
+      "symbol": "JKCEMENT.NS",
+      "target_1": 5182.866557847406,
+      "target_2": 5194.382336771108,
+      "target_half": 5177.108668385554
+    }
+  }
 }
