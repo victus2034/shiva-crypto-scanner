@@ -16271,6 +16271,7 @@
     "4cefffd16c85252c": "filled",
     "4d7018f01236dc4f": "filled",
     "4d9ed75a0a8b96fd": "filled",
+    "4e1786233b5681e6": "filled",
     "4ebc3f171fe27955": "filled",
     "4ee0cbd08ca5cefe": "filled",
     "4ef1500bb86ca860": "filled",
@@ -16791,7 +16792,7 @@
       "alert_time": "2026-08-28T13:52:13.005603+05:30",
       "entry": 265.21363382224945,
       "entry_time": "2026-08-28T14:05:00+05:30",
-      "half_r_hit": false,
+      "half_r_hit": true,
       "rating": 9,
       "risk": 0.47863382224943507,
       "side": "long",
@@ -16800,6 +16801,20 @@
       "target_1": 265.6922676444989,
       "target_2": 266.1709014667483,
       "target_half": 265.45295073337417
+    },
+    "4e1786233b5681e6": {
+      "alert_time": "2026-08-28T13:52:12.684201+05:30",
+      "entry": 98.29062969082881,
+      "entry_time": "2026-08-28T14:05:00+05:30",
+      "half_r_hit": true,
+      "rating": 8,
+      "risk": 0.21880152005243758,
+      "side": "long",
+      "stop": 98.07182817077637,
+      "symbol": "GMRAIRPORT.NS",
+      "target_1": 98.50943121088125,
+      "target_2": 98.72823273093368,
+      "target_half": 98.40003045085503
     },
     "dc6023ba0a9f4cd7": {
       "alert_time": "2026-08-28T13:52:12.480365+05:30",
