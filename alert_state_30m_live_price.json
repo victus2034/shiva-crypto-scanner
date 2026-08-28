@@ -2147,7 +2147,8 @@
     "1000SHIBUSD|30m|long|0.005278|0.00528444": 1787886732.2008262,
     "ETHUSD|30m|long|2480.36|2483.86": 1787890335.8927352,
     "STORJ/USDT|30m|long|0.0392|0.0394325": 1787890336.181775,
-    "POL/USDT|30m|long|0.10551|0.105908": 1787892725.2197044
+    "POL/USDT|30m|long|0.10551|0.105908": 1787892725.2197044,
+    "DASH/USDT|30m|long|38.06|38.1649": 1787893925.905931
   },
   "METAXUSD|demand|577.00000000|579.20000000": {
     "in_zone": false,
@@ -13696,7 +13697,7 @@
     "last_alert_at": 1787580724.510809
   },
   "__last_scan_started__": {
-    "30m": 1787892651.2875886
+    "30m": 1787893854.1609974
   },
   "TAO/USDT|supply|227.92800000|229.00000000": {
     "in_zone": false,
@@ -19323,8 +19324,8 @@
     "last_alert_at": 0.0
   },
   "DASH/USDT|demand|38.06000000|38.16485000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1787893925.905931
   },
   "0G/USDT|demand|0.15710000|0.15747800": {
     "in_zone": false,
@@ -19559,6 +19560,18 @@
     "last_alert_at": 0.0
   },
   "XPLUSD|demand|0.08590000|0.08611050": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "BTCUSD|demand|78877.30000000|78964.60450000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "SOXLBUSD|demand|117.87000000|118.27925000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "INTCBUSD|demand|88.52000000|88.69490000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
