@@ -2162,7 +2162,10 @@
     "ACE/USDT|30m|long|0.2026|0.203387": 1787921526.40412,
     "MSFT/USDT:USDT|30m|short|506.265|506.69": 1787921526.6286888,
     "MSFT/USDT:USDT|30m|short|506.687|507.11": 1787922737.0501795,
-    "NEARUSD|30m|long|1.844|1.84839": 1787923941.9001744
+    "NEARUSD|30m|long|1.844|1.84839": 1787923941.9001744,
+    "KAITO/USDT|30m|long|0.3077|0.308576": 1787926335.1998365,
+    "LA/USDT|30m|long|0.05473|0.0548604": 1787926335.408231,
+    "ERA/USDT|30m|long|0.05583|0.055947": 1787926335.6575923
   },
   "METAXUSD|demand|577.00000000|579.20000000": {
     "in_zone": false,
@@ -13711,7 +13714,7 @@
     "last_alert_at": 1787580724.510809
   },
   "__last_scan_started__": {
-    "30m": 1787925071.8804638
+    "30m": 1787926257.9343443
   },
   "TAO/USDT|supply|227.92800000|229.00000000": {
     "in_zone": false,
@@ -18574,8 +18577,8 @@
     "last_alert_at": 0.0
   },
   "KAITO/USDT|demand|0.30770000|0.30857650": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1787926335.1998365
   },
   "SUIUSD|demand|0.72610000|0.72766950": {
     "in_zone": false,
@@ -19042,8 +19045,8 @@
     "last_alert_at": 0.0
   },
   "LA/USDT|demand|0.05473000|0.05486040": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1787926335.408231
   },
   "HOME/USDT|supply|0.00622328|0.00623900": {
     "in_zone": false,
@@ -19170,7 +19173,7 @@
     "last_alert_at": 0.0
   },
   "NEARUSD|demand|1.84400000|1.84839000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1787923941.9001744
   },
   "DEXE/USDT|demand|1.88570000|1.88924450": {
@@ -19318,8 +19321,8 @@
     "last_alert_at": 1787910729.4188795
   },
   "ERA/USDT|demand|0.05583000|0.05594705": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1787926335.6575923
   },
   "CRV/USDT|supply|0.34460550|0.34600000": {
     "in_zone": false,
@@ -19906,6 +19909,14 @@
     "last_alert_at": 0.0
   },
   "AXTI/USDT:USDT|demand|61.82000000|61.99015000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "0G/USDT|demand|0.15320000|0.15356950": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "SPCXXUSD|supply|145.43840000|145.70000000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
