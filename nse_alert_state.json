@@ -2871,7 +2871,9 @@
     "IEX.NS|4h|long|120.82|121.336": 1787893961.5107484,
     "INDHOTEL.NS|4h|long|701.8|704.514": 1787893961.9050088,
     "INDHOTEL.NS|4h|long|701.8|704.513": 1787896362.6294923,
-    "ICICIGI.NS|4h|long|1545.5|1553.73": 1787898771.8459818
+    "ICICIGI.NS|4h|long|1545.5|1553.73": 1787898771.8459818,
+    "COFORGE.NS|4h|short|1982.38|1989.5": 1787899945.9046638,
+    "INDUSINDBK.NS|4h|long|984.5|988.733": 1787899946.0427904
   },
   "GESHIP.NS|demand|1057.1000|1070.5000": {
     "in_zone": false,
@@ -9279,7 +9281,7 @@
     "last_attempt_at": 0.0
   },
   "CHOLAHLDNG.NS|demand|1490.1000|1497.9516": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1787889151.9408586,
     "last_attempt_at": 1787889151.9408586
   },
@@ -10434,9 +10436,9 @@
     "last_attempt_at": 0.0
   },
   "INDUSINDBK.NS|demand|984.5000|988.7329": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1787899946.0427904,
+    "last_attempt_at": 1787899946.0427904
   },
   "NAUKRI.NS|supply|1383.0679|1388.1000": {
     "in_zone": true,
@@ -17924,7 +17926,7 @@
     "last_attempt_at": 0.0
   },
   "__last_scan_started__": {
-    "4h": 1787898698.1868489
+    "4h": 1787899880.0350273
   },
   "360ONE.NS|supply|1214.8851|1220.0000": {
     "in_zone": false,
@@ -31437,9 +31439,9 @@
     "last_attempt_at": 0.0
   },
   "COFORGE.NS|supply|1982.3801|1989.5000": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1787899945.9046638,
+    "last_attempt_at": 1787899945.9046638
   },
   "COHANCE.NS|demand|355.2500|358.1536": {
     "in_zone": false,
