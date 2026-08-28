@@ -15098,6 +15098,52 @@
       "target_2": 777.8570053271292,
       "target_half": 780.5447337731837,
       "trade_id": "cd9f734024e68a52"
+    },
+    {
+      "alert_time": "2026-08-28T09:32:29.638640+05:30",
+      "cost_r": 0.46519470085488157,
+      "date": "2026-08-28",
+      "entry": 324.667636562835,
+      "entry_time": "2026-08-28T09:40:00+05:30",
+      "exit_price": 326.15140968850505,
+      "exit_time": "2026-08-28T09:40:00+05:30",
+      "final_result": "+2R",
+      "half_r_hit": true,
+      "net_realized_r": 1.5348052991451184,
+      "outcome": "+2R",
+      "rating": 9,
+      "realized_r": 2.0,
+      "risk": 0.7418865628350204,
+      "side": "long",
+      "stop": 323.92575,
+      "symbol": "ETERNAL.NS",
+      "target_1": 325.40952312567003,
+      "target_2": 326.15140968850505,
+      "target_half": 325.0385798442525,
+      "trade_id": "c167e8aa69d7ad06"
+    },
+    {
+      "alert_time": "2026-08-28T09:32:29.355642+05:30",
+      "cost_r": 0.3727130609869919,
+      "date": "2026-08-28",
+      "entry": 143.85669426007513,
+      "entry_time": "2026-08-28T09:40:00+05:30",
+      "exit_price": 144.02932229318722,
+      "exit_time": "2026-08-28T09:45:00+05:30",
+      "final_result": "BE",
+      "half_r_hit": true,
+      "net_realized_r": 0.04803545564931189,
+      "outcome": "BE",
+      "rating": 10,
+      "realized_r": 0.4207485166363038,
+      "risk": 0.41028791852238555,
+      "side": "long",
+      "stop": 143.44640634155274,
+      "symbol": "DEVYANI.NS",
+      "target_1": 144.26698217859752,
+      "target_2": 144.6772700971199,
+      "target_half": 144.06183821933632,
+      "trade_id": "c2546c8399b16f63"
     }
   ],
   "handled": {
@@ -15586,6 +15632,7 @@
     "c167e8aa69d7ad06": "filled",
     "c17f1d44829e7f34": "filled",
     "c216a8ac784fa1c7": "filled",
+    "c2546c8399b16f63": "filled",
     "c298129df951caa3": "filled",
     "c2cba1d7ca41c2e5": "filled",
     "c323cbb9cf0a0c01": "filled",
@@ -15777,20 +15824,6 @@
       "target_1": 115.3551699662758,
       "target_2": 115.59025494941369,
       "target_half": 115.23762747470684
-    },
-    "c167e8aa69d7ad06": {
-      "alert_time": "2026-08-28T09:32:29.638640+05:30",
-      "entry": 324.667636562835,
-      "entry_time": "2026-08-28T09:40:00+05:30",
-      "half_r_hit": false,
-      "rating": 9,
-      "risk": 0.7418865628350204,
-      "side": "long",
-      "stop": 323.92575,
-      "symbol": "ETERNAL.NS",
-      "target_1": 325.40952312567003,
-      "target_2": 326.15140968850505,
-      "target_half": 325.0385798442525
     }
   }
 }
