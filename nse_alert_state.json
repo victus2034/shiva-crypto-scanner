@@ -2873,7 +2873,9 @@
     "INDHOTEL.NS|4h|long|701.8|704.513": 1787896362.6294923,
     "ICICIGI.NS|4h|long|1545.5|1553.73": 1787898771.8459818,
     "COFORGE.NS|4h|short|1982.38|1989.5": 1787899945.9046638,
-    "INDUSINDBK.NS|4h|long|984.5|988.733": 1787899946.0427904
+    "INDUSINDBK.NS|4h|long|984.5|988.733": 1787899946.0427904,
+    "BRITANNIA.NS|4h|long|5255|5271.2": 1787901166.9137444,
+    "INDUSINDBK.NS|4h|long|984.5|988.764": 1787901167.1677485
   },
   "GESHIP.NS|demand|1057.1000|1070.5000": {
     "in_zone": false,
@@ -5561,9 +5563,9 @@
     "last_attempt_at": 0.0
   },
   "INDUSINDBK.NS|demand|984.5000|988.7641": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1787901167.1677485,
+    "last_attempt_at": 1787901167.1677485
   },
   "NAUKRI.NS|supply|1383.0661|1388.1000": {
     "in_zone": false,
@@ -17926,7 +17928,7 @@
     "last_attempt_at": 0.0
   },
   "__last_scan_started__": {
-    "4h": 1787899880.0350273
+    "4h": 1787901083.8425293
   },
   "360ONE.NS|supply|1214.8851|1220.0000": {
     "in_zone": false,
@@ -32514,9 +32516,9 @@
     "last_attempt_at": 0.0
   },
   "BRITANNIA.NS|demand|5255.0000|5271.2028": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1787901166.9137444,
+    "last_attempt_at": 1787901166.9137444
   },
   "MAPMYINDIA.NS|demand|795.1000|802.5265": {
     "in_zone": false,
