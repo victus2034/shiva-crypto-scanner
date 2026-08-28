@@ -2146,7 +2146,8 @@
     "DOTUSD|30m|long|0.866|0.867905": 1787885525.2536006,
     "1000SHIBUSD|30m|long|0.005278|0.00528444": 1787886732.2008262,
     "ETHUSD|30m|long|2480.36|2483.86": 1787890335.8927352,
-    "STORJ/USDT|30m|long|0.0392|0.0394325": 1787890336.181775
+    "STORJ/USDT|30m|long|0.0392|0.0394325": 1787890336.181775,
+    "POL/USDT|30m|long|0.10551|0.105908": 1787892725.2197044
   },
   "METAXUSD|demand|577.00000000|579.20000000": {
     "in_zone": false,
@@ -13695,7 +13696,7 @@
     "last_alert_at": 1787580724.510809
   },
   "__last_scan_started__": {
-    "30m": 1787891456.6414354
+    "30m": 1787892651.2875886
   },
   "TAO/USDT|supply|227.92800000|229.00000000": {
     "in_zone": false,
@@ -19110,7 +19111,7 @@
     "last_alert_at": 0.0
   },
   "STORJ/USDT|demand|0.03920000|0.03943250": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1787890336.181775
   },
   "SPCXXUSD|supply|141.54365000|141.72000000": {
@@ -19522,8 +19523,8 @@
     "last_alert_at": 0.0
   },
   "POL/USDT|demand|0.10551000|0.10590825": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1787892725.2197044
   },
   "PEOPLE/USDT|demand|0.00766600|0.00769306": {
     "in_zone": false,
@@ -19550,6 +19551,14 @@
     "last_alert_at": 0.0
   },
   "PAXGUSD|demand|4559.70000000|4562.68805000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "BTW/USDT|demand|0.37881000|0.38108245": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "XPLUSD|demand|0.08590000|0.08611050": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
