@@ -15360,6 +15360,7 @@
     "43ec392e9973b18f": "filled",
     "44e5ef4dd52a4bff": "filled",
     "463bf1a47c3f1970": "filled",
+    "463fce224dc59626": "filled",
     "4683239f190224e7": "filled",
     "4698d1ed2ed5ae21": "filled",
     "47b52148e89ab9cf": "filled",
@@ -15860,6 +15861,20 @@
     "ffb4661b7d04cd46": "filled"
   },
   "open": {
+    "463fce224dc59626": {
+      "alert_time": "2026-08-28T09:52:28.648641+05:30",
+      "entry": 498.2689379761365,
+      "entry_time": "2026-08-28T10:05:00+05:30",
+      "half_r_hit": true,
+      "rating": 8,
+      "risk": 1.1165940735485833,
+      "side": "long",
+      "stop": 497.1523439025879,
+      "symbol": "BERGEPAINT.NS",
+      "target_1": 499.3855320496851,
+      "target_2": 500.50212612323367,
+      "target_half": 498.8272350129108
+    },
     "4ebc3f171fe27955": {
       "alert_time": "2026-08-28T09:52:27.547393+05:30",
       "entry": 85.04746422711366,
@@ -15878,7 +15893,7 @@
       "alert_time": "2026-08-28T09:52:28.944861+05:30",
       "entry": 5171.350778923703,
       "entry_time": "2026-08-28T09:55:00+05:30",
-      "half_r_hit": false,
+      "half_r_hit": true,
       "rating": 8,
       "risk": 11.515778923702783,
       "side": "long",
