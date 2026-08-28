@@ -2160,7 +2160,8 @@
     "DOGEUSD|30m|long|0.08609|0.0862621": 1787911931.302382,
     "CAP/USDT|30m|short|0.0702509|0.07045": 1787917935.9798117,
     "ACE/USDT|30m|long|0.2026|0.203387": 1787921526.40412,
-    "MSFT/USDT:USDT|30m|short|506.265|506.69": 1787921526.6286888
+    "MSFT/USDT:USDT|30m|short|506.265|506.69": 1787921526.6286888,
+    "MSFT/USDT:USDT|30m|short|506.687|507.11": 1787922737.0501795
   },
   "METAXUSD|demand|577.00000000|579.20000000": {
     "in_zone": false,
@@ -13709,7 +13710,7 @@
     "last_alert_at": 1787580724.510809
   },
   "__last_scan_started__": {
-    "30m": 1787921454.1466637
+    "30m": 1787922658.2159367
   },
   "TAO/USDT|supply|227.92800000|229.00000000": {
     "in_zone": false,
@@ -19836,8 +19837,8 @@
     "last_alert_at": 0.0
   },
   "MSFT/USDT:USDT|supply|506.68690000|507.11000000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1787922737.0501795
   },
   "MUBUSD|supply|936.06975000|938.00000000": {
     "in_zone": false,
@@ -19866,5 +19867,9 @@
   "MSFT/USDT:USDT|supply|506.26520000|506.69000000": {
     "in_zone": true,
     "last_alert_at": 1787921526.6286888
+  },
+  "STORJ/USDT|supply|0.04086650|0.04100000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
   }
 }
