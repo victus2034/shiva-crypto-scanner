@@ -2194,7 +2194,8 @@
     "ADAUSD|30m|long|0.1988|0.199319": 1787992335.705587,
     "ARBUSD|30m|long|0.0866|0.086737": 1787997124.9235728,
     "LINKUSD|30m|long|11.263|11.2854": 1787995935.9173827,
-    "AXTI/USDT:USDT|30m|long|58.08|58.2571": 1788007924.3658538
+    "AXTI/USDT:USDT|30m|long|58.08|58.2571": 1788007924.3658538,
+    "MRVL/USDT:USDT|30m|long|215.85|216.575": 1788010339.3835616
   },
   "METAXUSD|demand|577.00000000|579.20000000": {
     "in_zone": false,
@@ -13743,7 +13744,7 @@
     "last_alert_at": 1787580724.510809
   },
   "__last_scan_started__": {
-    "30m": 1788009055.05098
+    "30m": 1788010261.6952121
   },
   "TAO/USDT|supply|227.92800000|229.00000000": {
     "in_zone": false,
@@ -21246,8 +21247,8 @@
     "last_alert_at": 0.0
   },
   "MRVL/USDT:USDT|demand|215.85000000|216.57490000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1788010339.3835616
   },
   "ACE/USDT|demand|0.18888000|0.18966935": {
     "in_zone": false,
@@ -21334,6 +21335,18 @@
     "last_alert_at": 0.0
   },
   "KGEN/USDT|demand|0.17190000|0.17233350": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "FARTCOIN/USDT|demand|0.17170000|0.17261900": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "ASTER/USDT|demand|0.66970000|0.67229500": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "ZRO/USDT|supply|1.11201250|1.11610000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
