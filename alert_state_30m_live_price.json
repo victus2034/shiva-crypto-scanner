@@ -2197,7 +2197,8 @@
     "AXTI/USDT:USDT|30m|long|58.08|58.2571": 1788007924.3658538,
     "MRVL/USDT:USDT|30m|long|215.85|216.575": 1788010339.3835616,
     "TAO/USDT|30m|short|237.207|237.9": 1788013934.0889032,
-    "CL/USDT|30m|long|82.83|82.9042": 1788017531.2218266
+    "CL/USDT|30m|long|82.83|82.9042": 1788017531.2218266,
+    "ALGO/USDT|30m|short|0.0871203|0.0873": 1788018725.3499146
   },
   "METAXUSD|demand|577.00000000|579.20000000": {
     "in_zone": false,
@@ -13746,7 +13747,7 @@
     "last_alert_at": 1787580724.510809
   },
   "__last_scan_started__": {
-    "30m": 1788017457.564183
+    "30m": 1788018654.047209
   },
   "TAO/USDT|supply|227.92800000|229.00000000": {
     "in_zone": false,
@@ -21441,8 +21442,8 @@
     "last_alert_at": 0.0
   },
   "ALGO/USDT|supply|0.08712035|0.08730000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1788018725.3499146
   },
   "POL/USDT|supply|0.10893480|0.10920000": {
     "in_zone": false,
