@@ -2193,7 +2193,8 @@
     "ALGO/USDT|30m|long|0.08535|0.0855308": 1787991135.8071775,
     "ADAUSD|30m|long|0.1988|0.199319": 1787992335.705587,
     "ARBUSD|30m|long|0.0866|0.086737": 1787997124.9235728,
-    "LINKUSD|30m|long|11.263|11.2854": 1787995935.9173827
+    "LINKUSD|30m|long|11.263|11.2854": 1787995935.9173827,
+    "AXTI/USDT:USDT|30m|long|58.08|58.2571": 1788007924.3658538
   },
   "METAXUSD|demand|577.00000000|579.20000000": {
     "in_zone": false,
@@ -13742,7 +13743,7 @@
     "last_alert_at": 1787580724.510809
   },
   "__last_scan_started__": {
-    "30m": 1788006657.4504426
+    "30m": 1788007853.2282617
   },
   "TAO/USDT|supply|227.92800000|229.00000000": {
     "in_zone": false,
@@ -21305,8 +21306,8 @@
     "last_alert_at": 0.0
   },
   "AXTI/USDT:USDT|demand|58.08000000|58.25710000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1788007924.3658538
   },
   "APTUSD|supply|0.56157800|0.56280000": {
     "in_zone": false,
@@ -21321,6 +21322,10 @@
     "last_alert_at": 0.0
   },
   "TRX/USDT|supply|0.34208360|0.34228000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "LTCUSD|supply|49.48900000|49.57000000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
