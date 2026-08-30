@@ -1,4 +1,5 @@
 import unittest
+from unittest.mock import patch
 
 import config
 import nse_config
@@ -28,3 +29,31 @@ class LookbackTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+class LookbackReportingTests(unittest.TestCase):
+    def test_the_scan_reports_the_window_it_actually_got(self):
+        # The venue caps what it serves, so asking for 1500 and getting
+        # 751 is normal. A silently short window makes old zones vanish,
+        # which looks exactly like there being none - so it gets printed.
+        import scanner
+
+        with patch.object(scanner, "TIMEFRAME", "4h"):
+            line = scanner.lookback_line([{"candles": 751}, {"candles": 751}])
+
+        self.assertIn("751 candles", line)
+        self.assertIn("125.2 days", line)
+
+    def test_a_short_symbol_is_called_out(self):
+        import scanner
+
+        with patch.object(scanner, "TIMEFRAME", "30m"):
+            line = scanner.lookback_line(
+                [{"candles": 751}, {"candles": 751}, {"candles": 120}]
+            )
+
+        self.assertIn("shortest 120", line)
+
+    def test_no_results_does_not_crash_the_summary(self):
+        import scanner
+
+        self.assertEqual(scanner.lookback_line([]), "unknown")

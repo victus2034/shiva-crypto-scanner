@@ -826,6 +826,19 @@ def fetch_symbol_ohlcv(symbol):
 
 
 
+def lookback_line(results):
+    """The data window the scan actually got, in candles and days."""
+    counts = sorted(r.get("candles", 0) for r in results if r.get("candles"))
+    if not counts:
+        return "unknown"
+    typical = counts[len(counts) // 2]
+    seconds = TIMEFRAME_SECONDS.get(TIMEFRAME)
+    if not seconds:
+        return f"{typical} candles"
+    days = typical * seconds / 86400
+    return f"{typical} candles ({days:.1f} days), shortest {counts[0]}"
+
+
 def scan_symbol(symbol):
     ohlcv, exchange_name = fetch_symbol_ohlcv(symbol)
 
@@ -901,6 +914,11 @@ def scan_symbol(symbol):
         "symbol": symbol,
         "exchange": exchange_name,
         "candle_time": int(df["time"].iloc[-1]),
+        # How far back this scan could actually see. A venue can cap the
+        # limit we ask for - CoinSwitch serves 751 candles however many we
+        # request - and a silently short window means old zones simply do
+        # not exist, which looks identical to there being none.
+        "candles": len(df),
         "price": price,
         "candle_close": candle_close,
         "price_source": price_source,
@@ -1450,6 +1468,7 @@ def run_scan_once(state):
         f"Trigger: {trigger}\n"
         f"Timeframe: {TIMEFRAME}\n"
         f"Scanned: {len(results)}/{len(symbols)} symbols\n"
+        f"History: {lookback_line(results)}\n"
         f"Alerts sent: {alerts_sent}\n"
         f"Failures: {len(failures)}"
     )
