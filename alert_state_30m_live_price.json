@@ -2228,7 +2228,8 @@
     "LA/USDT|30m|short|0.0582025|0.05836": 1788087140.3882854,
     "ZIL/USDT|30m|short|0.00264789|0.002653": 1788091935.2617533,
     "TAO/USDT|30m|short|238.632|239.2": 1788091935.483679,
-    "ARBUSD|30m|short|0.0885845|0.0887": 1788093140.7758143
+    "ARBUSD|30m|short|0.0885845|0.0887": 1788093140.7758143,
+    "MSFT/USDT:USDT|30m|short|516.104|516.22": 1788094325.3913016
   },
   "METAXUSD|demand|577.00000000|579.20000000": {
     "in_zone": false,
@@ -13777,7 +13778,7 @@
     "last_alert_at": 1787580724.510809
   },
   "__last_scan_started__": {
-    "30m": 1788093060.8371732
+    "30m": 1788094253.5026157
   },
   "TAO/USDT|supply|227.92800000|229.00000000": {
     "in_zone": false,
@@ -22092,7 +22093,7 @@
     "last_alert_at": 1788084725.1013675
   },
   "ARBUSD|supply|0.08858450|0.08870000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1788093140.7758143
   },
   "1000BONKUSD|supply|0.00302410|0.00302800": {
@@ -22526,5 +22527,21 @@
   "PUMPUSD|supply|0.00510356|0.00511600": {
     "in_zone": false,
     "last_alert_at": 0.0
+  },
+  "LTCUSD|demand|48.48000000|48.52530000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "POL/USDT|demand|0.10072000|0.10087675": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "NBIS/USDT:USDT|supply|211.13785000|211.25000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "MSFT/USDT:USDT|supply|516.10350000|516.22000000": {
+    "in_zone": true,
+    "last_alert_at": 1788094325.3913016
   }
 }
