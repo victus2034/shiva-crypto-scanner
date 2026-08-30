@@ -348,3 +348,25 @@ class FeedFreshnessTests(unittest.TestCase):
             with self.assertRaises(RuntimeError):
                 # VANRY was ten days behind when it was dropped.
                 scanner.require_fresh_ohlcv(self._candle(10 * 24 * 60), "CoinSwitch")
+
+class FallbackPairTests(unittest.TestCase):
+    def test_crypto_ending_in_a_stock_suffix_still_maps(self):
+        # AVAXUSD ends "XUSD" and BNBUSD ends "BUSD", the endings
+        # tokenised stocks use. Treating them as stocks left both with no
+        # working fallback at all - kucoin has no market BNBUSD.
+        for raw, expected in (
+            ("AVAXUSD", "AVAX/USDT"),
+            ("BNBUSD", "BNB/USDT"),
+            ("ARBUSD", "ARB/USDT"),
+            ("LABUSD", "LAB/USDT"),
+        ):
+            with self.subTest(raw=raw):
+                self.assertEqual(scanner.fallback_symbol(raw), expected)
+
+    def test_tokenised_stocks_keep_their_venue_string(self):
+        # Stripping USD here would invent a pair that could match an
+        # unrelated token on a small exchange.
+        for raw in ("MSTRBUSD", "SPYXUSD", "INTCBUSD", "SPCXXUSD"):
+            with self.subTest(raw=raw):
+                self.assertEqual(scanner.fallback_symbol(raw), raw)
+

@@ -450,11 +450,21 @@ def is_delta_symbol(symbol):
 
 
 def fallback_symbol(symbol):
-    # XUSD/BUSD-suffixed xStock tickers (e.g. QQQXUSD, MSTRBUSD) are
-    # Delta-native symbols, not "<base>USD" crypto pairs - stripping the
-    # trailing "USD" would produce a bogus ccxt symbol (QQQX/USDT) that
-    # could coincidentally match an unrelated token on a small exchange.
-    if is_delta_symbol(symbol) and not symbol.upper().endswith(("XUSD", "BUSD")):
+    """The ccxt pair to ask a fallback exchange for.
+
+    Tokenised stocks (QQQXUSD, MSTRBUSD) are Delta-native strings, not
+    "<base>USD" crypto pairs - stripping the trailing USD would produce a
+    bogus symbol that could coincidentally match an unrelated token on a
+    small exchange. But which is which cannot be read off the suffix:
+    AVAXUSD ends "XUSD" and BNBUSD ends "BUSD" while both are ordinary
+    crypto, so the registry decides, the same way it does for the
+    CoinSwitch contract and the display name.
+
+    Until this used the registry, every fallback for AVAX and BNB asked
+    for a pair no exchange lists, so those two had no working fallback at
+    all whenever CoinSwitch was unavailable.
+    """
+    if is_delta_symbol(symbol) and not is_stock_symbol(symbol):
         return f"{symbol[:-3]}/USDT"
     return symbol
 
