@@ -879,7 +879,14 @@ def lookback_line(results):
     if not seconds:
         return f"{typical} candles"
     days = typical * seconds / 86400
-    return f"{typical} candles ({days:.1f} days), shortest {counts[0]}"
+    deepest = counts[-1] * seconds / 86400
+    # Deepest as well as median: only the measured symbols get spliced,
+    # so a working splice moves the top of the range and leaves the
+    # middle exactly where it was.
+    return (
+        f"{typical} candles ({days:.1f} days) typical, "
+        f"{counts[0]} shortest, {counts[-1]} deepest ({deepest:.1f} days)"
+    )
 
 
 def scan_symbol(symbol):

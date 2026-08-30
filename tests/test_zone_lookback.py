@@ -43,6 +43,20 @@ class LookbackReportingTests(unittest.TestCase):
         self.assertIn("751 candles", line)
         self.assertIn("125.2 days", line)
 
+    def test_a_spliced_symbol_shows_in_the_deepest_figure(self):
+        # Only measured symbols are spliced, so the median stays put and
+        # the splice is only visible at the top of the range.
+        import scanner
+
+        with patch.object(scanner, "TIMEFRAME", "30m"):
+            line = scanner.lookback_line(
+                [{"candles": 751}] * 90 + [{"candles": 1500}] * 28
+            )
+
+        self.assertIn("751 candles", line)
+        self.assertIn("1500 deepest", line)
+        self.assertIn("31.2 days", line)
+
     def test_a_short_symbol_is_called_out(self):
         import scanner
 
@@ -51,7 +65,7 @@ class LookbackReportingTests(unittest.TestCase):
                 [{"candles": 751}, {"candles": 751}, {"candles": 120}]
             )
 
-        self.assertIn("shortest 120", line)
+        self.assertIn("120 shortest", line)
 
     def test_no_results_does_not_crash_the_summary(self):
         import scanner
