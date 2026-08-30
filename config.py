@@ -268,6 +268,25 @@ MIN_ZONE_AGE_CANDLES = env_int("SHIVA_MIN_ZONE_AGE_CANDLES", 20)
 # after the last one steps aside. Zero disables the guard.
 MIN_SCAN_INTERVAL_SECONDS = env_int("SHIVA_MIN_SCAN_INTERVAL_SECONDS", 8 * 60)
 
+# Symbols whose older candles may be spliced in from a deeper venue.
+#
+# CoinSwitch stops at 751 30m candles - 15.6 days - however it is asked,
+# so a month-old 30m zone is unreachable on the book being charted. KuCoin
+# serves 1500 in one request. Splicing its older candles underneath the
+# CoinSwitch ones reaches thirty days, but only where the two venues price
+# the same candle closely enough that the zone still lands where the chart
+# shows it. Measured across the watchlist: BTC, ETH and SOL sit 0.04% apart,
+# five times inside the 0.20% alert distance, while ESPORTS is 1.11% apart
+# and 2.9% at worst - a zone spliced there would mark a price that never
+# traded on the venue being watched.
+#
+# Empty until the measurement fills it. venue_divergence.py prints the list.
+DEEP_HISTORY_SYMBOLS = set()
+# Where the older candles come from. Binance is deliberately absent: it is
+# geo-blocked from GitHub Actions runners, which took the whole scanner
+# down once before.
+DEEP_HISTORY_EXCHANGE = os.getenv("SHIVA_DEEP_HISTORY_EXCHANGE", "kucoin")
+
 # How many candles a feed may be behind before it counts as dead.
 # CoinSwitch omits any bucket with no trades and its higher-timeframe
 # series trails the live market, so at 14:55 the newest 30m candle was

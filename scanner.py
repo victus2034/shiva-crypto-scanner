@@ -51,6 +51,8 @@ from config import (
     REQUIRE_COINSWITCH,
     CRYPTO_ALERT_END,
     CRYPTO_ALERT_START,
+    DEEP_HISTORY_EXCHANGE,
+    DEEP_HISTORY_SYMBOLS,
     SCAN_SLEEP,
     STALE_BARS_ALLOWED,
     SCAN_WORKERS,
@@ -755,6 +757,42 @@ def live_ticker_price(exchange_name, symbol, candle_close):
     return candle_close, "candle_close"
 
 
+def splice_deep_history(symbol, ohlcv):
+    """Extend a CoinSwitch series backwards from a deeper venue.
+
+    CoinSwitch stops at 751 candles however it is asked, so old zones are
+    not filtered out - they are absent. Only candles OLDER than what
+    CoinSwitch returned are taken, so every bar the charted venue does
+    have is the one used: current price, the entry level and whether a
+    zone has broken all still come from the book on screen. The borrowed
+    bars only reveal pivots that would otherwise be invisible.
+
+    Restricted to symbols measured to agree with the deep venue inside
+    the alert distance. Splicing a symbol that disagrees would draw the
+    zone at a price that never traded where the user is looking.
+    """
+    if not ohlcv or display_symbol(symbol) not in DEEP_HISTORY_SYMBOLS:
+        return ohlcv
+
+    exchange = EXCHANGES_BY_ID.get(DEEP_HISTORY_EXCHANGE)
+    if exchange is None:
+        return ohlcv
+
+    oldest = int(ohlcv[0][0])
+    try:
+        deep = fetch_exchange_ohlcv(exchange, fallback_symbol(symbol))
+    except Exception as error:
+        # Losing the extension is not worth failing a scan over - the
+        # charted series is still complete, just shorter.
+        print(f"{symbol} deep history unavailable: {str(error)[:70]}")
+        return ohlcv
+
+    older = [row for row in (deep or []) if int(row[0]) < oldest]
+    if not older:
+        return ohlcv
+    return sorted(older, key=lambda row: int(row[0])) + ohlcv
+
+
 def fetch_symbol_ohlcv(symbol):
     """Candles for one symbol and the venue they came from.
 
@@ -821,6 +859,11 @@ def fetch_symbol_ohlcv(symbol):
 
     if ohlcv is None:
         raise RuntimeError(f"all exchanges failed for {symbol}: {last_error}")
+
+    # Only extend the charted venue. A fallback series is already off-chart,
+    # and stitching a third venue underneath it compounds the drift.
+    if exchange_name == "coinswitch":
+        ohlcv = splice_deep_history(symbol, ohlcv)
 
     return ohlcv, exchange_name
 
