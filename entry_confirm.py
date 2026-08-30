@@ -84,12 +84,16 @@ STAGE_LATE = 3
 
 def parse_args(argv=None) -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--timeframe", choices=["30m", "4h"], default="30m")
+    # Both by default: the user watches 30m and 4h together, so covering
+    # one silently halves the channel.
+    parser.add_argument(
+        "--timeframe", choices=["30m", "4h", "both"], default="both"
+    )
     parser.add_argument(
         "--market",
         choices=["nse", "crypto", "all"],
-        default="all",
-        help="Which alert records to watch.",
+        default="crypto",
+        help="Which alert records to watch. Crypto covers xStocks too.",
     )
     parser.add_argument("--dry-run", action="store_true")
     parser.add_argument(
@@ -399,6 +403,10 @@ def markets_for(choice: str) -> list[str]:
     return ["nse", "crypto"] if choice == "all" else [choice]
 
 
+def timeframes_for(choice: str) -> list[str]:
+    return ["30m", "4h"] if choice == "both" else [choice]
+
+
 def main() -> None:
     args = parse_args()
     now = pd.Timestamp.now(tz=IST)
@@ -417,7 +425,8 @@ def main() -> None:
         ):
             print("Crypto outside the 08:00-01:00 IST window; skipping.")
             continue
-        watched.extend(load_watched_alerts(market, args.timeframe, now))
+        for timeframe in timeframes_for(args.timeframe):
+            watched.extend(load_watched_alerts(market, timeframe, now))
 
     if not watched:
         print("No alerts inside their entry window.")

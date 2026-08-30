@@ -204,8 +204,7 @@ class DigestTests(unittest.TestCase):
             self.assertIn(f"SYM{n:03d}", joined)
 
 
-if __name__ == "__main__":
-    unittest.main()
+
 
 class WatchKeyTests(unittest.TestCase):
     def test_the_same_zone_re_alerted_gets_one_key(self):
@@ -247,3 +246,24 @@ class ApproachBandTests(unittest.TestCase):
         self.assertEqual(stage, entry_confirm.STAGE_READY)
         self.assertFalse(reached)
 
+class ScopeTests(unittest.TestCase):
+    def test_it_watches_crypto_over_both_timeframes_by_default(self):
+        # NSE was dropped from this job, and covering one timeframe
+        # silently halved the channel.
+        args = entry_confirm.parse_args([])
+
+        self.assertEqual(args.market, "crypto")
+        self.assertEqual(entry_confirm.markets_for(args.market), ["crypto"])
+        self.assertEqual(entry_confirm.timeframes_for(args.timeframe), ["30m", "4h"])
+
+    def test_nse_can_still_be_asked_for_explicitly(self):
+        # Paused, not deleted - the records and the code still work.
+        args = entry_confirm.parse_args(["--market", "nse", "--timeframe", "30m"])
+
+        self.assertEqual(entry_confirm.markets_for(args.market), ["nse"])
+        self.assertEqual(entry_confirm.timeframes_for(args.timeframe), ["30m"])
+
+
+
+if __name__ == "__main__":
+    unittest.main()

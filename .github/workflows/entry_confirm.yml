@@ -1,31 +1,33 @@
 name: Shiva Entry Confirm
 
 on:
-  # Both markets: the NSE session, and the crypto alert window.
   schedule:
-    # NSE session, every five minutes
-    - cron: "*/5 3-10 * * 1-5"
-    # crypto window, every five minutes - the same cadence as NSE.
-    # At ten, price stepped over the approach band between polls and
-    # the alert was never pinged at all.
+    # Crypto only - NSE is no longer watched here. 08:00-01:00 IST is
+    # 02:30-19:30 UTC. Five minutes, because at ten price stepped over
+    # the approach band between polls and the alert was never pinged.
+    #
+    # GitHub honours a fraction of these - two of a possible 230 on
+    # 30 Aug - so the external scheduler is what actually drives this
+    # job. The cron is a fallback, not the mechanism.
     - cron: "*/5 2-19 * * *"
   workflow_dispatch:
     inputs:
       market:
         description: "Which alert records to watch"
         required: false
-        default: "all"
+        default: "crypto"
         type: choice
         options:
-          - "all"
-          - "nse"
           - "crypto"
+          - "nse"
+          - "all"
       timeframe:
         description: "Alert timeframe to watch"
         required: false
-        default: "30m"
+        default: "both"
         type: choice
         options:
+          - "both"
           - "30m"
           - "4h"
       dry_run:
@@ -104,8 +106,8 @@ jobs:
             EXTRA_ARGS+=(--ignore-session)
           fi
           python entry_confirm.py \
-            --timeframe "${INPUT_TIMEFRAME:-30m}" \
-            --market "${INPUT_MARKET:-all}" \
+            --timeframe "${INPUT_TIMEFRAME:-both}" \
+            --market "${INPUT_MARKET:-crypto}" \
             "${EXTRA_ARGS[@]}"
 
       # Runs in the same job as the pings: identical cadence, same symbols,
