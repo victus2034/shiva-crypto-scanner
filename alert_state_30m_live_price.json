@@ -2188,7 +2188,7 @@
     "SOON/USDT|30m|short|0.209574|0.21": 1787975540.2806802,
     "TRX/USDT|30m|long|0.33821|0.338389": 1787983925.665963,
     "ALLO/USDT|30m|long|0.23775|0.238297": 1787987523.1909847,
-    "AAPLXUSD|30m|short|322.591|322.75": 1787988752.4125462,
+    "AAPLXUSD|30m|short|322.591|322.75": 1788093140.9473166,
     "1000SHIBUSD|30m|long|0.005085|0.00509101": 1787995936.1399744,
     "ALGO/USDT|30m|long|0.08535|0.0855308": 1787991135.8071775,
     "ADAUSD|30m|long|0.1988|0.199319": 1787992335.705587,
@@ -2227,7 +2227,8 @@
     "LTCUSD|30m|short|49.2967|49.36": 1788085941.1509228,
     "LA/USDT|30m|short|0.0582025|0.05836": 1788087140.3882854,
     "ZIL/USDT|30m|short|0.00264789|0.002653": 1788091935.2617533,
-    "TAO/USDT|30m|short|238.632|239.2": 1788091935.483679
+    "TAO/USDT|30m|short|238.632|239.2": 1788091935.483679,
+    "ARBUSD|30m|short|0.0885845|0.0887": 1788093140.7758143
   },
   "METAXUSD|demand|577.00000000|579.20000000": {
     "in_zone": false,
@@ -13776,7 +13777,7 @@
     "last_alert_at": 1787580724.510809
   },
   "__last_scan_started__": {
-    "30m": 1788091856.0540526
+    "30m": 1788093060.8371732
   },
   "TAO/USDT|supply|227.92800000|229.00000000": {
     "in_zone": false,
@@ -20399,7 +20400,7 @@
     "last_alert_at": 1787974346.181972
   },
   "ZIL/USDT|supply|0.00264789|0.00265300": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1788091935.2617533
   },
   "1000BONKUSD|supply|0.00320051|0.00320900": {
@@ -21143,8 +21144,8 @@
     "last_alert_at": 0.0
   },
   "AAPLXUSD|supply|322.59065000|322.75000000": {
-    "in_zone": false,
-    "last_alert_at": 1787988752.4125462
+    "in_zone": true,
+    "last_alert_at": 1788093140.9473166
   },
   "SPCXXUSD|demand|138.10000000|138.24150000": {
     "in_zone": false,
@@ -22091,8 +22092,8 @@
     "last_alert_at": 1788084725.1013675
   },
   "ARBUSD|supply|0.08858450|0.08870000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1788093140.7758143
   },
   "1000BONKUSD|supply|0.00302410|0.00302800": {
     "in_zone": false,
@@ -22515,6 +22516,14 @@
     "last_alert_at": 0.0
   },
   "0G/USDT|supply|0.16929450|0.16980000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "DEXE/USDT|demand|2.20400000|2.22404500": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "PUMPUSD|supply|0.00510356|0.00511600": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
