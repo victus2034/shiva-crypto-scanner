@@ -1091,8 +1091,7 @@ class DailyBacktestSummaryTests(unittest.TestCase):
             self.assertEqual(summary.display_symbol(raw), expected)
 
 
-if __name__ == "__main__":
-    unittest.main()
+
 
 
 class EvaluationDataConfigTests(unittest.TestCase):
@@ -1280,3 +1279,28 @@ class RepeatDeliveryTests(unittest.TestCase):
         self.assertEqual(kept.hour, 4)
         self.assertEqual(kept.minute, 0)
 
+class OutcomeLabelTests(unittest.TestCase):
+    def test_the_internal_ambiguous_name_never_reaches_a_report(self):
+        # A dry run caught this leaking as data_quality_ambiguous into
+        # the summary line while the rating block said Ambiguous.
+        records = pd.DataFrame([{
+            "symbol": "TCS.NS", "side": "long", "rating": 8,
+            "event_time_ist": pd.Timestamp("2026-08-28 09:15", tz=summary.IST),
+        }])
+        results = records.copy()
+        results["filled"] = [True]
+        results["outcome"] = [summary.DATA_QUALITY_AMBIGUOUS]
+        results["final_result"] = [summary.DATA_QUALITY_AMBIGUOUS]
+        results["net_realized_r"] = [0.0]
+
+        message = summary.build_summary(
+            records, pd.Timestamp("2026-08-28").date(), results, {}, 0, "30m", "nse"
+        )
+
+        self.assertNotIn(summary.DATA_QUALITY_AMBIGUOUS, message)
+        self.assertIn("Ambiguous", message)
+
+
+
+if __name__ == "__main__":
+    unittest.main()

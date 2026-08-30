@@ -123,6 +123,9 @@ FINAL_RESULT_R = {
     "Neither": 0.0,
 }
 OUTCOME_ORDER = ["SL", DATA_QUALITY_AMBIGUOUS, BREAK_EVEN, "+0.5R", "+1R", "+2R", "Neither"]
+# The internal name for an unresolved same-candle conflict is not a phrase
+# anyone should read in a report.
+OUTCOME_LABELS = {DATA_QUALITY_AMBIGUOUS: "Ambiguous"}
 MARKET_NSE = "NSE"
 MARKET_CRYPTO = "CRYPTO"
 MARKET_XSTOCK = "XSTOCK"
@@ -1525,7 +1528,7 @@ def build_summary(
     # was in OVERVIEW/EXECUTION/RESULTS is still here; the headings and the
     # one-per-line layout were the length, not the content.
     counted = " · ".join(
-        f"{label} {int(final_counts.get(label, 0))}"
+        f"{OUTCOME_LABELS.get(label, label)} {int(final_counts.get(label, 0))}"
         for label in OUTCOME_ORDER
         if int(final_counts.get(label, 0))
     )
@@ -1687,7 +1690,7 @@ def format_rating_table(records: pd.DataFrame, results: pd.DataFrame) -> str:
 
 
 def format_outcome_lines(counts: pd.Series) -> list[str]:
-    labels = {DATA_QUALITY_AMBIGUOUS: "Ambiguous"}
+    labels = OUTCOME_LABELS
     lines: list[str] = []
     for outcome in OUTCOME_ORDER:
         count = int(counts.get(outcome, 0))
