@@ -16465,6 +16465,56 @@
       "target_half": 0.19224592499999998,
       "timeframe": "4h",
       "trade_id": "36ee7e087577d7a7"
+    },
+    {
+      "alert_time": "2026-08-30T17:32:17.421534+05:30",
+      "cost_r": 0.02409826920765134,
+      "date": "2026-08-30",
+      "entry": 0.18669675,
+      "entry_time": "2026-08-30T17:50:00+05:30",
+      "exit_price": 0.18637,
+      "exit_time": "2026-08-30T23:45:00+05:30",
+      "final_result": "Neither",
+      "half_r_hit": false,
+      "market": "crypto",
+      "net_realized_r": -0.0637745929761658,
+      "outcome": "Neither",
+      "rating": 8,
+      "realized_r": -0.039676323768514474,
+      "risk": 0.008235390000000009,
+      "side": "long",
+      "stop": 0.17846135999999999,
+      "symbol": "ACE/USDT",
+      "target_1": 0.19493214,
+      "target_2": 0.20316753,
+      "target_half": 0.190814445,
+      "timeframe": "4h",
+      "trade_id": "57971385155945d9"
+    },
+    {
+      "alert_time": "2026-08-30T23:39:48.980062+05:30",
+      "cost_r": 0.41366730654348854,
+      "date": "2026-08-30",
+      "entry": 0.5602215,
+      "entry_time": "2026-08-30T23:40:00+05:30",
+      "exit_price": 0.5619419305500001,
+      "exit_time": "2026-08-30T23:40:00+05:30",
+      "final_result": "SL",
+      "half_r_hit": false,
+      "market": "crypto",
+      "net_realized_r": -1.6087427094332205,
+      "outcome": "SL",
+      "rating": 9,
+      "realized_r": -1.195075402889732,
+      "risk": 0.0014395999999999853,
+      "side": "short",
+      "stop": 0.5616611,
+      "symbol": "MNT/USDT",
+      "target_1": 0.5587819,
+      "target_2": 0.5573423000000001,
+      "target_half": 0.5595017,
+      "timeframe": "30m",
+      "trade_id": "3516361e5360b923"
     }
   ],
   "handled": {
@@ -16609,6 +16659,7 @@
     "3404495c49a06d71": "filled",
     "349711af805f1ccb": "filled",
     "349b7cdc83958fbc": "filled",
+    "3516361e5360b923": "filled",
     "356e78c727647e6b": "filled",
     "3580167282cb92fa": "filled",
     "3598df8373ced83b": "filled",
@@ -17188,22 +17239,5 @@
     "fed8ed34d9b4adcd": "filled",
     "ffb4661b7d04cd46": "filled"
   },
-  "open": {
-    "57971385155945d9": {
-      "alert_time": "2026-08-30T17:32:17.421534+05:30",
-      "entry": 0.18669675,
-      "entry_time": "2026-08-30T17:50:00+05:30",
-      "half_r_hit": false,
-      "market": "crypto",
-      "rating": 8,
-      "risk": 0.008235390000000009,
-      "side": "long",
-      "stop": 0.17846135999999999,
-      "symbol": "ACE/USDT",
-      "target_1": 0.19493214,
-      "target_2": 0.20316753,
-      "target_half": 0.190814445,
-      "timeframe": "4h"
-    }
-  }
+  "open": {}
 }
