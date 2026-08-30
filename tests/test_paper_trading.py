@@ -1,4 +1,5 @@
 import unittest
+from unittest.mock import patch
 
 import pandas as pd
 
@@ -222,28 +223,61 @@ class PaperWindowTests(unittest.TestCase):
 
 
 class ReportTests(unittest.TestCase):
-    def test_report_states_plainly_when_nothing_closed(self):
-        message = paper_trading.build_report("2026-08-17", "30m", fresh_state())
-        self.assertIn("No paper trades closed", message)
+    def _stats(self, entries, wins, decided, total):
+        return {"entries": entries, "wins": wins, "decided": decided, "total_r": total}
 
-    def test_report_shows_paper_outcomes_and_total(self):
+    def test_report_states_plainly_when_nothing_closed(self):
+        with patch.object(paper_trading, "backtest_day_stats", lambda *a, **k: None):
+            message = paper_trading.build_report("2026-08-17", "30m", fresh_state())
+
+        self.assertIn("Nothing closed", message)
+
+    def test_one_row_per_market_and_timeframe(self):
         state = fresh_state()
         state["closed"] = [
-            {"date": "2026-08-17", "outcome": "+1R", "realized_r": 1.0, "symbol": "TCS.NS"},
-            {"date": "2026-08-17", "outcome": "SL", "realized_r": -1.04, "symbol": "INFY.NS"},
-            {"date": "2026-08-16", "outcome": "+2R", "realized_r": 2.0, "symbol": "WIPRO.NS"},
+            {"date": "2026-08-17", "market": "crypto", "timeframe": "30m",
+             "outcome": "+1R", "net_realized_r": 1.0, "symbol": "BTCUSDT"},
+            {"date": "2026-08-17", "market": "crypto", "timeframe": "30m",
+             "outcome": "SL", "net_realized_r": -1.04, "symbol": "ETHUSDT"},
+            {"date": "2026-08-16", "market": "crypto", "timeframe": "30m",
+             "outcome": "+2R", "net_realized_r": 2.0, "symbol": "SOLUSDT"},
         ]
-        message = paper_trading.build_report("2026-08-17", "30m", state)
+        with patch.object(paper_trading, "backtest_day_stats", lambda *a, **k: None):
+            message = paper_trading.build_report("2026-08-17", "30m", state)
 
-        self.assertIn("Entries - 2", message)  # 16 Aug row excluded
-        self.assertIn("+1R - 1", message)
-        self.assertIn("SL - 1", message)
-        self.assertIn("Win rate - 50.0%", message)
-        self.assertIn("-0.04R", message)
+        self.assertIn("CRYPTO 30m", message)
+        # The 16 Aug row belongs to another day.
+        self.assertIn("2 · 50.0% · -0.04R", message)
+        self.assertNotIn("NSE", message)
+
+    def test_the_gap_is_paper_minus_backtest(self):
+        state = fresh_state()
+        state["closed"] = [
+            {"date": "2026-08-17", "market": "crypto", "timeframe": "30m",
+             "outcome": "SL", "net_realized_r": -2.0, "symbol": "BTCUSDT"},
+        ]
+        reference = self._stats(1, 1, 1, 1.0)
+        with patch.object(
+            paper_trading, "backtest_day_stats",
+            lambda d, t, market="nse": reference if market == "crypto" else None,
+        ):
+            message = paper_trading.build_report("2026-08-17", "30m", state)
+
+        self.assertIn("-3.00R", message)
+
+    def test_markets_that_did_nothing_are_left_out(self):
+        state = fresh_state()
+        state["closed"] = [
+            {"date": "2026-08-17", "market": "crypto", "timeframe": "30m",
+             "outcome": "+1R", "net_realized_r": 1.0, "symbol": "BTCUSDT"},
+        ]
+        with patch.object(paper_trading, "backtest_day_stats", lambda *a, **k: None):
+            message = paper_trading.build_report("2026-08-17", "30m", state)
+
+        self.assertNotIn("XSTOCK", message)
+        self.assertNotIn("4h", message)
 
 
-if __name__ == "__main__":
-    unittest.main()
 
 class CommandLineTests(unittest.TestCase):
     def test_the_scheduled_invocation_parses(self):
@@ -258,4 +292,41 @@ class CommandLineTests(unittest.TestCase):
                 )
                 self.assertEqual(args.timeframe, timeframe)
                 self.assertTrue(args.tick)
+
+
+if __name__ == "__main__":
+    unittest.main()
+
+def summary_cutoff():
+    import daily_backtest_summary as backtest
+
+    return backtest.NSE_BACKTEST_CLOSE_CUTOFF
+
+
+class CryptoPaperTests(unittest.TestCase):
+    def test_crypto_follows_the_alert_window_not_market_hours(self):
+        # NSE closes; crypto does not. Applying the 09:15-16:00 guard to
+        # crypto would silence it for most of the day.
+        saturday = pd.Timestamp("2026-08-29 22:00", tz=paper_trading.IST)
+
+        self.assertFalse(paper_trading.paper_window_open("nse", saturday))
+        self.assertTrue(paper_trading.paper_window_open("crypto", saturday))
+
+    def test_crypto_is_quiet_outside_the_alert_window(self):
+        # Nothing alerts between 01:00 and 08:00, so nothing can fill.
+        night = pd.Timestamp("2026-08-29 04:00", tz=paper_trading.IST)
+
+        self.assertFalse(paper_trading.paper_window_open("crypto", night))
+
+    def test_nse_is_judged_to_the_square_off_and_crypto_to_six_hours(self):
+        # Diverging from the backtest here would compare two different
+        # strategies rather than one strategy against live prices.
+        now = pd.Timestamp("2026-08-28 11:00", tz=paper_trading.IST)
+        entry = pd.Timestamp("2026-08-28 10:00", tz=paper_trading.IST)
+
+        nse_end = paper_trading.horizon_end("nse", entry, now)
+        crypto_end = paper_trading.horizon_end("crypto", entry, now)
+
+        self.assertEqual(nse_end.time(), summary_cutoff())
+        self.assertEqual(crypto_end - entry, pd.Timedelta(hours=6))
 

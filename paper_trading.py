@@ -21,7 +21,7 @@ from __future__ import annotations
 import argparse
 import json
 import os
-from datetime import datetime, time as datetime_time
+from datetime import datetime, time as datetime_time, timedelta
 from pathlib import Path
 
 import pandas as pd
@@ -60,6 +60,12 @@ def parse_args(argv=None) -> argparse.Namespace:
     # into {crypto, nse}, so every scheduled tick died on its own
     # default. Paper trading follows NSE alerts, hence NSE timeframes.
     parser.add_argument("--timeframe", choices=["30m", "4h"], default="30m")
+    # NSE is paused while crypto is measured. The state file keys every
+    # trade by market, so the two never mix and NSE can come back without
+    # losing its history.
+    parser.add_argument(
+        "--market", choices=["nse", "crypto", "xstock"], default="crypto"
+    )
     parser.add_argument("--tick", action="store_true", help="Advance the simulation.")
     parser.add_argument("--report", action="store_true", help="Post the daily comparison.")
     parser.add_argument("--date", help="IST date for --report, YYYY-MM-DD.")
@@ -82,6 +88,37 @@ def load_state() -> dict:
 
 def save_state(state: dict) -> None:
     STATE_PATH.write_text(json.dumps(state, indent=2, sort_keys=True), encoding="utf-8")
+
+
+def fetch_crypto_bars(symbols: list[str]) -> dict[str, pd.DataFrame]:
+    """Recent 5m OHLC per symbol, from the scan's own venue chain.
+
+    Imported lazily so the NSE path never pays for ccxt loading, and so a
+    crypto venue being unreachable cannot stop an NSE tick.
+    """
+    if not symbols:
+        return {}
+    import scanner
+
+    frames: dict[str, pd.DataFrame] = {}
+    previous, scanner.TIMEFRAME = scanner.TIMEFRAME, BAR_INTERVAL
+    try:
+        for symbol in symbols:
+            try:
+                ohlcv, _ = scanner.fetch_symbol_ohlcv(symbol)
+            except Exception as error:
+                print(f"{symbol} paper bars unavailable: {str(error)[:70]}")
+                continue
+            frame = pd.DataFrame(
+                ohlcv, columns=["time", "open", "high", "low", "close", "volume"]
+            )
+            frame.index = pd.to_datetime(
+                frame["time"], unit="ms", utc=True
+            ).dt.tz_convert(IST)
+            frames[symbol] = frame[["open", "high", "low", "close"]].sort_index()
+    finally:
+        scanner.TIMEFRAME = previous
+    return frames
 
 
 def fetch_bars(symbols: list[str]) -> dict[str, pd.DataFrame]:
@@ -141,6 +178,7 @@ def open_new_positions(
     watched: list[dict],
     frames: dict[str, pd.DataFrame],
     now: pd.Timestamp,
+    market: str = "nse",
 ) -> list[str]:
     """Fill a virtual limit order only if price genuinely reached entry."""
     opened = []
@@ -155,14 +193,13 @@ def open_new_positions(
         entry = record["_entry"]
         stop = record["_stop"]
         side = record.get("side", "long")
-        square_off = pd.Timestamp(
-            datetime.combine(now.date(), backtest.NSE_BACKTEST_CLOSE_CUTOFF), tz=IST
-        )
         # A fill after the user has stopped trading is not a trade they
-        # could have taken, so it must not open a position.
-        after_alert = frame[
-            (frame.index > record["_delivered"]) & (frame.index < square_off)
-        ]
+        # could have taken, so it must not open a position. Crypto has no
+        # such cut-off, so only the alert time bounds it.
+        after_alert = frame[frame.index > record["_delivered"]]
+        if market == "nse":
+            square_off = horizon_end(market, record["_delivered"], now)
+            after_alert = after_alert[after_alert.index < square_off]
         if after_alert.empty:
             continue
 
@@ -179,6 +216,9 @@ def open_new_positions(
         # crediting a favourable gap the backtest never modelled.
         state["open"][trade_id] = {
             "symbol": record["symbol"],
+            # Stamped so the two markets never mix in one state file and NSE
+            # can be paused without losing its history.
+            "market": market,
             "side": side,
             "entry": entry,
             "stop": stop,
@@ -196,7 +236,12 @@ def open_new_positions(
     return opened
 
 
-def evaluate_open_positions(state: dict, frames: dict[str, pd.DataFrame], now: pd.Timestamp) -> list[dict]:
+def evaluate_open_positions(
+    state: dict,
+    frames: dict[str, pd.DataFrame],
+    now: pd.Timestamp,
+    market: str = "nse",
+) -> list[dict]:
     """Walk each open position forward and close it if a level was hit."""
     closed = []
     for trade_id in list(state["open"]):
@@ -210,12 +255,11 @@ def evaluate_open_positions(state: dict, frames: dict[str, pd.DataFrame], now: p
         entry = position["entry"]
         stop = position["stop"]
         risk = position["risk"]
-        square_off = pd.Timestamp(
-            datetime.combine(now.date(), backtest.NSE_BACKTEST_CLOSE_CUTOFF), tz=IST
-        )
         # Bars are stamped at their start, so a bar opening at 15:10 covers
         # price action the user is already flat for. Anything from the
-        # cut-off onwards must not decide the trade.
+        # cut-off onwards must not decide the trade. For crypto the same
+        # role is played by six hours from entry.
+        square_off = horizon_end(market, entry_time, now)
         window = frame[(frame.index >= entry_time) & (frame.index < square_off)]
         if window.empty:
             continue
@@ -306,6 +350,7 @@ def evaluate_open_positions(state: dict, frames: dict[str, pd.DataFrame], now: p
                 "cost_r": float(cost_r),
                 "net_realized_r": None if pd.isna(net_r) else float(net_r),
                 "date": pd.Timestamp(position["entry_time"]).date().isoformat(),
+                "market": position.get("market", "nse"),
             }
         )
         state["closed"].append(record)
@@ -321,22 +366,58 @@ def in_paper_window(now: pd.Timestamp) -> bool:
     return entry_confirm.TRADE_START <= now.time() <= SQUARE_OFF_GRACE_END
 
 
+def paper_window_open(market: str, now: pd.Timestamp) -> bool:
+    """Whether this market is inside the hours it can be traded in.
+
+    Crypto has no session, so it follows the alert window instead - the
+    scanner will not raise an alert outside 08:00-01:00 IST, so paper has
+    nothing to act on there either.
+    """
+    if market == "nse":
+        return in_paper_window(now)
+    return entry_confirm.crypto_alert_window_open(now)
+
+
+def horizon_end(market: str, entry_time: pd.Timestamp, now: pd.Timestamp) -> pd.Timestamp:
+    """When a position stops being judged.
+
+    NSE squares off at 15:10 because the user does. Crypto never closes,
+    so it takes the backtest's six hours from entry - diverging here would
+    compare two different strategies rather than one strategy against live
+    prices, which is the whole point of the comparison.
+    """
+    if market == "nse":
+        return pd.Timestamp(
+            datetime.combine(now.date(), backtest.NSE_BACKTEST_CLOSE_CUTOFF), tz=IST
+        )
+    return pd.Timestamp(entry_time) + timedelta(hours=backtest.CRYPTO_EVALUATION_HOURS)
+
+
 def run_tick(args: argparse.Namespace) -> None:
     now = pd.Timestamp.now(tz=IST)
-    if not args.ignore_session and not in_paper_window(now):
-        print(f"Outside paper window ({now:%Y-%m-%d %H:%M} IST); nothing to do.")
+    if not args.ignore_session and not paper_window_open(args.market, now):
+        print(
+            f"{args.market} outside its paper window "
+            f"({now:%Y-%m-%d %H:%M} IST); nothing to do."
+        )
         return
 
     state = load_state()
-    watched = entry_confirm.load_watched_alerts("nse", args.timeframe, now)
+    watched = entry_confirm.load_watched_alerts(args.market, args.timeframe, now)
     symbols = sorted(
         {record["symbol"] for record in watched}
-        | {position["symbol"] for position in state["open"].values()}
+        | {
+            position["symbol"]
+            for position in state["open"].values()
+            if position.get("market", "nse") == args.market
+        }
     )
-    frames = fetch_bars(symbols)
+    frames = (
+        fetch_bars(symbols) if args.market == "nse" else fetch_crypto_bars(symbols)
+    )
 
-    opened = open_new_positions(state, watched, frames, now)
-    closed = evaluate_open_positions(state, frames, now)
+    opened = open_new_positions(state, watched, frames, now, args.market)
+    closed = evaluate_open_positions(state, frames, now, args.market)
 
     for trade_id in opened:
         position = state["open"].get(trade_id)
@@ -357,8 +438,8 @@ def run_tick(args: argparse.Namespace) -> None:
         save_state(state)
 
 
-def backtest_day_stats(date_iso: str, timeframe: str) -> dict | None:
-    """Same-day NSE figures from the backtest's own finalized records."""
+def backtest_day_stats(date_iso: str, timeframe: str, market: str = "nse") -> dict | None:
+    """Same-day figures from the backtest's own finalized records."""
     path = backtest.FINALIZED_RECORDS_PATH
     if not path.exists():
         return None
@@ -371,7 +452,7 @@ def backtest_day_stats(date_iso: str, timeframe: str) -> dict | None:
         except json.JSONDecodeError:
             continue
         if (
-            row.get("market") == "NSE"
+            str(row.get("market", "")).lower() == market.lower()
             and row.get("timeframe") == timeframe
             and row.get("date") == date_iso
             and row.get("filled")
@@ -390,63 +471,77 @@ def backtest_day_stats(date_iso: str, timeframe: str) -> dict | None:
     }
 
 
-def build_report(date_iso: str, timeframe: str, state: dict) -> str:
-    paper = [row for row in state["closed"] if row.get("date") == date_iso]
-    header = f"PAPER vs BACKTEST | NSE {timeframe}"
-    date_line = pd.Timestamp(date_iso).strftime("%d %b %Y").upper()
-    if not paper:
-        return f"{header}\n{date_line}\n\nNo paper trades closed on this date."
+MARKETS = [("nse", "NSE"), ("crypto", "CRYPTO"), ("xstock", "XSTOCK")]
+TIMEFRAMES = ["30m", "4h"]
 
-    counts = pd.Series([row["outcome"] for row in paper]).value_counts()
-    decided = [row for row in paper if row["outcome"] in {"SL", "+0.5R", "+1R", "+2R"}]
-    wins = sum(1 for row in decided if row["outcome"] != "SL")
-    # Net of charges, matching what the backtest side of this report sums,
-    # and falling back to gross for rows written before costs were modelled.
-    paper_r = sum(
-        (row.get("net_realized_r") if row.get("net_realized_r") is not None else row.get("realized_r")) or 0.0
-        for row in paper
-    )
 
-    lines = [
-        header,
-        date_line,
-        "",
-        "PAPER (forward, live fills)",
-        backtest.metric("Entries", len(paper)),
-        *[
-            backtest.metric("Ambiguous" if outcome == AMBIGUOUS else outcome, int(counts[outcome]))
-            for outcome in backtest.OUTCOME_ORDER
-            if outcome in counts
-        ],
-        backtest.metric("Win rate", f"{wins / len(decided) * 100:.1f}%" if decided else "N/A"),
-        backtest.metric("Total", backtest.format_r(paper_r)),
+def paper_day_stats(state: dict, date_iso: str, market: str, timeframe: str) -> dict | None:
+    rows = [
+        row for row in state["closed"]
+        if row.get("date") == date_iso
+        and row.get("market", "nse").lower() == market
+        and row.get("timeframe", timeframe) == timeframe
     ]
-
-    reference = backtest_day_stats(date_iso, timeframe)
-    if reference is None:
-        lines.extend(["", "BACKTEST", "No finalized backtest rows for this date yet."])
-        return "\n".join(lines)
-
-    ref_win = (
-        f"{reference['wins'] / reference['decided'] * 100:.1f}%" if reference["decided"] else "N/A"
+    if not rows:
+        return None
+    decided = [r for r in rows if r.get("outcome") in {"SL", "+0.5R", "+1R", "+2R"}]
+    wins = sum(1 for r in decided if r.get("outcome") != "SL")
+    total = sum(
+        (r.get("net_realized_r") if r.get("net_realized_r") is not None else r.get("realized_r")) or 0.0
+        for r in rows
     )
-    lines.extend(
-        [
-            "",
-            "BACKTEST (replayed history)",
-            backtest.metric("Entries", reference["entries"]),
-            backtest.metric("Win rate", ref_win),
-            backtest.metric("Total", backtest.format_r(reference["total_r"])),
-            "",
-            "DIVERGENCE",
-            backtest.metric("Entries", f"{len(paper) - reference['entries']:+d}"),
-            backtest.metric("Total", backtest.format_r(paper_r - reference["total_r"])),
-            "",
-            "Paper is forward and out-of-sample; the backtest replays history",
-            "through the logic that made the alerts. Persistent gaps favour",
-            "the backtest being optimistic, not the paper run being unlucky.",
-        ]
+    return {"entries": len(rows), "decided": len(decided), "wins": wins, "total_r": total}
+
+
+def side_text(stats: dict | None) -> str:
+    if stats is None:
+        return "-"
+    rate = f"{stats['wins'] / stats['decided'] * 100:.1f}%" if stats["decided"] else "N/A"
+    return f"{stats['entries']} · {rate} · {stats['total_r']:+.2f}R"
+
+
+def build_report(date_iso: str, timeframe: str, state: dict) -> str:
+    """One table for every market, rather than a block each.
+
+    The old report ran twenty-six lines for NSE alone. Nothing here is lost:
+    entries, win rate and total for both sides, and the gap between them.
+    """
+    date_line = pd.Timestamp(date_iso).strftime("%d %b %Y").upper()
+    lines = [f"PAPER vs BACKTEST · {date_line}", ""]
+
+    rows = []
+    for market, label in MARKETS:
+        for frame in TIMEFRAMES:
+            paper = paper_day_stats(state, date_iso, market, frame)
+            reference = backtest_day_stats(date_iso, frame, market)
+            if paper is None and reference is None:
+                continue
+            gap = (
+                f"{paper['total_r'] - reference['total_r']:+.2f}R"
+                if paper and reference
+                else "-"
+            )
+            rows.append((f"{label} {frame}", side_text(paper), side_text(reference), gap))
+
+    if not rows:
+        return f"PAPER vs BACKTEST · {date_line}\n\nNothing closed on this date."
+
+    width = max(len(r[0]) for r in rows)
+    paper_width = max(max(len(r[1]) for r in rows), len("paper"))
+    backtest_width = max(max(len(r[2]) for r in rows), len("backtest"))
+    lines.append(
+        f"{'':<{width}}  {'paper':<{paper_width}}  {'backtest':<{backtest_width}}  gap"
     )
+    for name, paper, reference, gap in rows:
+        lines.append(
+            f"{name:<{width}}  {paper:<{paper_width}}  {reference:<{backtest_width}}  {gap}"
+        )
+
+    lines.extend([
+        "",
+        "Gap is paper minus backtest. Persistent negatives mean the",
+        "backtest is optimistic, not that paper was unlucky.",
+    ])
     return "\n".join(lines)
 
 

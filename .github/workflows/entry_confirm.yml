@@ -124,7 +124,11 @@ jobs:
           if [ "$INPUT_IGNORE_SESSION" = "true" ]; then
             EXTRA_ARGS+=(--ignore-session)
           fi
-          python paper_trading.py --tick --timeframe "${INPUT_TIMEFRAME:-30m}" "${EXTRA_ARGS[@]}"
+          # NSE paper is paused; crypto is the one being measured.
+          python paper_trading.py --tick \
+            --timeframe "${INPUT_TIMEFRAME:-30m}" \
+            --market crypto \
+            "${EXTRA_ARGS[@]}"
 
       - name: Persist runtime state
         if: ${{ github.event.inputs.dry_run != 'true' }}
