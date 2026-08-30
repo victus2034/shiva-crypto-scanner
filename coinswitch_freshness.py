@@ -133,8 +133,36 @@ def main() -> None:
         except Exception as error:
             print(f"  asked {want}: {str(error)[:70]}")
         time.sleep(1.0)
-    print(f"require_fresh_ohlcv rejects a 30m candle older than "
-          f"{(sc.TIMEFRAME_SECONDS['30m'] * 2 + 300) / 60:.0f} minutes")
+    # 751 is the ceiling on a plain limit. If start_time reaches further
+    # back, deep history is one paged request away; if not, the only route
+    # to a month-old 30m zone is a coarser series.
+    import time as _t
+    thirty_days_ago = int((_t.time() - 30 * 24 * 3600) * 1000)
+    for params in (
+        {"start_time": thirty_days_ago},
+        {"start_time": thirty_days_ago, "end_time": int(_t.time() * 1000)},
+        {"from": thirty_days_ago},
+    ):
+        try:
+            payload = signed_get(
+                "/trade/api/v2/futures/klines",
+                {"exchange": exchange, "symbol": "BTCUSDT", "interval": "30",
+                 "limit": 1500, **params},
+            )
+            candles = sorted(payload.get("data") or [], key=lambda c: int(c["start_time"]))
+            if candles:
+                span = (int(candles[-1]["start_time"]) - int(candles[0]["start_time"]))
+                print(f"  {list(params)}: {len(candles)} candles spanning "
+                      f"{span / 86400000:.1f} days, oldest "
+                      f"{as_ist(int(candles[0]['start_time'])):%d %b %H:%M}")
+            else:
+                print(f"  {list(params)}: no candles")
+        except Exception as error:
+            print(f"  {list(params)}: {str(error)[:70]}")
+        time.sleep(1.0)
+
+    allowed = (sc.TIMEFRAME_SECONDS["30m"] * sc.STALE_BARS_ALLOWED + 300) / 60
+    print(f"require_fresh_ohlcv rejects a 30m candle older than {allowed:.0f} minutes")
     print()
 
     print("SUSPECT - these keep failing the freshness check")
