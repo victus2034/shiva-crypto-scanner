@@ -170,7 +170,8 @@ jobs:
           if [ "$INPUT_DRY_RUN" = "true" ]; then
             EXTRA_ARGS+=(--dry-run)
           fi
-          python paper_trading.py --report --timeframe 30m "${EXTRA_ARGS[@]}"
+          # One table covering every market and both timeframes.
+          python paper_trading.py --report --timeframe both "${EXTRA_ARGS[@]}"
 
       - name: Persist runtime state
         run: |

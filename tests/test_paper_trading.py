@@ -294,8 +294,7 @@ class CommandLineTests(unittest.TestCase):
                 self.assertTrue(args.tick)
 
 
-if __name__ == "__main__":
-    unittest.main()
+
 
 def summary_cutoff():
     import daily_backtest_summary as backtest
@@ -330,3 +329,38 @@ class CryptoPaperTests(unittest.TestCase):
         self.assertEqual(nse_end.time(), summary_cutoff())
         self.assertEqual(crypto_end - entry, pd.Timedelta(hours=6))
 
+class MarketScopeTests(unittest.TestCase):
+    def test_a_crypto_run_files_xstocks_under_xstock(self):
+        # The crypto alert records carry xStocks too, so a run told
+        # "crypto" covers both - which is what the user means by the
+        # word. Stamping the flag would leave the xStock row empty.
+        self.assertEqual(paper_trading.market_of("AAPLXUSD", "crypto"), "xstock")
+        self.assertEqual(paper_trading.market_of("BTCUSDT", "crypto"), "crypto")
+
+    def test_an_nse_run_stays_nse(self):
+        self.assertEqual(paper_trading.market_of("TCS.NS", "nse"), "nse")
+
+    def test_paxg_and_slvon_are_not_lost(self):
+        # Neither crypto nor an xStock, but they trade, so their results
+        # have to land somewhere visible.
+        self.assertEqual(paper_trading.market_of("PAXG/USDT", "crypto"), "other")
+        self.assertIn("other", [m for m, _ in paper_trading.MARKETS])
+
+    def test_both_timeframes_are_reported(self):
+        state = fresh_state()
+        state["closed"] = [
+            {"date": "2026-08-28", "market": "crypto", "timeframe": "30m",
+             "outcome": "+1R", "net_realized_r": 1.0, "symbol": "BTCUSDT"},
+            {"date": "2026-08-28", "market": "crypto", "timeframe": "4h",
+             "outcome": "SL", "net_realized_r": -1.0, "symbol": "ETHUSDT"},
+        ]
+        with patch.object(paper_trading, "backtest_day_stats", lambda *a, **k: None):
+            message = paper_trading.build_report("2026-08-28", "both", state)
+
+        self.assertIn("CRYPTO 30m", message)
+        self.assertIn("CRYPTO 4h", message)
+
+
+
+if __name__ == "__main__":
+    unittest.main()

@@ -53,13 +53,28 @@ AMBIGUOUS = backtest.DATA_QUALITY_AMBIGUOUS
 SQUARE_OFF_GRACE_END = datetime_time(16, 0)
 
 
+# "other" is PAXG and SLVON - not crypto, not an xStock, but they still
+# trade and their results have to land somewhere visible.
+MARKETS = [
+    ("nse", "NSE"),
+    ("crypto", "CRYPTO"),
+    ("xstock", "XSTOCK"),
+    ("other", "OTHER"),
+]
+TIMEFRAMES = ["30m", "4h"]
+
+
 def parse_args(argv=None) -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
     # Named here rather than borrowed from entry_confirm.ALERT_RECORDS:
     # that dict grew a market layer and silently turned these choices
     # into {crypto, nse}, so every scheduled tick died on its own
     # default. Paper trading follows NSE alerts, hence NSE timeframes.
-    parser.add_argument("--timeframe", choices=["30m", "4h"], default="30m")
+    # "both" is the default for a tick: the user runs 30m and 4h together
+    # and wants both compared, so covering one silently halves the report.
+    parser.add_argument(
+        "--timeframe", choices=["30m", "4h", "both"], default="30m"
+    )
     # NSE is paused while crypto is measured. The state file keys every
     # trade by market, so the two never mix and NSE can come back without
     # losing its history.
@@ -173,12 +188,26 @@ def targets_for(entry: float, stop: float, side: str) -> dict[str, float]:
     }
 
 
+def market_of(symbol: str, fallback: str) -> str:
+    """Which market a symbol belongs to, by the symbol itself.
+
+    The crypto alert records carry xStocks as well as coins, so a run
+    told "crypto" is really covering both - which is what the user means
+    by the word. Stamping the flag instead would file every xStock trade
+    under crypto and leave the xStock row permanently empty.
+    """
+    if fallback == "nse":
+        return "nse"
+    return str(backtest.market_class(symbol)).lower()
+
+
 def open_new_positions(
     state: dict,
     watched: list[dict],
     frames: dict[str, pd.DataFrame],
     now: pd.Timestamp,
     market: str = "nse",
+    timeframe: str = "30m",
 ) -> list[str]:
     """Fill a virtual limit order only if price genuinely reached entry."""
     opened = []
@@ -216,9 +245,11 @@ def open_new_positions(
         # crediting a favourable gap the backtest never modelled.
         state["open"][trade_id] = {
             "symbol": record["symbol"],
-            # Stamped so the two markets never mix in one state file and NSE
-            # can be paused without losing its history.
-            "market": market,
+            # Read from the symbol, not from the flag. The crypto records
+            # hold xStocks too, so one crypto run covers both and each is
+            # still reported under its own name.
+            "market": market_of(record["symbol"], market),
+            "timeframe": timeframe,
             "side": side,
             "entry": entry,
             "stop": stop,
@@ -351,6 +382,7 @@ def evaluate_open_positions(
                 "net_realized_r": None if pd.isna(net_r) else float(net_r),
                 "date": pd.Timestamp(position["entry_time"]).date().isoformat(),
                 "market": position.get("market", "nse"),
+                "timeframe": position.get("timeframe", "30m"),
             }
         )
         state["closed"].append(record)
@@ -394,6 +426,12 @@ def horizon_end(market: str, entry_time: pd.Timestamp, now: pd.Timestamp) -> pd.
 
 
 def run_tick(args: argparse.Namespace) -> None:
+    frames_wanted = TIMEFRAMES if args.timeframe == "both" else [args.timeframe]
+    for timeframe in frames_wanted:
+        run_tick_for(args, timeframe)
+
+
+def run_tick_for(args: argparse.Namespace, timeframe: str) -> None:
     now = pd.Timestamp.now(tz=IST)
     if not args.ignore_session and not paper_window_open(args.market, now):
         print(
@@ -403,7 +441,7 @@ def run_tick(args: argparse.Namespace) -> None:
         return
 
     state = load_state()
-    watched = entry_confirm.load_watched_alerts(args.market, args.timeframe, now)
+    watched = entry_confirm.load_watched_alerts(args.market, timeframe, now)
     symbols = sorted(
         {record["symbol"] for record in watched}
         | {
@@ -416,7 +454,7 @@ def run_tick(args: argparse.Namespace) -> None:
         fetch_bars(symbols) if args.market == "nse" else fetch_crypto_bars(symbols)
     )
 
-    opened = open_new_positions(state, watched, frames, now, args.market)
+    opened = open_new_positions(state, watched, frames, now, args.market, timeframe)
     closed = evaluate_open_positions(state, frames, now, args.market)
 
     for trade_id in opened:
@@ -432,7 +470,7 @@ def run_tick(args: argparse.Namespace) -> None:
         print(
             f"CLOSE {backtest.display_symbol(record['symbol'])} {record['outcome']} {realized_text}"
         )
-    print(f"open={len(state['open'])} closed_total={len(state['closed'])}")
+    print(f"{timeframe} open={len(state['open'])} closed_total={len(state['closed'])}")
 
     if not args.dry_run:
         save_state(state)
@@ -471,8 +509,6 @@ def backtest_day_stats(date_iso: str, timeframe: str, market: str = "nse") -> di
     }
 
 
-MARKETS = [("nse", "NSE"), ("crypto", "CRYPTO"), ("xstock", "XSTOCK")]
-TIMEFRAMES = ["30m", "4h"]
 
 
 def paper_day_stats(state: dict, date_iso: str, market: str, timeframe: str) -> dict | None:

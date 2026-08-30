@@ -124,9 +124,11 @@ jobs:
           if [ "$INPUT_IGNORE_SESSION" = "true" ]; then
             EXTRA_ARGS+=(--ignore-session)
           fi
-          # NSE paper is paused; crypto is the one being measured.
+          # NSE paper is paused. "crypto" covers xStocks too - they share
+          # the alert records - and both timeframes run, so the comparison
+          # table is not silently half empty.
           python paper_trading.py --tick \
-            --timeframe "${INPUT_TIMEFRAME:-30m}" \
+            --timeframe both \
             --market crypto \
             "${EXTRA_ARGS[@]}"
 
