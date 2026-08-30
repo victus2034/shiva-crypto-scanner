@@ -119,6 +119,20 @@ def main() -> None:
     exchange = sc.get_env_or_config("COINSWITCH_EXCHANGE", sc.COINSWITCH_EXCHANGE)
     now = datetime.now(IST)
     print(f"exchange {exchange}, local clock {now:%Y-%m-%d %H:%M:%S} IST")
+    # The lookback is only real if the venue honours the limit we ask for.
+    for want in (500, 1500):
+        try:
+            payload = signed_get(
+                "/trade/api/v2/futures/klines",
+                {"exchange": exchange, "symbol": "BTCUSDT",
+                 "interval": "30", "limit": want},
+            )
+            got = len(payload.get("data") or [])
+            span = got * 30 / 60 / 24
+            print(f"  asked {want} 30m candles, served {got} ({span:.1f} days)")
+        except Exception as error:
+            print(f"  asked {want}: {str(error)[:70]}")
+        time.sleep(1.0)
     print(f"require_fresh_ohlcv rejects a 30m candle older than "
           f"{(sc.TIMEFRAME_SECONDS['30m'] * 2 + 300) / 60:.0f} minutes")
     print()
