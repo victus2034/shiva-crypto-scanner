@@ -117,7 +117,11 @@ OHLCV_LIMIT = 500
 SWING_LENGTH = 10
 ATR_PERIOD = 50
 BOX_WIDTH = 2.5
-HISTORY_OF_ZONES_TO_KEEP = 20
+# NSE keeps its 500-bar lookback: the exchange trades 6.25 hours a day,
+# so 500 30m candles is already forty sessions, not ten days. Only the
+# cap moves, so a level from two months ago is not dropped in favour of a
+# newer one.
+HISTORY_OF_ZONES_TO_KEEP = 60
 # Matches the Pine indicator's f_check_overlapping, which rejects a new zone
 # whose midpoint sits within atr * 2 of an existing one.
 OVERLAP_ATR = 2.0

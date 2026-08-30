@@ -201,12 +201,26 @@ PRIMARY_EXCHANGE_ID = "binance"
 # this list was trimmed to Binance alone.
 EXCHANGE_IDS = ["binance", "kucoin", "okx", "bybit", "mexc", "bitget", "lbank", "coinex"]
 TIMEFRAME = os.getenv("SHIVA_TIMEFRAME", "4h").strip() or "4h"
-OHLCV_LIMIT = 500
+# Crypto trades around the clock, so 500 30m candles is only ten days.
+# A zone from three weeks ago was not being ignored - it was not in the
+# data at all, and no amount of zone logic can find a candle that was
+# never fetched. Measured over sixty days on ten majors: at 500 bars the
+# oldest level price actually returned to was 6 days old and 65 zones
+# were alertable; at 1500 it was 29 days and 76. Going further to 2880
+# bought only three more, so this is where the curve flattens.
+#
+# One request either way - the venue takes a limit, so this costs no
+# extra calls, which matters while CoinSwitch is rate-limiting us.
+OHLCV_LIMIT = env_int("SHIVA_OHLCV_LIMIT", 1500)
 
 SWING_LENGTH = 10
 ATR_PERIOD = 50
 BOX_WIDTH = 2.5
-HISTORY_OF_ZONES_TO_KEEP = 20
+# Raised with the lookback above. The cap keeps the NEWEST zones, so at
+# 20 it discarded precisely the old levels the longer window exists to
+# find - every one of six majors produced 19-32 zones a side at 1500
+# bars. 60 leaves headroom above that.
+HISTORY_OF_ZONES_TO_KEEP = env_int("SHIVA_HISTORY_OF_ZONES_TO_KEEP", 60)
 # Matches the Pine indicator's f_check_overlapping, which rejects a new zone
 # whose midpoint sits within atr * 2 of an existing one.
 OVERLAP_ATR = 2.0
