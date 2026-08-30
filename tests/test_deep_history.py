@@ -64,3 +64,29 @@ class SpliceTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+class SpliceListTests(unittest.TestCase):
+    def test_the_list_only_holds_symbols_we_actually_scan(self):
+        import config
+
+        held = {scanner.display_symbol(s) for s in scanner.active_watchlist()}
+        self.assertTrue(config.DEEP_HISTORY_SYMBOLS <= held)
+
+    def test_the_measured_majors_are_spliced(self):
+        # These priced the same candle within 0.05%, a quarter of the
+        # alert distance, across 751 shared candles.
+        import config
+
+        for symbol in ("BTC", "ETH", "SOL", "XRP", "BNB"):
+            with self.subTest(symbol=symbol):
+                self.assertIn(symbol, config.DEEP_HISTORY_SYMBOLS)
+
+    def test_the_venues_that_disagree_are_not_spliced(self):
+        # ESPORTS is 1.11% apart typically and 2.9% at worst - five to
+        # fifteen times the alert distance. STORJ, COTI and ZIL likewise.
+        import config
+
+        for symbol in ("ESPORTS", "STORJ", "COTI", "ZIL", "ACE", "HOME"):
+            with self.subTest(symbol=symbol):
+                self.assertNotIn(symbol, config.DEEP_HISTORY_SYMBOLS)
+

@@ -280,8 +280,15 @@ MIN_SCAN_INTERVAL_SECONDS = env_int("SHIVA_MIN_SCAN_INTERVAL_SECONDS", 8 * 60)
 # and 2.9% at worst - a zone spliced there would mark a price that never
 # traded on the venue being watched.
 #
-# Empty until the measurement fills it. venue_divergence.py prints the list.
-DEEP_HISTORY_SYMBOLS = set()
+# Filled by venue_divergence.py, which compares every watchlist symbol's
+# 30m closes across both venues. 28 of the 90 it could compare agree
+# inside 0.20% at the 95th percentile. The rest keep CoinSwitch alone -
+# a shorter history is a smaller problem than a level in the wrong place.
+DEEP_HISTORY_SYMBOLS = {
+    "AAVE", "ADA", "ASTER", "AVAX", "BCH", "BNB", "BTC", "DOGE", "ENA",
+    "ETH", "GRAM", "HBAR", "HYPE", "LINK", "LTC", "NEAR", "ONDO", "PAXG",
+    "PUMP", "SEI", "SOL", "SUI", "TAO", "TRX", "UNI", "XLM", "XRP", "ZEC"
+}
 # Where the older candles come from. Binance is deliberately absent: it is
 # geo-blocked from GitHub Actions runners, which took the whole scanner
 # down once before.
