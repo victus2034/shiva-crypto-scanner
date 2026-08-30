@@ -25,7 +25,7 @@ from __future__ import annotations
 import argparse
 import json
 import os
-from datetime import datetime, time as datetime_time
+from datetime import time as datetime_time
 from pathlib import Path
 from zoneinfo import ZoneInfo
 
@@ -82,7 +82,7 @@ STAGE_ENTRY = 2
 STAGE_LATE = 3
 
 
-def parse_args() -> argparse.Namespace:
+def parse_args(argv=None) -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--timeframe", choices=["30m", "4h"], default="30m")
     parser.add_argument(
@@ -97,7 +97,7 @@ def parse_args() -> argparse.Namespace:
         action="store_true",
         help="Skip the market-hours guard (testing only).",
     )
-    return parser.parse_args()
+    return parser.parse_args(argv)
 
 
 def in_trading_session(now: pd.Timestamp) -> bool:

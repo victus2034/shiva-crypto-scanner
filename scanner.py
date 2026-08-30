@@ -1541,10 +1541,10 @@ def run_scan_once(state):
         raise RuntimeError("CoinSwitch-only scan produced no usable market data")
 
 
-def parse_args():
+def parse_args(argv=None):
     parser = argparse.ArgumentParser(description="Scan a fixed crypto watchlist for nearby Shiva levels.")
     parser.add_argument("--once", action="store_true", help="Run a single scan and exit.")
-    return parser.parse_args()
+    return parser.parse_args(argv)
 
 
 def main():

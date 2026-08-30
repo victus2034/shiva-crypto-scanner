@@ -139,7 +139,7 @@ def main() -> None:
 
     print(f"compared {len(frame)} symbols, {len(missing)} could not be")
     print()
-    print(f"A zone spliced from KuCoin sits in the right place only if the two")
+    print("A zone spliced from KuCoin sits in the right place only if the two")
     print(f"venues agree to within the alert distance of {alert_distance}%.")
     print()
     print(f"  within {alert_distance}% at the 95th percentile: {len(safe)} of {len(frame)}")

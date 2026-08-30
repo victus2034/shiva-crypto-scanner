@@ -19,7 +19,7 @@ WIN_RESULTS = {"+0.5R", "+1R", "+2R"}
 R_VALUES = {"SL": -1.0, "+0.5R": 0.5, "+1R": 1.0, "+2R": 2.0}
 
 
-def parse_args() -> argparse.Namespace:
+def parse_args(argv=None) -> argparse.Namespace:
     parser = argparse.ArgumentParser(
         description="Validate whether the zone rating actually predicts real outcomes."
     )
@@ -31,7 +31,7 @@ def parse_args() -> argparse.Namespace:
         default=20,
         help="Minimum trades in a rating bucket before its win rate is called reliable.",
     )
-    return parser.parse_args()
+    return parser.parse_args(argv)
 
 
 def load_decided_trades(market: str, timeframe: str) -> pd.DataFrame:

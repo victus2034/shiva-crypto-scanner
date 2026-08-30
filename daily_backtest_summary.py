@@ -132,7 +132,7 @@ FINALIZED_RECORDS_PATH = Path(__file__).with_name("daily_backtest_finalized_reco
 PENDING_RECORDS_PATH = Path(__file__).with_name("daily_backtest_pending_records.jsonl")
 
 
-def parse_args() -> argparse.Namespace:
+def parse_args(argv=None) -> argparse.Namespace:
     parser = argparse.ArgumentParser(
         description="Post a clean daily delivered-alert backtest summary."
     )
@@ -152,7 +152,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--records", type=Path, help="Override alert-record JSONL path.")
     parser.add_argument("--dry-run", action="store_true")
     parser.add_argument("--force", action="store_true", help="Send even if this report key was already sent.")
-    return parser.parse_args()
+    return parser.parse_args(argv)
 
 
 def configure_nse_data(timeframe: str) -> Path:
@@ -1501,15 +1501,11 @@ def build_summary(
             "No alerts recorded."
         )
 
-    side_counts = records["side"].value_counts()
-    buy_count = int(side_counts.get("long", 0))
-    sell_count = int(side_counts.get("short", 0))
 
     filled = results[results["filled"] == True].copy() if not results.empty else pd.DataFrame()  # noqa: E712
     outcome_counts = results["outcome"].value_counts() if not results.empty else pd.Series(dtype=int)
     duplicates = int(outcome_counts.get("zone_cooldown", 0))
     entries = len(filled)
-    touched = entries + duplicates
     no_touch = int(outcome_counts.get("zone_not_touched", 0))
     waiting = int(outcome_counts.get("immature", 0))
     data_issues = int(outcome_counts.get("data_missing", 0)) + int(outcome_counts.get("alert_before_data", 0))
@@ -1615,7 +1611,6 @@ def format_rating_table(records: pd.DataFrame, results: pd.DataFrame) -> str:
         outcomes = rating_results["outcome"].value_counts() if not rating_results.empty else pd.Series(dtype=int)
         finalized = filled[filled["final_result"] != "Pending"] if not filled.empty else filled
         final_counts = finalized["final_result"].value_counts() if not finalized.empty else pd.Series(dtype=int)
-        duplicates = int(outcomes.get("zone_cooldown", 0))
         entries = len(filled)
         half_r = int(final_counts.get("+0.5R", 0))
         one_r = int(final_counts.get("+1R", 0))

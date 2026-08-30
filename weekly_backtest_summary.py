@@ -36,7 +36,7 @@ TRADE_COLUMNS = {
 WEEKLY_SENT_REPORTS_PATH = Path(__file__).with_name("weekly_backtest_reports_sent.json")
 
 
-def parse_args() -> argparse.Namespace:
+def parse_args(argv=None) -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Post weekly backtest summary.")
     parser.add_argument(
         "--market",
@@ -53,7 +53,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--week-ending", help="IST week-ending date, YYYY-MM-DD.")
     parser.add_argument("--dry-run", action="store_true")
     parser.add_argument("--force", action="store_true")
-    return parser.parse_args()
+    return parser.parse_args(argv)
 
 
 def select_week_ending(requested: str | None):

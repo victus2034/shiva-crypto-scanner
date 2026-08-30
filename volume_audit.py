@@ -18,7 +18,7 @@ import pandas as pd
 import scanner as sc
 
 
-def parse_args() -> argparse.Namespace:
+def parse_args(argv=None) -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--timeframe", default="30m", choices=["30m", "4h"])
     parser.add_argument(
@@ -30,7 +30,7 @@ def parse_args() -> argparse.Namespace:
     # CoinSwitch rate-limits: at 0.15s the audit drew 429s across a third of
     # the list and reported them as missing coverage, which they were not.
     parser.add_argument("--delay", type=float, default=0.8, help="Pause between symbols.")
-    return parser.parse_args()
+    return parser.parse_args(argv)
 
 
 def coinswitch_only(symbol: str):
