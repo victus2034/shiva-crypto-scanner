@@ -2202,15 +2202,17 @@
     "CL/USDT|30m|long|82.82|82.8951": 1788029538.8936656,
     "GOOGLXUSD|30m|long|345.9|346.07": 1788027900.4211335,
     "VIRTUAL/USDT|30m|short|0.70105|0.7031": 1788029538.59424,
-    "GOOGLXUSD|30m|short|346.816|347": 1788066725.9013274,
-    "GOOGLXUSD|30m|long|345.65|345.834": 1788066725.9013274,
+    "GOOGLXUSD|30m|short|346.816|347": 1788072732.575634,
+    "GOOGLXUSD|30m|long|345.65|345.834": 1788072732.575634,
     "MRVL/USDT:USDT|30m|short|217.708|218.05": 1788070341.8829045,
     "MRVL/USDT:USDT|30m|short|217.61|217.99": 1788061925.7570155,
     "JUP/USDT|30m|long|0.215|0.215746": 1788061925.4116926,
     "LDO/USDT|30m|short|0.363102|0.3642": 1788064334.2988782,
     "AAPLXUSD|30m|long|320.2|320.335": 1788070341.5935504,
     "AKE/USDT|30m|long|0.007816|0.00791574": 1788067935.1479192,
-    "LA/USDT|30m|short|0.0562844|0.05643": 1788069124.071693
+    "LA/USDT|30m|short|0.0562844|0.05643": 1788069124.071693,
+    "ONDOUSD|30m|short|0.35633|0.3572": 1788072731.820344,
+    "SUIUSD|30m|short|0.748077|0.7492": 1788072732.3529265
   },
   "METAXUSD|demand|577.00000000|579.20000000": {
     "in_zone": false,
@@ -13759,7 +13761,7 @@
     "last_alert_at": 1787580724.510809
   },
   "__last_scan_started__": {
-    "30m": 1788071462.896463
+    "30m": 1788072655.7736356
   },
   "TAO/USDT|supply|227.92800000|229.00000000": {
     "in_zone": false,
@@ -21470,8 +21472,8 @@
     "last_alert_at": 0.0
   },
   "ONDOUSD|supply|0.35633000|0.35720000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1788072731.820344
   },
   "BNBUSD|supply|691.49067500|692.20000000": {
     "in_zone": false,
@@ -21923,11 +21925,11 @@
   },
   "GOOGLXUSD|supply|346.81610000|347.00000000": {
     "in_zone": true,
-    "last_alert_at": 1788066725.9013274
+    "last_alert_at": 1788072732.575634
   },
   "GOOGLXUSD|demand|345.65000000|345.83415000": {
     "in_zone": true,
-    "last_alert_at": 1788066725.9013274
+    "last_alert_at": 1788072732.575634
   },
   "SNDKBUSD|demand|1479.44000000|1481.52965000": {
     "in_zone": false,
@@ -22058,8 +22060,8 @@
     "last_alert_at": 0.0
   },
   "SUIUSD|supply|0.74807750|0.74920000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1788072732.3529265
   },
   "ZIL/USDT|supply|0.00257579|0.00258000": {
     "in_zone": false,
