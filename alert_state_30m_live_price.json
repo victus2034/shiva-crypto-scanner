@@ -2219,7 +2219,9 @@
     "WIF/USDT|30m|long|0.1978|0.19839": 1788079923.4497113,
     "FARTCOIN/USDT|30m|long|0.1891|0.189794": 1788079922.9598958,
     "XMRUSD|30m|short|477.885|478.63": 1788079923.2996554,
-    "1000SHIBUSD|30m|long|0.005067|0.00507647": 1788081061.1492288
+    "1000SHIBUSD|30m|long|0.005067|0.00507647": 1788081061.1492288,
+    "DOGEUSD|30m|long|0.08412|0.0842563": 1788082347.6740375,
+    "ZIL/USDT|30m|short|0.00257579|0.00258": 1788082348.0663257
   },
   "METAXUSD|demand|577.00000000|579.20000000": {
     "in_zone": false,
@@ -13768,7 +13770,7 @@
     "last_alert_at": 1787580724.510809
   },
   "__last_scan_started__": {
-    "30m": 1788080978.959864
+    "30m": 1788082267.2091753
   },
   "TAO/USDT|supply|227.92800000|229.00000000": {
     "in_zone": false,
@@ -21843,8 +21845,8 @@
     "last_alert_at": 0.0
   },
   "DOGEUSD|demand|0.08412000|0.08425635": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1788082347.6740375
   },
   "NEARUSD|demand|1.77700000|1.78079500": {
     "in_zone": false,
@@ -22071,8 +22073,8 @@
     "last_alert_at": 1788072732.3529265
   },
   "ZIL/USDT|supply|0.00257579|0.00258000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1788082348.0663257
   },
   "TAO/USDT|supply|238.63250000|239.20000000": {
     "in_zone": false,
@@ -22423,6 +22425,30 @@
     "last_alert_at": 0.0
   },
   "SKHYNIX/USDT:USDT|demand|1211.69000000|1212.28850000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "LTCUSD|demand|48.02000000|48.09405000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "FARTCOIN/USDT|demand|0.17430000|0.17528850": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "WIF/USDT|supply|0.20540450|0.20580000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "ALGO/USDT|supply|0.08801085|0.08813000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "MUBUSD|demand|933.75000000|933.96225000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "NBIS/USDT:USDT|demand|208.11000000|208.23635000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
