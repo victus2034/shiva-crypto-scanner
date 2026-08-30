@@ -1,4 +1,4 @@
-name: Shiva Venue Divergence
+name: Victus Venue Divergence
 
 on:
   workflow_dispatch:
@@ -7,7 +7,7 @@ permissions:
   contents: read
 
 concurrency:
-  group: shiva-venue-divergence
+  group: victus-venue-divergence
   cancel-in-progress: false
 
 jobs:

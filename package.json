@@ -1,8 +1,8 @@
 {
-  "name": "shiva-crypto-scanner-astrology",
+  "name": "victus-indicator-strategy-astrology",
   "version": "1.0.0",
   "private": true,
-  "description": "Isolated daily Vedic astrology briefing for Shiva's private Discord channel.",
+  "description": "Isolated daily Vedic astrology briefing for Victus's private Discord channel.",
   "scripts": {
     "astrology": "node daily_astrology.js",
     "astrology:weekly": "node weekly_astrology.js",

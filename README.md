@@ -1,4 +1,4 @@
-# Shiva Crypto Scanner
+# Victus Indicator Strategy
 
 This bot watches your fixed crypto watchlist on the `4h` timeframe, rebuilds the active supply and demand zones from your TradingView Pine logic, and alerts when price gets close to one of those levels.
 
@@ -70,7 +70,7 @@ The 30-minute scanner runs from `.github/workflows/scan_30m.yml` just after each
 1. Create a Discord webhook inside `#30m-alerts`.
 2. Add its URL as the repository secret `DISCORD_30M_WEBHOOK_URL`.
 3. Keep `DISCORD_STATUS_WEBHOOK_URL` pointed at `#scanner-status`.
-4. Run `Shiva Crypto Scanner 30m` manually once from GitHub Actions to verify it.
+4. Run `Victus Crypto Scanner 30m` manually once from GitHub Actions to verify it.
 
 If you keep the repo private, GitHub Free includes limited Actions minutes, so reduce the schedule if needed. If the repo is public, standard GitHub-hosted Actions minutes remain free.
 

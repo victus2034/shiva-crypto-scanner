@@ -933,7 +933,7 @@ function buildDailyEmbed(evaluation) {
   }
 
   return {
-    title: `Shiva Daily Astrology - ${displayDate(evaluation.date)}`,
+    title: `Victus Daily Astrology - ${displayDate(evaluation.date)}`,
     color: 0x5865f2,
     fields,
     footer: {
@@ -947,7 +947,7 @@ function buildDailyPayload(date) {
   const content = buildDailyText(evaluation);
   return {
     payload: {
-      username: "Shiva Daily Astrology",
+      username: "Victus Daily Astrology",
       content: "",
       embeds: [buildDailyEmbed(evaluation)],
       allowed_mentions: { parse: [] },
@@ -1182,7 +1182,7 @@ function buildWeeklyEmbed(start, evaluations) {
   }
 
   return {
-    title: `Shiva Weekly Astrology - ${weeklyRangeLabel(start)}`,
+    title: `Victus Weekly Astrology - ${weeklyRangeLabel(start)}`,
     color: 0x5865f2,
     fields,
     footer: {
@@ -1214,7 +1214,7 @@ function buildWeeklyPayload(start) {
   const content = buildWeeklyText(start, evaluations);
   return {
     payload: {
-      username: "Shiva Weekly Astrology",
+      username: "Victus Weekly Astrology",
       content: "",
       embeds: [buildWeeklyEmbed(start, evaluations)],
       allowed_mentions: { parse: [] },

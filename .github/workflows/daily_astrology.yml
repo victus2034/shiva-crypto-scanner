@@ -1,4 +1,4 @@
-name: Shiva Daily Astrology
+name: Victus Daily Astrology
 
 on:
   schedule:
@@ -19,7 +19,7 @@ permissions:
   contents: read
 
 concurrency:
-  group: shiva-daily-astrology
+  group: victus-daily-astrology
   cancel-in-progress: false
 
 jobs:
@@ -48,7 +48,7 @@ jobs:
             exit 1
           fi
 
-      - name: Send Shiva's daily astrology briefing
+      - name: Send Victus's daily astrology briefing
         env:
           DISCORD_ASTROLOGY_WEBHOOK_URL: ${{ secrets.DISCORD_ASTROLOGY_WEBHOOK_URL }}
           ASTROLOGY_DRY_RUN: ${{ github.event.inputs.dry_run }}

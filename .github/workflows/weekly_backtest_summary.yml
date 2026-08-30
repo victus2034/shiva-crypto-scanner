@@ -1,4 +1,4 @@
-name: Shiva Weekly Backtest Summary
+name: Victus Weekly Backtest Summary
 
 on:
   schedule:
@@ -49,7 +49,7 @@ permissions:
   contents: write
 
 concurrency:
-  group: shiva-weekly-backtest-summary
+  group: victus-weekly-backtest-summary
   cancel-in-progress: false
 
 jobs:

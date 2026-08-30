@@ -1,4 +1,4 @@
-name: Shiva Weekly Astrology
+name: Victus Weekly Astrology
 
 on:
   schedule:
@@ -10,7 +10,7 @@ permissions:
   contents: read
 
 concurrency:
-  group: shiva-weekly-astrology
+  group: victus-weekly-astrology
   cancel-in-progress: false
 
 jobs:
@@ -39,7 +39,7 @@ jobs:
             exit 1
           fi
 
-      - name: Send Shiva's weekly astrology briefing
+      - name: Send Victus's weekly astrology briefing
         env:
           DISCORD_ASTROLOGY_WEBHOOK_URL: ${{ secrets.DISCORD_ASTROLOGY_WEBHOOK_URL }}
         run: npm run astrology:weekly

@@ -72,11 +72,11 @@ SL_BUFFER_PCT = 0.10
 ROUND_TRIP_COST_PCT = 0.1063
 # CoinSwitch futures, both legs. Unlike the NSE figure this is not reconciled
 # against a contract note yet, so it is a placeholder the moment a real one
-# exists: set SHIVA_CRYPTO_ROUND_TRIP_COST_PCT to the measured rate. Leaving
+# exists: set VICTUS_CRYPTO_ROUND_TRIP_COST_PCT to the measured rate. Leaving
 # it at zero was worse than an approximation - it made crypto look six times
 # better than NSE when the difference was almost entirely unpriced charges.
 CRYPTO_ROUND_TRIP_COST_PCT = float(
-    os.getenv("SHIVA_CRYPTO_ROUND_TRIP_COST_PCT", "0.10")
+    os.getenv("VICTUS_CRYPTO_ROUND_TRIP_COST_PCT", "0.10")
 )
 # Where the stop goes once +0.5R trades. Entry alone is not breakeven - the
 # round trip has already been paid - so the stop sits far enough past entry
@@ -536,7 +536,7 @@ def fetch_resolution_frames(
     return frames, failures
 
 
-CRYPTO_FETCH_DEBUG = os.getenv("SHIVA_BACKTEST_DEBUG_EXCHANGE", "").strip().lower() in {"1", "true", "yes"}
+CRYPTO_FETCH_DEBUG = os.getenv("VICTUS_BACKTEST_DEBUG_EXCHANGE", "").strip().lower() in {"1", "true", "yes"}
 CRYPTO_FETCH_SOURCE_COUNTS: dict[str, int] = {}
 
 

@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-BRANCH="${SHIVA_RUNTIME_STATE_BRANCH:-scanner-runtime-state}"
+BRANCH="${VICTUS_RUNTIME_STATE_BRANCH:-scanner-runtime-state}"
 
 if [ "$#" -eq 0 ]; then
   echo "No runtime files requested."

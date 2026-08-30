@@ -191,16 +191,16 @@ COINSWITCH_SECRET_KEY = ""
 # built from its candles. Binance is only a fallback for symbols it does
 # not carry. Defaulting this off meant Binance was always primary and the
 # alerted levels never matched the chart.
-PREFER_COINSWITCH = env_flag("SHIVA_PREFER_COINSWITCH", default=True)
-REQUIRE_COINSWITCH = env_flag("SHIVA_REQUIRE_COINSWITCH")
-USE_LIVE_TICKER = env_flag("SHIVA_USE_LIVE_TICKER")
+PREFER_COINSWITCH = env_flag("VICTUS_PREFER_COINSWITCH", default=True)
+REQUIRE_COINSWITCH = env_flag("VICTUS_REQUIRE_COINSWITCH")
+USE_LIVE_TICKER = env_flag("VICTUS_USE_LIVE_TICKER")
 PRIMARY_EXCHANGE_ID = "binance"
 # CoinSwitch first, then Binance. The rest exist because Binance is
 # geo-blocked from GitHub Actions runners - without them a CI scan has no
 # source at all once CoinSwitch misses, which is exactly what happened when
 # this list was trimmed to Binance alone.
 EXCHANGE_IDS = ["binance", "kucoin", "okx", "bybit", "mexc", "bitget", "lbank", "coinex"]
-TIMEFRAME = os.getenv("SHIVA_TIMEFRAME", "4h").strip() or "4h"
+TIMEFRAME = os.getenv("VICTUS_TIMEFRAME", "4h").strip() or "4h"
 # Crypto trades around the clock, so 500 30m candles is only ten days.
 # A zone from three weeks ago was not being ignored - it was not in the
 # data at all, and no amount of zone logic can find a candle that was
@@ -211,7 +211,7 @@ TIMEFRAME = os.getenv("SHIVA_TIMEFRAME", "4h").strip() or "4h"
 #
 # One request either way - the venue takes a limit, so this costs no
 # extra calls, which matters while CoinSwitch is rate-limiting us.
-OHLCV_LIMIT = env_int("SHIVA_OHLCV_LIMIT", 1500)
+OHLCV_LIMIT = env_int("VICTUS_OHLCV_LIMIT", 1500)
 
 SWING_LENGTH = 10
 ATR_PERIOD = 50
@@ -220,7 +220,7 @@ BOX_WIDTH = 2.5
 # 20 it discarded precisely the old levels the longer window exists to
 # find - every one of six majors produced 19-32 zones a side at 1500
 # bars. 60 leaves headroom above that.
-HISTORY_OF_ZONES_TO_KEEP = env_int("SHIVA_HISTORY_OF_ZONES_TO_KEEP", 60)
+HISTORY_OF_ZONES_TO_KEEP = env_int("VICTUS_HISTORY_OF_ZONES_TO_KEEP", 60)
 # Matches the Pine indicator's f_check_overlapping, which rejects a new zone
 # whose midpoint sits within atr * 2 of an existing one.
 OVERLAP_ATR = 2.0
@@ -238,8 +238,8 @@ ZONE_PADDING_ATR = 0.0
 # Distance is measured to the entry edge - the one price reaches first -
 # so this is "how far is price from the level I would actually trade".
 # Alert as soon as a symbol comes within MAX_DISTANCE_PCT of it.
-MIN_DISTANCE_PCT = env_float("SHIVA_MIN_DISTANCE_PCT", 0.0)
-MAX_DISTANCE_PCT = env_float("SHIVA_MAX_DISTANCE_PCT", 0.20)
+MIN_DISTANCE_PCT = env_float("VICTUS_MIN_DISTANCE_PCT", 0.0)
+MAX_DISTANCE_PCT = env_float("VICTUS_MAX_DISTANCE_PCT", 0.20)
 REARM_FACTOR = 1.25
 # 0 disables the over-touch veto. The Pine indicator counts no touches and
 # never retires a zone for being revisited - only a close through it kills the
@@ -260,13 +260,13 @@ MAX_CONSECUTIVE_ZONE_TOUCHES = 2
 # Twenty rather than fifteen because both markets said so: replayed on 5m
 # candles, the alerts this blocks earned 0.054R on NSE and 0.389R on
 # crypto, against 0.122R and 0.564R for the ones that survive it.
-MIN_ZONE_AGE_CANDLES = env_int("SHIVA_MIN_ZONE_AGE_CANDLES", 20)
+MIN_ZONE_AGE_CANDLES = env_int("VICTUS_MIN_ZONE_AGE_CANDLES", 20)
 # Shortest gap between two scans of the same timeframe. Every workflow is
 # also dispatched by an external scheduler, so adding cron meant each scan
 # ran twice - once on each trigger, minutes apart. Rather than depend on
 # that scheduler being found and switched off, a scan that starts too soon
 # after the last one steps aside. Zero disables the guard.
-MIN_SCAN_INTERVAL_SECONDS = env_int("SHIVA_MIN_SCAN_INTERVAL_SECONDS", 8 * 60)
+MIN_SCAN_INTERVAL_SECONDS = env_int("VICTUS_MIN_SCAN_INTERVAL_SECONDS", 8 * 60)
 
 # Symbols whose older candles may be spliced in from a deeper venue.
 #
@@ -292,7 +292,7 @@ DEEP_HISTORY_SYMBOLS = {
 # Where the older candles come from. Binance is deliberately absent: it is
 # geo-blocked from GitHub Actions runners, which took the whole scanner
 # down once before.
-DEEP_HISTORY_EXCHANGE = os.getenv("SHIVA_DEEP_HISTORY_EXCHANGE", "kucoin")
+DEEP_HISTORY_EXCHANGE = os.getenv("VICTUS_DEEP_HISTORY_EXCHANGE", "kucoin")
 
 # How many candles a feed may be behind before it counts as dead.
 # CoinSwitch omits any bucket with no trades and its higher-timeframe
@@ -302,7 +302,7 @@ DEEP_HISTORY_EXCHANGE = os.getenv("SHIVA_DEEP_HISTORY_EXCHANGE", "kucoin")
 # as stale and sent the symbol to an exchange the user does not chart,
 # which is the opposite of what the check is for. Four bars still
 # catches a genuinely dead feed - VANRY was ten days behind.
-STALE_BARS_ALLOWED = env_int("SHIVA_STALE_BARS_ALLOWED", 4)
+STALE_BARS_ALLOWED = env_int("VICTUS_STALE_BARS_ALLOWED", 4)
 
 # Crypto trades around the clock, but the user does not. Alerts are held
 # outside 08:00-01:00 IST so nothing fires while nobody is awake to take
@@ -314,25 +314,25 @@ CRYPTO_ALERT_END = datetime_time(1, 0)
 
 SCAN_SLEEP = 300
 SCAN_WORKERS = 8
-ALERT_COOLDOWN_SECONDS = env_int("SHIVA_ALERT_COOLDOWN_SECONDS", 4 * 60 * 60)
+ALERT_COOLDOWN_SECONDS = env_int("VICTUS_ALERT_COOLDOWN_SECONDS", 4 * 60 * 60)
 ALERT_RANGE_FILTER_SIGNALS = True
-SIGNAL_ALERT_COOLDOWN_SECONDS = env_int("SHIVA_SIGNAL_ALERT_COOLDOWN_SECONDS", 4 * 60 * 60)
+SIGNAL_ALERT_COOLDOWN_SECONDS = env_int("VICTUS_SIGNAL_ALERT_COOLDOWN_SECONDS", 4 * 60 * 60)
 # The previous model was trained on the old ATR-strip zones. Keep ratings off
 # until a model trained on the polished wick zones passes out-of-sample checks.
 ENABLE_CRYPTO_ZONE_RATINGS = env_flag(
-    "SHIVA_ENABLE_CRYPTO_ZONE_RATINGS",
+    "VICTUS_ENABLE_CRYPTO_ZONE_RATINGS",
     default=True,
 )
 # Only validated crypto zone ratings above 5/10 are eligible for live alerts.
-MIN_CRYPTO_ZONE_SCORE = env_int("SHIVA_MIN_CRYPTO_ZONE_SCORE", 6)
+MIN_CRYPTO_ZONE_SCORE = env_int("VICTUS_MIN_CRYPTO_ZONE_SCORE", 6)
 # Show the transparent rule-based quality score on every 4h crypto/xstock zone.
-SHOW_4H_ZONE_SCORES = env_flag("SHIVA_SHOW_4H_ZONE_SCORES", default=True)
+SHOW_4H_ZONE_SCORES = env_flag("VICTUS_SHOW_4H_ZONE_SCORES", default=True)
 ENABLE_XSTOCK_HYBRID_RATINGS = env_flag(
-    "SHIVA_ENABLE_XSTOCK_HYBRID_RATINGS",
+    "VICTUS_ENABLE_XSTOCK_HYBRID_RATINGS",
     default=True,
 )
-XSTOCK_REGULAR_MIN_SCORE = env_int("SHIVA_XSTOCK_REGULAR_MIN_SCORE", 5)
-XSTOCK_EXTENDED_MIN_SCORE = env_int("SHIVA_XSTOCK_EXTENDED_MIN_SCORE", 5)
+XSTOCK_REGULAR_MIN_SCORE = env_int("VICTUS_XSTOCK_REGULAR_MIN_SCORE", 5)
+XSTOCK_EXTENDED_MIN_SCORE = env_int("VICTUS_XSTOCK_EXTENDED_MIN_SCORE", 5)
 
 PRINT_SCAN_SUMMARY = True
 PRINT_ALERTS_TO_CONSOLE = True

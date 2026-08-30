@@ -1,4 +1,4 @@
-name: Shiva Volume Audit
+name: Victus Volume Audit
 
 on:
   workflow_dispatch:
@@ -20,7 +20,7 @@ permissions:
   contents: read
 
 concurrency:
-  group: shiva-volume-audit
+  group: victus-volume-audit
   cancel-in-progress: false
 
 jobs:

@@ -1069,7 +1069,7 @@ def process_signal_candidate(state, result, signal_type, now_ts):
 def print_summary(results):
     ranked = sorted(results, key=lambda item: min(item["supply_dist"], item["demand_dist"]))
     print("\n" + "=" * 80)
-    print(f"SHIVA NSE SCAN - {TIMEFRAME}")
+    print(f"VICTUS NSE SCAN - {TIMEFRAME}")
     print("=" * 80)
 
     for index, result in enumerate(ranked, start=1):
@@ -1142,7 +1142,7 @@ def run_scan_once(state):
 
     if not is_market_open:
         send_status_message(
-            f"Shiva NSE scanner skipped - market closed\n"
+            f"Victus NSE scanner skipped - market closed\n"
             f"Time: {market_now.strftime('%Y-%m-%d %H:%M:%S %Z')}\n"
             f"Run: {run_number}\n"
             f"Trigger: {trigger}\n"
@@ -1159,7 +1159,7 @@ def run_scan_once(state):
     )
     if market_now < trade_start:
         send_status_message(
-            "Shiva NSE scanner context-only pre-open update\n"
+            "Victus NSE scanner context-only pre-open update\n"
             f"Time: {market_now.strftime('%Y-%m-%d %H:%M:%S %Z')}\n"
             "Reference Price: Previous Close\n"
             "Executable alerts begin at 09:15 IST."
@@ -1167,7 +1167,7 @@ def run_scan_once(state):
         return
 
     send_status_message(
-        f"Shiva NSE scanner started\n"
+        f"Victus NSE scanner started\n"
         f"Time: {started_at}\n"
         f"Run: {run_number}\n"
         f"Trigger: {trigger}\n"
@@ -1179,7 +1179,7 @@ def run_scan_once(state):
     fetch_market_data(watchlist)
     if not has_current_session_data(watchlist, market_now):
         send_status_message(
-            "Shiva NSE scanner skipped - stale or incomplete session data\n"
+            "Victus NSE scanner skipped - stale or incomplete session data\n"
             f"Time: {market_now.strftime('%Y-%m-%d %H:%M:%S %Z')}\n"
             "Reference Price: Previous Close\n"
             "No executable alerts were generated."
@@ -1219,7 +1219,7 @@ def run_scan_once(state):
     finished_at = time.strftime("%Y-%m-%d %H:%M:%S")
     status = "OK" if not failures else "WARN"
     message = (
-        f"Shiva NSE scanner finished ({status})\n"
+        f"Victus NSE scanner finished ({status})\n"
         f"Time: {finished_at}\n"
         f"Run: {run_number}\n"
         f"Trigger: {trigger}\n"
@@ -1235,7 +1235,7 @@ def run_scan_once(state):
 
 
 def parse_args(argv=None):
-    parser = argparse.ArgumentParser(description="Scan NSE stocks for nearby Shiva levels.")
+    parser = argparse.ArgumentParser(description="Scan NSE stocks for nearby Victus levels.")
     parser.add_argument("--once", action="store_true", help="Run a single scan and exit.")
     return parser.parse_args(argv)
 

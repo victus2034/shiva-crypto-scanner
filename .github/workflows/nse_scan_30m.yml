@@ -1,4 +1,4 @@
-name: Shiva NSE Scanner 30m
+name: Victus NSE Scanner 30m
 
 on:
   # NSE hours only.
@@ -11,7 +11,7 @@ permissions:
   contents: write
 
 concurrency:
-  group: shiva-nse-scanner-30m
+  group: victus-nse-scanner-30m
   cancel-in-progress: false
 
 jobs:

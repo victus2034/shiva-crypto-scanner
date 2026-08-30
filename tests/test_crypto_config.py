@@ -7,7 +7,7 @@ class CryptoConfigTests(unittest.TestCase):
     def test_default_distance_window_alerts_within_a_fifth_of_a_percent(self):
         # Distance is measured to the entry edge, so this is how close price
         # has to come to the level actually traded before an alert fires.
-        with patch.dict(os.environ, {"SHIVA_TIMEFRAME": "4h"}, clear=True):
+        with patch.dict(os.environ, {"VICTUS_TIMEFRAME": "4h"}, clear=True):
             import config
 
             self.assertEqual(config.MIN_DISTANCE_PCT, 0.0)

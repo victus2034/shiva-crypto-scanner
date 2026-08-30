@@ -1,4 +1,4 @@
-name: Shiva Crypto Scanner
+name: Victus Crypto Scanner
 
 on:
   # 08:00-01:00 IST is 02:30-19:30 UTC, which does not wrap the date.
@@ -15,7 +15,7 @@ permissions:
   contents: write
 
 concurrency:
-  group: shiva-crypto-scanner
+  group: victus-indicator-strategy
   cancel-in-progress: false
 
 jobs:
@@ -63,9 +63,9 @@ jobs:
           COINSWITCH_API_KEY: ${{ secrets.COINSWITCH_API_KEY }}
           COINSWITCH_SECRET_KEY: ${{ secrets.COINSWITCH_SECRET_KEY }}
           COINSWITCH_EXCHANGE: ${{ secrets.COINSWITCH_EXCHANGE }}
-          SHIVA_ENABLE_XSTOCK_HYBRID_RATINGS: "true"
-          SHIVA_XSTOCK_REGULAR_MIN_SCORE: "5"
-          SHIVA_XSTOCK_EXTENDED_MIN_SCORE: "5"
+          VICTUS_ENABLE_XSTOCK_HYBRID_RATINGS: "true"
+          VICTUS_XSTOCK_REGULAR_MIN_SCORE: "5"
+          VICTUS_XSTOCK_EXTENDED_MIN_SCORE: "5"
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
         run: python scanner.py --once

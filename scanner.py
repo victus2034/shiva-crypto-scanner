@@ -79,10 +79,10 @@ from xstock_hybrid_rating import (
 from zone_scoring import score_wick_zone
 
 
-STATE_FILE = Path(__file__).with_name(os.getenv("SHIVA_STATE_FILE", "alert_state.json"))
+STATE_FILE = Path(__file__).with_name(os.getenv("VICTUS_STATE_FILE", "alert_state.json"))
 ALERT_RECORD_FILE = Path(__file__).with_name(
     os.getenv(
-        "SHIVA_ALERT_RECORD_FILE",
+        "VICTUS_ALERT_RECORD_FILE",
         "crypto_alert_records_30m.jsonl" if TIMEFRAME == "30m" else "crypto_alert_records.jsonl",
     )
 )
@@ -1370,7 +1370,7 @@ def print_summary(results):
     ranked = sorted(results, key=lambda item: min(item["supply_dist"], item["demand_dist"]))
 
     print("\n" + "=" * 80)
-    print(f"SHIVA WATCHLIST SCAN - {TIMEFRAME}")
+    print(f"VICTUS WATCHLIST SCAN - {TIMEFRAME}")
     print("=" * 80)
 
     for index, result in enumerate(ranked, start=1):
@@ -1463,7 +1463,7 @@ def run_scan_once(state):
         else "fallback only"
     )
     send_status_message(
-        f"Shiva scanner started\n"
+        f"Victus scanner started\n"
         f"Time: {started_at}\n"
         f"Run: {run_number}\n"
         f"Trigger: {trigger}\n"
@@ -1522,7 +1522,7 @@ def run_scan_once(state):
     no_required_source_data = REQUIRE_COINSWITCH and not results
     status = "ERROR" if no_required_source_data else "OK" if not failures else "WARN"
     message = (
-        f"Shiva scanner finished ({status})\n"
+        f"Victus scanner finished ({status})\n"
         f"Time: {finished_at}\n"
         f"Run: {run_number}\n"
         f"Trigger: {trigger}\n"
@@ -1542,7 +1542,7 @@ def run_scan_once(state):
 
 
 def parse_args(argv=None):
-    parser = argparse.ArgumentParser(description="Scan a fixed crypto watchlist for nearby Shiva levels.")
+    parser = argparse.ArgumentParser(description="Scan a fixed crypto watchlist for nearby Victus levels.")
     parser.add_argument("--once", action="store_true", help="Run a single scan and exit.")
     return parser.parse_args(argv)
 

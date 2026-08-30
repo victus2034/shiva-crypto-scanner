@@ -1,6 +1,6 @@
-# Shiva Astrology Reports
+# Victus Astrology Reports
 
-This isolated workflow posts Shiva's personalized Vedic astrology briefing to a
+This isolated workflow posts Victus's personalized Vedic astrology briefing to a
 private Discord channel.
 
 Reports:
@@ -29,13 +29,13 @@ buy/sell signals.
 
 ## One-time Discord setup
 
-1. Create a private Discord channel such as `#shiva-daily-astrology`.
+1. Create a private Discord channel such as `#victus-daily-astrology`.
 2. Open Edit Channel -> Integrations -> Webhooks -> New Webhook.
 3. Copy the webhook URL.
 4. In GitHub, open Settings -> Secrets and variables -> Actions.
 5. Create a repository secret named `DISCORD_ASTROLOGY_WEBHOOK_URL` and paste
    the webhook URL as its value.
-6. Open Actions -> Shiva Daily Astrology -> Run workflow to send a test post.
+6. Open Actions -> Victus Daily Astrology -> Run workflow to send a test post.
 
 The same webhook secret is used by both daily and weekly astrology workflows.
 

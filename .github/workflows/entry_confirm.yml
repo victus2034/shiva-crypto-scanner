@@ -1,4 +1,4 @@
-name: Shiva Entry Confirm
+name: Victus Entry Confirm
 
 on:
   schedule:
@@ -51,7 +51,7 @@ permissions:
   contents: write
 
 concurrency:
-  group: shiva-entry-confirm
+  group: victus-entry-confirm
   cancel-in-progress: false
 
 jobs:

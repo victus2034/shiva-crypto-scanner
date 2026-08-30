@@ -1,4 +1,4 @@
-name: Shiva Crypto Scanner 30m
+name: Victus Crypto Scanner 30m
 
 on:
   # 08:00-01:00 IST is 02:30-19:30 UTC, which does not wrap the date.
@@ -15,7 +15,7 @@ permissions:
   contents: write
 
 concurrency:
-  group: shiva-crypto-scanner-30m
+  group: victus-indicator-strategy-30m
   cancel-in-progress: false
 
 jobs:
@@ -58,21 +58,21 @@ jobs:
 
       - name: Run 30-minute scanner once
         env:
-          SHIVA_TIMEFRAME: "30m"
-          SHIVA_MIN_DISTANCE_PCT: "0.0"
-          SHIVA_MAX_DISTANCE_PCT: "0.20"
-          SHIVA_STATE_FILE: "alert_state_30m_live_price.json"
-          SHIVA_USE_LIVE_TICKER: "true"
-          SHIVA_ALERT_COOLDOWN_SECONDS: "1800"
-          SHIVA_SIGNAL_ALERT_COOLDOWN_SECONDS: "1800"
+          VICTUS_TIMEFRAME: "30m"
+          VICTUS_MIN_DISTANCE_PCT: "0.0"
+          VICTUS_MAX_DISTANCE_PCT: "0.20"
+          VICTUS_STATE_FILE: "alert_state_30m_live_price.json"
+          VICTUS_USE_LIVE_TICKER: "true"
+          VICTUS_ALERT_COOLDOWN_SECONDS: "1800"
+          VICTUS_SIGNAL_ALERT_COOLDOWN_SECONDS: "1800"
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_30M_WEBHOOK_URL }}
           DISCORD_STATUS_WEBHOOK_URL: ${{ secrets.DISCORD_STATUS_WEBHOOK_URL }}
           COINSWITCH_API_KEY: ${{ secrets.COINSWITCH_API_KEY }}
           COINSWITCH_SECRET_KEY: ${{ secrets.COINSWITCH_SECRET_KEY }}
           COINSWITCH_EXCHANGE: ${{ secrets.COINSWITCH_EXCHANGE }}
-          SHIVA_ENABLE_XSTOCK_HYBRID_RATINGS: "true"
-          SHIVA_XSTOCK_REGULAR_MIN_SCORE: "5"
-          SHIVA_XSTOCK_EXTENDED_MIN_SCORE: "5"
+          VICTUS_ENABLE_XSTOCK_HYBRID_RATINGS: "true"
+          VICTUS_XSTOCK_REGULAR_MIN_SCORE: "5"
+          VICTUS_XSTOCK_EXTENDED_MIN_SCORE: "5"
         run: python scanner.py --once
 
       - name: Persist runtime state

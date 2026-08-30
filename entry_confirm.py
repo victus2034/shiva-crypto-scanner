@@ -64,7 +64,7 @@ MAX_MESSAGE_CHARS = 1900
 # far enough between polls to step over it - which is why the channel
 # carried NSE pings and no crypto ones.
 APPROACH_THRESHOLD_PCT = float(
-    os.getenv("SHIVA_APPROACH_THRESHOLD_PCT", MAX_DISTANCE_PCT)
+    os.getenv("VICTUS_APPROACH_THRESHOLD_PCT", MAX_DISTANCE_PCT)
 )
 # Past this share of the planned entry-to-stop distance, the trade is
 # reported as late rather than as a clean entry.

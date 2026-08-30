@@ -1,4 +1,4 @@
-name: Shiva Daily Backtest Summary
+name: Victus Daily Backtest Summary
 
 on:
   schedule:
@@ -59,7 +59,7 @@ permissions:
   contents: write
 
 concurrency:
-  group: shiva-daily-backtest-summary
+  group: victus-daily-backtest-summary
   cancel-in-progress: false
 
 jobs:
@@ -112,7 +112,7 @@ jobs:
           INPUT_MARKET: ${{ github.event.inputs.market }}
           INPUT_FORCE: ${{ github.event.inputs.force }}
           INPUT_DRY_RUN: ${{ github.event.inputs.dry_run }}
-          SHIVA_BACKTEST_DEBUG_EXCHANGE: ${{ github.event.inputs.debug_exchange }}
+          VICTUS_BACKTEST_DEBUG_EXCHANGE: ${{ github.event.inputs.debug_exchange }}
         run: |
           TIMEFRAME="${INPUT_TIMEFRAME:-both}"
           MARKET="${INPUT_MARKET:-both}"
