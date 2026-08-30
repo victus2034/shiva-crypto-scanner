@@ -14,12 +14,53 @@ disagree by more than that cannot be spliced without moving its levels.
 """
 from __future__ import annotations
 
+import json
 import time
 
 import ccxt
 import pandas as pd
 
 import scanner as sc
+
+
+class Pacer:
+    """Adaptive delay for a venue that rate-limits under load.
+
+    The first pass lost 51 of 119 symbols to 429s and reported them as
+    uncomparable, which is not the same thing as disagreeing. Backing off
+    on a rejection and easing down again on a run of successes gets the
+    whole watchlist without guessing a fixed delay.
+    """
+
+    def __init__(self, delay=0.8, ceiling=6.0):
+        self.delay = delay
+        self.floor = delay
+        self.ceiling = ceiling
+        self.streak = 0
+        self.limited = 0
+
+    def call(self, fn, attempts=4):
+        last = None
+        for _ in range(attempts):
+            try:
+                value = fn()
+            except Exception as error:
+                last = error
+                response = getattr(error, "response", None)
+                if getattr(response, "status_code", None) != 429:
+                    raise
+                self.limited += 1
+                self.streak = 0
+                self.delay = min(self.delay * 1.5, self.ceiling)
+                time.sleep(self.delay)
+                continue
+            self.streak += 1
+            if self.streak >= 25 and self.delay > self.floor:
+                self.delay = max(self.delay * 0.8, self.floor)
+                self.streak = 0
+            time.sleep(self.delay)
+            return value
+        raise last
 
 
 def coinswitch_closes(symbol):
@@ -51,36 +92,32 @@ def main() -> None:
     exchange.load_markets()
 
     watchlist = sc.active_watchlist()
+    pacer = Pacer()
     print(f"comparing {len(watchlist)} symbols on 30m closes", flush=True)
     print()
 
     rows, missing = [], []
     for symbol in watchlist:
         try:
-            a = coinswitch_closes(symbol)
+            a = pacer.call(lambda: coinswitch_closes(symbol))
         except Exception as error:
             missing.append((symbol, f"coinswitch: {str(error)[:40]}"))
-            time.sleep(0.8)
             continue
         if a is None:
             missing.append((symbol, "coinswitch: no candles"))
-            time.sleep(0.8)
             continue
         try:
             b = kucoin_closes(exchange, symbol)
         except Exception as error:
             missing.append((symbol, f"kucoin: {str(error)[:40]}"))
-            time.sleep(0.8)
             continue
         if b is None:
             missing.append((symbol, "kucoin: not listed"))
-            time.sleep(0.8)
             continue
 
         shared = a.index.intersection(b.index)
         if len(shared) < 50:
             missing.append((symbol, f"only {len(shared)} shared candles"))
-            time.sleep(0.8)
             continue
 
         diff = ((a[shared] - b[shared]).abs() / b[shared] * 100.0)
@@ -91,7 +128,6 @@ def main() -> None:
             "p95": float(diff.quantile(0.95)),
             "worst": float(diff.max()),
         })
-        time.sleep(0.8)
 
     if not rows:
         print("no symbols could be compared")
@@ -123,6 +159,17 @@ def main() -> None:
     for _, r in frame.tail(10).iloc[::-1].iterrows():
         print(f"  {r['symbol']:<12}{int(r['bars']):>7}{r['median']:>12.4f}"
               f"{r['p95']:>10.4f}{r['worst']:>10.4f}")
+
+    print()
+    print("SPLICE LIST - venues agree inside the alert distance at p95.")
+    print("Paste into config.DEEP_HISTORY_SYMBOLS to give these the longer")
+    print("lookback; everything else stays on CoinSwitch alone.")
+    names = sorted(safe["symbol"])
+    print("    " + json.dumps(names))
+    print(f"    ({len(names)} symbols)")
+
+    print()
+    print(f"pacing settled at {pacer.delay:.2f}s after {pacer.limited} rate limits")
 
     if missing:
         print()
