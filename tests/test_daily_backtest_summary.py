@@ -1,4 +1,5 @@
 import datetime
+import json
 import tempfile
 import unittest
 from unittest.mock import patch
@@ -1165,4 +1166,114 @@ class QuietDayTests(unittest.TestCase):
         )
 
         self.assertNotEqual(real, quiet)
+
+class ClosedMarketTests(unittest.TestCase):
+    SATURDAY = "2026-08-29 16:30"
+    WEDNESDAY = "2026-08-26 16:30"
+
+    def _records(self, day):
+        return pd.DataFrame([{"report_date": day}])
+
+    def test_no_nse_note_at_the_weekend(self):
+        # A Saturday quiet note went out saying nothing new had happened,
+        # on a day nothing could have happened.
+        saturday = pd.Timestamp(self.SATURDAY, tz=summary.IST)
+        records = self._records(pd.Timestamp(self.WEDNESDAY, tz=summary.IST).date())
+
+        self.assertFalse(summary.market_traded_today("nse", records, saturday))
+
+    def test_a_weekday_with_no_alerts_reads_as_a_holiday(self):
+        # The scanner delivers 58-75 NSE alerts on a normal session, so a
+        # weekday with none is a closed market rather than a quiet one.
+        wednesday = pd.Timestamp(self.WEDNESDAY, tz=summary.IST)
+
+        self.assertFalse(
+            summary.market_traded_today("nse", pd.DataFrame(), wednesday)
+        )
+
+    def test_a_normal_session_still_reports(self):
+        wednesday = pd.Timestamp(self.WEDNESDAY, tz=summary.IST)
+        records = self._records(wednesday.date())
+
+        self.assertTrue(summary.market_traded_today("nse", records, wednesday))
+
+    def test_crypto_is_never_closed(self):
+        saturday = pd.Timestamp(self.SATURDAY, tz=summary.IST)
+
+        for market in ("crypto", "xstock", "other"):
+            with self.subTest(market=market):
+                self.assertTrue(
+                    summary.market_traded_today(market, pd.DataFrame(), saturday)
+                )
+
+class RepeatDeliveryTests(unittest.TestCase):
+    def _write(self, directory, rows):
+        path = Path(directory) / "records.jsonl"
+        path.write_text(
+            "\n".join(json.dumps(row) for row in rows), encoding="utf-8"
+        )
+        return path
+
+    def _record(self, when, top):
+        return {
+            "delivered_at_utc": when,
+            "symbol": "TCS.NS",
+            "timeframe": "30m",
+            "side": "long",
+            "alert_price": 100.0,
+            "distance_pct": 0.05,
+            "level": 99.0,
+            "zone_bottom": 99.0,
+            "zone_top": top,
+            "planned_entry": top,
+            "stop_price": 98.9,
+        }
+
+    def test_one_zone_realerted_all_day_is_one_trade(self):
+        # The scanner re-alerts a live zone every scan and its edges drift
+        # in the far decimals as ATR moves, so an exact match never caught
+        # them: 44% of eight days of NSE records were the same zone again.
+        rows = [
+            self._record("2026-08-26T04:00:00+00:00", 100.17203103477016),
+            self._record("2026-08-26T04:20:00+00:00", 100.17210107412592),
+            self._record("2026-08-26T04:40:00+00:00", 100.17203142238878),
+        ]
+        with tempfile.TemporaryDirectory() as tmp:
+            frame = summary.load_records(self._write(tmp, rows), "30m")
+
+        self.assertEqual(len(frame), 1)
+
+    def test_the_same_level_on_a_later_session_is_its_own_trade(self):
+        rows = [
+            self._record("2026-08-26T04:00:00+00:00", 100.172),
+            self._record("2026-08-27T04:00:00+00:00", 100.172),
+        ]
+        with tempfile.TemporaryDirectory() as tmp:
+            frame = summary.load_records(self._write(tmp, rows), "30m")
+
+        self.assertEqual(len(frame), 2)
+
+    def test_a_genuinely_different_zone_survives(self):
+        rows = [
+            self._record("2026-08-26T04:00:00+00:00", 100.172),
+            self._record("2026-08-26T04:20:00+00:00", 101.500),
+        ]
+        with tempfile.TemporaryDirectory() as tmp:
+            frame = summary.load_records(self._write(tmp, rows), "30m")
+
+        self.assertEqual(len(frame), 2)
+
+    def test_the_first_delivery_is_the_one_kept(self):
+        # The first is the one the user could have acted on.
+        rows = [
+            self._record("2026-08-26T04:00:00+00:00", 100.172),
+            self._record("2026-08-26T04:20:00+00:00", 100.1720001),
+        ]
+        with tempfile.TemporaryDirectory() as tmp:
+            frame = summary.load_records(self._write(tmp, rows), "30m")
+
+        self.assertEqual(len(frame), 1)
+        kept = pd.Timestamp(frame.iloc[0]["event_time"]).tz_convert("UTC")
+        self.assertEqual(kept.hour, 4)
+        self.assertEqual(kept.minute, 0)
 

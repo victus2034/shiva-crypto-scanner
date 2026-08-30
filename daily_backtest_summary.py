@@ -237,10 +237,28 @@ def load_records(path: Path, timeframe_filter: str) -> pd.DataFrame:
     if not rows:
         return pd.DataFrame()
     frame = pd.DataFrame(rows)
-    return frame.drop_duplicates(
-        ["event_time", "symbol", "side", "alert_price", "zone_bottom", "zone_top"],
-        keep="first",
-    ).sort_values(["event_time", "symbol"]).reset_index(drop=True)
+    frame = frame.sort_values(["event_time", "symbol"]).reset_index(drop=True)
+
+    # One zone, one trade. The scanner re-alerts a live zone on every scan
+    # and its edges drift in the far decimals as ATR moves, so an exact
+    # match on zone_bottom/zone_top never caught the repeats and each one
+    # was evaluated as a separate trade. Across eight days of NSE records,
+    # 44% of deliveries were the same zone alerted again.
+    #
+    # Six significant figures is far finer than any zone is wide, and the
+    # day is part of the key, so the same level on a later session is still
+    # its own trade. The first delivery wins, which is the one the user
+    # would have acted on.
+    day = pd.to_datetime(frame["event_time"], utc=True, errors="coerce").dt.tz_convert(IST).dt.date
+    identity = pd.DataFrame({
+        "day": day,
+        "symbol": frame["symbol"],
+        "side": frame["side"],
+        "bottom": frame["zone_bottom"].map(lambda v: f"{float(v):.6g}"),
+        "top": frame["zone_top"].map(lambda v: f"{float(v):.6g}"),
+    })
+    keep = ~identity.duplicated(keep="first")
+    return frame[keep].reset_index(drop=True)
 
 
 def parse_rating(value) -> float:
@@ -1869,6 +1887,27 @@ def split_discord_embed_descriptions(message: str, limit: int = 4096) -> list[st
     return chunks
 
 
+def market_traded_today(market: str, records: pd.DataFrame, now=None) -> bool:
+    """Whether this market was open today, so silence is worth breaking.
+
+    Crypto never closes. NSE closes at weekends and on public holidays,
+    and a note saying nothing new happened is noise on a day nothing could
+    have happened - a Saturday quiet note went out for exactly this reason.
+
+    Holidays are read from the data rather than a calendar that would need
+    maintaining: the scanner delivers 58 to 75 NSE alerts on a normal
+    session, so a weekday with none is a closed market, not a quiet one.
+    """
+    if market != "nse":
+        return True
+    now = now or pd.Timestamp.now(tz=IST)
+    if now.weekday() >= 5:
+        return False
+    if records is None or records.empty or "report_date" not in records:
+        return False
+    return (records["report_date"] == now.date()).any()
+
+
 def quiet_day_line(target_date, timeframe: str, market: str) -> str:
     """One line for a timeframe that produced nothing new today.
 
@@ -2283,6 +2322,9 @@ def main() -> None:
         if not args.force and key in load_sent_reports():
             print(f"Skipped duplicate report: {key}")
             quiet_key = quiet_day_key(args.timeframe, args.market)
+            if not market_traded_today(args.market, records):
+                print(f"{args.market.upper()} was closed today; staying quiet.")
+                return
             if quiet_key not in load_sent_reports():
                 send_discord_message(
                     quiet_day_line(target_date, args.timeframe, args.market)
