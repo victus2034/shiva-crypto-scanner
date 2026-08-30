@@ -2235,9 +2235,10 @@
     "AERO/USDT|30m|short|0.496393|0.4972": 1788097931.280974,
     "HBAR/USDT|30m|short|0.0756125|0.07573": 1788097931.6511953,
     "ERA/USDT|30m|short|0.0614644|0.06161": 1788097931.8798375,
-    "TRX/USDT|30m|short|0.340974|0.34111": 1788102735.965298,
+    "TRX/USDT|30m|short|0.340974|0.34111": 1788107548.280375,
     "METAXUSD|30m|short|581.387|581.49": 1788102736.2202988,
-    "MUBUSD|30m|long|933.75|933.962": 1788105137.6960933
+    "MUBUSD|30m|long|933.75|933.962": 1788105137.6960933,
+    "ALGO/USDT|30m|short|0.0880109|0.08813": 1788107548.5669384
   },
   "METAXUSD|demand|577.00000000|579.20000000": {
     "in_zone": false,
@@ -13786,7 +13787,7 @@
     "last_alert_at": 1787580724.510809
   },
   "__last_scan_started__": {
-    "30m": 1788106257.406667
+    "30m": 1788107466.0681682
   },
   "TAO/USDT|supply|227.92800000|229.00000000": {
     "in_zone": false,
@@ -22457,11 +22458,11 @@
     "last_alert_at": 0.0
   },
   "ALGO/USDT|supply|0.08801085|0.08813000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1788107548.5669384
   },
   "MUBUSD|demand|933.75000000|933.96225000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1788105137.6960933
   },
   "NBIS/USDT:USDT|demand|208.11000000|208.23635000": {
@@ -22565,8 +22566,8 @@
     "last_alert_at": 0.0
   },
   "TRX/USDT|supply|0.34097420|0.34111000": {
-    "in_zone": false,
-    "last_alert_at": 1788102735.965298
+    "in_zone": true,
+    "last_alert_at": 1788107548.280375
   },
   "O/USDT|demand|0.52310000|0.52620650": {
     "in_zone": false,
@@ -22677,6 +22678,18 @@
     "last_alert_at": 0.0
   },
   "HOME/USDT|demand|0.00609000|0.00610519": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "WLD/USDT|supply|0.38384800|0.38450000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "O/USDT|demand|0.52300000|0.52612800": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "STRK/USDT|demand|0.02484000|0.02488645": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
