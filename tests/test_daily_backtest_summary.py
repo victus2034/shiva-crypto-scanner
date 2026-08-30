@@ -560,12 +560,15 @@ class DailyBacktestSummaryTests(unittest.TestCase):
 
         message = summary.build_summary(records, pd.Timestamp("2026-08-04").date(), results, {}, 0, "30m")
 
-        self.assertIn("NSE 30m BACKTEST\n04 AUG 2026", message)
-        self.assertIn("OVERVIEW\nAlerts - 2", message)
-        self.assertIn("No Touch - 1", message)
+        self.assertIn("NSE 30m BACKTEST", message)
+        self.assertIn("04 AUG 2026", message)
+        self.assertIn("Alerts 2", message)
+        self.assertIn("No Touch 1", message)
         self.assertIn("4/10 - 1 entries | +2R 1 | 100.0%", message)
         self.assertIn("No Entries - 6/10", message)
-        self.assertIn("1. BTC", message)
+        # BEST/WORST were removed from the daily report; the weekly
+        # one still carries them.
+        self.assertNotIn("BEST", message)
         self.assertNotIn("Tradable", message)
         self.assertNotIn("BE:", message)
         self.assertNotIn("Verdict", message)
@@ -611,7 +614,7 @@ class DailyBacktestSummaryTests(unittest.TestCase):
 
         message = summary.build_summary(records, pd.Timestamp("2026-08-04").date(), results, {}, 0, "30m")
 
-        self.assertIn("No Touch - 1", message)
+        self.assertIn("No Touch 1", message)
 
     def test_report_results_fall_back_to_report_date_when_trade_ids_change(self):
         target = pd.Timestamp("2026-08-04").date()
@@ -648,10 +651,10 @@ class DailyBacktestSummaryTests(unittest.TestCase):
         message = summary.build_summary(records, target, filtered, {}, 0, "30m")
 
         self.assertEqual(len(filtered), 2)
-        self.assertIn("Touch - 1", message)
-        self.assertIn("No Touch - 1", message)
-        self.assertIn("Entries - 1", message)
-        self.assertIn("+1R - 1", message)
+        self.assertIn("No Touch 1", message)
+        self.assertIn("No Touch 1", message)
+        self.assertIn("Entries 1", message)
+        self.assertIn("+1R 1", message)
 
     def test_discord_payload_uses_embeds_without_truncating_long_reports(self):
         message = "\n".join([f"Line {index}" for index in range(900)])

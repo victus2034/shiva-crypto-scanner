@@ -1521,46 +1521,67 @@ def build_summary(
     ).sum()
     final_counts = finalized["final_result"].value_counts() if not finalized.empty else pd.Series(dtype=int)
 
+    decided = int(sum(final_counts.get(k, 0) for k in ("SL", "+0.5R", "+1R", "+2R")))
+    wins = int(sum(final_counts.get(k, 0) for k in ("+0.5R", "+1R", "+2R")))
+    win_rate = f"{wins / decided * 100:.1f}%" if decided else "N/A"
+
+    # Three dense lines instead of four labelled blocks. Every number that
+    # was in OVERVIEW/EXECUTION/RESULTS is still here; the headings and the
+    # one-per-line layout were the length, not the content.
+    counted = " · ".join(
+        f"{label} {int(final_counts.get(label, 0))}"
+        for label in OUTCOME_ORDER
+        if int(final_counts.get(label, 0))
+    )
+    tally = [f"Alerts {len(records)}", f"Entries {entries}", f"No Touch {no_touch}"]
+    if duplicates:
+        tally.append(f"Duplicates {duplicates}")
+    if waiting:
+        tally.append(f"Waiting {waiting}")
+    if data_issues:
+        tally.append(f"Data Issues {data_issues}")
+
     lines = [
-        header,
-        date_line,
+        f"{header} · {date_line}",
         "",
-        "OVERVIEW",
-        metric("Alerts", len(records)),
-        metric(asset_label, records["symbol"].nunique()),
-        metric("BUY", buy_count),
-        metric("SELL", sell_count),
-        "",
-        "EXECUTION",
-        metric("Touch", touched),
-        metric("No Touch", no_touch),
-        *([metric("Duplicates", duplicates)] if duplicates else []),
-        metric("Entries", entries),
-        *([metric("Waiting", waiting)] if waiting else []),
-        *([metric("Data Issues", data_issues)] if data_issues else []),
-        "",
-        "RESULTS",
-        *format_outcome_lines(final_counts),
-        "",
-        "TOTAL RESULT",
-        format_r(net_r),
-        "",
-        "RATING PERFORMANCE",
-        format_rating_table(records, results),
+        " · ".join(tally),
     ]
+    if counted:
+        lines.append(counted)
+    lines.append(f"Win rate {win_rate} · TOTAL {format_r(net_r)}")
+
+    rating_block = format_rating_table(records, results)
+    if rating_block and rating_block != "None":
+        lines.extend(["", "RATING", rating_block])
 
     hourly_lines = hourly_breakdown_lines(results)
     if hourly_lines:
-        lines.extend(["", "HOURLY BREAKDOWN (IST, by alert time)", *hourly_lines])
-
-    best = best_symbol_lines(filled, best=True)
-    worst = best_symbol_lines(filled, best=False)
-    if best:
-        lines.extend(["", "BEST", best])
-    if worst:
-        lines.extend(["", "WORST", worst])
+        lines.extend(["", "HOURS (IST)", *hourly_lines])
 
     return "\n".join(lines)
+
+
+def best_symbol_lines(filled: pd.DataFrame, best: bool) -> str:
+    if filled.empty:
+        return ""
+    frame = filled.copy()
+    frame["_result_r"] = frame["final_result"].map(FINAL_RESULT_R)
+    if best:
+        frame = frame[frame["final_result"].isin(["+0.5R", "+1R", "+2R"])]
+        frame = frame.sort_values(["_result_r", "rating"], ascending=[False, False])
+    else:
+        frame = frame[frame["final_result"] == "SL"]
+        frame = frame.sort_values(["_result_r", "rating"], ascending=[True, True])
+    if frame.empty:
+        return ""
+    lines = []
+    for index, row in enumerate(frame.head(3).to_dict("records"), start=1):
+        rating = int(row["rating"]) if pd.notna(row.get("rating")) else "N/A"
+        lines.append(
+            f"{index}. {display_symbol(row['symbol'])} - {rating}/10 - {row['final_result']}"
+        )
+    return "\n".join(lines)
+
 
 
 def format_rating_table(records: pd.DataFrame, results: pd.DataFrame) -> str:
@@ -1722,6 +1743,10 @@ def hourly_breakdown_lines(results: pd.DataFrame) -> list[str]:
         parts = [f"Alerts {len(group)}"]
 
         filled_group = group[group["filled"] == True]  # noqa: E712
+        # An hour that produced no entry is a line saying nothing happened.
+        # On a quiet session that was most of the block.
+        if not len(filled_group):
+            continue
         if len(filled_group):
             parts.append(f"Entries {len(filled_group)}")
             finalized_group = filled_group[filled_group["final_result"] != "Pending"]
@@ -1738,28 +1763,6 @@ def hourly_breakdown_lines(results: pd.DataFrame) -> list[str]:
         hour_label = pd.Timestamp(hour).strftime("%H:%M")
         lines.append(f"{hour_label} - " + " | ".join(parts))
     return lines
-
-
-def best_symbol_lines(filled: pd.DataFrame, best: bool) -> str:
-    if filled.empty:
-        return ""
-    frame = filled.copy()
-    frame["_result_r"] = frame["final_result"].map(FINAL_RESULT_R)
-    if best:
-        frame = frame[frame["final_result"].isin(["+0.5R", "+1R", "+2R"])]
-        frame = frame.sort_values(["_result_r", "rating"], ascending=[False, False])
-    else:
-        frame = frame[frame["final_result"] == "SL"]
-        frame = frame.sort_values(["_result_r", "rating"], ascending=[True, True])
-    if frame.empty:
-        return ""
-    lines = []
-    for index, row in enumerate(frame.head(3).to_dict("records"), start=1):
-        rating = int(row["rating"]) if pd.notna(row.get("rating")) else "N/A"
-        lines.append(
-            f"{index}. {display_symbol(row['symbol'])} - {rating}/10 - {row['final_result']}"
-        )
-    return "\n".join(lines)
 
 
 def rating_counts(records: pd.DataFrame) -> dict[int, int]:
