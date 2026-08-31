@@ -16565,6 +16565,31 @@
       "target_half": 205.180155,
       "timeframe": "4h",
       "trade_id": "0b184c6983a153cf"
+    },
+    {
+      "alert_time": "2026-08-31T09:32:30.600350+05:30",
+      "cost_r": 0.16952725704024568,
+      "date": "2026-08-31",
+      "entry": 103.46585,
+      "entry_time": "2026-08-31T09:50:00+05:30",
+      "exit_price": 103.59000902,
+      "exit_time": "2026-08-31T09:50:00+05:30",
+      "final_result": "BE",
+      "half_r_hit": true,
+      "market": "xstock",
+      "net_realized_r": 0.021848762196145566,
+      "outcome": "BE",
+      "rating": 8,
+      "realized_r": 0.19137601923639125,
+      "risk": 0.648769999999999,
+      "side": "long",
+      "stop": 102.81708,
+      "symbol": "HOOD/USDT:USDT",
+      "target_1": 104.11462,
+      "target_2": 104.76339,
+      "target_half": 103.790235,
+      "timeframe": "4h",
+      "trade_id": "4bc6d3e1c68037d2"
     }
   ],
   "handled": {
@@ -17294,22 +17319,6 @@
     "ffb4661b7d04cd46": "filled"
   },
   "open": {
-    "4bc6d3e1c68037d2": {
-      "alert_time": "2026-08-31T09:32:30.600350+05:30",
-      "entry": 103.46585,
-      "entry_time": "2026-08-31T09:50:00+05:30",
-      "half_r_hit": true,
-      "market": "xstock",
-      "rating": 8,
-      "risk": 0.648769999999999,
-      "side": "long",
-      "stop": 102.81708,
-      "symbol": "HOOD/USDT:USDT",
-      "target_1": 104.11462,
-      "target_2": 104.76339,
-      "target_half": 103.790235,
-      "timeframe": "4h"
-    },
     "553d1ae788f3c816": {
       "alert_time": "2026-08-31T09:52:03.711373+05:30",
       "entry": 103.54615,
