@@ -17411,6 +17411,7 @@
     "fa8fa32d68c0a671": "filled",
     "fa95f6e0a4f0a901": "filled",
     "fac8f2d6f5615041": "filled",
+    "fb407bd333baa379": "filled",
     "fb95e54188969b6b": "filled",
     "fbcc91cce70fe792": "filled",
     "fc7ad14c0e4990d8": "filled",
@@ -17421,5 +17422,22 @@
     "fed8ed34d9b4adcd": "filled",
     "ffb4661b7d04cd46": "filled"
   },
-  "open": {}
+  "open": {
+    "fb407bd333baa379": {
+      "alert_time": "2026-08-31T16:02:20.930251+05:30",
+      "entry": 60.91565,
+      "entry_time": "2026-08-31T16:10:00+05:30",
+      "half_r_hit": true,
+      "market": "other",
+      "rating": 8,
+      "risk": 0.07527999999999224,
+      "side": "short",
+      "stop": 60.99092999999999,
+      "symbol": "SLVONUSD",
+      "target_1": 60.84037000000001,
+      "target_2": 60.765090000000015,
+      "target_half": 60.87801,
+      "timeframe": "30m"
+    }
+  }
 }
