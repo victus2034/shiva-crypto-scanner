@@ -235,6 +235,15 @@ def load_records(path: Path, timeframe_filter: str) -> pd.DataFrame:
                     "stop_price": parse_optional_float(raw.get("stop_price")),
                     "stop_distance_pct": parse_optional_float(raw.get("stop_distance_pct")),
                     "rating": parse_rating(raw.get("score")),
+                    # Carried through so the finalized records can be scored
+                    # against them. The scanners logged some of these all
+                    # along, but they stopped here and never reached the
+                    # analysis, which is why no filter could be tested.
+                    "wick_to_body": parse_optional_float(raw.get("wick_to_body")),
+                    "wick_atr": parse_optional_float(raw.get("wick_atr")),
+                    "departure_atr": parse_optional_float(raw.get("departure_atr")),
+                    "touch_count": parse_optional_float(raw.get("touch_count")),
+                    "zone_age_candles": parse_optional_float(raw.get("zone_age_candles")),
                     "market_class": market_class(symbol),
                     "zone_id": (
                         f"{raw['symbol']}|{side}|{zone_bottom:.8f}|{zone_top:.8f}"
@@ -1996,6 +2005,7 @@ def lifecycle_payload(row: dict, target_date, timeframe: str, market: str) -> di
         "wick_atr": json_optional_float(row.get("wick_atr")),
         "departure_atr": json_optional_float(row.get("departure_atr")),
         "touch_count": json_optional_float(row.get("touch_count")),
+        "zone_age_candles": json_optional_float(row.get("zone_age_candles")),
         "trade_id": row.get("trade_id") or stable_trade_id(row),
         "alert_time": format_optional_timestamp(alert_time),
         "entry_time": format_optional_timestamp(row.get("entry_time")),

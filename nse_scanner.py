@@ -178,6 +178,7 @@ def record_delivered_zone_alert(result, zone_type, zone, distance_pct, message, 
         "wick_atr": zone.get("wick_atr"),
         "departure_atr": zone.get("departure_atr"),
         "touch_count": zone.get("touch_count"),
+        "zone_age_candles": zone.get("zone_age_candles"),
         "message": message,
     }
     record["trade_id"] = delivered_alert_id(record)
@@ -457,6 +458,12 @@ def nearest_active_zone(price, zones, zone_type, current_index=None):
         if distance < nearest_dist:
             nearest = zone
             nearest_dist = distance
+
+    # Stamp the age on the way out, matching scanner.py. This is the only
+    # place the bar index and the chosen zone are both in scope, and the
+    # record needs the age to make MIN_ZONE_AGE_CANDLES tunable.
+    if nearest is not None and current_index is not None:
+        nearest["zone_age_candles"] = int(current_index - nearest["created_idx"])
 
     return nearest, nearest_dist
 

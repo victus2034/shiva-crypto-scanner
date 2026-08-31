@@ -374,6 +374,12 @@ def nearest_active_zone(price, zones, zone_type, current_index=None):
             nearest = zone
             nearest_dist = distance
 
+    # Stamp the age on the way out. This is the only place the bar index and
+    # the chosen zone are both in scope, and the alert record needs the age to
+    # make MIN_ZONE_AGE_CANDLES tunable against outcomes rather than guessed.
+    if nearest is not None and current_index is not None:
+        nearest["zone_age_candles"] = int(current_index - nearest["created_idx"])
+
     return nearest, nearest_dist
 
 
@@ -1088,6 +1094,15 @@ def record_delivered_zone_alert(result, zone_type, zone, distance_pct, message, 
         "stop_price": planned_stop_price(zone_type, zone),
         "stop_distance_pct": planned_stop_distance_pct(zone_type, zone),
         "score": score,
+        # The raw score_wick_zone inputs and the zone's age. The scanner has
+        # always computed these and thrown them away, so every crypto record
+        # written before 31 Aug 2026 lacks them and no filter could be tested
+        # against outcomes. NSE has logged its copies all along.
+        "wick_to_body": zone.get("wick_to_body"),
+        "wick_atr": zone.get("wick_atr"),
+        "departure_atr": zone.get("departure_atr"),
+        "touch_count": zone.get("touch_count"),
+        "zone_age_candles": zone.get("zone_age_candles"),
         "message": message,
     }
     record["trade_id"] = delivered_alert_id(record)
