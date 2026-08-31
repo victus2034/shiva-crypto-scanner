@@ -16865,6 +16865,31 @@
       "target_half": 368.21382500000004,
       "timeframe": "30m",
       "trade_id": "0d18b7f95c5b88ff"
+    },
+    {
+      "alert_time": "2026-09-01T00:12:05.793154+05:30",
+      "cost_r": 0.20116325892857534,
+      "date": "2026-09-01",
+      "entry": 47.4768,
+      "entry_time": "2026-09-01T00:15:00+05:30",
+      "exit_price": 46.97504000000001,
+      "exit_time": "2026-09-01T00:20:00+05:30",
+      "final_result": "+2R",
+      "half_r_hit": true,
+      "market": "crypto",
+      "net_realized_r": 1.7988367410714248,
+      "outcome": "+2R",
+      "rating": 8,
+      "realized_r": 2.0,
+      "risk": 0.2508799999999951,
+      "side": "short",
+      "stop": 47.72767999999999,
+      "symbol": "DASH/USDT",
+      "target_1": 47.22592,
+      "target_2": 46.97504000000001,
+      "target_half": 47.35136,
+      "timeframe": "4h",
+      "trade_id": "f6ad1aaa60aa75fe"
     }
   ],
   "handled": {
@@ -17604,22 +17629,5 @@
     "fed8ed34d9b4adcd": "filled",
     "ffb4661b7d04cd46": "filled"
   },
-  "open": {
-    "f6ad1aaa60aa75fe": {
-      "alert_time": "2026-09-01T00:12:05.793154+05:30",
-      "entry": 47.4768,
-      "entry_time": "2026-09-01T00:15:00+05:30",
-      "half_r_hit": false,
-      "market": "crypto",
-      "rating": 8,
-      "risk": 0.2508799999999951,
-      "side": "short",
-      "stop": 47.72767999999999,
-      "symbol": "DASH/USDT",
-      "target_1": 47.22592,
-      "target_2": 46.97504000000001,
-      "target_half": 47.35136,
-      "timeframe": "4h"
-    }
-  }
+  "open": {}
 }
