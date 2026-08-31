@@ -2884,7 +2884,8 @@
     "ITI.NS|4h|long|272.05|273.437": 1788148362.9414036,
     "NIVABUPA.NS|4h|long|80.9|81.3014": 1788148363.17897,
     "HINDPETRO.NS|4h|long|356.05|358.385": 1788149570.384261,
-    "BLUESTARCO.NS|4h|long|1450|1461.26": 1788150786.1377282
+    "BLUESTARCO.NS|4h|long|1450|1461.26": 1788150786.1377282,
+    "NATCOPHARM.NS|4h|long|839.4|845.853": 1788153171.3177013
   },
   "GESHIP.NS|demand|1057.1000|1070.5000": {
     "in_zone": false,
@@ -17937,7 +17938,7 @@
     "last_attempt_at": 0.0
   },
   "__last_scan_started__": {
-    "4h": 1788151883.5716753
+    "4h": 1788153085.501709
   },
   "360ONE.NS|supply|1214.8851|1220.0000": {
     "in_zone": false,
@@ -21495,9 +21496,9 @@
     "last_attempt_at": 0.0
   },
   "NATCOPHARM.NS|demand|839.4000|845.8533": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1788153171.3177013,
+    "last_attempt_at": 1788153171.3177013
   },
   "NBCC.NS|supply|113.6834|114.2800": {
     "in_zone": false,
@@ -25785,7 +25786,7 @@
     "last_attempt_at": 0.0
   },
   "DMART.NS|demand|3755.3000|3771.9686": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1788151958.3004825,
     "last_attempt_at": 1788151958.3004825
   },
@@ -31495,7 +31496,7 @@
     "last_attempt_at": 0.0
   },
   "CREDITACC.NS|demand|1360.0000|1367.3540": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1788151958.4819613,
     "last_attempt_at": 1788151958.4819613
   },
@@ -35935,7 +35936,7 @@
     "last_attempt_at": 0.0
   },
   "BLUESTARCO.NS|demand|1450.0000|1461.2597": {
-    "in_zone": false,
+    "in_zone": true,
     "last_alert_at": 1788150786.1377282,
     "last_attempt_at": 1788150786.1377282
   },
