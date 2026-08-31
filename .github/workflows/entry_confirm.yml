@@ -1,15 +1,10 @@
 name: Victus Entry Confirm
 
 on:
-  schedule:
-    # Crypto only - NSE is no longer watched here. 08:00-01:00 IST is
-    # 02:30-19:30 UTC. Five minutes, because at ten price stepped over
-    # the approach band between polls and the alert was never pinged.
-    #
-    # GitHub honours a fraction of these - two of a possible 230 on
-    # 30 Aug - so the external scheduler is what actually drives this
-    # job. The cron is a fallback, not the mechanism.
-    - cron: "*/5 2-19 * * *"
+  # Triggered by cron-job.org, which dispatches this workflow over the
+  # API. GitHub's own scheduler is not used: it honours only a fraction
+  # of scheduled runs (two of a possible 230 on 30 Aug 2026), and having
+  # both fire dispatched every job twice.
   workflow_dispatch:
     inputs:
       market:

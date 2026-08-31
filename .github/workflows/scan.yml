@@ -1,14 +1,10 @@
 name: Victus Crypto Scanner
 
 on:
-  # 08:00-01:00 IST is 02:30-19:30 UTC, which does not wrap the date.
-  schedule:
-    # 08:00 and 08:20 IST
-    - cron: "30,50 2 * * *"
-    # 08:40 through 00:20 IST
-    - cron: "10,30,50 3-18 * * *"
-    # 00:40 and 01:00 IST
-    - cron: "10,30 19 * * *"
+  # Triggered by cron-job.org, which dispatches this workflow over the
+  # API. GitHub's own scheduler is not used: it honours only a fraction
+  # of scheduled runs (two of a possible 230 on 30 Aug 2026), and having
+  # both fire dispatched every job twice.
   workflow_dispatch:
 
 permissions:

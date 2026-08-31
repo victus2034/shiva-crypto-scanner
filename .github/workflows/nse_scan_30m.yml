@@ -1,10 +1,10 @@
 name: Victus NSE Scanner 30m
 
 on:
-  # NSE hours only.
-  schedule:
-    # 08:30-16:20 IST on weekdays; the script's own guard trims the edges
-    - cron: "*/20 3-10 * * 1-5"
+  # Triggered by cron-job.org, which dispatches this workflow over the
+  # API. GitHub's own scheduler is not used: it honours only a fraction
+  # of scheduled runs (two of a possible 230 on 30 Aug 2026), and having
+  # both fire dispatched every job twice.
   workflow_dispatch:
 
 permissions:

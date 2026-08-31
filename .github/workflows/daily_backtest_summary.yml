@@ -1,10 +1,10 @@
 name: Victus Daily Backtest Summary
 
 on:
-  schedule:
-    # GitHub Actions uses UTC. 11:00 UTC = 16:30 IST.
-    # Crypto runs daily; NSE duplicate protection prevents stale weekend reposts.
-    - cron: "0 11 * * *"
+  # Triggered by cron-job.org, which dispatches this workflow over the
+  # API. GitHub's own scheduler is not used: it honours only a fraction
+  # of scheduled runs (two of a possible 230 on 30 Aug 2026), and having
+  # both fire dispatched every job twice.
   workflow_dispatch:
     inputs:
       timeframe:
