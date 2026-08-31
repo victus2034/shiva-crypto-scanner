@@ -70,11 +70,20 @@ SL_BUFFER_PCT = 0.10
 # 18% GST on brokerage + exchange + SEBI. Constant at any size below the
 # ~Rs66,667 where the Rs20 brokerage cap starts to bite and the rate falls.
 ROUND_TRIP_COST_PCT = 0.1063
-# CoinSwitch futures, both legs. Unlike the NSE figure this is not reconciled
-# against a contract note yet, so it is a placeholder the moment a real one
-# exists: set VICTUS_CRYPTO_ROUND_TRIP_COST_PCT to the measured rate. Leaving
-# it at zero was worse than an approximation - it made crypto look six times
-# better than NSE when the difference was almost entirely unpriced charges.
+# CoinSwitch futures, both legs. Measured 31 Aug 2026 from the user's own
+# futures history: 49 filled trades, whose commissions reconcile to the paisa
+# against the account's COMMISSION ledger. Fee-weighted by notional rather
+# than averaged per trade, because the per-trade rate ranges from 0.0236% to
+# 0.118% and a plain mean would over-weight the small fills.
+#
+# Only 20-21 July is used. Before that, 8 of 27 trades were charged nothing
+# at all - a waiver that stopped after 17 July - and including them would
+# understate what the account actually pays now. On the 22 fee-charging
+# trades the round trip is 0.0980%: 0.1004% on crypto, 0.0969% on xStocks,
+# close enough to carry one number for both. The earlier 0.10% placeholder
+# happened to be right, so no backtest result shifts.
+#
+# Override with VICTUS_CRYPTO_ROUND_TRIP_COST_PCT if the fee tier changes.
 CRYPTO_ROUND_TRIP_COST_PCT = float(
     os.getenv("VICTUS_CRYPTO_ROUND_TRIP_COST_PCT", "0.10")
 )
@@ -1255,7 +1264,8 @@ def round_trip_cost_r(entry_price: float, risk: float, market: str | None) -> fl
     the same charge is a much bigger fraction of R on a tight stop than a
     wide one - on these stops it runs near half of R, which is most of the
     gross edge. NSE uses the Dhan rate reconciled against a contract note;
-    everything else uses the crypto rate, which is still an estimate.
+    everything else uses the crypto rate, measured from the account's own
+    filled futures trades.
     """
     if risk <= 0:
         return 0.0
