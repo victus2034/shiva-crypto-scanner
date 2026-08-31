@@ -16765,6 +16765,31 @@
       "target_half": 340.12642500000004,
       "timeframe": "4h",
       "trade_id": "b6e3ed97033e3660"
+    },
+    {
+      "alert_time": "2026-08-31T19:32:22.124394+05:30",
+      "cost_r": 0.0912653272329418,
+      "date": "2026-08-31",
+      "entry": 0.34528000000000003,
+      "entry_time": "2026-08-31T19:35:00+05:30",
+      "exit_price": 0.34569433600000005,
+      "exit_time": "2026-08-31T19:35:00+05:30",
+      "final_result": "BE",
+      "half_r_hit": true,
+      "market": "crypto",
+      "net_realized_r": 0.011762323453355622,
+      "outcome": "BE",
+      "rating": 5,
+      "realized_r": 0.10302765068629742,
+      "risk": 0.004021600000000014,
+      "side": "long",
+      "stop": 0.3412584,
+      "symbol": "LDO/USDT",
+      "target_1": 0.34930160000000005,
+      "target_2": 0.35332320000000006,
+      "target_half": 0.3472908,
+      "timeframe": "4h",
+      "trade_id": "d7a04a3c00de1e6b"
     }
   ],
   "handled": {
@@ -17500,22 +17525,5 @@
     "fed8ed34d9b4adcd": "filled",
     "ffb4661b7d04cd46": "filled"
   },
-  "open": {
-    "d7a04a3c00de1e6b": {
-      "alert_time": "2026-08-31T19:32:22.124394+05:30",
-      "entry": 0.34528000000000003,
-      "entry_time": "2026-08-31T19:35:00+05:30",
-      "half_r_hit": false,
-      "market": "crypto",
-      "rating": 5,
-      "risk": 0.004021600000000014,
-      "side": "long",
-      "stop": 0.3412584,
-      "symbol": "LDO/USDT",
-      "target_1": 0.34930160000000005,
-      "target_2": 0.35332320000000006,
-      "target_half": 0.3472908,
-      "timeframe": "4h"
-    }
-  }
+  "open": {}
 }
