@@ -16774,6 +16774,7 @@
     "5462252c0995acca": "filled",
     "5464670cbd09d7d6": "filled",
     "54f61505c06fb828": "filled",
+    "553d1ae788f3c816": "filled",
     "554309941c49af8e": "filled",
     "560f2d4f10f6ecda": "filled",
     "569ef807e52ec2ae": "filled",
@@ -17281,6 +17282,22 @@
       "target_1": 104.11462,
       "target_2": 104.76339,
       "target_half": 103.790235,
+      "timeframe": "4h"
+    },
+    "553d1ae788f3c816": {
+      "alert_time": "2026-08-31T09:52:03.711373+05:30",
+      "entry": 103.54615,
+      "entry_time": "2026-08-31T09:55:00+05:30",
+      "half_r_hit": false,
+      "market": "xstock",
+      "rating": 8,
+      "risk": 0.6491499999999917,
+      "side": "long",
+      "stop": 102.897,
+      "symbol": "HOOD/USDT:USDT",
+      "target_1": 104.19529999999999,
+      "target_2": 104.84444999999998,
+      "target_half": 103.870725,
       "timeframe": "4h"
     }
   }
