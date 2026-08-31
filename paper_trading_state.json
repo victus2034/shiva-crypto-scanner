@@ -16840,6 +16840,31 @@
       "target_half": 368.39667499999996,
       "timeframe": "30m",
       "trade_id": "0c572fa5da8554be"
+    },
+    {
+      "alert_time": "2026-08-31T23:42:11.379777+05:30",
+      "cost_r": 0.7300279047620135,
+      "date": "2026-08-31",
+      "entry": 368.4821,
+      "entry_time": "2026-08-31T23:45:00+05:30",
+      "exit_price": 367.9455500000001,
+      "exit_time": "2026-08-31T23:50:00+05:30",
+      "final_result": "+1R",
+      "half_r_hit": true,
+      "market": "xstock",
+      "net_realized_r": 0.2699720952379865,
+      "outcome": "+1R",
+      "rating": 10,
+      "realized_r": 1.0,
+      "risk": 0.5365499999999201,
+      "side": "short",
+      "stop": 369.0186499999999,
+      "symbol": "TSLAXUSD",
+      "target_1": 367.9455500000001,
+      "target_2": 367.40900000000016,
+      "target_half": 368.21382500000004,
+      "timeframe": "30m",
+      "trade_id": "0d18b7f95c5b88ff"
     }
   ],
   "handled": {
@@ -17578,22 +17603,5 @@
     "fed8ed34d9b4adcd": "filled",
     "ffb4661b7d04cd46": "filled"
   },
-  "open": {
-    "0d18b7f95c5b88ff": {
-      "alert_time": "2026-08-31T23:42:11.379777+05:30",
-      "entry": 368.4821,
-      "entry_time": "2026-08-31T23:45:00+05:30",
-      "half_r_hit": true,
-      "market": "xstock",
-      "rating": 10,
-      "risk": 0.5365499999999201,
-      "side": "short",
-      "stop": 369.0186499999999,
-      "symbol": "TSLAXUSD",
-      "target_1": 367.9455500000001,
-      "target_2": 367.40900000000016,
-      "target_half": 368.21382500000004,
-      "timeframe": "30m"
-    }
-  }
+  "open": {}
 }
