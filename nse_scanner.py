@@ -31,9 +31,6 @@ from nse_config import (
     MAX_DISTANCE_PCT,
     MIN_DISTANCE_PCT,
     MIN_SCAN_INTERVAL_SECONDS,
-    MIN_DEPARTURE_ATR,
-    MIN_WICK_ATR,
-    MIN_WICK_TO_BODY,
     NSE_INDEX_CSV_URL,
     NSE_MAX_SYMBOLS,
     OHLCV_LIMIT,
@@ -51,7 +48,6 @@ from nse_config import (
     TIMEFRAME,
     SHOW_ZONE_RATINGS,
     ZONE_RATING_BASE,
-    ZONE_PADDING_ATR,
 )
 from zone_scoring import score_wick_zone
 

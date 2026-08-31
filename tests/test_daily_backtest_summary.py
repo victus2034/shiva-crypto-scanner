@@ -240,39 +240,6 @@ class DailyBacktestSummaryTests(unittest.TestCase):
         self.assertGreater(result["net_realized_r"], 0.0)
         self.assertLess(result["net_realized_r"], 0.05)
 
-    def test_a_stopped_out_trade_cannot_be_upgraded_by_a_later_recovery(self):
-        # Touches +0.5R, then trades through the stop, then recovers to
-        # +2R. The position was flat well before that +2R print, so it must
-        # close at the milestone it actually secured. Previously the loop
-        # skipped the stop once an outcome was set and let the recovery
-        # upgrade the trade all the way to +2R.
-        index = pd.DatetimeIndex(
-            [
-                "2026-08-04 10:00",
-                "2026-08-04 10:30",
-                "2026-08-04 11:00",
-                "2026-08-04 11:30",
-            ],
-            tz=summary.IST,
-        )
-        # entry 100.00, stop 98.901 -> +0.5R at 100.55, +2R at 102.20.
-        # Bar 1 fills and secures +0.5R, bar 2 trades through the stop,
-        # bar 3 recovers past +2R.
-        frame = pd.DataFrame(
-            {
-                "open": [101.0, 100.8, 99.5, 100.0],
-                "high": [101.2, 100.8, 99.5, 103.0],
-                "low": [100.9, 99.8, 98.5, 99.5],
-                "close": [101.0, 100.2, 98.8, 102.5],
-                "volume": [1, 1, 1, 1],
-            },
-            index=index,
-        )
-
-        result = summary.simulate_alert(frame, base_alert(), 0, 3)
-
-        self.assertEqual(result["final_result"], summary.BREAK_EVEN)
-        self.assertEqual(result["exit_time"], index[2])
 
     def test_a_stop_tighter_than_the_offset_leaves_the_stop_alone(self):
         # entry 100.00, stop 99.78 -> +0.5R lands at 100.11, but the

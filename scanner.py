@@ -37,9 +37,6 @@ from config import (
     MIN_DISTANCE_PCT,
     MIN_SCAN_INTERVAL_SECONDS,
     HISTORY_OF_ZONES_TO_KEEP,
-    MIN_DEPARTURE_ATR,
-    MIN_WICK_ATR,
-    MIN_WICK_TO_BODY,
     OHLCV_LIMIT,
     OVERLAP_ATR,
     PRIMARY_EXCHANGE_ID,
@@ -65,7 +62,6 @@ from config import (
     WATCHLIST,
     XSTOCK_EXTENDED_MIN_SCORE,
     XSTOCK_REGULAR_MIN_SCORE,
-    ZONE_PADDING_ATR,
 )
 from crypto_zone_rating import rate_crypto_zone
 from xstock_hybrid_rating import (
