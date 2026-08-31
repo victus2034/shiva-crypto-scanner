@@ -2891,7 +2891,8 @@
     "KPRMILL.NS|4h|short|1165.52|1173": 1788157979.475188,
     "NAVINFLUOR.NS|4h|short|8713.64|8752": 1788157979.6841733,
     "IOB.NS|4h|long|32.26|32.3805": 1788162757.7680988,
-    "AAVAS.NS|4h|long|1247.6|1254.49": 1788165186.5332808
+    "AAVAS.NS|4h|long|1247.6|1254.49": 1788165186.5332808,
+    "AXISBANK.NS|4h|short|1267.57|1272": 1788167559.2705233
   },
   "GESHIP.NS|demand|1057.1000|1070.5000": {
     "in_zone": false,
@@ -3784,9 +3785,9 @@
     "last_attempt_at": 0.0
   },
   "AXISBANK.NS|supply|1267.5704|1272.0000": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1788167559.2705233,
+    "last_attempt_at": 1788167559.2705233
   },
   "AXISBANK.NS|demand|1211.0000|1215.7881": {
     "in_zone": false,
@@ -17944,7 +17945,7 @@
     "last_attempt_at": 0.0
   },
   "__last_scan_started__": {
-    "4h": 1788166289.55222
+    "4h": 1788167489.9227402
   },
   "360ONE.NS|supply|1214.8851|1220.0000": {
     "in_zone": false,
@@ -39782,6 +39783,11 @@
     "last_attempt_at": 0.0
   },
   "BRITANNIA.NS|demand|5035.5000|5054.3499": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "BRITANNIA.NS|demand|5035.5000|5054.3574": {
     "in_zone": false,
     "last_alert_at": 0.0,
     "last_attempt_at": 0.0
