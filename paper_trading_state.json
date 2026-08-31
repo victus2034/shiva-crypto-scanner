@@ -16790,6 +16790,31 @@
       "target_half": 0.3472908,
       "timeframe": "4h",
       "trade_id": "d7a04a3c00de1e6b"
+    },
+    {
+      "alert_time": "2026-08-31T20:42:16.307143+05:30",
+      "cost_r": 0.52331099820952,
+      "date": "2026-08-31",
+      "entry": 142.9727,
+      "entry_time": "2026-08-31T20:45:00+05:30",
+      "exit_price": 143.33475155999997,
+      "exit_time": "2026-08-31T20:45:00+05:30",
+      "final_result": "SL",
+      "half_r_hit": false,
+      "market": "xstock",
+      "net_realized_r": -1.7699591629364329,
+      "outcome": "SL",
+      "rating": 9,
+      "realized_r": -1.246648164726913,
+      "risk": 0.29041999999998325,
+      "side": "short",
+      "stop": 143.26312,
+      "symbol": "SPCXXUSD",
+      "target_1": 142.68228000000002,
+      "target_2": 142.39186000000004,
+      "target_half": 142.82749,
+      "timeframe": "30m",
+      "trade_id": "29ed33ae986729cd"
     }
   ],
   "handled": {
@@ -17526,22 +17551,5 @@
     "fed8ed34d9b4adcd": "filled",
     "ffb4661b7d04cd46": "filled"
   },
-  "open": {
-    "29ed33ae986729cd": {
-      "alert_time": "2026-08-31T20:42:16.307143+05:30",
-      "entry": 142.9727,
-      "entry_time": "2026-08-31T20:45:00+05:30",
-      "half_r_hit": false,
-      "market": "xstock",
-      "rating": 9,
-      "risk": 0.29041999999998325,
-      "side": "short",
-      "stop": 143.26312,
-      "symbol": "SPCXXUSD",
-      "target_1": 142.68228000000002,
-      "target_2": 142.39186000000004,
-      "target_half": 142.82749,
-      "timeframe": "30m"
-    }
-  }
+  "open": {}
 }
