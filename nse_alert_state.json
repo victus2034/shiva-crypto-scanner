@@ -2883,7 +2883,8 @@
     "GILLETTE.NS|4h|long|7240|7276.04": 1788148362.6918695,
     "ITI.NS|4h|long|272.05|273.437": 1788148362.9414036,
     "NIVABUPA.NS|4h|long|80.9|81.3014": 1788148363.17897,
-    "HINDPETRO.NS|4h|long|356.05|358.385": 1788149570.384261
+    "HINDPETRO.NS|4h|long|356.05|358.385": 1788149570.384261,
+    "BLUESTARCO.NS|4h|long|1450|1461.26": 1788150786.1377282
   },
   "GESHIP.NS|demand|1057.1000|1070.5000": {
     "in_zone": false,
@@ -17936,7 +17937,7 @@
     "last_attempt_at": 0.0
   },
   "__last_scan_started__": {
-    "4h": 1788149487.5521688
+    "4h": 1788150705.8775935
   },
   "360ONE.NS|supply|1214.8851|1220.0000": {
     "in_zone": false,
@@ -24014,7 +24015,7 @@
     "last_attempt_at": 0.0
   },
   "HINDPETRO.NS|demand|356.0500|358.3851": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1788149570.384261,
     "last_attempt_at": 1788149570.384261
   },
@@ -35934,9 +35935,9 @@
     "last_attempt_at": 0.0
   },
   "BLUESTARCO.NS|demand|1450.0000|1461.2597": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1788150786.1377282,
+    "last_attempt_at": 1788150786.1377282
   },
   "BBTC.NS|supply|1930.5190|1939.9000": {
     "in_zone": false,
@@ -36699,6 +36700,11 @@
     "last_attempt_at": 0.0
   },
   "SBFC.NS|supply|107.9650|108.4000": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "BRITANNIA.NS|demand|5035.5000|5054.3503": {
     "in_zone": false,
     "last_alert_at": 0.0,
     "last_attempt_at": 0.0
