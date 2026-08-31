@@ -2250,7 +2250,8 @@
     "CL/USDT|30m|short|86.6667|86.71": 1788179542.468028,
     "MUBUSD|30m|short|945.482|946.67": 1788183145.9190938,
     "MMT/USDT|30m|long|0.154|0.154446": 1788185575.8586576,
-    "SPCXXUSD|30m|short|142.973|143.12": 1788189136.3071427
+    "SPCXXUSD|30m|short|142.973|143.12": 1788189136.3071427,
+    "TSLAXUSD|30m|short|368.654|368.8": 1788198724.8466475
   },
   "METAXUSD|demand|577.00000000|579.20000000": {
     "in_zone": false,
@@ -13799,7 +13800,7 @@
     "last_alert_at": 1787580724.510809
   },
   "__last_scan_started__": {
-    "30m": 1788197460.3839328
+    "30m": 1788198646.307623
   },
   "TAO/USDT|supply|227.92800000|229.00000000": {
     "in_zone": false,
@@ -15650,8 +15651,8 @@
     "last_alert_at": 0.0
   },
   "TSLAXUSD|supply|368.65405000|368.80000000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1788198724.8466475
   },
   "BANK/USDT|supply|0.03641755|0.03649000": {
     "in_zone": false,
@@ -23942,6 +23943,22 @@
     "last_alert_at": 0.0
   },
   "MNT/USDT|demand|0.54420000|0.54531600": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "ZIL/USDT|demand|0.00247100|0.00247572": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "PAXGUSD|demand|4395.30000000|4396.76465000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "SAMSUNG/USDT:USDT|demand|178.71000000|178.82140000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "AXTI/USDT:USDT|demand|56.38000000|56.43650000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
