@@ -1704,7 +1704,8 @@
     "APTUSD|4h|long|0.512|0.513929": 1788145337.5517116,
     "NBIS/USDT:USDT|4h|long|202.21|204.123": 1788147732.3720653,
     "HOOD/USDT:USDT|4h|long|102.92|103.466": 1788148950.60035,
-    "HOOD/USDT:USDT|4h|long|103|103.546": 1788150123.7113726
+    "HOOD/USDT:USDT|4h|long|103|103.546": 1788150123.7113726,
+    "0G/USDT|4h|short|0.189448|0.191": 1788156135.8444479
   },
   "ARBUSD|supply|0.08030000|0.08180000": {
     "in_zone": false,
@@ -4267,8 +4268,8 @@
     "last_alert_at": 0.0
   },
   "0G/USDT|supply|0.18944800|0.19100000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1788156135.8444479
   },
   "POL/USDT|demand|0.07911000|0.07942480": {
     "in_zone": false,
@@ -5283,7 +5284,7 @@
     "last_alert_at": 0.0
   },
   "__last_scan_started__": {
-    "4h": 1788154854.6490142
+    "4h": 1788156056.4784667
   },
   "HOOD/USDT:USDT|demand|83.83000000|84.37120000": {
     "in_zone": false,
