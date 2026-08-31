@@ -1702,7 +1702,8 @@
     "ACE/USDT|4h|long|0.17985|0.188054": 1788087725.9322815,
     "ACE/USDT|4h|long|0.17864|0.186697": 1788091337.4215343,
     "APTUSD|4h|long|0.512|0.513929": 1788145337.5517116,
-    "NBIS/USDT:USDT|4h|long|202.21|204.123": 1788147732.3720653
+    "NBIS/USDT:USDT|4h|long|202.21|204.123": 1788147732.3720653,
+    "HOOD/USDT:USDT|4h|long|102.92|103.466": 1788148950.60035
   },
   "ARBUSD|supply|0.08030000|0.08180000": {
     "in_zone": false,
@@ -5281,7 +5282,7 @@
     "last_alert_at": 0.0
   },
   "__last_scan_started__": {
-    "4h": 1788147651.5890381
+    "4h": 1788148858.4147618
   },
   "HOOD/USDT:USDT|demand|83.83000000|84.37120000": {
     "in_zone": false,
@@ -7128,8 +7129,8 @@
     "last_alert_at": 0.0
   },
   "HOOD/USDT:USDT|demand|102.92000000|103.46585000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1788148950.60035
   },
   "DASH/USDT|supply|46.89375000|47.39000000": {
     "in_zone": false,
