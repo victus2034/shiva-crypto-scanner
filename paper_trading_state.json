@@ -16540,6 +16540,31 @@
       "target_half": 59.73166499999999,
       "timeframe": "30m",
       "trade_id": "ad809f919aa79d99"
+    },
+    {
+      "alert_time": "2026-08-31T09:12:12.372065+05:30",
+      "cost_r": 0.10259653134175879,
+      "date": "2026-08-31",
+      "entry": 204.1227,
+      "entry_time": "2026-08-31T10:00:00+05:30",
+      "exit_price": 204.36764724,
+      "exit_time": "2026-08-31T10:00:00+05:30",
+      "final_result": "BE",
+      "half_r_hit": true,
+      "market": "xstock",
+      "net_realized_r": 0.013222695008292346,
+      "outcome": "BE",
+      "rating": 7,
+      "realized_r": 0.11581922635005114,
+      "risk": 2.114910000000009,
+      "side": "long",
+      "stop": 202.00779,
+      "symbol": "NBIS/USDT:USDT",
+      "target_1": 206.23761000000002,
+      "target_2": 208.35252000000003,
+      "target_half": 205.180155,
+      "timeframe": "4h",
+      "trade_id": "0b184c6983a153cf"
     }
   ],
   "handled": {
@@ -17269,22 +17294,6 @@
     "ffb4661b7d04cd46": "filled"
   },
   "open": {
-    "0b184c6983a153cf": {
-      "alert_time": "2026-08-31T09:12:12.372065+05:30",
-      "entry": 204.1227,
-      "entry_time": "2026-08-31T10:00:00+05:30",
-      "half_r_hit": true,
-      "market": "xstock",
-      "rating": 7,
-      "risk": 2.114910000000009,
-      "side": "long",
-      "stop": 202.00779,
-      "symbol": "NBIS/USDT:USDT",
-      "target_1": 206.23761000000002,
-      "target_2": 208.35252000000003,
-      "target_half": 205.180155,
-      "timeframe": "4h"
-    },
     "4bc6d3e1c68037d2": {
       "alert_time": "2026-08-31T09:32:30.600350+05:30",
       "entry": 103.46585,
