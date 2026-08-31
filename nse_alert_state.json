@@ -2863,7 +2863,7 @@
     "GLENMARK.NS|4h|short|2460.01|2471.2": 1787823219.0608487,
     "CHAMBLFERT.NS|4h|long|422.75|424.758": 1787890352.1396556,
     "BBTC.NS|4h|short|1603.1|1610.8": 1787815971.0514808,
-    "AXISBANK.NS|4h|short|1267.62|1272": 1788157979.3163404,
+    "AXISBANK.NS|4h|short|1267.62|1272": 1788168779.7322905,
     "CHAMBLFERT.NS|4h|long|422.75|424.757": 1787819575.7067354,
     "CHOLAHLDNG.NS|4h|long|1490.1|1497.95": 1787889151.9408586,
     "IEX.NS|4h|long|120.82|121.332": 1787897557.550608,
@@ -2882,10 +2882,10 @@
     "EMAMILTD.NS|4h|long|376.8|378.861": 1787908367.8143294,
     "GILLETTE.NS|4h|long|7240|7276.04": 1788161576.3139062,
     "ITI.NS|4h|long|272.05|273.437": 1788148362.9414036,
-    "NIVABUPA.NS|4h|long|80.9|81.3014": 1788148363.17897,
+    "NIVABUPA.NS|4h|long|80.9|81.3014": 1788168780.09806,
     "HINDPETRO.NS|4h|long|356.05|358.385": 1788154371.4422865,
     "BLUESTARCO.NS|4h|long|1450|1461.26": 1788150786.1377282,
-    "NATCOPHARM.NS|4h|long|839.4|845.853": 1788153171.3177013,
+    "NATCOPHARM.NS|4h|long|839.4|845.853": 1788168779.9617872,
     "IOB.NS|4h|long|32.26|32.3803": 1788161576.47294,
     "KPRMILL.NS|4h|short|1165.51|1173": 1788156767.4209275,
     "KPRMILL.NS|4h|short|1165.52|1173": 1788157979.475188,
@@ -8720,9 +8720,9 @@
     "last_attempt_at": 0.0
   },
   "AXISBANK.NS|supply|1267.6237|1272.0000": {
-    "in_zone": false,
-    "last_alert_at": 1788157979.3163404,
-    "last_attempt_at": 1788157979.3163404
+    "in_zone": true,
+    "last_alert_at": 1788168779.7322905,
+    "last_attempt_at": 1788168779.7322905
   },
   "AXISBANK.NS|demand|1211.0000|1215.7187": {
     "in_zone": false,
@@ -11340,9 +11340,9 @@
     "last_attempt_at": 0.0
   },
   "NIVABUPA.NS|demand|80.9000|81.3014": {
-    "in_zone": false,
-    "last_alert_at": 1788148363.17897,
-    "last_attempt_at": 1788148363.17897
+    "in_zone": true,
+    "last_alert_at": 1788168780.09806,
+    "last_attempt_at": 1788168780.09806
   },
   "NUVAMA.NS|supply|1983.3470|1993.1000": {
     "in_zone": false,
@@ -17945,7 +17945,7 @@
     "last_attempt_at": 0.0
   },
   "__last_scan_started__": {
-    "4h": 1788167489.9227402
+    "4h": 1788168708.3710575
   },
   "360ONE.NS|supply|1214.8851|1220.0000": {
     "in_zone": false,
@@ -21503,9 +21503,9 @@
     "last_attempt_at": 0.0
   },
   "NATCOPHARM.NS|demand|839.4000|845.8533": {
-    "in_zone": false,
-    "last_alert_at": 1788153171.3177013,
-    "last_attempt_at": 1788153171.3177013
+    "in_zone": true,
+    "last_alert_at": 1788168779.9617872,
+    "last_attempt_at": 1788168779.9617872
   },
   "NBCC.NS|supply|113.6834|114.2800": {
     "in_zone": false,
@@ -21878,7 +21878,7 @@
     "last_attempt_at": 0.0
   },
   "CREDITACC.NS|demand|1360.0000|1367.3541": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1788165186.8680766,
     "last_attempt_at": 1788165186.8680766
   },
@@ -39788,6 +39788,11 @@
     "last_attempt_at": 0.0
   },
   "BRITANNIA.NS|demand|5035.5000|5054.3574": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "CYIENT.NS|supply|1216.6635|1222.0000": {
     "in_zone": false,
     "last_alert_at": 0.0,
     "last_attempt_at": 0.0
