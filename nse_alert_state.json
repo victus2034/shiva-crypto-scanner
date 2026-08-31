@@ -2876,7 +2876,7 @@
     "INDUSINDBK.NS|4h|long|984.5|988.733": 1787905983.381429,
     "BRITANNIA.NS|4h|long|5255|5271.2": 1788163959.8076289,
     "INDUSINDBK.NS|4h|long|984.5|988.764": 1787901167.1677485,
-    "CREDITACC.NS|4h|long|1360|1367.35": 1788161576.1523726,
+    "CREDITACC.NS|4h|long|1360|1367.35": 1788165186.8680766,
     "EMAMILTD.NS|4h|long|376.8|378.86": 1788148362.387562,
     "INDGN.NS|4h|short|584.711|587": 1787905982.708742,
     "EMAMILTD.NS|4h|long|376.8|378.861": 1787908367.8143294,
@@ -2890,7 +2890,8 @@
     "KPRMILL.NS|4h|short|1165.51|1173": 1788156767.4209275,
     "KPRMILL.NS|4h|short|1165.52|1173": 1788157979.475188,
     "NAVINFLUOR.NS|4h|short|8713.64|8752": 1788157979.6841733,
-    "IOB.NS|4h|long|32.26|32.3805": 1788162757.7680988
+    "IOB.NS|4h|long|32.26|32.3805": 1788162757.7680988,
+    "AAVAS.NS|4h|long|1247.6|1254.49": 1788165186.5332808
   },
   "GESHIP.NS|demand|1057.1000|1070.5000": {
     "in_zone": false,
@@ -17943,7 +17944,7 @@
     "last_attempt_at": 0.0
   },
   "__last_scan_started__": {
-    "4h": 1788163883.196155
+    "4h": 1788165111.438661
   },
   "360ONE.NS|supply|1214.8851|1220.0000": {
     "in_zone": false,
@@ -21877,8 +21878,8 @@
   },
   "CREDITACC.NS|demand|1360.0000|1367.3541": {
     "in_zone": true,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "last_alert_at": 1788165186.8680766,
+    "last_attempt_at": 1788165186.8680766
   },
   "CREDITACC.NS|demand|1360.0000|1367.3494": {
     "in_zone": true,
@@ -38876,9 +38877,9 @@
     "last_attempt_at": 0.0
   },
   "AAVAS.NS|demand|1247.6000|1254.4881": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1788165186.5332808,
+    "last_attempt_at": 1788165186.5332808
   },
   "ABBOTINDIA.NS|supply|29131.7780|29230.0000": {
     "in_zone": false,
@@ -39096,7 +39097,7 @@
     "last_attempt_at": 0.0
   },
   "BRITANNIA.NS|demand|5255.0000|5271.2003": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1788163959.8076289,
     "last_attempt_at": 1788163959.8076289
   },
@@ -39771,6 +39772,11 @@
     "last_attempt_at": 0.0
   },
   "SJVN.NS|demand|63.1000|63.4896": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "ITI.NS|demand|237.9500|239.9416": {
     "in_zone": false,
     "last_alert_at": 0.0,
     "last_attempt_at": 0.0
