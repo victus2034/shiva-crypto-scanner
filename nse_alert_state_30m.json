@@ -4895,7 +4895,9 @@
     "ABBOTINDIA.NS|30m|long|25905|25934.8": 1788164536.7886512,
     "ANGELONE.NS|30m|long|282.2|282.616": 1788164537.3704684,
     "HYUNDAI.NS|30m|long|2237.6|2240.56": 1788164537.5386522,
-    "MGL.NS|30m|long|1073.4|1074.81": 1788164537.768578
+    "MGL.NS|30m|long|1073.4|1074.81": 1788164537.768578,
+    "ADANIPOWER.NS|30m|long|207.2|207.439": 1788165740.5223536,
+    "CANFINHOME.NS|30m|long|795.2|796.181": 1788165740.6859744
   },
   "ANANDRATHI.NS|supply|2187.5000|2221.0000": {
     "in_zone": true,
@@ -31608,7 +31610,7 @@
     "last_attempt_at": 0.0
   },
   "__last_scan_started__": {
-    "30m": 1788164466.0147889
+    "30m": 1788165663.116786
   },
   "3MINDIA.NS|supply|35230.9249|35290.0000": {
     "in_zone": false,
@@ -90276,9 +90278,9 @@
     "last_attempt_at": 0.0
   },
   "CANFINHOME.NS|demand|795.2000|796.1815": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1788165740.6859744,
+    "last_attempt_at": 1788165740.6859744
   },
   "CANBK.NS|demand|123.0000|123.1764": {
     "in_zone": false,
@@ -91366,7 +91368,7 @@
     "last_attempt_at": 0.0
   },
   "HYUNDAI.NS|demand|2237.6001|2240.5571": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1788164537.5386522,
     "last_attempt_at": 1788164537.5386522
   },
@@ -93181,9 +93183,9 @@
     "last_attempt_at": 0.0
   },
   "ADANIPOWER.NS|demand|207.2000|207.4391": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1788165740.5223536,
+    "last_attempt_at": 1788165740.5223536
   },
   "ABCAPITAL.NS|demand|392.1500|392.7405": {
     "in_zone": false,
@@ -93561,7 +93563,7 @@
     "last_attempt_at": 0.0
   },
   "GLAND.NS|supply|2913.3100|2918.2000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1788163341.250231,
     "last_attempt_at": 1788163341.250231
   },
@@ -98031,6 +98033,11 @@
     "last_attempt_at": 0.0
   },
   "RELIANCE.NS|demand|1266.1000|1267.2088": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "BLUEDART.NS|demand|4720.0000|4725.4497": {
     "in_zone": false,
     "last_alert_at": 0.0,
     "last_attempt_at": 0.0
