@@ -18015,6 +18015,31 @@
       "target_half": 0.18780629999999998,
       "timeframe": "30m",
       "trade_id": "5ec186d9596b6341"
+    },
+    {
+      "alert_time": "2026-09-02T00:21:46.427738+05:30",
+      "cost_r": 0.21250362546895046,
+      "date": "2026-09-02",
+      "entry": 0.0959165,
+      "entry_time": "2026-09-02T00:25:00+05:30",
+      "exit_price": 0.09543670000000001,
+      "exit_time": "2026-09-02T00:30:00+05:30",
+      "final_result": "+1R",
+      "half_r_hit": true,
+      "market": "crypto",
+      "net_realized_r": 0.7874963745310495,
+      "outcome": "+1R",
+      "rating": 8,
+      "realized_r": 1.0,
+      "risk": 0.00047979999999998857,
+      "side": "short",
+      "stop": 0.09639629999999999,
+      "symbol": "VELVETUSD",
+      "target_1": 0.09543670000000001,
+      "target_2": 0.09495690000000002,
+      "target_half": 0.0956766,
+      "timeframe": "30m",
+      "trade_id": "7d26d7dff2afe329"
     }
   ],
   "handled": {
@@ -18800,22 +18825,5 @@
     "fed8ed34d9b4adcd": "filled",
     "ffb4661b7d04cd46": "filled"
   },
-  "open": {
-    "7d26d7dff2afe329": {
-      "alert_time": "2026-09-02T00:21:46.427738+05:30",
-      "entry": 0.0959165,
-      "entry_time": "2026-09-02T00:25:00+05:30",
-      "half_r_hit": false,
-      "market": "crypto",
-      "rating": 8,
-      "risk": 0.00047979999999998857,
-      "side": "short",
-      "stop": 0.09639629999999999,
-      "symbol": "VELVETUSD",
-      "target_1": 0.09543670000000001,
-      "target_2": 0.09495690000000002,
-      "target_half": 0.0956766,
-      "timeframe": "30m"
-    }
-  }
+  "open": {}
 }
