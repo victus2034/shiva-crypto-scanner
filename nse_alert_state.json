@@ -2891,10 +2891,10 @@
     "KPRMILL.NS|4h|short|1165.52|1173": 1788157979.475188,
     "NAVINFLUOR.NS|4h|short|8713.64|8752": 1788157979.6841733,
     "IOB.NS|4h|long|32.26|32.3805": 1788162757.7680988,
-    "AAVAS.NS|4h|long|1247.6|1254.49": 1788238383.3433564,
+    "AAVAS.NS|4h|long|1247.6|1254.49": 1788243148.5916276,
     "AXISBANK.NS|4h|short|1267.57|1272": 1788167559.2705233,
     "ABREL.NS|4h|long|1345.3|1354.16": 1788234737.1817474,
-    "AFFLE.NS|4h|long|1580.1|1589.18": 1788234737.3486526,
+    "AFFLE.NS|4h|long|1580.1|1589.18": 1788243148.7289298,
     "BANDHANBNK.NS|4h|long|161.98|163.277": 1788234737.4891367,
     "NAVINFLUOR.NS|4h|short|8713.29|8752": 1788237182.415406,
     "CRISIL.NS|4h|short|4849.46|4867.3": 1788241955.5836186
@@ -17950,7 +17950,7 @@
     "last_attempt_at": 0.0
   },
   "__last_scan_started__": {
-    "4h": 1788241874.5312316
+    "4h": 1788243078.5838225
   },
   "360ONE.NS|supply|1214.8851|1220.0000": {
     "in_zone": false,
@@ -28958,9 +28958,9 @@
     "last_attempt_at": 0.0
   },
   "AAVAS.NS|demand|1247.6000|1254.4882": {
-    "in_zone": false,
-    "last_alert_at": 1788238383.3433564,
-    "last_attempt_at": 1788238383.3433564
+    "in_zone": true,
+    "last_alert_at": 1788243148.5916276,
+    "last_attempt_at": 1788243148.5916276
   },
   "ABBOTINDIA.NS|supply|29131.9037|29230.0000": {
     "in_zone": false,
@@ -39908,9 +39908,9 @@
     "last_attempt_at": 0.0
   },
   "AFFLE.NS|demand|1580.1000|1589.1846": {
-    "in_zone": false,
-    "last_alert_at": 1788234737.3486526,
-    "last_attempt_at": 1788234737.3486526
+    "in_zone": true,
+    "last_alert_at": 1788243148.7289298,
+    "last_attempt_at": 1788243148.7289298
   },
   "AJANTPHARM.NS|demand|3255.5000|3271.7723": {
     "in_zone": false,
