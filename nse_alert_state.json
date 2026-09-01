@@ -2897,7 +2897,7 @@
     "AFFLE.NS|4h|long|1580.1|1589.18": 1788243148.7289298,
     "BANDHANBNK.NS|4h|long|161.98|163.277": 1788244372.5593712,
     "NAVINFLUOR.NS|4h|short|8713.29|8752": 1788237182.415406,
-    "CRISIL.NS|4h|short|4849.46|4867.3": 1788241955.5836186,
+    "CRISIL.NS|4h|short|4849.46|4867.3": 1788245555.7151346,
     "DMART.NS|4h|long|3755.3|3772.1": 1788244371.8988597
   },
   "GESHIP.NS|demand|1057.1000|1070.5000": {
@@ -17951,7 +17951,7 @@
     "last_attempt_at": 0.0
   },
   "__last_scan_started__": {
-    "4h": 1788244302.396397
+    "4h": 1788245486.2747886
   },
   "360ONE.NS|supply|1214.8851|1220.0000": {
     "in_zone": false,
@@ -39909,7 +39909,7 @@
     "last_attempt_at": 0.0
   },
   "AFFLE.NS|demand|1580.1000|1589.1846": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1788243148.7289298,
     "last_attempt_at": 1788243148.7289298
   },
@@ -40144,9 +40144,9 @@
     "last_attempt_at": 0.0
   },
   "CRISIL.NS|supply|4849.4643|4867.2998": {
-    "in_zone": false,
-    "last_alert_at": 1788241955.5836186,
-    "last_attempt_at": 1788241955.5836186
+    "in_zone": true,
+    "last_alert_at": 1788245555.7151346,
+    "last_attempt_at": 1788245555.7151346
   },
   "CRISIL.NS|demand|4323.1001|4342.1839": {
     "in_zone": false,
@@ -40494,7 +40494,7 @@
     "last_attempt_at": 0.0
   },
   "GILLETTE.NS|demand|7240.0000|7276.0449": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1788244372.7235377,
     "last_attempt_at": 1788244372.7235377
   },
