@@ -2260,7 +2260,9 @@
     "HBAR/USDT|30m|short|0.0744552|0.07456": 1788234741.5199072,
     "TRX/USDT|30m|long|0.33109|0.331232": 1788237149.0253644,
     "FILUSD|30m|short|0.693397|0.6942": 1788237149.3947945,
-    "MNT/USDT|30m|long|0.5442|0.545316": 1788238340.2003272
+    "MNT/USDT|30m|long|0.5442|0.545316": 1788238340.2003272,
+    "BANK/USDT|30m|long|0.03538|0.0354511": 1788246738.2192588,
+    "1000PEPEUSD|30m|long|0.00351|0.00352125": 1788246738.6999726
   },
   "METAXUSD|demand|577.00000000|579.20000000": {
     "in_zone": false,
@@ -13809,7 +13811,7 @@
     "last_alert_at": 1787580724.510809
   },
   "__last_scan_started__": {
-    "30m": 1788245459.3726015
+    "30m": 1788246656.5147414
   },
   "TAO/USDT|supply|227.92800000|229.00000000": {
     "in_zone": false,
@@ -24804,8 +24806,8 @@
     "last_alert_at": 0.0
   },
   "BANK/USDT|demand|0.03538000|0.03545110": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1788246738.2192588
   },
   "HYPEUSD|demand|80.44000000|80.59330000": {
     "in_zone": false,
@@ -24828,8 +24830,8 @@
     "last_alert_at": 0.0
   },
   "1000PEPEUSD|demand|0.00351000|0.00352125": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1788246738.6999726
   },
   "WLD/USDT|demand|0.35230000|0.35333450": {
     "in_zone": false,
@@ -25000,6 +25002,14 @@
     "last_alert_at": 0.0
   },
   "AAPLXUSD|supply|321.20255000|321.33000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "SOXLBUSD|demand|110.70000000|110.92405000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "MRVL/USDT:USDT|demand|209.79000000|210.10615000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
