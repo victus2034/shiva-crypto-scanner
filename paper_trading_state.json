@@ -17440,6 +17440,31 @@
       "target_half": 338.082765,
       "timeframe": "30m",
       "trade_id": "38dfe09f692e7d09"
+    },
+    {
+      "alert_time": "2026-09-01T15:02:22.425202+05:30",
+      "cost_r": 0.33563820817490886,
+      "date": "2026-09-01",
+      "entry": 0.00597897,
+      "entry_time": "2026-09-01T15:05:00+05:30",
+      "exit_price": 0.005957053983,
+      "exit_time": "2026-09-01T15:10:00+05:30",
+      "final_result": "SL",
+      "half_r_hit": false,
+      "market": "crypto",
+      "net_realized_r": -1.493011307034227,
+      "outcome": "SL",
+      "rating": 10,
+      "realized_r": -1.1573730988593183,
+      "risk": 1.893599999999978e-05,
+      "side": "long",
+      "stop": 0.005960034,
+      "symbol": "HOME/USDT",
+      "target_1": 0.005997906,
+      "target_2": 0.006016842,
+      "target_half": 0.0059884380000000004,
+      "timeframe": "30m",
+      "trade_id": "1c5ca86983a95b42"
     }
   ],
   "handled": {
@@ -18204,22 +18229,6 @@
     "ffb4661b7d04cd46": "filled"
   },
   "open": {
-    "1c5ca86983a95b42": {
-      "alert_time": "2026-09-01T15:02:22.425202+05:30",
-      "entry": 0.00597897,
-      "entry_time": "2026-09-01T15:05:00+05:30",
-      "half_r_hit": false,
-      "market": "crypto",
-      "rating": 10,
-      "risk": 1.893599999999978e-05,
-      "side": "long",
-      "stop": 0.005960034,
-      "symbol": "HOME/USDT",
-      "target_1": 0.005997906,
-      "target_2": 0.006016842,
-      "target_half": 0.0059884380000000004,
-      "timeframe": "30m"
-    },
     "5a500ae1fbdef774": {
       "alert_time": "2026-09-01T14:12:10.541349+05:30",
       "entry": 87.84649999999999,

@@ -1,7 +1,7 @@
 {
   "BANK/USDT|30m|long|0.0354511|0.0353446": {
-    "reached_entry": false,
-    "stage": 1
+    "reached_entry": true,
+    "stage": 2
   },
   "BCHUSD|30m|long|244.624|243.946": {
     "reached_entry": false
@@ -19,7 +19,7 @@
   },
   "CRV/USDT|4h|short|0.351305|0.354154": {
     "reached_entry": true,
-    "stage": 2
+    "stage": 3
   },
   "DASH/USDT|4h|short|46.8937|47.4374": {
     "reached_entry": false,
@@ -37,7 +37,8 @@
     "stage": 2
   },
   "HOME/USDT|30m|long|0.00597897|0.00596003": {
-    "reached_entry": false
+    "reached_entry": true,
+    "stage": 2
   },
   "ICP/USDT|30m|long|2.37703|2.36963": {
     "reached_entry": false
