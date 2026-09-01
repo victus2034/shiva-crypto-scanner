@@ -17790,6 +17790,56 @@
       "target_half": 204.84652499999999,
       "timeframe": "4h",
       "trade_id": "c7c0dd42c6e248a4"
+    },
+    {
+      "alert_time": "2026-09-01T19:32:21.406979+05:30",
+      "cost_r": 0.055509713562930406,
+      "date": "2026-09-01",
+      "entry": 104.2439,
+      "entry_time": "2026-09-01T19:35:00+05:30",
+      "exit_price": 104.36899267999999,
+      "exit_time": "2026-09-01T19:35:00+05:30",
+      "final_result": "BE",
+      "half_r_hit": true,
+      "market": "xstock",
+      "net_realized_r": 0.007154121127110578,
+      "outcome": "BE",
+      "rating": 6,
+      "realized_r": 0.06266383469004098,
+      "risk": 1.9962500000000034,
+      "side": "long",
+      "stop": 102.24765,
+      "symbol": "SOXLBUSD",
+      "target_1": 106.24015,
+      "target_2": 108.2364,
+      "target_half": 105.242025,
+      "timeframe": "4h",
+      "trade_id": "4b5b6f50b752101c"
+    },
+    {
+      "alert_time": "2026-09-01T20:22:11.790767+05:30",
+      "cost_r": 0.4107046819530248,
+      "date": "2026-09-01",
+      "entry": 0.0820598,
+      "entry_time": "2026-09-01T20:25:00+05:30",
+      "exit_price": null,
+      "exit_time": "2026-09-01T20:25:00+05:30",
+      "final_result": "data_quality_ambiguous",
+      "half_r_hit": true,
+      "market": "crypto",
+      "net_realized_r": null,
+      "outcome": "data_quality_ambiguous",
+      "rating": 8,
+      "realized_r": null,
+      "risk": 0.00021238999999999286,
+      "side": "short",
+      "stop": 0.08227219,
+      "symbol": "ESP/USDT",
+      "target_1": 0.08184741000000001,
+      "target_2": 0.08163502000000002,
+      "target_half": 0.08195360500000001,
+      "timeframe": "30m",
+      "trade_id": "ca3d70f16d4d005b"
     }
   ],
   "handled": {
@@ -18384,6 +18434,7 @@
     "c7fb2d3143f72dd6": "filled",
     "c842bcf23005f590": "filled",
     "c8c894cac7032598": "filled",
+    "ca3d70f16d4d005b": "filled",
     "ca694d4e2943e3d7": "filled",
     "cab2b04f5da69815": "filled",
     "cae4617f29e7728e": "filled",
@@ -18566,22 +18617,5 @@
     "fed8ed34d9b4adcd": "filled",
     "ffb4661b7d04cd46": "filled"
   },
-  "open": {
-    "4b5b6f50b752101c": {
-      "alert_time": "2026-09-01T19:32:21.406979+05:30",
-      "entry": 104.2439,
-      "entry_time": "2026-09-01T19:35:00+05:30",
-      "half_r_hit": true,
-      "market": "xstock",
-      "rating": 6,
-      "risk": 1.9962500000000034,
-      "side": "long",
-      "stop": 102.24765,
-      "symbol": "SOXLBUSD",
-      "target_1": 106.24015,
-      "target_2": 108.2364,
-      "target_half": 105.242025,
-      "timeframe": "4h"
-    }
-  }
+  "open": {}
 }
