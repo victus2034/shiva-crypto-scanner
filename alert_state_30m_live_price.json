@@ -2265,7 +2265,7 @@
     "1000PEPEUSD|30m|long|0.00351|0.00352125": 1788246738.6999726,
     "TRUMP/USDT|30m|long|2.337|2.3474": 1788250336.56936,
     "INTCBUSD|30m|long|88.92|88.993": 1788250336.9510922,
-    "BNBUSD|30m|long|684.22|684.822": 1788251541.4541864,
+    "BNBUSD|30m|long|684.22|684.822": 1788256330.6207635,
     "JTO/USDT|30m|long|0.431|0.432192": 1788251541.8027787,
     "PEOPLE/USDT|30m|long|0.007712|0.00773377": 1788251541.945107,
     "KGEN/USDT|30m|long|0.1698|0.170181": 1788251542.309424,
@@ -13827,7 +13827,7 @@
     "last_alert_at": 1787580724.510809
   },
   "__last_scan_started__": {
-    "30m": 1788255060.0081697
+    "30m": 1788256254.4009132
   },
   "TAO/USDT|supply|227.92800000|229.00000000": {
     "in_zone": false,
@@ -24234,8 +24234,8 @@
     "last_alert_at": 0.0
   },
   "BNBUSD|demand|684.22000000|684.82180500": {
-    "in_zone": false,
-    "last_alert_at": 1788251541.4541864
+    "in_zone": true,
+    "last_alert_at": 1788256330.6207635
   },
   "ESPORTS/USDT|demand|0.01507000|0.01510915": {
     "in_zone": false,
@@ -24778,7 +24778,7 @@
     "last_alert_at": 0.0
   },
   "BCHUSD|demand|244.19000000|244.62420000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1788255142.2045696
   },
   "VIRTUAL/USDT|demand|0.67140000|0.67322750": {
@@ -24894,7 +24894,7 @@
     "last_alert_at": 0.0
   },
   "ORDI/USDT|demand|3.85400000|3.86317000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1788253941.802113
   },
   "TIAUSD|demand|0.32390000|0.32423550": {
