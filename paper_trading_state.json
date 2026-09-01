@@ -17962,6 +17962,7 @@
     "4af41df8fa36c4a3": "filled",
     "4b16447b42c890a4": "filled",
     "4b36487410c75d5b": "filled",
+    "4b5b6f50b752101c": "filled",
     "4bc6d3e1c68037d2": "filled",
     "4c1e353cbf55b12c": "filled",
     "4c5f51a1a2c52296": "filled",
@@ -18328,6 +18329,7 @@
     "c6a0c510d4e1f5db": "filled",
     "c704785c0584f084": "filled",
     "c75eb24468bfcf5d": "filled",
+    "c7c0dd42c6e248a4": "filled",
     "c7fb2d3143f72dd6": "filled",
     "c842bcf23005f590": "filled",
     "c8c894cac7032598": "filled",
@@ -18513,5 +18515,38 @@
     "fed8ed34d9b4adcd": "filled",
     "ffb4661b7d04cd46": "filled"
   },
-  "open": {}
+  "open": {
+    "4b5b6f50b752101c": {
+      "alert_time": "2026-09-01T19:32:21.406979+05:30",
+      "entry": 104.2439,
+      "entry_time": "2026-09-01T19:35:00+05:30",
+      "half_r_hit": false,
+      "market": "xstock",
+      "rating": 6,
+      "risk": 1.9962500000000034,
+      "side": "long",
+      "stop": 102.24765,
+      "symbol": "SOXLBUSD",
+      "target_1": 106.24015,
+      "target_2": 108.2364,
+      "target_half": 105.242025,
+      "timeframe": "4h"
+    },
+    "c7c0dd42c6e248a4": {
+      "alert_time": "2026-09-01T19:32:21.561130+05:30",
+      "entry": 203.8803,
+      "entry_time": "2026-09-01T19:35:00+05:30",
+      "half_r_hit": false,
+      "market": "xstock",
+      "rating": 5,
+      "risk": 1.9324499999999887,
+      "side": "long",
+      "stop": 201.94785000000002,
+      "symbol": "MRVL/USDT:USDT",
+      "target_1": 205.81275,
+      "target_2": 207.74519999999998,
+      "target_half": 204.84652499999999,
+      "timeframe": "4h"
+    }
+  }
 }
