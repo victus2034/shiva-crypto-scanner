@@ -17505,6 +17505,7 @@
     "385ec2025896460c": "filled",
     "386eef4ea3c175a1": "filled",
     "38b4ae004e2d443b": "filled",
+    "38dfe09f692e7d09": "filled",
     "390af72580d39441": "filled",
     "391da90b5934f97e": "filled",
     "3968967b10e19aea": "filled",
@@ -17832,6 +17833,7 @@
     "ab2b94bce147e928": "filled",
     "ab35f5255f69d0b3": "filled",
     "aca814c7fd968227": "filled",
+    "ad339289f38fe0b5": "filled",
     "ad809f919aa79d99": "filled",
     "adc4b09f20a2a070": "filled",
     "add3da79234aa9ba": "filled",
@@ -18099,6 +18101,22 @@
     "ffb4661b7d04cd46": "filled"
   },
   "open": {
+    "38dfe09f692e7d09": {
+      "alert_time": "2026-09-01T14:22:12.274397+05:30",
+      "entry": 337.83595,
+      "entry_time": "2026-09-01T14:30:00+05:30",
+      "half_r_hit": false,
+      "market": "xstock",
+      "rating": 5,
+      "risk": 0.493629999999996,
+      "side": "long",
+      "stop": 337.34232000000003,
+      "symbol": "GOOGLXUSD",
+      "target_1": 338.32958,
+      "target_2": 338.82321,
+      "target_half": 338.082765,
+      "timeframe": "30m"
+    },
     "5a500ae1fbdef774": {
       "alert_time": "2026-09-01T14:12:10.541349+05:30",
       "entry": 87.84649999999999,
@@ -18114,6 +18132,22 @@
       "target_2": 86.7629,
       "target_half": 87.5756,
       "timeframe": "4h"
+    },
+    "ad339289f38fe0b5": {
+      "alert_time": "2026-09-01T14:02:22.867055+05:30",
+      "entry": 337.9305,
+      "entry_time": "2026-09-01T14:30:00+05:30",
+      "half_r_hit": false,
+      "market": "xstock",
+      "rating": 8,
+      "risk": 0.4682999999999993,
+      "side": "long",
+      "stop": 337.4622,
+      "symbol": "GOOGLXUSD",
+      "target_1": 338.3988,
+      "target_2": 338.8671,
+      "target_half": 338.16465,
+      "timeframe": "30m"
     }
   }
 }
