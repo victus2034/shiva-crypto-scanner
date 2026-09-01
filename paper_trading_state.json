@@ -18107,6 +18107,7 @@
     "c2546c8399b16f63": "filled",
     "c298129df951caa3": "filled",
     "c2cba1d7ca41c2e5": "filled",
+    "c2fe127c928a18f1": "filled",
     "c323cbb9cf0a0c01": "filled",
     "c349013161831255": "filled",
     "c3e2b03ce7560c11": "filled",
@@ -18305,5 +18306,22 @@
     "fed8ed34d9b4adcd": "filled",
     "ffb4661b7d04cd46": "filled"
   },
-  "open": {}
+  "open": {
+    "c2fe127c928a18f1": {
+      "alert_time": "2026-09-01T16:42:23.021374+05:30",
+      "entry": 202.12085,
+      "entry_time": "2026-09-01T16:45:00+05:30",
+      "half_r_hit": false,
+      "market": "xstock",
+      "rating": 7,
+      "risk": 0.5326399999999865,
+      "side": "long",
+      "stop": 201.58821,
+      "symbol": "NBIS/USDT:USDT",
+      "target_1": 202.65348999999998,
+      "target_2": 203.18612999999996,
+      "target_half": 202.38716999999997,
+      "timeframe": "30m"
+    }
+  }
 }
