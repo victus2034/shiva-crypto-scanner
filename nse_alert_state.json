@@ -2895,7 +2895,8 @@
     "AXISBANK.NS|4h|short|1267.57|1272": 1788167559.2705233,
     "ABREL.NS|4h|long|1345.3|1354.16": 1788234737.1817474,
     "AFFLE.NS|4h|long|1580.1|1589.18": 1788234737.3486526,
-    "BANDHANBNK.NS|4h|long|161.98|163.277": 1788234737.4891367
+    "BANDHANBNK.NS|4h|long|161.98|163.277": 1788234737.4891367,
+    "NAVINFLUOR.NS|4h|short|8713.29|8752": 1788237182.415406
   },
   "GESHIP.NS|demand|1057.1000|1070.5000": {
     "in_zone": false,
@@ -17948,7 +17949,7 @@
     "last_attempt_at": 0.0
   },
   "__last_scan_started__": {
-    "4h": 1788235879.3685856
+    "4h": 1788237102.9035287
   },
   "360ONE.NS|supply|1214.8851|1220.0000": {
     "in_zone": false,
@@ -40931,9 +40932,9 @@
     "last_attempt_at": 0.0
   },
   "NAVINFLUOR.NS|supply|8713.2900|8752.0000": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1788237182.415406,
+    "last_attempt_at": 1788237182.415406
   },
   "NAVINFLUOR.NS|demand|7298.0000|7333.0883": {
     "in_zone": false,
@@ -41121,6 +41122,16 @@
     "last_attempt_at": 0.0
   },
   "SBICARD.NS|demand|611.1000|613.8275": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "AAVAS.NS|demand|1060.8000|1067.3753": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "AFFLE.NS|demand|1362.4000|1370.7331": {
     "in_zone": false,
     "last_alert_at": 0.0,
     "last_attempt_at": 0.0
