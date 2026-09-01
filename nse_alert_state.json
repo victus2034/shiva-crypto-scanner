@@ -2891,7 +2891,7 @@
     "KPRMILL.NS|4h|short|1165.52|1173": 1788157979.475188,
     "NAVINFLUOR.NS|4h|short|8713.64|8752": 1788157979.6841733,
     "IOB.NS|4h|long|32.26|32.3805": 1788246761.0392745,
-    "AAVAS.NS|4h|long|1247.6|1254.49": 1788243148.5916276,
+    "AAVAS.NS|4h|long|1247.6|1254.49": 1788251564.7478435,
     "AXISBANK.NS|4h|short|1267.57|1272": 1788167559.2705233,
     "ABREL.NS|4h|long|1345.3|1354.16": 1788234737.1817474,
     "AFFLE.NS|4h|long|1580.1|1589.18": 1788243148.7289298,
@@ -17954,7 +17954,7 @@
     "last_attempt_at": 0.0
   },
   "__last_scan_started__": {
-    "4h": 1788250288.0717888
+    "4h": 1788251500.6784937
   },
   "360ONE.NS|supply|1214.8851|1220.0000": {
     "in_zone": false,
@@ -38887,9 +38887,9 @@
     "last_attempt_at": 0.0
   },
   "AAVAS.NS|demand|1247.6000|1254.4881": {
-    "in_zone": false,
-    "last_alert_at": 1788165186.5332808,
-    "last_attempt_at": 1788165186.5332808
+    "in_zone": true,
+    "last_alert_at": 1788251564.7478435,
+    "last_attempt_at": 1788251564.7478435
   },
   "ABBOTINDIA.NS|supply|29131.7780|29230.0000": {
     "in_zone": false,
@@ -43307,6 +43307,11 @@
     "last_attempt_at": 0.0
   },
   "PERSISTENT.NS|supply|6573.6750|6597.5000": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "ONESOURCE.NS|demand|1231.4000|1245.5083": {
     "in_zone": false,
     "last_alert_at": 0.0,
     "last_attempt_at": 0.0
