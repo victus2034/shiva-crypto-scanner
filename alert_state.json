@@ -5291,7 +5291,7 @@
     "last_alert_at": 0.0
   },
   "__last_scan_started__": {
-    "4h": 1788266454.2358735
+    "4h": 1788267662.6893718
   },
   "HOOD/USDT:USDT|demand|83.83000000|84.37120000": {
     "in_zone": false,
@@ -7142,7 +7142,7 @@
     "last_alert_at": 1788148950.60035
   },
   "DASH/USDT|supply|46.89375000|47.39000000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1788253341.872835
   },
   "CRCLXUSD|demand|84.75000000|85.36435000": {
@@ -7502,6 +7502,10 @@
     "last_alert_at": 0.0
   },
   "NBIS/USDT:USDT|supply|230.03785000|231.65000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "ETHFI/USDT|supply|0.58519750|0.59260000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
