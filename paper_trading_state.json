@@ -17465,6 +17465,31 @@
       "target_half": 0.0059884380000000004,
       "timeframe": "30m",
       "trade_id": "1c5ca86983a95b42"
+    },
+    {
+      "alert_time": "2026-09-01T15:32:10.186223+05:30",
+      "cost_r": 0.5020570408838013,
+      "date": "2026-09-01",
+      "entry": 0.32854745,
+      "entry_time": "2026-09-01T15:35:00+05:30",
+      "exit_price": 0.32768789409000004,
+      "exit_time": "2026-09-01T15:45:00+05:30",
+      "final_result": "SL",
+      "half_r_hit": false,
+      "market": "crypto",
+      "net_realized_r": -1.7377080478846105,
+      "outcome": "SL",
+      "rating": 8,
+      "realized_r": -1.235651007000809,
+      "risk": 0.0006956300000000026,
+      "side": "long",
+      "stop": 0.32785182,
+      "symbol": "TRX/USDT",
+      "target_1": 0.32924308,
+      "target_2": 0.32993871,
+      "target_half": 0.328895265,
+      "timeframe": "4h",
+      "trade_id": "738043ace7eb220f"
     }
   ],
   "handled": {
@@ -18244,22 +18269,6 @@
       "target_1": 87.3047,
       "target_2": 86.7629,
       "target_half": 87.5756,
-      "timeframe": "4h"
-    },
-    "738043ace7eb220f": {
-      "alert_time": "2026-09-01T15:32:10.186223+05:30",
-      "entry": 0.32854745,
-      "entry_time": "2026-09-01T15:35:00+05:30",
-      "half_r_hit": false,
-      "market": "crypto",
-      "rating": 8,
-      "risk": 0.0006956300000000026,
-      "side": "long",
-      "stop": 0.32785182,
-      "symbol": "TRX/USDT",
-      "target_1": 0.32924308,
-      "target_2": 0.32993871,
-      "target_half": 0.328895265,
       "timeframe": "4h"
     }
   }
