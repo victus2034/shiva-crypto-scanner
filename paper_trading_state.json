@@ -17313,6 +17313,7 @@
     "54f61505c06fb828": "filled",
     "553d1ae788f3c816": "filled",
     "554309941c49af8e": "filled",
+    "55c962aebd4de724": "filled",
     "560f2d4f10f6ecda": "filled",
     "569ef807e52ec2ae": "filled",
     "56adb6437b4354dc": "filled",
@@ -17811,5 +17812,22 @@
     "fed8ed34d9b4adcd": "filled",
     "ffb4661b7d04cd46": "filled"
   },
-  "open": {}
+  "open": {
+    "55c962aebd4de724": {
+      "alert_time": "2026-09-01T10:02:29.025364+05:30",
+      "entry": 0.33123165,
+      "entry_time": "2026-09-01T10:15:00+05:30",
+      "half_r_hit": false,
+      "market": "crypto",
+      "rating": 8,
+      "risk": 0.0004727399999999715,
+      "side": "long",
+      "stop": 0.33075891,
+      "symbol": "TRX/USDT",
+      "target_1": 0.33170438999999996,
+      "target_2": 0.33217712999999993,
+      "target_half": 0.33146802,
+      "timeframe": "30m"
+    }
+  }
 }
