@@ -18411,6 +18411,7 @@
     "c167e8aa69d7ad06": "filled",
     "c17f1d44829e7f34": "filled",
     "c216a8ac784fa1c7": "filled",
+    "c24cd425db8d6b74": "filled",
     "c2546c8399b16f63": "filled",
     "c298129df951caa3": "filled",
     "c2cba1d7ca41c2e5": "filled",
@@ -18617,5 +18618,22 @@
     "fed8ed34d9b4adcd": "filled",
     "ffb4661b7d04cd46": "filled"
   },
-  "open": {}
+  "open": {
+    "c24cd425db8d6b74": {
+      "alert_time": "2026-09-01T20:22:11.619736+05:30",
+      "entry": 505.66490000000005,
+      "entry_time": "2026-09-01T20:25:00+05:30",
+      "half_r_hit": false,
+      "market": "crypto",
+      "rating": 8,
+      "risk": 2.878190000000018,
+      "side": "long",
+      "stop": 502.78671,
+      "symbol": "XMRUSD",
+      "target_1": 508.54309000000006,
+      "target_2": 511.4212800000001,
+      "target_half": 507.10399500000005,
+      "timeframe": "30m"
+    }
+  }
 }
