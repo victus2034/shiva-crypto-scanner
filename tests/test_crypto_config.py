@@ -17,7 +17,7 @@ class CryptoConfigTests(unittest.TestCase):
         with patch.dict(os.environ, {}, clear=True):
             import config
 
-            self.assertEqual(len(config.CRYPTO_WATCHLIST), 98)
+            self.assertEqual(len(config.CRYPTO_WATCHLIST), 53)
             self.assertLessEqual(len(config.CRYPTO_WATCHLIST), 100)
             self.assertEqual(
                 config.WATCHLIST,
@@ -34,8 +34,12 @@ class CryptoConfigTests(unittest.TestCase):
             for symbol in (
                 "SLX/USDT:USDT",
                 "MSFT/USDT:USDT",
-                "HOOD/USDT:USDT",
                 "MRVL/USDT:USDT",
+                # Re-admitted 2026-09-01. It had been dropped for having no
+                # live data, but a re-audit - two rounds 30s apart, the same
+                # method that removed it - answered from delta_india both
+                # times, so the fetch chain reaches it now.
+                "NVDAXUSD",
             ):
                 self.assertIn(symbol, config.XSTOCK_WATCHLIST)
 
@@ -46,7 +50,10 @@ class CryptoConfigTests(unittest.TestCase):
         with patch.dict(os.environ, {}, clear=True):
             import config
 
-            for symbol in ("CL/USDT", "KORU/USDT", "ACE/USDT", "ETC/USDT"):
+            # ETC went out again in the 2026-09-01 cut at $49.9K a day on
+            # Delta. The CoinSwitch three stay: no volume figure exists for
+            # that venue yet, so nothing has been measured to cut them on.
+            for symbol in ("CL/USDT", "KORU/USDT", "ACE/USDT"):
                 self.assertIn(symbol, config.CRYPTO_WATCHLIST)
 
     def test_thin_volume_symbols_are_removed(self):
@@ -93,7 +100,10 @@ class CryptoConfigTests(unittest.TestCase):
             removed_symbols = {
                 "EVAAUSD",
                 "BILLUSD",
-                "RIVERUSD",
+                # RIVERUSD is gone from this list: re-measured on
+                # 2026-09-01 at $6.8M over seven days on Delta, and it
+                # answered with 1,000 candles. As the sweep test above
+                # says, a removal is only as good as the last measurement.
                 "VELVET/USDT",
                 "T/USDT",
                 "MUSD",

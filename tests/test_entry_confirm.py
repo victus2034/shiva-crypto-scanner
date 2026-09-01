@@ -165,6 +165,40 @@ class FormattingTests(unittest.TestCase):
         self.assertIn("0.00276500", line)
 
 
+class BrokerLabelTests(unittest.TestCase):
+    def test_a_delta_listed_symbol_names_delta(self):
+        record = watched(symbol="BTCUSD", _market="crypto")
+        self.assertEqual(entry_confirm.broker_label(record), "Delta")
+        line = entry_confirm.format_line(entry_confirm.STAGE_READY, 100.1, record)
+        self.assertTrue(line.endswith(" · Delta"), line)
+
+    def test_anything_else_on_the_watchlist_falls_to_coinswitch(self):
+        record = watched(symbol="CL/USDT", _market="crypto")
+        self.assertEqual(entry_confirm.broker_label(record), "CoinSwitch")
+        line = entry_confirm.format_line(entry_confirm.STAGE_ENTRY, 99.0, record)
+        self.assertTrue(line.endswith(" · CoinSwitch"), line)
+
+    def test_an_nse_symbol_carries_no_venue(self):
+        # NSE trades on neither book, so a venue tag there is pure noise.
+        record = watched(symbol="RELIANCE.NS", _market="nse")
+        self.assertIsNone(entry_confirm.broker_label(record))
+        line = entry_confirm.format_line(entry_confirm.STAGE_READY, 100.1, record)
+        self.assertNotIn("Delta", line)
+        self.assertNotIn("CoinSwitch", line)
+
+    def test_the_venue_map_does_not_drift_from_the_watchlist(self):
+        # A symbol dropped from the watchlist but left in the venue map would
+        # go unnoticed; one added and forgotten would silently read CoinSwitch.
+        self.assertTrue(config.DELTA_LISTED_SYMBOLS <= set(config.WATCHLIST))
+
+    def test_every_scanned_crypto_symbol_gets_a_venue(self):
+        import scanner
+
+        for symbol in scanner.active_watchlist():
+            label = entry_confirm.broker_label({"symbol": symbol, "_market": "crypto"})
+            self.assertIn(label, ("Delta", "CoinSwitch"), symbol)
+
+
 class DigestTests(unittest.TestCase):
     def test_a_run_posts_one_message_not_one_per_symbol(self):
         now = pd.Timestamp("2026-08-23 11:00", tz=entry_confirm.IST)

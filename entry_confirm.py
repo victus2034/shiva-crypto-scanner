@@ -33,7 +33,7 @@ import pandas as pd
 import requests
 import yfinance as yf
 
-from config import MAX_DISTANCE_PCT
+from config import DELTA_LISTED_SYMBOLS, MAX_DISTANCE_PCT
 
 
 IST = ZoneInfo("Asia/Kolkata")
@@ -297,6 +297,20 @@ STAGE_HEADINGS = {
 STAGE_ORDER = [STAGE_ENTRY, STAGE_LATE, STAGE_READY]
 
 
+def broker_label(record: dict) -> str | None:
+    """Where to go and place this trade.
+
+    Only crypto has a venue choice: an NSE symbol is not on either book,
+    so tagging it would be noise. Delta lists what it lists and everything
+    else on the watchlist is reached through CoinSwitch, which is why the
+    fallback is unconditional rather than a second lookup.
+    """
+    if record.get("_market") != "crypto":
+        return None
+    symbol = str(record.get("symbol", "")).strip().upper()
+    return "Delta" if symbol in DELTA_LISTED_SYMBOLS else "CoinSwitch"
+
+
 def format_line(stage: int, price: float, record: dict) -> str:
     """One line per alert. Three lines each turned a busy run into a wall."""
     entry = record["_entry"]
@@ -313,10 +327,13 @@ def format_line(stage: int, price: float, record: dict) -> str:
     levels = f"{entry:.{places}f} → {price:.{places}f}"
     stop_text = f"SL {stop:.{places}f} ({stop_pct:.2f}%)"
 
+    broker = broker_label(record)
+    venue = f" · {broker}" if broker else ""
+
     if stage == STAGE_READY:
         away = abs(price - entry) / entry * 100.0
-        return f"{head} · {levels} · {away:.2f}% away · {stop_text}"
-    return f"{head} · {levels} · {stop_text} · {progress * 100:.0f}% risk used"
+        return f"{head} · {levels} · {away:.2f}% away · {stop_text}{venue}"
+    return f"{head} · {levels} · {stop_text} · {progress * 100:.0f}% risk used{venue}"
 
 
 def build_digest(pings: list[tuple[int, str]], now: pd.Timestamp) -> list[str]:

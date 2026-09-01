@@ -16,7 +16,7 @@ There is a venv here (`.venv`, 48 packages, created 2026-09-01):
 .venv\Scripts\python.exe scanner.py --once     # single scan
 ```
 
-Verified working 2026-09-01: a `--once` run scanned **119/119 symbols, 0 failures**
+Verified working 2026-09-01: a `--once` run scanned **64/64 symbols, 0 failures**
 against live Binance data in ~2 minutes.
 
 `pandas` resolved to **3.0.5**, a major version above the `>=2.0` in `requirements.txt`.
@@ -26,8 +26,11 @@ Nothing broke, but suspect it first for any dataframe-shaped bug.
 
 All in `config.py`, which **is tracked in git**:
 
-- `WATCHLIST` — the symbols scanned (the README still says "10 coins"; it is 119 as of
-  2026-09-01)
+- `WATCHLIST` — the symbols scanned (the README still says "10 coins"; it is 64 as of
+  2026-09-01, cut from 119 on seven-day Delta volume)
+- `DELTA_LISTED_SYMBOLS` — the 31 symbols Delta India lists. Everything else scanned
+  is reached through CoinSwitch, and `entry_confirm.py` tags each alert with the venue.
+  Static on purpose; re-audit against Delta's `/v2/products` when the watchlist changes
 - `EXCHANGE_IDS` — exchange fallback order
 - `MAX_DISTANCE_PCT` — how close price must get before alerting
 - `DISCORD_WEBHOOK_URL`, `DISCORD_STATUS_WEBHOOK_URL`

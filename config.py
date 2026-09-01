@@ -25,160 +25,139 @@ def env_flag(name, default=False):
     return value in {"1", "true", "yes", "on"}
 
 
+# Cut to the Delta contracts worth scanning, 2026-09-01. The watchlist had
+# grown to 119 scanned symbols, 30% of which traded under $50,000 a day on
+# Delta - a zone drawn on a book that thin is a level nobody can be filled
+# in. Ranked every Delta perpetual by seven-day traded value (a single
+# session misranks badly: TAC printed 6% of its weekly average that day)
+# and kept the 31 that earn the scan. The CoinSwitch symbols below are
+# untouched - CoinSwitch's futures endpoints need an API key, so there is
+# no volume figure to judge them on yet.
 CRYPTO_WATCHLIST = [
     "BTCUSD",
     "ETHUSD",
     "SOLUSD",
-    "BANK/USDT",
     "XRPUSD",
     "HYPEUSD",
     "AKE/USDT",
     "COTI/USDT",
     "ZECUSD",
     "DOGEUSD",
-    "ADAUSD",
-    "NEARUSD",
     "DEXE/USDT",
-    "1000PEPEUSD",
-    "ONDOUSD",
     "SOON/USDT",
     "AAVEUSD",
-    "WLD/USDT",
-    "KAITO/USDT",
-    "PUMPUSD",
     "BEAT/USDT",
-    "SUIUSD",
-    "ENA/USDT",
     "EUL/USDT",
     "ZIL/USDT",
     "UNIUSD",
     "LINKUSD",
-    "TAO/USDT",
     "AVAXUSD",
-    "1000SHIBUSD",
     "LTCUSD",
     "BTW/USDT",
     "LA/USDT",
     "BNBUSD",
-    "OPUSD",
-    "INJUSD",
-    "FARTCOIN/USDT",
-    "GRAMUSD",
-    "XPLUSD",
-    "ESPORTS/USDT",
-    "XLM/USDT",
-    "ASTER/USDT",
     "ZAMA/USDT",
-    "XMRUSD",
     "TRUMP/USDT",
-    "ARBUSD",
-    "WIF/USDT",
     "ESP/USDT",
-    "LDO/USDT",
-    "APTUSD",
-    "PENGU/USDT",
-    "1000BONKUSD",
     "BCHUSD",
-    "DOTUSD",
     "UB/USDT",
-    "ZRO/USDT",
-    "VVV/USDT",
     "ATOM/USDT",
     "AERO/USDT",
-    "TRX/USDT",
-    "ALLO/USDT",
-    "SEIUSD",
     "CAP/USDT",
     "RE/USDT",
-    "VIRTUAL/USDT",
-    "FILUSD",
     "US/USDT",
-    "HBAR/USDT",
     "ICP/USDT",
     "BOME/USDT",
-    "ORDI/USDT",
-    "COAI/USDT",
-    "TIAUSD",
-    "WLFI/USDT",
-    "LABUSD",
-    "JUP/USDT",
     "O/USDT",
-    "JTO/USDT",
     "MNT/USDT",
-    "STRK/USDT",
     "ERA/USDT",
     "CRV/USDT",
-    "MMT/USDT",
     "STORJ/USDT",
     "ALGO/USDT",
-    "ETHFI/USDT",
-    "DASH/USDT",
-    "GALA/USDT",
-    "PEOPLE/USDT",
     "0G/USDT",
     "HOME/USDT",
-    "POL/USDT",
     "KGEN/USDT",
     "GWEI/USDT",
-    # Added from a CoinSwitch volume sweep, checked over a month rather than
-    # a day so a spike could not pass for a book. All four traded every one
-    # of the last thirty days. Per 30m candle, against a watchlist median
-    # near 203,000: CL about 1,090,000, KORU 978,000, ACE 739,000, and ETC
-    # 80,000 - the steadiest of them, and the only one here that is a major.
+    # From a CoinSwitch volume sweep, checked over a month rather than a day
+    # so a spike could not pass for a book. Per 30m candle, against a
+    # watchlist median near 203,000: CL about 1,090,000, KORU 978,000,
+    # ACE 739,000. ETC came in with them at 80,000 and went out again in the
+    # 2026-09-01 cut, at $49,900 a day on Delta.
     "CL/USDT",
     "KORU/USDT",
     "ACE/USDT",
-    "ETC/USDT",
+    # Added in the 2026-09-01 cut on seven-day Delta volume: TAC $87.8M,
+    # ZORA $28.0M, BLESS $21.1M, H $12.5M, VELVET $12.0M, RIVER $6.8M.
+    # RIVER had been removed once for thin volume - a removal is only ever
+    # as good as its last measurement.
+    "TACUSD",
+    "ZORAUSD",
+    "BLESSUSD",
+    "HUSD",
+    "VELVETUSD",
+    "RIVERUSD",
 ]
 
 # Keep non-crypto contracts separate from the CoinSwitch crypto liquidity audit.
+# XAUT replaced PAXG here: both are gold, and XAUT traded $3.0B over seven days
+# against PAXG's $749M.
 OTHER_WATCHLIST = [
-    "PAXGUSD",
     "SLVONUSD",
+    "XAUTUSD",
 ]
 
+# NVDAXUSD is back. It was dropped with QQQX, EWYB, DRAMB and CBRSB for having
+# no live data, but a re-audit on 2026-09-01 - two rounds 30s apart, the same
+# method that removed them - had all five answering from delta_india. The
+# fetch chain reaches Delta directly now, so that finding no longer holds.
 XSTOCK_WATCHLIST = [
     "TSLAXUSD",
     "METAXUSD",
-    "AAPLXUSD",
-    "CRCLXUSD",
-    "GOOGLXUSD",
-    "COINXUSD",
     "SOXLBUSD",
     "SNDKBUSD",
-    "MUBUSD",
-    "SPCXXUSD",
-    "INTCBUSD",
-    "MSTRBUSD",
-    # Removed (no live data on Delta/CoinSwitch/any exchange - confirmed
-    # via a two-round audit 30s apart, all 5 failed both times):
-    # QQQXUSD, NVDAXUSD, EWYBUSD, DRAMBUSD, CBRSBUSD
-    "SKHYNIX/USDT:USDT",
-    "NBIS/USDT:USDT",
     "BZ/USDT:USDT",
     "SAMSUNG/USDT:USDT",
     "AXTI/USDT:USDT",
-    "HOOD/USDT:USDT",
     "MRVL/USDT:USDT",
-    # Removed for thin volume, measured on CoinSwitch over 96 30m candles.
-    # The watchlist median is about 200,000 in traded value per candle;
-    # every symbol below sat under 11,000, and FLNC went a full 30 minutes
-    # with no trades at all seven times in two days. A zone price drifts
-    # into on no volume is a zone nobody can be filled in:
-    # FLNC, IBM, PHAROS, SOXX, NVDL, BABA, DELL, AVGO, TAIKO, TQQQ
-    # Then OPENAI (2,914 per candle, 3 of 96 bars with no trades at all)
-    # and AMZN (5,279), both of which only became measurable once the
-    # xStocks were being fetched under the names CoinSwitch uses.
-    # VANRY went with them: not listed on CoinSwitch, and its last candle
-    # was ten days old, so it was never a thin feed but a dead one.
-    # SPY too, at 6,366: the token is thin even though the ETF behind it
-    # is not. SPY stays in the rating registry as its own sector marker.
-    # Additional CoinSwitch US-stock futures approved for the liquidity pilot.
     "SLX/USDT:USDT",
     "MSFT/USDT:USDT",
+    "NVDAXUSD",
+    # Still out, measured on CoinSwitch over 96 30m candles. The watchlist
+    # median was about 200,000 in traded value per candle; every symbol here
+    # sat under 11,000, and FLNC went a full 30 minutes with no trades at all
+    # seven times in two days. A zone price drifts into on no volume is a
+    # zone nobody can be filled in:
+    #   FLNC, IBM, PHAROS, SOXX, NVDL, BABA, DELL, AVGO, TAIKO, TQQQ
+    # Then OPENAI (2,914 per candle, 3 of 96 bars with no trades at all) and
+    # AMZN (5,279), both measurable only once the xStocks were fetched under
+    # the names CoinSwitch uses. VANRY went with them: not listed on
+    # CoinSwitch, last candle ten days old - never a thin feed but a dead one.
+    # SPY too, at 6,366: the token is thin even though the ETF behind it is
+    # not, and SPY stays in the rating registry as its own sector marker.
+    #
+    # Dropped in the 2026-09-01 cut for thin seven-day Delta volume, keeping
+    # the six xStocks above: AAPLX, CRCLX, GOOGLX, COINX, MUB, SPCXX, INTCB,
+    # MSTRB, SKHYNIX, NBIS, HOOD.
 ]
 
 WATCHLIST = CRYPTO_WATCHLIST + OTHER_WATCHLIST + XSTOCK_WATCHLIST
+
+# Which venue each scanned symbol is actually traded on, so an alert can say
+# where to go and place it. Delta India lists these 31; anything else on the
+# watchlist is reached through CoinSwitch instead.
+#
+# This is a static list on purpose. Delta's listings drift, but a live lookup
+# on every run would make an alert depend on a third API being up, and the
+# venue of a symbol is not something that should change mid-session. Re-audit
+# it against /v2/products when the watchlist is next reviewed.
+DELTA_LISTED_SYMBOLS = {
+    "BTCUSD", "ETHUSD", "SOLUSD", "XRPUSD", "HYPEUSD", "AKE/USDT",
+    "ZECUSD", "DOGEUSD", "AAVEUSD", "BEAT/USDT", "UNIUSD", "LINKUSD",
+    "AVAXUSD", "LTCUSD", "BNBUSD", "TRUMP/USDT", "BCHUSD", "TACUSD",
+    "ZORAUSD", "BLESSUSD", "HUSD", "VELVETUSD", "RIVERUSD", "SLVONUSD",
+    "XAUTUSD", "TSLAXUSD", "METAXUSD", "SOXLBUSD", "SNDKBUSD",
+    "MRVL/USDT:USDT", "NVDAXUSD",
+}
 
 COINSWITCH_WATCHLIST = []
 
@@ -284,10 +263,11 @@ MIN_SCAN_INTERVAL_SECONDS = env_int("VICTUS_MIN_SCAN_INTERVAL_SECONDS", 8 * 60)
 # 30m closes across both venues. 28 of the 90 it could compare agree
 # inside 0.20% at the 95th percentile. The rest keep CoinSwitch alone -
 # a shorter history is a smaller problem than a level in the wrong place.
+# Pruned alongside the 2026-09-01 watchlist cut: splicing deep history for a
+# symbol no longer scanned just buys candles nothing reads.
 DEEP_HISTORY_SYMBOLS = {
-    "AAVE", "ADA", "ASTER", "AVAX", "BCH", "BNB", "BTC", "DOGE", "ENA",
-    "ETH", "GRAM", "HBAR", "HYPE", "LINK", "LTC", "NEAR", "ONDO", "PAXG",
-    "PUMP", "SEI", "SOL", "SUI", "TAO", "TRX", "UNI", "XLM", "XRP", "ZEC"
+    "AAVE", "AVAX", "BCH", "BNB", "BTC", "DOGE", "ETH", "HYPE", "LINK",
+    "LTC", "SOL", "UNI", "XRP", "ZEC"
 }
 # Where the older candles come from. Binance is deliberately absent: it is
 # geo-blocked from GitHub Actions runners, which took the whole scanner
