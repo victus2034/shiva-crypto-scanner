@@ -17015,6 +17015,31 @@
       "target_half": 0.003074686,
       "timeframe": "30m",
       "trade_id": "18949cf322a3c70b"
+    },
+    {
+      "alert_time": "2026-09-01T09:22:21.519907+05:30",
+      "cost_r": 0.4412682738626485,
+      "date": "2026-09-01",
+      "entry": 0.0744552,
+      "entry_time": "2026-09-01T09:45:00+05:30",
+      "exit_price": 0.07467187727999999,
+      "exit_time": "2026-09-01T09:55:00+05:30",
+      "final_result": "SL",
+      "half_r_hit": false,
+      "market": "crypto",
+      "net_realized_r": -1.649326257805593,
+      "outcome": "SL",
+      "rating": 8,
+      "realized_r": -1.2080579839429444,
+      "risk": 0.00017935999999998953,
+      "side": "short",
+      "stop": 0.07463455999999999,
+      "symbol": "HBAR/USDT",
+      "target_1": 0.07427584000000001,
+      "target_2": 0.07409648000000002,
+      "target_half": 0.07436552,
+      "timeframe": "30m",
+      "trade_id": "fb5b1f0dcf0a15d4"
     }
   ],
   "handled": {
@@ -17760,22 +17785,5 @@
     "fed8ed34d9b4adcd": "filled",
     "ffb4661b7d04cd46": "filled"
   },
-  "open": {
-    "fb5b1f0dcf0a15d4": {
-      "alert_time": "2026-09-01T09:22:21.519907+05:30",
-      "entry": 0.0744552,
-      "entry_time": "2026-09-01T09:45:00+05:30",
-      "half_r_hit": false,
-      "market": "crypto",
-      "rating": 8,
-      "risk": 0.00017935999999998953,
-      "side": "short",
-      "stop": 0.07463455999999999,
-      "symbol": "HBAR/USDT",
-      "target_1": 0.07427584000000001,
-      "target_2": 0.07409648000000002,
-      "target_half": 0.07436552,
-      "timeframe": "30m"
-    }
-  }
+  "open": {}
 }
