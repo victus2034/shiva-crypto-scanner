@@ -17840,6 +17840,31 @@
       "target_half": 0.08195360500000001,
       "timeframe": "30m",
       "trade_id": "ca3d70f16d4d005b"
+    },
+    {
+      "alert_time": "2026-09-01T20:22:11.619736+05:30",
+      "cost_r": 0.18675688147759417,
+      "date": "2026-09-01",
+      "entry": 505.66490000000005,
+      "entry_time": "2026-09-01T20:25:00+05:30",
+      "exit_price": 506.27169788000003,
+      "exit_time": "2026-09-01T20:25:00+05:30",
+      "final_result": "BE",
+      "half_r_hit": true,
+      "market": "crypto",
+      "net_realized_r": 0.024069325270391212,
+      "outcome": "BE",
+      "rating": 8,
+      "realized_r": 0.21082620674798538,
+      "risk": 2.878190000000018,
+      "side": "long",
+      "stop": 502.78671,
+      "symbol": "XMRUSD",
+      "target_1": 508.54309000000006,
+      "target_2": 511.4212800000001,
+      "target_half": 507.10399500000005,
+      "timeframe": "30m",
+      "trade_id": "c24cd425db8d6b74"
     }
   ],
   "handled": {
@@ -18618,22 +18643,5 @@
     "fed8ed34d9b4adcd": "filled",
     "ffb4661b7d04cd46": "filled"
   },
-  "open": {
-    "c24cd425db8d6b74": {
-      "alert_time": "2026-09-01T20:22:11.619736+05:30",
-      "entry": 505.66490000000005,
-      "entry_time": "2026-09-01T20:25:00+05:30",
-      "half_r_hit": false,
-      "market": "crypto",
-      "rating": 8,
-      "risk": 2.878190000000018,
-      "side": "long",
-      "stop": 502.78671,
-      "symbol": "XMRUSD",
-      "target_1": 508.54309000000006,
-      "target_2": 511.4212800000001,
-      "target_half": 507.10399500000005,
-      "timeframe": "30m"
-    }
-  }
+  "open": {}
 }
