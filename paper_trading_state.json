@@ -17190,6 +17190,31 @@
       "target_half": 89.07388500000002,
       "timeframe": "30m",
       "trade_id": "b88297de7cbf6a05"
+    },
+    {
+      "alert_time": "2026-09-01T13:42:16.716603+05:30",
+      "cost_r": 0.4503295373855193,
+      "date": "2026-09-01",
+      "entry": 59.661249999999995,
+      "entry_time": "2026-09-01T13:50:00+05:30",
+      "exit_price": null,
+      "exit_time": "2026-09-01T13:50:00+05:30",
+      "final_result": "data_quality_ambiguous",
+      "half_r_hit": false,
+      "market": "other",
+      "net_realized_r": null,
+      "outcome": "data_quality_ambiguous",
+      "rating": 9,
+      "realized_r": null,
+      "risk": 0.14082999999999402,
+      "side": "long",
+      "stop": 59.52042,
+      "symbol": "SLVONUSD",
+      "target_1": 59.80207999999999,
+      "target_2": 59.94290999999998,
+      "target_half": 59.73166499999999,
+      "timeframe": "30m",
+      "trade_id": "477f27342cb70f35"
     }
   ],
   "handled": {
@@ -17395,6 +17420,7 @@
     "463fce224dc59626": "filled",
     "4683239f190224e7": "filled",
     "4698d1ed2ed5ae21": "filled",
+    "477f27342cb70f35": "filled",
     "47b52148e89ab9cf": "filled",
     "4818cd07925cac7d": "filled",
     "48f07c14f02f5cf7": "filled",
@@ -17658,6 +17684,7 @@
     "a51aeb8f2a2352d7": "filled",
     "a5ca29d96be5105f": "filled",
     "a6237b14f123a4ca": "filled",
+    "a62a979b873ed6d6": "filled",
     "a62dfe5720716b44": "filled",
     "a6907dbb547ff55a": "filled",
     "a6b0f1fda14ee3e5": "filled",
@@ -17941,5 +17968,22 @@
     "fed8ed34d9b4adcd": "filled",
     "ffb4661b7d04cd46": "filled"
   },
-  "open": {}
+  "open": {
+    "a62a979b873ed6d6": {
+      "alert_time": "2026-09-01T12:42:18.219259+05:30",
+      "entry": 0.0354511,
+      "entry_time": "2026-09-01T13:55:00+05:30",
+      "half_r_hit": false,
+      "market": "crypto",
+      "rating": 6,
+      "risk": 0.00010647999999999908,
+      "side": "long",
+      "stop": 0.03534462,
+      "symbol": "BANK/USDT",
+      "target_1": 0.03555758,
+      "target_2": 0.03566406,
+      "target_half": 0.035504339999999995,
+      "timeframe": "30m"
+    }
+  }
 }
