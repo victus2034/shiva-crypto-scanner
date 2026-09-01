@@ -17590,6 +17590,31 @@
       "target_half": 0.00266927,
       "timeframe": "30m",
       "trade_id": "b0d7c46b592758c6"
+    },
+    {
+      "alert_time": "2026-09-01T17:42:11.283829+05:30",
+      "cost_r": 0.6754929689564162,
+      "date": "2026-09-01",
+      "entry": 317.48805,
+      "entry_time": "2026-09-01T18:05:00+05:30",
+      "exit_price": 318.14666383499997,
+      "exit_time": "2026-09-01T18:05:00+05:30",
+      "final_result": "SL",
+      "half_r_hit": false,
+      "market": "xstock",
+      "net_realized_r": -1.9937224933949733,
+      "outcome": "SL",
+      "rating": 8,
+      "realized_r": -1.3182295244385571,
+      "risk": 0.49961999999999307,
+      "side": "short",
+      "stop": 317.98767,
+      "symbol": "AAPLXUSD",
+      "target_1": 316.98843,
+      "target_2": 316.48881,
+      "target_half": 317.23824,
+      "timeframe": "30m",
+      "trade_id": "72f56a285b017e72"
     }
   ],
   "handled": {
@@ -17672,6 +17697,7 @@
     "163a9b7767e6857e": "filled",
     "1649be33bd52079b": "filled",
     "17ab7e3a16b17493": "filled",
+    "17affa7611cb0031": "filled",
     "17c17bae947174de": "filled",
     "1878208040f75ae1": "filled",
     "18949cf322a3c70b": "filled",
@@ -17929,6 +17955,7 @@
     "71d6d3ddd45851ac": "filled",
     "71f2a6a29b09e10c": "filled",
     "726bf0dd99710b7a": "filled",
+    "72f56a285b017e72": "filled",
     "738043ace7eb220f": "filled",
     "73afb0e83e8f7f71": "filled",
     "73b22c5a9b6c1e3e": "filled",
@@ -18359,6 +18386,22 @@
     "ffb4661b7d04cd46": "filled"
   },
   "open": {
+    "17affa7611cb0031": {
+      "alert_time": "2026-09-01T16:42:22.722656+05:30",
+      "entry": 684.821805,
+      "entry_time": "2026-09-01T18:10:00+05:30",
+      "half_r_hit": false,
+      "market": "crypto",
+      "rating": 6,
+      "risk": 1.286024999999995,
+      "side": "long",
+      "stop": 683.53578,
+      "symbol": "BNBUSD",
+      "target_1": 686.10783,
+      "target_2": 687.393855,
+      "target_half": 685.4648175,
+      "timeframe": "30m"
+    },
     "26bd97b6ead28ece": {
       "alert_time": "2026-09-01T17:32:18.092331+05:30",
       "entry": 87.81055,
