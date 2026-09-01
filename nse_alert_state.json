@@ -2884,7 +2884,7 @@
     "ITI.NS|4h|long|272.05|273.437": 1788148362.9414036,
     "NIVABUPA.NS|4h|long|80.9|81.3014": 1788168780.09806,
     "HINDPETRO.NS|4h|long|356.05|358.385": 1788154371.4422865,
-    "BLUESTARCO.NS|4h|long|1450|1461.26": 1788150786.1377282,
+    "BLUESTARCO.NS|4h|long|1450|1461.26": 1788235943.7658594,
     "NATCOPHARM.NS|4h|long|839.4|845.853": 1788168779.9617872,
     "IOB.NS|4h|long|32.26|32.3803": 1788234737.6256397,
     "KPRMILL.NS|4h|short|1165.51|1173": 1788156767.4209275,
@@ -8838,7 +8838,7 @@
     "last_attempt_at": 0.0
   },
   "BANDHANBNK.NS|demand|161.9800|163.2774": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1788234737.4891367,
     "last_attempt_at": 1788234737.4891367
   },
@@ -17948,7 +17948,7 @@
     "last_attempt_at": 0.0
   },
   "__last_scan_started__": {
-    "4h": 1788234680.5477593
+    "4h": 1788235879.3685856
   },
   "360ONE.NS|supply|1214.8851|1220.0000": {
     "in_zone": false,
@@ -28956,7 +28956,7 @@
     "last_attempt_at": 0.0
   },
   "AAVAS.NS|demand|1247.6000|1254.4882": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1788234736.9091005,
     "last_attempt_at": 1788234736.9091005
   },
@@ -39071,9 +39071,9 @@
     "last_attempt_at": 0.0
   },
   "BLUESTARCO.NS|demand|1450.0000|1461.2598": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1788235943.7658594,
+    "last_attempt_at": 1788235943.7658594
   },
   "BBTC.NS|supply|1930.5134|1939.9000": {
     "in_zone": false,
@@ -39906,7 +39906,7 @@
     "last_attempt_at": 0.0
   },
   "AFFLE.NS|demand|1580.1000|1589.1846": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1788234737.3486526,
     "last_attempt_at": 1788234737.3486526
   },
