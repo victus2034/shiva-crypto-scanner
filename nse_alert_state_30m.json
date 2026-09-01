@@ -4929,7 +4929,7 @@
     "RRKABEL.NS|30m|short|2974.02|2979": 1788247347.7938364,
     "BLUEDART.NS|30m|short|5044.59|5050": 1788244929.778548,
     "DEEPAKNTR.NS|30m|short|1816.39|1820.1": 1788244930.0442042,
-    "ENDURANCE.NS|30m|long|2853.8|2858.84": 1788244930.2281513,
+    "ENDURANCE.NS|30m|long|2853.8|2858.84": 1788248559.5330503,
     "GICRE.NS|30m|short|358.349|358.65": 1788244930.4850848,
     "EICHERMOT.NS|30m|long|7867.5|7877.53": 1788246137.757908,
     "MPHASIS.NS|30m|short|2511.29|2515": 1788246138.0400403
@@ -31645,7 +31645,7 @@
     "last_attempt_at": 0.0
   },
   "__last_scan_started__": {
-    "30m": 1788247270.3007445
+    "30m": 1788248468.862311
   },
   "3MINDIA.NS|supply|35230.9249|35290.0000": {
     "in_zone": false,
@@ -75053,7 +75053,7 @@
     "last_attempt_at": 1787899324.046672
   },
   "DEEPAKNTR.NS|supply|1816.3909|1820.1000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 0.0,
     "last_attempt_at": 0.0
   },
@@ -105844,8 +105844,8 @@
   },
   "ENDURANCE.NS|demand|2853.8000|2858.8416": {
     "in_zone": true,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "last_alert_at": 1788248559.5330503,
+    "last_attempt_at": 1788248559.5330503
   },
   "FEDERALBNK.NS|demand|323.5500|324.0557": {
     "in_zone": false,
@@ -106303,7 +106303,7 @@
     "last_attempt_at": 0.0
   },
   "RRKABEL.NS|supply|2974.0242|2979.0000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1788247347.7938364,
     "last_attempt_at": 1788247347.7938364
   },
@@ -106333,6 +106333,46 @@
     "last_attempt_at": 0.0
   },
   "SBICARD.NS|demand|611.1000|612.2062": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "3MINDIA.NS|supply|34764.3160|34810.0000": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "AEGISLOG.NS|supply|1491.9691|1496.3000": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "AJANTPHARM.NS|demand|3404.0000|3410.0804": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "ATUL.NS|demand|6020.0000|6030.1199": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "DRREDDY.NS|demand|1130.5000|1132.2149": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "FORCEMOT.NS|supply|18071.5633|18100.0000": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "LTTS.NS|supply|3698.3109|3704.8999": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "LT.NS|demand|3884.5000|3888.8171": {
     "in_zone": false,
     "last_alert_at": 0.0,
     "last_attempt_at": 0.0
