@@ -165,6 +165,42 @@ class FormattingTests(unittest.TestCase):
         self.assertIn("0.00276500", line)
 
 
+class DroppedSymbolTests(unittest.TestCase):
+    def test_a_symbol_off_the_watchlist_is_not_watched(self):
+        # Its last alert stays fillable for hours after the symbol is cut, and
+        # broker_label would call it CoinSwitch simply because it is no longer
+        # in the Delta list - pointing at the wrong exchange for a trade that
+        # was deliberately dropped.
+        import json
+        import tempfile
+        from pathlib import Path
+
+        import config
+
+        dropped = "DASH/USDT"
+        self.assertNotIn(dropped, config.WATCHLIST)
+        kept = next(s for s in config.WATCHLIST if s in config.DELTA_LISTED_SYMBOLS)
+
+        now = pd.Timestamp.now(tz=entry_confirm.IST)
+        delivered = (now - pd.Timedelta(minutes=10)).tz_convert("UTC").isoformat()
+        rows = [
+            {"symbol": sym, "timeframe": "4h", "side": "long", "score": 8,
+             "planned_entry": 100.0, "stop_price": 98.0, "delivered_at_utc": delivered}
+            for sym in (dropped, kept)
+        ]
+        with tempfile.TemporaryDirectory() as tmp:
+            path = Path(tmp) / "records.jsonl"
+            path.write_text(
+                "\n".join(json.dumps(r) for r in rows), encoding="utf-8"
+            )
+            with patch.dict(entry_confirm.ALERT_RECORDS["crypto"], {"4h": path}):
+                watched = entry_confirm.load_watched_alerts("crypto", "4h", now)
+
+        symbols = {r["symbol"] for r in watched}
+        self.assertNotIn(dropped, symbols)
+        self.assertIn(kept, symbols)
+
+
 class BrokerLabelTests(unittest.TestCase):
     def test_a_delta_listed_symbol_names_delta(self):
         record = watched(symbol="BTCUSD", _market="crypto")

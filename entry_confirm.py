@@ -33,7 +33,13 @@ import pandas as pd
 import requests
 import yfinance as yf
 
-from config import DELTA_LISTED_SYMBOLS, MAX_DISTANCE_PCT
+from config import DELTA_LISTED_SYMBOLS, MAX_DISTANCE_PCT, WATCHLIST
+
+# Only crypto is checked against its watchlist. The NSE side has no
+# authoritative one here - nse_config carries a FALLBACK_WATCHLIST used when
+# the live universe cannot be fetched, so filtering on it would drop real
+# alerts for symbols that are perfectly valid.
+CRYPTO_WATCHLIST_SET = {str(symbol).upper() for symbol in WATCHLIST}
 
 
 IST = ZoneInfo("Asia/Kolkata")
@@ -139,6 +145,13 @@ def load_watched_alerts(market: str, timeframe: str, now: pd.Timestamp) -> list[
         except json.JSONDecodeError:
             continue
         if record.get("timeframe") != timeframe:
+            continue
+        # A symbol dropped from the watchlist keeps pinging for as long as its
+        # last alert stays fillable - twelve hours on 4h - and broker_label
+        # would call it CoinSwitch, because that is what anything outside the
+        # Delta list resolves to. Sending someone to the wrong exchange is
+        # worse than saying nothing, and the symbol was dropped on purpose.
+        if market == "crypto" and str(record.get("symbol", "")).upper() not in CRYPTO_WATCHLIST_SET:
             continue
         delivered = pd.to_datetime(record.get("delivered_at_utc"), errors="coerce", utc=True)
         if pd.isna(delivered):
