@@ -2272,7 +2272,11 @@
     "CL/USDT|30m|short|87.5038|87.6": 1788251542.5169334,
     "GOOGLXUSD|30m|long|337.8|337.93": 1788251542.8670552,
     "MSFT/USDT:USDT|30m|long|502.85|503.209": 1788251543.019664,
-    "GOOGLXUSD|30m|long|337.68|337.836": 1788252732.274397
+    "GOOGLXUSD|30m|long|337.68|337.836": 1788252732.274397,
+    "DOGEUSD|30m|long|0.08196|0.0821159": 1788253941.4742956,
+    "ICP/USDT|30m|long|2.372|2.37703": 1788253941.6205518,
+    "ORDI/USDT|30m|long|3.854|3.86317": 1788253941.802113,
+    "INTCBUSD|30m|long|87.69|87.7257": 1788253941.9880369
   },
   "METAXUSD|demand|577.00000000|579.20000000": {
     "in_zone": false,
@@ -13821,7 +13825,7 @@
     "last_alert_at": 1787580724.510809
   },
   "__last_scan_started__": {
-    "30m": 1788252652.0529144
+    "30m": 1788253862.6026394
   },
   "TAO/USDT|supply|227.92800000|229.00000000": {
     "in_zone": false,
@@ -23816,8 +23820,8 @@
     "last_alert_at": 0.0
   },
   "INTCBUSD|demand|87.69000000|87.72575000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1788253941.9880369
   },
   "SKHYNIX/USDT:USDT|demand|1144.12000000|1145.33320000": {
     "in_zone": false,
@@ -24880,16 +24884,16 @@
     "last_alert_at": 0.0
   },
   "ICP/USDT|demand|2.37200000|2.37703000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1788253941.6205518
   },
   "BOME/USDT|supply|0.00093588|0.00093850": {
     "in_zone": false,
     "last_alert_at": 0.0
   },
   "ORDI/USDT|demand|3.85400000|3.86317000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1788253941.802113
   },
   "TIAUSD|demand|0.32390000|0.32423550": {
     "in_zone": false,
@@ -24944,8 +24948,8 @@
     "last_alert_at": 0.0
   },
   "DOGEUSD|demand|0.08196000|0.08211590": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1788253941.4742956
   },
   "SOON/USDT|demand|0.19370000|0.19412250": {
     "in_zone": false,
@@ -25000,7 +25004,7 @@
     "last_alert_at": 0.0
   },
   "KGEN/USDT|demand|0.16980000|0.17018100": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1788251542.309424
   },
   "PAXGUSD|demand|4415.10000000|4417.64850000": {
