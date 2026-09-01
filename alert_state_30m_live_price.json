@@ -2253,7 +2253,9 @@
     "SPCXXUSD|30m|short|142.973|143.12": 1788189136.3071427,
     "TSLAXUSD|30m|short|368.654|368.8": 1788198724.8466475,
     "TSLAXUSD|30m|short|368.482|368.65": 1788199931.379777,
-    "ALGO/USDT|30m|short|0.0886376|0.08875": 1788232331.4076755
+    "ALGO/USDT|30m|short|0.0886376|0.08875": 1788232331.4076755,
+    "ORDI/USDT|30m|short|3.94332|3.952": 1788233541.4615564,
+    "ALGO/USDT|30m|short|0.0894691|0.08964": 1788233541.7326257
   },
   "METAXUSD|demand|577.00000000|579.20000000": {
     "in_zone": false,
@@ -13802,7 +13804,7 @@
     "last_alert_at": 1787580724.510809
   },
   "__last_scan_started__": {
-    "30m": 1788232247.64087
+    "30m": 1788233461.2639513
   },
   "TAO/USDT|supply|227.92800000|229.00000000": {
     "in_zone": false,
@@ -21053,8 +21055,8 @@
     "last_alert_at": 0.0
   },
   "ALGO/USDT|supply|0.08946915|0.08964000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1788233541.7326257
   },
   "GALA/USDT|supply|0.00183702|0.00184300": {
     "in_zone": false,
@@ -24097,8 +24099,8 @@
     "last_alert_at": 0.0
   },
   "ORDI/USDT|supply|3.94331500|3.95200000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1788233541.4615564
   },
   "COAI/USDT|demand|0.28010000|0.28067000": {
     "in_zone": false,
@@ -24201,6 +24203,38 @@
     "last_alert_at": 0.0
   },
   "MSFT/USDT:USDT|supply|512.22075000|512.42000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "1000PEPEUSD|supply|0.00361236|0.00362300": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "BNBUSD|demand|684.22000000|684.82180500": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "ESPORTS/USDT|demand|0.01507000|0.01510915": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "TRUMP/USDT|demand|2.33700000|2.34739500": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "STRK/USDT|demand|0.02519000|0.02526640": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "CL/USDT|demand|84.47000000|84.54535000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "INTCBUSD|demand|88.92000000|88.99295000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "AXTI/USDT:USDT|demand|58.58000000|58.70090000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
