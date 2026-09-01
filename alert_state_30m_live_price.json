@@ -2284,7 +2284,8 @@
     "AAPLXUSD|30m|short|317.488|317.67": 1788268338.0555387,
     "TAO/USDT|30m|long|223.8|224.256": 1788267131.0040052,
     "METAXUSD|30m|long|562.11|562.527": 1788268337.8553653,
-    "ZIL/USDT|30m|short|0.00273882|0.002744": 1788271937.118039
+    "ZIL/USDT|30m|short|0.00273882|0.002744": 1788271937.118039,
+    "ZIL/USDT|30m|short|0.00273801|0.002744": 1788273144.1364923
   },
   "METAXUSD|demand|577.00000000|579.20000000": {
     "in_zone": false,
@@ -13833,7 +13834,7 @@
     "last_alert_at": 1787580724.510809
   },
   "__last_scan_started__": {
-    "30m": 1788271855.3455105
+    "30m": 1788273064.3281288
   },
   "TAO/USDT|supply|227.92800000|229.00000000": {
     "in_zone": false,
@@ -19804,8 +19805,8 @@
     "last_alert_at": 0.0
   },
   "ZIL/USDT|supply|0.00273801|0.00274400": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1788273144.1364923
   },
   "WLFI/USDT|demand|0.05663000|0.05676375": {
     "in_zone": false,
@@ -25208,6 +25209,18 @@
     "last_alert_at": 0.0
   },
   "LDO/USDT|demand|0.35550000|0.35642250": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "AKE/USDT|demand|0.00760000|0.00763492": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "KAITO/USDT|supply|0.32135900|0.32200000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "KORU/USDT|supply|21.80640000|21.88000000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
