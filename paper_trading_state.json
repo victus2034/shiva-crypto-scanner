@@ -17496,6 +17496,7 @@
     "d5f9e37f8bd0403c": "filled",
     "d61904d755ac9153": "filled",
     "d6219945e9e6b026": "filled",
+    "d62badbc5ed1ae5b": "filled",
     "d6c48c9af26142bd": "filled",
     "d712fb145dd4bb40": "filled",
     "d7a04a3c00de1e6b": "filled",
@@ -17629,5 +17630,22 @@
     "fed8ed34d9b4adcd": "filled",
     "ffb4661b7d04cd46": "filled"
   },
-  "open": {}
+  "open": {
+    "d62badbc5ed1ae5b": {
+      "alert_time": "2026-09-01T08:42:11.407676+05:30",
+      "entry": 0.0886376,
+      "entry_time": "2026-09-01T08:45:00+05:30",
+      "half_r_hit": false,
+      "market": "crypto",
+      "rating": 8,
+      "risk": 0.0002011499999999833,
+      "side": "short",
+      "stop": 0.08883874999999998,
+      "symbol": "ALGO/USDT",
+      "target_1": 0.08843645000000001,
+      "target_2": 0.08823530000000003,
+      "target_half": 0.088537025,
+      "timeframe": "30m"
+    }
+  }
 }
