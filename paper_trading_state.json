@@ -18741,6 +18741,7 @@
     "e861c21280ce24ef": "filled",
     "e8c23b8e5b37a8f3": "filled",
     "e91af8d139dc352b": "filled",
+    "e92f6a91edae6425": "filled",
     "e94cf7243dbf0a3e": "filled",
     "e95586cb8377daa4": "filled",
     "e9596625eeb826df": "filled",
@@ -18825,5 +18826,22 @@
     "fed8ed34d9b4adcd": "filled",
     "ffb4661b7d04cd46": "filled"
   },
-  "open": {}
+  "open": {
+    "e92f6a91edae6425": {
+      "alert_time": "2026-09-02T00:31:45.163035+05:30",
+      "entry": 0.008642710000000001,
+      "entry_time": "2026-09-02T00:35:00+05:30",
+      "half_r_hit": false,
+      "market": "crypto",
+      "rating": 5,
+      "risk": 0.00015121000000000058,
+      "side": "long",
+      "stop": 0.0084915,
+      "symbol": "BLESSUSD",
+      "target_1": 0.008793920000000002,
+      "target_2": 0.008945130000000003,
+      "target_half": 0.008718315,
+      "timeframe": "4h"
+    }
+  }
 }
