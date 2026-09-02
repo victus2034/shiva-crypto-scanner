@@ -2299,7 +2299,8 @@
     "XAUTUSD|30m|long|4297.44|4298.56": 1788319909.7088745,
     "ICP/USDT|30m|short|2.53665|2.542": 1788324698.194268,
     "MSFT/USDT:USDT|30m|long|497.2|497.508": 1788336708.660823,
-    "ETHUSD|30m|long|2385.55|2388.5": 1788340300.9052963
+    "ETHUSD|30m|long|2385.55|2388.5": 1788340300.9052963,
+    "SOLUSD|30m|long|98.27|98.436": 1788343906.849396
   },
   "METAXUSD|demand|577.00000000|579.20000000": {
     "in_zone": false,
@@ -13848,7 +13849,7 @@
     "last_alert_at": 1787580724.510809
   },
   "__last_scan_started__": {
-    "30m": 1788342662.4814267
+    "30m": 1788343861.7977145
   },
   "TAO/USDT|supply|227.92800000|229.00000000": {
     "in_zone": false,
@@ -25703,6 +25704,18 @@
     "last_alert_at": 0.0
   },
   "TSLAXUSD|demand|353.65000000|353.97665000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "SOLUSD|demand|98.27000000|98.43605000": {
+    "in_zone": true,
+    "last_alert_at": 1788343906.849396
+  },
+  "UNIUSD|demand|5.56500000|5.58854000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "CAP/USDT|supply|0.07105260|0.07119000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
