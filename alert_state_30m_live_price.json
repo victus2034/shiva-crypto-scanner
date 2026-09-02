@@ -2297,7 +2297,8 @@
     "KORU/USDT|30m|long|19|19.0354": 1788288706.2035847,
     "VELVETUSD|30m|short|0.0959165|0.0963": 1788288706.4277377,
     "XAUTUSD|30m|long|4297.44|4298.56": 1788319909.7088745,
-    "ICP/USDT|30m|short|2.53665|2.542": 1788324698.194268
+    "ICP/USDT|30m|short|2.53665|2.542": 1788324698.194268,
+    "MSFT/USDT:USDT|30m|long|497.2|497.508": 1788336708.660823
   },
   "METAXUSD|demand|577.00000000|579.20000000": {
     "in_zone": false,
@@ -13846,7 +13847,7 @@
     "last_alert_at": 1787580724.510809
   },
   "__last_scan_started__": {
-    "30m": 1788335455.7824774
+    "30m": 1788336657.360025
   },
   "TAO/USDT|supply|227.92800000|229.00000000": {
     "in_zone": false,
@@ -25553,8 +25554,8 @@
     "last_alert_at": 0.0
   },
   "MSFT/USDT:USDT|demand|497.20000000|497.50785000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1788336708.660823
   },
   "AAVEUSD|demand|124.18000000|124.44325000": {
     "in_zone": false,
