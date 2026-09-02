@@ -2911,7 +2911,7 @@
     "POONAWALLA.NS|4h|long|451|453.44": 1788327162.2790236,
     "AMBUJACEM.NS|4h|long|394.05|396.272": 1788322356.3982713,
     "BAJAJHFL.NS|4h|long|81.85|82.1991": 1788322356.7059288,
-    "BERGEPAINT.NS|4h|long|481.05|483.642": 1788322356.9953883,
+    "BERGEPAINT.NS|4h|long|481.05|483.642": 1788330771.384106,
     "GMRAIRPORT.NS|4h|long|92.3|92.8018": 1788322357.2051184,
     "JWL.NS|4h|long|236.85|239.002": 1788323597.0528297,
     "KALYANKJIL.NS|4h|long|561.6|565.191": 1788323597.290478,
@@ -2924,7 +2924,7 @@
     "BLUESTARCO.NS|4h|long|1450|1461.23": 1788327161.0175636,
     "BRITANNIA.NS|4h|long|5035.5|5054.36": 1788327161.283089,
     "GRANULES.NS|4h|long|814.75|819.006": 1788327161.4622812,
-    "IFCI.NS|4h|short|95.1441|95.76": 1788327161.6536489,
+    "IFCI.NS|4h|short|95.1441|95.76": 1788330771.6841984,
     "JWL.NS|4h|long|236.85|239.012": 1788327161.8671775,
     "NESTLEIND.NS|4h|long|1408.3|1413.05": 1788327162.0391288,
     "BAJAJHFL.NS|4h|long|81.85|82.1984": 1788329559.280476
@@ -4000,9 +4000,9 @@
     "last_attempt_at": 0.0
   },
   "BERGEPAINT.NS|demand|481.0500|483.6418": {
-    "in_zone": false,
-    "last_alert_at": 1788322356.9953883,
-    "last_attempt_at": 1788322356.9953883
+    "in_zone": true,
+    "last_alert_at": 1788330771.384106,
+    "last_attempt_at": 1788330771.384106
   },
   "BDL.NS|supply|1472.7504|1480.5000": {
     "in_zone": false,
@@ -5425,9 +5425,9 @@
     "last_attempt_at": 0.0
   },
   "IFCI.NS|supply|95.1441|95.7600": {
-    "in_zone": false,
-    "last_alert_at": 1788327161.6536489,
-    "last_attempt_at": 1788327161.6536489
+    "in_zone": true,
+    "last_alert_at": 1788330771.6841984,
+    "last_attempt_at": 1788330771.6841984
   },
   "IFCI.NS|demand|68.2500|68.7368": {
     "in_zone": false,
@@ -17980,7 +17980,7 @@
     "last_attempt_at": 0.0
   },
   "__last_scan_started__": {
-    "4h": 1788329481.1669745
+    "4h": 1788330703.426914
   },
   "360ONE.NS|supply|1214.8851|1220.0000": {
     "in_zone": false,
@@ -33518,7 +33518,7 @@
     "last_attempt_at": 0.0
   },
   "NESTLEIND.NS|demand|1408.3000|1413.0452": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1788327162.0391288,
     "last_attempt_at": 1788327162.0391288
   },
@@ -38583,7 +38583,7 @@
     "last_attempt_at": 0.0
   },
   "KAYNES.NS|demand|3535.0000|3556.3444": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1788328359.8884096,
     "last_attempt_at": 1788328359.8884096
   },
