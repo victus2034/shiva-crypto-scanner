@@ -2911,7 +2911,7 @@
     "POONAWALLA.NS|4h|long|451|453.44": 1788327162.2790236,
     "AMBUJACEM.NS|4h|long|394.05|396.272": 1788322356.3982713,
     "BAJAJHFL.NS|4h|long|81.85|82.1991": 1788322356.7059288,
-    "BERGEPAINT.NS|4h|long|481.05|483.642": 1788330771.384106,
+    "BERGEPAINT.NS|4h|long|481.05|483.642": 1788334371.4073727,
     "GMRAIRPORT.NS|4h|long|92.3|92.8018": 1788322357.2051184,
     "JWL.NS|4h|long|236.85|239.002": 1788331958.2852507,
     "KALYANKJIL.NS|4h|long|561.6|565.191": 1788323597.290478,
@@ -8939,8 +8939,8 @@
   },
   "BERGEPAINT.NS|demand|481.0500|483.6424": {
     "in_zone": true,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "last_alert_at": 1788334371.4073727,
+    "last_attempt_at": 1788334371.4073727
   },
   "BDL.NS|supply|1472.7826|1480.5000": {
     "in_zone": false,
@@ -17983,7 +17983,7 @@
     "last_attempt_at": 0.0
   },
   "__last_scan_started__": {
-    "4h": 1788333087.4768546
+    "4h": 1788334309.5229685
   },
   "360ONE.NS|supply|1214.8851|1220.0000": {
     "in_zone": false,
@@ -40516,7 +40516,7 @@
     "last_attempt_at": 0.0
   },
   "GRSE.NS|demand|2474.0000|2486.0471": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1788333152.6998475,
     "last_attempt_at": 1788333152.6998475
   },
