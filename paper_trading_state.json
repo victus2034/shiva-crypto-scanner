@@ -18065,6 +18065,56 @@
       "target_half": 0.008718315,
       "timeframe": "4h",
       "trade_id": "e92f6a91edae6425"
+    },
+    {
+      "alert_time": "2026-09-02T08:51:39.438651+05:30",
+      "cost_r": 0.4413751177481988,
+      "date": "2026-09-02",
+      "entry": 4303.507049999999,
+      "entry_time": "2026-09-02T09:00:00+05:30",
+      "exit_price": 4290.995988719999,
+      "exit_time": "2026-09-02T09:05:00+05:30",
+      "final_result": "SL",
+      "half_r_hit": false,
+      "market": "crypto",
+      "net_realized_r": -1.648483357516871,
+      "outcome": "SL",
+      "rating": 9,
+      "realized_r": -1.207108239768672,
+      "risk": 10.364489999999932,
+      "side": "long",
+      "stop": 4293.142559999999,
+      "symbol": "XAUTUSD",
+      "target_1": 4313.871539999999,
+      "target_2": 4324.236029999999,
+      "target_half": 4308.689294999999,
+      "timeframe": "4h",
+      "trade_id": "216b1e25018ff943"
+    },
+    {
+      "alert_time": "2026-09-02T09:01:49.708874+05:30",
+      "cost_r": 0.8428028686153259,
+      "date": "2026-09-02",
+      "entry": 4298.5642,
+      "entry_time": "2026-09-02T09:05:00+05:30",
+      "exit_price": 4290.995988719999,
+      "exit_time": "2026-09-02T09:05:00+05:30",
+      "final_result": "SL",
+      "half_r_hit": false,
+      "market": "crypto",
+      "net_realized_r": -2.238729429582081,
+      "outcome": "SL",
+      "rating": 9,
+      "realized_r": -1.3959265609667553,
+      "risk": 5.42164000000048,
+      "side": "long",
+      "stop": 4293.142559999999,
+      "symbol": "XAUTUSD",
+      "target_1": 4303.98584,
+      "target_2": 4309.407480000001,
+      "target_half": 4301.27502,
+      "timeframe": "30m",
+      "trade_id": "fe1853e7fb53bd69"
     }
   ],
   "handled": {
@@ -18848,26 +18898,10 @@
     "fc84f16387f1493f": "filled",
     "fe009afb11dbe6ca": "filled",
     "fe16afd336a4b38c": "filled",
+    "fe1853e7fb53bd69": "filled",
     "fec9c12192dbcf63": "filled",
     "fed8ed34d9b4adcd": "filled",
     "ffb4661b7d04cd46": "filled"
   },
-  "open": {
-    "216b1e25018ff943": {
-      "alert_time": "2026-09-02T08:51:39.438651+05:30",
-      "entry": 4303.507049999999,
-      "entry_time": "2026-09-02T09:00:00+05:30",
-      "half_r_hit": false,
-      "market": "crypto",
-      "rating": 9,
-      "risk": 10.364489999999932,
-      "side": "long",
-      "stop": 4293.142559999999,
-      "symbol": "XAUTUSD",
-      "target_1": 4313.871539999999,
-      "target_2": 4324.236029999999,
-      "target_half": 4308.689294999999,
-      "timeframe": "4h"
-    }
-  }
+  "open": {}
 }
