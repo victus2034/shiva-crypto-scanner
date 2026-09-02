@@ -18929,6 +18929,7 @@
     "d7d06d7e5f681e30": "filled",
     "d7f4e187fa098aca": "filled",
     "d81855ef45e6c4b2": "filled",
+    "d828421284d06ad1": "filled",
     "d86181f482d733e4": "filled",
     "d87a36e34cff2fb9": "filled",
     "d95739ff7d52fb60": "filled",
@@ -19075,6 +19076,22 @@
       "target_1": 498.31289999999996,
       "target_2": 499.11794999999995,
       "target_half": 497.91037499999993,
+      "timeframe": "30m"
+    },
+    "d828421284d06ad1": {
+      "alert_time": "2026-09-02T19:41:48.703733+05:30",
+      "entry": 598.48075,
+      "entry_time": "2026-09-02T19:45:00+05:30",
+      "half_r_hit": false,
+      "market": "xstock",
+      "rating": 7,
+      "risk": 1.118249999999989,
+      "side": "short",
+      "stop": 599.5989999999999,
+      "symbol": "METAXUSD",
+      "target_1": 597.3625,
+      "target_2": 596.24425,
+      "target_half": 597.921625,
       "timeframe": "30m"
     }
   }
