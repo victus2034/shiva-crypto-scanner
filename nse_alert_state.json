@@ -2915,7 +2915,9 @@
     "GMRAIRPORT.NS|4h|long|92.3|92.8018": 1788322357.2051184,
     "JWL.NS|4h|long|236.85|239.002": 1788323597.0528297,
     "KALYANKJIL.NS|4h|long|561.6|565.191": 1788323597.290478,
-    "POONAWALLA.NS|4h|long|451|453.439": 1788323597.5354826
+    "POONAWALLA.NS|4h|long|451|453.439": 1788323597.5354826,
+    "ITCHOTELS.NS|4h|long|158.43|159.255": 1788324745.516013,
+    "KALYANKJIL.NS|4h|long|561.6|565.192": 1788324746.0277467
   },
   "GESHIP.NS|demand|1057.1000|1070.5000": {
     "in_zone": false,
@@ -3988,7 +3990,7 @@
     "last_attempt_at": 0.0
   },
   "BERGEPAINT.NS|demand|481.0500|483.6418": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1788322356.9953883,
     "last_attempt_at": 1788322356.9953883
   },
@@ -5453,9 +5455,9 @@
     "last_attempt_at": 0.0
   },
   "ITCHOTELS.NS|demand|158.4300|159.2552": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1788324745.516013,
+    "last_attempt_at": 1788324745.516013
   },
   "ITC.NS|supply|293.4983|294.3500": {
     "in_zone": false,
@@ -14643,7 +14645,7 @@
     "last_attempt_at": 0.0
   },
   "AMBUJACEM.NS|demand|394.0500|396.2719": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1788322356.3982713,
     "last_attempt_at": 1788322356.3982713
   },
@@ -17968,7 +17970,7 @@
     "last_attempt_at": 0.0
   },
   "__last_scan_started__": {
-    "4h": 1788323509.6626625
+    "4h": 1788324690.5461977
   },
   "360ONE.NS|supply|1214.8851|1220.0000": {
     "in_zone": false,
@@ -33321,9 +33323,9 @@
     "last_attempt_at": 0.0
   },
   "KALYANKJIL.NS|demand|561.6000|565.1916": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1788324746.0277467,
+    "last_attempt_at": 1788324746.0277467
   },
   "KAYNES.NS|supply|4512.1097|4538.5000": {
     "in_zone": false,
