@@ -18240,6 +18240,31 @@
       "target_half": 792.9874199999999,
       "timeframe": "30m",
       "trade_id": "d7790719f5259c9a"
+    },
+    {
+      "alert_time": "2026-09-02T19:22:04.860252+05:30",
+      "cost_r": 0.46452833407097954,
+      "date": "2026-09-02",
+      "entry": 59.24375,
+      "entry_time": "2026-09-02T19:25:00+05:30",
+      "exit_price": 59.409009659999995,
+      "exit_time": "2026-09-02T19:25:00+05:30",
+      "final_result": "SL",
+      "half_r_hit": false,
+      "market": "other",
+      "net_realized_r": -1.683527080106266,
+      "outcome": "SL",
+      "rating": 8,
+      "realized_r": -1.2189987460352865,
+      "risk": 0.1355699999999942,
+      "side": "short",
+      "stop": 59.37931999999999,
+      "symbol": "SLVONUSD",
+      "target_1": 59.108180000000004,
+      "target_2": 58.97261000000001,
+      "target_half": 59.175965000000005,
+      "timeframe": "30m",
+      "trade_id": "7e7b2cf15ac6a528"
     }
   ],
   "handled": {
@@ -19050,22 +19075,6 @@
       "target_1": 498.31289999999996,
       "target_2": 499.11794999999995,
       "target_half": 497.91037499999993,
-      "timeframe": "30m"
-    },
-    "7e7b2cf15ac6a528": {
-      "alert_time": "2026-09-02T19:22:04.860252+05:30",
-      "entry": 59.24375,
-      "entry_time": "2026-09-02T19:25:00+05:30",
-      "half_r_hit": false,
-      "market": "other",
-      "rating": 8,
-      "risk": 0.1355699999999942,
-      "side": "short",
-      "stop": 59.37931999999999,
-      "symbol": "SLVONUSD",
-      "target_1": 59.108180000000004,
-      "target_2": 58.97261000000001,
-      "target_half": 59.175965000000005,
       "timeframe": "30m"
     }
   }
