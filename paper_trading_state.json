@@ -18174,6 +18174,7 @@
     "109fee51811637b4": "filled",
     "111018ba53b467eb": "filled",
     "11261f6a706a77c9": "filled",
+    "11404074390ceb92": "filled",
     "1150916a05a4f6d4": "filled",
     "11923c0a0802f34e": "filled",
     "11a4b9d19fc0876c": "filled",
@@ -18903,5 +18904,22 @@
     "fed8ed34d9b4adcd": "filled",
     "ffb4661b7d04cd46": "filled"
   },
-  "open": {}
+  "open": {
+    "11404074390ceb92": {
+      "alert_time": "2026-09-02T10:21:38.194268+05:30",
+      "entry": 2.53665,
+      "entry_time": "2026-09-02T10:25:00+05:30",
+      "half_r_hit": false,
+      "market": "crypto",
+      "rating": 8,
+      "risk": 0.007891999999999566,
+      "side": "short",
+      "stop": 2.5445419999999994,
+      "symbol": "ICP/USDT",
+      "target_1": 2.5287580000000003,
+      "target_2": 2.5208660000000007,
+      "target_half": 2.532704,
+      "timeframe": "30m"
+    }
+  }
 }
