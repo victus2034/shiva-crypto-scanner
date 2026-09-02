@@ -4997,7 +4997,8 @@
     "NLCINDIA.NS|30m|short|278.397|278.85": 1788333733.301614,
     "PAGEIND.NS|30m|short|36124.4|36170": 1788333733.6042545,
     "PATANJALI.NS|30m|long|340.85|341.518": 1788333733.8096406,
-    "PFIZER.NS|30m|long|4604|4610.24": 1788333734.3738513
+    "PFIZER.NS|30m|long|4604|4610.24": 1788333734.3738513,
+    "PREMIERENE.NS|30m|long|998.1|1000.13": 1788334935.1356876
   },
   "ANANDRATHI.NS|supply|2187.5000|2221.0000": {
     "in_zone": true,
@@ -31710,7 +31711,7 @@
     "last_attempt_at": 0.0
   },
   "__last_scan_started__": {
-    "30m": 1788333664.818746
+    "30m": 1788334861.5503886
   },
   "3MINDIA.NS|supply|35230.9249|35290.0000": {
     "in_zone": false,
@@ -82843,7 +82844,7 @@
     "last_attempt_at": 0.0
   },
   "GILLETTE.NS|supply|7460.4591|7466.0000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 0.0,
     "last_attempt_at": 0.0
   },
@@ -115373,9 +115374,9 @@
     "last_attempt_at": 0.0
   },
   "PREMIERENE.NS|demand|998.1000|1000.1253": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1788334935.1356876,
+    "last_attempt_at": 1788334935.1356876
   },
   "PFOCUS.NS|supply|310.0201|310.8900": {
     "in_zone": false,
@@ -116188,6 +116189,36 @@
     "last_attempt_at": 0.0
   },
   "SBICARD.NS|demand|611.1000|612.2107": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "ACC.NS|supply|1338.8835|1340.3000": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "ATUL.NS|demand|6020.0000|6030.1740": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "KPITTECH.NS|demand|575.6000|577.4162": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "ONESOURCE.NS|supply|1552.8857|1555.7000": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "ONESOURCE.NS|demand|1478.0000|1480.5399": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "PFOCUS.NS|supply|310.0194|310.8900": {
     "in_zone": false,
     "last_alert_at": 0.0,
     "last_attempt_at": 0.0
