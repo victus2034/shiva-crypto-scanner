@@ -2910,7 +2910,7 @@
     "POLYCAB.NS|4h|long|8791|8831.91": 1788321161.570577,
     "POONAWALLA.NS|4h|long|451|453.44": 1788327162.2790236,
     "AMBUJACEM.NS|4h|long|394.05|396.272": 1788322356.3982713,
-    "BAJAJHFL.NS|4h|long|81.85|82.1991": 1788322356.7059288,
+    "BAJAJHFL.NS|4h|long|81.85|82.1991": 1788336757.5842159,
     "BERGEPAINT.NS|4h|long|481.05|483.642": 1788334371.4073727,
     "GMRAIRPORT.NS|4h|long|92.3|92.8018": 1788322357.2051184,
     "JWL.NS|4h|long|236.85|239.002": 1788331958.2852507,
@@ -2930,7 +2930,7 @@
     "BAJAJHFL.NS|4h|long|81.85|82.1984": 1788329559.280476,
     "INDIGO.NS|4h|long|4886.5|4907.7": 1788331958.1528263,
     "CLEAN.NS|4h|short|848.854|853.5": 1788333152.279929,
-    "GRSE.NS|4h|long|2474|2486.05": 1788333152.6998475,
+    "GRSE.NS|4h|long|2474|2486.05": 1788336757.8152397,
     "BEML.NS|4h|short|2021.59|2032.5": 1788335549.768456,
     "CLEAN.NS|4h|short|848.853|853.5": 1788335550.0108907,
     "PGEL.NS|4h|long|561.9|565.284": 1788335551.1725793,
@@ -17987,7 +17987,7 @@
     "last_attempt_at": 0.0
   },
   "__last_scan_started__": {
-    "4h": 1788335481.8356473
+    "4h": 1788336688.9459033
   },
   "360ONE.NS|supply|1214.8851|1220.0000": {
     "in_zone": false,
@@ -18345,9 +18345,9 @@
     "last_attempt_at": 0.0
   },
   "BAJAJHFL.NS|demand|81.8500|82.1991": {
-    "in_zone": false,
-    "last_alert_at": 1788322356.7059288,
-    "last_attempt_at": 1788322356.7059288
+    "in_zone": true,
+    "last_alert_at": 1788336757.5842159,
+    "last_attempt_at": 1788336757.5842159
   },
   "BALKRISIND.NS|supply|2761.7797|2775.0000": {
     "in_zone": false,
@@ -33595,7 +33595,7 @@
     "last_attempt_at": 0.0
   },
   "PGEL.NS|demand|561.9000|565.2838": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1788335551.1725793,
     "last_attempt_at": 1788335551.1725793
   },
@@ -45021,8 +45021,8 @@
   },
   "GRSE.NS|demand|2474.0000|2486.0476": {
     "in_zone": true,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "last_alert_at": 1788336757.8152397,
+    "last_attempt_at": 1788336757.8152397
   },
   "GILLETTE.NS|demand|7240.0000|7275.6656": {
     "in_zone": false,
@@ -45705,7 +45705,7 @@
     "last_attempt_at": 0.0
   },
   "BEML.NS|supply|2021.5949|2032.5000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1788335549.768456,
     "last_attempt_at": 1788335549.768456
   },
