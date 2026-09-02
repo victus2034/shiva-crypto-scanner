@@ -18700,6 +18700,7 @@
     "b39a88882190637d": "filled",
     "b422e91cfedca463": "filled",
     "b4327ed775037b33": "filled",
+    "b432a780a612ffa4": "filled",
     "b43c40d2bbbbfcd5": "filled",
     "b441c5d1733302fe": "filled",
     "b4541828437674a4": "filled",
@@ -18971,6 +18972,22 @@
       "target_1": 498.31289999999996,
       "target_2": 499.11794999999995,
       "target_half": 497.91037499999993,
+      "timeframe": "30m"
+    },
+    "b432a780a612ffa4": {
+      "alert_time": "2026-09-02T15:41:46.849396+05:30",
+      "entry": 98.43605,
+      "entry_time": "2026-09-02T15:50:00+05:30",
+      "half_r_hit": false,
+      "market": "crypto",
+      "rating": 9,
+      "risk": 0.2643199999999979,
+      "side": "long",
+      "stop": 98.17173,
+      "symbol": "SOLUSD",
+      "target_1": 98.70036999999999,
+      "target_2": 98.96468999999999,
+      "target_half": 98.56821,
       "timeframe": "30m"
     }
   }
