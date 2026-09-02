@@ -2926,7 +2926,8 @@
     "GRANULES.NS|4h|long|814.75|819.006": 1788327161.4622812,
     "IFCI.NS|4h|short|95.1441|95.76": 1788327161.6536489,
     "JWL.NS|4h|long|236.85|239.012": 1788327161.8671775,
-    "NESTLEIND.NS|4h|long|1408.3|1413.05": 1788327162.0391288
+    "NESTLEIND.NS|4h|long|1408.3|1413.05": 1788327162.0391288,
+    "BAJAJHFL.NS|4h|long|81.85|82.1984": 1788329559.280476
   },
   "GESHIP.NS|demand|1057.1000|1070.5000": {
     "in_zone": false,
@@ -17979,7 +17980,7 @@
     "last_attempt_at": 0.0
   },
   "__last_scan_started__": {
-    "4h": 1788328285.648406
+    "4h": 1788329481.1669745
   },
   "360ONE.NS|supply|1214.8851|1220.0000": {
     "in_zone": false,
@@ -25877,9 +25878,9 @@
     "last_attempt_at": 0.0
   },
   "BAJAJHFL.NS|demand|81.8500|82.1984": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1788329559.280476,
+    "last_attempt_at": 1788329559.280476
   },
   "BALKRISIND.NS|supply|2762.0421|2775.0000": {
     "in_zone": false,
@@ -45532,6 +45533,11 @@
     "last_attempt_at": 0.0
   },
   "POLYCAB.NS|demand|7901.0000|7941.0129": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "POLYCAB.NS|demand|7901.0000|7940.9342": {
     "in_zone": false,
     "last_alert_at": 0.0,
     "last_attempt_at": 0.0
