@@ -18265,6 +18265,31 @@
       "target_half": 59.175965000000005,
       "timeframe": "30m",
       "trade_id": "7e7b2cf15ac6a528"
+    },
+    {
+      "alert_time": "2026-09-02T19:41:48.703733+05:30",
+      "cost_r": 0.5689112785602559,
+      "date": "2026-09-02",
+      "entry": 598.48075,
+      "entry_time": "2026-09-02T19:45:00+05:30",
+      "exit_price": 596.24425,
+      "exit_time": "2026-09-02T19:45:00+05:30",
+      "final_result": "+2R",
+      "half_r_hit": true,
+      "market": "xstock",
+      "net_realized_r": 1.431088721439744,
+      "outcome": "+2R",
+      "rating": 7,
+      "realized_r": 2.0,
+      "risk": 1.118249999999989,
+      "side": "short",
+      "stop": 599.5989999999999,
+      "symbol": "METAXUSD",
+      "target_1": 597.3625,
+      "target_2": 596.24425,
+      "target_half": 597.921625,
+      "timeframe": "30m",
+      "trade_id": "d828421284d06ad1"
     }
   ],
   "handled": {
@@ -19076,22 +19101,6 @@
       "target_1": 498.31289999999996,
       "target_2": 499.11794999999995,
       "target_half": 497.91037499999993,
-      "timeframe": "30m"
-    },
-    "d828421284d06ad1": {
-      "alert_time": "2026-09-02T19:41:48.703733+05:30",
-      "entry": 598.48075,
-      "entry_time": "2026-09-02T19:45:00+05:30",
-      "half_r_hit": false,
-      "market": "xstock",
-      "rating": 7,
-      "risk": 1.118249999999989,
-      "side": "short",
-      "stop": 599.5989999999999,
-      "symbol": "METAXUSD",
-      "target_1": 597.3625,
-      "target_2": 596.24425,
-      "target_half": 597.921625,
       "timeframe": "30m"
     }
   }
