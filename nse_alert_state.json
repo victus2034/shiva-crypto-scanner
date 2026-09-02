@@ -2906,7 +2906,7 @@
     "AMBUJACEM.NS|4h|long|394.05|396.256": 1788321160.2670996,
     "CANFINHOME.NS|4h|long|780.05|783.043": 1788321160.5947702,
     "GMRAIRPORT.NS|4h|long|92.3|92.8012": 1788321160.890836,
-    "KAYNES.NS|4h|long|3535|3556.34": 1788321161.2421215,
+    "KAYNES.NS|4h|long|3535|3556.34": 1788328359.8884096,
     "POLYCAB.NS|4h|long|8791|8831.91": 1788321161.570577,
     "POONAWALLA.NS|4h|long|451|453.44": 1788327162.2790236,
     "AMBUJACEM.NS|4h|long|394.05|396.272": 1788322356.3982713,
@@ -5424,7 +5424,7 @@
     "last_attempt_at": 0.0
   },
   "IFCI.NS|supply|95.1441|95.7600": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1788327161.6536489,
     "last_attempt_at": 1788327161.6536489
   },
@@ -17979,7 +17979,7 @@
     "last_attempt_at": 0.0
   },
   "__last_scan_started__": {
-    "4h": 1788327104.8105052
+    "4h": 1788328285.648406
   },
   "360ONE.NS|supply|1214.8851|1220.0000": {
     "in_zone": false,
@@ -38582,9 +38582,9 @@
     "last_attempt_at": 0.0
   },
   "KAYNES.NS|demand|3535.0000|3556.3444": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1788328359.8884096,
+    "last_attempt_at": 1788328359.8884096
   },
   "KIRLOSENG.NS|supply|2553.3816|2570.2000": {
     "in_zone": false,
@@ -45527,6 +45527,11 @@
     "last_attempt_at": 0.0
   },
   "PGEL.NS|demand|530.6000|533.8135": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "POLYCAB.NS|demand|7901.0000|7941.0129": {
     "in_zone": false,
     "last_alert_at": 0.0,
     "last_attempt_at": 0.0
