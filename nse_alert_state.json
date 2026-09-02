@@ -2906,7 +2906,7 @@
     "AMBUJACEM.NS|4h|long|394.05|396.256": 1788321160.2670996,
     "CANFINHOME.NS|4h|long|780.05|783.043": 1788321160.5947702,
     "GMRAIRPORT.NS|4h|long|92.3|92.8012": 1788321160.890836,
-    "KAYNES.NS|4h|long|3535|3556.34": 1788328359.8884096,
+    "KAYNES.NS|4h|long|3535|3556.34": 1788333152.976258,
     "POLYCAB.NS|4h|long|8791|8831.91": 1788321161.570577,
     "POONAWALLA.NS|4h|long|451|453.44": 1788327162.2790236,
     "AMBUJACEM.NS|4h|long|394.05|396.272": 1788322356.3982713,
@@ -2928,7 +2928,9 @@
     "JWL.NS|4h|long|236.85|239.012": 1788327161.8671775,
     "NESTLEIND.NS|4h|long|1408.3|1413.05": 1788327162.0391288,
     "BAJAJHFL.NS|4h|long|81.85|82.1984": 1788329559.280476,
-    "INDIGO.NS|4h|long|4886.5|4907.7": 1788331958.1528263
+    "INDIGO.NS|4h|long|4886.5|4907.7": 1788331958.1528263,
+    "CLEAN.NS|4h|short|848.854|853.5": 1788333152.279929,
+    "GRSE.NS|4h|long|2474|2486.05": 1788333152.6998475
   },
   "GESHIP.NS|demand|1057.1000|1070.5000": {
     "in_zone": false,
@@ -12226,7 +12228,7 @@
     "last_attempt_at": 0.0
   },
   "GRANULES.NS|demand|814.7500|819.0050": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1788325935.3268175,
     "last_attempt_at": 1788325935.3268175
   },
@@ -17981,7 +17983,7 @@
     "last_attempt_at": 0.0
   },
   "__last_scan_started__": {
-    "4h": 1788331884.19681
+    "4h": 1788333087.4768546
   },
   "360ONE.NS|supply|1214.8851|1220.0000": {
     "in_zone": false,
@@ -36074,9 +36076,9 @@
     "last_attempt_at": 0.0
   },
   "CLEAN.NS|supply|848.8540|853.5000": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1788333152.279929,
+    "last_attempt_at": 1788333152.279929
   },
   "COALINDIA.NS|demand|369.6500|370.5834": {
     "in_zone": false,
@@ -40514,9 +40516,9 @@
     "last_attempt_at": 0.0
   },
   "GRSE.NS|demand|2474.0000|2486.0471": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1788333152.6998475,
+    "last_attempt_at": 1788333152.6998475
   },
   "GILLETTE.NS|supply|8398.1518|8430.0000": {
     "in_zone": false,
@@ -40729,7 +40731,7 @@
     "last_attempt_at": 0.0
   },
   "INDIGO.NS|demand|4886.5000|4907.6987": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1788331958.1528263,
     "last_attempt_at": 1788331958.1528263
   },
@@ -40809,9 +40811,9 @@
     "last_attempt_at": 0.0
   },
   "KAYNES.NS|demand|3535.0000|3556.3385": {
-    "in_zone": false,
-    "last_alert_at": 1788321161.2421215,
-    "last_attempt_at": 1788321161.2421215
+    "in_zone": true,
+    "last_alert_at": 1788333152.976258,
+    "last_attempt_at": 1788333152.976258
   },
   "KIMS.NS|supply|822.9461|826.7500": {
     "in_zone": false,
