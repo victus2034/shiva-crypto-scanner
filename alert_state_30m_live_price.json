@@ -2298,7 +2298,8 @@
     "VELVETUSD|30m|short|0.0959165|0.0963": 1788288706.4277377,
     "XAUTUSD|30m|long|4297.44|4298.56": 1788319909.7088745,
     "ICP/USDT|30m|short|2.53665|2.542": 1788324698.194268,
-    "MSFT/USDT:USDT|30m|long|497.2|497.508": 1788336708.660823
+    "MSFT/USDT:USDT|30m|long|497.2|497.508": 1788336708.660823,
+    "ETHUSD|30m|long|2385.55|2388.5": 1788340300.9052963
   },
   "METAXUSD|demand|577.00000000|579.20000000": {
     "in_zone": false,
@@ -13847,7 +13848,7 @@
     "last_alert_at": 1787580724.510809
   },
   "__last_scan_started__": {
-    "30m": 1788339059.3096519
+    "30m": 1788340251.5363843
   },
   "TAO/USDT|supply|227.92800000|229.00000000": {
     "in_zone": false,
@@ -23858,8 +23859,8 @@
     "last_alert_at": 0.0
   },
   "ETHUSD|demand|2385.55000000|2388.50280000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1788340300.9052963
   },
   "XRPUSD|demand|1.33300000|1.33519900": {
     "in_zone": false,
@@ -25658,6 +25659,18 @@
     "last_alert_at": 0.0
   },
   "ZAMA/USDT|supply|0.05092295|0.05102000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "MNT/USDT|demand|0.53070000|0.53145450": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "HUSD|demand|0.07042000|0.07053635": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "METAXUSD|supply|584.94060000|585.40000000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
