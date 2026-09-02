@@ -18854,6 +18854,7 @@
     "ab0e749f752ed696": "filled",
     "ab2b94bce147e928": "filled",
     "ab35f5255f69d0b3": "filled",
+    "ac3e2ed5dcee39fa": "filled",
     "aca814c7fd968227": "filled",
     "ad339289f38fe0b5": "filled",
     "ad809f919aa79d99": "filled",
@@ -19153,6 +19154,22 @@
       "target_1": 498.31289999999996,
       "target_2": 499.11794999999995,
       "target_half": 497.91037499999993,
+      "timeframe": "30m"
+    },
+    "ac3e2ed5dcee39fa": {
+      "alert_time": "2026-09-02T20:41:46.463767+05:30",
+      "entry": 0.44988745,
+      "entry_time": "2026-09-02T20:45:00+05:30",
+      "half_r_hit": false,
+      "market": "crypto",
+      "rating": 8,
+      "risk": 0.0022942799999999264,
+      "side": "short",
+      "stop": 0.45218172999999995,
+      "symbol": "BTW/USDT",
+      "target_1": 0.4475931700000001,
+      "target_2": 0.44529889000000017,
+      "target_half": 0.44874031000000003,
       "timeframe": "30m"
     }
   }
