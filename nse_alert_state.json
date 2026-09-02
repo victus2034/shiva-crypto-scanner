@@ -2913,7 +2913,7 @@
     "BAJAJHFL.NS|4h|long|81.85|82.1991": 1788322356.7059288,
     "BERGEPAINT.NS|4h|long|481.05|483.642": 1788330771.384106,
     "GMRAIRPORT.NS|4h|long|92.3|92.8018": 1788322357.2051184,
-    "JWL.NS|4h|long|236.85|239.002": 1788323597.0528297,
+    "JWL.NS|4h|long|236.85|239.002": 1788331958.2852507,
     "KALYANKJIL.NS|4h|long|561.6|565.191": 1788323597.290478,
     "POONAWALLA.NS|4h|long|451|453.439": 1788323597.5354826,
     "ITCHOTELS.NS|4h|long|158.43|159.255": 1788324745.516013,
@@ -2927,7 +2927,8 @@
     "IFCI.NS|4h|short|95.1441|95.76": 1788330771.6841984,
     "JWL.NS|4h|long|236.85|239.012": 1788327161.8671775,
     "NESTLEIND.NS|4h|long|1408.3|1413.05": 1788327162.0391288,
-    "BAJAJHFL.NS|4h|long|81.85|82.1984": 1788329559.280476
+    "BAJAJHFL.NS|4h|long|81.85|82.1984": 1788329559.280476,
+    "INDIGO.NS|4h|long|4886.5|4907.7": 1788331958.1528263
   },
   "GESHIP.NS|demand|1057.1000|1070.5000": {
     "in_zone": false,
@@ -5425,7 +5426,7 @@
     "last_attempt_at": 0.0
   },
   "IFCI.NS|supply|95.1441|95.7600": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1788330771.6841984,
     "last_attempt_at": 1788330771.6841984
   },
@@ -8935,7 +8936,7 @@
     "last_attempt_at": 0.0
   },
   "BERGEPAINT.NS|demand|481.0500|483.6424": {
-    "in_zone": false,
+    "in_zone": true,
     "last_alert_at": 0.0,
     "last_attempt_at": 0.0
   },
@@ -17980,7 +17981,7 @@
     "last_attempt_at": 0.0
   },
   "__last_scan_started__": {
-    "4h": 1788330703.426914
+    "4h": 1788331884.19681
   },
   "360ONE.NS|supply|1214.8851|1220.0000": {
     "in_zone": false,
@@ -25878,7 +25879,7 @@
     "last_attempt_at": 0.0
   },
   "BAJAJHFL.NS|demand|81.8500|82.1984": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1788329559.280476,
     "last_attempt_at": 1788329559.280476
   },
@@ -30983,7 +30984,7 @@
     "last_attempt_at": 0.0
   },
   "NESTLEIND.NS|demand|1408.3000|1413.0440": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1788325936.3178232,
     "last_attempt_at": 1788325936.3178232
   },
@@ -36468,9 +36469,9 @@
     "last_attempt_at": 0.0
   },
   "JWL.NS|demand|236.8500|239.0018": {
-    "in_zone": false,
-    "last_alert_at": 1788323597.0528297,
-    "last_attempt_at": 1788323597.0528297
+    "in_zone": true,
+    "last_alert_at": 1788331958.2852507,
+    "last_attempt_at": 1788331958.2852507
   },
   "JYOTICNC.NS|supply|1050.1915|1055.7500": {
     "in_zone": false,
@@ -40728,9 +40729,9 @@
     "last_attempt_at": 0.0
   },
   "INDIGO.NS|demand|4886.5000|4907.6987": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1788331958.1528263,
+    "last_attempt_at": 1788331958.1528263
   },
   "IPCALAB.NS|demand|1677.4000|1686.2912": {
     "in_zone": false,
@@ -43753,7 +43754,7 @@
     "last_attempt_at": 0.0
   },
   "BRITANNIA.NS|demand|5035.5000|5054.3504": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1788325934.9977245,
     "last_attempt_at": 1788325934.9977245
   },
