@@ -2908,7 +2908,7 @@
     "GMRAIRPORT.NS|4h|long|92.3|92.8012": 1788321160.890836,
     "KAYNES.NS|4h|long|3535|3556.34": 1788321161.2421215,
     "POLYCAB.NS|4h|long|8791|8831.91": 1788321161.570577,
-    "POONAWALLA.NS|4h|long|451|453.44": 1788321161.8323245,
+    "POONAWALLA.NS|4h|long|451|453.44": 1788327162.2790236,
     "AMBUJACEM.NS|4h|long|394.05|396.272": 1788322356.3982713,
     "BAJAJHFL.NS|4h|long|81.85|82.1991": 1788322356.7059288,
     "BERGEPAINT.NS|4h|long|481.05|483.642": 1788322356.9953883,
@@ -2920,7 +2920,13 @@
     "KALYANKJIL.NS|4h|long|561.6|565.192": 1788324746.0277467,
     "BRITANNIA.NS|4h|long|5035.5|5054.35": 1788325934.9977245,
     "GRANULES.NS|4h|long|814.75|819.005": 1788325935.3268175,
-    "NESTLEIND.NS|4h|long|1408.3|1413.04": 1788325936.3178232
+    "NESTLEIND.NS|4h|long|1408.3|1413.04": 1788325936.3178232,
+    "BLUESTARCO.NS|4h|long|1450|1461.23": 1788327161.0175636,
+    "BRITANNIA.NS|4h|long|5035.5|5054.36": 1788327161.283089,
+    "GRANULES.NS|4h|long|814.75|819.006": 1788327161.4622812,
+    "IFCI.NS|4h|short|95.1441|95.76": 1788327161.6536489,
+    "JWL.NS|4h|long|236.85|239.012": 1788327161.8671775,
+    "NESTLEIND.NS|4h|long|1408.3|1413.05": 1788327162.0391288
   },
   "GESHIP.NS|demand|1057.1000|1070.5000": {
     "in_zone": false,
@@ -5418,9 +5424,9 @@
     "last_attempt_at": 0.0
   },
   "IFCI.NS|supply|95.1441|95.7600": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1788327161.6536489,
+    "last_attempt_at": 1788327161.6536489
   },
   "IFCI.NS|demand|68.2500|68.7368": {
     "in_zone": false,
@@ -5458,7 +5464,7 @@
     "last_attempt_at": 0.0
   },
   "ITCHOTELS.NS|demand|158.4300|159.2552": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1788324745.516013,
     "last_attempt_at": 1788324745.516013
   },
@@ -6843,9 +6849,9 @@
     "last_attempt_at": 0.0
   },
   "POONAWALLA.NS|demand|451.0000|453.4401": {
-    "in_zone": false,
-    "last_alert_at": 1788321161.8323245,
-    "last_attempt_at": 1788321161.8323245
+    "in_zone": true,
+    "last_alert_at": 1788327162.2790236,
+    "last_attempt_at": 1788327162.2790236
   },
   "PFC.NS|supply|441.4713|443.5500": {
     "in_zone": false,
@@ -17973,7 +17979,7 @@
     "last_attempt_at": 0.0
   },
   "__last_scan_started__": {
-    "4h": 1788325876.880653
+    "4h": 1788327104.8105052
   },
   "360ONE.NS|supply|1214.8851|1220.0000": {
     "in_zone": false,
@@ -32986,9 +32992,9 @@
     "last_attempt_at": 0.0
   },
   "GRANULES.NS|demand|814.7500|819.0063": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1788327161.4622812,
+    "last_attempt_at": 1788327161.4622812
   },
   "GRAVITA.NS|demand|1540.0000|1549.3490": {
     "in_zone": false,
@@ -33511,9 +33517,9 @@
     "last_attempt_at": 0.0
   },
   "NESTLEIND.NS|demand|1408.3000|1413.0452": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1788327162.0391288,
+    "last_attempt_at": 1788327162.0391288
   },
   "NETWEB.NS|demand|4063.6001|4099.0208": {
     "in_zone": false,
@@ -41951,9 +41957,9 @@
     "last_attempt_at": 0.0
   },
   "JWL.NS|demand|236.8500|239.0117": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1788327161.8671775,
+    "last_attempt_at": 1788327161.8671775
   },
   "JYOTICNC.NS|supply|1050.1784|1055.7500": {
     "in_zone": false,
@@ -44736,9 +44742,9 @@
     "last_attempt_at": 0.0
   },
   "BLUESTARCO.NS|demand|1450.0000|1461.2342": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1788327161.0175636,
+    "last_attempt_at": 1788327161.0175636
   },
   "BBTC.NS|supply|1930.5017|1939.9000": {
     "in_zone": false,
@@ -44766,9 +44772,9 @@
     "last_attempt_at": 0.0
   },
   "BRITANNIA.NS|demand|5035.5000|5054.3568": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1788327161.283089,
+    "last_attempt_at": 1788327161.283089
   },
   "MAPMYINDIA.NS|demand|795.1000|802.5254": {
     "in_zone": false,
