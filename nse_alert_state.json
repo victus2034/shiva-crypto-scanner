@@ -2933,7 +2933,7 @@
     "GRSE.NS|4h|long|2474|2486.05": 1788336757.8152397,
     "BEML.NS|4h|short|2021.59|2032.5": 1788335549.768456,
     "CLEAN.NS|4h|short|848.853|853.5": 1788335550.0108907,
-    "PGEL.NS|4h|long|561.9|565.284": 1788335551.1725793,
+    "PGEL.NS|4h|long|561.9|565.284": 1788340348.322058,
     "POLYCAB.NS|4h|long|8791|8831.92": 1788335551.3764288
   },
   "GESHIP.NS|demand|1057.1000|1070.5000": {
@@ -17987,7 +17987,7 @@
     "last_attempt_at": 0.0
   },
   "__last_scan_started__": {
-    "4h": 1788339079.1388621
+    "4h": 1788340284.3645594
   },
   "360ONE.NS|supply|1214.8851|1220.0000": {
     "in_zone": false,
@@ -36475,7 +36475,7 @@
     "last_attempt_at": 0.0
   },
   "JWL.NS|demand|236.8500|239.0018": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1788331958.2852507,
     "last_attempt_at": 1788331958.2852507
   },
@@ -41036,8 +41036,8 @@
   },
   "PGEL.NS|demand|561.9000|565.2837": {
     "in_zone": true,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "last_alert_at": 1788340348.322058,
+    "last_attempt_at": 1788340348.322058
   },
   "PNBHOUSING.NS|demand|1024.9000|1029.8759": {
     "in_zone": false,
@@ -47420,6 +47420,11 @@
     "last_attempt_at": 0.0
   },
   "SBFC.NS|supply|107.9666|108.4000": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "BEML.NS|supply|2256.2829|2267.0000": {
     "in_zone": false,
     "last_alert_at": 0.0,
     "last_attempt_at": 0.0
