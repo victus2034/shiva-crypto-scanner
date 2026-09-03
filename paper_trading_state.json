@@ -18740,6 +18740,31 @@
       "target_half": 227.43677500000004,
       "timeframe": "4h",
       "trade_id": "ea7286ce70ac05af"
+    },
+    {
+      "alert_time": "2026-09-03T19:21:51.439728+05:30",
+      "cost_r": 0.39606605629140723,
+      "date": "2026-09-03",
+      "entry": 0.1687845,
+      "entry_time": "2026-09-03T19:25:00+05:30",
+      "exit_price": 0.16824733425000002,
+      "exit_time": "2026-09-03T19:30:00+05:30",
+      "final_result": "SL",
+      "half_r_hit": false,
+      "market": "crypto",
+      "net_realized_r": -1.581862413907317,
+      "outcome": "SL",
+      "rating": 8,
+      "realized_r": -1.1857963576159098,
+      "risk": 0.0004529999999999812,
+      "side": "long",
+      "stop": 0.16833150000000002,
+      "symbol": "KGEN/USDT",
+      "target_1": 0.16923749999999999,
+      "target_2": 0.16969049999999997,
+      "target_half": 0.169011,
+      "timeframe": "30m",
+      "trade_id": "39017f9a5eff62d6"
     }
   ],
   "handled": {
@@ -19554,22 +19579,5 @@
     "fed8ed34d9b4adcd": "filled",
     "ffb4661b7d04cd46": "filled"
   },
-  "open": {
-    "39017f9a5eff62d6": {
-      "alert_time": "2026-09-03T19:21:51.439728+05:30",
-      "entry": 0.1687845,
-      "entry_time": "2026-09-03T19:25:00+05:30",
-      "half_r_hit": false,
-      "market": "crypto",
-      "rating": 8,
-      "risk": 0.0004529999999999812,
-      "side": "long",
-      "stop": 0.16833150000000002,
-      "symbol": "KGEN/USDT",
-      "target_1": 0.16923749999999999,
-      "target_2": 0.16969049999999997,
-      "target_half": 0.169011,
-      "timeframe": "30m"
-    }
-  }
+  "open": {}
 }
