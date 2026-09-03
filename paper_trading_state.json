@@ -18615,6 +18615,31 @@
       "target_half": 4464.112135,
       "timeframe": "30m",
       "trade_id": "76efd8f20e73061a"
+    },
+    {
+      "alert_time": "2026-09-03T17:11:43.506202+05:30",
+      "cost_r": 0.06837014845024497,
+      "date": "2026-09-03",
+      "entry": 0.0551978,
+      "entry_time": "2026-09-03T18:15:00+05:30",
+      "exit_price": 0.056084027999999994,
+      "exit_time": "2026-09-03T18:35:00+05:30",
+      "final_result": "SL",
+      "half_r_hit": false,
+      "market": "crypto",
+      "net_realized_r": -1.1010292022838497,
+      "outcome": "SL",
+      "rating": 7,
+      "realized_r": -1.0326590538336047,
+      "risk": 0.0008581999999999965,
+      "side": "short",
+      "stop": 0.056055999999999995,
+      "symbol": "ZAMA/USDT",
+      "target_1": 0.0543396,
+      "target_2": 0.053481400000000005,
+      "target_half": 0.054768700000000003,
+      "timeframe": "4h",
+      "trade_id": "3aa0036123bfcc4c"
     }
   ],
   "handled": {
@@ -19424,22 +19449,5 @@
     "fed8ed34d9b4adcd": "filled",
     "ffb4661b7d04cd46": "filled"
   },
-  "open": {
-    "3aa0036123bfcc4c": {
-      "alert_time": "2026-09-03T17:11:43.506202+05:30",
-      "entry": 0.0551978,
-      "entry_time": "2026-09-03T18:15:00+05:30",
-      "half_r_hit": false,
-      "market": "crypto",
-      "rating": 7,
-      "risk": 0.0008581999999999965,
-      "side": "short",
-      "stop": 0.056055999999999995,
-      "symbol": "ZAMA/USDT",
-      "target_1": 0.0543396,
-      "target_2": 0.053481400000000005,
-      "target_half": 0.054768700000000003,
-      "timeframe": "4h"
-    }
-  }
+  "open": {}
 }
