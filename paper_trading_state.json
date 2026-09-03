@@ -18854,6 +18854,7 @@
     "43ec392e9973b18f": "filled",
     "44e5ef4dd52a4bff": "filled",
     "457f3591e9a052cd": "filled",
+    "45b9a29cacab82da": "filled",
     "463bf1a47c3f1970": "filled",
     "463fce224dc59626": "filled",
     "4683239f190224e7": "filled",
@@ -19449,5 +19450,22 @@
     "fed8ed34d9b4adcd": "filled",
     "ffb4661b7d04cd46": "filled"
   },
-  "open": {}
+  "open": {
+    "45b9a29cacab82da": {
+      "alert_time": "2026-09-03T18:41:43.343017+05:30",
+      "entry": 604.81885,
+      "entry_time": "2026-09-03T18:45:00+05:30",
+      "half_r_hit": false,
+      "market": "xstock",
+      "rating": 5,
+      "risk": 0.9863500000000158,
+      "side": "short",
+      "stop": 605.8052,
+      "symbol": "METAXUSD",
+      "target_1": 603.8325,
+      "target_2": 602.84615,
+      "target_half": 604.325675,
+      "timeframe": "30m"
+    }
+  }
 }
