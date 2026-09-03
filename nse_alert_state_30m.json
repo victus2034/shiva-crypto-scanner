@@ -4988,7 +4988,7 @@
     "POONAWALLA.NS|30m|long|451|451.852": 1788330108.5775547,
     "GILLETTE.NS|30m|short|7460.46|7466": 1788331335.5884616,
     "GPIL.NS|30m|long|238.29|238.73": 1788331336.0869815,
-    "MRF.NS|30m|long|130555|130673": 1788411746.399872,
+    "MRF.NS|30m|long|130555|130673": 1788417739.969297,
     "PFIZER.NS|30m|long|4604|4610.31": 1788411746.720978,
     "AIAENG.NS|30m|long|4157.4|4163.47": 1788332537.1190186,
     "CRISIL.NS|30m|long|4701.3|4708.79": 1788332537.5412016,
@@ -5034,7 +5034,9 @@
     "ASTERDM.NS|30m|short|774.114|775.5": 1788415342.750881,
     "MAHABANK.NS|30m|short|86.859|86.99": 1788415343.8948488,
     "NTPC.NS|30m|short|332.603|332.95": 1788415344.3754818,
-    "MARICO.NS|30m|long|820|820.852": 1788416551.7887542
+    "MARICO.NS|30m|long|820|820.852": 1788416551.7887542,
+    "ANURAS.NS|30m|long|1233.5|1234.9": 1788417739.5144243,
+    "NESTLEIND.NS|30m|long|1408.3|1409.86": 1788417740.256547
   },
   "ANANDRATHI.NS|supply|2187.5000|2221.0000": {
     "in_zone": true,
@@ -31747,7 +31749,7 @@
     "last_attempt_at": 0.0
   },
   "__last_scan_started__": {
-    "30m": 1788416466.97705
+    "30m": 1788417665.8142242
   },
   "3MINDIA.NS|supply|35230.9249|35290.0000": {
     "in_zone": false,
@@ -121520,9 +121522,9 @@
     "last_attempt_at": 0.0
   },
   "ANURAS.NS|demand|1233.5000|1234.9015": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1788417739.5144243,
+    "last_attempt_at": 1788417739.5144243
   },
   "APARINDS.NS|demand|16621.0000|16657.5932": {
     "in_zone": false,
@@ -123890,9 +123892,9 @@
     "last_attempt_at": 0.0
   },
   "MRF.NS|demand|130555.0000|130672.7506": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1788417739.969297,
+    "last_attempt_at": 1788417739.969297
   },
   "MGL.NS|demand|1062.0000|1063.4941": {
     "in_zone": false,
@@ -123980,9 +123982,9 @@
     "last_attempt_at": 0.0
   },
   "NESTLEIND.NS|demand|1408.3000|1409.8610": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1788417740.256547,
+    "last_attempt_at": 1788417740.256547
   },
   "NEWGEN.NS|supply|539.6496|540.9000": {
     "in_zone": false,
@@ -124120,6 +124122,11 @@
     "last_attempt_at": 0.0
   },
   "SBICARD.NS|demand|611.1000|612.2180": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "AFCONS.NS|supply|296.9922|297.6000": {
     "in_zone": false,
     "last_alert_at": 0.0,
     "last_attempt_at": 0.0
