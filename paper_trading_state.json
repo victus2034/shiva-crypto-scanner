@@ -18940,6 +18940,31 @@
       "target_half": 723.0686300000001,
       "timeframe": "4h",
       "trade_id": "ab181d205b5ce7af"
+    },
+    {
+      "alert_time": "2026-09-03T21:21:38.848310+05:30",
+      "cost_r": 0.4484379718228822,
+      "date": "2026-09-03",
+      "entry": 212.14955,
+      "entry_time": "2026-09-03T21:25:00+05:30",
+      "exit_price": 211.64666000000003,
+      "exit_time": "2026-09-03T21:35:00+05:30",
+      "final_result": "+1R",
+      "half_r_hit": true,
+      "market": "xstock",
+      "net_realized_r": 0.5515620281771179,
+      "outcome": "+1R",
+      "rating": 6,
+      "realized_r": 1.0,
+      "risk": 0.5028899999999794,
+      "side": "short",
+      "stop": 212.65243999999998,
+      "symbol": "MRVL/USDT:USDT",
+      "target_1": 211.64666000000003,
+      "target_2": 211.14377000000005,
+      "target_half": 211.89810500000002,
+      "timeframe": "30m",
+      "trade_id": "340de82d3ab44dff"
     }
   ],
   "handled": {
@@ -19762,22 +19787,5 @@
     "fed8ed34d9b4adcd": "filled",
     "ffb4661b7d04cd46": "filled"
   },
-  "open": {
-    "340de82d3ab44dff": {
-      "alert_time": "2026-09-03T21:21:38.848310+05:30",
-      "entry": 212.14955,
-      "entry_time": "2026-09-03T21:25:00+05:30",
-      "half_r_hit": false,
-      "market": "xstock",
-      "rating": 6,
-      "risk": 0.5028899999999794,
-      "side": "short",
-      "stop": 212.65243999999998,
-      "symbol": "MRVL/USDT:USDT",
-      "target_1": 211.64666000000003,
-      "target_2": 211.14377000000005,
-      "target_half": 211.89810500000002,
-      "timeframe": "30m"
-    }
-  }
+  "open": {}
 }
