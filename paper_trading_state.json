@@ -18915,6 +18915,31 @@
       "target_half": 0.0026811365,
       "timeframe": "30m",
       "trade_id": "78d58e2e55f268ea"
+    },
+    {
+      "alert_time": "2026-09-03T20:32:03.363130+05:30",
+      "cost_r": 0.29786384574440605,
+      "date": "2026-09-03",
+      "entry": 724.36116,
+      "entry_time": "2026-09-03T21:25:00+05:30",
+      "exit_price": 727.3096931099999,
+      "exit_time": "2026-09-03T21:25:00+05:30",
+      "final_result": "SL",
+      "half_r_hit": false,
+      "market": "crypto",
+      "net_realized_r": -1.4384691353701744,
+      "outcome": "SL",
+      "rating": 9,
+      "realized_r": -1.1406052896257683,
+      "risk": 2.585059999999885,
+      "side": "short",
+      "stop": 726.9462199999999,
+      "symbol": "BNBUSD",
+      "target_1": 721.7761000000002,
+      "target_2": 719.1910400000003,
+      "target_half": 723.0686300000001,
+      "timeframe": "4h",
+      "trade_id": "ab181d205b5ce7af"
     }
   ],
   "handled": {
@@ -19753,22 +19778,6 @@
       "target_2": 211.14377000000005,
       "target_half": 211.89810500000002,
       "timeframe": "30m"
-    },
-    "ab181d205b5ce7af": {
-      "alert_time": "2026-09-03T20:32:03.363130+05:30",
-      "entry": 724.36116,
-      "entry_time": "2026-09-03T21:25:00+05:30",
-      "half_r_hit": false,
-      "market": "crypto",
-      "rating": 9,
-      "risk": 2.585059999999885,
-      "side": "short",
-      "stop": 726.9462199999999,
-      "symbol": "BNBUSD",
-      "target_1": 721.7761000000002,
-      "target_2": 719.1910400000003,
-      "target_half": 723.0686300000001,
-      "timeframe": "4h"
     }
   }
 }
