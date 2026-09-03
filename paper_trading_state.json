@@ -18440,6 +18440,31 @@
       "target_half": 0.08454326000000001,
       "timeframe": "30m",
       "trade_id": "3efbf24946ff0a7e"
+    },
+    {
+      "alert_time": "2026-09-02T13:41:48.660823+05:30",
+      "cost_r": 0.6569167685858067,
+      "date": "2026-09-02",
+      "entry": 497.50784999999996,
+      "entry_time": "2026-09-02T14:00:00+05:30",
+      "exit_price": 496.4544486,
+      "exit_time": "2026-09-02T15:10:00+05:30",
+      "final_result": "SL",
+      "half_r_hit": true,
+      "market": "xstock",
+      "net_realized_r": -1.965408663499156,
+      "outcome": "SL",
+      "rating": 6,
+      "realized_r": -1.3084918949133493,
+      "risk": 0.8050499999999943,
+      "side": "long",
+      "stop": 496.70279999999997,
+      "symbol": "MSFT/USDT:USDT",
+      "target_1": 498.31289999999996,
+      "target_2": 499.11794999999995,
+      "target_half": 497.91037499999993,
+      "timeframe": "30m",
+      "trade_id": "0ee19b13f3dbe1d8"
     }
   ],
   "handled": {
@@ -19244,22 +19269,6 @@
     "ffb4661b7d04cd46": "filled"
   },
   "open": {
-    "0ee19b13f3dbe1d8": {
-      "alert_time": "2026-09-02T13:41:48.660823+05:30",
-      "entry": 497.50784999999996,
-      "entry_time": "2026-09-02T14:00:00+05:30",
-      "half_r_hit": true,
-      "market": "xstock",
-      "rating": 6,
-      "risk": 0.8050499999999943,
-      "side": "long",
-      "stop": 496.70279999999997,
-      "symbol": "MSFT/USDT:USDT",
-      "target_1": 498.31289999999996,
-      "target_2": 499.11794999999995,
-      "target_half": 497.91037499999993,
-      "timeframe": "30m"
-    },
     "ac5116f4772fa4f0": {
       "alert_time": "2026-09-03T13:46:42.785501+05:30",
       "entry": 361.68825,
