@@ -18790,6 +18790,31 @@
       "target_half": 511.82235000000003,
       "timeframe": "30m",
       "trade_id": "98e92bd1bce83885"
+    },
+    {
+      "alert_time": "2026-09-03T19:21:51.895179+05:30",
+      "cost_r": 0.4146815438547581,
+      "date": "2026-09-03",
+      "entry": 208.37455,
+      "entry_time": "2026-09-03T19:55:00+05:30",
+      "exit_price": 207.3062500000001,
+      "exit_time": "2026-09-03T19:55:00+05:30",
+      "final_result": "+2R",
+      "half_r_hit": true,
+      "market": "xstock",
+      "net_realized_r": 1.585318456145242,
+      "outcome": "+2R",
+      "rating": 8,
+      "realized_r": 2.0,
+      "risk": 0.5341499999999542,
+      "side": "short",
+      "stop": 208.90869999999995,
+      "symbol": "MRVL/USDT:USDT",
+      "target_1": 207.84040000000005,
+      "target_2": 207.3062500000001,
+      "target_half": 208.10747500000002,
+      "timeframe": "30m",
+      "trade_id": "1cb3b8cfe592bbcf"
     }
   ],
   "handled": {
@@ -18891,6 +18916,7 @@
     "1c5ca86983a95b42": "filled",
     "1c7282b72f97d0c6": "filled",
     "1cb1b52e1599689e": "filled",
+    "1cb3b8cfe592bbcf": "filled",
     "1cbab4a85d13ee36": "filled",
     "1cc6551c65582fda": "filled",
     "1d5f88f8d6973064": "filled",
@@ -19094,6 +19120,7 @@
     "5f1069eb5a0ccea4": "filled",
     "604943ecced2ef44": "filled",
     "6057d8a3b3a775ce": "filled",
+    "60774ebf5a36a552": "filled",
     "608305b54054183d": "filled",
     "60e4f6f9b270d7b8": "filled",
     "61bff8ef9aeac73b": "filled",
@@ -19605,5 +19632,22 @@
     "fed8ed34d9b4adcd": "filled",
     "ffb4661b7d04cd46": "filled"
   },
-  "open": {}
+  "open": {
+    "60774ebf5a36a552": {
+      "alert_time": "2026-09-03T19:51:47.998641+05:30",
+      "entry": 54.688,
+      "entry_time": "2026-09-03T19:55:00+05:30",
+      "half_r_hit": false,
+      "market": "xstock",
+      "rating": 7,
+      "risk": 0.891849999999998,
+      "side": "long",
+      "stop": 53.796150000000004,
+      "symbol": "AXTI/USDT:USDT",
+      "target_1": 55.57985,
+      "target_2": 56.4717,
+      "target_half": 55.133925000000005,
+      "timeframe": "4h"
+    }
+  }
 }
