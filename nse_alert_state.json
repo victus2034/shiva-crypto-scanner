@@ -2936,7 +2936,8 @@
     "PGEL.NS|4h|long|561.9|565.284": 1788340348.322058,
     "POLYCAB.NS|4h|long|8791|8831.92": 1788335551.3764288,
     "CGCL.NS|4h|short|263.263|264.53": 1788407553.6193523,
-    "JSWDULUX.NS|4h|short|3179.47|3195": 1788408759.4089508
+    "JSWDULUX.NS|4h|short|3179.47|3195": 1788408759.4089508,
+    "EXIDEIND.NS|4h|long|420.55|422.618": 1788412357.1338704
   },
   "GESHIP.NS|demand|1057.1000|1070.5000": {
     "in_zone": false,
@@ -4849,9 +4850,9 @@
     "last_attempt_at": 0.0
   },
   "EXIDEIND.NS|demand|420.5500|422.6182": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1788412357.1338704,
+    "last_attempt_at": 1788412357.1338704
   },
   "NYKAA.NS|supply|344.2170|345.6000": {
     "in_zone": false,
@@ -17989,7 +17990,7 @@
     "last_attempt_at": 0.0
   },
   "__last_scan_started__": {
-    "4h": 1788411082.5209095
+    "4h": 1788412286.7796793
   },
   "360ONE.NS|supply|1214.8851|1220.0000": {
     "in_zone": false,
@@ -38592,7 +38593,7 @@
     "last_attempt_at": 0.0
   },
   "KAYNES.NS|demand|3535.0000|3556.3444": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1788408759.7165446,
     "last_attempt_at": 1788408759.7165446
   },
