@@ -19227,6 +19227,7 @@
     "dc5df7bc07b9652a": "filled",
     "dc6023ba0a9f4cd7": "filled",
     "dd12ad3d7ef83962": "filled",
+    "dd321e51501805bf": "filled",
     "dd5b0779584ce300": "filled",
     "dd66cb50258872e0": "filled",
     "ddea50c3c9dd4a5b": "filled",
@@ -19345,5 +19346,22 @@
     "fed8ed34d9b4adcd": "filled",
     "ffb4661b7d04cd46": "filled"
   },
-  "open": {}
+  "open": {
+    "dd321e51501805bf": {
+      "alert_time": "2026-09-03T17:41:40.985450+05:30",
+      "entry": 11.281615,
+      "entry_time": "2026-09-03T17:45:00+05:30",
+      "half_r_hit": false,
+      "market": "crypto",
+      "rating": 9,
+      "risk": 0.03168699999999802,
+      "side": "short",
+      "stop": 11.313301999999998,
+      "symbol": "LINKUSD",
+      "target_1": 11.249928000000002,
+      "target_2": 11.218241000000004,
+      "target_half": 11.265771500000001,
+      "timeframe": "30m"
+    }
+  }
 }
