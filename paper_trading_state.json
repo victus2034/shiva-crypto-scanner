@@ -18865,6 +18865,31 @@
       "target_half": 609.056075,
       "timeframe": "4h",
       "trade_id": "9e753e5460933e15"
+    },
+    {
+      "alert_time": "2026-09-03T19:51:47.998641+05:30",
+      "cost_r": 0.06518287155911884,
+      "date": "2026-09-03",
+      "entry": 54.688,
+      "entry_time": "2026-09-03T19:55:00+05:30",
+      "exit_price": 54.7536256,
+      "exit_time": "2026-09-03T19:55:00+05:30",
+      "final_result": "BE",
+      "half_r_hit": true,
+      "market": "xstock",
+      "net_realized_r": 0.008400802825583975,
+      "outcome": "BE",
+      "rating": 7,
+      "realized_r": 0.07358367438470281,
+      "risk": 0.891849999999998,
+      "side": "long",
+      "stop": 53.796150000000004,
+      "symbol": "AXTI/USDT:USDT",
+      "target_1": 55.57985,
+      "target_2": 56.4717,
+      "target_half": 55.133925000000005,
+      "timeframe": "4h",
+      "trade_id": "60774ebf5a36a552"
     }
   ],
   "handled": {
@@ -19684,22 +19709,5 @@
     "fed8ed34d9b4adcd": "filled",
     "ffb4661b7d04cd46": "filled"
   },
-  "open": {
-    "60774ebf5a36a552": {
-      "alert_time": "2026-09-03T19:51:47.998641+05:30",
-      "entry": 54.688,
-      "entry_time": "2026-09-03T19:55:00+05:30",
-      "half_r_hit": true,
-      "market": "xstock",
-      "rating": 7,
-      "risk": 0.891849999999998,
-      "side": "long",
-      "stop": 53.796150000000004,
-      "symbol": "AXTI/USDT:USDT",
-      "target_1": 55.57985,
-      "target_2": 56.4717,
-      "target_half": 55.133925000000005,
-      "timeframe": "4h"
-    }
-  }
+  "open": {}
 }
