@@ -2309,7 +2309,8 @@
     "SAMSUNG/USDT:USDT|30m|short|186.531|186.83": 1788358309.0965064,
     "HUSD|30m|short|0.0780209|0.07823": 1788359509.0974007,
     "EUL/USDT|30m|short|1.36158|1.3644": 1788366712.633176,
-    "ZAMA/USDT|30m|short|0.050923|0.05102": 1788367898.7672896
+    "ZAMA/USDT|30m|short|0.050923|0.05102": 1788367898.7672896,
+    "ATOM/USDT|30m|short|1.46631|1.469": 1788403909.5400696
   },
   "METAXUSD|demand|577.00000000|579.20000000": {
     "in_zone": false,
@@ -13858,7 +13859,7 @@
     "last_alert_at": 1787580724.510809
   },
   "__last_scan_started__": {
-    "30m": 1788402660.7552936
+    "30m": 1788403858.9059627
   },
   "TAO/USDT|supply|227.92800000|229.00000000": {
     "in_zone": false,
@@ -25829,8 +25830,8 @@
     "last_alert_at": 0.0
   },
   "ATOM/USDT|supply|1.46631000|1.46900000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1788403909.5400696
   },
   "KGEN/USDT|supply|0.17872830|0.17899000": {
     "in_zone": false,
