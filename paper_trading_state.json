@@ -19720,6 +19720,7 @@
     "dd321e51501805bf": "filled",
     "dd5b0779584ce300": "filled",
     "dd66cb50258872e0": "filled",
+    "dd8740eaea3f6ca2": "filled",
     "ddea50c3c9dd4a5b": "filled",
     "ddeb17a8804f618b": "filled",
     "ddf054b8037fe633": "filled",
@@ -19839,5 +19840,22 @@
     "fed8ed34d9b4adcd": "filled",
     "ffb4661b7d04cd46": "filled"
   },
-  "open": {}
+  "open": {
+    "dd8740eaea3f6ca2": {
+      "alert_time": "2026-09-04T00:41:50.185250+05:30",
+      "entry": 0.5764745,
+      "entry_time": "2026-09-04T00:45:00+05:30",
+      "half_r_hit": false,
+      "market": "crypto",
+      "rating": 6,
+      "risk": 0.0018031999999998938,
+      "side": "short",
+      "stop": 0.5782776999999999,
+      "symbol": "MNT/USDT",
+      "target_1": 0.5746713000000001,
+      "target_2": 0.5728681000000002,
+      "target_half": 0.5755729,
+      "timeframe": "30m"
+    }
+  }
 }
