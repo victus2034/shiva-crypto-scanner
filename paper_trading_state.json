@@ -19075,6 +19075,7 @@
     "3293781b91495810": "filled",
     "33b3afe20eb9263f": "filled",
     "3404495c49a06d71": "filled",
+    "340de82d3ab44dff": "filled",
     "349711af805f1ccb": "filled",
     "349b7cdc83958fbc": "filled",
     "3516361e5360b923": "filled",
@@ -19442,6 +19443,7 @@
     "aa8730d7254319a0": "filled",
     "aaeae90abf2e6904": "filled",
     "ab0e749f752ed696": "filled",
+    "ab181d205b5ce7af": "filled",
     "ab2b94bce147e928": "filled",
     "ab35f5255f69d0b3": "filled",
     "ac3e2ed5dcee39fa": "filled",
@@ -19735,5 +19737,38 @@
     "fed8ed34d9b4adcd": "filled",
     "ffb4661b7d04cd46": "filled"
   },
-  "open": {}
+  "open": {
+    "340de82d3ab44dff": {
+      "alert_time": "2026-09-03T21:21:38.848310+05:30",
+      "entry": 212.14955,
+      "entry_time": "2026-09-03T21:25:00+05:30",
+      "half_r_hit": false,
+      "market": "xstock",
+      "rating": 6,
+      "risk": 0.5028899999999794,
+      "side": "short",
+      "stop": 212.65243999999998,
+      "symbol": "MRVL/USDT:USDT",
+      "target_1": 211.64666000000003,
+      "target_2": 211.14377000000005,
+      "target_half": 211.89810500000002,
+      "timeframe": "30m"
+    },
+    "ab181d205b5ce7af": {
+      "alert_time": "2026-09-03T20:32:03.363130+05:30",
+      "entry": 724.36116,
+      "entry_time": "2026-09-03T21:25:00+05:30",
+      "half_r_hit": false,
+      "market": "crypto",
+      "rating": 9,
+      "risk": 2.585059999999885,
+      "side": "short",
+      "stop": 726.9462199999999,
+      "symbol": "BNBUSD",
+      "target_1": 721.7761000000002,
+      "target_2": 719.1910400000003,
+      "target_half": 723.0686300000001,
+      "timeframe": "4h"
+    }
+  }
 }
