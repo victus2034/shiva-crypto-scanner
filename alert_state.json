@@ -1718,7 +1718,8 @@
     "BLESSUSD|4h|long|0.0085|0.00864271": 1788289305.1630352,
     "XAUTUSD|4h|long|4297.44|4303.51": 1788319299.4386513,
     "ZAMA/USDT|4h|short|0.0551978|0.056": 1788435703.5062022,
-    "NVDAXUSD|4h|short|227.717|228.05": 1788442882.2706187
+    "NVDAXUSD|4h|short|227.717|228.05": 1788442882.2706187,
+    "AXTI/USDT:USDT|4h|long|53.85|54.688": 1788445307.9986405
   },
   "ARBUSD|supply|0.08030000|0.08180000": {
     "in_zone": false,
@@ -4357,8 +4358,8 @@
     "last_alert_at": 0.0
   },
   "AXTI/USDT:USDT|demand|53.85000000|54.68800000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1788445307.9986405
   },
   "HOOD/USDT:USDT|supply|116.10525000|116.66000000": {
     "in_zone": false,
@@ -5297,7 +5298,7 @@
     "last_alert_at": 0.0
   },
   "__last_scan_started__": {
-    "4h": 1788444071.207748
+    "4h": 1788445262.5361927
   },
   "HOOD/USDT:USDT|demand|83.83000000|84.37120000": {
     "in_zone": false,
