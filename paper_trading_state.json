@@ -18540,6 +18540,31 @@
       "target_half": 500.451075,
       "timeframe": "30m",
       "trade_id": "dd12ad3d7ef83962"
+    },
+    {
+      "alert_time": "2026-09-03T17:41:40.985450+05:30",
+      "cost_r": 0.37846298939630607,
+      "date": "2026-09-03",
+      "entry": 11.281615,
+      "entry_time": "2026-09-03T17:45:00+05:30",
+      "exit_price": 11.318958650999999,
+      "exit_time": "2026-09-03T18:00:00+05:30",
+      "final_result": "SL",
+      "half_r_hit": false,
+      "market": "crypto",
+      "net_realized_r": -1.556979447249717,
+      "outcome": "SL",
+      "rating": 9,
+      "realized_r": -1.1785164578534109,
+      "risk": 0.03168699999999802,
+      "side": "short",
+      "stop": 11.313301999999998,
+      "symbol": "LINKUSD",
+      "target_1": 11.249928000000002,
+      "target_2": 11.218241000000004,
+      "target_half": 11.265771500000001,
+      "timeframe": "30m",
+      "trade_id": "dd321e51501805bf"
     }
   ],
   "handled": {
@@ -19352,7 +19377,7 @@
       "alert_time": "2026-09-03T17:31:54.016910+05:30",
       "entry": 203.8803,
       "entry_time": "2026-09-03T17:50:00+05:30",
-      "half_r_hit": false,
+      "half_r_hit": true,
       "market": "xstock",
       "rating": 6,
       "risk": 1.9324499999999887,
@@ -19363,22 +19388,6 @@
       "target_2": 207.74519999999998,
       "target_half": 204.84652499999999,
       "timeframe": "4h"
-    },
-    "dd321e51501805bf": {
-      "alert_time": "2026-09-03T17:41:40.985450+05:30",
-      "entry": 11.281615,
-      "entry_time": "2026-09-03T17:45:00+05:30",
-      "half_r_hit": false,
-      "market": "crypto",
-      "rating": 9,
-      "risk": 0.03168699999999802,
-      "side": "short",
-      "stop": 11.313301999999998,
-      "symbol": "LINKUSD",
-      "target_1": 11.249928000000002,
-      "target_2": 11.218241000000004,
-      "target_half": 11.265771500000001,
-      "timeframe": "30m"
     }
   }
 }
