@@ -1721,7 +1721,8 @@
     "NVDAXUSD|4h|short|227.717|228.05": 1788450107.224204,
     "AXTI/USDT:USDT|4h|long|53.85|54.688": 1788445307.9986405,
     "METAXUSD|4h|short|610.024|611.35": 1788446504.004812,
-    "BNBUSD|4h|short|724.361|726.22": 1788447723.36313
+    "BNBUSD|4h|short|724.361|726.22": 1788447723.36313,
+    "NVDAXUSD|4h|short|230.832|231.7": 1788499288.8002956
   },
   "ARBUSD|supply|0.08030000|0.08180000": {
     "in_zone": false,
@@ -5300,7 +5301,7 @@
     "last_alert_at": 0.0
   },
   "__last_scan_started__": {
-    "4h": 1788498063.9989657
+    "4h": 1788499250.8582983
   },
   "HOOD/USDT:USDT|demand|83.83000000|84.37120000": {
     "in_zone": false,
@@ -7823,8 +7824,8 @@
     "last_alert_at": 0.0
   },
   "NVDAXUSD|supply|230.83185000|231.70000000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1788499288.8002956
   },
   "BTCUSD|supply|82525.79150000|82811.00000000": {
     "in_zone": false,
