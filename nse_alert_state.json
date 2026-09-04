@@ -2944,7 +2944,8 @@
     "ALKEM.NS|4h|long|5113|5134.59": 1788496355.313263,
     "EXIDEIND.NS|4h|long|420.55|422.614": 1788496355.5459259,
     "HAVELLS.NS|4h|long|1162.9|1167.54": 1788496355.6995895,
-    "CEATLTD.NS|4h|long|3309.1|3327.66": 1788497603.0698755
+    "CEATLTD.NS|4h|long|3309.1|3327.66": 1788497603.0698755,
+    "RELIANCE.NS|4h|short|1333.13|1337": 1788504744.1958067
   },
   "GESHIP.NS|demand|1057.1000|1070.5000": {
     "in_zone": false,
@@ -17997,7 +17998,7 @@
     "last_attempt_at": 0.0
   },
   "__last_scan_started__": {
-    "4h": 1788503499.3866208
+    "4h": 1788504680.9522345
   },
   "360ONE.NS|supply|1214.8851|1220.0000": {
     "in_zone": false,
@@ -52945,9 +52946,9 @@
     "last_attempt_at": 0.0
   },
   "RELIANCE.NS|supply|1333.1294|1337.0000": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1788504744.1958067,
+    "last_attempt_at": 1788504744.1958067
   },
   "RELIANCE.NS|demand|1253.6000|1258.2575": {
     "in_zone": false,
