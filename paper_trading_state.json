@@ -19015,6 +19015,31 @@
       "target_half": 0.05939179500000001,
       "timeframe": "30m",
       "trade_id": "9b376ecfd1f5fc17"
+    },
+    {
+      "alert_time": "2026-09-04T00:41:50.185250+05:30",
+      "cost_r": 0.3398360656056101,
+      "date": "2026-09-04",
+      "entry": 0.5764745,
+      "entry_time": "2026-09-04T00:45:00+05:30",
+      "exit_price": 0.5785668388499999,
+      "exit_time": "2026-09-04T01:00:00+05:30",
+      "final_result": "SL",
+      "half_r_hit": false,
+      "market": "crypto",
+      "net_realized_r": -1.5001836975932177,
+      "outcome": "SL",
+      "rating": 6,
+      "realized_r": -1.1603476319876076,
+      "risk": 0.0018031999999998938,
+      "side": "short",
+      "stop": 0.5782776999999999,
+      "symbol": "MNT/USDT",
+      "target_1": 0.5746713000000001,
+      "target_2": 0.5728681000000002,
+      "target_half": 0.5755729,
+      "timeframe": "30m",
+      "trade_id": "dd8740eaea3f6ca2"
     }
   ],
   "handled": {
@@ -19840,22 +19865,5 @@
     "fed8ed34d9b4adcd": "filled",
     "ffb4661b7d04cd46": "filled"
   },
-  "open": {
-    "dd8740eaea3f6ca2": {
-      "alert_time": "2026-09-04T00:41:50.185250+05:30",
-      "entry": 0.5764745,
-      "entry_time": "2026-09-04T00:45:00+05:30",
-      "half_r_hit": false,
-      "market": "crypto",
-      "rating": 6,
-      "risk": 0.0018031999999998938,
-      "side": "short",
-      "stop": 0.5782776999999999,
-      "symbol": "MNT/USDT",
-      "target_1": 0.5746713000000001,
-      "target_2": 0.5728681000000002,
-      "target_half": 0.5755729,
-      "timeframe": "30m"
-    }
-  }
+  "open": {}
 }
