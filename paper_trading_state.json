@@ -19140,6 +19140,56 @@
       "target_half": 0.5879533000000001,
       "timeframe": "30m",
       "trade_id": "8b1c9c904879997f"
+    },
+    {
+      "alert_time": "2026-09-04T16:21:39.276968+05:30",
+      "cost_r": 0.30525303759007577,
+      "date": "2026-09-04",
+      "entry": 0.45270489999999997,
+      "entry_time": "2026-09-04T17:35:00+05:30",
+      "exit_price": 0.45428137999999996,
+      "exit_time": "2026-09-04T17:40:00+05:30",
+      "final_result": "+1R",
+      "half_r_hit": true,
+      "market": "crypto",
+      "net_realized_r": 0.6947469624099243,
+      "outcome": "+1R",
+      "rating": 6,
+      "realized_r": 1.0,
+      "risk": 0.0015764799999999912,
+      "side": "long",
+      "stop": 0.45112842,
+      "symbol": "RE/USDT",
+      "target_1": 0.45428137999999996,
+      "target_2": 0.45585785999999995,
+      "target_half": 0.45349313999999996,
+      "timeframe": "30m",
+      "trade_id": "267173395fa603fc"
+    },
+    {
+      "alert_time": "2026-09-04T16:51:47.698846+05:30",
+      "cost_r": 0.22309792839933223,
+      "date": "2026-09-04",
+      "entry": 230.83184999999997,
+      "entry_time": "2026-09-04T16:55:00+05:30",
+      "exit_price": 232.04766584999996,
+      "exit_time": "2026-09-04T17:35:00+05:30",
+      "final_result": "SL",
+      "half_r_hit": false,
+      "market": "xstock",
+      "net_realized_r": -1.3285358062917827,
+      "outcome": "SL",
+      "rating": 6,
+      "realized_r": -1.1054378778924505,
+      "risk": 1.0998499999999751,
+      "side": "short",
+      "stop": 231.93169999999995,
+      "symbol": "NVDAXUSD",
+      "target_1": 229.732,
+      "target_2": 228.63215000000002,
+      "target_half": 230.281925,
+      "timeframe": "4h",
+      "trade_id": "fcc964a84044eb28"
     }
   ],
   "handled": {
@@ -19273,6 +19323,7 @@
     "25a9161673ebae30": "filled",
     "2643d71d5a9ad22a": "filled",
     "26609843a63b37d7": "filled",
+    "267173395fa603fc": "filled",
     "26bb0fcdefe50091": "filled",
     "26bd97b6ead28ece": "filled",
     "26c36fba4dd70e81": "filled",
@@ -19970,22 +20021,5 @@
     "fed8ed34d9b4adcd": "filled",
     "ffb4661b7d04cd46": "filled"
   },
-  "open": {
-    "fcc964a84044eb28": {
-      "alert_time": "2026-09-04T16:51:47.698846+05:30",
-      "entry": 230.83184999999997,
-      "entry_time": "2026-09-04T16:55:00+05:30",
-      "half_r_hit": false,
-      "market": "xstock",
-      "rating": 6,
-      "risk": 1.0998499999999751,
-      "side": "short",
-      "stop": 231.93169999999995,
-      "symbol": "NVDAXUSD",
-      "target_1": 229.732,
-      "target_2": 228.63215000000002,
-      "target_half": 230.281925,
-      "timeframe": "4h"
-    }
-  }
+  "open": {}
 }
