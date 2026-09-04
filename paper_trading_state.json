@@ -19340,6 +19340,31 @@
       "target_half": 1.30180155,
       "timeframe": "30m",
       "trade_id": "a065de787bc24e76"
+    },
+    {
+      "alert_time": "2026-09-04T21:11:32.450943+05:30",
+      "cost_r": 0.16334405800458693,
+      "date": "2026-09-04",
+      "entry": 195.69325,
+      "entry_time": "2026-09-04T21:15:00+05:30",
+      "exit_price": 197.065253385,
+      "exit_time": "2026-09-04T21:50:00+05:30",
+      "final_result": "SL",
+      "half_r_hit": false,
+      "market": "xstock",
+      "net_realized_r": -1.2406756939427812,
+      "outcome": "SL",
+      "rating": 7,
+      "realized_r": -1.0773316359381944,
+      "risk": 1.2735199999999907,
+      "side": "short",
+      "stop": 196.96677,
+      "symbol": "SAMSUNG/USDT:USDT",
+      "target_1": 194.41973000000002,
+      "target_2": 193.14621000000002,
+      "target_half": 195.05649,
+      "timeframe": "4h",
+      "trade_id": "87abca809c73b847"
     }
   ],
   "handled": {
@@ -20178,22 +20203,5 @@
     "fed8ed34d9b4adcd": "filled",
     "ffb4661b7d04cd46": "filled"
   },
-  "open": {
-    "87abca809c73b847": {
-      "alert_time": "2026-09-04T21:11:32.450943+05:30",
-      "entry": 195.69325,
-      "entry_time": "2026-09-04T21:15:00+05:30",
-      "half_r_hit": false,
-      "market": "xstock",
-      "rating": 7,
-      "risk": 1.2735199999999907,
-      "side": "short",
-      "stop": 196.96677,
-      "symbol": "SAMSUNG/USDT:USDT",
-      "target_1": 194.41973000000002,
-      "target_2": 193.14621000000002,
-      "target_half": 195.05649,
-      "timeframe": "4h"
-    }
-  }
+  "open": {}
 }
