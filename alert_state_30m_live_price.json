@@ -2338,7 +2338,8 @@
     "ERA/USDT|30m|long|0.0577|0.0577922": 1788525110.5920432,
     "SLVONUSD|30m|long|59.45|59.5475": 1788525110.7955835,
     "EUL/USDT|30m|long|1.2955|1.29838": 1788526313.0833676,
-    "EUL/USDT|30m|long|1.2966|1.29964": 1788527501.5059545
+    "EUL/USDT|30m|long|1.2966|1.29964": 1788527501.5059545,
+    "BEAT/USDT|30m|short|0.124325|0.12471": 1788532330.9930785
   },
   "METAXUSD|demand|577.00000000|579.20000000": {
     "in_zone": false,
@@ -13887,7 +13888,7 @@
     "last_alert_at": 1787580724.510809
   },
   "__last_scan_started__": {
-    "30m": 1788531063.385984
+    "30m": 1788532285.7840402
   },
   "TAO/USDT|supply|227.92800000|229.00000000": {
     "in_zone": false,
@@ -26738,8 +26739,8 @@
     "last_alert_at": 0.0
   },
   "BEAT/USDT|supply|0.12432505|0.12471000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1788532330.9930785
   },
   "TSLAXUSD|supply|384.12775000|384.55000000": {
     "in_zone": false,
@@ -26858,6 +26859,58 @@
     "last_alert_at": 0.0
   },
   "GWEI/USDT|demand|0.02427000|0.02433370": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "ESP/USDT|supply|0.08748640|0.08768000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "ACE/USDT|supply|0.18842450|0.18960000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "TACUSD|supply|0.00297232|0.00299800": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "ZORAUSD|supply|0.00925717|0.00937200": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "BLESSUSD|demand|0.00705900|0.00710398": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "HUSD|supply|0.08882180|0.08947000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "HUSD|demand|0.07406000|0.07427990": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "VELVETUSD|supply|0.09447850|0.09480000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "XAUTUSD|supply|4496.16400000|4498.90000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "TSLAXUSD|supply|383.73450000|384.19000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "METAXUSD|supply|618.92490000|619.55000000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "METAXUSD|demand|596.08000000|596.61515000": {
+    "in_zone": false,
+    "last_alert_at": 0.0
+  },
+  "MRVL/USDT:USDT|demand|206.29000000|206.64195000": {
     "in_zone": false,
     "last_alert_at": 0.0
   }
