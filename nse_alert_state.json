@@ -2947,7 +2947,8 @@
     "CEATLTD.NS|4h|long|3309.1|3327.66": 1788497603.0698755,
     "RELIANCE.NS|4h|short|1333.13|1337": 1788504744.1958067,
     "HDFCAMC.NS|4h|long|2470.5|2480.72": 1788508368.7867205,
-    "IGL.NS|4h|short|157.914|158.59": 1788508369.1421654
+    "IGL.NS|4h|short|157.914|158.59": 1788508369.1421654,
+    "BIOCON.NS|4h|long|395.05|396.824": 1788514392.8772938
   },
   "GESHIP.NS|demand|1057.1000|1070.5000": {
     "in_zone": false,
@@ -9055,9 +9056,9 @@
     "last_attempt_at": 0.0
   },
   "BIOCON.NS|demand|395.0500|396.8240": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1788514392.8772938,
+    "last_attempt_at": 1788514392.8772938
   },
   "BSOFT.NS|supply|329.6274|331.6000": {
     "in_zone": false,
@@ -18000,7 +18001,7 @@
     "last_attempt_at": 0.0
   },
   "__last_scan_started__": {
-    "4h": 1788513091.5972874
+    "4h": 1788514305.7462564
   },
   "360ONE.NS|supply|1214.8851|1220.0000": {
     "in_zone": false,
