@@ -1723,7 +1723,8 @@
     "METAXUSD|4h|short|610.024|611.35": 1788446504.004812,
     "BNBUSD|4h|short|724.361|726.22": 1788447723.36313,
     "NVDAXUSD|4h|short|230.832|231.7": 1788520907.6988456,
-    "MNT/USDT|4h|short|0.592343|0.5942": 1788522101.586879
+    "MNT/USDT|4h|short|0.592343|0.5942": 1788522101.586879,
+    "SAMSUNG/USDT:USDT|4h|short|195.693|196.77": 1788536492.4509435
   },
   "ARBUSD|supply|0.08030000|0.08180000": {
     "in_zone": false,
@@ -5302,7 +5303,7 @@
     "last_alert_at": 0.0
   },
   "__last_scan_started__": {
-    "4h": 1788535256.3429847
+    "4h": 1788536452.6497846
   },
   "HOOD/USDT:USDT|demand|83.83000000|84.37120000": {
     "in_zone": false,
@@ -7409,8 +7410,8 @@
     "last_alert_at": 0.0
   },
   "SAMSUNG/USDT:USDT|supply|195.69325000|196.77000000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1788536492.4509435
   },
   "DASH/USDT|demand|36.93000000|37.42065000": {
     "in_zone": false,
