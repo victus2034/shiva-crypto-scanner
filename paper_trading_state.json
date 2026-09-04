@@ -19392,6 +19392,7 @@
     "07842aadbbd492d2": "filled",
     "078d3696d7312a8b": "filled",
     "07b252ab34887c44": "filled",
+    "07d373cb272e8a33": "filled",
     "07d3a65fd140a063": "filled",
     "07dd76faf32c993d": "filled",
     "087280d428b1687b": "filled",
@@ -20203,5 +20204,22 @@
     "fed8ed34d9b4adcd": "filled",
     "ffb4661b7d04cd46": "filled"
   },
-  "open": {}
+  "open": {
+    "07d373cb272e8a33": {
+      "alert_time": "2026-09-04T22:01:55.186989+05:30",
+      "entry": 1716.63525,
+      "entry_time": "2026-09-04T22:05:00+05:30",
+      "half_r_hit": false,
+      "market": "xstock",
+      "rating": 8,
+      "risk": 6.8865499999997155,
+      "side": "short",
+      "stop": 1723.5217999999998,
+      "symbol": "SNDKBUSD",
+      "target_1": 1709.7487000000003,
+      "target_2": 1702.8621500000006,
+      "target_half": 1713.1919750000002,
+      "timeframe": "30m"
+    }
+  }
 }
