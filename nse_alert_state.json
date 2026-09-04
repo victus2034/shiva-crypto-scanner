@@ -2939,7 +2939,7 @@
     "JSWDULUX.NS|4h|short|3179.47|3195": 1788408759.4089508,
     "EXIDEIND.NS|4h|long|420.55|422.618": 1788493957.3895774,
     "MRF.NS|4h|long|129590|130023": 1788421957.42897,
-    "CEATLTD.NS|4h|long|3309.1|3327.78": 1788426756.1079652,
+    "CEATLTD.NS|4h|long|3309.1|3327.78": 1788502350.2833946,
     "360ONE.NS|4h|long|1140.5|1145.77": 1788495145.327516,
     "ALKEM.NS|4h|long|5113|5134.59": 1788496355.313263,
     "EXIDEIND.NS|4h|long|420.55|422.614": 1788496355.5459259,
@@ -4347,9 +4347,9 @@
     "last_attempt_at": 0.0
   },
   "CEATLTD.NS|demand|3309.1001|3327.7756": {
-    "in_zone": false,
-    "last_alert_at": 0.0,
-    "last_attempt_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1788502350.2833946,
+    "last_attempt_at": 1788502350.2833946
   },
   "CEMPRO.NS|supply|1639.2292|1649.2000": {
     "in_zone": false,
@@ -17997,7 +17997,7 @@
     "last_attempt_at": 0.0
   },
   "__last_scan_started__": {
-    "4h": 1788501084.830931
+    "4h": 1788502283.3730443
   },
   "360ONE.NS|supply|1214.8851|1220.0000": {
     "in_zone": false,
@@ -52965,6 +52965,11 @@
     "last_attempt_at": 0.0
   },
   "EXIDEIND.NS|demand|378.0500|379.7482": {
+    "in_zone": false,
+    "last_alert_at": 0.0,
+    "last_attempt_at": 0.0
+  },
+  "EXIDEIND.NS|demand|378.0500|379.7497": {
     "in_zone": false,
     "last_alert_at": 0.0,
     "last_attempt_at": 0.0
