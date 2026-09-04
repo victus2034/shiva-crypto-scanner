@@ -19365,6 +19365,31 @@
       "target_half": 195.05649,
       "timeframe": "4h",
       "trade_id": "87abca809c73b847"
+    },
+    {
+      "alert_time": "2026-09-04T22:01:55.186989+05:30",
+      "cost_r": 0.2649778583979025,
+      "date": "2026-09-04",
+      "entry": 1716.63525,
+      "entry_time": "2026-09-04T22:05:00+05:30",
+      "exit_price": 1709.7487000000003,
+      "exit_time": "2026-09-04T22:10:00+05:30",
+      "final_result": "+1R",
+      "half_r_hit": true,
+      "market": "xstock",
+      "net_realized_r": 0.7350221416020974,
+      "outcome": "+1R",
+      "rating": 8,
+      "realized_r": 1.0,
+      "risk": 6.8865499999997155,
+      "side": "short",
+      "stop": 1723.5217999999998,
+      "symbol": "SNDKBUSD",
+      "target_1": 1709.7487000000003,
+      "target_2": 1702.8621500000006,
+      "target_half": 1713.1919750000002,
+      "timeframe": "30m",
+      "trade_id": "07d373cb272e8a33"
     }
   ],
   "handled": {
@@ -20204,22 +20229,5 @@
     "fed8ed34d9b4adcd": "filled",
     "ffb4661b7d04cd46": "filled"
   },
-  "open": {
-    "07d373cb272e8a33": {
-      "alert_time": "2026-09-04T22:01:55.186989+05:30",
-      "entry": 1716.63525,
-      "entry_time": "2026-09-04T22:05:00+05:30",
-      "half_r_hit": false,
-      "market": "xstock",
-      "rating": 8,
-      "risk": 6.8865499999997155,
-      "side": "short",
-      "stop": 1723.5217999999998,
-      "symbol": "SNDKBUSD",
-      "target_1": 1709.7487000000003,
-      "target_2": 1702.8621500000006,
-      "target_half": 1713.1919750000002,
-      "timeframe": "30m"
-    }
-  }
+  "open": {}
 }
