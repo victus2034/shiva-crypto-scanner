@@ -19515,6 +19515,31 @@
       "target_half": 0.00280764,
       "timeframe": "30m",
       "trade_id": "e912e3cd119ba65f"
+    },
+    {
+      "alert_time": "2026-09-05T12:31:49.731642+05:30",
+      "cost_r": 0.1519929494039737,
+      "date": "2026-09-05",
+      "entry": 2.6988399999999997,
+      "entry_time": "2026-09-05T12:35:00+05:30",
+      "exit_price": 2.6956013919999995,
+      "exit_time": "2026-09-05T12:35:00+05:30",
+      "final_result": "BE",
+      "half_r_hit": true,
+      "market": "crypto",
+      "net_realized_r": 0.019588931390739,
+      "outcome": "BE",
+      "rating": 8,
+      "realized_r": 0.1715818807947127,
+      "risk": 0.018874999999999975,
+      "side": "short",
+      "stop": 2.7177149999999997,
+      "symbol": "ICP/USDT",
+      "target_1": 2.6799649999999997,
+      "target_2": 2.6610899999999997,
+      "target_half": 2.6894025,
+      "timeframe": "4h",
+      "trade_id": "3479bdcfa5ab3766"
     }
   ],
   "handled": {
@@ -20360,22 +20385,5 @@
     "fed8ed34d9b4adcd": "filled",
     "ffb4661b7d04cd46": "filled"
   },
-  "open": {
-    "3479bdcfa5ab3766": {
-      "alert_time": "2026-09-05T12:31:49.731642+05:30",
-      "entry": 2.6988399999999997,
-      "entry_time": "2026-09-05T12:35:00+05:30",
-      "half_r_hit": false,
-      "market": "crypto",
-      "rating": 8,
-      "risk": 0.018874999999999975,
-      "side": "short",
-      "stop": 2.7177149999999997,
-      "symbol": "ICP/USDT",
-      "target_1": 2.6799649999999997,
-      "target_2": 2.6610899999999997,
-      "target_half": 2.6894025,
-      "timeframe": "4h"
-    }
-  }
+  "open": {}
 }
