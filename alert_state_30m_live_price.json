@@ -2350,7 +2350,8 @@
     "CL/USDT|30m|short|91.9008|92.02": 1788633117.2943575,
     "XAUTUSD|30m|short|4432.47|4435.36": 1788633118.368983,
     "DOGEUSD|30m|short|0.0881147|0.08829": 1788628313.7837753,
-    "SOXLBUSD|30m|long|115.95|116.201": 1788631894.2131505
+    "SOXLBUSD|30m|long|115.95|116.201": 1788631894.2131505,
+    "METAXUSD|30m|short|617.279|617.7": 1788634308.391195
   },
   "METAXUSD|demand|577.00000000|579.20000000": {
     "in_zone": false,
@@ -13899,7 +13900,7 @@
     "last_alert_at": 1787580724.510809
   },
   "__last_scan_started__": {
-    "30m": 1788633069.0298698
+    "30m": 1788634259.5682113
   },
   "TAO/USDT|supply|227.92800000|229.00000000": {
     "in_zone": false,
@@ -26958,7 +26959,7 @@
     "last_alert_at": 0.0
   },
   "CL/USDT|supply|91.90085000|92.02000000": {
-    "in_zone": true,
+    "in_zone": false,
     "last_alert_at": 1788633117.2943575
   },
   "KORU/USDT|demand|20.16000000|20.23985000": {
@@ -27290,8 +27291,8 @@
     "last_alert_at": 0.0
   },
   "METAXUSD|supply|617.27850000|617.70000000": {
-    "in_zone": false,
-    "last_alert_at": 0.0
+    "in_zone": true,
+    "last_alert_at": 1788634308.391195
   },
   "BCHUSD|supply|253.75030000|254.20000000": {
     "in_zone": false,
