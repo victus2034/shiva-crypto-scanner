@@ -308,6 +308,18 @@ ZONE_SL_HEIGHT_PCT = env_float("VICTUS_ZONE_SL_HEIGHT_PCT", 25.0)
 # v7 retires a broken zone and builds its replacement off a short pivot, so a
 # new level appears within a few bars instead of waiting a full swing_length.
 # Screenshot (44): "we retire the ZONE 1 and create a new and updated zone".
+# The 30m ML rating gate (MIN_CRYPTO_ZONE_SCORE) was trained on the ATR band.
+# Several of its inputs move with the wick geometry - distance_pct, distance_atr,
+# atr_pct, zone_age_bars, touches_before_alert, max_touch_streak_before_alert -
+# and its own success_definition says "reaches 1R before the configured stop",
+# which is now a different stop. Both its features and its label have shifted, so
+# on 30m it would be filtering v7's alerts by a model of a world that no longer
+# exists - and filtering is exactly what you do not want when the whole point is
+# to see the faults. The rating is still computed and still written to every
+# alert record, so nothing is lost for later analysis; it just stops vetoing.
+# Retrain on wick-geometry outcomes and turn this back on.
+ZONE_RATING_GATE = env_flag("VICTUS_ZONE_RATING_GATE", ZONE_GEOMETRY != "wick")
+
 ZONE_REBUILD_AFTER_BREAK = env_flag("VICTUS_ZONE_REBUILD_AFTER_BREAK", ZONE_GEOMETRY == "wick")
 
 MAX_CONSECUTIVE_ZONE_TOUCHES = 2

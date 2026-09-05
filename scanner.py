@@ -46,6 +46,7 @@ from config import (
     ZONE_SL_MODE,
     ZONE_SL_HEIGHT_PCT,
     ATR_METHOD,
+    ZONE_RATING_GATE,
     ZONE_SHADOW_GEOMETRY,
     OHLCV_LIMIT,
     OVERLAP_ATR,
@@ -1451,8 +1452,11 @@ def process_candidate(state, result, zone_type, zone, distance_pct, now_ts, shad
     if rating and rating.get("kind") == "xstock_hybrid":
         if not rating.get("alert_allowed"):
             return False
-    elif TIMEFRAME == "30m" and rating is not None:
-        # Preserve the validated crypto 30m rating gate unchanged.
+    elif TIMEFRAME == "30m" and rating is not None and ZONE_RATING_GATE:
+        # The validated crypto 30m rating gate. Off under the wick geometry -
+        # the model was trained on ATR-band zones and on the old stop rule, so
+        # it is out of its validated domain. The score still rides along on the
+        # alert record either way; see config.ZONE_RATING_GATE.
         score = rating.get("score")
         if score is None or score < MIN_CRYPTO_ZONE_SCORE:
             return False

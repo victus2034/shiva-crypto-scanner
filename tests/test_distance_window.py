@@ -112,14 +112,35 @@ class DistanceWindowTests(unittest.TestCase):
         }
         zone = {"bottom": 99.0, "top": 99.5}
 
+        # The gate is off by default under the wick geometry, because the model
+        # was trained on ATR-band zones and on the old stop rule. It is still
+        # supported, so pin it on rather than read the live default.
         with (
             patch.object(scanner, "TIMEFRAME", "30m"),
+            patch.object(scanner, "ZONE_RATING_GATE", True),
             patch.object(scanner, "send_alert", return_value=True) as send,
         ):
             sent = scanner.process_candidate(state, result, "demand", zone, 0.15, 1000)
 
         self.assertFalse(sent)
         send.assert_not_called()
+
+    def test_crypto_30m_low_rating_passes_when_the_gate_is_off(self):
+        # What the wick geometry runs: the score still rides along on the alert
+        # record for later analysis, it just stops vetoing.
+        state = {}
+        result = {"symbol": "BTCUSD", "price": 100.0, "demand_rating": {"score": 5}}
+        zone = {"bottom": 99.0, "top": 99.5}
+
+        with (
+            patch.object(scanner, "TIMEFRAME", "30m"),
+            patch.object(scanner, "ZONE_RATING_GATE", False),
+            patch.object(scanner, "send_alert", return_value=True) as send,
+        ):
+            sent = scanner.process_candidate(state, result, "demand", zone, 0.15, 1000)
+
+        self.assertTrue(sent)
+        send.assert_called_once()
 
     def test_crypto_30m_zone_rating_six_or_higher_is_allowed(self):
         state = {}
