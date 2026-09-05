@@ -6,13 +6,27 @@ import nse_scanner
 import scanner
 
 
-class IndicatorBoundaryTests(unittest.TestCase):
-    """Zone geometry must match the Pine indicator, not the pivot's wick.
+def build(module, frame, pivot, confirmation, atr_values, zone_type):
+    """Ask for the atr band by name.
 
-    The indicator draws a fixed atr * (BOX_WIDTH / 10) band anchored on the
-    pivot extreme. The old wick-based version produced the same far edge but
-    a near edge far from the level - and the near edge is the entry, so it
-    inflated every stop distance.
+    Until 2026-09-06 it was the only construction and the default. Crypto now
+    defaults to the wick geometry (ZONE_GEOMETRY in config.py), so these tests
+    have to name the band rather than assume it. nse_scanner has no switch and
+    still only builds the band.
+    """
+    if module is scanner:
+        return module.qualify_wick_zone(
+            frame, pivot, confirmation, atr_values, zone_type, "atr"
+        )
+    return module.qualify_wick_zone(frame, pivot, confirmation, atr_values, zone_type)
+
+
+class IndicatorBoundaryTests(unittest.TestCase):
+    """The atr band: a fixed atr * (BOX_WIDTH / 10) hung off the pivot extreme.
+
+    Still what NSE runs and still selectable on crypto, so still pinned. The
+    wick construction that crypto now defaults to has its own coverage in
+    test_zone_geometry_and_clock.py.
     """
 
     def frame(self):
@@ -29,7 +43,7 @@ class IndicatorBoundaryTests(unittest.TestCase):
         atr_values = pd.Series([2.0] * 5)
         for module in (scanner, nse_scanner):
             band = 2.0 * (module.BOX_WIDTH / 10.0)
-            zone = module.qualify_wick_zone(self.frame(), 2, 3, atr_values, "demand")
+            zone = build(module, self.frame(), 2, 3, atr_values, "demand")
             self.assertEqual(zone["bottom"], 9.0)  # the pivot low itself
             self.assertAlmostEqual(zone["top"], 9.0 + band)
             # Price reaches a demand zone from above, so the top is the entry.
@@ -39,7 +53,7 @@ class IndicatorBoundaryTests(unittest.TestCase):
         atr_values = pd.Series([2.0] * 5)
         for module in (scanner, nse_scanner):
             band = 2.0 * (module.BOX_WIDTH / 10.0)
-            zone = module.qualify_wick_zone(self.frame(), 2, 3, atr_values, "supply")
+            zone = build(module, self.frame(), 2, 3, atr_values, "supply")
             self.assertEqual(zone["top"], 10.1)  # the pivot high itself
             self.assertAlmostEqual(zone["bottom"], 10.1 - band)
             # Price reaches a supply zone from below, so the bottom is entry.
@@ -47,12 +61,8 @@ class IndicatorBoundaryTests(unittest.TestCase):
 
     def test_band_scales_with_atr_not_with_the_candle(self):
         for module in (scanner, nse_scanner):
-            wide = module.qualify_wick_zone(
-                self.frame(), 2, 3, pd.Series([4.0] * 5), "demand"
-            )
-            narrow = module.qualify_wick_zone(
-                self.frame(), 2, 3, pd.Series([1.0] * 5), "demand"
-            )
+            wide = build(module, self.frame(), 2, 3, pd.Series([4.0] * 5), "demand")
+            narrow = build(module, self.frame(), 2, 3, pd.Series([1.0] * 5), "demand")
             self.assertAlmostEqual(
                 wide["top"] - wide["bottom"], 4.0 * (module.BOX_WIDTH / 10.0)
             )

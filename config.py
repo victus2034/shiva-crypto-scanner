@@ -236,18 +236,36 @@ REARM_FACTOR = 1.25
 #                      the best arm on total net R.
 #              "wick"  Shiva_Indicator_v7.pine's geometry - the pivot candle's
 #                      wick, with the near edge pulled to the nearest body edge
-#                      within ZONE_BASE_EXTRA bars. Level on net expectancy per
-#                      trade and far more robust, but ~30% fewer trades. Not
-#                      switched on by default; run it through paper trading first.
-ZONE_GEOMETRY = os.getenv("VICTUS_ZONE_GEOMETRY", "atr").strip().lower() or "atr"
+#                      within ZONE_BASE_EXTRA bars. LIVE since 2026-09-06, on
+#                      Shiva's call after reading it on chart. The ATR band still
+#                      shows more total R in backtest (67.5 vs 54.3 over 187 days
+#                      of 30m) but the same net expectancy per trade, on ~15%
+#                      fewer trades and with less than half the same-bar
+#                      stop/target collisions - so its number rests on far less
+#                      that bar data cannot verify. The shadow now runs "atr", so
+#                      the road not taken keeps being scored.
+#
+# The wick geometry is NOT a drop-in. Flipping this flag alone, leaving the close
+# break rule and OVERLAP_ATR 2.0 in place, was the single worst configuration
+# measured - 0.020 net expectancy against 0.058 for the ATR band. It needs
+# ZONE_BREAK_ON_WICK and the tighter overlap below to reach 0.055. Change these
+# together or not at all.
+ZONE_GEOMETRY = os.getenv("VICTUS_ZONE_GEOMETRY", "wick").strip().lower() or "wick"
 ZONE_BASE_EXTRA = env_int("VICTUS_ZONE_BASE_EXTRA", 5)
 # Built alongside the live geometry and logged, never sent. Set empty to disable.
-ZONE_SHADOW_GEOMETRY = os.getenv("VICTUS_ZONE_SHADOW_GEOMETRY", "wick").strip().lower()
+ZONE_SHADOW_GEOMETRY = os.getenv("VICTUS_ZONE_SHADOW_GEOMETRY", "atr").strip().lower()
 
 # When the ring buffer is full, drop the weakest zone rather than the oldest.
 # The original FIFO throws away exactly the old untouched zones the strategy
 # calls strongest. Measured effect on P&L is nil - it evicts zones already spent
 # - but it is what keeps long-dormant levels alive, which is the point.
+# A wick through the far edge kills the zone, rather than a close through it.
+# Essential to the wick geometry rather than cosmetic: with the close rule the
+# wick construction nets 0.020 per trade, with this it nets 0.055. Zones die
+# sooner and there are ~30% fewer of them, which is where the gain comes from.
+# Meaningless under "atr", which is why it follows the geometry by default.
+ZONE_BREAK_ON_WICK = env_flag("VICTUS_ZONE_BREAK_ON_WICK", ZONE_GEOMETRY == "wick")
+
 ZONE_EVICT_WEAKEST = env_flag("VICTUS_ZONE_EVICT_WEAKEST", True)
 
 # Restart the minimum-age clock on every touch, so MIN_ZONE_AGE_CANDLES means
@@ -255,6 +273,12 @@ ZONE_EVICT_WEAKEST = env_flag("VICTUS_ZONE_EVICT_WEAKEST", True)
 # expectancy, and it gets there by removing trades on zones price is already
 # working rather than by adding any.
 ZONE_CLOCK_RESTARTS_ON_TOUCH = env_flag("VICTUS_ZONE_CLOCK_RESTARTS_ON_TOUCH", True)
+
+# Wick zones are thinner than ATR bands, so their midpoints crowd this filter
+# harder and real structure goes undrawn at the original 2.0. Measured over 187
+# days: 1.0 gives 983 trades for 54.3 net R against 855 for 46.7 at 2.0, same
+# expectancy per trade. Kept at 2.0 for the ATR band, which was tuned around it.
+OVERLAP_ATR = env_float("VICTUS_OVERLAP_ATR", 1.0 if ZONE_GEOMETRY == "wick" else OVERLAP_ATR)
 
 MAX_CONSECUTIVE_ZONE_TOUCHES = 2
 

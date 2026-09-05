@@ -41,6 +41,7 @@ from config import (
     ZONE_BASE_EXTRA,
     ZONE_EVICT_WEAKEST,
     ZONE_CLOCK_RESTARTS_ON_TOUCH,
+    ZONE_BREAK_ON_WICK,
     ZONE_SHADOW_GEOMETRY,
     OHLCV_LIMIT,
     OVERLAP_ATR,
@@ -408,13 +409,19 @@ def build_zones(df, geometry=None):
         for zone in supply_zones:
             if zone["active"] and confirmation_index > zone["created_idx"]:
                 record_zone_touch(zone, high, low, confirmation_index)
-            if zone["active"] and confirmation_index > zone["created_idx"] and close >= zone["top"]:
+            # A wick through the far edge kills the zone when ZONE_BREAK_ON_WICK
+            # is set; otherwise a close through it does, as the original did.
+            # EX5's zone died to a low with every close in the window above it,
+            # so on the chart the wick rule is the one that matches.
+            through = high >= zone["top"] if ZONE_BREAK_ON_WICK else close >= zone["top"]
+            if zone["active"] and confirmation_index > zone["created_idx"] and through:
                 zone["active"] = False
                 zone["broken"] = True
         for zone in demand_zones:
             if zone["active"] and confirmation_index > zone["created_idx"]:
                 record_zone_touch(zone, high, low, confirmation_index)
-            if zone["active"] and confirmation_index > zone["created_idx"] and close <= zone["bottom"]:
+            through = low <= zone["bottom"] if ZONE_BREAK_ON_WICK else close <= zone["bottom"]
+            if zone["active"] and confirmation_index > zone["created_idx"] and through:
                 zone["active"] = False
                 zone["broken"] = True
 

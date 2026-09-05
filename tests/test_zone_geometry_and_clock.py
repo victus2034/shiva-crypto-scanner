@@ -198,3 +198,46 @@ class ShadowNeverDelivers(unittest.TestCase):
     def test_shadow_state_cannot_suppress_a_live_alert(self):
         live_key = scanner.build_state_key("BTCUSD", "demand", self.zone())
         self.assertFalse(live_key.startswith("shadow:"))
+
+
+class BreakRule(unittest.TestCase):
+    """A wick through the far edge kills the zone when the flag is set.
+
+    Not cosmetic. Measured over 187 days of 30m, the wick construction nets
+    0.020 per trade under the close rule and 0.055 under this one, so the two
+    ship together - see ZONE_GEOMETRY_BACKTEST_FINDINGS.md.
+
+    ATR_PERIOD is patched down because config's 50 over a 31-bar synthetic
+    frame gives an all-NaN atr, and qualify_wick_zone then builds nothing.
+    """
+
+    def frame_with_wick_raid(self):
+        rows = [(10.0, 10.2, 9.9, 10.1)] * 12
+        rows.append((9.8, 9.9, 9.0, 9.85))       # pivot low at 9.0
+        rows += [(10.0, 10.2, 9.9, 10.1)] * 12
+        rows.append((10.0, 10.2, 8.5, 10.1))     # spikes under 9.0, closes above
+        rows += [(10.0, 10.2, 9.9, 10.1)] * 5
+        return frame(rows)
+
+    def build(self, break_on_wick):
+        with patch.object(scanner, "ZONE_BREAK_ON_WICK", break_on_wick), \
+             patch.object(scanner, "ZONE_GEOMETRY", "wick"), \
+             patch.object(scanner, "ATR_PERIOD", 5):
+            _, demand = scanner.build_zones(self.frame_with_wick_raid())
+        return demand
+
+    def test_wick_raid_kills_the_zone(self):
+        demand = self.build(break_on_wick=True)
+        self.assertTrue(demand, "no demand zone was built")
+        self.assertTrue(
+            all(not z["active"] for z in demand),
+            "a wick through the far edge left the zone alive",
+        )
+
+    def test_close_rule_leaves_it_alive(self):
+        demand = self.build(break_on_wick=False)
+        self.assertTrue(demand, "no demand zone was built")
+        self.assertTrue(
+            any(z["active"] for z in demand),
+            "close rule should survive a wick that closed back above",
+        )
