@@ -37,6 +37,11 @@ from config import (
     MIN_DISTANCE_PCT,
     MIN_SCAN_INTERVAL_SECONDS,
     HISTORY_OF_ZONES_TO_KEEP,
+    ZONE_GEOMETRY,
+    ZONE_BASE_EXTRA,
+    ZONE_EVICT_WEAKEST,
+    ZONE_CLOCK_RESTARTS_ON_TOUCH,
+    ZONE_SHADOW_GEOMETRY,
     OHLCV_LIMIT,
     OVERLAP_ATR,
     PRIMARY_EXCHANGE_ID,
@@ -81,6 +86,13 @@ ALERT_RECORD_FILE = Path(__file__).with_name(
         "VICTUS_ALERT_RECORD_FILE",
         "crypto_alert_records_30m.jsonl" if TIMEFRAME == "30m" else "crypto_alert_records.jsonl",
     )
+)
+# Alerts the shadow geometry WOULD have sent. Written, never delivered - there is
+# no webhook on this path. paper_trading scores them alongside the live stream so
+# the two constructions can be compared forward and out of sample, which is the
+# one thing a backtest of the same history cannot do.
+SHADOW_ALERT_RECORD_FILE = ALERT_RECORD_FILE.with_name(
+    ALERT_RECORD_FILE.name.replace("crypto_alert_records", "crypto_shadow_alerts")
 )
 SL_BUFFER_PCT = 0.10
 ZONE_REPEAT_SUPPRESSION_SECONDS = 60 * 60
@@ -229,11 +241,21 @@ def add_zone_if_not_overlapping(zones, new_zone, atr_value):
     return True
 
 
-def record_zone_touch(zone, candle_high, candle_low):
+def record_zone_touch(zone, candle_high, candle_low, index=None):
     touches_zone = candle_high >= zone["bottom"] and candle_low <= zone["top"]
-    zone["touch_streak"] = zone.get("touch_streak", 0) + 1 if touches_zone else 0
+    previous_streak = zone.get("touch_streak", 0)
+    zone["touch_streak"] = previous_streak + 1 if touches_zone else 0
     if touches_zone:
         zone["touch_count"] = zone.get("touch_count", 0) + 1
+        if index is not None:
+            # A touch restarts the age clock. `clock` is the bar the current
+            # quiet run is measured from; `last_gap` is how long the zone was
+            # left alone before the touch episode now in progress, so a zone
+            # being touched right now is judged on the gap it earned before
+            # this episode rather than on a gap of zero.
+            if previous_streak == 0:
+                zone["last_gap"] = index - zone.get("clock", zone["created_idx"])
+            zone["clock"] = index
     zone["max_touch_streak"] = max(zone.get("max_touch_streak", 0), zone["touch_streak"])
     # 0 disables the veto entirely, matching the indicator. Without the guard
     # a threshold of 0 would flag every zone the moment it is created.
@@ -241,7 +263,7 @@ def record_zone_touch(zone, candle_high, candle_low):
         zone["over_touched"] = True
 
 
-def qualify_wick_zone(df, pivot_index, confirmation_index, atr_series, zone_type):
+def qualify_wick_zone(df, pivot_index, confirmation_index, atr_series, zone_type, geometry=None):
     pivot_atr = atr_series.iloc[pivot_index]
     if pd.isna(pivot_atr):
         return None
@@ -256,24 +278,51 @@ def qualify_wick_zone(df, pivot_index, confirmation_index, atr_series, zone_type
     if departure_closes.empty:
         return None
 
-    # Geometry follows the Pine indicator exactly: a fixed atr * (BOX_WIDTH/10)
-    # band anchored on the pivot extreme, not the pivot candle's own wick. The
-    # wick version produced the same far edge but a near edge far away from the
-    # level - and the near edge is the entry, so entries and stops came out
-    # several times wider than the chart implies.
-    band = float(pivot_atr) * (BOX_WIDTH / 10.0)
+    # ZONE_GEOMETRY picks the construction; see config.py for what each costs.
+    #
+    # "atr"  the original Pine band: a fixed atr * (BOX_WIDTH/10) hung off the
+    #        pivot extreme. The 2026-09 comment here used to say the wick version
+    #        was reverted for putting the near edge too far from the level. That
+    #        was true of the version tried then, which used the pivot candle
+    #        alone (ZONE_BASE_EXTRA = 0) and so could not pull the near edge in.
+    # "wick" Shiva_Indicator_v7.pine's construction: far edge is the extreme over
+    #        the base window, near edge is the closest body edge in that window.
+    #        The window never reaches past confirmation_index, so no lookahead.
     if zone_type == "demand":
-        bottom = candle_low
-        top = bottom + band
         wick_top = min(candle_open, candle_close)
         wick_bottom = candle_low
         departure = float(departure_closes.max() - wick_top)
     else:
-        top = candle_high
-        bottom = top - band
         wick_bottom = max(candle_open, candle_close)
         wick_top = candle_high
         departure = float(wick_bottom - departure_closes.min())
+
+    geometry = geometry or ZONE_GEOMETRY
+    if geometry == "wick":
+        first = max(0, pivot_index - ZONE_BASE_EXTRA)
+        last = min(len(df) - 1, pivot_index + ZONE_BASE_EXTRA, confirmation_index)
+        window = df.iloc[first:last + 1]
+        # The near edge is the BODY edge, max/min(open, close). Not the close -
+        # a wick ends where the body starts, and which of open or close forms
+        # that edge depends on the candle's direction.
+        if zone_type == "demand":
+            bottom = float(window["low"].min())
+            top = float(window[["open", "close"]].min(axis=1).min())
+            if top <= bottom:
+                top = bottom + float(pivot_atr) * 0.01
+        else:
+            top = float(window["high"].max())
+            bottom = float(window[["open", "close"]].max(axis=1).max())
+            if bottom >= top:
+                bottom = top - float(pivot_atr) * 0.01
+    else:
+        band = float(pivot_atr) * (BOX_WIDTH / 10.0)
+        if zone_type == "demand":
+            bottom = candle_low
+            top = bottom + band
+        else:
+            top = candle_high
+            bottom = top - band
 
     # Recorded as metadata for the rating and later analysis. The indicator
     # applies no such tests, so they must not gate zone creation.
@@ -282,6 +331,9 @@ def qualify_wick_zone(df, pivot_index, confirmation_index, atr_series, zone_type
         "type": zone_type,
         "created_idx": confirmation_index,
         "pivot_idx": pivot_index,
+        "clock": confirmation_index,
+        "last_gap": None,
+        "geometry": geometry,
         "top": top,
         "bottom": bottom,
         "body_entry": top if zone_type == "demand" else bottom,
@@ -298,7 +350,35 @@ def qualify_wick_zone(df, pivot_index, confirmation_index, atr_series, zone_type
     }
 
 
-def build_zones(df):
+def trim_zone_history(zones, current_index):
+    """Cap the live buffer, dropping the WEAKEST zone rather than the oldest.
+
+    The original is `zones[:] = zones[-HISTORY_OF_ZONES_TO_KEEP:]`, which drops
+    index 0 - the oldest. That is backwards against the strategy's own rule that
+    an old untouched zone is the strong one, and it is why long-dormant levels
+    vanished from the chart. Weakest here means already broken first, then the
+    shortest quiet run. The zone just added is never the one dropped, so a full
+    buffer cannot simply refuse every new arrival.
+    """
+    if len(zones) <= HISTORY_OF_ZONES_TO_KEEP:
+        return zones
+    if not ZONE_EVICT_WEAKEST:
+        zones[:] = zones[-HISTORY_OF_ZONES_TO_KEEP:]
+        return zones
+    while len(zones) > HISTORY_OF_ZONES_TO_KEEP:
+        newest = zones[-1]
+        victim = min(
+            (z for z in zones if z is not newest),
+            key=lambda z: (
+                bool(z.get("active", True)),
+                current_index - z.get("clock", z["created_idx"]),
+            ),
+        )
+        zones.remove(victim)
+    return zones
+
+
+def build_zones(df, geometry=None):
     atr_series = atr(df, ATR_PERIOD)
     if atr_series.isna().all():
         return [], []
@@ -314,26 +394,26 @@ def build_zones(df):
     for confirmation_index in range(SWING_LENGTH, len(df)):
         pivot_index = confirmation_index - SWING_LENGTH
         if pivot_index in pivot_high_set:
-            zone = qualify_wick_zone(df, pivot_index, confirmation_index, atr_series, "supply")
+            zone = qualify_wick_zone(df, pivot_index, confirmation_index, atr_series, "supply", geometry)
             if zone is not None and add_zone_if_not_overlapping(supply_zones, zone, zone["atr"]):
-                supply_zones[:] = supply_zones[-HISTORY_OF_ZONES_TO_KEEP:]
+                trim_zone_history(supply_zones, confirmation_index)
         elif pivot_index in pivot_low_set:
-            zone = qualify_wick_zone(df, pivot_index, confirmation_index, atr_series, "demand")
+            zone = qualify_wick_zone(df, pivot_index, confirmation_index, atr_series, "demand", geometry)
             if zone is not None and add_zone_if_not_overlapping(demand_zones, zone, zone["atr"]):
-                demand_zones[:] = demand_zones[-HISTORY_OF_ZONES_TO_KEEP:]
+                trim_zone_history(demand_zones, confirmation_index)
 
         close = float(df["close"].iloc[confirmation_index])
         high = float(df["high"].iloc[confirmation_index])
         low = float(df["low"].iloc[confirmation_index])
         for zone in supply_zones:
             if zone["active"] and confirmation_index > zone["created_idx"]:
-                record_zone_touch(zone, high, low)
+                record_zone_touch(zone, high, low, confirmation_index)
             if zone["active"] and confirmation_index > zone["created_idx"] and close >= zone["top"]:
                 zone["active"] = False
                 zone["broken"] = True
         for zone in demand_zones:
             if zone["active"] and confirmation_index > zone["created_idx"]:
-                record_zone_touch(zone, high, low)
+                record_zone_touch(zone, high, low, confirmation_index)
             if zone["active"] and confirmation_index > zone["created_idx"] and close <= zone["bottom"]:
                 zone["active"] = False
                 zone["broken"] = True
@@ -351,7 +431,18 @@ def too_young_to_alert(zone, current_index):
     """
     if current_index is None or MIN_ZONE_AGE_CANDLES <= 0:
         return False
-    return (current_index - zone["created_idx"]) < MIN_ZONE_AGE_CANDLES
+    if not ZONE_CLOCK_RESTARTS_ON_TOUCH:
+        return (current_index - zone["created_idx"]) < MIN_ZONE_AGE_CANDLES
+    # With the clock on, the age that counts is how long the zone has been left
+    # alone, not how long ago it was drawn. `current_index - clock` is the quiet
+    # run in progress; `last_gap` is the run it earned before the touch episode
+    # it is in right now, so a zone being touched this very bar is still judged
+    # on the silence it kept beforehand rather than on a gap of zero.
+    quiet = current_index - zone.get("clock", zone["created_idx"])
+    earned = zone.get("last_gap")
+    if earned is not None:
+        quiet = max(quiet, earned)
+    return quiet < MIN_ZONE_AGE_CANDLES
 
 
 def nearest_active_zone(price, zones, zone_type, current_index=None):
@@ -912,6 +1003,17 @@ def scan_symbol(symbol):
     latest_index = len(df) - 1
     nearest_supply, supply_dist = nearest_active_zone(price, supply_zones, "supply", latest_index)
     nearest_demand, demand_dist = nearest_active_zone(price, demand_zones, "demand", latest_index)
+    # The other construction, built on the same candles and never delivered.
+    shadow_supply = shadow_demand = None
+    shadow_supply_dist = shadow_demand_dist = 999.0
+    if ZONE_SHADOW_GEOMETRY and ZONE_SHADOW_GEOMETRY != ZONE_GEOMETRY:
+        shadow_supply_zones, shadow_demand_zones = build_zones(df, ZONE_SHADOW_GEOMETRY)
+        shadow_supply, shadow_supply_dist = nearest_active_zone(
+            price, shadow_supply_zones, "supply", latest_index
+        )
+        shadow_demand, shadow_demand_dist = nearest_active_zone(
+            price, shadow_demand_zones, "demand", latest_index
+        )
     buy_signal, sell_signal = get_range_filter_signals(df)
     supply_rating = None
     demand_rating = None
@@ -992,6 +1094,10 @@ def scan_symbol(symbol):
         "demand_dist": demand_dist,
         "demand_rating": demand_rating,
         "demand_score": demand_score,
+        "shadow_supply": shadow_supply,
+        "shadow_supply_dist": shadow_supply_dist,
+        "shadow_demand": shadow_demand,
+        "shadow_demand_dist": shadow_demand_dist,
         "buy_signal": buy_signal,
         "sell_signal": sell_signal,
     }
@@ -1067,7 +1173,7 @@ def delivered_alert_id(record):
     return hashlib.sha1("|".join(parts).encode("utf-8")).hexdigest()[:16]
 
 
-def record_delivered_zone_alert(result, zone_type, zone, distance_pct, message, now_ts):
+def record_delivered_zone_alert(result, zone_type, zone, distance_pct, message, now_ts, shadow=False):
     """Persist delivered zone alerts for the daily backtest summary."""
     rating = result.get(f"{zone_type}_rating") or {}
     # Prefer the validated rating (ML crypto model or xstock hybrid) when
@@ -1104,10 +1210,13 @@ def record_delivered_zone_alert(result, zone_type, zone, distance_pct, message, 
         "touch_count": zone.get("touch_count"),
         "zone_age_candles": zone.get("zone_age_candles"),
         "message": message,
+        "geometry": zone.get("geometry", ZONE_GEOMETRY),
+        "shadow": bool(shadow),
     }
     record["trade_id"] = delivered_alert_id(record)
+    destination = SHADOW_ALERT_RECORD_FILE if shadow else ALERT_RECORD_FILE
     try:
-        with ALERT_RECORD_FILE.open("a", encoding="utf-8") as file:
+        with destination.open("a", encoding="utf-8") as file:
             file.write(json.dumps(record, separators=(",", ":")) + "\n")
     except OSError as error:
         print(f"Crypto alert record write failed: {error}")
@@ -1270,7 +1379,7 @@ def send_status_message(message):
         print(f"Discord status message failed: {error}")
 
 
-def process_candidate(state, result, zone_type, zone, distance_pct, now_ts):
+def process_candidate(state, result, zone_type, zone, distance_pct, now_ts, shadow=False):
     if zone is None:
         return False
 
@@ -1285,9 +1394,15 @@ def process_candidate(state, result, zone_type, zone, distance_pct, now_ts):
             return False
 
     state_key = build_state_key(result["symbol"], zone_type, zone)
+    if shadow:
+        # Its own cooldown namespace, so a shadow alert can never suppress or
+        # re-arm a real one.
+        state_key = "shadow:" + state_key
     entry = state.setdefault(state_key, {"in_zone": False, "last_alert_at": 0.0})
     noise_state = state.setdefault("_noise_control", {})
     noise_key = exact_zone_identity(result["symbol"], zone_type, zone)
+    if shadow:
+        noise_key = "shadow:" + noise_key
     alert_sent = False
 
     if MIN_DISTANCE_PCT <= distance_pct <= MAX_DISTANCE_PCT:
@@ -1296,7 +1411,15 @@ def process_candidate(state, result, zone_type, zone, distance_pct, now_ts):
         noise_open = not last_success or now_ts - last_success >= ZONE_REPEAT_SUPPRESSION_SECONDS
         if should_alert and noise_open:
             message = format_alert(result, zone_type, zone, distance_pct)
-            if send_alert(message):
+            if shadow:
+                # Logged only. No webhook is touched on this path.
+                entry["last_alert_at"] = now_ts
+                noise_state[noise_key] = now_ts
+                record_delivered_zone_alert(
+                    result, zone_type, zone, distance_pct, message, now_ts, shadow=True
+                )
+                alert_sent = True
+            elif send_alert(message):
                 entry["last_alert_at"] = now_ts
                 noise_state[noise_key] = now_ts
                 record_delivered_zone_alert(result, zone_type, zone, distance_pct, message, now_ts)
@@ -1523,6 +1646,20 @@ def run_scan_once(state):
             alerts_sent += 1
         if process_candidate(state, result, "demand", result["demand"], result["demand_dist"], now_ts):
             alerts_sent += 1
+
+        # The shadow geometry runs the identical gate and writes to its own log.
+        # No webhook is reachable from here - process_candidate(shadow=True)
+        # cannot call send_alert - so this can never surface as a real alert.
+        if result.get("shadow_supply") is not None:
+            process_candidate(
+                state, result, "supply",
+                result["shadow_supply"], result["shadow_supply_dist"], now_ts, shadow=True,
+            )
+        if result.get("shadow_demand") is not None:
+            process_candidate(
+                state, result, "demand",
+                result["shadow_demand"], result["shadow_demand_dist"], now_ts, shadow=True,
+            )
 
     save_state(state)
 

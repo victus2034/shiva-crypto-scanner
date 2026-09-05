@@ -26,3 +26,8 @@ trade_detail_report.xlsx
 # virtualenv (created 2026-09-01 after the PC reset)
 .venv/
 venv/
+
+# Regenerable output of zone_geometry_backtest.py
+.zone_bt_cache/
+zone_geometry_backtest_*.json
+crypto_shadow_alerts*.jsonl

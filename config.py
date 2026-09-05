@@ -228,6 +228,34 @@ REARM_FACTOR = 1.25
 # touching candles retire the zone. This is deliberately stricter than the
 # Pine indicator, which has no touch veto at all: the indicator draws every
 # level, this decides which are worth an alert.
+# ---------------------------------------------------------------------------
+# Zone construction. Backtested 2026-09-06 over 42 symbols / 187 days of 30m;
+# see ZONE_GEOMETRY_BACKTEST_FINDINGS.md for the table behind each default.
+#
+# ZONE_GEOMETRY "atr"  the fixed atr * (BOX_WIDTH/10) band. Production, and still
+#                      the best arm on total net R.
+#              "wick"  Shiva_Indicator_v7.pine's geometry - the pivot candle's
+#                      wick, with the near edge pulled to the nearest body edge
+#                      within ZONE_BASE_EXTRA bars. Level on net expectancy per
+#                      trade and far more robust, but ~30% fewer trades. Not
+#                      switched on by default; run it through paper trading first.
+ZONE_GEOMETRY = os.getenv("VICTUS_ZONE_GEOMETRY", "atr").strip().lower() or "atr"
+ZONE_BASE_EXTRA = env_int("VICTUS_ZONE_BASE_EXTRA", 5)
+# Built alongside the live geometry and logged, never sent. Set empty to disable.
+ZONE_SHADOW_GEOMETRY = os.getenv("VICTUS_ZONE_SHADOW_GEOMETRY", "wick").strip().lower()
+
+# When the ring buffer is full, drop the weakest zone rather than the oldest.
+# The original FIFO throws away exactly the old untouched zones the strategy
+# calls strongest. Measured effect on P&L is nil - it evicts zones already spent
+# - but it is what keeps long-dormant levels alive, which is the point.
+ZONE_EVICT_WEAKEST = env_flag("VICTUS_ZONE_EVICT_WEAKEST", True)
+
+# Restart the minimum-age clock on every touch, so MIN_ZONE_AGE_CANDLES means
+# "untouched for this long" rather than "created this long ago". Worth +7% on net
+# expectancy, and it gets there by removing trades on zones price is already
+# working rather than by adding any.
+ZONE_CLOCK_RESTARTS_ON_TOUCH = env_flag("VICTUS_ZONE_CLOCK_RESTARTS_ON_TOUCH", True)
+
 MAX_CONSECUTIVE_ZONE_TOUCHES = 2
 
 # A zone has to stand before it means anything. A level confirmed a candle

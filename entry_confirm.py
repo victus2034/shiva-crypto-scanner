@@ -129,9 +129,15 @@ def save_state(state: dict) -> None:
     STATE_PATH.write_text(json.dumps(state, indent=2, sort_keys=True), encoding="utf-8")
 
 
-def load_watched_alerts(market: str, timeframe: str, now: pd.Timestamp) -> list[dict]:
-    """Alerts still inside their fillable window, newest occurrence wins."""
-    path = ALERT_RECORDS[market][timeframe]
+def load_watched_alerts(
+    market: str, timeframe: str, now: pd.Timestamp, records_path=None
+) -> list[dict]:
+    """Alerts still inside their fillable window, newest occurrence wins.
+
+    records_path points this at a different log - paper_trading uses it to read
+    the shadow-geometry alerts, which are written by the scanner but never sent.
+    """
+    path = records_path or ALERT_RECORDS[market][timeframe]
     if not path.exists():
         return []
 
