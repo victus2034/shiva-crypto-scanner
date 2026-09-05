@@ -20,7 +20,10 @@ class AlertFormatTests(unittest.TestCase):
         }
         zone = {"bottom": 100.2, "top": 100.33645}
 
-        message = scanner.format_alert(result, "demand", zone, 0.4)
+        # The stop rule is configurable now, so pin it rather than let the
+        # live geometry decide what this formatting test is measuring.
+        with patch.object(scanner, "ZONE_SL_MODE", "price_pct"):
+            message = scanner.format_alert(result, "demand", zone, 0.4)
 
         self.assertEqual(
             message,
@@ -29,6 +32,23 @@ class AlertFormatTests(unittest.TestCase):
             "Zone: 100.200000 - 100.336450\n"
             "SL: 100.099800 | 0.24%",
         )
+
+    def test_crypto_zone_alert_stop_follows_zone_height_under_v7_rule(self):
+        result = {
+            "symbol": "MSTRBUSD",
+            "price": 100.6,
+            "buy_signal": False,
+            "sell_signal": False,
+        }
+        zone = {"bottom": 100.2, "top": 100.33645}      # height 0.13645
+
+        with patch.object(scanner, "ZONE_SL_MODE", "zone_pct"), \
+             patch.object(scanner, "ZONE_SL_HEIGHT_PCT", 25.0):
+            message = scanner.format_alert(result, "demand", zone, 0.4)
+
+        # 25% of the zone's own height below the far edge - what Screenshot (33)
+        # describes and what v7 draws, rather than a fixed share of price.
+        self.assertIn("SL: 100.165887", message)
 
     def test_nse_zone_alert_has_no_market_or_timeframe_lines(self):
         result = {

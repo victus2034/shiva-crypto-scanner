@@ -1,4 +1,5 @@
 import unittest
+from unittest.mock import patch
 
 import pandas as pd
 
@@ -97,8 +98,16 @@ class NoQualificationFilterTests(unittest.TestCase):
         # Consecutive candles sitting on a level mean price is grinding
         # through it rather than reacting to it - thin volume, no rejection.
         # Deliberately stricter than the indicator, which has no touch veto.
+        # The veto is off by default under the wick geometry, because v7 has
+        # none and the restarted age clock already covers the case. It is still
+        # supported and still what NSE runs, so pin the value rather than read
+        # whatever the live geometry has chosen.
         for module in (scanner, nse_scanner):
-            self.assertEqual(module.MAX_CONSECUTIVE_ZONE_TOUCHES, 2)
+            with patch.object(module, "MAX_CONSECUTIVE_ZONE_TOUCHES", 2):
+                self._assert_back_to_back_retires(module)
+
+    def _assert_back_to_back_retires(self, module):
+        if True:
             zone = {"top": 10.0, "bottom": 9.0, "touch_streak": 0,
                     "touch_count": 0, "max_touch_streak": 0, "over_touched": False}
             module.record_zone_touch(zone, 9.9, 9.1)

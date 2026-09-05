@@ -280,6 +280,36 @@ ZONE_CLOCK_RESTARTS_ON_TOUCH = env_flag("VICTUS_ZONE_CLOCK_RESTARTS_ON_TOUCH", T
 # expectancy per trade. Kept at 2.0 for the ATR band, which was tuned around it.
 OVERLAP_ATR = env_float("VICTUS_OVERLAP_ATR", 1.0 if ZONE_GEOMETRY == "wick" else OVERLAP_ATR)
 
+# ---------------------------------------------------------------------------
+# Matching Shiva_Indicator_v7.pine exactly. The point of running the wick
+# geometry live is to see its mistakes in the alerts, which only works if the
+# alerts are the ones the chart would fire. Each value below tracks the
+# indicator's own default when the geometry is "wick", and keeps the scanner's
+# long-standing value when it is "atr".
+
+# Pine's ta.atr is Wilder's RMA. This module used a simple rolling mean, which
+# is a different number - it feeds the overlap filter, so the two disagreed
+# about which zones to reject. "sma" restores the old behaviour.
+ATR_METHOD = os.getenv("VICTUS_ATR_METHOD", "rma").strip().lower() or "rma"
+
+# v7 keeps 50 per side; the scanner kept 60. v7 waits 15 untouched candles; the
+# scanner waited 20. v7 has no over-touch veto at all - a zone that keeps being
+# touched simply never matures, which the restarted clock already handles, so a
+# second mechanism on top of it drops zones the chart still shows.
+# v7 puts the stop a share of the ZONE HEIGHT beyond the far edge - measured at
+# 30%, 17% and 25% of height on EX2, EX4 and EX3 - not a fixed share of price.
+# On a wick zone those differ by a lot, because wick heights vary where an ATR
+# band's do not. "price_pct" is the scanner's original 0.10%-of-price rule.
+ZONE_SL_MODE = os.getenv(
+    "VICTUS_ZONE_SL_MODE", "zone_pct" if ZONE_GEOMETRY == "wick" else "price_pct"
+).strip().lower()
+ZONE_SL_HEIGHT_PCT = env_float("VICTUS_ZONE_SL_HEIGHT_PCT", 25.0)
+
+# v7 retires a broken zone and builds its replacement off a short pivot, so a
+# new level appears within a few bars instead of waiting a full swing_length.
+# Screenshot (44): "we retire the ZONE 1 and create a new and updated zone".
+ZONE_REBUILD_AFTER_BREAK = env_flag("VICTUS_ZONE_REBUILD_AFTER_BREAK", ZONE_GEOMETRY == "wick")
+
 MAX_CONSECUTIVE_ZONE_TOUCHES = 2
 
 # A zone has to stand before it means anything. A level confirmed a candle
@@ -292,6 +322,18 @@ MAX_CONSECUTIVE_ZONE_TOUCHES = 2
 # candles, the alerts this blocks earned 0.054R on NSE and 0.389R on
 # crypto, against 0.122R and 0.564R for the ones that survive it.
 MIN_ZONE_AGE_CANDLES = env_int("VICTUS_MIN_ZONE_AGE_CANDLES", 20)
+
+# These three are defined above with the scanner's own values, then overridden
+# here when the wick geometry is running so the alerts track what v7 draws.
+# Placed after their definitions on purpose - an override written before them
+# is silently clobbered, which is exactly what happened the first time.
+if ZONE_GEOMETRY == "wick":
+    HISTORY_OF_ZONES_TO_KEEP = env_int("VICTUS_HISTORY_OF_ZONES_TO_KEEP", 50)
+    MIN_ZONE_AGE_CANDLES = env_int("VICTUS_MIN_ZONE_AGE_CANDLES", 15)
+    # v7 has no over-touch veto. The restarted age clock already stops a zone
+    # price keeps working from maturing, so a second mechanism on top of it
+    # only drops levels the chart still shows.
+    MAX_CONSECUTIVE_ZONE_TOUCHES = env_int("VICTUS_MAX_CONSECUTIVE_ZONE_TOUCHES", 0)
 # Shortest gap between two scans of the same timeframe. Every workflow is
 # also dispatched by an external scheduler, so adding cron meant each scan
 # ran twice - once on each trigger, minutes apart. Rather than depend on

@@ -229,9 +229,14 @@ class BreakRule(unittest.TestCase):
     def test_wick_raid_kills_the_zone(self):
         demand = self.build(break_on_wick=True)
         self.assertTrue(demand, "no demand zone was built")
+        # The rebuild puts a fresh live zone in the list right after the break,
+        # so check the ORIGINAL - the one anchored on the 9.0 pivot - rather
+        # than asserting nothing in the list is alive.
+        original = [z for z in demand if not z.get("rebuilt")]
+        self.assertTrue(original, "the original zone vanished from the list")
         self.assertTrue(
-            all(not z["active"] for z in demand),
-            "a wick through the far edge left the zone alive",
+            all(not z["active"] for z in original),
+            "a wick through the far edge left the original zone alive",
         )
 
     def test_close_rule_leaves_it_alive(self):

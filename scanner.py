@@ -42,6 +42,10 @@ from config import (
     ZONE_EVICT_WEAKEST,
     ZONE_CLOCK_RESTARTS_ON_TOUCH,
     ZONE_BREAK_ON_WICK,
+    ZONE_REBUILD_AFTER_BREAK,
+    ZONE_SL_MODE,
+    ZONE_SL_HEIGHT_PCT,
+    ATR_METHOD,
     ZONE_SHADOW_GEOMETRY,
     OHLCV_LIMIT,
     OVERLAP_ATR,
@@ -198,7 +202,12 @@ def atr(df, period=50):
         axis=1,
     ).max(axis=1)
 
-    return tr.rolling(period).mean()
+    if ATR_METHOD == "sma":
+        return tr.rolling(period).mean()
+    # Pine's ta.atr is Wilder's RMA, not a simple mean. The two give different
+    # numbers, and this feeds the overlap filter - so on the old simple mean the
+    # scanner and the chart disagreed about which zones to reject.
+    return tr.ewm(alpha=1.0 / period, adjust=False, min_periods=period).mean()
 
 
 def find_pivots(df, swing_length=10):
@@ -389,6 +398,18 @@ def build_zones(df, geometry=None):
     pivot_low_set = set(pivot_lows)
     supply_zones = []
     demand_zones = []
+    # v7 retires a broken zone and builds its replacement off a SHORT pivot, so
+    # a new level lands within a few bars of the break instead of waiting a full
+    # swing_length. Screenshot (44): "we retire the ZONE 1 and create a new and
+    # updated zone". EX5's replacement appeared two bars after its zone died.
+    rebuild_len = max(1, ZONE_BASE_EXTRA)
+    if ZONE_REBUILD_AFTER_BREAK:
+        short_highs, short_lows = find_pivots(df, rebuild_len)
+        short_high_set = set(short_highs)
+        short_low_set = set(short_lows)
+    else:
+        short_high_set = short_low_set = set()
+    pending_rebuild = {"supply": False, "demand": False}
 
     # Create zones only after pivot confirmation, using the original pivot
     # candle's wick and the confirmed post-pivot departure.
@@ -402,6 +423,27 @@ def build_zones(df, geometry=None):
             zone = qualify_wick_zone(df, pivot_index, confirmation_index, atr_series, "demand", geometry)
             if zone is not None and add_zone_if_not_overlapping(demand_zones, zone, zone["atr"]):
                 trim_zone_history(demand_zones, confirmation_index)
+
+        # A break arms the rebuild; the replacement lands on the next short
+        # pivot in the direction the break ran. Supply dies to an up-move, so
+        # its replacement comes off a short pivot HIGH, and the mirror for
+        # demand. Built with the same geometry as any other zone.
+        if ZONE_REBUILD_AFTER_BREAK:
+            short_pivot = confirmation_index - rebuild_len
+            if short_pivot >= 0:
+                for side, pivot_set, bucket in (
+                    ("supply", short_high_set, supply_zones),
+                    ("demand", short_low_set, demand_zones),
+                ):
+                    if pending_rebuild[side] and short_pivot in pivot_set:
+                        rebuilt = qualify_wick_zone(
+                            df, short_pivot, confirmation_index, atr_series, side, geometry
+                        )
+                        if rebuilt is not None:
+                            rebuilt["rebuilt"] = True
+                            if add_zone_if_not_overlapping(bucket, rebuilt, rebuilt["atr"]):
+                                trim_zone_history(bucket, confirmation_index)
+                        pending_rebuild[side] = False
 
         close = float(df["close"].iloc[confirmation_index])
         high = float(df["high"].iloc[confirmation_index])
@@ -417,6 +459,7 @@ def build_zones(df, geometry=None):
             if zone["active"] and confirmation_index > zone["created_idx"] and through:
                 zone["active"] = False
                 zone["broken"] = True
+                pending_rebuild["supply"] = True
         for zone in demand_zones:
             if zone["active"] and confirmation_index > zone["created_idx"]:
                 record_zone_touch(zone, high, low, confirmation_index)
@@ -424,6 +467,7 @@ def build_zones(df, geometry=None):
             if zone["active"] and confirmation_index > zone["created_idx"] and through:
                 zone["active"] = False
                 zone["broken"] = True
+                pending_rebuild["demand"] = True
 
     return supply_zones, demand_zones
 
@@ -1153,10 +1197,23 @@ def planned_entry_price(zone_type, zone):
 
 
 def planned_stop_price(zone_type, zone, buffer_pct=SL_BUFFER_PCT):
-    """Place SL beyond the far zone edge with a small fixed buffer."""
+    """Place SL beyond the far zone edge.
+
+    "zone_pct" is v7's rule - a share of the zone's own height, which is what
+    Screenshot (33) describes: "SL IS NOT FIXED ITS JUST THE UPPER ZONE WITH
+    SOME PRECAUTION SPACE KEEP". Measured at 30%, 17% and 25% of height across
+    EX2, EX4 and EX3. "price_pct" is the scanner's original fixed 0.10% of
+    price. On an ATR band the two are close, because band heights barely vary;
+    on wick zones they are not, because wick heights vary a great deal.
+    """
+    top = float(zone["top"])
+    bottom = float(zone["bottom"])
+    if ZONE_SL_MODE == "zone_pct":
+        pad = (top - bottom) * ZONE_SL_HEIGHT_PCT / 100.0
+        return bottom - pad if zone_type == "demand" else top + pad
     if zone_type == "demand":
-        return float(zone["bottom"]) * (1 - buffer_pct / 100.0)
-    return float(zone["top"]) * (1 + buffer_pct / 100.0)
+        return bottom * (1 - buffer_pct / 100.0)
+    return top * (1 + buffer_pct / 100.0)
 
 
 def planned_stop_distance_pct(zone_type, zone, buffer_pct=SL_BUFFER_PCT):
