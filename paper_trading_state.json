@@ -20227,6 +20227,7 @@
     "cca1faecbddd81bd": "filled",
     "ccaac872ebe665e2": "filled",
     "ccb278c6760650d0": "filled",
+    "cd363adf0a803798": "filled",
     "cd61c889b608e4e8": "filled",
     "cd9f734024e68a52": "filled",
     "cdea15ba108bdf2d": "filled",
@@ -20411,5 +20412,22 @@
     "fed8ed34d9b4adcd": "filled",
     "ffb4661b7d04cd46": "filled"
   },
-  "open": {}
+  "open": {
+    "cd363adf0a803798": {
+      "alert_time": "2026-09-06T00:01:57.294358+05:30",
+      "entry": 91.90084999999999,
+      "entry_time": "2026-09-06T00:40:00+05:30",
+      "half_r_hit": true,
+      "market": "crypto",
+      "rating": 5,
+      "risk": 0.21116999999999564,
+      "side": "short",
+      "stop": 92.11201999999999,
+      "symbol": "CL/USDT",
+      "target_1": 91.68968,
+      "target_2": 91.47851,
+      "target_half": 91.795265,
+      "timeframe": "30m"
+    }
+  }
 }
